@@ -1,5 +1,6 @@
 import { Box, Button, TextField, Typography, Link } from "@mui/material";
 import { styled } from "@mui/system";
+import { api, handleErrors } from "@whub/api";
 import { FormGroup, Img, ResponserGrid, useForm, Validators } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 
@@ -28,7 +29,11 @@ const InvertedTextField = styled(TextField)(({ theme }) => ({
 export default function Contacts() {
   const { t } = useTranslation();
   const form = useForm({
-    nameAndSurname: {
+    name: {
+      value: "",
+      validators: [Validators.required],
+    },
+    surname: {
       value: "",
       validators: [Validators.required],
     },
@@ -57,12 +62,18 @@ export default function Contacts() {
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     form.validate();
-    console.log(form.getValue("nameAndSurname"));
-    console.log(form.getValue("company"));
-    console.log(form.getValue("phoneNumber"));
-    console.log(form.getValue("email"));
-    console.log(form.getValue("message"));
-    console.log(form.getValue("privacy"));
+
+    api.contactUs.process({
+      name: form.getValue('name'),
+      surname: form.getValue('surname'),
+      email: form.getValue('email'),
+      message: form.getValue('message'),
+      phoneNumber: form.getValue('phoneNumber'),
+    })
+    .then(r => handleErrors(r, {
+      onBadRequest: (e) => console.log(e),
+      onProblem: (e) => console.log(e),
+    }))
   };
 
   return (
@@ -145,9 +156,20 @@ export default function Contacts() {
           </Typography>
           <FormGroup form={form} onSubmit={handleSubmit}>
             <InvertedTextField
-              name="nameAndSurname"
+              name="name"
               required
-              fullWidth
+              size="small"
+              variant="outlined"
+              label={t("name-and-surname")}
+              sx={{marginBlock: 1,}}
+              InputProps={{
+                sx: { color: "#757575 !important", fontWeight: "600", fontSize: "18px !important", borderRadius: 2.5 },
+              }}
+              InputLabelProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 } }}
+            />
+            <InvertedTextField
+              name="surname"
+              required
               size="small"
               variant="outlined"
               label={t("name-and-surname")}
