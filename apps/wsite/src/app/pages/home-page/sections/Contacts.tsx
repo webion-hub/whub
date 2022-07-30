@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography, Link } from "@mui/material";
 import { styled } from "@mui/system";
-import { api, handleErrors } from "@whub/api";
+import { api } from "@whub/api";
 import { FormGroup, Img, ResponserGrid, useForm, Validators } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 
@@ -37,10 +37,6 @@ export default function Contacts() {
       value: "",
       validators: [Validators.required],
     },
-    company: {
-      value: "",
-      validators: [],
-    },
     phoneNumber: {
       value: "",
       validators: [],
@@ -63,17 +59,7 @@ export default function Contacts() {
     e.preventDefault();
     form.validate();
 
-    api.contactUs.process({
-      name: form.getValue('name'),
-      surname: form.getValue('surname'),
-      email: form.getValue('email'),
-      message: form.getValue('message'),
-      phoneNumber: form.getValue('phoneNumber'),
-    })
-    .then(r => handleErrors(r, {
-      onBadRequest: (e) => console.log(e),
-      onProblem: (e) => console.log(e),
-    }))
+    api.contactUs.process(form.getValues());
   };
 
   return (
