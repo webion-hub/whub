@@ -6,15 +6,6 @@ import { useTranslation } from "react-i18next";
 import PrivacyCheckBox from "../../../components/privacy_checkbox/PrivacyCheckbox";
 
 const InvertedTextField = styled(TextField)(({ theme }) => ({
-  // '& fieldset': {
-  //   borderColor: "#d2d2d2",
-  // },
-  // '& .MuiOutlinedInput-root:hover:not(.Mui-focused) > fieldset': {
-  //   borderColor: "#424242",
-  // },
-  // '&.Mui-focused fieldset': {
-  //   borderColor: 'green',
-  // },
   '& label.Mui-focused': {
     color: '#d2d2d2',
   },
@@ -163,39 +154,9 @@ export default function Contacts() {
               sx={{marginBlock: 1,}}
               InputProps={{
                 sx: { color: "#757575 !important", fontWeight: "600", fontSize: "18px !important", borderRadius: 2.5 },
-                // endAdornment: (
-                //   <InputAdornment position="end">
-                //     <PersonRoundedIcon
-                //       sx={{
-                //         color: theme => theme.palette.primary.main 
-                //       }}/
-                //     >
-                //   </InputAdornment>
-                // ),
               }}
               InputLabelProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 } }}
             />
-            {/* <InvertedTextField
-              name="company"
-              fullWidth
-              size="small"
-              variant="outlined"
-              label={t("company")}
-              sx={{marginBlock: 1}}
-              InputProps={{
-                sx: { color: textColor },
-                // endAdornment: (
-                //   <InputAdornment position="end">
-                //     <BusinessRoundedIcon
-                //       sx={{
-                //         color: theme => theme.palette.primary.main 
-                //       }}/
-                //     >
-                //   </InputAdornment>
-                // ),
-              }}
-              InputLabelProps={{ sx: { color: textColor } }}
-            /> */}
             <InvertedTextField
               name="phoneNumber"
               fullWidth
@@ -205,15 +166,6 @@ export default function Contacts() {
               sx={{marginBlock: 1}}
               InputProps={{
                 sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 },
-                // endAdornment: (
-                //   <InputAdornment position="end">
-                //     <PhoneRoundedIcon
-                //       sx={{
-                //         color: theme => theme.palette.primary.main 
-                //       }}/
-                //     >
-                //   </InputAdornment>
-                // ),
               }}
               InputLabelProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 } }}
             />
@@ -227,15 +179,6 @@ export default function Contacts() {
               sx={{marginBlock: 1}}
               InputProps={{
                 sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 },
-                // endAdornment: (
-                //   <InputAdornment position="end">
-                //     <EmailRoundedIcon
-                //       sx={{
-                //         color: theme => theme.palette.primary.main 
-                //       }}/
-                //     >
-                //   </InputAdornment>
-                // ),
               }}
               InputLabelProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 } }}
             />
