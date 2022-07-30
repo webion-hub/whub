@@ -1,7 +1,6 @@
-import { OnBadRequest } from "../handlers";
 import ContactInformation from "../model/contact-information";
 
-export interface CreateCustomerRequest extends OnBadRequest {
+export interface CreateCustomerRequest {
   readonly name: string;
   readonly surname: string;
   readonly contactInformation: ContactInformation;

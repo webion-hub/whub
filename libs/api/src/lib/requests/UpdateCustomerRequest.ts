@@ -1,6 +1,4 @@
-import { OnBadRequest, OnNotFound } from "../handlers";
-
-export interface UpdateCustomerRequest extends OnBadRequest, OnNotFound {
+export interface UpdateCustomerRequest {
   readonly name: string;
   readonly surname: string;
 }

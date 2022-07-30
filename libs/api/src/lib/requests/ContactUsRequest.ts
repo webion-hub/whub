@@ -1,6 +1,4 @@
-import { OnBadRequest } from "../handlers";
-
-export default interface ContactUsRequest extends OnBadRequest {
+export default interface ContactUsRequest {
   readonly name: string;
   readonly surname: string;
   readonly email: string;
