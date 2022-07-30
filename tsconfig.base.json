@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@whub/api": ["libs/api/src/index.ts"],
       "@whub/wui": ["libs/wui/src/index.ts"]
     }
   },
