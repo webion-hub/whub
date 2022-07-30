@@ -26,7 +26,7 @@ export default function Home() {
           marginInline: "auto",
           marginBlock: 4,
           justifyContent: { sm: "center", md: "left" },
-          width: { xs: "auto", md: "70%" }
+          width: { xs: "100%", md: "70%" }
         }}
       >
         <Typography

@@ -6,25 +6,29 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Footer, FooterBottomLabel, FooterColumn, FooterContent } from "@whub/wui";
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
   const { t } = useTranslation();
   
   const typoSx = {
     textAlign: "left",
-    width: "fit-content%",
+    width: "fit-content",
+    margin: 0,
   };
 
   const buttonSx = {
     alignSelf: "auto",
     padding: 0,
     width: "fit-content",
+    margin: "0px",
+    minWidth: "0px",
   };
 
   return (
     <Footer ref={ref}>
       <FooterContent>
-        <FooterColumn StackProps={{ alignItems: {xs:'center', md: "left"}}}>
+        <FooterColumn StackProps={{ alignItems: {xs:'center', md: "baseline"}}}>
           <Typography variant="subtitle2" sx={buttonSx}>
             HOME
           </Typography>
@@ -84,9 +88,9 @@ const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
             Shop
           </Button>
         </FooterColumn> */}
-        <FooterColumn StackProps={{ alignItems: {xs:'center', md: "left"}, }} >
+        <FooterColumn StackProps={{ alignItems: {xs:'center', md: "baseline"}, }} >
           <Typography variant="subtitle2" sx={typoSx}>
-            CONTATTACI
+          {t("contact-us-title")}
           </Typography>
           <Button sx={buttonSx} color="info" href="http://maps.google.com/?q=Webion SRL" target="_blank">
             via Panfilo Castaldi 3, Modena
@@ -100,11 +104,14 @@ const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
         </FooterColumn>
         <FooterColumn StackProps={{ alignItems: {xs:'center', md: "left"}, }} >
           <Typography variant="subtitle2">
-            Social
+            SOCIAL
           </Typography>
           <Grid container sx={{justifyContent: "center"}}>
             <IconButton aria-label="facebook" size="large" href="https://www.facebook.com/Webion-107914721922394" color="primary">
               <FacebookIcon fontSize="inherit" />
+            </IconButton>
+            <IconButton aria-label="instagram" size="large" href="https://www.instagram.com/webion.it/" color="primary">
+              <InstagramIcon fontSize="inherit" />
             </IconButton>
             <IconButton aria-label="linkedin" size="large" href="https://www.linkedin.com/company/webion-srl/about/" color="primary">
               <LinkedInIcon fontSize="inherit" />
