@@ -12,7 +12,7 @@ jobs:
 
       - uses: actions/setup-node@v3
       - uses: nrwl/nx-set-shas@v2
-      - run: npm ci
+      - run: npm i
 
       - run: npx nx workspace-lint
       - run: npx nx format:check
@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/setup-node@v3
       - uses: nrwl/nx-set-shas@v2
-      - run: npm ci
+      - run: npm i
       - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
       
   build:
@@ -41,5 +41,5 @@ jobs:
 
       - uses: actions/setup-node@v3
       - uses: nrwl/nx-set-shas@v2
-      - run: npm ci
+      - run: npm i
       - run: npx nx affected --target=build --parallel=3
