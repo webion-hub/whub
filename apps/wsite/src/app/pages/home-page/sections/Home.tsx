@@ -11,22 +11,22 @@ export default function Home() {
       size="md"
       reverse="column"
       sx={{
-        paddingInline: 8,
         marginInline: 'auto',
         maxWidth: 1170,
         width: "100%",
         minHeight: "800px",
         justifyContent: "space-between",
         alignItems: "center",
+        paddingInline:{xs: 0, sm: 2},
       }}
       >
       <Box
         sx={{
-          maxWidth: "95%",
-          marginInline: "auto",
+          maxWidth: "600px",
+          marginLeft: 0,
           marginBlock: 4,
           justifyContent: { sm: "center", md: "left" },
-          width: { xs: "100%", md: "70%" }
+          width: { xs: "100%", md: "60%" }
         }}
       >
         <Typography
@@ -44,6 +44,7 @@ export default function Home() {
           color="text.secondary"
           variant="h2"
           sx={{
+            marginTop: {xs: 1, sm: 0},
             fontWeight: "bold",
             textAlign: { sm: "center", xs: "center", md: "left" },
           }}
@@ -54,7 +55,7 @@ export default function Home() {
           color="text.primary"
           sx={{
             maxWidth: 600,
-            marginTop: { sm: 5, md: 3 },
+            marginTop: { xs: 2, sm: 2, md: 3 },
             textAlign: { sm: "center", xs: "center", md: "left" },
           }}
         >

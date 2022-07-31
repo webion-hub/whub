@@ -8,7 +8,12 @@ import { styled } from "@mui/system";
 import { Sections } from "@whub/wui";
 
 const Section = styled('section')({})
-
+const sectionSx = {
+  paddingBlock: "100px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
 export default function Homepage() {
   return (
     <Sections sx={{overflow: "hidden"}}>
@@ -20,7 +25,7 @@ export default function Homepage() {
             md: "url('assets/images/background-min.png')",
           },
           backgroundPosition: {
-            xs: "center calc(50% + 100px)",
+            xs: "45% calc(50% + 80px)",
             md: "calc(50% + 300px) 30px",
           },
           backgroundSize: "cover",
@@ -29,16 +34,16 @@ export default function Homepage() {
       }>
         <Home />
       </Section>
-      <Section id="about-us">
+      <Section id="about-us" sx={sectionSx}>
         <AIDA />
       </Section>
-      <Section id="services">
+      <Section id="services" sx={sectionSx}>
         <Services />
       </Section>
-      <Section id="projects">
+      <Section id="projects" sx={sectionSx}>
         <Projects />
       </Section>
-      <Section id="how-we-work">
+      <Section id="how-we-work"  sx={sectionSx}>
         <HowWeWork />
       </Section>
       <Section id="contacts">

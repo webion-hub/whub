@@ -14,8 +14,6 @@ export default function HowWeWork() {
     <Box
       sx={{
         marginInline: "auto",
-        marginTop: 5,
-        marginBottom: 17,
         width: "100%",
         maxWidth: "100%",
       }}
@@ -36,7 +34,8 @@ export default function HowWeWork() {
           spacing: 2,
         }}
         sx={{
-          marginBlock: 12,
+          marginBlock: 12,          
+          marginTop: "40px"
         }}
       >
         <CardWithBadge

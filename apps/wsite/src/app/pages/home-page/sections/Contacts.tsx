@@ -93,7 +93,7 @@ export default function Contacts() {
         width: "100%",
         backgroundSize: "cover",
         marginTop: "0px",
-        backgroundColor: { xs: "white", sm: "white", md: "transparent" },
+        backgroundColor: { xs: "#ffffff", sm: "white", md: "transparent" },
       }}
     >
       <ResponserGrid
@@ -258,7 +258,7 @@ export default function Contacts() {
               type="submit"
               variant="contained"
               size="large"
-              sx={{marginTop: "30px", width: "190px"}}
+              sx={{marginTop: "30px", width: {xs: "100%", sm: "190px"}}}
             >
               {t("contact-us-button")}
             </Button>

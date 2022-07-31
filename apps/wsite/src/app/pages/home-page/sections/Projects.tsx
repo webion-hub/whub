@@ -6,12 +6,12 @@ export default function Projects() {
   const { t } = useTranslation();
 
   return (
-    <Box sx={{ marginTop: 5, height: "fit-content" }}>
+    <Box sx={{ height: "fit-content" }}>
       <Typography
         variant="h2"
         textAlign="center"
         color="white"
-        sx={{ marginBlock: 5 }}
+        sx={{ marginBottom: 5 }}
       >
         {t("projects-title")}
       </Typography>
