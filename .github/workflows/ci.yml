@@ -20,14 +20,12 @@ jobs:
       
   test:
     runs-on: ubuntu-latest
-    needs:
-      - lint
+    needs: lint
     steps:
       - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
       
   build:
     runs-on: ubuntu-latest
-    needs:
-      - lint
+    needs: lint
     steps:
       - run: npx nx affected --target=build --parallel=3
