@@ -11,8 +11,11 @@ jobs:
           fetch-depth: 0
 
       - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+
       - uses: nrwl/nx-set-shas@v2
-      - run: npm i
+      - run: npm ci
 
       - run: npx nx workspace-lint
       - run: npx nx format:check
@@ -27,8 +30,11 @@ jobs:
           fetch-depth: 0
 
       - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+
       - uses: nrwl/nx-set-shas@v2
-      - run: npm i
+      - run: npm ci
       - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
       
   build:
@@ -40,6 +46,9 @@ jobs:
           fetch-depth: 0
 
       - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+
       - uses: nrwl/nx-set-shas@v2
-      - run: npm i
+      - run: npm ci
       - run: npx nx affected --target=build --parallel=3
