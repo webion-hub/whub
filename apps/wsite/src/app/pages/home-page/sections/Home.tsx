@@ -17,7 +17,7 @@ export default function Home() {
         minHeight: "800px",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingInline:{xs: 0, sm: 2},
+        paddingInline:{xs: 0.3, sm: 2},
       }}
       >
       <Box
@@ -81,22 +81,23 @@ export default function Home() {
             size="large"
             color="primary"
             variant="contained"
-            href="/#about-us"
-            onClick={() => (window.location.href = "/#AIDA")}
-            sx={{paddingBlock: 2}}
-          >
-            {t("main-button")}
-          </Button>
-          <Button
-            size="large"
-            color="secondary"
-            variant="contained"
             href="/#contacts"
             onClick={() => (window.location.href = "/#contacts")}
             sx={{boxShadow: "none", paddingBlock: 2}}
           >
             {t("contact-us-button")}
           </Button>
+          <Button
+            size="large"
+            color="secondary"
+            variant="contained"
+            href="/#about-us"
+            onClick={() => (window.location.href = "/#AIDA")}
+            sx={{paddingBlock: 2}}
+          >
+            {t("main-button")}
+          </Button>
+
         </ResponserGrid>
       </Box>
       <Box sx={{ width: { xs: "40%", sm: "35%", md: "30%" } }}>
