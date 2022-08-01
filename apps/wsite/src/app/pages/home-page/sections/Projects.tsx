@@ -5,6 +5,24 @@ import { useTranslation } from "react-i18next";
 export default function Projects() {
   const { t } = useTranslation();
 
+  const slideshowImagesProps = [
+    {
+      img: "assets/images/mentorz.png",
+      url: "https://www.mentorz.fr/",
+      label: t("project-1-description"),
+    },
+    {
+      img: "assets/images/yoga.png",
+      url: "https://it.yogacorfuholidays.com/",
+      label: t("project-2-description"),
+    },
+    {
+      img: "assets/images/kaire.png",
+      url: "https://kaire-automation.it/",
+      label: t("project-3-description"),
+    },
+  ]
+
   return (
     <Box sx={{ marginTop: 5, height: "fit-content" }}>
       <Typography
@@ -16,21 +34,7 @@ export default function Projects() {
         {t("projects-title")}
       </Typography>
       <Slideshow
-        urls={[
-          "assets/images/mentorz.png",
-          "assets/images/yoga.png",
-          "assets/images/kaire.png",
-        ]}
-        texts={[
-          t("project-1-description"),
-          t("project-2-description"),
-          t("project-3-description"),
-        ]}
-        links={[
-          "https://www.mentorz.fr/",
-          "https://it.yogacorfuholidays.com/",
-          "https://kaire-automation.it/",
-        ]}
+        imagesProps={slideshowImagesProps}
         iconSx={{
           color: "text.secondary",
           width: "fit-content",

@@ -5,11 +5,15 @@ import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import { SlideshowImage } from "./SlideshowImage";
 import { Responser } from "../conditional_components/Responser";
 
+export interface SlideshowImagesProps {
+  readonly img: string;
+  readonly url: string;
+  readonly label: string;
+}
+
 export interface SlideshowProps {
   readonly iconSx: SxProps<Theme>;
-  readonly urls: string[];
-  readonly links: string[];
-  readonly texts: string[];
+  readonly imagesProps: SlideshowImagesProps[];
 }
 
 export function Slideshow(props: SlideshowProps) {
@@ -24,8 +28,8 @@ export function Slideshow(props: SlideshowProps) {
     const nextImageIdx = imageIdx + backOrNextFactor;
 
     const inRangeIdx = nextImageIdx < 0 
-      ? nextImageIdx + props.urls.length 
-      : nextImageIdx % props.urls.length;
+      ? nextImageIdx + props.imagesProps.length 
+      : nextImageIdx % props.imagesProps.length;
 
     setImageIdx(inRangeIdx);
 
@@ -47,12 +51,10 @@ export function Slideshow(props: SlideshowProps) {
           sx={{ overflowX: "hidden", scrollBehavior: "smooth" }}
           ref={ref}
         >
-          {props.urls.map((obj, i) => (
+          {props.imagesProps.map((obj, i) => (
             <SlideshowImage
-              src={obj}
-              link={props.links[i]}
-              visible={imageIdx}
-              index={i}
+              img={obj.img}
+              url={obj.url}
               key={"slideImage" + i}
             ></SlideshowImage>
           ))}
@@ -77,7 +79,7 @@ export function Slideshow(props: SlideshowProps) {
         color="text.primary"
         sx={{ margin: "20px auto", width: "80%" }}
       >
-        {props.texts[imageIdx]}
+        {props.imagesProps[imageIdx].label}
       </Typography>
     </Box>
 
@@ -106,12 +108,10 @@ export function Slideshow(props: SlideshowProps) {
             sx={{ overflowX: "hidden", scrollBehavior: "smooth" }}
             ref={ref}
           >
-            {props.urls.map((obj, i) => (
+            {props.imagesProps.map((obj, i) => (
               <SlideshowImage
-                src={obj}
-                link={props.links[i]}
-                visible={imageIdx}
-                index={i}
+                img={obj.img}
+                url={obj.url}
                 key={"slideImage" + i}
               ></SlideshowImage>
             ))}
@@ -128,7 +128,7 @@ export function Slideshow(props: SlideshowProps) {
           color="text.primary"
           sx={{ margin: "20px auto", width: "60%" }}
         >
-          {props.texts[imageIdx]}
+          {props.imagesProps[imageIdx].label}
         </Typography>
       </Box>
     </Responser>
