@@ -35,5 +35,5 @@ export const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>((props
 ImageCard.defaultProps = {
   width: 350,
   height: 400,
-  maxWidth: "95%"
+  maxWidth: "min(350px, 100%)"
 }

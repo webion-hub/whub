@@ -24,12 +24,12 @@ export default function Projects() {
   ]
 
   return (
-    <Box sx={{ marginBlock: 5, height: "fit-content" }}>
+    <Box sx={{ height: "fit-content" }}>
       <Typography
         variant="h2"
         textAlign="center"
         color="white"
-        sx={{ marginBlock: 5 }}
+        sx={{ marginBottom: 5 }}
       >
         {t("projects-title")}
       </Typography>

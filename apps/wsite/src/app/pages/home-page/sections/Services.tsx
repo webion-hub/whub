@@ -9,9 +9,8 @@ export default function Services() {
   return (
     <Box sx={{ 
       marginTop: 5,
-      marginBottom: 17,
       marginInline: 'auto', 
-      width: "95vw" 
+      width: "95%",
     }}>
       <Typography
         color="text.secondary"
@@ -26,6 +25,7 @@ export default function Services() {
         sx={{
           justifyContent: "center",
           width: "fit-content",
+          maxWidth: "100%",
           alignContent: "center",
           alignItems: "center",
           marginInline: 'auto',
@@ -63,6 +63,7 @@ export default function Services() {
           onClick={() => (window.location.href = "/#contacts")}
           sx={{ 
             textTransform: 'none',
+            textAlign: "center",
           }}
         >
           {t("services-consultation")}
