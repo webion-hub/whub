@@ -22,7 +22,7 @@ export default function Home() {
       >
       <Box
         sx={{
-          maxWidth: "600px",
+          maxWidth: 600,
           marginLeft: 0,
           marginBlock: 4,
           justifyContent: { sm: "center", md: "left" },
@@ -82,7 +82,7 @@ export default function Home() {
             color="primary"
             variant="contained"
             href="/#contacts"
-            onClick={() => (window.location.href = "/#contacts")}
+            onClick={() => window.location.href = "/#contacts"}
             sx={{boxShadow: "none", paddingBlock: 2}}
           >
             {t("contact-us-button")}
@@ -92,7 +92,7 @@ export default function Home() {
             color="secondary"
             variant="contained"
             href="/#about-us"
-            onClick={() => (window.location.href = "/#AIDA")}
+            onClick={() => window.location.href = "/#AIDA"}
             sx={{paddingBlock: 2}}
           >
             {t("main-button")}
