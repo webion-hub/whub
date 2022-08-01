@@ -1,9 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button, Grid, SxProps, Theme, Typography, Box } from "@mui/material";
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import { SlideshowImage } from "./SlideshowImage";
 import { Responser } from "../conditional_components/Responser";
+import { debounceTime, fromEvent } from "rxjs";
 
 export interface SlideshowImagesProps {
   readonly img: string;
@@ -19,6 +20,48 @@ export interface SlideshowProps {
 export function Slideshow(props: SlideshowProps) {
   const [imageIdx, setImageIdx] = useState<number>(0);
   const ref = useRef<HTMLDivElement>(null);
+  const idxRef = useRef<number>(imageIdx);
+
+  const handleImageIdx = (idx: number) =>{
+    if(!ref.current)
+      return
+
+    setImageIdx(idx)
+    idxRef.current = idx
+    ref.current.scrollLeft = (ref.current.clientWidth) * idx;
+  }
+
+  useEffect(() => {
+    if(!ref.current)
+      return
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      if(ref.current && idxRef.current)
+        ref.current.scrollLeft = (ref.current.clientWidth) * idxRef.current;
+    });
+
+    resizeObserver.observe(ref.current);
+
+    const scrollSub$ = fromEvent(ref.current, "scroll")
+      .pipe(debounceTime(180))
+      .subscribe((e) => {
+        if(!ref.current)
+          return
+        console.log(e)
+          
+        if(ref.current?.scrollLeft > (ref.current.clientWidth * idxRef.current) + (ref.current.clientWidth/4))
+          handleImageIdx(idxRef.current + 1)
+        else if(ref.current?.scrollLeft < (ref.current.clientWidth * idxRef.current) - (ref.current.clientWidth/4))
+          handleImageIdx(idxRef.current - 1)
+        else if(ref.current?.scrollLeft !== (ref.current.clientWidth * idxRef.current))
+          handleImageIdx(idxRef.current)
+
+    })
+
+    return () => scrollSub$.unsubscribe()
+  
+  }, [])
+  
 
   const handleScroll = (prev = false) => {
     if (!ref.current)
@@ -31,9 +74,7 @@ export function Slideshow(props: SlideshowProps) {
       ? nextImageIdx + props.imagesProps.length 
       : nextImageIdx % props.imagesProps.length;
 
-    setImageIdx(inRangeIdx);
-
-    ref.current.scrollLeft = (ref.current.clientWidth + 1) * inRangeIdx;
+    handleImageIdx(inRangeIdx);
   };
 
   const AlternativeChildren =
@@ -48,7 +89,7 @@ export function Slideshow(props: SlideshowProps) {
           container
           wrap="nowrap"
           width="90%"
-          sx={{ overflowX: "hidden", scrollBehavior: "smooth" }}
+          sx={{ overflowX: "auto", scrollBehavior: "smooth" }}
           ref={ref}
         >
           {props.imagesProps.map((obj, i) => (
@@ -105,7 +146,7 @@ export function Slideshow(props: SlideshowProps) {
             container
             wrap="nowrap"
             width="60%"
-            sx={{ overflowX: "hidden", scrollBehavior: "smooth" }}
+            sx={{ overflowX: "auto", scrollBehavior: "smooth" }}
             ref={ref}
           >
             {props.imagesProps.map((obj, i) => (

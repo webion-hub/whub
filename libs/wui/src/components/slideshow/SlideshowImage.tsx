@@ -1,3 +1,4 @@
+import { Box, Grid } from "@mui/material";
 import { Img } from "../Img";
 
 export interface SlideshowImageProps {
@@ -8,9 +9,12 @@ export interface SlideshowImageProps {
 export function SlideshowImage(props: SlideshowImageProps) {
   return (
     <Img
+      draggable="false"
       src={props.img}
       width="100%"
-      sx={{ 
+      sx={{
+        userDrag: "none", 
+        userSelect: "none",
         borderRadius: 2, 
         cursor: "pointer",
       }}
