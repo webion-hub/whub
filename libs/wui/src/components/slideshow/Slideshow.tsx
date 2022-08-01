@@ -31,6 +31,25 @@ export function Slideshow(props: SlideshowProps) {
     ref.current.scrollLeft = (ref.current.clientWidth) * idx;
   }
 
+  const handleDrag = () => {
+    if(!ref.current)
+      return
+      
+    const currentImgPosition = ref.current.clientWidth * idxRef.current
+    const threshold = ref.current.clientWidth/4
+
+    const isNext = ref.current?.scrollLeft > currentImgPosition + threshold
+    const isPrev = ref.current?.scrollLeft < currentImgPosition - threshold
+    const isMiddle = ref.current?.scrollLeft !== currentImgPosition
+
+    if(isNext)
+      handleImageIdx(idxRef.current + 1)
+    else if(isPrev)
+      handleImageIdx(idxRef.current - 1)
+    else if(isMiddle)
+      handleImageIdx(idxRef.current)
+  }
+
   useEffect(() => {
     if(!ref.current)
       return
@@ -44,25 +63,7 @@ export function Slideshow(props: SlideshowProps) {
 
     const scrollSub$ = fromEvent(ref.current, "scroll")
       .pipe(debounceTime(180))
-      .subscribe((e) => {
-        if(!ref.current)
-          return
-          
-        const currentImgPosition = ref.current.clientWidth * idxRef.current
-        const threshold = ref.current.clientWidth/4
-
-        const isNext = ref.current?.scrollLeft > currentImgPosition + threshold
-        const isPrev = ref.current?.scrollLeft < currentImgPosition - threshold
-        const isMiddle = ref.current?.scrollLeft !== currentImgPosition
-
-        if(isNext)
-          handleImageIdx(idxRef.current + 1)
-        else if(isPrev)
-          handleImageIdx(idxRef.current - 1)
-        else if(isMiddle)
-          handleImageIdx(idxRef.current)
-
-    })
+      .subscribe(() => handleDrag())
 
     return () => scrollSub$.unsubscribe()
   }, [ref.current])
