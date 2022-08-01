@@ -47,20 +47,25 @@ export function Slideshow(props: SlideshowProps) {
       .subscribe((e) => {
         if(!ref.current)
           return
-        console.log(e)
           
-        if(ref.current?.scrollLeft > (ref.current.clientWidth * idxRef.current) + (ref.current.clientWidth/4))
+        const currentImgPosition = ref.current.clientWidth * idxRef.current
+        const threshold = ref.current.clientWidth/4
+
+        const isNext = ref.current?.scrollLeft > currentImgPosition + threshold
+        const isPrev = ref.current?.scrollLeft < currentImgPosition - threshold
+        const isMiddle = ref.current?.scrollLeft !== currentImgPosition
+
+        if(isNext)
           handleImageIdx(idxRef.current + 1)
-        else if(ref.current?.scrollLeft < (ref.current.clientWidth * idxRef.current) - (ref.current.clientWidth/4))
+        else if(isPrev)
           handleImageIdx(idxRef.current - 1)
-        else if(ref.current?.scrollLeft !== (ref.current.clientWidth * idxRef.current))
+        else if(isMiddle)
           handleImageIdx(idxRef.current)
 
     })
 
     return () => scrollSub$.unsubscribe()
-  
-  }, [])
+  }, [ref.current])
   
 
   const handleScroll = (prev = false) => {
@@ -103,13 +108,19 @@ export function Slideshow(props: SlideshowProps) {
         <Grid container width="100%" justifyContent="space-between">
           <Button
             onClick={() => handleScroll(true)}
-            sx={{ margin: "auto 0px" }}
+            sx={{ 
+              marginBlock: "auto",
+              marginInline: 0, 
+            }}
           >
             <ChevronLeftRoundedIcon sx={props.iconSx} />
           </Button>
           <Button
             onClick={() => handleScroll()}
-            sx={{ margin: "auto 0px" }}
+            sx={{ 
+              marginBlock: "auto",
+              marginInline: 0,
+            }}
           >
             <ChevronRightRoundedIcon sx={props.iconSx} />
           </Button>
@@ -118,7 +129,11 @@ export function Slideshow(props: SlideshowProps) {
       <Typography
         textAlign="center"
         color="text.primary"
-        sx={{ margin: "20px auto", width: "80%" }}
+        sx={{ 
+          marginBlock: 5,
+          marginInline: "auto", 
+          width: "80%" 
+        }}
       >
         {props.imagesProps[imageIdx].label}
       </Typography>
@@ -138,7 +153,10 @@ export function Slideshow(props: SlideshowProps) {
         >
           <Button
             onClick={() => handleScroll(true)}
-            sx={{ margin: "auto 0px" }}
+            sx={{ 
+              marginBlock: "auto",
+              marginInline: 0,
+            }} 
           >
             <ChevronLeftRoundedIcon sx={{ ...props.iconSx, fontSize: "70px" }} />
           </Button>
@@ -159,7 +177,10 @@ export function Slideshow(props: SlideshowProps) {
           </Grid>
           <Button 
             onClick={() => handleScroll()} 
-            sx={{ margin: "auto 0px" }}
+            sx={{ 
+              marginBlock: "auto",
+              marginInline: 0,
+            }}
           >
             <ChevronRightRoundedIcon sx={{ ...props.iconSx, fontSize: "70px" }} />
           </Button>
@@ -167,7 +188,11 @@ export function Slideshow(props: SlideshowProps) {
         <Typography
           textAlign="center"
           color="text.primary"
-          sx={{ margin: "20px auto", width: "60%" }}
+          sx={{
+            marginBlock: 10,
+            marginInline: "auto",
+            width: "60%" 
+          }}
         >
           {props.imagesProps[imageIdx].label}
         </Typography>

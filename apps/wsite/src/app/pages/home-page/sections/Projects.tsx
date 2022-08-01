@@ -24,7 +24,7 @@ export default function Projects() {
   ]
 
   return (
-    <Box sx={{ marginTop: 5, height: "fit-content" }}>
+    <Box sx={{ marginBlock: 5, height: "fit-content" }}>
       <Typography
         variant="h2"
         textAlign="center"
