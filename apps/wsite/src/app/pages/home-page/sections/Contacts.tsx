@@ -62,7 +62,7 @@ export default function Contacts() {
     },
   });
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e: Event) => {
     setSuccess(false)
     e.preventDefault();
 
