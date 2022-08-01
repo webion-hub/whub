@@ -1,8 +1,7 @@
 import { Box, Typography, Link, useTheme } from "@mui/material";
 import { api } from "@whub/api";
 import { FormGroup, Img, ResponserGrid, useForm, Validators, WuiGrid } from "@whub/wui";
-import { remove } from "lodash";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LightModeLoadingButton } from "../../../components/light_mode/LightModeLoadingButton";
 import { LightModeTextField } from "../../../components/light_mode/LightModeTextField";
@@ -62,7 +61,7 @@ export default function Contacts() {
     },
   });
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = (e: FormEvent) => {
     setSuccess(false)
     e.preventDefault();
 
@@ -158,13 +157,13 @@ export default function Contacts() {
               name="name"
               required
               label={t("name")}
-              sx={{width: nameSurnameWidth, marginRight: 0.5}}
+              sx={{ width: nameSurnameWidth, marginRight: 0.5 }}
             />
             <TextfieldBase
               name="surname"
               required
               label={t("surname")}
-              sx={{width: nameSurnameWidth, marginLeft: 0.5}}
+              sx={{ width: nameSurnameWidth, marginLeft: 0.5 }}
             />
             <TextfieldBase
               name="phoneNumber"
@@ -185,22 +184,12 @@ export default function Contacts() {
               rows={4}
               label={t("message")}
             />
-<<<<<<< HEAD
             <PrivacyCheckBox name="privacy"/>
             <WuiGrid
               container
               direction="row"
               alignItems="center"
               spacing={2}
-=======
-            <PrivacyCheckBox
-              name="privacy"/>
-            <Button
-              type="submit"
-              variant="contained"
-              size="large"
-              sx={{marginTop: 4, width: {xs: "100%", sm: 24}}}
->>>>>>> main
             >
               <LightModeLoadingButton
                 loading={loading}
