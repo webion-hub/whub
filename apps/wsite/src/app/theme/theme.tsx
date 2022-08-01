@@ -19,8 +19,7 @@ const theme = createTheme({
     },
     text: {   
       primary: "rgba(255, 255, 255, 0.8)",
-      secondary: "#ffffff",
-      disabled: "#757575",
+      secondary: "#fff",
     },
     info: {
       main: "#999999",
@@ -28,13 +27,13 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: [fontFamily, "sans-serif"].join(','),
-    h1: { fontSize: "80px", letterSpacing: "-4%" },
-    h2: { fontSize: "42px", letterSpacing: "-4%" },
-    h3: { fontSize: "43px", letterSpacing: "-4%" },
-    h4: { fontSize: "32px", letterSpacing: "-4%" },
-    body1: { fontSize: "22px", letterSpacing: "-4%" },
-    body2: { fontSize: "19px", letterSpacing: "-4%" },
-    subtitle2: { fontSize: "17px", letterSpacing: "-4%" },
+    h1: { fontSize: "80px" },
+    h2: { fontSize: "42px" },
+    h3: { fontSize: "43px" },
+    h4: { fontSize: "32px" },
+    body1: { fontSize: "22px" },
+    body2: { fontSize: "19px" },
+    subtitle2: { fontSize: "17px" },
   },
   transitions: {
     duration: {
@@ -103,6 +102,21 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontFamily: fontFamily,
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 10,
+          fontSize: '18px !important',
+        },
+      }
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: '18px !important',
         }
       }
     }

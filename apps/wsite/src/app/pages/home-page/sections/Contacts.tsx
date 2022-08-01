@@ -1,7 +1,7 @@
-import { Box, Button, TextField, Typography, Link } from "@mui/material";
+import { Box, Button, TextField, Typography, Link, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
 import { api } from "@whub/api";
-import { FormGroup, Img, ResponserGrid, useForm, Validators } from "@whub/wui";
+import { FormGroup, Img, ResponserGrid, useForm, Validators, WuiGrid } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 
 import PrivacyCheckBox from "../../../components/privacy_checkbox/PrivacyCheckbox";
@@ -27,6 +27,10 @@ const InvertedTextField = styled(TextField)(({ theme }) => ({
 }));
 
 export default function Contacts() {
+  const theme = useTheme()
+  const borderRadius = theme.spacing(5)
+  const textColor = theme.palette.grey[600]
+
   const { t } = useTranslation();
   const form = useForm({
     name: {
@@ -39,11 +43,11 @@ export default function Contacts() {
     },
     phoneNumber: {
       value: "",
-      validators: [],
+      validators: [Validators.required, Validators.isATelephoneNumber],
     },
     email: {
       value: "",
-      validators: [Validators.required],
+      validators: [Validators.required, Validators.isAnEmail],
     },
     message: {
       value: "",
@@ -62,36 +66,49 @@ export default function Contacts() {
     api.contactUs.process(form.getValues());
   };
 
+  const TextfieldBase = ({...props}) => {
+    return (
+      <InvertedTextField
+        {...props}
+        required
+        size="small"
+        variant="outlined"
+        InputProps={{
+          sx: { color: `${textColor} !important`},
+        }}
+        InputLabelProps={{ sx: { color: `${textColor} !important` } }}
+      />
+    )
+  } 
+ 
   return (
     <Box
       sx={{
+        backgroundColor: { xs: "white", sm: "white", md: "transparent" },
         backgroundImage: {
           md: "url('assets/images/circle.svg')",
-          sm: "none",
           xs: "none",
         },
-        paddingTop: "0px",
-        borderRadius: {
-          md: "0px",
-          sm: "40px 0px 0px 40px",
-          xs: "40px 40px 0px 0px",
-        },
         backgroundRepeat: "no-repeat",
-        justifyContent: "center",
-        width: "100%",
         backgroundSize: "cover",
-        marginTop: "0px",
-        backgroundColor: { xs: "white", sm: "white", md: "transparent" },
+        paddingTop: 0,
+        marginTop: 0,
+        borderRadius: {
+          md: 0,
+          sm: `${borderRadius} 0px 0px ${borderRadius}`,
+          xs: `${borderRadius} ${borderRadius} 0px 0px`,
+        },
+        width: "100%",
       }}
     >
       <ResponserGrid
         type="upper"
         sx={{
-          maxWidth: "1100px",
-          minHeight: "800px",
+          maxWidth: 1100,
+          minHeight: 800,
           margin: "auto",
           paddingBottom: 4,
-          paddingTop: "20px",
+          paddingTop: 2.5,
           width: "90%",
         }}
         size="xs"
@@ -103,55 +120,54 @@ export default function Contacts() {
         }}>
           <Img
             src="assets/images/contactsIllustration.png"
-            sx={{width:"100%", margin:"auto"}}
+            sx={{ width:"100%", margin:"auto" }}
           /> 
         </Box>
         
-        <Box sx={{ width: { sx: "95%", md: "50%" } }}>
+        <WuiGrid
+          container
+          direction="column"
+          spacing={4}
+          sx={{ width: { sx: "95%", md: "50%" } }}
+        >
           <Typography
             variant="h2"
             color="primary.dark"
-            sx={{
-              marginTop: "30px",
-              textAlign: {
-                md: "center",
-                sm: "center",
-                xs: "center",
-                lg: "left",
-              },
-            }}
+            sx={{ textAlign: { xs: "center", lg: "left" } }}
           >
             {t("contact-us-title")}
           </Typography>
           <Typography
             color="#757575"
             variant="body2"
-            sx={{
-              marginTop: "30px",
-              marginBottom: "40px",
-              textAlign: {
-                md: "center",
-                sm: "center",
-                xs: "center",
-                lg: "left",
-              },
-            }}
+            sx={{ textAlign: { xs: "center", lg: "left" } }}
           >
             {t("contact-us-description")}
-            <Link href="tel:+39 389 008 6632" sx={{color: "#757575", textDecoration: "none", borderBottom: "1px solid #757575"}}> +39 389 008 6632</Link>
+            <Link 
+              href="tel:+39 389 008 6632" 
+              sx={{
+                color: textColor, 
+                textDecoration: "none", 
+                borderBottom: `1px solid ${textColor}`
+              }}
+            > 
+              +39 389 008 6632
+            </Link>
           </Typography>
-          <FormGroup form={form} onSubmit={handleSubmit}>
+          <FormGroup 
+            form={form} 
+            onSubmit={handleSubmit}
+          >
             <InvertedTextField
               name="name"
               required
               size="small"
               variant="outlined"
               label={t("name-and-surname")}
-              sx={{marginBlock: 1,}}
               InputProps={{
-                sx: { color: "#757575 !important", fontWeight: "600", fontSize: "18px !important", borderRadius: 2.5 },
+                sx: { color: "#757575 !important"},
               }}
-              InputLabelProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 } }}
+              InputLabelProps={{ sx: { color: "#757575 !important" } }}
             />
             <InvertedTextField
               name="surname"
@@ -159,7 +175,6 @@ export default function Contacts() {
               size="small"
               variant="outlined"
               label={t("name-and-surname")}
-              sx={{marginBlock: 1,}}
               InputProps={{
                 sx: { color: "#757575 !important", fontWeight: "600", fontSize: "18px !important", borderRadius: 2.5 },
               }}
@@ -171,7 +186,6 @@ export default function Contacts() {
               size="small"
               variant="outlined"
               label={t("phone-number")}
-              sx={{marginBlock: 1}}
               InputProps={{
                 sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 },
               }}
@@ -184,7 +198,6 @@ export default function Contacts() {
               fullWidth
               variant="outlined"
               label={t("email")}
-              sx={{marginBlock: 1}}
               InputProps={{
                 sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 },
               }}
@@ -199,7 +212,6 @@ export default function Contacts() {
               rows={4}
               variant="outlined"
               label={t("message")}
-              sx={{marginBlock: 1, "& fieldset": {borderRadius: "16px !important"}}}
               inputProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: "16px !important" } }}
               InputLabelProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: "16px !important" } }}
             />
@@ -214,7 +226,7 @@ export default function Contacts() {
               {t("contact-us-button")}
             </Button>
           </FormGroup>
-        </Box>
+        </WuiGrid>
       </ResponserGrid>
     </Box>
   );
