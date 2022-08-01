@@ -1,4 +1,3 @@
-import { Box, Grid } from "@mui/material";
 import { Img } from "../Img";
 
 export interface SlideshowImageProps {
