@@ -62,13 +62,13 @@ export default function Contacts() {
   });
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
+    setSuccess(false)
     e.preventDefault();
 
     if(!form.isFormValid())
       return
 
     setLoading(true)
-    setSuccess(false)
     api.contactUs
       .process(form.getValues())
       .then(() => setSuccess(true))
