@@ -35,7 +35,7 @@ export default function HowWeWork() {
         }}
         sx={{
           marginBlock: 12,          
-          marginTop: "40px"
+          marginTop: 40,
         }}
       >
         <CardWithBadge
