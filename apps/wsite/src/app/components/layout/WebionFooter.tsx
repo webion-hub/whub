@@ -21,8 +21,8 @@ const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
     alignSelf: "auto",
     padding: 0,
     width: "fit-content",
-    margin: "0px",
-    minWidth: "0px",
+    margin: 0,
+    minWidth: 0,
   };
 
   return (
