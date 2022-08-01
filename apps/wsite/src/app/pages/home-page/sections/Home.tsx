@@ -92,7 +92,7 @@ export default function Home() {
             color="secondary"
             variant="contained"
             href="/#about-us"
-            onClick={() => window.location.href = "/#AIDA"}
+            onClick={() => window.location.href = "/#about-us"}
             sx={{paddingBlock: 2}}
           >
             {t("main-button")}
