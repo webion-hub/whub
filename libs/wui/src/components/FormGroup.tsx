@@ -1,12 +1,13 @@
 import React, { FormEventHandler } from "react";
 import { Form } from "../lib/Form";
 import { ChildrenProp } from "../abstractions/props/ChildrenProps";
-import { Grid } from "@mui/material";
+import { Grid, SxProps, Theme } from "@mui/material";
 
 export interface FormGroupProps {
   readonly form: Form;
   readonly onSubmit: FormEventHandler;
   readonly children: ChildrenProp;
+  readonly sx?: SxProps<Theme>
 }
 
 export const FormGroup = React.forwardRef<any, FormGroupProps>((props, ref) => {
@@ -25,10 +26,10 @@ export const FormGroup = React.forwardRef<any, FormGroupProps>((props, ref) => {
   return (
     <Grid 
       ref={ref}
-      {...props} 
       component="form" 
       noValidate 
       onSubmit={props.onSubmit}
+      sx={props.sx}
     >
       {childrenWithProps}
     </Grid>

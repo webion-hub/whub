@@ -1,35 +1,37 @@
-import { Box, Button, TextField, Typography, Link, useTheme } from "@mui/material";
-import { styled } from "@mui/system";
+import { Box, Typography, Link, useTheme } from "@mui/material";
 import { api } from "@whub/api";
 import { FormGroup, Img, ResponserGrid, useForm, Validators, WuiGrid } from "@whub/wui";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { LightModeLoadingButton } from "../../../components/light_mode/LightModeLoadingButton";
+import { LightModeTextField } from "../../../components/light_mode/LightModeTextField";
 
 import PrivacyCheckBox from "../../../components/privacy_checkbox/PrivacyCheckbox";
 
-const InvertedTextField = styled(TextField)(({ theme }) => ({
-  '& label.Mui-focused': {
-    color: '#d2d2d2',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: 'green',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#d2d2d2',
-    },
-    '&:hover fieldset': {
-      borderColor: '#acacac',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: '#acacac',
-    },
-  },
-}));
+const TextfieldBase = ({...props}) => {
+  const theme = useTheme()
+  const textColor = theme.palette.grey[600]
+
+  return (
+    <LightModeTextField
+      {...props}
+      size="small"
+      variant="outlined"
+      InputProps={{
+        sx: { color: `${textColor}`},
+      }}
+      InputLabelProps={{ sx: { color: `${textColor}` } }}
+    />
+  )
+} 
 
 export default function Contacts() {
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
   const theme = useTheme()
   const borderRadius = theme.spacing(5)
   const textColor = theme.palette.grey[600]
+  const nameSurnameWidth = `calc(50% - ${theme.spacing(0.5)})`
 
   const { t } = useTranslation();
   const form = useForm({
@@ -61,26 +63,19 @@ export default function Contacts() {
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    form.validate();
 
-    api.contactUs.process(form.getValues());
+    if(!form.isFormValid())
+      return
+
+    setLoading(true)
+    setSuccess(false)
+    api.contactUs
+      .process(form.getValues())
+      .then(() => setSuccess(true))
+      .finally(() => setLoading(false))
   };
 
-  const TextfieldBase = ({...props}) => {
-    return (
-      <InvertedTextField
-        {...props}
-        required
-        size="small"
-        variant="outlined"
-        InputProps={{
-          sx: { color: `${textColor} !important`},
-        }}
-        InputLabelProps={{ sx: { color: `${textColor} !important` } }}
-      />
-    )
-  } 
- 
+
   return (
     <Box
       sx={{
@@ -108,15 +103,14 @@ export default function Contacts() {
           minHeight: 800,
           margin: "auto",
           paddingBottom: 4,
-          paddingTop: 2.5,
+          paddingTop: 8,
           width: "90%",
         }}
         size="xs"
       >
         <Box sx={{
-          width: 500, 
+          width: '50%', 
           margin: "auto",
-          maxWidth:"70%"
         }}>
           <Img
             src="assets/images/contactsIllustration.png"
@@ -138,7 +132,7 @@ export default function Contacts() {
             {t("contact-us-title")}
           </Typography>
           <Typography
-            color="#757575"
+            color={textColor}
             variant="body2"
             sx={{ textAlign: { xs: "center", lg: "left" } }}
           >
@@ -157,74 +151,72 @@ export default function Contacts() {
           <FormGroup 
             form={form} 
             onSubmit={handleSubmit}
+            sx={{ "& > *": { marginBlock: theme.spacing(0.5, '!important') }}}
           >
-            <InvertedTextField
+            <TextfieldBase
               name="name"
               required
-              size="small"
-              variant="outlined"
-              label={t("name-and-surname")}
-              InputProps={{
-                sx: { color: "#757575 !important"},
-              }}
-              InputLabelProps={{ sx: { color: "#757575 !important" } }}
+              label={t("name")}
+              sx={{width: nameSurnameWidth, marginRight: 0.5}}
             />
-            <InvertedTextField
+            <TextfieldBase
               name="surname"
               required
-              size="small"
-              variant="outlined"
-              label={t("name-and-surname")}
-              InputProps={{
-                sx: { color: "#757575 !important", fontWeight: "600", fontSize: "18px !important", borderRadius: 2.5 },
-              }}
-              InputLabelProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 } }}
+              label={t("surname")}
+              sx={{width: nameSurnameWidth, marginLeft: 0.5}}
             />
-            <InvertedTextField
+            <TextfieldBase
               name="phoneNumber"
               fullWidth
-              size="small"
-              variant="outlined"
               label={t("phone-number")}
-              InputProps={{
-                sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 },
-              }}
-              InputLabelProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 } }}
             />
-            <InvertedTextField
+            <TextfieldBase
               name="email"
               required
-              size="small"
               fullWidth
-              variant="outlined"
               label={t("email")}
-              InputProps={{
-                sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 },
-              }}
-              InputLabelProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: 2.5 } }}
             />
-            <InvertedTextField
+            <TextfieldBase
               name="message"
               required
               fullWidth
-              size="small"
               multiline
               rows={4}
-              variant="outlined"
               label={t("message")}
-              inputProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: "16px !important" } }}
-              InputLabelProps={{ sx: { color: "#757575 !important", fontSize: "18px !important", borderRadius: "16px !important" } }}
             />
-            <PrivacyCheckBox
-              name="privacy"/>
-            <Button
-              type="submit"
-              variant="contained"
-              size="large"
-              sx={{marginTop: "30px", width: "190px"}}
+            <PrivacyCheckBox name="privacy"/>
+            <WuiGrid
+              container
+              direction="row"
+              alignItems="center"
+              spacing={2}
             >
-              {t("contact-us-button")}
-            </Button>
+              <LightModeLoadingButton
+                loading={loading}
+                type="submit"
+                variant="contained"
+                size="large"
+                loadingPosition="start"
+                sx={{ width: 190, zIndex: 1 }}
+              >
+                {t("contact-us-button")}
+              </LightModeLoadingButton>
+              <Typography
+                color={textColor}
+                variant="body2"
+                sx={{
+                  opacity: success ? 1 : 0,
+                  transform: success ? 'translateX(0%)' : 'translateX(-100%)',
+                  transition: theme => `
+                    ${theme.transitions.duration.standard}ms opacity ease-in-out,
+                    ${theme.transitions.duration.standard}ms transform ease-in-out
+                  `,
+                }}
+              >
+                Messaggio inviato!
+              </Typography>            
+            </WuiGrid>              
+
           </FormGroup>
         </WuiGrid>
       </ResponserGrid>
