@@ -185,12 +185,22 @@ export default function Contacts() {
               rows={4}
               label={t("message")}
             />
+<<<<<<< HEAD
             <PrivacyCheckBox name="privacy"/>
             <WuiGrid
               container
               direction="row"
               alignItems="center"
               spacing={2}
+=======
+            <PrivacyCheckBox
+              name="privacy"/>
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              sx={{marginTop: 4, width: {xs: "100%", sm: 24}}}
+>>>>>>> main
             >
               <LightModeLoadingButton
                 loading={loading}

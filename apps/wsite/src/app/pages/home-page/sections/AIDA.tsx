@@ -9,7 +9,6 @@ export default function AIDA() {
   return (
     <Box
       sx={{
-        marginBottom:17.5,
         marginInline: 'auto',
         paddingBlock: 7.5,
         width: { md: 900, sm: "80%", xs: "90%" },
