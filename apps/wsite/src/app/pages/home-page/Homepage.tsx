@@ -9,7 +9,7 @@ import { Sections } from "@whub/wui";
 
 const Section = styled('section')({})
 const sectionSx = {
-  paddingBlock: "100px",
+  paddingBlock: 12.5,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
