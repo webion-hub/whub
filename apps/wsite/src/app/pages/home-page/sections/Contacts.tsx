@@ -1,6 +1,7 @@
 import { Box, Typography, Link, useTheme } from "@mui/material";
 import { api } from "@whub/api";
 import { FormGroup, Img, ResponserGrid, useForm, Validators, WuiGrid } from "@whub/wui";
+import { remove } from "lodash";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LightModeLoadingButton } from "../../../components/light_mode/LightModeLoadingButton";
@@ -45,7 +46,7 @@ export default function Contacts() {
     },
     phoneNumber: {
       value: "",
-      validators: [Validators.required, Validators.isATelephoneNumber],
+      validators: [Validators.isATelephoneNumber],
     },
     email: {
       value: "",
