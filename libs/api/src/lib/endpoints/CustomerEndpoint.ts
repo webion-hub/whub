@@ -20,7 +20,7 @@ export default class CustomerEndpoint {
   }
 
   update(request: UpdateCustomerRequest) {
-  return this.client.put<void>('', request);
+    return this.client.put<void>('', request);
   }
 
   updateContactInformation(contactInfo: ContactInformation) {
