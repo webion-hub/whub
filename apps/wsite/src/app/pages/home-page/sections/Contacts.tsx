@@ -258,7 +258,7 @@ export default function Contacts() {
               type="submit"
               variant="contained"
               size="large"
-              sx={{marginTop: "30px", width: {xs: "100%", sm: "190px"}}}
+              sx={{marginTop: 4, width: {xs: "100%", sm: 24}}}
             >
               {t("contact-us-button")}
             </Button>
