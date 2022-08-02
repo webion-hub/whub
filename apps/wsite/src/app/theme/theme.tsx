@@ -1,6 +1,16 @@
 import { createTheme } from "@mui/material/styles";
 import ReadexPro from "../../assets/fonts/ReadexPro-VariableFont_wght.ttf"
 
+import "@mui/material/styles/createPalette";
+declare module "@mui/material/styles/createPalette" {
+  interface Palette {
+    secondaryBackground?: Palette['background'];
+  }
+  interface PaletteOptions {
+    secondaryBackground?: PaletteOptions['background'];
+  }
+}
+
 const fontFamily = "'ReadexPro'"
 
 const theme = createTheme({
@@ -9,6 +19,9 @@ const theme = createTheme({
     background: {
       default: "#040A20",
       paper: "#060E2B",
+    },
+    secondaryBackground: {
+      default: '#020612'
     },
     primary: {
       main: "#1f4bff",
@@ -68,6 +81,9 @@ const theme = createTheme({
       }
     },
     MuiPaper: {
+      defaultProps: {
+        elevation: 0
+      },
       styleOverrides: {
         root: {
           backgroundImage: 'none',
