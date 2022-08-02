@@ -5,7 +5,7 @@ import React from "react";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { Footer, FooterBottomLabel, FooterColumn, FooterContent } from "@whub/wui";
+import { Footer, FooterBottomLabel, FooterColumn, FooterContent, Img } from "@whub/wui";
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
@@ -107,16 +107,23 @@ const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
             SOCIAL
           </Typography>
           <Grid container sx={{justifyContent: "center"}}>
-            <IconButton aria-label="facebook" size="large" href="https://www.facebook.com/Webion-107914721922394" color="primary">
+            <IconButton aria-label="facebook" size="large" href="https://www.facebook.com/Webion-107914721922394" target="_blank" color="primary">
               <FacebookIcon fontSize="inherit" />
             </IconButton>
-            <IconButton aria-label="instagram" size="large" href="https://www.instagram.com/webion.it/" color="primary">
+            <IconButton aria-label="facebook" size="large" href="https://www.quora.com/profile/Webion" target="_blank" color="primary">
+              <Img
+                width="25px"
+                height="20px"
+                src="/assets/images/quoraIcon.svg"
+              />
+            </IconButton>
+            <IconButton aria-label="instagram" size="large" href="https://www.instagram.com/webion.it/" target="_blank" color="primary">
               <InstagramIcon fontSize="inherit" />
             </IconButton>
-            <IconButton aria-label="linkedin" size="large" href="https://www.linkedin.com/company/webion-srl/about/" color="primary">
+            <IconButton aria-label="linkedin" size="large" href="https://www.linkedin.com/company/webion-srl/about/" target="_blank" color="primary">
               <LinkedInIcon fontSize="inherit" />
             </IconButton>
-            <IconButton aria-label="github" size="large" href="https://github.com/webion-hub" color="primary">
+            <IconButton aria-label="github" size="large" href="https://github.com/webion-hub" target="_blank" color="primary">
               <GitHubIcon fontSize="inherit" />
             </IconButton>
           </Grid>
