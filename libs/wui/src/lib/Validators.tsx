@@ -30,8 +30,8 @@ export class Validators {
 
   static isAPattern = (pattern: RegExp) => (value?: string) => {
     return !value || !!value
-        .toLowerCase()
-        .match(pattern)
+      .toLowerCase()
+      .match(pattern)
   }
 
   static customValidator = (f: Validator) => (value?: any) => {

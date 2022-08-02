@@ -9,6 +9,8 @@ import { initReactI18next } from "react-i18next";
 import en from "./assets/locales/en-EN.json";
 import it from "./assets/locales/it-IT.json";
 
+import './styles.css'
+
 import Homepage from './app/pages/home-page/Homepage';
 import theme from './app/theme/theme'
 import { GlobalStyles, CssBaseline} from '@mui/material';

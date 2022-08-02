@@ -59,7 +59,8 @@
   
   "contact-us-title": "Contattaci",
   "contact-us-description": "Siamo qui per te! Hai una domanda? Mettiti in contatto e saremo felici di aiutarti. Compila il nostro form o chiamaci al",
-  "name-and-surname": "Nome",
+  "name": "Nome",
+  "surname": "Cognome",
   "company": "Azienda",
   "phone-number": "Numero di telefono",
   "email": "Email",
