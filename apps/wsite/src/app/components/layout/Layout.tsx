@@ -5,6 +5,7 @@ import { ChildrenProps } from "@whub/wui";
 import WebionSideBar from "./WebionSideBar";
 import WebionAppbar from "./WebionAppBar";
 import WebionFooter from "./WebionFooter";
+import { Box } from "@mui/material";
 
 const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
   return (
@@ -12,9 +13,18 @@ const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
       <WebionSideBar/>
       <WebionAppbar/>
       <Page ref={ref}>
-        {props.children}
+        <Box 
+          sx={{
+            minHeight: "100vh", 
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between"
+          }}
+        >
+          {props.children}
+          <WebionFooter/>
+        </Box>
       </Page>
-      <WebionFooter/>
       <CookiePopup/>
     </>
   );
