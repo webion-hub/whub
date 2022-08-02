@@ -126,6 +126,16 @@ const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
       <FooterBottomLabel
         TypographyProps={{ variant: "caption" }}
       >
+        <Link
+          href="/policies-licenses" target="_blank"
+          sx={{
+            marginRight: 1,
+            fontSize: "14px",
+          }}
+          color="inherit"
+        >
+          {t("privacy-link")}
+        </Link>
         {t("p-iva")}
         <Link
           href=""
