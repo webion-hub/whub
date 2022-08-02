@@ -5,7 +5,7 @@ import { ChildrenProps } from "@whub/wui";
 import WebionSideBar from "./WebionSideBar";
 import WebionAppbar from "./WebionAppBar";
 import WebionFooter from "./WebionFooter";
-import { Box } from "@mui/material";
+import { Grid } from "@mui/material";
 
 const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
   return (
@@ -13,17 +13,15 @@ const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
       <WebionSideBar/>
       <WebionAppbar/>
       <Page ref={ref}>
-        <Box 
-          sx={{
-            minHeight: "100vh", 
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between"
-          }}
+        <Grid 
+          container
+          direction="column"
+          justifyContent="space-between"
+          sx={{ minHeight: "100vh" }}
         >
           {props.children}
           <WebionFooter/>
-        </Box>
+        </Grid>
       </Page>
       <CookiePopup/>
     </>

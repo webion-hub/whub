@@ -137,7 +137,6 @@ const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
           href="/policies-licenses" target="_blank"
           sx={{
             marginRight: 1,
-            fontSize: "14px",
           }}
           color="inherit"
         >
@@ -148,7 +147,6 @@ const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
           href=""
           sx={{
             marginLeft: 1,
-            fontSize: "14px",
           }}
           color="inherit"
         >
