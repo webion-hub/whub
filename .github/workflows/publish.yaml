@@ -11,5 +11,4 @@ jobs:
   publish:
     runs-on: [self-hosted, publish]
     steps:
-      - run: cd /home/webion/server/
-      - run: bash publish_wsite.sh
+      - run: bash /home/webion/server/publish_wsite.sh
