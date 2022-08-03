@@ -203,7 +203,7 @@ export default function Contacts() {
                 sx={{ width: 190, zIndex: 1 }}
                 startIcon={<SendRoundedIcon/>}
                 onClick={() => {
-                  ReactPixel.track('track', 'Contact');
+                  ReactPixel.track('Contact');
                 }}
               >
                 {t("contact-us-button")}
