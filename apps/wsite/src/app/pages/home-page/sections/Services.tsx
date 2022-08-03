@@ -33,17 +33,17 @@ export default function Services() {
         }}
       >
         <ImageCard
-          src="assets/images/firstCardIllustration.png"
+          src="assets/images/firstCardIllustration.webp"
           title={t("services-service-1-title")}
           paragraph={t("services-service-1-description")}
         />
         <ImageCard
-          src="assets/images/secondCardIllustration.png"
+          src="assets/images/secondCardIllustration.webp"
           title={t("services-service-2-title")}
           paragraph={t("services-service-2-description")}
          />
         <ImageCard
-          src="assets/images/thirdCardIllustration.png"
+          src="assets/images/thirdCardIllustration.webp"
           title={t("services-service-3-title")}
           paragraph={t("services-service-3-description")}
         />

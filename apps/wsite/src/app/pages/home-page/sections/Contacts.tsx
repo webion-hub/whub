@@ -114,7 +114,7 @@ export default function Contacts() {
           margin: "auto",
         }}>
           <Img
-            src="assets/images/contactsIllustration.png"
+            src="assets/images/contactsIllustration.webp"
             sx={{ width:"100%", margin:"auto" }}
           /> 
         </Box>
