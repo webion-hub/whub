@@ -14,7 +14,7 @@ const HowWeWorkCard = (props: CardWithBadgeProps) => {
 
   return (
     <CardWithBadge
-      badgeXOffset={-1}
+      badgeXOffset={5}
       badgeYOffset={-12}  
       badgeColor={badgeColor}
       {...props}

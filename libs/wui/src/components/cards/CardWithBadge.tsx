@@ -19,6 +19,8 @@ export interface CardWithBadgeProps {
 }
 
 export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps>((props, ref) => {
+  const size = 28
+
   return (
     <Badge 
       badgeContent={
@@ -29,12 +31,13 @@ export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps
       color="primary"
       sx={{
         '.MuiBadge-badge': {
-          width: 28,
-          height: 28,
+          width: size,
+          height: size,
           borderRadius: "100%",
           transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px)`,
           boxShadow: theme => `0px 0px 0 5px ${props.badgeColor ?? theme.palette.background.default}`
-        }
+        },
+        justifyContent: 'center'
       }}
       {...props.BadgeProps}
     >
