@@ -11,20 +11,20 @@ import { Footer, FooterBottomLabel, FooterColumn, FooterContent, Img } from "@wh
 const FooterBtn = (props: ButtonProps) => {
   return (
     <Button
-    {...props}
-    sx={{
-      ...props.sx,
-      alignSelf: "auto",
-      width: "fit-content",
-      minWidth: 0,
-      marginLeft: theme => ({
-        sm: theme.spacing(-1, '!important'), 
-        xs: 0
-      })
-    }}
-  >
-    {props.children}
-  </Button>
+      {...props}
+      sx={{
+        ...props.sx,
+        alignSelf: "auto",
+        width: "fit-content",
+        minWidth: 0,
+        marginLeft: theme => ({
+          sm: theme.spacing(-1, '!important'), 
+          xs: 0
+        })
+      }}
+    >
+      {props.children}
+    </Button>
   )
 }
 
