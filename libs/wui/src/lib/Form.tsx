@@ -49,7 +49,7 @@ export class Form {
       ?? true
   }
 
-  validate = () => {
+  isFormValid = () => {
     const formEntries = Object.entries(this.values)
     const formInit: FormValues = {}
 
@@ -69,5 +69,9 @@ export class Form {
       }, formInit)
 
     this.setValues(newFormValues)
+
+    return Object
+      .values(newFormValues)
+      .every(v => v.isValid)
   }
 }

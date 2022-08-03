@@ -1,7 +1,7 @@
 import DesignServicesRoundedIcon from "@mui/icons-material/DesignServicesRounded";
 
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import PublicRoundedIcon from '@mui/icons-material/PublicRounded';
@@ -10,8 +10,12 @@ import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedI
 import { SideBar, SideBarItem } from "@whub/wui";
 
 const WebionSideBar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [lang, setLang] = useState("it");
+
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [i18n, lang]);
 
   return (
     <SideBar ref={ref} >

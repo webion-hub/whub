@@ -59,7 +59,8 @@
   
   "contact-us-title": "Contact us",
   "contact-us-description": "We're here for you! Have a question? Get in touch and we'll be happy to help. Fill out our form or give us a call at ",
-  "name-and-surname": "Name",
+  "name": "Name",
+  "surname": "Surname",
   "company": "Company",
   "phone-number": "Phone number",
   "email": "Email",
