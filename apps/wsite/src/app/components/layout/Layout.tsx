@@ -6,8 +6,13 @@ import WebionSideBar from "./WebionSideBar";
 import WebionAppbar from "./WebionAppBar";
 import WebionFooter from "./WebionFooter";
 import { Grid } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
+  const { t } = useTranslation()
+
+  document.title = t('tab-title')
+
   return (
     <>
       <WebionSideBar/>
