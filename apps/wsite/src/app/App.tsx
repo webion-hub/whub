@@ -26,6 +26,7 @@ export function App() {
         en: { translation: en },
         it: { translation: it }
       },
+      lng: navigator.language,
 
       interpolation: {
         escapeValue: false
