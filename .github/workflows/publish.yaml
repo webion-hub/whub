@@ -5,6 +5,8 @@ on:
       - main
       - release
 
+  pull_request:
+
 jobs:
   publish:
     runs-on: [self-hosted, publish]
