@@ -1,22 +1,27 @@
 import Page from "../Page";
 import React from "react";
 import CookiePopup from "../cookie_popup/CookiePopup";
-import { ChildrenProps } from "@whub/wui";
+import { ChildrenProps, useLanguage } from "@whub/wui";
 import WebionSideBar from "./WebionSideBar";
 import WebionAppbar from "./WebionAppBar";
 import WebionFooter from "./WebionFooter";
-import { Grid } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { Backdrop, CircularProgress, Grid } from "@mui/material";
 
 const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
-  const { t } = useTranslation()
-
+  const { t, loading } = useLanguage()
+  
   document.title = t('tab-title')
 
   return (
     <>
       <WebionSideBar/>
       <WebionAppbar/>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Page ref={ref}>
         <Grid 
           container

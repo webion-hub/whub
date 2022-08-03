@@ -11,12 +11,16 @@ export * from './hooks/useOnScreen';
 export * from './hooks/useSideBar';
 export * from './hooks/useLanguage';
 
+//Contexts
+export * from './contexts/ContextLanguage';
+
 //Libs
 export * from './lib/EventsDispatcher';
 export * from './lib/Form';
 export * from './lib/Props';
 export * from './lib/UUIDFactory';
 export * from './lib/Validators';
+export * from './lib/Language';
 
 //Components
 export * from './components/app_bar/AppBar';
