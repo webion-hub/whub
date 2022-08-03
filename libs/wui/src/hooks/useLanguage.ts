@@ -27,5 +27,5 @@ export const useLanguage = () => {
     i18n.changeLanguage(language);
   }
 
-  return { language: i18n.language, setLanguage }
+  return { language: i18n.language, setLanguage, getLocalLanguage }
 }
