@@ -1,5 +1,5 @@
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import { initReactI18next, useTranslation } from "react-i18next";
 
 import en from "../assets/locales/en-EN.json";
 import it from "../assets/locales/it-IT.json";
@@ -33,6 +33,8 @@ export function App() {
       }
     })
     .finally(() => setLoading(false))
+
+  document.title = 'Webion'
 
   return (
     <ThemeProvider theme={theme}>
