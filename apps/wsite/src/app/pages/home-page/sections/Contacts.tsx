@@ -9,6 +9,8 @@ import { LightModeTextField } from "../../../components/light_mode/LightModeText
 import PrivacyCheckBox from "../../../components/privacy_checkbox/PrivacyCheckbox";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
+import ReactPixel from 'react-facebook-pixel';
+
 const TextfieldBase = ({...props}) => {
   const theme = useTheme()
   const textColor = theme.palette.grey[600]
@@ -200,6 +202,9 @@ export default function Contacts() {
                 loadingPosition="start"
                 sx={{ width: 190, zIndex: 1 }}
                 startIcon={<SendRoundedIcon/>}
+                onClick={() => {
+                  ReactPixel.track('track', 'Contact');
+                }}
               >
                 {t("contact-us-button")}
               </LightModeLoadingButton>

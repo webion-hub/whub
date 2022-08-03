@@ -101,11 +101,6 @@ export default function Home() {
         </ResponserGrid>
       </Box>
       <Box sx={{ width: { xs: "40%", sm: "35%", md: "30%" } }}>
-        <Img
-          src="assets/images/homeIllustration.png"
-          alt="study"
-          sx={{ width: "100%", margin: "auto", display: 'none'}}
-        />
       </Box>
     </ResponserGrid>
   );
