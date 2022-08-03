@@ -29,10 +29,11 @@ export default function Homepage() {
             md: "url('assets/images/background-min.webp')",
           },
           backgroundPosition: {
-            xs: "45% calc(50% + 80px)",
-            md: "calc(50% + 300px) 30px",
+            xs: "45% 50%",
+            md: "calc(50% + 300px) 0px",
           },
           backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
           minHeight: "800px",
         }
       }>
