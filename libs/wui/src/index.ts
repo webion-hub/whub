@@ -9,6 +9,7 @@ export * from './abstractions/props/ChildrenProps';
 export * from './hooks/useForm';
 export * from './hooks/useOnScreen';
 export * from './hooks/useSideBar';
+export * from './hooks/useLanguage';
 
 //Libs
 export * from './lib/EventsDispatcher';

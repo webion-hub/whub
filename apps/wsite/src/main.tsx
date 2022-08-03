@@ -17,6 +17,10 @@ import { GlobalStyles, CssBaseline} from '@mui/material';
 import globalStyle from './app/theme/globalStyle';
 import PoliciesAndLicensesPage from './app/pages/policies-licenses-page/PoliciesAndLicensesPage';
 
+import ReactPixel from 'react-facebook-pixel';
+
+ReactPixel.init('1771971246478638');
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

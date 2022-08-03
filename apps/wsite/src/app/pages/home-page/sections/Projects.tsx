@@ -13,7 +13,7 @@ export default function Projects() {
     },
     {
       img: "assets/images/mentorz.webp",
-      url: "https://www.mentorz.fr/",
+      url: "https://mail.webion.it/sites/mentorz/",
       label: t("project-1-description"),
     },
     {

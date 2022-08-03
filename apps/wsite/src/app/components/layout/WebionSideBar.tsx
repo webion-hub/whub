@@ -1,21 +1,16 @@
 import DesignServicesRoundedIcon from "@mui/icons-material/DesignServicesRounded";
 
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
 import React from "react";
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import PublicRoundedIcon from '@mui/icons-material/PublicRounded';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
-import { SideBar, SideBarItem } from "@whub/wui";
+import { SideBar, SideBarItem, useLanguage } from "@whub/wui";
 
 const WebionSideBar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
-  const { t, i18n } = useTranslation();
-  const [lang, setLang] = useState("it");
-
-  useEffect(() => {
-    i18n.changeLanguage(lang);
-  }, [i18n, lang]);
+  const { t } = useTranslation();
+  const { language, setLanguage } = useLanguage();
 
   return (
     <SideBar ref={ref} >
@@ -41,7 +36,7 @@ const WebionSideBar = React.forwardRef<HTMLDivElement, Record<string, never>>((_
         text={t("language-button")}
         icon={<PublicRoundedIcon />}
         onClick={() => {
-          setLang(lang === "it" ? "en" : "it");
+          setLanguage(language === "it" ? "en" : "it");
         }}
       />
       <SideBarItem

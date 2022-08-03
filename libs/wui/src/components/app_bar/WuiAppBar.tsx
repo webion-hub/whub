@@ -13,6 +13,7 @@ import { Img } from "../Img";
 import React from "react";
 import { useTheme, alpha } from "@mui/material";
 import { useScroll } from "../../hooks/useScroll";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export interface AppbarButtonProps {
   readonly text: string,
@@ -45,7 +46,8 @@ export interface AppBarOptions {
 }
 
 export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props, ref) => {
-  const { t, i18n } = useTranslation();
+  const { language, setLanguage } = useLanguage();
+  const { t } = useTranslation();
   const theme = useTheme()
 
   const [appBarOpt, setAppBarOpt] = useState<AppBarOptions>({
@@ -55,14 +57,9 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
     blur: 'blur(0px)',
   })
 
-  const [lang, setLang] = useState("it");
   const { isSideBarOpen } = useSidebar();
-
   const { isArrived } = useScroll(200);
 
-  useEffect(() => {
-    i18n.changeLanguage(lang);
-  }, [i18n, lang]);
 
   useEffect(() => {
     if(isArrived) {  
@@ -91,7 +88,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
     return (
       <Button
         color="inherit"
-        onClick={() => setLang(lang === "it" ? "en" : "it")}
+        onClick={() => setLanguage(language === "it" ? "en" : "it")}
       >
         <props.languageComponent />
       </Button>

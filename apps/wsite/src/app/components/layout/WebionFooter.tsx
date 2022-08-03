@@ -1,19 +1,32 @@
-import { Button, Divider, Grid, IconButton, Link, styled, Typography } from "@mui/material";
+import { Button, ButtonProps, Divider, Grid, IconButton, Link, Typography } from "@mui/material";
 
 import { useTranslation } from "react-i18next";
 import React from "react";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Footer, FooterBottomLabel, FooterColumn, FooterContent, Img } from "@whub/wui";
-import InstagramIcon from '@mui/icons-material/Instagram';
 
-const FooterButton = styled(Button)(({theme}) => ({
-  alignSelf: "auto",
-  width: "fit-content",
-  marginLeft: theme.spacing(-1, '!important'),
-  minWidth: 0,
-}))
+const FooterBtn = (props: ButtonProps) => {
+  return (
+    <Button
+    {...props}
+    sx={{
+      ...props.sx,
+      alignSelf: "auto",
+      width: "fit-content",
+      minWidth: 0,
+      marginLeft: theme => ({
+        sm: theme.spacing(-1, '!important'), 
+        xs: 0
+      })
+    }}
+  >
+    {props.children}
+  </Button>
+  )
+}
 
 const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
   const { t } = useTranslation();
@@ -31,53 +44,53 @@ const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
           <Typography variant="subtitle2">
             HOME
           </Typography>
-          <FooterButton
+          <FooterBtn
             color="info"
             href="/#home"
           >
             {t("navbar-button1")}
-          </FooterButton>
-          <FooterButton
+          </FooterBtn>
+          <FooterBtn
             color="info"
             href="/#services"
           >
             {t("navbar-button2")}
-          </FooterButton>
-          <FooterButton
+          </FooterBtn>
+          <FooterBtn
             color="info"
             href="/#projects"
           >
             {t("navbar-button3")}
-          </FooterButton>
-          <FooterButton
+          </FooterBtn>
+          <FooterBtn
             color="info"
             href="/#contacts"
           >
             {t("navbar-button5")}
-          </FooterButton>
+          </FooterBtn>
         </FooterColumn>
         <FooterColumn StackProps={{ alignItems: {xs:'center', md: "baseline"}, }} >
           <Typography variant="subtitle2" sx={typoSx}>
           {t("contact-us-title")}
           </Typography>
-          <FooterButton 
+          <FooterBtn 
             color="info" 
             onClick={() => window.open("http://maps.google.com/?q=Webion SRL", '_blank')?.focus()}
           >
             via Panfilo Castaldi 3, Modena
-          </FooterButton>
-          <FooterButton 
+          </FooterBtn>
+          <FooterBtn 
             color="info" 
             href="tel:+39 389 008 6632"
           >
             +39 389 008 6632
-          </FooterButton>
-          <FooterButton
+          </FooterBtn>
+          <FooterBtn
             color="info" 
             href="mailto:amministrazione@webion.it"
           >
             amministrazione@webion.it
-          </FooterButton>
+          </FooterBtn>
         </FooterColumn>
         <FooterColumn 
           StackProps={{ 
