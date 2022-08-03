@@ -114,7 +114,7 @@ export default function Contacts() {
           margin: "auto",
         }}>
           <Img
-            src="assets/images/contactsIllustration.png"
+            src="assets/images/contactsIllustration.webp"
             sx={{ width:"100%", margin:"auto" }}
           /> 
         </Box>
@@ -146,7 +146,7 @@ export default function Contacts() {
                 borderBottom: `1px solid ${textColor}`
               }}
             > 
-              +39 389 008 6632
+              {' +39 389 008 6632'}
             </Link>
           </Typography>
           <FormGroup 

@@ -7,17 +7,17 @@ export default function Projects() {
 
   const slideshowImagesProps = [
     {
-      img: "assets/images/kaire.png",
+      img: "assets/images/kaire.webp",
       url: "https://kaire-automation.it/",
       label: t("project-3-description"),
     },
     {
-      img: "assets/images/mentorz.png",
+      img: "assets/images/mentorz.webp",
       url: "https://www.mentorz.fr/",
       label: t("project-1-description"),
     },
     {
-      img: "assets/images/yoga.png",
+      img: "assets/images/yoga.webp",
       url: "https://it.yogacorfuholidays.com/",
       label: t("project-2-description"),
     },

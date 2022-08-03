@@ -25,8 +25,8 @@ export default function Homepage() {
         sx={{
           padding: 0,
           backgroundImage: {
-            xs: "url('assets/images/backgroundMobile-min.png')",
-            md: "url('assets/images/background-min.png')",
+            xs: "url('assets/images/backgroundMobile-min.webp')",
+            md: "url('assets/images/background-min.webp')",
           },
           backgroundPosition: {
             xs: "45% calc(50% + 80px)",
