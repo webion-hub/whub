@@ -14,7 +14,7 @@ export interface RandomTextBackgroundProps {
 }
 
 const RandomTextComp = React.forwardRef<HTMLDivElement, RandomTextBackgroundProps>((props, ref) => {
-  const digits = useMemo(() => {
+  const texts = useMemo(() => {
     return props.texts
       .map(t => Array
         .from(Array(Math.floor(t.probability * 100)))
@@ -23,9 +23,9 @@ const RandomTextComp = React.forwardRef<HTMLDivElement, RandomTextBackgroundProp
       .flat()
   }, [props.texts])
 
-  const getRandomDigit = () => {
+  const getRandomText = () => {
     const index = Math.floor(Math.random() * 100)
-    return digits[index]
+    return texts[index]
   } 
 
   return (
@@ -65,7 +65,7 @@ const RandomTextComp = React.forwardRef<HTMLDivElement, RandomTextBackgroundProp
               },
             }}
           >
-            {getRandomDigit()}
+            {getRandomText()}
           </Typography>
         ))
       }
