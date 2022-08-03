@@ -52,7 +52,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
     background: alpha(theme.palette.background.default, 0),
     dividerLength: 0,
     topPosition: 0,
-    blur: 'blur(16px)',
+    blur: 'blur(0px)',
   })
 
   const [lang, setLang] = useState("it");
@@ -80,7 +80,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
       background: alpha(theme.palette.background.default, 0),
       dividerLength: 0,
       topPosition: 0, 
-      blur: 'blur(16px)',
+      blur: 'blur(0px)',
     })
   }, [isArrived, theme.palette.background.default, theme.palette.primary.main]) 
 

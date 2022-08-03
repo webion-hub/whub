@@ -14,8 +14,9 @@ export function SlideshowImage(props: SlideshowImageProps) {
       sx={{
         userDrag: "none", 
         userSelect: "none",
-        borderRadius: 2, 
+        borderRadius: 4, 
         cursor: "pointer",
+        padding: 1,
       }}
       onClick={() => window.open(props.url, '_blank')}
     />
