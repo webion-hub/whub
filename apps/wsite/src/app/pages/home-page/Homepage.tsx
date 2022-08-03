@@ -16,6 +16,7 @@ const Section = styled('section')(({theme}) => ({
 }))
 
 export default function Homepage() {
+
   return (
     <Sections sx={{overflow: "hidden"}}>
       <Section 

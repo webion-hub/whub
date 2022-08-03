@@ -5,13 +5,26 @@ import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 import BrushRoundedIcon from '@mui/icons-material/BrushRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import { CardWithBadge, Parallax, ResponserGrid } from "@whub/wui";
+import { CardWithBadge, CardWithBadgeProps, Parallax, ResponserGrid } from "@whub/wui";
 import RandomDigits from "../../../components/backgrounds/RandomDigits";
+
+const HowWeWorkCard = (props: CardWithBadgeProps) => {
+  const theme = useTheme()
+  const badgeColor = theme.palette['secondaryBackground']?.default
+
+  return (
+    <CardWithBadge
+      badgeXOffset={-1}
+      badgeYOffset={-12}  
+      badgeColor={badgeColor}
+      {...props}
+    />
+  )
+}
 
 export default function HowWeWork() {
   const { t } = useTranslation();
-  const theme = useTheme()
-  const badgeColor = theme.palette['secondaryBackground']?.default
+
 
   return (
     <>
@@ -43,41 +56,29 @@ export default function HowWeWork() {
             marginTop: 40,
           }}
         >
-          <CardWithBadge
-            badgeXOffset={-1}
-            badgeYOffset={-12}
+          <HowWeWorkCard
             Icon={FlagRoundedIcon}
             title={t("step-1-title")}
             paragraph={t("step-1-description")}
             number={1}
-            badgeColor={badgeColor}
           />
-          <CardWithBadge
-            badgeXOffset={-1}
-            badgeYOffset={-12}        
+          <HowWeWorkCard
             Icon={BrushRoundedIcon}
             title={t("step-2-title")}
             paragraph={t("step-2-description")}
             number={2}
-            badgeColor={badgeColor}
           />
-          <CardWithBadge
-            badgeXOffset={-1}
-            badgeYOffset={-12}                
+          <HowWeWorkCard
             Icon={CodeRoundedIcon}
             title={t("step-3-title")}
             paragraph={t("step-3-description")}
             number={3}
-            badgeColor={badgeColor}
           />
-          <CardWithBadge
-            badgeXOffset={-1}
-            badgeYOffset={-12}  
+          <HowWeWorkCard
             Icon={CheckCircleRoundedIcon}
             title={t("step-4-title")}
             paragraph={t("step-4-description")}
             number={4}
-            badgeColor={badgeColor}
           />
         </ResponserGrid>
       </Box>

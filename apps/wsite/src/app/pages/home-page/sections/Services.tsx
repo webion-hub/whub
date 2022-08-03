@@ -1,5 +1,4 @@
-import { AddRounded } from "@mui/icons-material";
-import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { ImageCard, ResponserGrid, WuiGrid } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 
