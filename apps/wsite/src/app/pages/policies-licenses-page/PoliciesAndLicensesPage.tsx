@@ -43,7 +43,10 @@ export interface SimpleAccordionProps {
 function SimpleAccordion(props: SimpleAccordionProps) {
   return (
     <Accordion
-      sx={props.sx}  
+      sx={props.sx}
+      TransitionProps={{
+        timeout: 200,
+      }}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreRounded />}
