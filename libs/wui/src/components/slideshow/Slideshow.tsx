@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Button, Grid, SxProps, Theme, Typography, Box } from "@mui/material";
+import { Grid, SxProps, Theme, Typography, Box, IconButton } from "@mui/material";
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import { SlideshowImage } from "./SlideshowImage";
@@ -106,25 +106,36 @@ export function Slideshow(props: SlideshowProps) {
             ></SlideshowImage>
           ))}
         </Grid>
-        <Grid container width="100%" justifyContent="space-between">
-          <Button
-            onClick={() => handleScroll(true)}
-            sx={{ 
-              marginBlock: "auto",
-              marginInline: 0, 
-            }}
-          >
-            <ChevronLeftRoundedIcon sx={props.iconSx} />
-          </Button>
-          <Button
-            onClick={() => handleScroll()}
-            sx={{ 
-              marginBlock: "auto",
-              marginInline: 0,
-            }}
-          >
-            <ChevronRightRoundedIcon sx={props.iconSx} />
-          </Button>
+        <Grid 
+          container 
+          justifyContent="space-between"
+          sx={{
+            width: '100%',
+            paddingInline: 2
+          }}
+        >
+          <Box>
+            <IconButton
+              onClick={() => handleScroll(true)}
+              sx={{ 
+                marginBlock: "auto",
+                marginInline: 0, 
+              }}
+            >
+              <ChevronLeftRoundedIcon sx={props.iconSx} />
+            </IconButton>
+          </Box>
+          <Box>
+            <IconButton
+              onClick={() => handleScroll()}
+              sx={{ 
+                marginBlock: "auto",
+                marginInline: 0,
+              }}
+            >
+              <ChevronRightRoundedIcon sx={props.iconSx} />
+            </IconButton>
+          </Box>
         </Grid>
       </Grid>
       <Typography
@@ -152,7 +163,7 @@ export function Slideshow(props: SlideshowProps) {
           alignItems="center" 
           justifyContent="center"
         >
-          <Button
+          <IconButton
             onClick={() => handleScroll(true)}
             sx={{ 
               marginBlock: "auto",
@@ -160,7 +171,7 @@ export function Slideshow(props: SlideshowProps) {
             }} 
           >
             <ChevronLeftRoundedIcon sx={{ ...props.iconSx, fontSize: "70px" }} />
-          </Button>
+          </IconButton>
           <Grid
             container
             wrap="nowrap"
@@ -176,7 +187,7 @@ export function Slideshow(props: SlideshowProps) {
               ></SlideshowImage>
             ))}
           </Grid>
-          <Button 
+          <IconButton 
             onClick={() => handleScroll()} 
             sx={{ 
               marginBlock: "auto",
@@ -184,7 +195,7 @@ export function Slideshow(props: SlideshowProps) {
             }}
           >
             <ChevronRightRoundedIcon sx={{ ...props.iconSx, fontSize: "70px" }} />
-          </Button>
+          </IconButton>
         </Grid>
         <Typography
           textAlign="center"
