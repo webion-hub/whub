@@ -7,13 +7,13 @@ interface Digit {
   readonly probability: number,
 }
 
-export interface RandomDigitsProps {
+export interface RandomTextBackgroundProps {
   readonly sx?: SxProps<Theme>,
   readonly digitsNum: number,
   readonly digits: Digit[],
 }
 
-const RandomDigitsComp = React.forwardRef<HTMLDivElement, RandomDigitsProps>((props, ref) => {
+const RandomTextComp = React.forwardRef<HTMLDivElement, RandomTextBackgroundProps>((props, ref) => {
   const digits = useMemo(() => {
     return props.digits
       .map(d => Array
@@ -73,6 +73,6 @@ const RandomDigitsComp = React.forwardRef<HTMLDivElement, RandomDigitsProps>((pr
   );
 });
 
-const RandomDigits = React.memo(RandomDigitsComp, () => false)
+const RandomText = React.memo(RandomTextComp, () => false)
 
-export default RandomDigits;
+export default RandomText;

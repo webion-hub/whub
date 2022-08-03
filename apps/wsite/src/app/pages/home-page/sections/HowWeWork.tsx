@@ -6,7 +6,7 @@ import BrushRoundedIcon from '@mui/icons-material/BrushRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import { CardWithBadge, CardWithBadgeProps, Parallax, ResponserGrid } from "@whub/wui";
-import RandomDigits from "../../../components/backgrounds/RandomDigits";
+import RandomTextBackground from "../../../components/backgrounds/RandomTextBackground";
 
 const HowWeWorkCard = (props: CardWithBadgeProps) => {
   const theme = useTheme()
@@ -103,7 +103,7 @@ export default function HowWeWork() {
             )`
           }}
         >
-          <RandomDigits
+          <RandomTextBackground
             digitsNum={10}
             digits={[
               {

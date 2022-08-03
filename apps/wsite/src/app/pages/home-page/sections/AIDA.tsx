@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Parallax } from "@whub/wui";
 import { useTranslation } from "react-i18next";
-import RandomDigits from "../../../components/backgrounds/RandomDigits";
+import RandomTextBackground from "../../../components/backgrounds/RandomTextBackground";
 
 export default function AIDA() {
   const { t } = useTranslation();
@@ -60,7 +60,7 @@ export default function AIDA() {
             )`
           }}
         >
-          <RandomDigits
+          <RandomTextBackground
             digitsNum={60}
             digits={[
               {
