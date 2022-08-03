@@ -2,26 +2,26 @@ import { Typography } from "@mui/material";
 import { Box, SxProps, Theme } from "@mui/system";
 import React, { useMemo } from "react";
 
-interface Digit {
-  readonly digit: string,
+interface RandomText {
+  readonly text: string,
   readonly probability: number,
 }
 
 export interface RandomTextBackgroundProps {
   readonly sx?: SxProps<Theme>,
-  readonly digitsNum: number,
-  readonly digits: Digit[],
+  readonly textsNum: number,
+  readonly texts: RandomText[],
 }
 
 const RandomTextComp = React.forwardRef<HTMLDivElement, RandomTextBackgroundProps>((props, ref) => {
   const digits = useMemo(() => {
-    return props.digits
-      .map(d => Array
-        .from(Array(Math.floor(d.probability * 100)))
-        .fill(d.digit)
+    return props.texts
+      .map(t => Array
+        .from(Array(Math.floor(t.probability * 100)))
+        .fill(t.text)
       )
       .flat()
-  }, [props.digits])
+  }, [props.texts])
 
   const getRandomDigit = () => {
     const index = Math.floor(Math.random() * 100)
@@ -42,7 +42,7 @@ const RandomTextComp = React.forwardRef<HTMLDivElement, RandomTextBackgroundProp
       }}
     >
       {
-        [...Array(props.digitsNum)].map((_, i) => (
+        [...Array(props.textsNum)].map((_, i) => (
           <Typography
             key={i}
             color="primary"

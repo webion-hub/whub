@@ -104,14 +104,14 @@ export default function HowWeWork() {
           }}
         >
           <RandomTextBackground
-            digitsNum={10}
-            digits={[
+            textsNum={10}
+            texts={[
               {
-                digit: 'webion',
+                text: 'webion',
                 probability: 0.9,
               },
               {
-                digit: 'console.log(webion)',
+                text: 'console.log(webion)',
                 probability: 0.1,
               },
             ]}

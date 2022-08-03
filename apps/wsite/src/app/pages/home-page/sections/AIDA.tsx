@@ -61,18 +61,18 @@ export default function AIDA() {
           }}
         >
           <RandomTextBackground
-            digitsNum={60}
-            digits={[
+            textsNum={60}
+            texts={[
               {
-                digit: '1',
+                text: '1',
                 probability: 0.45,
               },
               {
-                digit: '0',
+                text: '0',
                 probability: 0.45,
               },
               {
-                digit: 'w',
+                text: 'w',
                 probability: 0.1,
               }
             ]}
