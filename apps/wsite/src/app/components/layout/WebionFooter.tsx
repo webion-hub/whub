@@ -61,33 +61,6 @@ const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
             {t("navbar-button5")}
           </Button>
         </FooterColumn>
-        {/* <FooterColumn StackProps={{ alignItems: 'center' }}>
-          <Typography variant="subtitle2" sx={typoSx}>
-            PRODOTTI
-          </Typography>
-          <Button sx={buttonSx} color="info" href="/wui">
-            wui
-          </Button>
-          <Button sx={buttonSx} color="info" href="/#projects">
-            wui+
-          </Button>
-        </FooterColumn>
-        <FooterColumn>
-          <Typography variant="subtitle2" sx={typoSx}>
-            BLOG
-          </Typography>
-          <Button sx={buttonSx} color="info" href="/blog">
-            Blog
-          </Button>
-        </FooterColumn>
-        <FooterColumn StackProps={{ alignItems: 'center' }}>
-          <Typography variant="subtitle2" sx={typoSx}>
-            SHOP
-          </Typography>
-          <Button sx={buttonSx} color="info" href="/shop">
-            Shop
-          </Button>
-        </FooterColumn> */}
         <FooterColumn StackProps={{ alignItems: {xs:'center', md: "baseline"}, }} >
           <Typography variant="subtitle2" sx={typoSx}>
           {t("contact-us-title")}
@@ -153,14 +126,6 @@ const WebionFooter = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
           webionsrl@legalmail.it
         </Link>
       </FooterBottomLabel>
-      {/*<Box alignSelf="right">
-        <Button href="https://it.linkedin.com/company/webion-srl?trk=companies_directory">
-          <LinkedInIcon color="primary" />
-        </Button>
-        <Button href="https://github.com/webion-hub">
-          <GitHubIcon color="primary" />
-        </Button>
-        </Box>*/}
     </Footer>
   );
 })
