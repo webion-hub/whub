@@ -9,6 +9,10 @@ import './styles.css'
 
 ReactPixel.init('1771971246478638');
 
+import ReactPixel from 'react-facebook-pixel';
+
+ReactPixel.init('1771971246478638');
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
