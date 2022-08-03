@@ -6,7 +6,6 @@ import { App } from './app/App';
 
 import './styles.css'
 
-
 ReactPixel.init('1771971246478638');
 
 const root = ReactDOM.createRoot(
