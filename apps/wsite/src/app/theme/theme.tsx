@@ -102,7 +102,7 @@ const theme = createTheme({
       styleOverrides: {
         paper: {
           borderRadius: 0,
-          maxWidth: 300,
+          maxWidth: 250,
           width: '100%' 
         }
       }

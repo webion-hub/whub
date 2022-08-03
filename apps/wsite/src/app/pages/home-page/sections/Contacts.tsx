@@ -215,7 +215,7 @@ export default function Contacts() {
                   `,
                 }}
               >
-                Messaggio inviato!
+                {t('message-sent')}
               </Typography>            
             </WuiGrid>              
 
