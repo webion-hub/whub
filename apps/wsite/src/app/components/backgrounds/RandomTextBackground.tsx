@@ -2,30 +2,30 @@ import { Typography } from "@mui/material";
 import { Box, SxProps, Theme } from "@mui/system";
 import React, { useMemo } from "react";
 
-interface Digit {
-  readonly digit: string,
+interface RandomText {
+  readonly text: string,
   readonly probability: number,
 }
 
-export interface RandomDigitsProps {
+export interface RandomTextBackgroundProps {
   readonly sx?: SxProps<Theme>,
-  readonly digitsNum: number,
-  readonly digits: Digit[],
+  readonly textsNum: number,
+  readonly texts: RandomText[],
 }
 
-const RandomDigitsComp = React.forwardRef<HTMLDivElement, RandomDigitsProps>((props, ref) => {
-  const digits = useMemo(() => {
-    return props.digits
-      .map(d => Array
-        .from(Array(Math.floor(d.probability * 100)))
-        .fill(d.digit)
+const RandomTextComp = React.forwardRef<HTMLDivElement, RandomTextBackgroundProps>((props, ref) => {
+  const texts = useMemo(() => {
+    return props.texts
+      .map(t => Array
+        .from(Array(Math.floor(t.probability * 100)))
+        .fill(t.text)
       )
       .flat()
-  }, [props.digits])
+  }, [props.texts])
 
-  const getRandomDigit = () => {
+  const getRandomText = () => {
     const index = Math.floor(Math.random() * 100)
-    return digits[index]
+    return texts[index]
   } 
 
   return (
@@ -42,7 +42,7 @@ const RandomDigitsComp = React.forwardRef<HTMLDivElement, RandomDigitsProps>((pr
       }}
     >
       {
-        [...Array(props.digitsNum)].map((_, i) => (
+        [...Array(props.textsNum)].map((_, i) => (
           <Typography
             key={i}
             color="primary"
@@ -65,7 +65,7 @@ const RandomDigitsComp = React.forwardRef<HTMLDivElement, RandomDigitsProps>((pr
               },
             }}
           >
-            {getRandomDigit()}
+            {getRandomText()}
           </Typography>
         ))
       }
@@ -73,6 +73,6 @@ const RandomDigitsComp = React.forwardRef<HTMLDivElement, RandomDigitsProps>((pr
   );
 });
 
-const RandomDigits = React.memo(RandomDigitsComp, () => false)
+const RandomText = React.memo(RandomTextComp, () => false)
 
-export default RandomDigits;
+export default RandomText;

@@ -47,7 +47,7 @@ export const FooterContent = React.forwardRef<HTMLDivElement, ChildrenProps>((pr
       }}
     >
       <Stack
-        direction={isMobileView ? "column-reverse" : "row"}
+        direction={isMobileView ? "column" : "row"}
         justifyContent="space-around"
         alignItems="center"
         spacing={2}

@@ -15,6 +15,7 @@ export interface CardWithBadgeProps {
   readonly width?: number;
   readonly height?: number;
   readonly BadgeProps?: BadgeProps;
+  readonly badgeColor?: string;
 }
 
 export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps>((props, ref) => {
@@ -32,7 +33,7 @@ export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps
           height: 28,
           borderRadius: "100%",
           transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px)`,
-          boxShadow: theme => `0px 0px 0 5px ${theme.palette.background.default}`
+          boxShadow: theme => `0px 0px 0 5px ${props.badgeColor ?? theme.palette.background.default}`
         }
       }}
       {...props.BadgeProps}

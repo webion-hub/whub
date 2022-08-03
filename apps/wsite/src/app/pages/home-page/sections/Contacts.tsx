@@ -7,6 +7,7 @@ import { LightModeLoadingButton } from "../../../components/light_mode/LightMode
 import { LightModeTextField } from "../../../components/light_mode/LightModeTextField";
 
 import PrivacyCheckBox from "../../../components/privacy_checkbox/PrivacyCheckbox";
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 const TextfieldBase = ({...props}) => {
   const theme = useTheme()
@@ -198,6 +199,7 @@ export default function Contacts() {
                 size="large"
                 loadingPosition="start"
                 sx={{ width: 190, zIndex: 1 }}
+                startIcon={<SendRoundedIcon/>}
               >
                 {t("contact-us-button")}
               </LightModeLoadingButton>
@@ -213,7 +215,7 @@ export default function Contacts() {
                   `,
                 }}
               >
-                Messaggio inviato!
+                {t('message-sent')}
               </Typography>            
             </WuiGrid>              
 

@@ -6,20 +6,24 @@ import Projects from "./sections/Projects";
 import HowWeWork from "./sections/HowWeWork";
 import { styled } from "@mui/system";
 import { Sections } from "@whub/wui";
+import { pcbBackground } from "../../components/backgrounds/pcbBackground";
 
-const Section = styled('section')({})
-const sectionSx = {
-  paddingBlock: 12.5,
+const Section = styled('section')(({theme}) => ({
+  paddingBlock: theme.spacing(8),
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-};
+  position: 'relative'
+}))
+
 export default function Homepage() {
+
   return (
     <Sections sx={{overflow: "hidden"}}>
       <Section 
         id="home"
         sx={{
+          padding: 0,
           backgroundImage: {
             xs: "url('assets/images/backgroundMobile-min.png')",
             md: "url('assets/images/background-min.png')",
@@ -34,19 +38,39 @@ export default function Homepage() {
       }>
         <Home />
       </Section>
-      <Section id="about-us" sx={sectionSx}>
+      <Section id="about-us">
         <AIDA />
       </Section>
-      <Section id="services" sx={sectionSx}>
+      <Section 
+        id="services"
+        sx={{
+          backgroundImage: theme => pcbBackground(theme)
+        }}  
+      >
         <Services />
       </Section>
-      <Section id="projects" sx={sectionSx}>
+      <Section 
+        id="projects"
+        sx={{ 
+          background: theme => theme.palette['secondaryBackground'].default,
+          boxShadow: '0px -8px 8px #00000085'
+        }}
+      >
         <Projects />
       </Section>
-      <Section id="how-we-work"  sx={sectionSx}>
+      <Section 
+        id="how-we-work"
+        sx={{ background: theme => theme.palette['secondaryBackground'].default}}  
+      >
         <HowWeWork />
       </Section>
-      <Section id="contacts">
+      <Section 
+        id="contacts" 
+        sx={{ 
+          background: theme => theme.palette['secondaryBackground'].default, 
+          padding: 0
+        }}
+      >
         <Contacts />
       </Section>
     </Sections>

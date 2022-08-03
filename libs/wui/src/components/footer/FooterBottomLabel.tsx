@@ -13,7 +13,10 @@ export const FooterBottomLabel = React.forwardRef<HTMLDivElement, FooterBottomLa
       ref={ref}
       direction="column" 
       alignItems="center" 
-      sx={{ padding: 1 }}
+      sx={{ 
+        padding: 1,
+        textAlign: 'center' 
+      }}
     >
       <Typography {...props.TypographyProps}>
         {props.children}
