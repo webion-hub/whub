@@ -2,7 +2,7 @@ import { Button, Divider, Grid, IconButton, Link, Typography } from "@mui/materi
 
 import { useTranslation } from "react-i18next";
 import React from "react";
-import { Footer, FooterBottomLabel, FooterColumn, FooterContent, Img } from "@whub/wui";
+import { Footer, FooterBottomLabel, FooterColumn, FooterContent } from "@whub/wui";
 
 export interface FooterSocialProps {
   readonly href: string,
@@ -32,9 +32,9 @@ export interface WuiFooterProps {
 export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props, ref) => {
   const { t } = useTranslation();
 
-  const createButtons = (el: any) => {
+  const createButtons = (el: sectionProps) => {
     const elements: any = []
-    el.buttons.map((btn: FooterButtonProps, i: number) => {
+    el.buttons.map((btn: FooterButtonProps, i: number) => (
       elements.push(
         <Button
           color="info"
@@ -54,13 +54,13 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
           {btn.text}
         </Button>
       )
-    })
+    ))
     return elements
   }
 
   const createSections = () => {
     const elements: any = []
-    props.sectionsProps.map((el, i) => {
+    props.sectionsProps.map((el, i) => (
       elements.push(
         <FooterColumn StackProps={{ alignItems: {xs:'center', md: "baseline"}}} key={i}>
           <Typography variant="subtitle2">
@@ -69,7 +69,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
           {createButtons(el)}
         </FooterColumn>
       )
-    })
+    ))
     return elements
   }
 
@@ -104,12 +104,6 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
       </FooterColumn>
     )
   }
-  
-  const typoSx = {
-    textAlign: "left",
-    width: "fit-content",
-    margin: 0,
-  };
 
   return (
     <Footer ref={ref}>
