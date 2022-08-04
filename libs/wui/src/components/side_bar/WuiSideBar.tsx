@@ -1,9 +1,8 @@
 import { useTranslation } from "react-i18next";
 import React from "react";
 
-import { SideBar, SideBarItem, useLanguage } from "@whub/wui";
-import { SxProps } from "@mui/material";
-import { Theme } from "@mui/system";
+import { SideBar, SideBarItem, useLanguage, Language, useSidebar } from "@whub/wui";
+import { Collapse, List, ListItemButton, ListItemText, SxProps, Theme, useTheme } from "@mui/material";
 
 import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 
@@ -24,7 +23,15 @@ export interface WuiSideBarProps {
 
 export const WuiSideBar = React.forwardRef<HTMLDivElement, WuiSideBarProps>((props, ref) => {
   const { t } = useTranslation();
-  const { language, setLanguage } = useLanguage();
+  const { setLanguage } = useLanguage();
+  const [ open, setOpen ] = React.useState<boolean>(false);
+  const languages = Language.LANGUAGES
+  const theme = useTheme()
+  const { toggleSidebar } = useSidebar();
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
   const languageButton = () => {
     if(!props.showLanguageButton)
@@ -34,9 +41,8 @@ export const WuiSideBar = React.forwardRef<HTMLDivElement, WuiSideBarProps>((pro
       <SideBarItem
         text={t("language-button")}
         icon={<props.languageComponent />}
-        onClick={() => {
-          setLanguage(language === "it" ? "en" : "it");
-        }}
+        stayOpenOnClick
+        onClick={handleClick}
       />
     )
   }
@@ -65,6 +71,29 @@ export const WuiSideBar = React.forwardRef<HTMLDivElement, WuiSideBarProps>((pro
     <SideBar ref={ref} >
       {createButtons(false)}
       {languageButton()}
+      <Collapse 
+        in={open} 
+        timeout="auto" 
+        unmountOnExit
+      >
+        <List component="div" disablePadding>
+          {languages.map((el, i) => {
+            return(
+              <ListItemButton sx={{ paddingLeft: 4 }} key={i}>
+                <ListItemText 
+                  secondary={t(el)}
+                  key={i}
+                  secondaryTypographyProps={{color: theme.palette.text.primary}}
+                  onClick={() => {
+                    setLanguage(el)
+                    toggleSidebar()
+                  }}
+                />
+              </ListItemButton>
+            )
+          })}
+        </List>
+      </Collapse>
       {createButtons(true)}
     </SideBar>
   );
