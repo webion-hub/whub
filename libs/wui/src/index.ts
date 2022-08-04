@@ -32,11 +32,14 @@ export * from './components/footer/Footer';
 export * from './components/footer/FooterBottomLabel';
 export * from './components/footer/FooterColumn';
 export * from './components/footer/FooterContent';
+export * from './components/footer/WuiFooter';
 
 export * from './components/side_bar/SideBar';
 export * from './components/side_bar/SideBarItem';
 export * from './components/side_bar/SideBarSublistItem';
 export * from './components/side_bar/SidebarButton';
+export * from './components/side_bar/WuiSideBar';
+
 
 export * from './components/conditional_components/MaybeShow';
 export * from './components/conditional_components/Responser';

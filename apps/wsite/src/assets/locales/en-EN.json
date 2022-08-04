@@ -77,5 +77,8 @@
   "p-iva": "CF/P.Iva 04013210366, PEC",
 
   "licenses": "Licenses",
-  "tab-title": "Webion | Custom software developer company"
+  "tab-title": "Webion | Custom software developer company",
+
+  "it": "Italian",
+  "en": "English"
 }
