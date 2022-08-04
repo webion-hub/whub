@@ -37,6 +37,8 @@ export * from './components/side_bar/SideBar';
 export * from './components/side_bar/SideBarItem';
 export * from './components/side_bar/SideBarSublistItem';
 export * from './components/side_bar/SidebarButton';
+export * from './components/side_bar/WuiSideBar';
+
 
 export * from './components/conditional_components/MaybeShow';
 export * from './components/conditional_components/Responser';

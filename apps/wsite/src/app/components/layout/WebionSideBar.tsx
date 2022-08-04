@@ -1,52 +1,43 @@
-import DesignServicesRoundedIcon from "@mui/icons-material/DesignServicesRounded";
-
+import { SidebarButtonProps, WuiSideBar } from "@whub/wui";
 import { useTranslation } from "react-i18next";
-import React from "react";
+
+import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import PublicRoundedIcon from '@mui/icons-material/PublicRounded';
+import DesignServicesRoundedIcon from "@mui/icons-material/DesignServicesRounded";
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
-import { SideBar, SideBarItem, useLanguage } from "@whub/wui";
 
-const WebionSideBar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
-  const { t } = useTranslation();
-  const { language, setLanguage } = useLanguage();
+export default function WebionSideBar() {
+  const { t } = useTranslation()
 
-  return (
-    <SideBar ref={ref} >
-      <SideBarItem
-        text={t("navbar-button1")}
-        icon={<HomeRoundedIcon />}
-        href="/#home"
-        onClick={() => window.location.href = "/#home"}
-      />
-      <SideBarItem
-        text={t("navbar-button2")}
-        icon={<DesignServicesRoundedIcon />}
-        href="/#services"
-        onClick={() => window.location.href = "/#services"}
-      />
-      <SideBarItem
-        text={t("navbar-button3")}
-        icon={<AssignmentTurnedInRoundedIcon />}
-        href="/#projects"
-        onClick={() => window.location.href = "/#projects"}
-      />
-      <SideBarItem
-        text={t("language-button")}
-        icon={<PublicRoundedIcon />}
-        onClick={() => {
-          setLanguage(language === "it" ? "en" : "it");
-        }}
-      />
-      <SideBarItem
-        text={t("navbar-button5")}
-        icon={<LocalPhoneRoundedIcon />}
-        href="/#contacts"
-        onClick={() => window.location.href = "/#contacts"}
-      />
-    </SideBar>
-  );
-})
+  const buttons: SidebarButtonProps[] = [
+  {
+    text: t("navbar-button1"),
+    icon: HomeRoundedIcon,
+    href: "/#home"
+  },
+  {
+    text: t("navbar-button2"),
+    icon: DesignServicesRoundedIcon,
+    href: "/#services"
+  },
+  {
+    text: t("navbar-button3"),
+    icon: AssignmentTurnedInRoundedIcon,
+    href: "/#projects"
+  },
+  {
+    text: t("navbar-button5"),
+    icon: LocalPhoneRoundedIcon,
+    href: "/#contacts",
+    afterLanguage: true,
+  },
+]
 
-export default WebionSideBar
+  return(
+    <WuiSideBar
+      languageComponent={PublicRoundedIcon} 
+      buttonsProps={buttons}    
+    />
+  )
+}

@@ -7,6 +7,8 @@ import { AppBarSection } from "./AppBarSection";
 import { useTranslation } from "react-i18next";
 
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
+import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
+
 import { useState, useEffect } from "react";
 import { useSidebar } from "../../hooks/useSideBar";
 import { Img } from "../Img";
@@ -34,8 +36,8 @@ export interface WuiAppBarProps {
   readonly showLanguageButton?: boolean,
   readonly showDropdownButton?: boolean,
   readonly buttonsProps: AppbarButtonProps[],
-  readonly languageComponent: any,
-  readonly dropdownComponent: any,
+  readonly languageComponent?: any,
+  readonly dropdownComponent?: any,
 }
 
 export interface AppBarOptions {
@@ -98,6 +100,9 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
   const dropdowButton = () => {
     if(!props.showDropdownButton)
       return (<></>)
+
+    if(!props.dropdownComponent) 
+      return(<>Dropdown</>)
 
     return (
       <props.dropdownComponent
@@ -212,4 +217,5 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
 WuiAppBar.defaultProps = {
   showLanguageButton: true,
   showDropdownButton: true,
+  languageComponent: PublicRoundedIcon,
 }
