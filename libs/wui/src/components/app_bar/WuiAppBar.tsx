@@ -15,7 +15,7 @@ import { Img } from "../Img";
 import React from "react";
 import { useTheme, alpha } from "@mui/material";
 import { useScroll } from "../../hooks/useScroll";
-import { useLanguage } from "../../hooks/useLanguage";
+import LanguageDropdownButton from "./LanguageDropdown";
 
 export interface AppbarButtonProps {
   readonly text: string,
@@ -48,7 +48,6 @@ export interface AppBarOptions {
 }
 
 export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props, ref) => {
-  const { language, setLanguage } = useLanguage();
   const { t } = useTranslation();
   const theme = useTheme()
 
@@ -88,12 +87,9 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
       return (<></>)
 
     return (
-      <Button
-        color="inherit"
-        onClick={() => setLanguage(language === "it" ? "en" : "it")}
-      >
-        <props.languageComponent />
-      </Button>
+      <LanguageDropdownButton
+        icon={props.languageComponent}
+      />
     )
   }
 
