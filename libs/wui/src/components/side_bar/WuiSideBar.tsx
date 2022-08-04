@@ -10,7 +10,7 @@ export interface SidebarButtonProps {
   readonly text: string,
   readonly icon: any,
   readonly href?: string,   
-  readonly onClick?: any,
+  readonly onClick?: (e: Event) => void,
   readonly sx?: SxProps<Theme>,
   readonly afterLanguage?: boolean,
 }
@@ -47,6 +47,12 @@ export const WuiSideBar = React.forwardRef<HTMLDivElement, WuiSideBarProps>((pro
     )
   }
 
+  const defaultOnClickIfAbsent = (el: SidebarButtonProps) => {
+    return el.onClick ?? (() => {
+      window.location.href = (el.href ?? "")
+    })
+  }
+
   const createButtons = (afterLanguage: boolean) => {
     const elements: any = []
     props.buttonsProps.map((el, i) => {
@@ -58,9 +64,7 @@ export const WuiSideBar = React.forwardRef<HTMLDivElement, WuiSideBarProps>((pro
             icon={<el.icon/>}
             href={el.href}
             sx={el.sx}
-            onClick={el.onClick ?? (() => {
-              window.location.href = (el.href ?? "")
-            })}
+            onClick={defaultOnClickIfAbsent(el)}
           />
         )
     })

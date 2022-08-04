@@ -1,4 +1,4 @@
-import { Img, sectionProps, WuiFooter } from "@whub/wui";
+import { Img, SectionProps, WuiFooter } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -8,7 +8,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function WebionFooter() {
   const {t} = useTranslation()
-  const sections: sectionProps[] = [
+  const sections: SectionProps[] = [
     {
       title: "Home",
       buttons: 

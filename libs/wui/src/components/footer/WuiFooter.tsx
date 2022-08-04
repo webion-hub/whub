@@ -15,13 +15,13 @@ export interface FooterButtonProps {
   readonly onClick?: any,
 }
 
-export interface sectionProps {
+export interface SectionProps {
   readonly title: string,
   readonly buttons: FooterButtonProps[],
 }
 
 export interface WuiFooterProps {
-  readonly sectionsProps: sectionProps[],
+  readonly sectionsProps: SectionProps[],
   readonly showSocials?: boolean,
   readonly socialsProps: FooterSocialProps[],
   readonly privacyLink?: string,
@@ -32,7 +32,7 @@ export interface WuiFooterProps {
 export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props, ref) => {
   const { t } = useTranslation();
 
-  const createButtons = (el: sectionProps) => {
+  const createButtons = (el: SectionProps) => {
     const elements: any = []
     el.buttons.map((btn: FooterButtonProps, i: number) => (
       elements.push(
@@ -96,6 +96,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
               href={el.href}
               target="_blank" 
               color="primary"
+              key={i}
             >
               {el.icon}
             </IconButton>)
