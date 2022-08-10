@@ -7,7 +7,7 @@ import SimmFooter from "./SimmFooter";
 import { Grid } from "@mui/material";
 
 const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
-  const { t, loading } = useLanguage()
+  const { t } = useLanguage()
   
   document.title = t('tab-title')
 
