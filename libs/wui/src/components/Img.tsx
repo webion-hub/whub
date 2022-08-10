@@ -3,7 +3,7 @@ import React from "react";
 
 const StyledImg = styled('img')({});
 
-export const Img = React.forwardRef<HTMLDivElement, any>((props, ref) => {
+export const Img = React.forwardRef<HTMLImageElement, any>((props, ref) => {
   return(
     <StyledImg {...props} ref={ref}></StyledImg>
   )

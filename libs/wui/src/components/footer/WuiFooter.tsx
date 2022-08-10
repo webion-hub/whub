@@ -2,7 +2,10 @@ import { Button, Divider, Grid, IconButton, Link, Typography } from "@mui/materi
 
 import { useTranslation } from "react-i18next";
 import React from "react";
-import { Footer, FooterBottomLabel, FooterColumn, FooterContent } from "@whub/wui";
+import { FooterColumn } from "./FooterColumn";
+import { FooterContent } from "./FooterContent";
+import { Footer } from "./Footer";
+import { FooterBottomLabel } from "./FooterBottomLabel";
 
 export interface FooterSocialProps {
   readonly href: string,
@@ -46,7 +49,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
             width: "fit-content",
             minWidth: 0,
             marginLeft: theme => ({
-              sm: theme.spacing(-1, '!important'), 
+              sm: theme.spacing(-1, '!important'),
               xs: 0
             })
           }}
@@ -75,26 +78,26 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
 
   const socialsSection = () => {
     if(!props.showSocials)
-      return (<></>)
+      return (null)
 
     return (
-      <FooterColumn 
-        StackProps={{ 
-          alignItems: {xs:'center', md: "left"}, 
-        }} 
+      <FooterColumn
+        StackProps={{
+          alignItems: {xs:'center', md: "left"},
+        }}
       >
         <Typography variant="subtitle2">
           SOCIAL
         </Typography>
-        <Grid 
-          container 
+        <Grid
+          container
           sx={{justifyContent: "center"}}
         >
           {props.socialsProps.map((el, i) => (
-            <IconButton 
-              size="large" 
+            <IconButton
+              size="large"
               href={el.href}
-              target="_blank" 
+              target="_blank"
               color="primary"
               key={i}
             >
@@ -117,7 +120,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
         TypographyProps={{ variant: "caption" }}
       >
         <Link
-          href="/policies-licenses" 
+          href="/policies-licenses"
           target="_blank"
           sx={{ marginRight: 1 }}
           color="inherit"

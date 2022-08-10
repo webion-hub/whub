@@ -10,7 +10,7 @@ export interface FormGroupProps {
   readonly sx?: SxProps<Theme>
 }
 
-export const FormGroup = React.forwardRef<any, FormGroupProps>((props, ref) => {
+export const FormGroup = React.forwardRef<HTMLFormElement, FormGroupProps>((props, ref) => {
   const childrenWithProps = React.Children.map(props.children, (child) => {
     const formControlName = child.props.name;
 
@@ -24,10 +24,10 @@ export const FormGroup = React.forwardRef<any, FormGroupProps>((props, ref) => {
   });
 
   return (
-    <Grid 
+    <Grid
       ref={ref}
-      component="form" 
-      noValidate 
+      component="form"
+      noValidate
       onSubmit={props.onSubmit}
       sx={props.sx}
     >
