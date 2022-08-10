@@ -15,7 +15,3 @@ export const MaybeShow = React.forwardRef<HTMLDivElement, MaybeShowProps>((props
 
   return props.alternativeChildren as ReactElement;
 })
-
-MaybeShow.defaultProps = {
-  alternativeChildren: <></>,
-};
