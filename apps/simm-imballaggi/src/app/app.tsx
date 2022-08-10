@@ -1,53 +1,68 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
-import { Route, Routes, Link } from 'react-router-dom';
+import en from "../assets/locales/en-EN.json";
+import it from "../assets/locales/it-IT.json";
+
+import { ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from './components/layout/Layout';
+
+import Homepage from './pages/home-page/Homepage';
+import theme from './theme/theme'
+import { GlobalStyles, CssBaseline, CircularProgress, Grid} from '@mui/material';
+import globalStyle from './theme/globalStyle';
+import { useState } from "react";
+import { Language, LanguageWrapper, MaybeShow } from "@whub/wui";
 
 export function App() {
+  const [loading, setLoading] = useState(true)
+
+  i18n
+    .use(initReactI18next)
+    .init({
+      resources: {
+        en: { translation: en },
+        it: { translation: it }
+      },
+      lng: Language.getLocalLanguage(),
+
+      interpolation: {
+        escapeValue: false
+      }
+    })
+    .finally(() => setLoading(false))
+
+  document.title = 'Simm'
+
   return (
-    <>
-      <NxWelcome title="simm-imballaggi" />
-      <div />
-
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
-      </div>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline/>
+      <GlobalStyles styles={globalStyle}></GlobalStyles>
+      <LanguageWrapper i18n={i18n}>
+        <MaybeShow
+          show={!loading}
+          alternativeChildren={
+            <Grid
+              container
+              direction="column"
+              alignItems="center"
+              justifyContent="center"
+              sx={{height: '100vh'}}
+            >
+              <CircularProgress/>
+            </Grid>
           }
-        />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
-      </Routes>
-      {/* END: routes */}
-    </>
-  );
+        >
+          <BrowserRouter>
+            <Layout>
+              <Routes>
+                <Route key="home" path="/"  element={<Homepage/>}/>
+              </Routes>
+            </Layout>
+          </BrowserRouter>
+        </MaybeShow>
+      </LanguageWrapper>  
+    </ThemeProvider>
+  )
 }
-
-export default App;
