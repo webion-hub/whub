@@ -13,14 +13,14 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
       text: t("navbar-button5"),
       href: "/#contacts",
       variant: "text",
-      color: "secondary",
+      color: "primary",
       sx: {width: "160px"}
     },
     {
       text: "Log in",
       href: "/#contacts",
       variant: "contained",
-      color: "secondary",
+      color: "primary",
       afterLanguage: true,
       sx: {width: "160px"}
     },
@@ -31,6 +31,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
       page="Webion"
       showLanguageButton={true}
       showDropdownButton={false}
+      showSearchbar={true}
       buttonsProps={buttons}
       logoURL="assets/images/logo.png"
       logoSx={{ 
