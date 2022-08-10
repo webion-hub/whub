@@ -2,7 +2,10 @@ import { Button, Divider, Grid, IconButton, Link, Typography } from "@mui/materi
 
 import { useTranslation } from "react-i18next";
 import React from "react";
-import { Footer, FooterBottomLabel, FooterColumn, FooterContent } from "@whub/wui";
+import { FooterColumn } from "./FooterColumn";
+import { FooterContent } from "./FooterContent";
+import { Footer } from "./Footer";
+import { FooterBottomLabel } from "./FooterBottomLabel";
 
 export interface FooterSocialProps {
   readonly href: string,

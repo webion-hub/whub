@@ -1,10 +1,14 @@
 import { useTranslation } from "react-i18next";
 import React from "react";
 
-import { SideBar, SideBarItem, useLanguage, Language, useSidebar } from "@whub/wui";
 import { Collapse, List, ListItemButton, ListItemText, SxProps, Theme, useTheme } from "@mui/material";
 
 import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
+import { SideBarItem } from "./SideBarItem";
+import { SideBar } from "./SideBar";
+import { useLanguage } from "../../hooks/useLanguage";
+import { useSidebar } from "../../hooks/useSideBar";
+import { Language } from "../../lib/Language";
 
 export interface SidebarButtonProps {
   readonly text: string,

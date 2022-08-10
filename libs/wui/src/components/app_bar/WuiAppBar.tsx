@@ -22,7 +22,7 @@ export interface AppbarButtonProps {
   readonly color?: "inherit" | "secondary" | "primary" | "success" | "error" | "info" | "warning" | undefined,
   readonly variant?: "text" | "contained" | "outlined" | undefined,
   readonly href?: string,
-  readonly onClick?: any,
+  readonly onClick?: React.MouseEventHandler<HTMLButtonElement>,
   readonly sx?: SxProps<Theme>,
   readonly afterLanguage?: boolean,
 }
@@ -36,8 +36,8 @@ export interface WuiAppBarProps {
   readonly showLanguageButton?: boolean,
   readonly showDropdownButton?: boolean,
   readonly buttonsProps: AppbarButtonProps[],
-  readonly languageComponent?: any,
-  readonly dropdownComponent?: any,
+  readonly LanguageComponent?: any,
+  readonly DropdownComponent?: any,
 }
 
 export interface AppBarOptions {
@@ -88,7 +88,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
 
     return (
       <LanguageDropdownButton
-        icon={props.languageComponent}
+        icon={props.LanguageComponent}
       />
     )
   }
@@ -97,11 +97,11 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
     if(!props.showDropdownButton)
       return (null)
 
-    if(!props.dropdownComponent)
+    if(!props.DropdownComponent)
       return(<>Dropdown</>)
 
     return (
-      <props.dropdownComponent
+      <props.DropdownComponent
         icon={ExpandMoreRoundedIcon}
         text={t("navbar-button4")}
         page={props.page}
@@ -213,5 +213,5 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
 WuiAppBar.defaultProps = {
   showLanguageButton: true,
   showDropdownButton: true,
-  languageComponent: PublicRoundedIcon,
+  LanguageComponent: PublicRoundedIcon,
 }

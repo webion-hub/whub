@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { FormValue, FormValues } from "../abstractions/form/FormValues";
+import { FormValues, FormValueTypes } from "../abstractions/form/FormValues";
 import { Validator } from "../abstractions/form/Validator";
 import { Validators } from "./Validators";
 
@@ -42,7 +42,7 @@ export class Form {
     return this.values[key]?.isValid ?? true
   }
 
-  validateByKey = (validators: Validator[], value: FormValue) => {
+  validateByKey = (validators: Validator[], value: FormValueTypes) => {
     return validators
       .map(validator => validator(value))
       .every(v => v)

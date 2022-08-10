@@ -1,6 +1,6 @@
 import { Grid, GridProps } from "@mui/material";
 import { useTheme } from "@mui/system";
-import React from "react";
+import React, { ReactElement } from "react";
 import { ChildrenProp } from "../abstractions/props/ChildrenProps";
 
 interface WuiGridPropsSpacing extends GridProps {
@@ -35,7 +35,7 @@ export function WuiGrid(props: WuiGridProps) {
     ? autoWidth
     : undefined
 
-  const children = React.Children.map(props.children, (child: any, index: number) => {
+  const children = React.Children.map(props.children ?? [], (child: ReactElement, index: number) => {
     if(!isSpacingSetted || numberOfChildren === 1)
       return child
 
