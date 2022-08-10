@@ -37,7 +37,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
         width: 48, 
         height: 48, 
         borderRadius: "100%", 
-        marginTop: "-3px", 
+        marginTop: -1, 
         marginRight: 2,
         padding: 1,
       }}
