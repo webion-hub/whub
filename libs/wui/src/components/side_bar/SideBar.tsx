@@ -30,5 +30,5 @@ export const SideBar = React.forwardRef<HTMLDivElement, SideBarProps>((props, re
       </SwipeableDrawer>
     );
 
-  return <></>;
+  return null;
 })

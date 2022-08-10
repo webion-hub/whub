@@ -1,9 +1,11 @@
 //Abstractions
 export * from './abstractions/form/FormValues';
 export * from './abstractions/form/Validator';
+export * from './abstractions/form/FormEvent';
 
 export * from './abstractions/props/BaseProps';
 export * from './abstractions/props/ChildrenProps';
+
 
 //Hooks
 export * from './hooks/useForm';
