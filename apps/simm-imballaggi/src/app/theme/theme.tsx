@@ -9,6 +9,9 @@ let theme = createTheme({
     primary: {
       main: "#F8F9FA",
     },
+    secondary: {
+      main: "#FF031D",
+    },
   }
 });
 theme = responsiveFontSizes(theme);
