@@ -7,7 +7,7 @@ import { AppbarButtonProps, WuiAppBar } from "@whub/wui";
 const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
   const {t} = useTranslation();
 
-  const buttons : AppbarButtonProps[] = 
+  const buttons : AppbarButtonProps[] =
   [
     {
       text: t("navbar-button5"),
@@ -26,23 +26,23 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
     },
   ]
   return (
-    <WuiAppBar 
+    <WuiAppBar
       ref={ref}
       page="Webion"
       showLanguageButton={true}
       showDropdownButton={false}
       buttonsProps={buttons}
       logoURL="assets/images/logo.png"
-      logoSx={{ 
-        width: 48, 
-        height: 48, 
-        borderRadius: "100%", 
-        marginTop: -1, 
+      logoSx={{
+        width: 48,
+        height: 48,
+        borderRadius: "100%",
+        marginTop: -1,
         marginRight: 2,
         padding: 1,
       }}
       text=""
-      languageComponent={PublicRoundedIcon}
+      LanguageComponent={PublicRoundedIcon}
     />
   )
 });
