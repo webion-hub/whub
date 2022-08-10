@@ -15,7 +15,7 @@ interface WuiGridPropsNoSpacing extends GridProps {
   readonly children?: ChildrenProp
 }
 
-export type WuiGridProps = WuiGridPropsSpacing | WuiGridPropsNoSpacing 
+export type WuiGridProps = WuiGridPropsSpacing | WuiGridPropsNoSpacing
 
 
 export function WuiGrid(props: WuiGridProps) {
@@ -25,53 +25,53 @@ export function WuiGrid(props: WuiGridProps) {
   const isSpacingSetted = !!props.spacing
 
   const isInAutoWidth = isSpacingSetted && props.autoWidth
-  const isAColumn = props.direction == 'column' || props.direction == 'column-reverse'
+  const isAColumn = props.direction === 'column' || props.direction === 'column-reverse'
 
   const autoWidth = isAColumn
     ? '100%'
-    : `${100 / numberOfChildren}%` 
+    : `${100 / numberOfChildren}%`
 
   const width = isInAutoWidth
     ? autoWidth
     : undefined
 
   const children = React.Children.map(props.children, (child: any, index: number) => {
-    if(!isSpacingSetted || numberOfChildren == 1)
+    if(!isSpacingSetted || numberOfChildren === 1)
       return child
-    
+
     const spacing = theme.spacing(props.spacing / 2, '!important')
     const noSpacing = theme.spacing(0, '!important')
 
-    const top = index == 0 && isAColumn 
-      ? noSpacing 
-      : spacing
-
-    const bottom = index == numberOfChildren - 1 && isAColumn 
+    const top = index === 0 && isAColumn
       ? noSpacing
       : spacing
 
-      const left = index == 0 && !isAColumn 
+    const bottom = index === numberOfChildren - 1 && isAColumn
       ? noSpacing
       : spacing
-    
-      const right = index == numberOfChildren - 1 && !isAColumn 
+
+      const left = index === 0 && !isAColumn
+      ? noSpacing
+      : spacing
+
+      const right = index === numberOfChildren - 1 && !isAColumn
       ? noSpacing
       : spacing
 
     return (
-      <Grid 
+      <Grid
         {...props.GridItemProps}
         item
         sx={{
           width: width,
           paddingTop: top,
           paddingBottom: bottom,
-          
+
           paddingLeft: left,
           paddingRight: right,
           ...props.GridItemProps?.sx,
         }}
-      > 
+      >
         {React.cloneElement(child)}
       </Grid>
     )
@@ -86,7 +86,7 @@ export function WuiGrid(props: WuiGridProps) {
     } = props
 
     return (
-      <Grid 
+      <Grid
         {...gridProps}
         sx={{
           marginTop: '0px !important',
@@ -94,8 +94,8 @@ export function WuiGrid(props: WuiGridProps) {
           width: '100% !important',
           ...gridProps.sx,
         }}
-      > 
-        {children} 
+      >
+        {children}
       </Grid>
     )
   }

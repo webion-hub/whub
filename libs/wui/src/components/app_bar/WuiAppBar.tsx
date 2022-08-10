@@ -21,7 +21,7 @@ export interface AppbarButtonProps {
   readonly text: string,
   readonly color?: "inherit" | "secondary" | "primary" | "success" | "error" | "info" | "warning" | undefined,
   readonly variant?: "text" | "contained" | "outlined" | undefined,
-  readonly href?: string,   
+  readonly href?: string,
   readonly onClick?: any,
   readonly sx?: SxProps<Theme>,
   readonly afterLanguage?: boolean,
@@ -30,7 +30,7 @@ export interface AppbarButtonProps {
 export interface WuiAppBarProps {
   readonly page: string,
   readonly logoURL: string,
-  readonly logoSx?: SxProps<Theme>, 
+  readonly logoSx?: SxProps<Theme>,
   readonly text: string,
   readonly subText?: string,
   readonly showLanguageButton?: boolean,
@@ -63,7 +63,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
 
 
   useEffect(() => {
-    if(isArrived) {  
+    if(isArrived) {
       setAppBarOpt({
         background: alpha(theme.palette.background.default, 0.7),
         dividerLength: 100,
@@ -77,14 +77,14 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
     setAppBarOpt({
       background: alpha(theme.palette.background.default, 0),
       dividerLength: 0,
-      topPosition: 0, 
+      topPosition: 0,
       blur: 'blur(0px)',
     })
-  }, [isArrived, theme.palette.background.default, theme.palette.primary.main]) 
+  }, [isArrived, theme.palette.background.default, theme.palette.primary.main])
 
   const languageButton = () => {
     if(!props.showLanguageButton)
-      return (<></>)
+      return (null)
 
     return (
       <LanguageDropdownButton
@@ -95,9 +95,9 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
 
   const dropdowButton = () => {
     if(!props.showDropdownButton)
-      return (<></>)
+      return (null)
 
-    if(!props.dropdownComponent) 
+    if(!props.dropdownComponent)
       return(<>Dropdown</>)
 
     return (
@@ -108,7 +108,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
       />
     )
   }
-  
+
   return (
     <AppBar
       ref={ref}
@@ -136,7 +136,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
     >
       <AppBarContent>
         <AppBarSection alignment="start">
-          <Grid 
+          <Grid
             container
             component={ButtonBase}
             wrap="nowrap"
@@ -149,12 +149,12 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
               sx={props.logoSx}
               alt="logo"
               />
-            <Typography 
+            <Typography
               color="inherit"
             >
               {props.text}
             </Typography>
-            <Typography 
+            <Typography
               color="primary"
               sx={{marginLeft: 1}}
             >

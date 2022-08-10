@@ -9,7 +9,7 @@ import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 export interface SidebarButtonProps {
   readonly text: string,
   readonly icon: any,
-  readonly href?: string,   
+  readonly href?: string,
   readonly onClick?: (e: Event) => void,
   readonly sx?: SxProps<Theme>,
   readonly afterLanguage?: boolean,
@@ -35,7 +35,7 @@ export const WuiSideBar = React.forwardRef<HTMLDivElement, WuiSideBarProps>((pro
 
   const languageButton = () => {
     if(!props.showLanguageButton)
-      return (<></>)
+      return (null)
 
     return (
       <SideBarItem
@@ -75,16 +75,16 @@ export const WuiSideBar = React.forwardRef<HTMLDivElement, WuiSideBarProps>((pro
     <SideBar ref={ref} >
       {createButtons(false)}
       {languageButton()}
-      <Collapse 
-        in={open} 
-        timeout="auto" 
+      <Collapse
+        in={open}
+        timeout="auto"
         unmountOnExit
       >
         <List component="div" disablePadding>
           {languages.map((el, i) => {
             return(
               <ListItemButton sx={{ paddingLeft: 4 }} key={i}>
-                <ListItemText 
+                <ListItemText
                   secondary={t(el)}
                   key={i}
                   secondaryTypographyProps={{color: theme.palette.text.primary}}

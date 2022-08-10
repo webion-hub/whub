@@ -19,7 +19,7 @@ export function SideBarButton(props: SideBarButtonProps) {
       </IconButton>
     );
 
-  return <></>;
+  return null;
 }
 
 SideBarButton.defaultProps = {

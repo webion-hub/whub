@@ -52,9 +52,10 @@ const OthersDropdownButton = React.forwardRef<HTMLDivElement, OthersDropdownButt
         onClose={handleClose}
       >
         {texts.map((text) => {
-          if(text === props.page) 
-            return(<></>)
-          return(
+          if(text === props.page)
+            return (null)
+
+          return (
             <MenuItem onClick={handleClose} key={text}>
               <Typography variant="caption">
                 {text}

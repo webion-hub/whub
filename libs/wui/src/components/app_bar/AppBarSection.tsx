@@ -22,13 +22,13 @@ export const AppBarSection = React.forwardRef<HTMLDivElement, AppBarSectionProps
   const theme = useTheme();
   const isMobileView = useMediaQuery(theme.breakpoints.down("md"));
 
-  if (isMobileView && props.hideOnMobile) return <></>;
+  if (isMobileView && props.hideOnMobile) return null;
 
   if (props.alignment === "") return props.children;
 
   return (
-    <Stack 
-      {...stackProps} 
+    <Stack
+      {...stackProps}
       ref={ref}
       width="100%"
     >
