@@ -3,6 +3,8 @@
   "version": 2,
   "projects": {
     "api": "libs/api",
+    "simm-imballaggi": "apps/simm-imballaggi",
+    "simm-imballaggi-e2e": "apps/simm-imballaggi-e2e",
     "wsite": "apps/wsite",
     "wsite-e2e": "apps/wsite-e2e",
     "wui": "libs/wui"
