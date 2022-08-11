@@ -1,5 +1,4 @@
 import { Footer, FooterBottomLabel, FooterColumn, FooterColumnProps, FooterContent, Img } from "@whub/wui";
-import { useTranslation } from "react-i18next";
 
 import { Grid, IconButton, Link, LinkProps, Stack, Typography } from "@mui/material";
 import { Facebook, YouTube } from "@mui/icons-material";
