@@ -27,10 +27,17 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
       <CardContent
         sx={{minHeight: 140}}
       >
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography 
+          gutterBottom 
+          variant="h5" 
+          component="div"
+        >
           {props.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography 
+          variant="body2" 
+          color="text.secondary"
+        >
           {props.text}
         </Typography>
       </CardContent>
