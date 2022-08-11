@@ -11,7 +11,7 @@ export default function Home() {
         justifyContent: "space-between",
         alignItems: "center",
         wrap: "nowrap",
-        width: "100"
+        width: 100
       }}
     >
       <Grid
