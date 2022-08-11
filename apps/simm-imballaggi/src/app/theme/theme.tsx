@@ -15,6 +15,9 @@ let theme = createTheme({
     secondary: {
       main: "#A5A5A5"
     },
+    secondaryBackground: {
+      default: "#F7F7F7"
+    },
     layout: {
       footer: '#E4E7EB'
     }
