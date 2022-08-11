@@ -7,7 +7,7 @@ let theme = createTheme({
   palette: {
     mode: "light",
     background: {
-      default: "#F8F9FA",
+      default: "#FFFFFF",
     },
     primary: {
       main: "#FF031D",

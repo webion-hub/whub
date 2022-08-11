@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Stack } from "@mui/material";
 import { Img, ResponserGrid } from "@whub/wui";
 import HomeCard from "../../components/cards/HomeCard";
 
@@ -22,7 +22,7 @@ export default function Home() {
         }}
       >
         <Typography 
-          variant="h3" 
+          variant="h4" 
           fontWeight="700"
         >
           Costruzione, personalizzazione e vendita di macchine e materiali per l’imballaggio.
@@ -33,11 +33,15 @@ export default function Home() {
         >
           La qualità del servizio è il risultato del massimo impegno che quotidianamente tutto il personale si pone, per poter offrire sempre il miglior prodotto e la massima professionalità lavorativa.
         </Typography>
-        <Grid 
-          container
-          justifyContent="space-evenly"
+        <Stack
+          direction="row"
+          justifyContent="flex-start"
+          spacing={2}
           sx={{
-            marginTop: 4
+            marginTop: 4,
+            "& > *": {
+              width: "50%"
+            }
           }}
         >
           <HomeCard
@@ -52,7 +56,7 @@ export default function Home() {
             img="/assets/images/secondCard.png"
             buttonText="vedi"
           />
-        </Grid>
+        </Stack>
       </Grid>
       <Img
         src="assets/images/homepageImage.png"

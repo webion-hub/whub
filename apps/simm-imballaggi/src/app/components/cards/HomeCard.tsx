@@ -15,18 +15,18 @@ export interface HomeCardProps {
 
 const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) => {
   return (
-    <Card 
-      sx={{ 
-        maxWidth: 345,
-      }} 
-      ref={ref}>
+    <Card
+      ref={ref}
+    >
       <CardMedia
         component="img"
         height={280}
         sx={{padding: 2}}
         image={props.img}
       />
-      <CardContent>
+      <CardContent
+        sx={{minHeight: 140}}
+      >
         <Typography gutterBottom variant="h5" component="div">
           {props.title}
         </Typography>

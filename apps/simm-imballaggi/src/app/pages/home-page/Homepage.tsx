@@ -1,3 +1,4 @@
+import { Height } from "@mui/icons-material";
 import { useTheme } from "@mui/material";
 import { styled } from "@mui/system";
 import { Sections } from "@whub/wui";
@@ -9,7 +10,13 @@ const Section = styled('section')(({theme}) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  position: 'relative'
+  position: 'relative',
+  maxWidth: 1600,
+  margin: '0 auto',
+
+  "& > *": {
+    zIndex: 1,
+  }
 }))
 
 export default function Homepage() {
@@ -19,7 +26,7 @@ export default function Homepage() {
     <Sections 
       sx={{
         overflow: "hidden", 
-        marginTop: 8
+        marginTop: 10,
       }}>
       <Section 
         id="home" 
@@ -33,8 +40,14 @@ export default function Homepage() {
       <Section 
         id="who" 
         sx={{ 
-          background: "#F0F0F0;",
-          padding: 0
+          "&::after": {
+            content: "''",
+            width: '100vw',
+            position: 'absolute',
+            height: '100%',
+            zIndex: 0,
+            background: "#F7F7F7;",
+          }
         }}
       >
         <MapSection/>
