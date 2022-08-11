@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, IconButton, Link, Typography } from "@mui/material";
+import { Button, Grid, IconButton, Link, Typography } from "@mui/material";
 
 import { useTranslation } from "react-i18next";
 import React from "react";
@@ -7,26 +7,26 @@ import { FooterContent } from "./FooterContent";
 import { Footer } from "./Footer";
 import { FooterBottomLabel } from "./FooterBottomLabel";
 
-export interface FooterSocialProps {
+export interface WuiFooterSocialProps {
   readonly href: string,
   readonly icon: any,
 }
 
-export interface FooterButtonProps {
+export interface WuiFooterButtonProps {
   readonly text: string,
   readonly href?: string,
   readonly onClick?: any,
 }
 
-export interface SectionProps {
+export interface WuiFooterSectionProps {
   readonly title: string,
-  readonly buttons: FooterButtonProps[],
+  readonly buttons: WuiFooterButtonProps[],
 }
 
 export interface WuiFooterProps {
-  readonly sectionsProps: SectionProps[],
+  readonly sectionsProps: WuiFooterSectionProps[],
   readonly showSocials?: boolean,
-  readonly socialsProps: FooterSocialProps[],
+  readonly socialsProps: WuiFooterSocialProps[],
   readonly privacyLink?: string,
   readonly extraText?: string,
   readonly mailLink?: string,
@@ -35,9 +35,9 @@ export interface WuiFooterProps {
 export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props, ref) => {
   const { t } = useTranslation();
 
-  const createButtons = (el: SectionProps) => {
+  const createButtons = (el: WuiFooterSectionProps) => {
     const elements: any = []
-    el.buttons.map((btn: FooterButtonProps, i: number) => (
+    el.buttons.map((btn: WuiFooterButtonProps, i: number) => (
       elements.push(
         <Button
           color="info"

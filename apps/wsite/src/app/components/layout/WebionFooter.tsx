@@ -1,4 +1,4 @@
-import { Img, SectionProps, WuiFooter } from "@whub/wui";
+import { Img, WuiFooterSectionProps, WuiFooter } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -8,10 +8,10 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function WebionFooter() {
   const {t} = useTranslation()
-  const sections: SectionProps[] = [
+  const sections: WuiFooterSectionProps[] = [
     {
       title: "Home",
-      buttons: 
+      buttons:
         [
           {
             text: t("navbar-button1"),
@@ -33,7 +33,7 @@ export default function WebionFooter() {
     },
     {
       title: t("contact-us-title"),
-      buttons: 
+      buttons:
         [
           {
             text: "via Panfilo Castaldi 3, Modena",
@@ -75,8 +75,8 @@ export default function WebionFooter() {
   ]
 
   return(
-    <WuiFooter 
-      sectionsProps={sections} 
+    <WuiFooter
+      sectionsProps={sections}
       socialsProps={socials}
       privacyLink={t("privacy-link")}
       extraText={t("p-iva")}

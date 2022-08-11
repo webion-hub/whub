@@ -4,24 +4,19 @@ import Services from "./sections/Services";
 import Contacts from "./sections/Contacts";
 import Projects from "./sections/Projects";
 import HowWeWork from "./sections/HowWeWork";
-import { styled } from "@mui/system";
-import { Sections } from "@whub/wui";
+import { Section, Sections } from "@whub/wui";
 import { pcbBackground } from "../../components/backgrounds/pcbBackground";
+import { useTheme } from "@mui/material";
 
-const Section = styled('section')(({theme}) => ({
-  paddingBlock: theme.spacing(8),
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  position: 'relative'
-}))
 
 export default function Homepage() {
+  const theme = useTheme()
 
   return (
     <Sections sx={{overflow: "hidden"}}>
-      <Section 
+      <Section
         id="home"
+        maxWidth="100%"
         sx={{
           padding: 0,
           backgroundImage: {
@@ -39,38 +34,37 @@ export default function Homepage() {
       }>
         <Home />
       </Section>
-      <Section id="about-us">
+      <Section
+        id="about-us"
+        maxWidth="100%"
+      >
         <AIDA />
       </Section>
-      <Section 
+      <Section
         id="services"
-        sx={{
-          backgroundImage: theme => pcbBackground(theme)
-        }}  
+        showBackground
+        background={pcbBackground(theme)}
       >
         <Services />
       </Section>
-      <Section 
+      <Section
         id="projects"
-        sx={{ 
-          background: theme => theme.palette['secondaryBackground'].default,
-          boxShadow: '0px -8px 8px #00000085'
-        }}
+        showBackground
       >
         <Projects />
       </Section>
-      <Section 
+      <Section
         id="how-we-work"
-        sx={{ background: theme => theme.palette['secondaryBackground'].default}}  
+        showBackground
+        maxWidth="100%"
       >
         <HowWeWork />
       </Section>
-      <Section 
-        id="contacts" 
-        sx={{ 
-          background: theme => theme.palette['secondaryBackground'].default, 
-          padding: 0
-        }}
+      <Section
+        id="contacts"
+        maxWidth="100%"
+        showBackground
+        sx={{ padding: 0 }}
       >
         <Contacts />
       </Section>
