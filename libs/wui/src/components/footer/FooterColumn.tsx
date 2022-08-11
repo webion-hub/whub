@@ -24,7 +24,7 @@ export const FooterColumn = React.forwardRef<HTMLDivElement, FooterColumnProps>(
       justifyContent: "left",
       spacing: 1,
     },
-     props.StackProps
+    props.StackProps
   );
 
   const borderColor =
