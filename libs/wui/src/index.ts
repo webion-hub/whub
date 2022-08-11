@@ -61,4 +61,5 @@ export * from './components/FormGroup';
 export * from './components/Img';
 export * from './components/Parallax';
 export * from './components/Sections';
+export * from './components/Section';
 export * from './components/WuiGrid';
