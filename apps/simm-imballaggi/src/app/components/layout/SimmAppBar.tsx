@@ -13,14 +13,14 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
       text: t("navbar-button5"),
       href: "/#contacts",
       variant: "text",
-      color: "secondary",
+      color: "primary",
       sx: {width: "160px"}
     },
     {
       text: "Log in",
       href: "/#contacts",
       variant: "contained",
-      color: "secondary",
+      color: "primary",
       afterLanguage: true,
       sx: {width: "160px"}
     },
@@ -29,8 +29,11 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
     <WuiAppBar
       ref={ref}
       page="Simm"
+      showLanguageButton
+      page="Simm"
       showLanguageButton={true}
       showDropdownButton={false}
+      showSearchbar
       buttonsProps={buttons}
       logoURL="assets/images/logo.png"
       logoSx={{
