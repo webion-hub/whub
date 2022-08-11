@@ -14,6 +14,9 @@ let theme = createTheme({
     },
     secondary: {
       main: "#A5A5A5"
+    },
+    layout: {
+      footer: '#E4E7EB'
     }
   },
   typography: {
@@ -28,9 +31,6 @@ let theme = createTheme({
         }
       }
     },
-    layout: {
-      footer: '#E4E7EB'
-    }
   }
 });
 theme = responsiveFontSizes(theme);
