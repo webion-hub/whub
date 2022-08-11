@@ -1,9 +1,16 @@
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
-import { ChildrenProps } from "../../abstractions/props/ChildrenProps";
+import { ChildrenProp } from "../../abstractions/props/ChildrenProps";
+import { MaybeShow } from "../conditional_components/MaybeShow";
 import { FooterColumnProps } from "./FooterColumn";
 
-export const FooterContent = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
+export interface FooterContentProps {
+  readonly children?: ChildrenProp;
+  readonly disableAutoAlign?: boolean;
+  readonly width?: number | string;
+}
+
+export const FooterContent = React.forwardRef<HTMLDivElement, FooterContentProps>((props, ref) => {
   const theme = useTheme();
   const isMobileView = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -41,7 +48,8 @@ export const FooterContent = React.forwardRef<HTMLDivElement, ChildrenProps>((pr
       direction="row"
       justifyContent="center"
       sx={{
-        maxWidth: 1270,
+        maxWidth: props.width,
+        width: '100%',
         padding: "10px 30px",
         margin: "0 auto",
       }}
@@ -60,8 +68,18 @@ export const FooterContent = React.forwardRef<HTMLDivElement, ChildrenProps>((pr
           },
         }}
       >
-        {childrenWithProps}
+        <MaybeShow
+          show={!props.disableAutoAlign}
+          alternativeChildren={props.children}
+        >
+          <>{childrenWithProps}</>
+        </MaybeShow>
       </Stack>
     </Stack>
   );
 })
+
+FooterContent.defaultProps = {
+  disableAutoAlign: false,
+  width: 1270
+}
