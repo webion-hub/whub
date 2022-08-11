@@ -28,7 +28,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
   return (
     <WuiAppBar
       ref={ref}
-      page="Webion"
+      page="Simm"
       showLanguageButton={true}
       showDropdownButton={false}
       buttonsProps={buttons}

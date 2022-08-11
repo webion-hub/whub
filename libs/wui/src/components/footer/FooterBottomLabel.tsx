@@ -1,26 +1,48 @@
-import { Stack, Typography, TypographyProps } from "@mui/material";
+import { Divider, Stack, StackProps, SxProps, Typography, TypographyProps } from "@mui/material";
+import { Theme } from "@mui/system";
 import React from "react";
 import { ChildrenProp } from "../../abstractions/props/ChildrenProps";
+import { ColorUtils } from "../../lib/ColorUtils";
+import { Props } from "../../lib/Props";
 
 export interface FooterBottomLabelProps {
-  readonly TypographyProps: TypographyProps;
-  readonly children: ChildrenProp;
+  readonly TypographyProps?: TypographyProps;
+  readonly children?: ChildrenProp;
+  readonly DividerSx?: SxProps<Theme>;
+  readonly StackProps?: StackProps;
 }
 
 export const FooterBottomLabel = React.forwardRef<HTMLDivElement, FooterBottomLabelProps>((props, ref) => {
+  const DividerSx = Props.setObjectDefaultProps<SxProps<Theme>>(
+    {
+      width: "90%",
+      margin: 'auto',
+      background: theme => ColorUtils.fade(theme, theme.palette['layout'].footer ?? '', 0.4)
+    },
+    props.DividerSx
+  )
+
   return (
-    <Stack 
-      ref={ref}
-      direction="column" 
-      alignItems="center" 
-      sx={{ 
-        padding: 1,
-        textAlign: 'center' 
-      }}
-    >
+    <>
+      <Divider
+        sx={DividerSx}
+      />
       <Typography {...props.TypographyProps}>
-        {props.children}
+        <Stack
+          ref={ref}
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          sx={{
+            width: '100%',
+            padding: 1,
+            textAlign: 'center',
+          }}
+          {...props.StackProps}
+        >
+          {props.children}
+        </Stack>
       </Typography>
-    </Stack>
+    </>
   );
 })

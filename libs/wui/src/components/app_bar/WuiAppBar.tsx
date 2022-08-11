@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSidebar } from "../../hooks/useSideBar";
 import { Img } from "../Img";
 import React from "react";
@@ -50,37 +50,38 @@ export interface AppBarOptions {
 export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props, ref) => {
   const { t } = useTranslation();
   const theme = useTheme()
+  const appbarColor =
+    theme.palette.layout?.appbar ??
+    theme.palette.primary.main
 
-  const [appBarOpt, setAppBarOpt] = useState<AppBarOptions>({
-    background: alpha(theme.palette.background.default, 0),
+  const initialState = useMemo<AppBarOptions>(() => ({
+    background: alpha(appbarColor, 0),
     dividerLength: 0,
     topPosition: 0,
     blur: 'blur(0px)',
-  })
+  }), [appbarColor])
+
+  const finalState = useMemo<AppBarOptions>(() => ({
+    background: alpha(appbarColor, 0.7),
+    dividerLength: 100,
+    topPosition: -16,
+    blur: 'blur(16px)',
+  }), [appbarColor])
+
+
+  const [appBarOpt, setAppBarOpt] = useState<AppBarOptions>(initialState)
 
   const { isSideBarOpen } = useSidebar();
   const { isArrived } = useScroll(200);
 
 
   useEffect(() => {
-    if(isArrived) {
-      setAppBarOpt({
-        background: alpha(theme.palette.background.default, 0.7),
-        dividerLength: 100,
-        topPosition: -16,
-        blur: 'blur(16px)',
-      })
+    const state = isArrived
+      ? finalState
+      : initialState
 
-      return
-    }
-
-    setAppBarOpt({
-      background: alpha(theme.palette.background.default, 0),
-      dividerLength: 0,
-      topPosition: 0,
-      blur: 'blur(0px)',
-    })
-  }, [isArrived, theme.palette.background.default, theme.palette.primary.main])
+    setAppBarOpt(state)
+  }, [isArrived, finalState, initialState])
 
   const languageButton = () => {
     if(!props.showLanguageButton)
