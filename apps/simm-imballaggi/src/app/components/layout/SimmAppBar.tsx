@@ -29,9 +29,9 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
     <WuiAppBar
       ref={ref}
       page="Webion"
-      showLanguageButton={true}
+      showLanguageButton
       showDropdownButton={false}
-      showSearchbar={true}
+      showSearchbar
       buttonsProps={buttons}
       logoURL="assets/images/logo.png"
       logoSx={{
