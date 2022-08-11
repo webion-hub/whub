@@ -1,3 +1,5 @@
+import './extensions/theme-extensions'
+
 //Abstractions
 export * from './abstractions/form/FormValues';
 export * from './abstractions/form/Validator';

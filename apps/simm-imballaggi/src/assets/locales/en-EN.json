@@ -9,17 +9,17 @@
 
   "dropdown-button": "Shop",
 
-  "title-bold": "Webion",
+  "title-bold": "Simm",
   "title": "perfectly build for your business",
   "subtitle": "We don't just make custom software, we craft it to perfection.",
   "main-button": "Learn more",
-  
+
   "AIDA-attention": "Do you need a custom software solution for your business?",
   "AIDA-interest": "We can develop any kind of software you might need, from websites to custom firmware for embedded systems. Our team has the expertise and experience to get the job done right – on time and on budget.",
   "AIDA-desire": "You'll be able to focus on what you do best while we take care of the software development. We know that every business is different, so we work with you to understand your needs and create a solution that fits your unique requirements.",
   "AIDA-action": "Contact us today for a free consultation!",
   "contact-us-button": "Contact us",
-  
+
   "services-title": "Services",
   "services-service-1-title": "IOS & Android apps",
   "services-service-1-description": "Our offer includes the creation of mobile applications with cross-platform frameworks such as Flutter, Ionic and React Native",
@@ -44,9 +44,9 @@
   "project-2-description": "Yoga holidays is a website for trips to Corfu. Their vacation packages give you the opportunity to find yourself on the yoga mat surrounded by a breathtaking landscape.",
   "project-3-title": "Kaire Automation",
   "project-3-description": "Kaire automation is a company specialized in the construction and supervision of industrial plants",
-  
+
   "github-button": "View the code of this site on github",
-  
+
   "how-we-work": "How we work",
   "step-1-title": "Mission",
   "step-1-description": "We help you set clear goals by identifying your problems and needs, defining what is needed to solve them.",
@@ -56,7 +56,7 @@
   "step-3-description": "We start the development process, making sure to stay in touch with you, so as not go outside of what was agreed upon.",
   "step-4-title": "Delivery",
   "step-4-description": "After a final response we deliver the finished product, remaining available for after-sales assistance.",
-  
+
   "contact-us-title": "Contact us",
   "contact-us-description": "We're here for you! Have a question? Get in touch and we'll be happy to help. Fill out our form or give us a call at ",
   "name": "Name",
@@ -72,7 +72,7 @@
   "login": "Login",
   "accept": "Accept",
   "cookies": "This site uses coockies to improve user experience",
-  
+
   "policies": "Policies & Licenses",
   "p-iva": "CF/P.Iva 04013210366, PEC",
 

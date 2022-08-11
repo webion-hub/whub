@@ -28,6 +28,9 @@ let theme = createTheme({
         }
       }
     },
+    layout: {
+      footer: '#E4E7EB'
+    }
   }
 });
 theme = responsiveFontSizes(theme);
