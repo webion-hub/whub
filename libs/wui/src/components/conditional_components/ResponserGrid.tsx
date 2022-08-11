@@ -28,12 +28,12 @@ export type ResponserGridProps = ResponserGridLowerUpperProps | ResponserGridBet
 
 
 export const ResponserGrid = React.forwardRef<HTMLDivElement, ResponserGridProps>((props, ref) => {
-  const column = props.reverse == 'both' || props.reverse == 'column'
-    ? "column-reverse" 
+  const column = props.reverse === 'both' || props.reverse === 'column'
+    ? "column-reverse"
     : "column";
 
-  const row = props.reverse == 'both' || props.reverse == 'row' 
-    ? "row-reverse" 
+  const row = props.reverse === 'both' || props.reverse === 'row'
+    ? "row-reverse"
     : "row";
 
   const gridProps = {
@@ -54,7 +54,7 @@ export const ResponserGrid = React.forwardRef<HTMLDivElement, ResponserGridProps
     <Responser
       {...props}
       alternativeChildren={
-        <WuiGrid 
+        <WuiGrid
           {...gridProps}
           direction={alternativeDir}
         >

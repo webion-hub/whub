@@ -26,7 +26,7 @@ const TextfieldBase = ({...props}) => {
       InputLabelProps={{ sx: { color: `${textColor}` } }}
     />
   )
-} 
+}
 
 export default function Contacts() {
   const [loading, setLoading] = useState(false)
@@ -112,15 +112,15 @@ export default function Contacts() {
         size="xs"
       >
         <Box sx={{
-          width: '50%', 
+          width: '50%',
           margin: "auto",
         }}>
           <Img
             src="assets/images/contactsIllustration.webp"
             sx={{ width:"100%", margin:"auto" }}
-          /> 
+          />
         </Box>
-        
+
         <WuiGrid
           container
           direction="column"
@@ -140,19 +140,19 @@ export default function Contacts() {
             sx={{ textAlign: { xs: "center", lg: "left" } }}
           >
             {t("contact-us-description")}
-            <Link 
-              href="tel:+39 389 008 6632" 
+            <Link
+              href="tel:+39 389 008 6632"
               sx={{
-                color: textColor, 
-                textDecoration: "none", 
+                color: textColor,
+                textDecoration: "none",
                 borderBottom: `1px solid ${textColor}`
               }}
-            > 
+            >
               {' +39 389 008 6632'}
             </Link>
           </Typography>
-          <FormGroup 
-            form={form} 
+          <FormGroup
+            form={form}
             onSubmit={handleSubmit}
             sx={{ "& > *": { marginBlock: theme.spacing(0.5, '!important') }}}
           >
@@ -221,8 +221,8 @@ export default function Contacts() {
                 }}
               >
                 {t('message-sent')}
-              </Typography>            
-            </WuiGrid>              
+              </Typography>
+            </WuiGrid>
 
           </FormGroup>
         </WuiGrid>

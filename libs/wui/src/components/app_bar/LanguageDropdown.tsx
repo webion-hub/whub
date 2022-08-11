@@ -4,7 +4,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@mui/material';
-import { Language, useLanguage } from '@whub/wui';
+import { Language } from '../../lib/Language';
+import { useLanguage } from '../../hooks/useLanguage';
 
 export interface LanguageDropdownButtonProps {
   readonly icon: any,
@@ -47,12 +48,12 @@ const LanguageDropdownButton = React.forwardRef<HTMLDivElement, LanguageDropdown
       >
         {texts.map((text) => {
           return(
-            <MenuItem 
+            <MenuItem
               key={text.short}
               onClick={() => {
                 setLanguage(text.short)
                 handleClose()
-              }} 
+              }}
             >
               <Typography variant="caption">
                 {text.long}

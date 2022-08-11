@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { Img, ResponserGrid } from "@whub/wui";
+import { ResponserGrid } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 
 export default function Home() {
