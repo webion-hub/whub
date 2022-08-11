@@ -115,7 +115,6 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
         {createSections()}
         {socialsSection()}
       </FooterContent>
-      <Divider sx={{ width: "90%", margin: 'auto' }}/>
       <FooterBottomLabel
         TypographyProps={{ variant: "caption" }}
       >
