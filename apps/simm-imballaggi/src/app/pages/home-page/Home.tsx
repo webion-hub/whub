@@ -4,14 +4,14 @@ import HomeCard from "../../components/cards/HomeCard";
 
 export default function Home() {
   return (
-    <ResponserGrid 
-      type="upper" 
+    <ResponserGrid
+      type="upper"
       size="md"
       GridProps={{
         justifyContent: "space-between",
         alignItems: "center",
         wrap: "nowrap",
-        width: 100
+        width: "100%"
       }}
     >
       <Grid
@@ -21,13 +21,13 @@ export default function Home() {
           padding: 8
         }}
       >
-        <Typography 
-          variant="h4" 
+        <Typography
+          variant="h4"
           fontWeight="700"
         >
           Costruzione, personalizzazione e vendita di macchine e materiali per l’imballaggio.
         </Typography>
-        <Typography 
+        <Typography
           variant="h6"
           sx={{marginTop: 4}}
         >
