@@ -16,6 +16,7 @@ import React from "react";
 import { useTheme, alpha } from "@mui/material";
 import { useScroll } from "../../hooks/useScroll";
 import LanguageDropdownButton from "./LanguageDropdown";
+import CategorySearchBar from "../search_bar/CategorySearchBar";
 
 export interface AppbarButtonProps {
   readonly text: string,
@@ -35,7 +36,9 @@ export interface WuiAppBarProps {
   readonly subText?: string,
   readonly showLanguageButton?: boolean,
   readonly showDropdownButton?: boolean,
+  readonly showSearchbar?: boolean,
   readonly buttonsProps: AppbarButtonProps[],
+  readonly SearchbarComponent?: any,
   readonly LanguageComponent?: any,
   readonly DropdownComponent?: any,
 }
@@ -91,6 +94,15 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
       <LanguageDropdownButton
         icon={props.LanguageComponent}
       />
+    )
+  }
+  
+  const searchBar = () => {
+    if(!props.showSearchbar)
+      return (<></>)
+
+    return (
+      <props.SearchbarComponent/>
     )
   }
 
@@ -166,6 +178,13 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
 
         <AppBarSection
           alignment="end"
+          StackProps={{ justifyContent: "end" }}
+        >
+          {searchBar()}
+        </AppBarSection>
+        
+        <AppBarSection
+          alignment="end"
           StackProps={{ justifyContent: "flex-end" }}
         >
           <AppBarSection hideOnMobile>
@@ -214,5 +233,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
 WuiAppBar.defaultProps = {
   showLanguageButton: true,
   showDropdownButton: true,
+  showSearchbar: false,
   LanguageComponent: PublicRoundedIcon,
+  SearchbarComponent: CategorySearchBar,
 }

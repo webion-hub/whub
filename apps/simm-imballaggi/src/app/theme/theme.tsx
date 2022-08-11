@@ -1,13 +1,32 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import Inter from "../../assets/fonts/Inter.ttf"
+
+const fontFamily = "'Inter'"
 
 let theme = createTheme({
   palette: {
     mode: "light",
     background: {
-      default: "#F8F9FA",
+      default: "#FFFFFF",
     },
     primary: {
-      main: "#FF1A1A",
+      main: "#FF031D",
+    },
+    secondary: {
+      main: "#A5A5A5"
+    }
+  },
+  typography: {
+    fontFamily: [fontFamily, "sans-serif"].join(','),
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        "@font-face": {
+          fontFamily: fontFamily,
+          src: `url(${Inter}) format('truetype')`
+        }
+      }
     },
     layout: {
       footer: '#E4E7EB'
