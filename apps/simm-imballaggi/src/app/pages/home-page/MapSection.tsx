@@ -51,6 +51,7 @@ export default function MapSection() {
             size="small" 
             variant='contained'
             sx={{paddingInline: 4}}
+            href="/contacts"
           >
             Contattaci
           </Button>
