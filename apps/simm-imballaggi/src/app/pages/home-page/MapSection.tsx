@@ -27,7 +27,10 @@ export default function MapSection() {
         </Typography>
         <Typography 
           variant="body1"
-          sx={{marginTop: 2}}
+          sx={{
+            marginTop: 2,
+            textAlign: {xs: "justify", md: "left"}
+          }}
         >
           Simm imballaggi è una realtà specializzata nella costruzione, personalizzazione e vendita di macchine e materiali per l’imballaggio.<br/><br/>
           I prodotti trattati sono selezionati sulla base di un attento e continuo monitoraggio del mercato nazionale e internazionale, con l’obiettivo di migliorare costantemente qualità e tecnologia.<br/><br/>

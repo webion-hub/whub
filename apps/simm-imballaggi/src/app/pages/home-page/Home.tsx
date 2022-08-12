@@ -7,6 +7,7 @@ export default function Home() {
     <ResponserGrid
       type="upper"
       size="md"
+      reverse="column"
       GridProps={{
         justifyContent: "space-between",
         alignItems: "center",

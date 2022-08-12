@@ -21,7 +21,7 @@ const LinksFooterColumn = (props: FooterColumnProps) => (
     <Stack
       direction="column"
       spacing={2}
-      sx={{ marginLeft: 6 }}
+      sx={{ marginLeft: 6, width: "100%" }}
     >
      {props.children}
     </Stack>
@@ -65,7 +65,7 @@ export default function SimmFooter() {
             </IconButton>
           </Grid>
         </FooterColumn>
-        <FooterContent width="60%" disableAutoAlign>
+        <FooterContent disableAutoAlign>
           <LinksFooterColumn>
             <Typography
               variant="h5"
@@ -87,7 +87,7 @@ export default function SimmFooter() {
             <FooterLink href="#"> Materiali </FooterLink>
           </LinksFooterColumn>
           <LinksFooterColumn>
-          <Typography
+            <Typography
               variant="h5"
               marginBottom={2}
             >
