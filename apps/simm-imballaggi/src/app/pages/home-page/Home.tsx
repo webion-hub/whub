@@ -21,6 +21,7 @@ export default function Home() {
         sx={{
           padding: 8
         }}
+        width="auto"
       >
         <Typography
           variant="h4"

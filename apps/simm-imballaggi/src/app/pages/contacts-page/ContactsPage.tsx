@@ -67,8 +67,9 @@ export default function ContactsPage() {
           height="150px"
           direction="column"
           justifyContent="space-between"
+          flexWrap="nowrap"
           sx={{
-            paddingInline: 6,
+            paddingInline: 4,
             marginRight: {md: 2}, 
             marginBottom: {xs: 4, md: 0}, 
           }}
@@ -118,6 +119,7 @@ export default function ContactsPage() {
             sx={{
               display: "flex",
               flexDirection: "column",
+              paddingInline: {xs: 4, md: 0}
             }}
           >
             <TextField 

@@ -15,13 +15,14 @@ export default function MapSection() {
         justifyContent: "center",
         alignItems: "center",
         wrap: "nowrap",
-        padding: 12
+        padding: {xs: 4, md: 12}
       }}
     >
       <Grid
         sx={{
-          width: {sm: "100%", md:"40%", },
-          marginRight: 4
+          width: {xs: "100%", md: "40%" },
+          marginRight: {xs: 0, md: 4 },
+          marginBottom: {xs: 4, md: 0 },
         }}
       >
         <Typography 
@@ -45,6 +46,9 @@ export default function MapSection() {
         <Grid 
           container
           alignItems="baseline"
+          sx={{
+            justifyContent: {xs: "center", md: "left"},
+          }}
         >  
           <Typography 
             variant="body2"

@@ -178,7 +178,11 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
 
         <AppBarSection
           alignment="end"
-          StackProps={{ justifyContent: "end" }}
+          StackProps={{ 
+            justifyContent: "end", 
+            width: "100%",
+            marginRight: 2 
+          }}
         >
           {searchBar()}
         </AppBarSection>
