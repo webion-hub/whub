@@ -1,61 +1,65 @@
 import React from "react"
-import { Grid, useTheme, Button, Menu, SxProps, Theme, OutlinedInput } from "@mui/material";
+import { Grid, useTheme, Button, SxProps, Theme, OutlinedInput, FormControl, Select, MenuItem, SelectChangeEvent } from "@mui/material";
 
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 
 export interface CategorySearchBarProps {
-  readonly title: string,
+  readonly filter: string,
+  readonly elements: string[],
 }
 
 export interface CategoryDropdownProps {
+  readonly title?: string,
+  readonly elements?: string[],
   readonly sx: SxProps<Theme>,
 }
 
 export function CategoryDropdown(props: CategoryDropdownProps) {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [category, setCategory] = React.useState<string>("");
+  const theme = useTheme()
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleChange = (event: SelectChangeEvent) => {
+    setCategory(event.target.value);
   };
 
   return (
-    <>
-      <Button
-        color="inherit"
-        onClick={handleClick}
-        sx={props.sx}
-      >
-        Categoria
-        <ExpandMoreRoundedIcon />
-      </Button>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
-        VUOTO
-      </Menu>
-    </>
+    <FormControl sx={{ minWidth: 120 }}>
+        <Select
+          variant="outlined"
+          value={category}
+          onChange={handleChange}
+          displayEmpty
+          size="small"
+          sx={{
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+            backgroundColor: theme.palette.layout?.footer
+          }}
+        >
+          <MenuItem value="" disabled>
+            {props.title}
+          </MenuItem>
+          {props.elements?.map((el: string, i: number) => (
+            <MenuItem 
+              value={i}
+              key={i}
+            >
+              {el}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
   );
 };
 
 const CategorySearchBar = React.forwardRef<HTMLDivElement, CategorySearchBarProps>((props, ref) => {
   const theme = useTheme()
+
   return (
     <Grid
       component="form"
       container
       alignItems="center"
-      sx={{
-        width: 500,
-        borderRadius: "8px"
-      }}
     >
       <OutlinedInput
         color="secondary"
@@ -67,10 +71,18 @@ const CategorySearchBar = React.forwardRef<HTMLDivElement, CategorySearchBarProp
             height: 40
           }
         }}
+        inputProps={{ 
+          sx: {
+            paddingLeft: 2,
+            backgroundColor: theme.palette.background.default
+          } 
+        }}
         placeholder="Cerca prodotto"
         size="small"
         startAdornment={
           <CategoryDropdown
+            title={props.filter}
+            elements={props.elements}
             sx={{
               background: "#E4E7EB",
               color: "black",
@@ -83,6 +95,10 @@ const CategorySearchBar = React.forwardRef<HTMLDivElement, CategorySearchBarProp
             type="submit"
             color="primary"
             variant="contained"
+            sx={{
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+            }}
           >
             <SearchRoundedIcon />
           </Button>

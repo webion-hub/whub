@@ -1,5 +1,5 @@
 import { Button, ButtonBase, Grid, SxProps, Theme, Typography } from "@mui/material";
-import { SideBarButton } from "../side_bar/SidebarButton";
+import { SideBarButton } from "@whub/wui";
 
 import { AppBar } from "./AppBar";
 import { AppBarContent } from "./AppBarContent";
@@ -102,7 +102,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
       return (<></>)
 
     return (
-      <props.SearchbarComponent/>
+      props.SearchbarComponent
     )
   }
 
@@ -235,5 +235,5 @@ WuiAppBar.defaultProps = {
   showDropdownButton: true,
   showSearchbar: false,
   LanguageComponent: PublicRoundedIcon,
-  SearchbarComponent: CategorySearchBar,
+  SearchbarComponent: <CategorySearchBar filter="Category" elements={[]}></CategorySearchBar>,
 }
