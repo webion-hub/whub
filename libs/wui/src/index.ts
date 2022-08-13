@@ -31,7 +31,6 @@ export * from './components/app_bar/AppBar';
 export * from './components/app_bar/AppBarContent';
 export * from './components/app_bar/AppBarSection';
 export * from './components/app_bar/WuiAppBar';
-// export * from './components/search_bar/CategorySearchBar'
 
 export * from './components/footer/Footer';
 export * from './components/footer/FooterBottomLabel';
