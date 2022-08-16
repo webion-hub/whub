@@ -2,14 +2,14 @@ import { Button, Grid, styled, Typography } from "@mui/material";
 import { ResponserGrid } from "@whub/wui";
 
 const StyledMap = styled('iframe')(() => ({
-  borderRadius: 8, 
+  borderRadius: 8,
   border: 0,
 }))
 
 export default function MapSection() {
   return (
-    <ResponserGrid 
-      type="upper" 
+    <ResponserGrid
+      type="upper"
       size="md"
       GridProps={{
         justifyContent: "center",
@@ -25,13 +25,13 @@ export default function MapSection() {
           marginBottom: {xs: 4, md: 0 },
         }}
       >
-        <Typography 
+        <Typography
           variant="h3"
           textAlign="center"
         >
           Chi siamo
         </Typography>
-        <Typography 
+        <Typography
           variant="body1"
           sx={{
             marginTop: 2,
@@ -43,14 +43,14 @@ export default function MapSection() {
           La qualità del servizio è il risultato del massimo impegno che quotidianamente tutto il personale si pone, per poter offrire sempre il miglior prodotto e la massima professionalità lavorativa.<br/><br/>
           Il cliente è l’obiettivo principale dell’azienda. Ad ogni esigenza si individuano rapidamente soluzioni specifiche che permettano di migliorare il lavoro, risparmiando tempo, risparmiando personale, migliorando l’immagine degli imballi, ottimizzando i costi.
         </Typography>
-        <Grid 
+        <Grid
           container
           alignItems="baseline"
           sx={{
             justifyContent: {xs: "center", md: "left"},
           }}
-        >  
-          <Typography 
+        >
+          <Typography
             variant="body2"
             sx={{
               marginTop: 8,
@@ -59,8 +59,7 @@ export default function MapSection() {
           >
             Contattaci per ricevere informazioni
           </Typography>
-          <Button 
-            size="small" 
+          <Button
             variant='contained'
             sx={{paddingInline: 4}}
             href="/contacts"
@@ -81,7 +80,7 @@ export default function MapSection() {
             height: {xs: 225, md: 450},
           }}
         />
-        <Typography 
+        <Typography
           variant="caption"
           textAlign="center"
           color="secondary"
