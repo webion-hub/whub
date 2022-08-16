@@ -41,9 +41,17 @@ export default function ContactsPage() {
   const waves = useBackgroundWaves(theme.palette.secondary.light)
 
   const form = useForm({
-    company: {
+    name: {
       value: "",
       validators: [Validators.required],
+    },
+    surname: {
+      value: "",
+      validators: [Validators.required],
+    },
+    company: {
+      value: "",
+      validators: [],
     },
     phoneNumber: {
       value: "",
@@ -80,8 +88,9 @@ export default function ContactsPage() {
       justifyContent="center"
       alignItems="center"
       sx={{
-        marginTop: { xs: 16, md: 24 },
-        marginBottom: { xs: 4, md: 0 },
+        marginTop: 16,
+        marginBottom: 4,
+        paddingInline: 2,
       }}
     >
       <Typography
@@ -170,32 +179,53 @@ export default function ContactsPage() {
             sx={{
               display: "flex",
               flexDirection: "column",
-              "& > *": { marginBlock: theme => theme.spacing(1, '!important') }
+              "& > *": { marginBlock: theme => theme.spacing(0.5, '!important') }
             }}
           >
+            <Stack 
+              justifyContent="space-between"
+              direction="row"
+              spacing={1}
+            >
+              <TextField
+                size="small"
+                name="name"
+                required
+                label="Nome"
+              />
+              <TextField
+                size="small"
+                name="surname"
+                required
+                label="Cognome"
+              />
+            </Stack>
             <TextField
+                size="small"
               name="company"
-              required
               fullWidth
               label="Azienda"
               variant="outlined"
-              InputProps={{ startAdornment: <BusinessRoundedIcon/>}}
+              InputProps={{ endAdornment: <BusinessRoundedIcon/>}}
             />
             <TextField
+                size="small"
               name="phoneNumber"
               fullWidth
               label="Telefono"
               variant="outlined"
-              InputProps={{ startAdornment: <PhoneRoundedIcon/>}}
+              InputProps={{ endAdornment: <PhoneRoundedIcon/>}}
             />
             <TextField
+                size="small"
               name="email"
               required
               label="Mail"
               variant="outlined"
-              InputProps={{ startAdornment: <MailRoundedIcon/>}}
+              InputProps={{ endAdornment: <MailRoundedIcon/>}}
             />
             <TextField
+                size="small"
               name="message"
               fullWidth
               required

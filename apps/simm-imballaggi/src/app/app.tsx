@@ -15,6 +15,7 @@ import globalStyle from './theme/globalStyle';
 import { useState } from "react";
 import { Language, LanguageWrapper, MaybeShow } from "@whub/wui";
 import ContactsPage from "./pages/contacts-page/ContactsPage";
+import LoginPage from "./pages/login-page/LoginPage";
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -60,6 +61,7 @@ export function App() {
               <Routes>
                 <Route key="home" path="/"  element={<Homepage/>}/>
                 <Route key="contacts" path="/contacts"  element={<ContactsPage/>}/>
+                <Route key="login" path="/login"  element={<LoginPage/>}/>
               </Routes>
             </Layout>
           </BrowserRouter>
