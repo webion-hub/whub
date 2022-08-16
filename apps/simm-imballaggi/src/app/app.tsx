@@ -14,6 +14,7 @@ import { GlobalStyles, CssBaseline, CircularProgress, Grid} from '@mui/material'
 import globalStyle from './theme/globalStyle';
 import { useState } from "react";
 import { Language, LanguageWrapper, MaybeShow } from "@whub/wui";
+import ContactsPage from "./pages/contacts-page/ContactsPage";
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -58,11 +59,12 @@ export function App() {
             <Layout>
               <Routes>
                 <Route key="home" path="/"  element={<Homepage/>}/>
+                <Route key="contacts" path="/contacts"  element={<ContactsPage/>}/>
               </Routes>
             </Layout>
           </BrowserRouter>
         </MaybeShow>
-      </LanguageWrapper>  
+      </LanguageWrapper>
     </ThemeProvider>
   )
 }

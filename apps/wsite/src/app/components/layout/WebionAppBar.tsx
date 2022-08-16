@@ -4,9 +4,11 @@ import { useTranslation } from "react-i18next";
 import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 import OthersDropdownButton from "../dropdown/OthersDropdownButton";
 import { AppbarButtonProps, WuiAppBar } from "@whub/wui";
+import { useTheme } from "@mui/material";
 
 const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
   const {t} = useTranslation();
+  const theme = useTheme()
 
   const buttons : AppbarButtonProps[] =
   [
@@ -14,11 +16,17 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
       text: t("navbar-button2"),
       href: "/#services",
       color: "inherit",
+      sx: {
+        color: theme.palette.text.secondary,
+      }
     },
     {
       text: t("navbar-button3"),
       href: "/#projects",
       color: "inherit",
+      sx: {
+        color: theme.palette.text.secondary,
+      }
     },
     {
       text: t("navbar-button5"),

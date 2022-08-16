@@ -40,7 +40,7 @@ export const BaseCard = React.forwardRef<HTMLDivElement, BaseCardProps>((props, 
       </Typography>
       <Typography
         className="WuiBaseCard-paragraph"
-        color="text.primary"
+        color="text.secondary"
         variant="subtitle2"
         align="center"
         sx={{ marginTop: 3 }}
