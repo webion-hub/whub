@@ -22,9 +22,9 @@ const FlagLanguageDropdown = React.forwardRef<HTMLDivElement, FlagLanguageDropdo
   const { language, setLanguage } = useLanguage();
 
   const flags: { [id: string] : any; } = {
-    "en": <GB width="20px"></GB>,
-    "it": <IT width="20px"></IT>,
-    "es": <ES width="20px"></ES>,
+    "en": <GB width="28px" style={{borderRadius: 2}}/>,
+    "it": <IT width="28px" style={{borderRadius: 2}}/>,
+    "es": <ES width="28px" style={{borderRadius: 2}}/>,
   };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
