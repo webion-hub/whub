@@ -12,7 +12,7 @@ export const Footer = React.forwardRef<HTMLDivElement, ChildrenProps>((props, re
       direction="column"
       sx={{
         background: theme.palette.layout?.footer,
-        color: theme.palette.text.primary,
+        color: theme.palette.text.secondary,
       }}
     >
       {props.children}

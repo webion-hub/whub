@@ -163,7 +163,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
               alt="logo"
               />
             <Typography
-              color="inherit"
+              color="textSecondary"
             >
               {props.text}
             </Typography>
