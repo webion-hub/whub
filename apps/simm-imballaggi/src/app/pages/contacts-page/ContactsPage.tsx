@@ -179,28 +179,29 @@ export default function ContactsPage() {
             sx={{
               display: "flex",
               flexDirection: "column",
-              "& > *": { marginBlock: theme => theme.spacing(1, '!important') }
+              "& > *": { marginBlock: theme => theme.spacing(0.5, '!important') }
             }}
           >
-            <Grid 
-              container
+            <Stack 
               justifyContent="space-between"
               direction="row"
+              spacing={1}
             >
               <TextField
+                size="small"
                 name="name"
                 required
                 label="Nome"
-                sx={{ width: "48%"}}
               />
               <TextField
+                size="small"
                 name="surname"
                 required
                 label="Cognome"
-                sx={{ width: "48%"}}
               />
-            </Grid>
+            </Stack>
             <TextField
+                size="small"
               name="company"
               fullWidth
               label="Azienda"
@@ -208,6 +209,7 @@ export default function ContactsPage() {
               InputProps={{ endAdornment: <BusinessRoundedIcon/>}}
             />
             <TextField
+                size="small"
               name="phoneNumber"
               fullWidth
               label="Telefono"
@@ -215,6 +217,7 @@ export default function ContactsPage() {
               InputProps={{ endAdornment: <PhoneRoundedIcon/>}}
             />
             <TextField
+                size="small"
               name="email"
               required
               label="Mail"
@@ -222,6 +225,7 @@ export default function ContactsPage() {
               InputProps={{ endAdornment: <MailRoundedIcon/>}}
             />
             <TextField
+                size="small"
               name="message"
               fullWidth
               required

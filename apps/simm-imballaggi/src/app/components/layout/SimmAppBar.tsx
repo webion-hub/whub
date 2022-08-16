@@ -18,7 +18,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
     },
     {
       text: "Log in",
-      href: "/#contacts",
+      href: "/login",
       variant: "contained",
       color: "primary",
       afterLanguage: true,
