@@ -1,5 +1,4 @@
 import { Button, ButtonBase, Grid, SxProps, Theme, Typography } from "@mui/material";
-import { SideBarButton } from "@whub/wui";
 
 import { AppBar } from "./AppBar";
 import { AppBarContent } from "./AppBarContent";
@@ -16,6 +15,7 @@ import React from "react";
 import { useTheme, alpha } from "@mui/material";
 import { useScroll } from "../../hooks/useScroll";
 import LanguageDropdownButton from "./LanguageDropdown";
+import { SideBarButton } from "../side_bar/SidebarButton";
 
 export interface AppbarButtonProps {
   readonly text: string,
