@@ -1,15 +1,44 @@
-import { Button, Grid, TextField, Typography } from '@mui/material'
+import { Button, Grid, Link, Paper, Stack, TextField, Typography, useTheme } from '@mui/material'
 import PlaceRoundedIcon from '@mui/icons-material/PlaceRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import { api } from '@whub/api';
-import { FormGroup, useForm, Validators } from '@whub/wui';
-import { t } from 'i18next';
+import { FormGroup, useBackgroundWaves, useForm, Validators } from '@whub/wui';
 import { useState, FormEvent } from 'react';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+
+interface LinkWithIconProps {
+  readonly children: string,
+  readonly Icon: OverridableComponent<any>
+}
+
+function LinkWithIcon(props: LinkWithIconProps) {
+  return (
+    <Grid
+      container
+      direction="row"
+      alignItems="center"
+    >
+      <props.Icon color='secondary'/>
+      <Link
+        color="secondary"
+        variant="body1"
+        sx={{
+          width: 'calc(100% - 24px)',
+          paddingLeft: 1
+        }}
+      >
+        {props.children}
+      </Link>
+    </Grid>
+  )
+}
 
 export default function ContactsPage() {
   const [loading, setLoading] = useState<boolean>(false)
+  const theme = useTheme()
+  const waves = useBackgroundWaves(theme.palette.secondary.light)
 
   const form = useForm({
     company: {
@@ -47,10 +76,15 @@ export default function ContactsPage() {
   return (
     <Grid
       container
+      direction="column"
       justifyContent="center"
-      sx={{marginTop: 12}}
+      alignItems="center"
+      sx={{
+        marginTop: { xs: 16, md: 24 },
+        marginBottom: { xs: 4, md: 0 },
+      }}
     >
-      <Typography 
+      <Typography
         variant="h3"
         fontWeight="700"
         >
@@ -58,59 +92,76 @@ export default function ContactsPage() {
       </Typography>
       <Grid
         container
+        component={Paper}
+        direction={{xs: 'column', md: 'row'}}
+        alignItems={{xs: "center", md: 'flex-start'}}
         justifyContent="center"
-        sx={{ marginTop: 4 }}
+        sx={{
+          position: 'relative',
+          padding: 4,
+          marginTop: 4,
+          maxWidth: 1000,
+          overflow: 'hidden',
+          "& > *": { zIndex: 1 },
+          "&::after": {
+            content: "''",
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            opacity: 0.4,
+            top: 0,
+            zIndex: 0,
+            transform: {
+              xs: 'rotate(-180deg) translate(0%, -48%)',
+              md: 'rotate(-157deg) translate(4%, -49%)'
+            },
+            ...waves,
+          }
+        }}
       >
-        <Grid
-          container
-          width="auto"
+        <Stack
+          spacing={3}
+          width={{xs: "100%", md: "60%"}}
           height="150px"
-          direction="column"
+          direction={{xs: "column-reverse", md: 'column'}}
           justifyContent="space-between"
-          flexWrap="nowrap"
           sx={{
-            paddingInline: 4,
-            marginRight: {md: 2}, 
-            marginBottom: {xs: 4, md: 0}, 
+            marginBottom: {xs: 4, md: 0},
+            height: '100%'
           }}
         >
-          <Typography 
+          <Typography
             variant="body2"
             sx={{maxWidth: "500px"}}
+            textAlign={{xs: 'center', md: 'left'}}
           >
             Se hai bisogno di maggiori informazioni ti invitiamo a compilare il seguente modulo. Riceverai una risposta il prima possibile.
           </Typography>
-          <Grid
-            container
-            alignItems="center"
+          <Stack
+            direction="column"
+            spacing={1}
           >
-            <PlaceRoundedIcon color='primary' sx={{marginRight: 2}}/>
-            <Typography variant="body1">
+            <LinkWithIcon
+              Icon={PlaceRoundedIcon}
+            >
               Via Gian Luigi Lazzari 18, Quarto Inferiore (BO)
-            </Typography>
-          </Grid>
-          <Grid
-            container
-            alignItems="center"
-          >
-            <PhoneRoundedIcon color='primary' sx={{marginRight: 2}}/>
-            <Typography variant="body1">
+            </LinkWithIcon>
+            <LinkWithIcon
+              Icon={PhoneRoundedIcon}
+            >
               051 800 960
-            </Typography>
-          </Grid>
-          <Grid
-            container
-            alignItems="center"
-          >
-            <MailRoundedIcon color='primary' sx={{marginRight: 2}}/>
-            <Typography variant="body1">
+            </LinkWithIcon>
+            <LinkWithIcon
+              Icon={MailRoundedIcon}
+            >
               info@simmimballaggi.com
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid 
+            </LinkWithIcon>
+          </Stack>
+        </Stack>
+        <Grid
           container
-          maxWidth="400px"
+          width={{xs: "100%", md: "40%"}}
+          maxWidth={550}
           direction="column"
         >
           <FormGroup
@@ -119,51 +170,45 @@ export default function ContactsPage() {
             sx={{
               display: "flex",
               flexDirection: "column",
-              paddingInline: {xs: 4, md: 0}
+              "& > *": { marginBlock: theme => theme.spacing(1, '!important') }
             }}
           >
-            <TextField 
+            <TextField
               name="company"
               required
-              size="small" 
-              label="Azienda" 
-              variant="outlined" 
-              sx={{marginBlock: 1}} 
+              fullWidth
+              label="Azienda"
+              variant="outlined"
               InputProps={{ startAdornment: <BusinessRoundedIcon/>}}
-              />
+            />
             <TextField
-              size="small"
               name="phoneNumber"
+              fullWidth
               label="Telefono"
-              variant="outlined" 
-              sx={{marginBlock: 1}} 
+              variant="outlined"
               InputProps={{ startAdornment: <PhoneRoundedIcon/>}}
-              />
+            />
             <TextField
               name="email"
               required
-              size="small"
               label="Mail"
-              variant="outlined" 
-              sx={{marginTop: 1}} 
+              variant="outlined"
               InputProps={{ startAdornment: <MailRoundedIcon/>}}
             />
             <TextField
               name="message"
+              fullWidth
               required
-              size="small"
               label="Scrivi qualcosa..."
               variant="outlined"
               multiline
-              rows={3}
-              sx={{marginBlock: 2}} 
+              rows={5}
             />
             <Button
               color="primary"
               type="submit"
               variant="contained"
               disabled={loading}
-              sx={{marginBottom: 2}} 
             >
               Invia
             </Button>

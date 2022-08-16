@@ -8,7 +8,7 @@ import { Grid } from "@mui/material";
 
 const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
   const { t } = useLanguage()
-  
+
   document.title = t('tab-title')
 
   return (
@@ -16,7 +16,7 @@ const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
       <SimmSideBar/>
       <SimmAppbar/>
       <Page ref={ref}>
-        <Grid 
+        <Grid
           container
           direction="column"
           justifyContent="space-between"
