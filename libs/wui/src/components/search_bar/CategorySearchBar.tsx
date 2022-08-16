@@ -1,7 +1,8 @@
 import React from "react"
-import { Grid, useTheme, Button, SxProps, Theme, OutlinedInput, FormControl, Select, MenuItem, SelectChangeEvent } from "@mui/material";
+import { Grid, useTheme, Button, SxProps, Theme, OutlinedInput, FormControl, Select, MenuItem, SelectChangeEvent, InputLabel, IconButton } from "@mui/material";
 
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import { EditOutlined } from "@mui/icons-material";
 
 export interface CategorySearchBarProps {
   readonly filter: string,
@@ -40,7 +41,7 @@ export function CategoryDropdown(props: CategoryDropdownProps) {
             {props.title}
           </MenuItem>
           {props.elements?.map((el: string, i: number) => (
-            <MenuItem 
+            <MenuItem
               value={i}
               key={i}
             >
@@ -61,49 +62,32 @@ const CategorySearchBar = React.forwardRef<HTMLDivElement, CategorySearchBarProp
       container
       alignItems="center"
     >
-      <OutlinedInput
-        color="secondary"
-        sx={{ 
-          marginLeft: 1, 
-          flex: 1, 
-          paddingInline: 0,
-          "& > .search-adorment": {
-            height: 40
+      <EditOutlined></EditOutlined>
+      <FormControl
+        size="small"
+        variant="outlined"
+        sx={{
+          ".MuiInputLabel-root": {
+            paddingLeft: 10,
+          },
+          "& > * > legend": {
+            marginLeft: 10
           }
         }}
-        inputProps={{ 
-          sx: {
-            paddingLeft: 2,
-            backgroundColor: theme.palette.background.default
-          } 
-        }}
-        placeholder="Cerca prodotto"
-        size="small"
-        startAdornment={
-          <CategoryDropdown
-            title={props.filter}
-            elements={props.elements}
-            sx={{
-              background: "#E4E7EB",
-              color: "black",
-            }}
-          />
-        }
-        endAdornment={
-          <Button 
-            className="search-adorment"
-            type="submit"
-            color="primary"
-            variant="contained"
-            sx={{
-              borderTopLeftRadius: 0,
-              borderBottomLeftRadius: 0,
-            }}
-          >
-            <SearchRoundedIcon />
-          </Button>
-        }
-      />
+      >
+        <InputLabel>
+          Cerca prodotto
+        </InputLabel>
+        <OutlinedInput
+          sx={{ paddingRight: 0 }}
+          label="Cerca prodotto"
+          endAdornment={
+            <IconButton color="primary">
+              <SearchRoundedIcon/>
+            </IconButton>
+          }
+        />
+      </FormControl>
     </Grid>
   )
 })

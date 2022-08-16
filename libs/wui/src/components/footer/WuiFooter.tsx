@@ -2,7 +2,7 @@ import { Button, Grid, IconButton, Link, Typography } from "@mui/material";
 
 import { useTranslation } from "react-i18next";
 import React from "react";
-import { FooterColumn } from "./FooterColumn";
+import { FooterColumn } from "./FooterLayout";
 import { FooterContent } from "./FooterContent";
 import { Footer } from "./Footer";
 import { FooterBottomLabel } from "./FooterBottomLabel";
@@ -49,7 +49,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
             width: "fit-content",
             minWidth: 0,
             marginLeft: theme => ({
-              sm: theme.spacing(-1, '!important'),
+              md: theme.spacing(-1, '!important'),
               xs: 0
             })
           }}
@@ -65,7 +65,11 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
     const elements: any = []
     props.sectionsProps.map((el, i) => (
       elements.push(
-        <FooterColumn StackProps={{ alignItems: {xs:'center', md: "baseline"}}} key={i}>
+        <FooterColumn
+          alignItems={{xs:'center', md: "baseline"}}
+          sx={{marginBottom: {xs: 4, md: 0}}}
+          key={i}
+        >
           <Typography variant="subtitle2">
             {el.title}
           </Typography>
@@ -82,9 +86,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
 
     return (
       <FooterColumn
-        StackProps={{
-          alignItems: {xs:'center', md: "left"},
-        }}
+        alignItems={{xs:'center', md: "left"}}
       >
         <Typography variant="subtitle2">
           SOCIAL
