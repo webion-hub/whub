@@ -53,7 +53,7 @@ export function CategoryDropdown(props: CategoryDropdownProps) {
   );
 };
 
-const CategorySearchBar = React.forwardRef<HTMLDivElement, CategorySearchBarProps>((props, ref) => {
+export const CategorySearchBar = React.forwardRef<HTMLDivElement, CategorySearchBarProps>((props, ref) => {
   const theme = useTheme()
 
   return (
@@ -91,5 +91,3 @@ const CategorySearchBar = React.forwardRef<HTMLDivElement, CategorySearchBarProp
     </Grid>
   )
 })
-
-export default CategorySearchBar

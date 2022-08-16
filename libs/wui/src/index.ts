@@ -65,3 +65,4 @@ export * from './components/Parallax';
 export * from './components/Sections';
 export * from './components/Section';
 export * from './components/WuiGrid';
+export * from './components/search_bar/CategorySearchBar';
