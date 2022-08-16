@@ -90,6 +90,7 @@ export default function ContactsPage() {
       sx={{
         marginTop: 16,
         marginBottom: 4,
+        paddingInline: 2,
       }}
     >
       <Typography
@@ -184,6 +185,7 @@ export default function ContactsPage() {
             <Grid 
               container
               justifyContent="space-between"
+              direction="row"
             >
               <TextField
                 name="name"

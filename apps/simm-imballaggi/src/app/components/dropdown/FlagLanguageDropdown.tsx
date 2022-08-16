@@ -10,12 +10,7 @@ import { IT, GB, ES } from 'country-flag-icons/react/3x2'
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 
-export interface FlagLanguageDropdownProps {
-  readonly icon?: any,
-}
-
-
-const FlagLanguageDropdown = React.forwardRef<HTMLDivElement, FlagLanguageDropdownProps>((props, ref) => {
+const FlagLanguageDropdown = React.forwardRef<HTMLDivElement, Record<string, never>>((_props, ref) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const { t } = useTranslation();
