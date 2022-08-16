@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 import { AppbarButtonProps, WuiAppBar, CategorySearchBar } from "@whub/wui";
+import FlagLanguageDropdown from "../dropdown/FlagLanguageDropdown";
 
 const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
   const {t} = useTranslation();
@@ -43,7 +43,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
         padding: 1,
       }}
       text=""
-      LanguageComponent={PublicRoundedIcon}
+      LanguageComponent={<FlagLanguageDropdown/>}
       SearchbarComponent={
         <CategorySearchBar
           filter="Categoria"

@@ -54,7 +54,6 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
         padding: 1
       }}
       text="Webion"
-      LanguageComponent={PublicRoundedIcon}
       DropdownComponent={OthersDropdownButton}
     />
   )

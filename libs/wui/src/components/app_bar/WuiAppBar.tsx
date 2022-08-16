@@ -90,9 +90,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
       return (null)
 
     return (
-      <LanguageDropdownButton
-        icon={props.LanguageComponent}
-      />
+      props.LanguageComponent
     )
   }
 
@@ -237,5 +235,5 @@ WuiAppBar.defaultProps = {
   showLanguageButton: true,
   showDropdownButton: true,
   showSearchbar: false,
-  LanguageComponent: PublicRoundedIcon,
+  LanguageComponent: <LanguageDropdownButton icon={PublicRoundedIcon}></LanguageDropdownButton>,
 }

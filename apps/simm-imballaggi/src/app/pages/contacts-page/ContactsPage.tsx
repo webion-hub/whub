@@ -41,9 +41,17 @@ export default function ContactsPage() {
   const waves = useBackgroundWaves(theme.palette.secondary.light)
 
   const form = useForm({
-    company: {
+    name: {
       value: "",
       validators: [Validators.required],
+    },
+    surname: {
+      value: "",
+      validators: [Validators.required],
+    },
+    company: {
+      value: "",
+      validators: [],
     },
     phoneNumber: {
       value: "",
@@ -80,8 +88,8 @@ export default function ContactsPage() {
       justifyContent="center"
       alignItems="center"
       sx={{
-        marginTop: { xs: 16, md: 24 },
-        marginBottom: { xs: 4, md: 0 },
+        marginTop: 16,
+        marginBottom: 4,
       }}
     >
       <Typography
@@ -173,27 +181,43 @@ export default function ContactsPage() {
               "& > *": { marginBlock: theme => theme.spacing(1, '!important') }
             }}
           >
+            <Grid 
+              container
+              justifyContent="space-between"
+            >
+              <TextField
+                name="name"
+                required
+                label="Nome"
+                sx={{ width: "48%"}}
+              />
+              <TextField
+                name="surname"
+                required
+                label="Cognome"
+                sx={{ width: "48%"}}
+              />
+            </Grid>
             <TextField
               name="company"
-              required
               fullWidth
               label="Azienda"
               variant="outlined"
-              InputProps={{ startAdornment: <BusinessRoundedIcon/>}}
+              InputProps={{ endAdornment: <BusinessRoundedIcon/>}}
             />
             <TextField
               name="phoneNumber"
               fullWidth
               label="Telefono"
               variant="outlined"
-              InputProps={{ startAdornment: <PhoneRoundedIcon/>}}
+              InputProps={{ endAdornment: <PhoneRoundedIcon/>}}
             />
             <TextField
               name="email"
               required
               label="Mail"
               variant="outlined"
-              InputProps={{ startAdornment: <MailRoundedIcon/>}}
+              InputProps={{ endAdornment: <MailRoundedIcon/>}}
             />
             <TextField
               name="message"
