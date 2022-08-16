@@ -19,7 +19,7 @@ export const Footer = React.forwardRef<HTMLDivElement, FoooterProps>((props, ref
         display: 'flex',
         width: '100%',
         background: theme.palette.layout?.footer,
-        color: theme.palette.text.primary,
+        color: theme.palette.text.secondary,
       }}
     >
       <Stack

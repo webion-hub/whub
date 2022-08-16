@@ -20,20 +20,20 @@ export default function AIDA() {
       >
         <Typography
           variant="h3"
-          color="text.secondary"
+          color="text.primary"
           sx={{ textAlign: "center" }}
         >
           {t("AIDA-attention")}
         </Typography>
         <Typography
-          color="text.primary"
+          color="text.secondary"
           sx={{ marginTop: 6, textAlign: "justify" }}
         >
           {t("AIDA-interest")}
         </Typography>
 
         <Typography
-          color="text.primary"
+          color="text.secondary"
           sx={{ marginTop: 2.5, textAlign: "justify" }}
         >
           {t("AIDA-desire")}

@@ -37,7 +37,7 @@ export default function HowWeWork() {
         }}
       >
         <Typography
-          color="text.secondary"
+          color="text.primary"
           variant="h2"
           sx={{ textAlign: "center" }}
         >

@@ -30,7 +30,7 @@ export default function Home() {
         }}
       >
         <Typography
-          color="text.secondary"
+          color="text.primary"
           variant="h1"
           sx={{
             marginLeft: 0,
@@ -41,7 +41,7 @@ export default function Home() {
           {t("title-bold")}
         </Typography>
         <Typography
-          color="text.secondary"
+          color="text.primary"
           variant="h2"
           sx={{
             marginTop: {xs: 1, sm: 0},
@@ -52,7 +52,7 @@ export default function Home() {
           {t("title")}
         </Typography>
         <Typography
-          color="text.primary"
+          color="text.secondary"
           sx={{
             maxWidth: 600,
             marginTop: { xs: 2, sm: 2, md: 3 },

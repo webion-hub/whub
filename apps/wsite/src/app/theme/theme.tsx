@@ -27,8 +27,8 @@ const theme = createTheme({
       appbar: '#040A20'
     },
     text: {
-      primary: "rgba(255, 255, 255, 0.8)",
-      secondary: "#fff",
+      primary: "#fff",
+      secondary: "rgba(255, 255, 255, 0.8)",
     },
     info: {
       main: "#999999",
