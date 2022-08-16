@@ -12,7 +12,7 @@ export default function Services() {
       width: "95%",
     }}>
       <Typography
-        color="text.secondary"
+        color="text.primary"
         variant="h2"
         sx={{ textAlign: "center" }}
       >

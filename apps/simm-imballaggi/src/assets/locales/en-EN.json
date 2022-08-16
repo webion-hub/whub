@@ -67,7 +67,6 @@
   "message": "Message",
   "privacy": "I have read the ",
   "privacy-link": "Privacy policy",
-  "send": "Send",
   "message-sent": "Message sent!",
   "login": "Login",
   "accept": "Accept",
@@ -77,6 +76,7 @@
   "p-iva": "CF/P.Iva 04013210366, PEC",
 
   "licenses": "Licenses",
+  "close": "Close",
   "tab-title": "Simm imballaggi",
 
   "it": "Italian",

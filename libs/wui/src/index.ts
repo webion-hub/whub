@@ -14,6 +14,8 @@ export * from './hooks/useForm';
 export * from './hooks/useOnScreen';
 export * from './hooks/useSideBar';
 export * from './hooks/useLanguage';
+export * from './hooks/useWaves';
+export * from './hooks/useBackgroundWaves';
 
 //Contexts
 export * from './contexts/ContextLanguage';
@@ -34,7 +36,7 @@ export * from './components/app_bar/WuiAppBar';
 
 export * from './components/footer/Footer';
 export * from './components/footer/FooterBottomLabel';
-export * from './components/footer/FooterColumn';
+export * from './components/footer/FooterLayout';
 export * from './components/footer/FooterContent';
 export * from './components/footer/WuiFooter';
 
@@ -63,3 +65,4 @@ export * from './components/Parallax';
 export * from './components/Sections';
 export * from './components/Section';
 export * from './components/WuiGrid';
+export * from './components/search_bar/CategorySearchBar';

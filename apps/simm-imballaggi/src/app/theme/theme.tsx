@@ -3,17 +3,18 @@ import Inter from "../../assets/fonts/Inter.ttf"
 
 const fontFamily = "'Inter'"
 
-let theme = createTheme({
+const normTheme = createTheme({
   palette: {
     mode: "light",
     background: {
       default: "#FFFFFF",
+      paper: '#f5f6f7'
     },
     primary: {
-      main: "#FF031D",
+      main: "#C80015",
     },
     secondary: {
-      main: "#A5A5A5"
+      main: "#303f9f"
     },
     secondaryBackground: {
       default: "#F7F7F7"
@@ -34,8 +35,27 @@ let theme = createTheme({
         }
       }
     },
+    MuiPaper: {
+      defaultProps: {
+        elevation: 0
+      },
+      styleOverrides: {
+        root: {
+          border: '1px solid #e0e0e0',
+          borderRadius: 8
+        }
+      }
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          boxShadow: '0px -1px 8px #e0e0e0',
+          borderTop: '1px solid #e0e0e0'
+        }
+      }
+    }
   }
 });
-theme = responsiveFontSizes(theme);
+const theme = responsiveFontSizes(normTheme);
 
 export default theme

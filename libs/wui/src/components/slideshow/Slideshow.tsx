@@ -140,7 +140,7 @@ export function Slideshow(props: SlideshowProps) {
       </Grid>
       <Typography
         textAlign="center"
-        color="text.primary"
+        color="text.secondary"
         sx={{ 
           marginBlock: 5,
           marginInline: "auto", 
@@ -199,7 +199,7 @@ export function Slideshow(props: SlideshowProps) {
         </Grid>
         <Typography
           textAlign="center"
-          color="text.primary"
+          color="text.secondary"
           sx={{
             marginBlock: 10,
             marginInline: "auto",

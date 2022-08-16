@@ -7,11 +7,12 @@ export default function Home() {
     <ResponserGrid
       type="upper"
       size="md"
+      reverse="column"
       GridProps={{
         justifyContent: "space-between",
         alignItems: "center",
         wrap: "nowrap",
-        width: "100%"
+        width: "100%",
       }}
     >
       <Grid
@@ -20,6 +21,7 @@ export default function Home() {
         sx={{
           padding: 8
         }}
+        width="auto"
       >
         <Typography
           variant="h4"

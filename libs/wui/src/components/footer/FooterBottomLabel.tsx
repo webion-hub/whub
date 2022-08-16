@@ -23,26 +23,30 @@ export const FooterBottomLabel = React.forwardRef<HTMLDivElement, FooterBottomLa
   )
 
   return (
-    <>
+    <Typography {...props.TypographyProps}>
       <Divider
-        sx={DividerSx}
+        sx={{
+          ...DividerSx,
+          position: 'absolute',
+          margin: '0px !important',
+          transform: 'translateX(-50%)',
+          left: '50%',
+        }}
       />
-      <Typography {...props.TypographyProps}>
-        <Stack
-          ref={ref}
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
-          sx={{
-            width: '100%',
-            padding: 1,
-            textAlign: 'center',
-          }}
-          {...props.StackProps}
-        >
-          {props.children}
-        </Stack>
-      </Typography>
-    </>
+      <Stack
+        ref={ref}
+        direction="row"
+        alignItems="center"
+        justifyContent="center"
+        sx={{
+          width: '100%',
+          padding: 1,
+          textAlign: 'center',
+        }}
+        {...props.StackProps}
+      >
+        {props.children}
+      </Stack>
+    </Typography>
   );
 })

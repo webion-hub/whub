@@ -30,7 +30,6 @@ export const AppBarSection = React.forwardRef<HTMLDivElement, AppBarSectionProps
     <Stack
       {...stackProps}
       ref={ref}
-      width="100%"
     >
       {props.children}
     </Stack>

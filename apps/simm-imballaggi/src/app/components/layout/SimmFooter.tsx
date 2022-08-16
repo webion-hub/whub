@@ -1,132 +1,153 @@
-import { Footer, FooterBottomLabel, FooterColumn, FooterColumnProps, FooterContent, Img } from "@whub/wui";
+import { ChildrenProps, Footer, FooterBottomLabel, FooterColumn, FooterContent, FooterRow, Img } from "@whub/wui";
 
-import { Grid, IconButton, Link, LinkProps, Stack, Typography } from "@mui/material";
+import { Grid, IconButton, Link, LinkProps, Stack, Typography, TypographyProps, useMediaQuery, useTheme } from "@mui/material";
 import { Facebook, YouTube } from "@mui/icons-material";
+
+const FooterLinkTitle = (props: TypographyProps) => (
+  <Typography
+    variant="h6"
+    marginBottom={1}
+    {...props}
+  >
+    {props.children}
+  </Typography>
+)
 
 const FooterLink = (props: LinkProps) => (
   <Link
-    {...props}
     underline="hover"
+    variant="body2"
     color={theme => theme.palette.text.secondary}
+    sx={{ width: 'fit-content' }}
+    {...props}
   >
     {props.children}
   </Link>
 )
 
-const LinksFooterColumn = (props: FooterColumnProps) => (
-  <FooterColumn
-    showBorder
-    {...props}
-  >
-    <Stack
-      direction="column"
+const LinksFooterColumn = (props: ChildrenProps) => {
+  const theme = useTheme()
+  const isMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  return (
+    <FooterColumn
+      showBorder={!isMd}
       spacing={2}
-      sx={{ marginLeft: 6 }}
+      alignItems={{xs: 'center', md: 'flex-start'}}
+      sx={{
+        paddingLeft: {xs: 0, md: 6},
+        width: "100%",
+        "& > *": {
+          textAlign: {xs: 'center', md: 'left'}
+        }
+      }}
     >
-     {props.children}
-    </Stack>
-  </FooterColumn>
-)
+      {props.children}
+    </FooterColumn>
+  )
+}
 
 export default function SimmFooter() {
-  const footerMaxWidth = 1600
-
   return(
-    <Footer>
-      <FooterContent
-        disableAutoAlign
-        width={footerMaxWidth}
-      >
-        <FooterColumn sx={{ width: "40%" }}>
+    <Footer maxWidth={1600}>
+      <FooterContent>
+        <FooterColumn
+          width="40%"
+          alignItems={{xs: 'center', md: 'flex-start'}}
+        >
           <Img
-            sx={{ width: '100%', maxWidth: 400 }}
+            sx={{ width: '100%', maxWidth: 300 }}
             src="assets/images/full-logo.png"
           />
-          <Typography>S.I.M.M. Imballaggi s.r.l.</Typography>
-          <Typography>Partita I.V.A./C.F. 02666561200</Typography>
+          <Typography
+            variant="body2"
+            textAlign={{xs: 'center', md: 'left'}}
+          >
+            S.I.M.M. Imballaggi s.r.l.
+          </Typography>
+          <Typography
+            variant="body2"
+            textAlign={{xs: 'center', md: 'left'}}
+          >
+            Partita I.V.A./C.F. 02666561200
+          </Typography>
           <Grid
             container
             direction="row"
+            justifyContent={{xs: 'center', md: 'flex-start'}}
             sx={{
-              marginTop: theme => theme.spacing(6, '!important')
+              marginTop: theme => theme.spacing(3, '!important')
             }}
           >
             <IconButton
               color="primary"
-              size="large"
             >
-              <Facebook fontSize="large"/>
+              <Facebook/>
             </IconButton>
             <IconButton
               color="primary"
-              size="large"
             >
-              <YouTube fontSize="large"/>
+              <YouTube/>
             </IconButton>
           </Grid>
         </FooterColumn>
-        <FooterContent width="60%" disableAutoAlign>
+        <FooterRow
+          height={225}
+          width="60%"
+          spacing={{xs: 5, md: 0}}
+        >
           <LinksFooterColumn>
-            <Typography
-              variant="h5"
-              marginBottom={2}
-            >
+            <FooterLinkTitle>
               Azienda
-            </Typography>
+            </FooterLinkTitle>
             <FooterLink href="#"> Home </FooterLink>
             <FooterLink href="#"> Chi siamo </FooterLink>
           </LinksFooterColumn>
           <LinksFooterColumn>
-            <Typography
-              variant="h5"
-              marginBottom={2}
-            >
+            <FooterLinkTitle>
               Prodotti
-            </Typography>
+            </FooterLinkTitle>
             <FooterLink href="#"> Macchine </FooterLink>
             <FooterLink href="#"> Materiali </FooterLink>
           </LinksFooterColumn>
           <LinksFooterColumn>
-          <Typography
-              variant="h5"
-              marginBottom={2}
-            >
+            <FooterLinkTitle>
               Contatti
-            </Typography>
+            </FooterLinkTitle>
             <FooterLink href="#"> Email: info@simmimballaggi.com </FooterLink>
             <FooterLink href="#"> Tel: 051 800 960 </FooterLink>
             <FooterLink href="#"> Fax: 051 692 6361 </FooterLink>
-            <FooterLink href="#"> Via Gian Luigi Lazzari 18, Quarto Inferiore (BO) </FooterLink>
+            <FooterLink href="#"> Via Gian Luigi Lazzari 18, <br/> Quarto Inferiore (BO) </FooterLink>
           </LinksFooterColumn>
-        </FooterContent>
+        </FooterRow>
       </FooterContent>
       <FooterBottomLabel
         DividerSx={{
           width: '100%'
         }}
         StackProps={{
+          direction: { xs: 'column-reverse', md: 'row' },
           justifyContent: 'space-between',
         }}
         TypographyProps={{
           variant: 'caption',
           sx: {
-            maxWidth: footerMaxWidth,
             width: '100%',
-            margin: '0 auto'
+            margin: '0 auto',
           }
         }}
       >
-        <FooterLink href='#'>
+        <FooterLink href='#' variant="caption">
           Powered by Webion Srl
         </FooterLink>
         <Stack
           direction="row"
           spacing={2}
         >
-          <FooterLink href='#'>
+          <FooterLink href='#' variant="caption">
             Cookie & Privacy Policy
           </FooterLink>
-          <FooterLink href='#'>
+          <FooterLink href='#' variant="caption">
             © 2022 | S.I.M.M Imballaggi
           </FooterLink>
         </Stack>

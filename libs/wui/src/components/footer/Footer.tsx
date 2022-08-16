@@ -1,22 +1,42 @@
 import { Stack, useTheme } from "@mui/material";
+import { styled } from "@mui/system";
 import React from "react";
-import { ChildrenProps } from "../../abstractions/props/ChildrenProps";
+import { ChildrenProp } from "../../abstractions/props/ChildrenProps";
 
-export const Footer = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
+const StyledFooter = styled('footer')({})
+
+export interface FoooterProps {
+  readonly children: ChildrenProp,
+  readonly maxWidth?: number | string;
+}
+
+export const Footer = React.forwardRef<HTMLDivElement, FoooterProps>((props, ref) => {
   const theme = useTheme();
 
   return (
-    <Stack
-      ref={ref}
-      component="footer"
-      direction="column"
+    <StyledFooter
       sx={{
+        display: 'flex',
+        width: '100%',
         background: theme.palette.layout?.footer,
-        color: theme.palette.text.primary,
+        color: theme.palette.text.secondary,
       }}
     >
-      {props.children}
-    </Stack>
+      <Stack
+        ref={ref}
+        direction="column"
+        sx={{
+          width: '100%',
+          maxWidth: props.maxWidth,
+          margin: '0 auto'
+        }}
+      >
+        {props.children}
+      </Stack>
+    </StyledFooter>
   );
 });
 
+Footer.defaultProps = {
+  maxWidth: 1270
+}

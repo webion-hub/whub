@@ -1,5 +1,4 @@
 import { Button, ButtonBase, Grid, SxProps, Theme, Typography } from "@mui/material";
-import { SideBarButton } from "../side_bar/SidebarButton";
 
 import { AppBar } from "./AppBar";
 import { AppBarContent } from "./AppBarContent";
@@ -16,7 +15,7 @@ import React from "react";
 import { useTheme, alpha } from "@mui/material";
 import { useScroll } from "../../hooks/useScroll";
 import LanguageDropdownButton from "./LanguageDropdown";
-import CategorySearchBar from "../search_bar/CategorySearchBar";
+import { SideBarButton } from "../side_bar/SidebarButton";
 
 export interface AppbarButtonProps {
   readonly text: string,
@@ -96,13 +95,13 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
       />
     )
   }
-  
+
   const searchBar = () => {
     if(!props.showSearchbar)
       return (<></>)
 
     return (
-      <props.SearchbarComponent/>
+      props.SearchbarComponent
     )
   }
 
@@ -163,7 +162,7 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
               alt="logo"
               />
             <Typography
-              color="inherit"
+              color="textSecondary"
             >
               {props.text}
             </Typography>
@@ -178,11 +177,15 @@ export const WuiAppBar = React.forwardRef<HTMLDivElement, WuiAppBarProps>((props
 
         <AppBarSection
           alignment="end"
-          StackProps={{ justifyContent: "end" }}
+          StackProps={{
+            justifyContent: "end",
+            width: "100%",
+            marginRight: 2
+          }}
         >
           {searchBar()}
         </AppBarSection>
-        
+
         <AppBarSection
           alignment="end"
           StackProps={{ justifyContent: "flex-end" }}
@@ -235,5 +238,4 @@ WuiAppBar.defaultProps = {
   showDropdownButton: true,
   showSearchbar: false,
   LanguageComponent: PublicRoundedIcon,
-  SearchbarComponent: CategorySearchBar,
 }
