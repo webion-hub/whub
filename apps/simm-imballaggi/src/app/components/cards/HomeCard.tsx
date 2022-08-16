@@ -24,10 +24,10 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
     >
       <CardMedia
         component="img"
-        height={280}
         sx={{
           padding: 2,
-          background: '#fff'
+          background: '#fff',
+          aspectRatio: 1
         }}
         image={props.img}
       />
@@ -44,6 +44,12 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
         <Typography
           variant="body2"
           color="text.secondary"
+          sx={{
+            display: '-webkit-box',
+            '-webkit-line-clamp': '3',
+            '-webkit-box-orient': 'vertical',
+            overflow: 'hidden'
+          }}
         >
           {props.text}
         </Typography>
