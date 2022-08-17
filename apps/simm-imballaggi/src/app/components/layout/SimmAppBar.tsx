@@ -1,11 +1,12 @@
 import React from "react";
 
-import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, SideBarButton, Responser } from "@whub/wui";
+import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, SideBarButton, Responser, useNavigator } from "@whub/wui";
 import { IconButton, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
 import { LoginRounded } from "@mui/icons-material";
 import CallRounded from "@mui/icons-material/CallRounded";
 
 const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
+  const navigate = useNavigator()
   const theme = useTheme();
   const isMobileView = useMediaQuery(theme.breakpoints.down("md"));
   const trigger = useScrollTrigger({
@@ -33,6 +34,8 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
           <AppBarSection alignment="start">
             <AppBarLogo
               src="assets/images/logo.png"
+              href='/'
+              onClick={navigate('/')}
             />
           </AppBarSection>
           <AppBarSection alignment="center" hideOnMobile>
@@ -42,7 +45,11 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
             <IconButton color="primary">
               <CallRounded/>
             </IconButton>
-            <IconButton color="primary">
+            <IconButton
+              color="primary"
+              href="/login"
+              onClick={navigate('/login')}
+            >
               <LoginRounded/>
             </IconButton>
             <SideBarButton/>

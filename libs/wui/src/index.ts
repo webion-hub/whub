@@ -20,6 +20,7 @@ export * from './hooks/useLanguage';
 export * from './hooks/useWaves';
 export * from './hooks/useScroll';
 export * from './hooks/useBackgroundWaves';
+export * from './hooks/useNavigator';
 
 //Contexts
 export * from './contexts/ContextLanguage';

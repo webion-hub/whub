@@ -88,8 +88,8 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
     >
       <CategoryDropdown
         elements={[
-          'susasdgasdgasdgsadgdgdgd',
-          'test'
+          'Reggiatrici',
+          'Marcatori'
         ]}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
@@ -109,24 +109,24 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
         fullWidth
         options={[
           {
-            title: 'sus',
+            title: 'Reggiatrice 1',
             src: 'assets/images/logo.png',
             category: 'Reggiatrici',
           },
           {
-            title: 'ttt',
+            title: 'Reggiatrice 2',
             src: 'assets/images/logo.png',
             category: 'Reggiatrici',
           },
           {
-            title: 'agdgg',
+            title: 'Marcatore 1',
             src: 'assets/images/logo.png',
-            category: 'aaaa',
+            category: 'Marcatori',
           },
           {
-            title: 'sdfddfffus',
+            title: 'Marcatore 2',
             src: 'assets/images/logo.png',
-            category: 'aaaa',
+            category: 'Marcatori',
           },
         ]}
         groupBy={(option) => option.category}
