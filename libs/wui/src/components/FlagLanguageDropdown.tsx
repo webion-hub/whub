@@ -4,11 +4,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@mui/material';
-import { Language, Languages, useLanguage } from '@whub/wui';
 
 import { IT, GB, ES } from 'country-flag-icons/react/3x2'
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
+import { useLanguage } from '../hooks/useLanguage';
+import { Language, Languages } from '../lib/Language';
 
 export const FlagLanguageDropdown = React.forwardRef<HTMLDivElement, Record<string, never>>((_props, ref) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
