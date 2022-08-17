@@ -5,8 +5,22 @@ import { BaseProps } from "../../abstractions/props/BaseProps";
 
 export const AppBar = React.forwardRef<HTMLDivElement, BaseProps>((props, ref) => {
   return (
-    <MuiAppBar ref={ref} position="fixed" sx={props.sx}>
-      <Toolbar>{props.children}</Toolbar>
+    <MuiAppBar
+      ref={ref}
+      position="fixed"
+      sx={{
+        background: theme => theme.palette.layout?.appbar,
+        ...props.sx,
+      }}
+    >
+      <Toolbar
+        sx={{
+          width: '100%',
+          margin: 'auto',
+        }}
+      >
+        {props.children}
+      </Toolbar>
     </MuiAppBar>
   );
 });

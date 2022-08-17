@@ -69,9 +69,8 @@ export default function Home() {
               xs: "center",
               md: "space-between"
             },
-            GridItemProps: { sx: { "& > *": {width: '100%'}} },
+            sx: { "& > *": { width: '100%'}},
             spacing: 2,
-            autoWidth: true,
           }}
           sx={{
             marginTop: 4,
