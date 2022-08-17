@@ -6,7 +6,7 @@ import { LoginRounded } from "@mui/icons-material";
 import CallRounded from "@mui/icons-material/CallRounded";
 
 const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
-  const navigate = useNavigator()
+  const { clickNavigate } = useNavigator()
   const theme = useTheme();
   const isMobileView = useMediaQuery(theme.breakpoints.down("md"));
   const trigger = useScrollTrigger({
@@ -35,7 +35,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
             <AppBarLogo
               src="assets/images/logo.png"
               href='/'
-              onClick={navigate('/')}
+              onClick={clickNavigate('/')}
             />
           </AppBarSection>
           <AppBarSection alignment="center" hideOnMobile>
@@ -48,7 +48,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
             <IconButton
               color="primary"
               href="/login"
-              onClick={navigate('/login')}
+              onClick={clickNavigate('/login')}
             >
               <LoginRounded/>
             </IconButton>
