@@ -53,7 +53,7 @@ export default function WebionFooter() {
 
   const socials = [
     {
-      href: "https://www.facebook.com/Webion-107914721922394",
+      href: "https://www.facebook.com/webionsrl",
       icon: <FacebookIcon fontSize="inherit" />
     },
     {

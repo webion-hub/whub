@@ -112,11 +112,11 @@ export default function Contacts() {
         size="xs"
       >
         <Box sx={{
-          width: '50%',
+          width: {xs: "100%", sm: "75%", md: "50%"},
           margin: "auto",
         }}>
           <Img
-            src="assets/images/contactsIllustration.webp"
+            src="assets/images/contact.svg"
             sx={{ width:"100%", margin:"auto" }}
           />
         </Box>
