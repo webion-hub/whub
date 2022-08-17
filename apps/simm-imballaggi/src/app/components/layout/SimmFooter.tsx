@@ -1,4 +1,4 @@
-import { ChildrenProps, Footer, FooterBottomLabel, FooterColumn, FooterContent, FooterRow, Img } from "@whub/wui";
+import { ChildrenProps, FlagLanguageDropdown, Footer, FooterBottomLabel, FooterColumn, FooterContent, FooterRow, Img, LanguageDropdownButton } from "@whub/wui";
 
 import { Grid, IconButton, Link, LinkProps, Stack, Typography, TypographyProps, useMediaQuery, useTheme } from "@mui/material";
 import { Facebook, YouTube } from "@mui/icons-material";
@@ -89,6 +89,7 @@ export default function SimmFooter() {
             >
               <YouTube/>
             </IconButton>
+            <FlagLanguageDropdown/>
           </Grid>
         </FooterColumn>
         <FooterRow

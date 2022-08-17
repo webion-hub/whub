@@ -4,23 +4,19 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@mui/material';
-import { Language, Languages, useLanguage } from '@whub/wui';
+import { Language } from '../lib/Language';
+import { useLanguage } from '../hooks/useLanguage';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
 
-import { IT, GB, ES } from 'country-flag-icons/react/3x2'
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
+export interface LanguageDropdownButtonProps {
+  readonly icon: OverridableComponent<any>,
+}
 
-const FlagLanguageDropdown = React.forwardRef<HTMLDivElement, Record<string, never>>((_props, ref) => {
+export const LanguageDropdownButton = React.forwardRef<HTMLDivElement, LanguageDropdownButtonProps>((props, ref) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const { t } = useTranslation();
-  const { language, setLanguage } = useLanguage();
-
-  const flags: { [id: string] : any; } = {
-    "en": <GB width="28px" style={{borderRadius: 2}}/>,
-    "it": <IT width="28px" style={{borderRadius: 2}}/>,
-    "es": <ES width="28px" style={{borderRadius: 2}}/>,
-  };
+  const { setLanguage } = useLanguage();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -30,7 +26,7 @@ const FlagLanguageDropdown = React.forwardRef<HTMLDivElement, Record<string, nev
     setAnchorEl(null);
   };
 
-  const texts: {long: string; short: Languages;}[] = Language.LANGUAGES.map((el: Languages, _i: number) => {
+  const texts = Language.LANGUAGES.map((el, _i) => {
     return {
       long: t(el),
       short: el,
@@ -43,12 +39,7 @@ const FlagLanguageDropdown = React.forwardRef<HTMLDivElement, Record<string, nev
         onClick={handleClick}
         color="inherit"
       >
-        {flags[language]}
-        {
-          open 
-            ? <ExpandLessRoundedIcon color="primary"/>
-            : <ExpandMoreRoundedIcon color="primary"/>
-        }
+        <props.icon />
       </Button>
       <Menu
         ref={ref}
@@ -65,13 +56,7 @@ const FlagLanguageDropdown = React.forwardRef<HTMLDivElement, Record<string, nev
                 handleClose()
               }}
             >
-              {flags[text.short]}
-              <Typography 
-                variant="caption" 
-                sx={{
-                  marginLeft: 1
-                }}
-              >
+              <Typography variant="caption">
                 {text.long}
               </Typography>
             </MenuItem>
@@ -81,5 +66,3 @@ const FlagLanguageDropdown = React.forwardRef<HTMLDivElement, Record<string, nev
     </>
   );
 });
-
-export default FlagLanguageDropdown

@@ -1,8 +1,10 @@
-import React from "react"
-import { Grid, useTheme, Button, SxProps, Theme, OutlinedInput, FormControl, Select, MenuItem, SelectChangeEvent, InputLabel, IconButton } from "@mui/material";
+import React, { useRef } from "react"
+import { Grid, useTheme, Button, SxProps, Theme, OutlinedInput, FormControl, Select, MenuItem, SelectChangeEvent, InputLabel, IconButton, TextField, Stack, Divider, Autocomplete, Typography } from "@mui/material";
 
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { EditOutlined } from "@mui/icons-material";
+import { Box } from "@mui/system";
+import { Img } from "../Img";
 
 export interface CategorySearchBarProps {
   readonly filter: string,
@@ -12,7 +14,11 @@ export interface CategorySearchBarProps {
 export interface CategoryDropdownProps {
   readonly title?: string,
   readonly elements?: string[],
-  readonly sx: SxProps<Theme>,
+  readonly sx?: SxProps<Theme>,
+  readonly onFocus?: () => void,
+  readonly onBlur?: () => void,
+  readonly onMouseEnter?: () => void,
+  readonly onMouseLeave?: () => void,
 }
 
 export function CategoryDropdown(props: CategoryDropdownProps) {
@@ -24,70 +30,194 @@ export function CategoryDropdown(props: CategoryDropdownProps) {
   };
 
   return (
-    <FormControl sx={{ minWidth: 120 }}>
-        <Select
-          variant="outlined"
-          value={category}
-          onChange={handleChange}
-          displayEmpty
-          size="small"
-          sx={{
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
-            backgroundColor: theme.palette.layout?.footer
-          }}
-        >
-          <MenuItem value="" disabled>
-            {props.title}
+    <FormControl sx={{ minWidth: 120 }} size="small">
+      <InputLabel>Categoria</InputLabel>
+      <Select
+        variant="outlined"
+        value={category}
+        label="Categoria"
+        onChange={handleChange}
+        size="small"
+        onMouseEnter={props.onMouseEnter}
+        onMouseLeave={props.onMouseLeave}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
+        sx={props.sx}
+      >
+        {props.elements?.map((el: string, i: number) => (
+          <MenuItem
+            value={i}
+            key={i}
+          >
+            {el}
           </MenuItem>
-          {props.elements?.map((el: string, i: number) => (
-            <MenuItem
-              value={i}
-              key={i}
-            >
-              {el}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
 
-export const CategorySearchBar = React.forwardRef<HTMLDivElement, CategorySearchBarProps>((props, ref) => {
+export function CategorySearchBar(props: CategorySearchBarProps) {
+  const ref = useRef<HTMLDivElement>()
   const theme = useTheme()
+  const [focus, setFocus] = React.useState<boolean>(false);
+  const [hover, setHover] = React.useState<boolean>(false);
+
+  const getColor = () => {
+    if(focus)
+      return `${theme.palette.primary.main} !important`
+
+    if(hover)
+      return '#000'
+
+    return 'auto'
+  }
 
   return (
-    <Grid
-      component="form"
-      container
-      alignItems="center"
+    <Stack
+      ref={ref}
+      direction="row"
+      sx={{ width: '100%' }}
+      divider={
+        <Divider
+          orientation="vertical"
+          flexItem
+          sx={{ marginBlock: 0.5 }}
+        />
+      }
     >
-      <EditOutlined></EditOutlined>
-      <FormControl
-        size="small"
-        variant="outlined"
+      <CategoryDropdown
+        elements={[
+          'susasdgasdgasdgsadgdgdgd',
+          'test'
+        ]}
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
         sx={{
-          ".MuiInputLabel-root": {
-            paddingLeft: 10,
-          },
-          "& > * > legend": {
-            marginLeft: 10
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
+          'fieldset': {
+            borderRight: 'none',
+            borderWidth: focus ? '2px' : 'auto',
+            borderColor: getColor(),
           }
         }}
-      >
-        <InputLabel>
-          Cerca prodotto
-        </InputLabel>
-        <OutlinedInput
-          sx={{ paddingRight: 0 }}
-          label="Cerca prodotto"
-          endAdornment={
-            <IconButton color="primary">
-              <SearchRoundedIcon/>
-            </IconButton>
+      />
+      <Autocomplete
+        fullWidth
+        options={[
+          {
+            title: 'sus',
+            src: 'assets/images/logo.png',
+            category: 'Reggiatrici',
+          },
+          {
+            title: 'ttt',
+            src: 'assets/images/logo.png',
+            category: 'Reggiatrici',
+          },
+          {
+            title: 'agdgg',
+            src: 'assets/images/logo.png',
+            category: 'aaaa',
+          },
+          {
+            title: 'sdfddfffus',
+            src: 'assets/images/logo.png',
+            category: 'aaaa',
+          },
+        ]}
+        groupBy={(option) => option.category}
+        getOptionLabel={(option) => option.title}
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        componentsProps={{
+          popper: {
+            anchorEl: ref.current,
+            sx: {
+              width: `${ref.current?.offsetWidth}px !important`
+            }
           }
-        />
-      </FormControl>
-    </Grid>
+        }}
+        sx={{
+          marginLeft: '-1px',
+          marginRight: '-1px',
+        }}
+        renderOption={(props, option) => (
+          <Stack
+            spacing={2}
+            component="li"
+            direction="row"
+            sx={{
+              width: '100%',
+              justifyContent: 'space-between !important'
+            }}
+            {...props}
+          >
+            <Stack
+              spacing={2}
+              direction="row"
+            >
+              <Img
+                src={option.src}
+                sx={{
+                  aspectRatio: 1,
+                  height: 48,
+                  borderRadius: 1,
+                }}
+              />
+              <Stack
+                direction="column"
+              >
+                <Typography>{option.title}</Typography>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                >
+                  {option.category}
+                </Typography>
+              </Stack>
+            </Stack>
+            <Button
+              variant="text"
+            >
+              Vedi
+            </Button>
+          </Stack>
+        )}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="outlined"
+            size="small"
+            label="Cerca prodotto"
+            sx={{
+              '.MuiOutlinedInput-root': {
+                borderRadius: 0,
+                'fieldset': {
+                  borderInline: 'none',
+                  borderWidth: focus ? '2px' : 'auto',
+                  borderColor: getColor(),
+                }
+              }
+            }}
+          />
+        )}
+      />
+      <Button
+        variant="contained"
+        sx={{
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
+          boxShadow: 'none !important'
+        }}
+      >
+        <SearchRoundedIcon/>
+      </Button>
+    </Stack>
   )
-})
+}

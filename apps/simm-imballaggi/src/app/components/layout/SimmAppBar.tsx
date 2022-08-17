@@ -1,59 +1,74 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 
-import { AppbarButtonProps, WuiAppBar, CategorySearchBar } from "@whub/wui";
-import FlagLanguageDropdown from "../dropdown/FlagLanguageDropdown";
+import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, SideBarButton, Responser } from "@whub/wui";
+import { IconButton, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
+import { LoginRounded } from "@mui/icons-material";
+import CallRounded from "@mui/icons-material/CallRounded";
 
 const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
-  const {t} = useTranslation();
+  const theme = useTheme();
+  const isMobileView = useMediaQuery(theme.breakpoints.down("md"));
+  const trigger = useScrollTrigger({
+    target: window ? window : undefined,
+  });
 
-  const buttons : AppbarButtonProps[] =
-  [
-    {
-      text: t("navbar-button5"),
-      href: "/contacts",
-      variant: "text",
-      color: "secondary",
-      sx: {width: "160px"}
-    },
-    {
-      text: "Log in",
-      href: "/login",
-      variant: "contained",
-      color: "primary",
-      afterLanguage: true,
-      sx: {width: "160px"}
-    },
-  ]
+
   return (
-    <WuiAppBar
-      ref={ref}
-      showLanguageButton
-      page="Simm"
-      showDropdownButton={false}
-      showSearchbar
-      buttonsProps={buttons}
-      logoURL="assets/images/logo.png"
-      logoSx={{
-        width: 48,
-        height: 48,
-        borderRadius: "100%",
-        marginTop: -1,
-        marginRight: 2,
-        padding: 1,
-      }}
-      text=""
-      LanguageComponent={<FlagLanguageDropdown/>}
-      SearchbarComponent={
-        <CategorySearchBar
-          filter="Categoria"
-          elements={[
-            "Macchine",
-            "Reggiatrici",
-            "Film",
-          ]}
-        />}
-    />
+    <>
+      <AppBar
+        ref={ref}
+        sx={{
+          transition: '0.25s transform',
+          transform: trigger && isMobileView
+            ? `translateY(${- (theme.mixins.toolbar.height ?? 0)}px)`
+            : 'translateY(0)'
+        }}
+      >
+        <AppBarContent
+          centerWidth={{
+            mobile: 'calc(100% - 200px)',
+            default: '60%'
+          }}
+        >
+          <AppBarSection alignment="start">
+            <AppBarLogo
+              src="assets/images/logo.png"
+            />
+          </AppBarSection>
+          <AppBarSection alignment="center" hideOnMobile>
+            <CategorySearchBar filter="" elements={[]}/>
+          </AppBarSection>
+          <AppBarSection alignment="end">
+            <IconButton color="primary">
+              <CallRounded/>
+            </IconButton>
+            <IconButton color="primary">
+              <LoginRounded/>
+            </IconButton>
+            <SideBarButton/>
+          </AppBarSection>
+        </AppBarContent>
+      </AppBar>
+      <Responser
+        type="lower"
+        size="md"
+      >
+        <AppBar
+          sx={{
+            transition: '0.25s transform',
+            transform: trigger && isMobileView
+              ? 'translateY(0)'
+              : `translateY(${theme.mixins.toolbar.height}px)`
+          }}
+        >
+          <AppBarContent>
+            <AppBarSection alignment="center">
+              <CategorySearchBar filter="" elements={[]}/>
+            </AppBarSection>
+          </AppBarContent>
+        </AppBar>
+      </Responser>
+    </>
   )
 });
 

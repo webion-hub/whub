@@ -21,6 +21,7 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
   return (
     <Card
       ref={ref}
+      sx={{ maxWidth: 350 }}
     >
       <CardMedia
         component="img"

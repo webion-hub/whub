@@ -1,14 +1,15 @@
-import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { alpha, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import Inter from "../../assets/fonts/Inter.ttf"
 
 const fontFamily = "'Inter'"
+const border = "1px solid #e0e0e0"
 
 const normTheme = createTheme({
   palette: {
     mode: "light",
     background: {
       default: "#FFFFFF",
-      paper: '#f5f6f7'
+      paper: '#fcfdfd'
     },
     primary: {
       main: "#C80015",
@@ -20,7 +21,17 @@ const normTheme = createTheme({
       default: "#F7F7F7"
     },
     layout: {
-      footer: '#E4E7EB'
+      footer: '#E4E7EB',
+      appbar: '#F8F9FA',
+    },
+    border: {
+      default: border,
+    }
+  },
+  mixins: {
+    toolbar: {
+      height: 64,
+      maxWidth: 1600,
     }
   },
   typography: {
@@ -35,13 +46,23 @@ const normTheme = createTheme({
         }
       }
     },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+          border: 'none',
+          boxShadow: 'none',
+          borderBottom: border,
+        }
+      }
+    },
     MuiPaper: {
       defaultProps: {
         elevation: 0
       },
       styleOverrides: {
         root: {
-          border: '1px solid #e0e0e0',
+          border: border,
           borderRadius: 8
         }
       }
@@ -50,7 +71,22 @@ const normTheme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: '0px -3px 4px -2px #e0e0e0',
-          borderTop: '1px solid #e0e0e0'
+          borderTop: border
+        }
+      }
+    },
+    MuiAutocomplete: {
+      styleOverrides: {
+        option: {
+          borderBottom: border,
+        },
+        groupLabel: {
+          background: alpha('#000', 0.05),
+        },
+        paper: {
+          borderTopRightRadius: '0px !important',
+          borderTopLeftRadius: '0px !important',
+          borderTop: 'none',
         }
       }
     }
