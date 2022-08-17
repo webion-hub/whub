@@ -116,7 +116,7 @@ export default function Contacts() {
           margin: "auto",
         }}>
           <Img
-          alt="Contact"
+            alt="Contact"
             src="assets/images/contact.svg"
             sx={{ width:"100%", margin:"auto" }}
           />
