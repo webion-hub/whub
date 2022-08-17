@@ -1,7 +1,6 @@
-import { SxProps, Theme } from "@mui/material";
+import { Stack, StackProps, SxProps, Theme } from "@mui/material";
 import { Breakpoint } from "@mui/system";
 import React from "react";
-import { WuiGrid, WuiGridProps } from "../WuiGrid";
 import { MaybeShopBaseProps } from "./MaybeShow";
 import { Responser } from "./Responser";
 
@@ -9,7 +8,7 @@ interface ResponserGridPropsBase extends MaybeShopBaseProps {
   readonly reverse?: 'both' | 'row' | 'column';
   readonly invert?: boolean;
   readonly sx?: SxProps<Theme>;
-  readonly GridProps?: WuiGridProps;
+  readonly GridProps?: StackProps;
 }
 
 export interface ResponserGridLowerUpperProps extends ResponserGridPropsBase {
@@ -37,7 +36,6 @@ export const ResponserGrid = React.forwardRef<HTMLDivElement, ResponserGridProps
     : "row";
 
   const gridProps = {
-    container: true,
     sx: props.sx,
     ...props.GridProps,
   }
@@ -54,20 +52,20 @@ export const ResponserGrid = React.forwardRef<HTMLDivElement, ResponserGridProps
     <Responser
       {...props}
       alternativeChildren={
-        <WuiGrid
+        <Stack
           {...gridProps}
           direction={alternativeDir}
         >
           {props.children}
-        </WuiGrid>
+        </Stack>
       }
     >
-      <WuiGrid
+      <Stack
         {...gridProps}
         direction={mainDir}
       >
         {props.children}
-      </WuiGrid>
+      </Stack>
     </Responser>
   );
 })

@@ -1,4 +1,4 @@
-import { useTheme } from "@mui/system";
+import { useTheme } from "@mui/material";
 import { Section, Sections, useBackgroundWaves } from "@whub/wui";
 import Home from "./Home";
 import MapSection from "./MapSection";
@@ -9,11 +9,7 @@ export default function Homepage() {
   const waves = useBackgroundWaves(theme.palette['secondary'].light)
 
   return (
-    <Sections
-      sx={{
-        overflow: "hidden",
-        marginTop: 10,
-      }}>
+    <Sections>
       <Section
         id="home"
         sx={{
@@ -26,7 +22,7 @@ export default function Homepage() {
             opacity: 0.15,
             top: 0,
             zIndex: 0,
-            transform: 'rotate(-180deg) ',
+            transform: 'rotate(0deg) ',
             ...waves,
           }
         }}

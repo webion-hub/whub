@@ -14,7 +14,7 @@ import { GlobalStyles, CssBaseline, CircularProgress, Grid} from '@mui/material'
 import globalStyle from './theme/globalStyle';
 import { useState } from "react";
 import { Language, LanguageWrapper, MaybeShow } from "@whub/wui";
-import ContactsPage from "./pages/contacts-page/ContactsPage";
+import ContactsPage from "./components/dialogs/ContactsDialog";
 import LoginPage from "./pages/login-page/LoginPage";
 
 export function App() {
@@ -60,7 +60,6 @@ export function App() {
             <Layout>
               <Routes>
                 <Route key="home" path="/"  element={<Homepage/>}/>
-                <Route key="contacts" path="/contacts"  element={<ContactsPage/>}/>
                 <Route key="login" path="/login"  element={<LoginPage/>}/>
               </Routes>
             </Layout>
