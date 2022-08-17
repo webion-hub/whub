@@ -48,5 +48,12 @@
 
 
 
-  "see-brochure": "ver folleto"
+  "see-brochure": "ver folleto",
+
+
+
+
+  "forgot-password": "¿Se te olvidó tu contraseña?",
+  "fogot-password-tooltip": "Póngase en contacto con el administrador del sitio",
+  "enter": "ingresar"
 }

@@ -43,10 +43,17 @@
 
   "it": "Italian",
   "en": "English",
-  "es": "Spanish",
+  "es": "Spanish", 
 
 
 
 
-  "see-brochure": "See brochure"
+  "see-brochure": "See brochure",
+
+
+
+
+  "forgot-password": "Forgot password?",
+  "fogot-password-tooltip": "Contact the website admin",
+  "enter": "enter"
 }

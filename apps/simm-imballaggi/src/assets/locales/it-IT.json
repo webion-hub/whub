@@ -48,5 +48,12 @@
 
 
 
-  "see-brochure": "vedi brochure"
+  "see-brochure": "vedi brochure",
+
+
+
+
+  "forgot-password": "Password dimenticata?",
+  "fogot-password-tooltip": "Contatta l'amministratore del sito",
+  "enter": "entra"
 }
