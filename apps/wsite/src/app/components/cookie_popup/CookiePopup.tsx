@@ -62,6 +62,8 @@ export default function CookiePopup() {
             {t("cookies")}
             <br/>
             <Link
+              href='/policies-licenses'
+              target={"_blank"}
               onClick={() => window.open("/policies-licenses", '_blank')?.focus()}
             >
               {t('privacy-link')}
