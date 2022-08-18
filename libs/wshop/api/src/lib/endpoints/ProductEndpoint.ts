@@ -3,20 +3,29 @@ import { Product } from "../model/product";
 import { UpdateProductRequest } from "../requests/update-product-request";
 
 export class ProductEndpoint {
+  private get url() {
+    return `shop/products/${this.productId}`;
+  }
+
   constructor (
     private readonly client: AxiosInstance,
     private readonly productId: number
   ) {}
 
+  
+  src() {
+    return this.url;
+  }
+
   load() {
-    return this.client.get<Product>(`shop/products/${this.productId}`);
+    return this.client.get<Product>(this.url);
   }
 
   delete() {
-    return this.client.delete(`shop/products/${this.productId}`);
+    return this.client.delete(this.url);
   }
 
   update(request: UpdateProductRequest) {
-    return this.client.put(`shop/products/${this.productId}`, request);
+    return this.client.put(this.url, request);
   }
 }

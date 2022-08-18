@@ -11,5 +11,7 @@ export class WShopApi {
     });
   }
 
-  get Products() { return new ProductsEndpoint(this.client); }
+  get Products() {
+    return new ProductsEndpoint(this.client);
+  }
 }

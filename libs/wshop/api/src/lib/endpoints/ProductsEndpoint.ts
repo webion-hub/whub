@@ -4,6 +4,10 @@ import { UpdateProductRequest } from "../requests/update-product-request";
 import { ProductEndpoint } from "./ProductEndpoint";
 
 export class ProductsEndpoint {
+  private get url() {
+    return 'shop/products';
+  }
+
   constructor (private readonly client: AxiosInstance) {}
 
   withId(id: number) {
@@ -11,10 +15,10 @@ export class ProductsEndpoint {
   }
 
   create(request: UpdateProductRequest) {
-    return this.client.post<Product>('shop/products', request);
+    return this.client.post<Product>(this.url, request);
   }
 
   list() {
-    return this.client.get<Product>('shop/products');
+    return this.client.get<Product>(this.url);
   }
 }
