@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { api } from "../api"
+import { fakeUpdateProductRequest } from "../fakers/product";
 
 const createProduct = async () => {
   const created = await api.products.create({
@@ -23,10 +24,9 @@ describe('Product endpoint', () => {
 
   it('Should update a product', async () => {
     const product = await createProduct();
-    const updated = await product.update({
-      name: 'Paolo',
-      code: 'ABC123',
-    });
+    const updated = await product.update(
+      fakeUpdateProductRequest()
+    );
 
     expect(updated).toMatchSnapshot();
   });

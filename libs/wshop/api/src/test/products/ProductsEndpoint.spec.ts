@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { api } from "../api";
-import { fakeCreateProductRequest } from "../fakers/product";
+import { fakeUpdateProductRequests } from "../fakers/product";
 
 describe('Products endpoint', () => {
   faker.seed(101010);
@@ -15,7 +15,7 @@ describe('Products endpoint', () => {
   });
 
   it('Should get many products', async () => {
-    const products = fakeCreateProductRequest(5);
+    const products = fakeUpdateProductRequests(5);
 
     for (const p of products)
       await api.products.create(p)
