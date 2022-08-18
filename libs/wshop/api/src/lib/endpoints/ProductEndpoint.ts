@@ -1,6 +1,7 @@
 import { AxiosInstance } from "axios";
 import { Product } from "../model/product";
 import { UpdateProductRequest } from "../requests/update-product-request";
+import { ProductImagesEndpoint } from "./ProductImagesEndpoint";
 
 export class ProductEndpoint {
   private get url() {
@@ -13,9 +14,10 @@ export class ProductEndpoint {
   ) {}
 
   
-  src() {
-    return this.url;
+  get images() {
+    return new ProductImagesEndpoint(this.client, this.productId);
   }
+
 
   load() {
     return this.client.get<Product>(this.url);

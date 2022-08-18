@@ -11,6 +11,10 @@ export class ProductImageEndpoint {
     private readonly imageId: number,
   ) {}
 
+  src() {
+    return this.url;
+  }
+
   delete() {
     return this.client.delete(this.url);
   }

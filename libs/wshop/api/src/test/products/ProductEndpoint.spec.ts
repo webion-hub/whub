@@ -5,7 +5,7 @@ describe('Product endpoint', () => {
   faker.seed(101010);
 
   const createNewProduct = () => {
-    return api.Products.create({
+    return api.products.create({
       name: faker.commerce.product(),
       code: faker.random.alphaNumeric(5),
     });
@@ -14,7 +14,7 @@ describe('Product endpoint', () => {
   it('Should get a product', async () => {
     const created = await createNewProduct();
 
-    const product = await api.Products
+    const product = await api.products
       .withId(created.data.id)
       .load();
 
@@ -24,7 +24,7 @@ describe('Product endpoint', () => {
   it('Should delete a product', async () => {
     const created = await createNewProduct();
 
-    const deleted = await api.Products
+    const deleted = await api.products
       .withId(created.data.id)
       .delete();
 
@@ -34,7 +34,7 @@ describe('Product endpoint', () => {
   it('Should update a product', async () => {
     const created = await createNewProduct();
 
-    const updated = await api.Products
+    const updated = await api.products
       .withId(created.data.id)
       .update({
         name: 'Paolo',

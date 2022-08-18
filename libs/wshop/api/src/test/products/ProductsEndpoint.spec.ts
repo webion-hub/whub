@@ -6,7 +6,7 @@ describe('Products endpoint', () => {
   faker.seed(101010);
 
   it('Should create a product', async () => {
-    const response = await api.Products.create({
+    const response = await api.products.create({
       name: faker.commerce.product(),
       code: faker.random.alphaNumeric(5),
     });
@@ -18,9 +18,9 @@ describe('Products endpoint', () => {
     const products = fakeCreateProductRequest(5);
 
     for (const p of products)
-      await api.Products.create(p)
+      await api.products.create(p)
 
-    const allProducts = await api.Products.list();
+    const allProducts = await api.products.list();
 
     expect(allProducts).toMatchSnapshot();
   });
