@@ -1,9 +1,7 @@
-import { AddAPhotoRounded, AddRounded, AttachFileRounded, CloseRounded, DeleteRounded } from "@mui/icons-material";
-import { alpha, Badge, Button, ButtonBase, ButtonBaseProps, ButtonBaseTypeMap, Dialog, DialogActions, DialogContent, DialogTitle, ExtendButtonBase, IconButton, Paper, Stack, SxProps, TextField, Theme, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { ChildrenProp, DialogTitleCross, ImageCropperDialog, Img, MaybeShow, Page, Responser } from "@whub/wui";
-import { Utils } from "libs/wui/src/lib/Utils";
-import { ChangeEvent, ReactNode, useState } from "react";
+import { AddRounded } from "@mui/icons-material";
+import { Button, Dialog, DialogActions, DialogContent, Stack, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { DialogTitleCross, Page, SquareAddAttachment, SquareAddImage, SquareContainer, SquareImageContainer, SquaresGrid, Utils } from "@whub/wui";
+import { useState } from "react";
 
 export function TableProductsPage() {
   return (
@@ -163,80 +161,5 @@ function AddEditProduct() {
           </Button>
       </DialogActions>
     </Dialog>
-  )
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-interface SquareAddAttachmentProps {
-  readonly onAddPdf: (pdf: File) => void
-}
-
-function SquareAddAttachment(props: SquareAddAttachmentProps) {
-  const onChange = (e: InputEvent) => {
-    e.preventDefault();
-    const files = e.target.files
-
-    if(!files)
-      return
-
-    props.onAddPdf(files[0])
-    e.target.value = ''
-  }
-
-  return (
-    <SquareButton
-      label="Aggiungi allegato"
-      icon={AttachFileRounded}
-    >
-      <PdfUploader
-        onChange={onChange}
-      />
-    </SquareButton>
-  )
-}
-
-
-
-interface ImageUploaderProps {
-  readonly onChange?: (e: InputEvent) => void
-}
-
-function ImageUploader(props: ImageUploaderProps){
-  return (
-    <input
-      type="file"
-      accept="image/*"
-      onChange={props.onChange}
-      hidden
-    />
-  )
-}
-
-interface PdfUploaderProps {
-  readonly onChange?: (e: InputEvent) => void
-}
-
-function PdfUploader(props: PdfUploaderProps){
-  return (
-    <input
-      type="file"
-      onChange={props.onChange}
-      hidden
-    />
   )
 }
