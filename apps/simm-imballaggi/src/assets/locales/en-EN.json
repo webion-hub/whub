@@ -1,85 +1,60 @@
 {
-  "navbar-button1": "Home",
-  "navbar-button2": "Services",
-  "navbar-button3": "Projects",
-  "navbar-button4": "Others",
-  "navbar-button5": "Contact us",
+  "category": "Category",
+  "search-product": "Search products",
 
-  "language-button": "Language",
-
-  "dropdown-button": "Shop",
-
-  "title-bold": "Simm",
-  "title": "perfectly build for your business",
-  "subtitle": "We don't just make custom software, we craft it to perfection.",
+  "hero-title": "Construction, customization and sale of packaging machines and materials.",
+  "hero-description": "The quality of the service is the result of the maximum commitment that all the staff place on a daily basis, in order to always offer the best product and the utmost professionalism.",
   "main-button": "Learn more",
 
-  "AIDA-attention": "Do you need a custom software solution for your business?",
-  "AIDA-interest": "We can develop any kind of software you might need, from websites to custom firmware for embedded systems. Our team has the expertise and experience to get the job done right – on time and on budget.",
-  "AIDA-desire": "You'll be able to focus on what you do best while we take care of the software development. We know that every business is different, so we work with you to understand your needs and create a solution that fits your unique requirements.",
-  "AIDA-action": "Contact us today for a free consultation!",
-  "contact-us-button": "Contact us",
+  "materials-card-title": "Packaging materials",
+  "materials-description": "Lots of materials ready for delivery and customizable on request",
+  "machines-card-title": "Packaging machines",
+  "machines-description": "Wide range of automatic / semiautomatic machines for every need",
+  "see": "see",
 
-  "services-title": "Services",
-  "services-service-1-title": "IOS & Android apps",
-  "services-service-1-description": "Our offer includes the creation of mobile applications with cross-platform frameworks such as Flutter, Ionic and React Native",
-  "services-service-2-title": "IOT for industries",
-  "services-service-2-description": "Development of solutions for the collection, manipulation and monitoring of real-time and historicized data, mainly using C # and Angular.",
-  "services-service-3-title": "Websites and Web applications",
-  "services-service-3-description": "Design and creation of static and dynamic websites and creation of web applications (PWA), with management of both the frontend and the backend.",
-  "services-consultation": "Contact us today for a free consultation",
+  "who-are-we": "Who are we",
+  "contact-us-description-p1": "Simm packagings is a company specialized in the construction, customization and sale of packaging machines and materials.",
+  "contact-us-description-p2": "The treated products are selected on the basis of careful and continuous monitoring of the national and international market, with the aim of constantly improving quality and technology.",
+  "contact-us-description-p3": "The quality of the service is the result of the maximum commitment that all the staff place on a daily basis, in order to always offer the best product and the utmost professionalism.",
+  "contact-us-description-p4": "The customer is the main focus of the company. For every need, specific solutions are quickly identified that allow work to be improved, saving time, saving personnel, improving the image of the packaging, optimizing costs.",
+  "contact-us-button": "Contact us now to receive information",
 
-  "projects-title": "Projects",
-  "case-study-1-title": "Kaire Automation",
-  "case-study-1-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nibh quam, gravida vel facilisis quis, sollicitudin vel dui. Suspendisse a semper metus.",
-  "case-study-1-step-1-title": "Step1",
-  "case-study-1-step-1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nibh quam, gravida vel facilisis quis, sollicitudin vel dui. Suspendisse a semper metus.",
-  "case-study-1-step-2-title": "Step2",
-  "case-study-1-step-2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nibh quam, gravida vel facilisis quis, sollicitudin vel dui. Suspendisse a semper metus.",
-  "case-study-1-step-3-title": "Step3",
-  "case-study-1-step-3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nibh quam, gravida vel facilisis quis, sollicitudin vel dui. Suspendisse a semper metus.",
-  "project-1-title": "Mentorz",
-  "project-1-description": "Mentorz is a French startup that gives influencers the tools they need to have 1-1 consultations with their followers.",
-  "project-2-title": "Yoga Holidays",
-  "project-2-description": "Yoga holidays is a website for trips to Corfu. Their vacation packages give you the opportunity to find yourself on the yoga mat surrounded by a breathtaking landscape.",
-  "project-3-title": "Kaire Automation",
-  "project-3-description": "Kaire automation is a company specialized in the construction and supervision of industrial plants",
+  "company-name": "S.I.M.M. Imballaggi s.r.l. ",
+  "p-iva": "V.A.T./C.F. 02666561200",
 
-  "github-button": "View the code of this site on github",
-
-  "how-we-work": "How we work",
-  "step-1-title": "Mission",
-  "step-1-description": "We help you set clear goals by identifying your problems and needs, defining what is needed to solve them.",
-  "step-2-title": "Draft",
-  "step-2-description": "We build a low-fidelity draft first and then continue to refine it until we get you exactly what your looking for.",
-  "step-3-title": "Development",
-  "step-3-description": "We start the development process, making sure to stay in touch with you, so as not go outside of what was agreed upon.",
-  "step-4-title": "Delivery",
-  "step-4-description": "After a final response we deliver the finished product, remaining available for after-sales assistance.",
-
-  "contact-us-title": "Contact us",
-  "contact-us-description": "We're here for you! Have a question? Get in touch and we'll be happy to help. Fill out our form or give us a call at ",
-  "name": "Name",
-  "surname": "Surname",
   "company": "Company",
-  "phone-number": "Phone number",
+  "home": "Home",
+  
+  "products": "Products",  
+  "machines": "Machines",  
+  "materials": "Materials",
+
+  "contacs": "Contacts",
   "email": "Email",
-  "message": "Message",
-  "privacy": "I have read the ",
-  "privacy-link": "Privacy policy",
-  "message-sent": "Message sent!",
-  "login": "Login",
-  "accept": "Accept",
-  "cookies": "This site uses coockies to improve user experience",
+  "email-link": "info@simimballaggi.com",
+  "telephone": "Tel",
+  "telephone-link": "+39 051 800 960",
+  "fax": "Fax",
+  "fax-link": "+39 051 692 6361",
+  "address-link": "Via Gian Luigi Lazzari 18, Quarto Inferiore (BO)",
 
-  "policies": "Policies & Licenses",
-  "p-iva": "CF/P.Iva 04013210366, PEC",
-
-  "licenses": "Licenses",
-  "close": "Close",
-  "tab-title": "Simm imballaggi",
+  "powered-by-webion": "Powered by Webion",
+  "policies": "Policies & Cookies",
+  "copyright": "© 2022 | S.I.M.M Imballaggi",
 
   "it": "Italian",
   "en": "English",
-  "es": "Spanish"
+  "es": "Spanish", 
+
+
+
+
+  "see-brochure": "See brochure",
+
+
+
+
+  "forgot-password": "Forgot password?",
+  "fogot-password-tooltip": "Contact the website admin",
+  "enter": "enter"
 }

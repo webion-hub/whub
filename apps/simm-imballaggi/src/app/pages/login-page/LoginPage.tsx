@@ -2,6 +2,7 @@ import { IconButton, Button, Paper, Stack, TextField, Typography } from '@mui/ma
 
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
+import { useTranslation } from "react-i18next";
 import React from 'react';
 import { Img } from '@whub/wui';
 
@@ -13,7 +14,7 @@ export default function LoginPage() {
     weightRange: string;
     showPassword: boolean;
   }
-  
+  const { t } = useTranslation(); 
   const [values, setValues] = React.useState<State>({
     amount: '',
     password: '',
@@ -103,14 +104,14 @@ export default function LoginPage() {
           marginBlock: theme => theme.spacing(0, "!important"),
         }}
       >
-        Password dimenticata?
+        {t("forgot-password")}
       </Typography>
       <Button
         color="primary"
         type="submit"
         variant="contained"
       >
-        Entra
+        {t("enter")}
       </Button>
     </Stack>
   )
