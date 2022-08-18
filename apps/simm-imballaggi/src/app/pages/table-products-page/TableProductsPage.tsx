@@ -1,5 +1,5 @@
-import { AddRounded } from "@mui/icons-material";
-import { Button, Dialog, DialogActions, DialogContent, Stack, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { AddRounded, FormatBoldRounded, FormatItalicRounded, FormatListBulletedRounded, FormatUnderlinedRounded } from "@mui/icons-material";
+import { Button, Dialog, DialogActions, DialogContent, Stack, TextField, ToggleButton, ToggleButtonGroup, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { DialogTitleCross, Page, SquareAddAttachment, SquareAddImage, SquareContainer, SquareImageContainer, SquaresGrid, Utils } from "@whub/wui";
 import { useState } from "react";
 
@@ -146,6 +146,7 @@ function AddEditProduct() {
               )
             }
           </SquaresGrid>
+          <TextEditor/>
         </Stack>
       </DialogContent>
       <DialogActions>
@@ -161,5 +162,49 @@ function AddEditProduct() {
           </Button>
       </DialogActions>
     </Dialog>
+  )
+}
+
+type EditorModes = 'bold' | 'italic' | 'underlined' | 'bullet'
+
+function TextEditor() {
+  const [formats, setFormats] = useState<EditorModes[]>([]);
+
+  const handleFormat = (
+    event: React.MouseEvent<HTMLElement>,
+    newFormats: string[],
+  ) => {
+    setFormats(newFormats as EditorModes[]);
+  };
+
+  /*
+  const getEditorState = () => {
+
+  }*/
+
+  return (
+    <Stack
+      direction="column"
+    >
+      <ToggleButtonGroup
+        size="small"
+        value={formats}
+        onChange={handleFormat}
+      >
+        <ToggleButton value="bold" aria-label="bold">
+          <FormatBoldRounded />
+        </ToggleButton>
+        <ToggleButton value="italic" aria-label="italic">
+          <FormatItalicRounded />
+        </ToggleButton>
+        <ToggleButton value="underlined" aria-label="underlined">
+          <FormatUnderlinedRounded />
+        </ToggleButton>
+        <ToggleButton value="bullet" aria-label="underlined">
+          <FormatListBulletedRounded />
+        </ToggleButton>
+      </ToggleButtonGroup>
+
+    </Stack>
   )
 }
