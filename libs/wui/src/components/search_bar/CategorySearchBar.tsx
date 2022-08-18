@@ -1,61 +1,14 @@
 import React, { useRef } from "react"
-import { Grid, useTheme, Button, SxProps, Theme, OutlinedInput, FormControl, Select, MenuItem, SelectChangeEvent, InputLabel, IconButton, TextField, Stack, Divider, Autocomplete, Typography } from "@mui/material";
+import { useTheme, Button, TextField, Stack, Divider, Autocomplete, Typography } from "@mui/material";
 
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import { EditOutlined } from "@mui/icons-material";
-import { Box } from "@mui/system";
 import { Img } from "../Img";
+import { Dropdown } from "../Dropdown";
 
 export interface CategorySearchBarProps {
   readonly filter: string,
   readonly elements: string[],
 }
-
-export interface CategoryDropdownProps {
-  readonly title?: string,
-  readonly elements?: string[],
-  readonly sx?: SxProps<Theme>,
-  readonly onFocus?: () => void,
-  readonly onBlur?: () => void,
-  readonly onMouseEnter?: () => void,
-  readonly onMouseLeave?: () => void,
-}
-
-export function CategoryDropdown(props: CategoryDropdownProps) {
-  const [category, setCategory] = React.useState<string>("");
-  const theme = useTheme()
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value);
-  };
-
-  return (
-    <FormControl sx={{ minWidth: 120 }} size="small">
-      <InputLabel>Categoria</InputLabel>
-      <Select
-        variant="outlined"
-        value={category}
-        label="Categoria"
-        onChange={handleChange}
-        size="small"
-        onMouseEnter={props.onMouseEnter}
-        onMouseLeave={props.onMouseLeave}
-        onFocus={props.onFocus}
-        onBlur={props.onBlur}
-        sx={props.sx}
-      >
-        {props.elements?.map((el: string, i: number) => (
-          <MenuItem
-            value={i}
-            key={i}
-          >
-            {el}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-  );
-};
 
 export function CategorySearchBar(props: CategorySearchBarProps) {
   const ref = useRef<HTMLDivElement>()
@@ -86,7 +39,10 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
         />
       }
     >
-      <CategoryDropdown
+      <Dropdown
+        variant="outlined"
+        size="small"
+        label="Categoria"
         elements={[
           'Reggiatrici',
           'Marcatori'
@@ -95,7 +51,8 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
         onBlur={() => setFocus(false)}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        sx={{
+        sx={{ minWidth: 120 }}
+        selectSx={{
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
           'fieldset': {

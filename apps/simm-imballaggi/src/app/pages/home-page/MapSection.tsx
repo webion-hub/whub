@@ -81,7 +81,7 @@ export default function MapSection() {
         sx={{
           margin: 'auto'
         }}
-        endIcon={<CallRoundedIcon/>}
+        startIcon={<CallRoundedIcon/>}
       >
         Contattaci ora per ricevere informazioni
       </Button>

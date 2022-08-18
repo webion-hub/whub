@@ -17,6 +17,7 @@ const StyledSection = styled('section')(({theme}) => ({
 export interface SectionProps {
   readonly id?: string;
   readonly maxWidth?: number | string;
+  readonly centered?: boolean;
   readonly showBackground?: boolean;
   readonly background?: string;
   readonly backgroundSx?: React.CSSProperties;
