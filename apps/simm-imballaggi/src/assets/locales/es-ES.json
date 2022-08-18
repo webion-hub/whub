@@ -18,11 +18,12 @@
   "contact-us-description-p3": "La calidad del servicio es el resultado del máximo compromiso que todo el personal pone día a día, para ofrecer siempre el mejor producto y la máxima profesionalidad.",
   "contact-us-description-p4": "El cliente es el foco principal de la empresa. Para cada necesidad se identifican rápidamente soluciones específicas que permiten mejorar el trabajo ahorrando tiempo, ahorrando personal, mejorando la imagen del packaging, optimizando costes.",
   "contact-us-button": "Contáctenos ahora para recibir información",
-
+  
+  "company-name": "S.I.M.M. Imballaggi s.r.l. ",
   "p-iva": "S.I.M.M. Imballaggi s.r.l. Partita I.V.A./C.F. 02666561200",
 
   "company": "Agencia",
-  "home": "home",
+  "home": "Home",
   "who-are-we": "quienes somos",
   
   "products": "Productos",  
@@ -34,7 +35,8 @@
   "email-link": "info@simimballaggi.com",
   "telephone": "Tel",
   "telephone-link": "+39 051 800 960",
-  "fax": "+39 051 692 6361",
+  "fax": "Fax",
+  "fax-link": "+39 051 692 6361",
   "address-link": "Via Gian Luigi Lazzari 18, Quarto Inferiore (BO)",
 
   "powered-by-webion": "Powered by Webion",

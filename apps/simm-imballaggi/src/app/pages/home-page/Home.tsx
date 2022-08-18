@@ -54,16 +54,16 @@ export default function Home() {
           }}
         >
           <HomeCard
-            title="Materiali per l'imballaggio"
-            text="Tantissimi materiali pronta consegna e personalizzabili a richiesta"
+            title={t("materials-card-title")}
+            text={t("materials-description")}
             img="/assets/images/firstCard.png"
-            buttonText="vedi"
+            buttonText={t("see")}
           />
           <HomeCard
-            title="Materiali per l'imballaggio"
-            text="Vastissima gamma di macchinari automatici/semiautomatici per ogni esigenza"
+            title={t("machines-card-title")}
+            text={t("machines-description")}
             img="/assets/images/secondCard.png"
-            buttonText="vedi"
+            buttonText={t("see")}
           />
         </Stack>
       </Grid>

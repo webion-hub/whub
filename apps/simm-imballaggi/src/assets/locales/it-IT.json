@@ -19,22 +19,24 @@
   "contact-us-description-p4": "Il cliente è l'obiettivo principale dell'azienda. Ad ogni esigenza si individuano rapidamente soluzioni specifiche che permettano di migliorare il lavoro, risparmiando tempo, risparmiando personale, migliorando l'immagine degli imballi, ottimizzando i costi.",
   "contact-us-button": "Contattaci ora per ricevere informazioni",
 
+  "company-name": "S.I.M.M. Imballaggi s.r.l. ",
   "p-iva": "S.I.M.M. Imballaggi s.r.l. Partita I.V.A./C.F. 02666561200",
 
   "company": "Azienda",
-  "home": "home",
+  "home": "Home",
   "who-are-we": "chi siamo",
   
   "products": "Prodotti",  
-  "machines": "macchine",  
-  "materials": "materiali",
+  "machines": "Macchine",  
+  "materials": "Materiali",
 
   "contacs": "Contatti",
   "email": "Email",
   "email-link": "info@simimballaggi.com",
   "telephone": "Tel",
   "telephone-link": "+39 051 800 960",
-  "fax": "+39 051 692 6361",
+  "fax": "Fax",
+  "fax-link": "+39 051 692 6361",
   "address-link": "Via Gian Luigi Lazzari 18, Quarto Inferiore (BO)",
 
   "powered-by-webion": "Powered by Webion",
