@@ -1,8 +1,10 @@
 import { Grid, Typography, Stack, Box } from "@mui/material";
 import { ResponserGrid } from "@whub/wui";
+import { useTranslation } from "react-i18next";
 import HomeCard from "../../components/cards/HomeCard";
 
 export default function Home() {
+  const { t } = useTranslation(); 
   return (
     <ResponserGrid
       type="upper"
@@ -29,7 +31,7 @@ export default function Home() {
           textAlign={{xs: 'center', md: 'left'}}
         >
           <strong>
-            Costruzione, personalizzazione e vendita di macchine e materiali per l’imballaggio.
+          {t("hero-title")}
           </strong>
         </Typography>
         <Typography
@@ -37,7 +39,7 @@ export default function Home() {
           textAlign={{xs: 'center', md: 'left'}}
           sx={{marginTop: 4}}
         >
-          La qualità del servizio è il risultato del massimo impegno che quotidianamente tutto il personale si pone, per poter offrire sempre il miglior prodotto e la massima professionalità lavorativa.
+          {t("hero-description")}
         </Typography>
         <Stack
           direction={{xs: "column", sm: 'row'}}
@@ -52,16 +54,16 @@ export default function Home() {
           }}
         >
           <HomeCard
-            title="Materiali per l'imballaggio"
-            text="Tantissimi materiali pronta consegna e personalizzabili a richiesta"
+            title={t("materials-card-title")}
+            text={t("materials-description")}
             img="/assets/images/firstCard.png"
-            buttonText="vedi"
+            buttonText={t("see")}
           />
           <HomeCard
-            title="Materiali per l'imballaggio"
-            text="Vastissima gamma di macchinari automatici/semiautomatici per ogni esigenza"
+            title={t("machines-card-title")}
+            text={t("machines-description")}
             img="/assets/images/secondCard.png"
-            buttonText="vedi"
+            buttonText={t("see")}
           />
         </Stack>
       </Grid>
