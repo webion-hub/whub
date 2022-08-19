@@ -13,10 +13,8 @@ export default function Homepage() {
   const theme = useTheme()
 
   return (
-    <Page>
-      <Sections
-        sx={{ marginTop: 0 }}
-      >
+    <Page sx={{ marginTop: 0 }}>
+      <Sections>
         <Section
           id="home"
           maxWidth="100%"

@@ -67,7 +67,7 @@ function AddEditProduct() {
 
   return (
     <Dialog
-      open
+      open={false}
       fullWidth
       fullScreen={isSm}
       PaperProps={{
