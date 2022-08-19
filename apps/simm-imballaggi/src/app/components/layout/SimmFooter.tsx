@@ -1,5 +1,5 @@
 import { ChildrenProps, FlagLanguageDropdown, Footer, FooterBottomLabel, FooterColumn, FooterContent, FooterRow, Img, LanguageDropdownButton } from "@whub/wui";
-
+import { useTranslation } from "react-i18next";
 import { Grid, IconButton, Link, LinkProps, Stack, Typography, TypographyProps, useMediaQuery, useTheme } from "@mui/material";
 import { Facebook, YouTube } from "@mui/icons-material";
 
@@ -28,7 +28,6 @@ const FooterLink = (props: LinkProps) => (
 const LinksFooterColumn = (props: ChildrenProps) => {
   const theme = useTheme()
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
-
   return (
     <FooterColumn
       showBorder={!isMd}
@@ -48,6 +47,7 @@ const LinksFooterColumn = (props: ChildrenProps) => {
 }
 
 export default function SimmFooter() {
+  const { t } = useTranslation(); 
   return(
     <Footer maxWidth={1600}>
       <FooterContent>
@@ -63,13 +63,13 @@ export default function SimmFooter() {
             variant="body2"
             textAlign={{xs: 'center', md: 'left'}}
           >
-            S.I.M.M. Imballaggi s.r.l.
+            {t("company-name")}
           </Typography>
           <Typography
             variant="body2"
             textAlign={{xs: 'center', md: 'left'}}
           >
-            Partita I.V.A./C.F. 02666561200
+            {t("p-iva")}
           </Typography>
           <Grid
             container
@@ -99,26 +99,26 @@ export default function SimmFooter() {
         >
           <LinksFooterColumn>
             <FooterLinkTitle>
-              Azienda
+            {t("company")}
             </FooterLinkTitle>
-            <FooterLink href="#"> Home </FooterLink>
-            <FooterLink href="#"> Chi siamo </FooterLink>
+            <FooterLink href="#"> {t("home")} </FooterLink>
+            <FooterLink href="#"> {t("who-are-we")} </FooterLink>
           </LinksFooterColumn>
           <LinksFooterColumn>
             <FooterLinkTitle>
-              Prodotti
+            {t("products")}
             </FooterLinkTitle>
-            <FooterLink href="#"> Macchine </FooterLink>
-            <FooterLink href="#"> Materiali </FooterLink>
+            <FooterLink href="#"> {t("machines")} </FooterLink>
+            <FooterLink href="#"> {t("materials")} </FooterLink>
           </LinksFooterColumn>
           <LinksFooterColumn>
             <FooterLinkTitle>
-              Contatti
+            {t("contacts")}
             </FooterLinkTitle>
-            <FooterLink href="#"> Email: info@simmimballaggi.com </FooterLink>
-            <FooterLink href="#"> Tel: 051 800 960 </FooterLink>
-            <FooterLink href="#"> Fax: 051 692 6361 </FooterLink>
-            <FooterLink href="#"> Via Gian Luigi Lazzari 18, <br/> Quarto Inferiore (BO) </FooterLink>
+            <FooterLink href="#"> {t("email")}: {t("email-link")} </FooterLink>
+            <FooterLink href="#"> {t("telephone")}: {t("telephone-link")} </FooterLink>
+            <FooterLink href="#"> {t("fax")}: {t("fax-link")}</FooterLink>
+            <FooterLink href="#"> {t("address-link")} </FooterLink>
           </LinksFooterColumn>
         </FooterRow>
       </FooterContent>
@@ -139,17 +139,17 @@ export default function SimmFooter() {
         }}
       >
         <FooterLink href='#' variant="caption">
-          Powered by Webion Srl
+        {t("powered-by-webion")}
         </FooterLink>
         <Stack
           direction="row"
           spacing={2}
         >
           <FooterLink href='#' variant="caption">
-            Cookie & Privacy Policy
+          {t("policies")}
           </FooterLink>
           <FooterLink href='#' variant="caption">
-            © 2022 | S.I.M.M Imballaggi
+          {t("copyright")}
           </FooterLink>
         </Stack>
       </FooterBottomLabel>

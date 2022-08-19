@@ -12,7 +12,7 @@ export default function SimmSideBar() {
 
   const buttons: SidebarButtonProps[] = [
   {
-    text: t("navbar-button1"),
+    text: t("contacts"),
     icon: HomeRoundedIcon,
     href: "/#home"
   },

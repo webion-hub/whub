@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Stack, styled, Typography } from "@mui/material";
 import { ResponserGrid } from "@whub/wui";
 import CallRoundedIcon from '@mui/icons-material/CallRounded';
+import { useTranslation } from "react-i18next";
 import ContactsDialog from "../../components/dialogs/ContactsDialog";
 import { useState } from "react";
 
@@ -12,6 +13,7 @@ const StyledMap = styled('iframe')(() => ({
 export default function MapSection() {
   const [openContacts, setOpenContact] = useState<boolean>(false)
 
+  const { t } = useTranslation(); 
   return (
     <Stack
       direction="column"
@@ -39,7 +41,7 @@ export default function MapSection() {
             variant="h3"
             textAlign="center"
           >
-            Chi siamo
+            {t("who-are-we")}
           </Typography>
           <Typography
             variant="body1"
@@ -48,10 +50,10 @@ export default function MapSection() {
               textAlign: {xs: "justify", md: "left"}
             }}
           >
-            Simm imballaggi è una realtà specializzata nella costruzione, personalizzazione e vendita di macchine e materiali per l’imballaggio.<br/><br/>
-            I prodotti trattati sono selezionati sulla base di un attento e continuo monitoraggio del mercato nazionale e internazionale, con l’obiettivo di migliorare costantemente qualità e tecnologia.<br/><br/>
-            La qualità del servizio è il risultato del massimo impegno che quotidianamente tutto il personale si pone, per poter offrire sempre il miglior prodotto e la massima professionalità lavorativa.<br/><br/>
-            Il cliente è l’obiettivo principale dell’azienda. Ad ogni esigenza si individuano rapidamente soluzioni specifiche che permettano di migliorare il lavoro, risparmiando tempo, risparmiando personale, migliorando l’immagine degli imballi, ottimizzando i costi.
+            {t("contact-us-description-p1")}<br/><br/>
+            {t("contact-us-description-p2")}<br/><br/>
+            {t("contact-us-description-p3")}<br/><br/>
+            {t("contact-us-description-p4")}<br/><br/>
           </Typography>
         </Box>
         <Grid
@@ -71,7 +73,7 @@ export default function MapSection() {
             textAlign="center"
             color="secondary"
           >
-            Via Gian Luigi Lazzari 18, Quarto Inferiore (BO)
+            {t("address-link")}
           </Typography>
         </Grid>
       </ResponserGrid>
@@ -83,7 +85,7 @@ export default function MapSection() {
         }}
         startIcon={<CallRoundedIcon/>}
       >
-        Contattaci ora per ricevere informazioni
+        {t("contact-us-button")}
       </Button>
       <ContactsDialog
         open={openContacts}

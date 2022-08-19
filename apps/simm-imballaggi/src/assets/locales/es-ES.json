@@ -1,0 +1,61 @@
+{
+  "category": "categoría",
+  "search-product": "Buscar producto",
+
+  "hero-title": "Construcción, personalización y venta de máquinas y materiales de embalaje.",
+  "hero-description": "La calidad del servicio es el resultado del máximo compromiso que todo el personal pone día a día, para ofrecer siempre el mejor producto y la máxima profesionalidad.",
+  "main-button": "Saber más",
+
+  "materials-card-title": "Materiales de embalaje",
+  "materials-description": "Gran cantidad de materiales listos para la entrega y personalizables bajo pedido",
+  "machines-card-title": "Máquinas de embalaje",
+  "machines-description": "Amplia gama de máquinas automáticas / semiautomáticas para cada necesidad",
+  "see": "veras",
+
+  "contact-us-title": "Contáctenos",
+  "contact-us-description-p1": "Simm Packagings es una empresa especializada en la construcción, personalización y venta de máquinas y materiales de embalaje.",
+  "contact-us-description-p2": "Los productos tratados se seleccionan en base a un cuidadoso y continuo seguimiento del mercado nacional e internacional, con el objetivo de mejorar constantemente la calidad y la tecnología.",
+  "contact-us-description-p3": "La calidad del servicio es el resultado del máximo compromiso que todo el personal pone día a día, para ofrecer siempre el mejor producto y la máxima profesionalidad.",
+  "contact-us-description-p4": "El cliente es el foco principal de la empresa. Para cada necesidad se identifican rápidamente soluciones específicas que permiten mejorar el trabajo ahorrando tiempo, ahorrando personal, mejorando la imagen del packaging, optimizando costes.",
+  "contact-us-button": "Contáctenos ahora para recibir información",
+  
+  "company-name": "S.I.M.M. Imballaggi s.r.l. ",
+  "p-iva": "S.I.M.M. Imballaggi s.r.l. Partita I.V.A./C.F. 02666561200",
+
+  "company": "Agencia",
+  "home": "Home",
+  "who-are-we": "quienes somos",
+  
+  "products": "Productos",  
+  "machines": "Coches",  
+  "materials": "Materiales",
+
+  "contacs": "Contactos",
+  "email": "Email",
+  "email-link": "info@simimballaggi.com",
+  "telephone": "Tel",
+  "telephone-link": "+39 051 800 960",
+  "fax": "Fax",
+  "fax-link": "+39 051 692 6361",
+  "address-link": "Via Gian Luigi Lazzari 18, Quarto Inferiore (BO)",
+
+  "powered-by-webion": "Powered by Webion",
+  "policies": "Policies & Cookies",
+  "copyright": "© 2022 | S.I.M.M Imballaggi",
+
+  "it": "Italiano",
+  "en": "Inglés",
+  "es": "Español",
+
+
+
+
+  "see-brochure": "ver folleto",
+
+
+
+
+  "forgot-password": "¿Se te olvidó tu contraseña?",
+  "fogot-password-tooltip": "Póngase en contacto con el administrador del sitio",
+  "enter": "ingresar"
+}
