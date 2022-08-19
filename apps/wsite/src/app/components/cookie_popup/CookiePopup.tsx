@@ -53,7 +53,7 @@ export default function CookiePopup() {
       spacing={1}
     >
       <Button
-        onClick={handleClose}
+        onClick={handleClick}
         color="inherit"
         size="small"
         sx={{ transform: 'scale(0.8)' }}
@@ -77,7 +77,7 @@ export default function CookiePopup() {
         horizontal: "center",
         vertical: "bottom"
       }}
-      open={open}
+      open={open || true}
       TransitionComponent={Slide}
     >
       <SnackbarContent
