@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import { useTranslation } from 'react-i18next';
-import { Link, Slide, SnackbarContent, Typography } from '@mui/material';
+import { Link, Slide, SnackbarContent, Stack, Typography } from '@mui/material';
 import Cookies from 'js-cookie'
+import ReactPixel from 'react-facebook-pixel';
 
 export interface State extends SnackbarOrigin {
   readonly open: boolean;
@@ -20,40 +21,68 @@ export default function CookiePopup() {
 
     setOpen(true);
   }, [])
-  
+
 
   const handleClick = () => {
     Cookies.set(
-      'webion', 
-      'true', 
+      'webion',
+      'true',
       { expires: 365, secure: true }
     )
+
+    ReactPixel.grantConsent()
     setOpen(false);
   }
 
+  const handleClose = () => {
+    Cookies.set(
+      'webion',
+      'false',
+      { expires: 365, secure: true }
+    )
+
+    ReactPixel.revokeConsent()
+    setOpen(false);
+  }
+
+
   const action = (
-    <Button 
-      onClick={handleClick}
-      color= "secondary"
-      variant="contained"
-      size="small"
+    <Stack
+      direction="row"
+      spacing={1}
     >
-      {t("accept")}
-    </Button>
+      <Button
+        onClick={handleClose}
+        color="inherit"
+        variant="text"
+        size="small"
+      >
+        {t("close")}
+      </Button>
+      <Button
+        onClick={handleClick}
+        color= "secondary"
+        variant="contained"
+        size="small"
+      >
+        {t("accept")}
+      </Button>
+    </Stack>
+
   )
 
   return (
     <Snackbar
-      anchorOrigin={{ 
+      anchorOrigin={{
         horizontal: "center",
-        vertical: "bottom" 
+        vertical: "bottom"
       }}
       open={open}
       TransitionComponent={Slide}
     >
-      <SnackbarContent 
+      <SnackbarContent
         sx={{
-          backgroundColor: "background.paper", 
+          backgroundColor: "background.paper",
           color: "white"
         }}
         action={action}
@@ -62,8 +91,6 @@ export default function CookiePopup() {
             {t("cookies")}
             <br/>
             <Link
-              href='/policies-licenses'
-              target={"_blank"}
               onClick={() => window.open("/policies-licenses", '_blank')?.focus()}
             >
               {t('privacy-link')}
