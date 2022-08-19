@@ -6,6 +6,7 @@ import { useSidebar } from "../../hooks/useSideBar";
 export interface SideBarButtonProps {
   readonly visible?: boolean;
   readonly children?: ChildrenProp
+  readonly color?: "inherit" | "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning"
 }
 
 export function SideBarButton(props: SideBarButtonProps) {
@@ -15,7 +16,10 @@ export function SideBarButton(props: SideBarButtonProps) {
 
   if (isMobileView && !props.visible)
     return (
-      <IconButton onClick={toggleSidebar} color="primary">
+      <IconButton
+        onClick={toggleSidebar}
+        color={props.color}
+      >
         {props.children}
       </IconButton>
     );
@@ -25,5 +29,6 @@ export function SideBarButton(props: SideBarButtonProps) {
 
 SideBarButton.defaultProps = {
   visible: false,
+  color: 'primary',
   children: <MenuRounded/>
 };

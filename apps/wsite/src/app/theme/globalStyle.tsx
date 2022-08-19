@@ -1,6 +1,9 @@
 import theme from "./theme"
 
 const globalStyle = {
+  'body': {
+    overflow: 'overlay',
+  },
   '&::-webkit-scrollbar': {
     width: '4px',
     height: '4px',

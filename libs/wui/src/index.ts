@@ -26,6 +26,7 @@ export * from './hooks/useWaves';
 export * from './hooks/useScroll';
 export * from './hooks/useBackgroundWaves';
 export * from './hooks/useNavigator';
+export * from './hooks/useScrollAnimation';
 
 //Contexts
 export * from './contexts/ContextLanguage';
@@ -47,7 +48,6 @@ export * from './components/app_bar/AppBar';
 export * from './components/app_bar/AppBarContent';
 export * from './components/app_bar/AppBarSection';
 export * from './components/app_bar/AppBarLogo';
-export * from './components/app_bar/WuiAppBar';
 
 export * from './components/footer/Footer';
 export * from './components/footer/FooterBottomLabel';
