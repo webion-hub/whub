@@ -216,16 +216,38 @@ function TextEditor(props: TextEditorProps) {
       : 'auto'
   }
 
-  const checkCharacterCount = (e: any) => {
+  const getCharactersNum = () => {
     if(!reactQuillRef.current || !props.maxCharacters)
-      return
+      return 0
 
     const unprivilegedEditor = reactQuillRef
       .current
       .unprivilegedEditor;
 
+    return unprivilegedEditor.getLength()
+  }
+
+  const getMaxCharactersLabel = () => {
+    if(!props.maxCharacters)
+      return null
+
+    const charatcers = getCharactersNum() == 0
+      ? 0
+      : getCharactersNum() - 1
+
+    return (
+      <Typography variant="caption">
+        - {charatcers}/{props.maxCharacters}
+      </Typography>
+    )
+  }
+
+  const checkCharacterCount = (e: any) => {
+    if(!props.maxCharacters)
+      return
+
     const tooManyCharacters =
-      unprivilegedEditor.getLength() > props.maxCharacters
+      getCharactersNum() > props.maxCharacters
 
     const ignoreKeys =
       e.key === 'Backspace' ||
@@ -259,7 +281,7 @@ function TextEditor(props: TextEditorProps) {
       <Typography
         sx={{ color: getErrorColor }}
       >
-        {props.label}
+        {props.label} {getMaxCharactersLabel()}
       </Typography>
       <ReactQuill
         ref={reactQuillRef}
