@@ -67,6 +67,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
       elements.push(
         <FooterColumn
           alignItems={{xs:'center', md: "baseline"}}
+          spacing={1}
           sx={{marginBottom: {xs: 4, md: 0}}}
           key={i}
         >

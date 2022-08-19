@@ -22,7 +22,7 @@ export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps
   const size = 28
 
   return (
-    <Badge 
+    <Badge
       badgeContent={
         <Typography variant="caption">
           {props.number}

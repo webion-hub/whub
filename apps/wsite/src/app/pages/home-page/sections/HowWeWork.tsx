@@ -15,7 +15,7 @@ const HowWeWorkCard = (props: CardWithBadgeProps) => {
   return (
     <CardWithBadge
       badgeXOffset={5}
-      badgeYOffset={-12}  
+      badgeYOffset={-12}
       badgeColor={badgeColor}
       {...props}
     />
@@ -33,7 +33,7 @@ export default function HowWeWork() {
           marginInline: "auto",
           width: "100%",
           maxWidth: "100%",
-          zIndex: 1,
+          zIndex: 2,
         }}
       >
         <Typography
@@ -49,11 +49,14 @@ export default function HowWeWork() {
           GridProps={{
             justifyContent: 'center',
             alignItems: "center",
-            spacing: 2,
+            flexWrap: 'wrap'
           }}
           sx={{
-            marginBlock: 12,          
-            marginTop: 40,
+            marginTop: { xs: 6, md: 12},
+            marginBlock: 12,
+            "& > *": {
+              margin: 1
+            }
           }}
         >
           <HowWeWorkCard
