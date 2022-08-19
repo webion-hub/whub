@@ -52,7 +52,7 @@ export default function HowWeWork() {
             flexWrap: 'wrap'
           }}
           sx={{
-            marginTop: { xs: 6, md: 12},
+            marginTop: { xs: 6, md: 12},
             marginBlock: 12,
             "& > *": {
               margin: 1
