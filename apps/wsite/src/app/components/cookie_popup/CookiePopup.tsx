@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import { useTranslation } from 'react-i18next';
-import { Link, Slide, SnackbarContent, Stack, Typography } from '@mui/material';
+import { IconButton, Link, Slide, SnackbarContent, Stack, Typography } from '@mui/material';
 import Cookies from 'js-cookie'
 import ReactPixel from 'react-facebook-pixel';
+import { CloseRounded } from '@mui/icons-material';
 
 export interface State extends SnackbarOrigin {
   readonly open: boolean;
@@ -52,12 +53,12 @@ export default function CookiePopup() {
       spacing={1}
     >
       <Button
-        onClick={handleClose}
+        onClick={handleClick}
         color="inherit"
-        variant="text"
         size="small"
+        sx={{ transform: 'scale(0.8)' }}
       >
-        {t("close")}
+        {t("decline")}
       </Button>
       <Button
         onClick={handleClick}
@@ -68,7 +69,6 @@ export default function CookiePopup() {
         {t("accept")}
       </Button>
     </Stack>
-
   )
 
   return (
@@ -77,13 +77,14 @@ export default function CookiePopup() {
         horizontal: "center",
         vertical: "bottom"
       }}
-      open={open}
+      open={open || true}
       TransitionComponent={Slide}
     >
       <SnackbarContent
         sx={{
           backgroundColor: "background.paper",
-          color: "white"
+          color: "white",
+          flexDirection: 'column'
         }}
         action={action}
         message={
