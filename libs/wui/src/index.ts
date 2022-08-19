@@ -4,6 +4,7 @@ import './extensions/theme-extensions'
 export * from './abstractions/form/FormValues';
 export * from './abstractions/form/Validator';
 export * from './abstractions/form/FormEvent';
+export * from './abstractions/form/InputBaseProps';
 
 export * from './abstractions/props/BaseProps';
 export * from './abstractions/props/ChildrenProps';
@@ -95,5 +96,6 @@ export * from './components/squares/SquareContainer';
 export * from './components/squares/SquareImageContainer';
 export * from './components/squares/SquaresGrid';
 
-export * from './components/inputs/AttachmentUploader';
-export * from './components/inputs/ImageUploader';
+export * from './components/inputs/uploaders/AttachmentUploader';
+export * from './components/inputs/uploaders/ImageUploader';
+export * from './components/inputs/TextEditor';

@@ -1,13 +1,15 @@
 import React, { FormEventHandler } from "react";
 import { Form } from "../lib/Form";
 import { ChildrenProp } from "../abstractions/props/ChildrenProps";
-import { Grid, SxProps, Theme } from "@mui/material";
+import { Stack, SxProps, Theme } from "@mui/material";
+import { ResponsiveStyleValue } from "@mui/system";
 
 export interface FormGroupProps {
   readonly form: Form;
   readonly onSubmit: FormEventHandler;
   readonly children: ChildrenProp;
-  readonly sx?: SxProps<Theme>
+  readonly sx?: SxProps<Theme>,
+  readonly spacing?: ResponsiveStyleValue<string | number>
 }
 
 export const FormGroup = React.forwardRef<HTMLFormElement, FormGroupProps>((props, ref) => {
@@ -24,14 +26,15 @@ export const FormGroup = React.forwardRef<HTMLFormElement, FormGroupProps>((prop
   });
 
   return (
-    <Grid
+    <Stack
       ref={ref}
       component="form"
       noValidate
       onSubmit={props.onSubmit}
       sx={props.sx}
+      spacing={props.spacing}
     >
       {childrenWithProps}
-    </Grid>
+    </Stack>
   );
 })

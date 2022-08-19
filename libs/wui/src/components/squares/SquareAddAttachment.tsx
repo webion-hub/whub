@@ -1,6 +1,6 @@
 import { AttachFileRounded } from "@mui/icons-material";
 import { InputEvent } from "../../abstractions/events/InputEvent";
-import { AttachmentUploader } from "../inputs/AttachmentUploader";
+import { AttachmentUploader } from "../inputs/uploaders/AttachmentUploader";
 import { SquareButton } from "./SquareButton";
 
 export interface SquareAddAttachmentProps {

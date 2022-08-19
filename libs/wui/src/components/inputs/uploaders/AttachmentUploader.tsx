@@ -1,4 +1,4 @@
-import { InputEvent } from "../../abstractions/events/InputEvent"
+import { InputEvent } from "../../../abstractions/events/InputEvent"
 
 export interface AttachmentUploaderProps {
   readonly onChange?: (e: InputEvent) => void

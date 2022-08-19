@@ -1,6 +1,6 @@
 import { AddRounded } from "@mui/icons-material";
 import { Autocomplete, Button, Dialog, DialogActions, DialogContent, Divider, Stack, TextField, Theme, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { DialogTitleCross, Page, SquareAddAttachment, SquareAddImage, SquareContainer, SquareImageContainer, SquaresGrid, Utils } from "@whub/wui";
+import { DialogTitleCross, Page, SquareAddAttachment, SquareAddImage, SquareContainer, SquareImageContainer, SquaresGrid, TextEditor, Utils } from "@whub/wui";
 import { useEffect, useRef, useState } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -116,7 +116,7 @@ function AddEditProduct() {
 
           <TextEditor
             label="Descrizione"
-            maxCharacters={8}
+            maxCharacters={4096}
           />
 
           <SquaresGrid
@@ -174,123 +174,17 @@ function AddEditProduct() {
       </DialogContent>
       <DialogActions>
         <Button
-            variant='text'
-          >
-            Chiudi
-          </Button>
-          <Button
-            variant='contained'
-          >
-            Aggiungi
-          </Button>
+          variant='text'
+        >
+          Chiudi
+        </Button>
+        <Button
+          type="submit"
+          variant='contained'
+        >
+          Aggiungi
+        </Button>
       </DialogActions>
     </Dialog>
-  )
-}
-
-
-
-interface InputBaseProps<T> {
-  readonly name?: string,
-  readonly error?: boolean,
-  readonly onChange?: (value: T) => void,
-  readonly value?: T,
-}
-
-interface TextEditorProps extends InputBaseProps<string> {
-  readonly label?: string,
-  readonly maxCharacters?: number,
-}
-
-function TextEditor(props: TextEditorProps) {
-  const [value, setValue] = useState(props.value ?? '');
-  const reactQuillRef = useRef<any>();
-
-  useEffect(() => {
-    props.onChange?.(value)
-  }, [value, props])
-
-  const getErrorColor = (theme: Theme) => {
-    return props.error
-      ? theme.palette.error.main
-      : 'auto'
-  }
-
-  const getCharactersNum = () => {
-    if(!reactQuillRef.current || !props.maxCharacters)
-      return 0
-
-    const unprivilegedEditor = reactQuillRef
-      .current
-      .unprivilegedEditor;
-
-    return unprivilegedEditor.getLength()
-  }
-
-  const getMaxCharactersLabel = () => {
-    if(!props.maxCharacters)
-      return null
-
-    const charatcers = getCharactersNum() == 0
-      ? 0
-      : getCharactersNum() - 1
-
-    return (
-      <Typography variant="caption">
-        - {charatcers}/{props.maxCharacters}
-      </Typography>
-    )
-  }
-
-  const checkCharacterCount = (e: any) => {
-    if(!props.maxCharacters)
-      return
-
-    const tooManyCharacters =
-      getCharactersNum() > props.maxCharacters
-
-    const ignoreKeys =
-      e.key === 'Backspace' ||
-      e.key === 'Delete' ||
-      e.key === 'ArrowLeft' ||
-      e.key === 'ArrowRight' ||
-      e.key === 'ArrowUp' ||
-      e.key === 'ArrowDown'
-
-    if (tooManyCharacters && !ignoreKeys)
-      e.preventDefault();
-  }
-
-  return (
-    <Stack
-      direction="column"
-      sx={{
-        '.ql-toolbar': {
-          borderColor: getErrorColor,
-          borderTopLeftRadius: '8px',
-          borderTopRightRadius: '8px'
-        },
-        '.ql-container': {
-          borderColor: getErrorColor,
-          height: 150,
-          borderBottomLeftRadius: '8px',
-          borderBottomRightRadius: '8px'
-        },
-      }}
-    >
-      <Typography
-        sx={{ color: getErrorColor }}
-      >
-        {props.label} {getMaxCharactersLabel()}
-      </Typography>
-      <ReactQuill
-        ref={reactQuillRef}
-        onKeyDown={checkCharacterCount}
-        theme="snow"
-        value={value}
-        onChange={setValue}
-      />
-    </Stack>
-
   )
 }

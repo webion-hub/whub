@@ -2,7 +2,7 @@ import { AddAPhotoRounded } from "@mui/icons-material";
 import { useState } from "react";
 import { InputEvent } from "../../abstractions/events/InputEvent";
 import { ImageCropperDialog } from "../images/ImageCropperDialog";
-import { ImageUploader } from "../inputs/ImageUploader";
+import { ImageUploader } from "../inputs/uploaders/ImageUploader";
 import { SquareButton } from "./SquareButton";
 
 export interface SquareAddImageProps {
