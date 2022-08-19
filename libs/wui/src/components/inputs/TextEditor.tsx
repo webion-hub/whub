@@ -13,7 +13,7 @@ export function TextEditor(props: TextEditorProps) {
   const reactQuillRef = useRef<any>();
 
   useEffect(() => {
-    props.onChange?.(value)
+    props.onChange?.({ target: { value: value }})
   }, [value, props])
 
   const areTooManyCharacters = (ignoreFirst?: boolean) => {
@@ -75,6 +75,12 @@ export function TextEditor(props: TextEditorProps) {
       e.preventDefault();
   }
 
+  const handleKeyDown = (e: any) => {
+    props.disabled
+      ? e.preventDefault()
+      : checkCharacterCount(e)
+  }
+
   return (
     <Stack
       direction="column"
@@ -99,7 +105,7 @@ export function TextEditor(props: TextEditorProps) {
       </Typography>
       <ReactQuill
         ref={reactQuillRef}
-        onKeyDown={checkCharacterCount}
+        onKeyDown={handleKeyDown}
         theme="snow"
         value={value}
         onChange={setValue}

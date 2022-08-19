@@ -16,7 +16,6 @@ export const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => 
       sx={{
         ...props.sx,
         flex: props.centered ? 'none' : 1,
-        marginTop: theme.mixins.toolbar.height + 'px'
       }}
     >
       {props.children}

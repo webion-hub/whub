@@ -1,7 +1,7 @@
 import './extensions/theme-extensions'
 
 //Abstractions
-export * from './abstractions/form/FormValues';
+export * from './abstractions/form/FormInputs';
 export * from './abstractions/form/Validator';
 export * from './abstractions/form/FormEvent';
 export * from './abstractions/form/InputBaseProps';

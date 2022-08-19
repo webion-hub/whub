@@ -6,11 +6,11 @@ interface ILanguage {
   readonly translation: string,
 }
 
-export type Languages = 'it' | 'en' | 'es'
+export type Languages = 'it' | 'en'
 
 export class Language {
   static readonly DEFAULT_LANGUAGE: Languages = 'en'
-  static readonly LANGUAGES: Languages[] = ['it', 'en', 'es']
+  static readonly LANGUAGES: Languages[] = ['it', 'en']
 
   static getLocalLanguage = () => {
     const localLanguage = navigator.language.split('-')[0] as Languages

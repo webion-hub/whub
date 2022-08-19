@@ -1,7 +1,7 @@
 import { Box, Typography, Link, useTheme } from "@mui/material";
 import { api } from "@whub/api";
-import { FormGroup, Img, ResponserGrid, useForm, Validators, WuiGrid } from "@whub/wui";
-import { FormEvent, useState } from "react";
+import { Form, FormGroup, Img, InputValidator, ResponserGrid, useForm, Validators, WuiGrid } from "@whub/wui";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LightModeLoadingButton } from "../../../components/light_mode/LightModeLoadingButton";
 import { LightModeTextField } from "../../../components/light_mode/LightModeTextField";
@@ -37,44 +37,19 @@ export default function Contacts() {
   const nameSurnameWidth = `calc(50% - ${theme.spacing(0.5)})`
 
   const { t } = useTranslation();
-  const form = useForm({
-    name: {
-      value: "",
-      validators: [Validators.required],
-    },
-    surname: {
-      value: "",
-      validators: [Validators.required],
-    },
-    phoneNumber: {
-      value: "",
-      validators: [Validators.isATelephoneNumber],
-    },
-    email: {
-      value: "",
-      validators: [Validators.required, Validators.isAnEmail],
-    },
-    message: {
-      value: "",
-      validators: [Validators.required],
-    },
-    privacy: {
-      value: true,
-      validators: [Validators.required],
-    },
-  });
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (form: Form) => {
     setSuccess(false)
-    e.preventDefault();
 
     if(!form.isFormValid())
       return
 
     setLoading(true)
+
     api.contactUs
       .process(form.getValues())
       .then(() => setSuccess(true))
+      .then(() => form.clear())
       .finally(() => setLoading(false))
   };
 
@@ -101,6 +76,7 @@ export default function Contacts() {
     >
       <ResponserGrid
         type="upper"
+        size="md"
         sx={{
           maxWidth: 1100,
           minHeight: 800,
@@ -109,7 +85,6 @@ export default function Contacts() {
           paddingTop: 8,
           width: "90%",
         }}
-        size="xs"
       >
         <Box sx={{
           width: '50%',
@@ -152,42 +127,73 @@ export default function Contacts() {
             </Link>
           </Typography>
           <FormGroup
-            form={form}
             onSubmit={handleSubmit}
             sx={{ "& > *": { marginBlock: theme.spacing(0.5, '!important') }}}
           >
-            <TextfieldBase
+            <InputValidator
               name="name"
-              required
-              label={t("name")}
-              sx={{ width: nameSurnameWidth, marginRight: 0.5 }}
-            />
-            <TextfieldBase
+              validators={[Validators.required]}
+            >
+              <TextfieldBase
+                required
+                label={t("name")}
+                sx={{ width: nameSurnameWidth, marginRight: 0.5 }}
+              />
+            </InputValidator>
+
+            <InputValidator
               name="surname"
-              required
-              label={t("surname")}
-              sx={{ width: nameSurnameWidth, marginLeft: 0.5 }}
-            />
-            <TextfieldBase
+              validators={[Validators.required]}
+            >
+              <TextfieldBase
+                required
+                label={t("surname")}
+                sx={{ width: nameSurnameWidth, marginLeft: 0.5 }}
+              />
+            </InputValidator>
+
+            <InputValidator
               name="phoneNumber"
-              fullWidth
-              label={t("phone-number")}
-            />
-            <TextfieldBase
+              validators={[Validators.isATelephoneNumber]}
+            >
+              <TextfieldBase
+                fullWidth
+                label={t("phone-number")}
+              />
+            </InputValidator>
+
+            <InputValidator
               name="email"
-              required
-              fullWidth
-              label={t("email")}
-            />
-            <TextfieldBase
+              validators={[Validators.required, Validators.isAnEmail]}
+            >
+              <TextfieldBase
+                required
+                fullWidth
+                label={t("email")}
+              />
+            </InputValidator>
+
+            <InputValidator
               name="message"
-              required
-              fullWidth
-              multiline
-              rows={4}
-              label={t("message")}
-            />
-            <PrivacyCheckBox name="privacy"/>
+              validators={[Validators.required]}
+            >
+              <TextfieldBase
+                required
+                fullWidth
+                multiline
+                rows={4}
+                label={t("message")}
+              />
+            </InputValidator>
+
+            <InputValidator
+              name="privacy"
+              value={true}
+              validators={[Validators.required]}
+            >
+              <PrivacyCheckBox/>
+            </InputValidator>
+
             <WuiGrid
               container
               direction="row"

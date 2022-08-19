@@ -1,45 +1,61 @@
 import { ChangeEvent } from "react";
-import { FormValues, FormValueTypes } from "../abstractions/form/FormValues";
+import { FormInput, FormInputs, FormValueTypes } from "../abstractions/form/FormInputs";
 import { Validator } from "../abstractions/form/Validator";
 import { Validators } from "./Validators";
 
 export class Form {
-  private readonly setter: React.Dispatch<FormValues>
-  private values: FormValues
+  private readonly setter: React.Dispatch<FormInputs>
+  private inputs: FormInputs
 
-  constructor(setter: React.Dispatch<FormValues>, values: FormValues) {
+  constructor(setter: React.Dispatch<FormInputs>, inputs: FormInputs) {
     this.setter = setter;
-    this.values = values;
+    this.inputs = inputs;
   }
 
-  setValues = (values: FormValues) => {
-    this.setter(values)
-    this.values = values;
+
+  removeInput = (key: string) => {
+    delete this.inputs[key]
   }
 
-  setValue = (key: string) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  addInput = (key: string, input: FormInput) => {
+    this.inputs = {
+      ...this.inputs,
+      [key]: input
+    }
+  }
+
+  setValues = (inputs: FormInputs) => {
+    this.setter(inputs)
+    this.inputs = inputs;
+  }
+
+  setValue = (key: string) => (value: any) => {
     this.setValues({
-      ...this.values,
+      ...this.inputs,
       [key]: {
-        ...this.values[key],
-        value: e.target.value,
+        ...this.inputs[key],
+        value: value,
       },
     })
   }
 
+  setTargetValue = (key: string) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    this.setValue(key)(e.target.value)
+  }
+
   getValue = (key: string) => {
-    return this.values[key]?.value
+    return this.inputs[key]?.value
   }
 
   getValues = () => {
-    const values = Object.entries(this.values)
+    const values = Object.entries(this.inputs)
       .map(e => [e[0], e[1].value])
 
     return Object.fromEntries(values)
   }
 
   isValid = (key: string) => {
-    return this.values[key]?.isValid ?? true
+    return this.inputs[key]?.isValid ?? true
   }
 
   validateByKey = (validators: Validator[], value: FormValueTypes) => {
@@ -50,18 +66,18 @@ export class Form {
   }
 
   isFormValid = () => {
-    const formEntries = Object.entries(this.values)
-    const formInit: FormValues = {}
+    const formEntries = Object.entries(this.inputs)
+    const formInit: FormInputs = {}
 
     const newFormValues = formEntries
       .reduce((acc, formEntry) => {
         const formKey = formEntry[0]
-        const formValue = this.values[formKey]
+        const formValue = this.inputs[formKey]
         const isValid = Validators
           .validate(formValue.value, formValue.validators)
 
         acc[formKey] = {
-          ...this.values[formKey],
+          ...this.inputs[formKey],
           isValid: isValid,
         }
 
@@ -73,5 +89,29 @@ export class Form {
     return Object
       .values(newFormValues)
       .every(v => v.isValid)
+  }
+
+  clear() {
+    const keys = Object.keys(this.inputs)
+    keys.forEach(k => this.setValue(k)(''))
+  }
+
+  getDisabled(key: string) {
+    return this.inputs[key]?.disabled
+  }
+
+  disableByKey = (key: string) => (status: boolean) => {
+    this.setValues({
+      ...this.inputs,
+      [key]: {
+        ...this.inputs[key],
+        disabled: status,
+      },
+    })
+  }
+
+  disable(status: boolean) {
+    const keys = Object.keys(this.inputs)
+    keys.forEach(k => this.disableByKey(k)(status))
   }
 }

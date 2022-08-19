@@ -1,10 +1,10 @@
-import { Dialog, DialogContent, Grid, Link, Stack, TextField, Typography, useTheme } from '@mui/material'
+import { Alert, Dialog, DialogContent, Grid, Link, Snackbar, Stack, TextField, Typography, useTheme } from '@mui/material'
 import PlaceRoundedIcon from '@mui/icons-material/PlaceRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import { api } from '@whub/api';
-import { DialogBase, DialogTitleCross, FormGroup, useBackgroundWaves, useForm, Validators } from '@whub/wui';
+import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, useBackgroundWaves, useForm, Validators } from '@whub/wui';
 import { useState, FormEvent } from 'react';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { LoadingButton } from '@mui/lab';
@@ -37,50 +37,26 @@ function LinkWithIcon(props: LinkWithIconProps) {
 }
 
 export default function ContactsDialog(props: DialogBase) {
+  const [success, setSuccess] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
   const theme = useTheme()
   const waves = useBackgroundWaves(theme.palette.secondary.light)
 
-  const form = useForm({
-    name: {
-      value: "",
-      validators: [Validators.required],
-    },
-    surname: {
-      value: "",
-      validators: [Validators.required],
-    },
-    company: {
-      value: "",
-      validators: [],
-    },
-    phoneNumber: {
-      value: "",
-      validators: [Validators.isATelephoneNumber],
-    },
-    email: {
-      value: "",
-      validators: [Validators.required, Validators.isAnEmail],
-    },
-    message: {
-      value: "",
-      validators: [Validators.required],
-    },
-  });
-
-  const handleSubmit = (e: FormEvent) => {
-    //setSuccess(false)
-    e.preventDefault();
+  const handleSubmit = (form: Form) => {
+    setSuccess(false)
 
     if(!form.isFormValid())
       return
 
+    form.disable(true)
     setLoading(true)
     api.contactUs
       .process(form.getValues())
-      //.then(() => setSuccess(true))
+      .then(() => setSuccess(true))
+      .then(() => form.clear())
       .finally(() => setLoading(false))
-  };
+      .finally(() => form.disable(false))
+    };
 
   return (
     <Dialog
@@ -116,6 +92,7 @@ export default function ContactsDialog(props: DialogBase) {
         }}
       >
         <Stack
+          sx={{ marginTop: 1 }}
           spacing={4}
           direction={{xs: 'column', md: 'row'}}
           alignItems={{xs: "center", md: 'flex-start'}}
@@ -160,72 +137,90 @@ export default function ContactsDialog(props: DialogBase) {
               </LinkWithIcon>
             </Stack>
           </Stack>
-          <Grid
-            container
-            width={{xs: "100%", md: "50%"}}
-            direction="column"
+          <FormGroup
+            onSubmit={handleSubmit}
           >
-            <FormGroup
-              form={form}
-              onSubmit={handleSubmit}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                "& > *": { marginBlock: theme => theme.spacing(0.5, '!important') }
-              }}
+            <Stack
+              direction="column"
+              spacing={1}
             >
+
               <Stack
                 justifyContent="space-between"
                 direction="row"
                 spacing={1}
               >
-                <TextField
-                  size="small"
-                  name="name"
-                  required
-                  label="Nome"
-                />
-                <TextField
-                  size="small"
-                  name="surname"
-                  required
-                  label="Cognome"
-                />
+                <InputValidator
+                  name='name'
+                  validators={[Validators.required]}
+                >
+                  <TextField
+                    size="small"
+                    required
+                    label="Nome"
+                  />
+                </InputValidator>
+                <InputValidator
+                  name='surname'
+                  validators={[Validators.required]}
+                >
+                  <TextField
+                    size="small"
+                    required
+                    label="Cognome"
+                  />
+                </InputValidator>
               </Stack>
-              <TextField
-                  size="small"
+              <InputValidator
                 name="company"
-                fullWidth
-                label="Azienda"
-                variant="outlined"
-                InputProps={{ endAdornment: <BusinessRoundedIcon/>}}
-              />
-              <TextField
+              >
+                <TextField
                   size="small"
+                  fullWidth
+                  label="Azienda"
+                  variant="outlined"
+                  InputProps={{ endAdornment: <BusinessRoundedIcon/>}}
+                />
+              </InputValidator>
+              <InputValidator
                 name="phoneNumber"
-                fullWidth
-                label="Telefono"
-                variant="outlined"
-                InputProps={{ endAdornment: <PhoneRoundedIcon/>}}
-              />
-              <TextField
+                validators={[Validators.isATelephoneNumber]}
+              >
+                <TextField
                   size="small"
+                  fullWidth
+                  label="Telefono"
+                  variant="outlined"
+                  InputProps={{ endAdornment: <PhoneRoundedIcon/>}}
+                />
+              </InputValidator>
+              <InputValidator
                 name="email"
-                required
-                label="Mail"
-                variant="outlined"
-                InputProps={{ endAdornment: <MailRoundedIcon/>}}
-              />
-              <TextField
+                validators={[Validators.required, Validators.isAnEmail]}
+              >
+                <TextField
                   size="small"
+                  name="email"
+                  required
+                  label="Mail"
+                  variant="outlined"
+                  InputProps={{ endAdornment: <MailRoundedIcon/>}}
+                />
+              </InputValidator>
+              <InputValidator
                 name="message"
-                fullWidth
-                required
-                label="Scrivi qualcosa..."
-                variant="outlined"
-                multiline
-                rows={5}
-              />
+                validators={[Validators.required]}
+              >
+                <TextField
+                  size="small"
+                  fullWidth
+                  required
+                  label="Scrivi qualcosa..."
+                  variant="outlined"
+                  multiline
+                  rows={5}
+                />
+              </InputValidator>
               <LoadingButton
                 color="primary"
                 type="submit"
@@ -234,8 +229,22 @@ export default function ContactsDialog(props: DialogBase) {
               >
                 Invia
               </LoadingButton>
-            </FormGroup>
-          </Grid>
+              <Snackbar
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                open={success}
+                autoHideDuration={6000}
+                onClose={() => setSuccess(false)}
+              >
+                <Alert
+                  onClose={() => setSuccess(false)}
+                  severity="success"
+                  sx={{ width: '100%' }}
+                >
+                  Messaggio inviato!
+                </Alert>
+              </Snackbar>
+            </Stack>
+          </FormGroup>
         </Stack>
       </DialogContent>
     </Dialog>
