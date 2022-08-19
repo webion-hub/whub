@@ -6,16 +6,18 @@ import it from "../assets/locales/it-IT.json";
 
 import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from './components/layout/Layout';
 
 import Homepage from './pages/home-page/Homepage';
 import theme from './theme/theme'
 import { GlobalStyles, CssBaseline, CircularProgress, Grid} from '@mui/material';
 import globalStyle from './theme/globalStyle';
 import { useState } from "react";
-import { Language, LanguageWrapper, MaybeShow } from "@whub/wui";
-import ContactsPage from "./components/dialogs/ContactsDialog";
+import { Language, LanguageWrapper, Layout, MaybeShow } from "@whub/wui";
 import LoginPage from "./pages/login-page/LoginPage";
+import SimmAppbar from "./components/layout/SimmAppBar";
+import SimmSideBar from "./components/layout/SimmSideBar";
+import SimmFooter from "./components/layout/SimmFooter";
+import { TableProductsPage } from "./pages/table-products-page/TableProductsPage";
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -57,10 +59,15 @@ export function App() {
           }
         >
           <BrowserRouter>
-            <Layout>
+            <Layout
+              AppBarComponent={<SimmAppbar/>}
+              SidebarComponent={<SimmSideBar/>}
+              FooterComponent={<SimmFooter/>}
+            >
               <Routes>
                 <Route key="home" path="/"  element={<Homepage/>}/>
                 <Route key="login" path="/login"  element={<LoginPage/>}/>
+                <Route key="products-table" path="/products-table"  element={<TableProductsPage/>}/>
               </Routes>
             </Layout>
           </BrowserRouter>

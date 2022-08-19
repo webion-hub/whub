@@ -35,9 +35,10 @@ export const FooterBottomLabel = React.forwardRef<HTMLDivElement, FooterBottomLa
       />
       <Stack
         ref={ref}
-        direction="row"
+        direction={{xs: 'column', md: "row"}}
         alignItems="center"
         justifyContent="center"
+        spacing={1}
         sx={{
           width: '100%',
           padding: 1,

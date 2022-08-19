@@ -1,4 +1,4 @@
-import { FormValueTypes } from "./FormValues";
+import { FormValueTypes } from "./FormInputs";
 
 export interface FormEvent {
   readonly target: FormTargetEvent,

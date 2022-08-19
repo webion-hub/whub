@@ -1,17 +1,11 @@
 import { Checkbox, Grid, Link, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
-import { FormEvent } from "@whub/wui";
+import { InputBaseProps } from "@whub/wui";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-export interface PrivacyCheckBoxProps {
-  readonly name: string,
-  readonly onChange?: (event: FormEvent) => void,
-  readonly value?: boolean,
-  readonly error?: boolean
-}
 
-const PrivacyCheckBox = React.forwardRef<HTMLDivElement, PrivacyCheckBoxProps>((props, ref) => {
+const PrivacyCheckBox = React.forwardRef<HTMLDivElement, InputBaseProps<boolean>>((props, ref) => {
   const theme = useTheme()
   const { t } = useTranslation()
 
@@ -37,6 +31,7 @@ const PrivacyCheckBox = React.forwardRef<HTMLDivElement, PrivacyCheckBoxProps>((
       ref={ref}
     >
       <Checkbox
+        disabled={props.disabled}
         sx={{
           color: getTextColor() + " !important",
           '&.Mui-checked': {
