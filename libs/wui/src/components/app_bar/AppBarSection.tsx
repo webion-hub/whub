@@ -5,6 +5,7 @@ export interface AppBarSectionProps {
   readonly children: any;
   readonly hideOnMobile?: boolean;
   readonly spacing?: number;
+  readonly fullWidth?: boolean
   readonly alignment: "start" | "end" | "center" | "";
 }
 
@@ -17,6 +18,7 @@ export const AppBarSection = React.forwardRef<HTMLDivElement, AppBarSectionProps
   return (
     <Stack
       direction="row"
+      sx={{ width: props.fullWidth ? '100%' : 'auto' }}
       spacing={props.spacing}
     >
        {props.children}

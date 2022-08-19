@@ -38,7 +38,11 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
               onClick={clickNavigate('/')}
             />
           </AppBarSection>
-          <AppBarSection alignment="center" hideOnMobile>
+          <AppBarSection
+            alignment="center"
+            hideOnMobile
+            fullWidth
+          >
             <CategorySearchBar filter="" elements={[]}/>
           </AppBarSection>
           <AppBarSection alignment="end">
@@ -69,7 +73,10 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
           }}
         >
           <AppBarContent>
-            <AppBarSection alignment="center">
+            <AppBarSection
+              fullWidth
+              alignment="center"
+            >
               <CategorySearchBar filter="" elements={[]}/>
             </AppBarSection>
           </AppBarContent>
