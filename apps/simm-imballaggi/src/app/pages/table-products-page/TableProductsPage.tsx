@@ -1,7 +1,9 @@
-import { AddRounded, FormatBoldRounded, FormatItalicRounded, FormatListBulletedRounded, FormatUnderlinedRounded } from "@mui/icons-material";
-import { Button, Dialog, DialogActions, DialogContent, Stack, TextField, ToggleButton, ToggleButtonGroup, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { AddRounded } from "@mui/icons-material";
+import { Autocomplete, Button, Dialog, DialogActions, DialogContent, Divider, Stack, TextField, Theme, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { DialogTitleCross, Page, SquareAddAttachment, SquareAddImage, SquareContainer, SquareImageContainer, SquaresGrid, Utils } from "@whub/wui";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export function TableProductsPage() {
   return (
@@ -88,13 +90,35 @@ function AddEditProduct() {
           sx={{ marginTop: 1 }}
         >
           <TextField
+            size="small"
             variant="outlined"
             label="Nome"
+            required
           />
           <TextField
+            size="small"
             variant="outlined"
             label="Prezzo"
           />
+
+          <Divider/>
+
+          <Autocomplete
+            options={[]}
+            renderInput={(params) =>
+              <TextField
+                {...params}
+                size="small"
+                variant="outlined"
+                label="Categoria"
+              />}
+          />
+
+          <TextEditor
+            label="Descrizione"
+            maxCharacters={8}
+          />
+
           <SquaresGrid
             title="Immagini"
             elements={images}
@@ -146,7 +170,6 @@ function AddEditProduct() {
               )
             }
           </SquaresGrid>
-          <TextEditor/>
         </Stack>
       </DialogContent>
       <DialogActions>
@@ -165,46 +188,87 @@ function AddEditProduct() {
   )
 }
 
-type EditorModes = 'bold' | 'italic' | 'underlined' | 'bullet'
 
-function TextEditor() {
-  const [formats, setFormats] = useState<EditorModes[]>([]);
 
-  const handleFormat = (
-    event: React.MouseEvent<HTMLElement>,
-    newFormats: string[],
-  ) => {
-    setFormats(newFormats as EditorModes[]);
-  };
+interface InputBaseProps<T> {
+  readonly name?: string,
+  readonly error?: boolean,
+  readonly onChange?: (value: T) => void,
+  readonly value?: T,
+}
 
-  /*
-  const getEditorState = () => {
+interface TextEditorProps extends InputBaseProps<string> {
+  readonly label?: string,
+  readonly maxCharacters?: number,
+}
 
-  }*/
+function TextEditor(props: TextEditorProps) {
+  const [value, setValue] = useState(props.value ?? '');
+  const reactQuillRef = useRef<any>();
+
+  useEffect(() => {
+    props.onChange?.(value)
+  }, [value, props])
+
+  const getErrorColor = (theme: Theme) => {
+    return props.error
+      ? theme.palette.error.main
+      : 'auto'
+  }
+
+  const checkCharacterCount = (e: any) => {
+    if(!reactQuillRef.current || !props.maxCharacters)
+      return
+
+    const unprivilegedEditor = reactQuillRef
+      .current
+      .unprivilegedEditor;
+
+    const tooManyCharacters =
+      unprivilegedEditor.getLength() > props.maxCharacters
+
+    const ignoreKeys =
+      e.key === 'Backspace' ||
+      e.key === 'Delete' ||
+      e.key === 'ArrowLeft' ||
+      e.key === 'ArrowRight' ||
+      e.key === 'ArrowUp' ||
+      e.key === 'ArrowDown'
+
+    if (tooManyCharacters && !ignoreKeys)
+      e.preventDefault();
+  }
 
   return (
     <Stack
       direction="column"
+      sx={{
+        '.ql-toolbar': {
+          borderColor: getErrorColor,
+          borderTopLeftRadius: '8px',
+          borderTopRightRadius: '8px'
+        },
+        '.ql-container': {
+          borderColor: getErrorColor,
+          height: 150,
+          borderBottomLeftRadius: '8px',
+          borderBottomRightRadius: '8px'
+        },
+      }}
     >
-      <ToggleButtonGroup
-        size="small"
-        value={formats}
-        onChange={handleFormat}
+      <Typography
+        sx={{ color: getErrorColor }}
       >
-        <ToggleButton value="bold" aria-label="bold">
-          <FormatBoldRounded />
-        </ToggleButton>
-        <ToggleButton value="italic" aria-label="italic">
-          <FormatItalicRounded />
-        </ToggleButton>
-        <ToggleButton value="underlined" aria-label="underlined">
-          <FormatUnderlinedRounded />
-        </ToggleButton>
-        <ToggleButton value="bullet" aria-label="underlined">
-          <FormatListBulletedRounded />
-        </ToggleButton>
-      </ToggleButtonGroup>
-
+        {props.label}
+      </Typography>
+      <ReactQuill
+        ref={reactQuillRef}
+        onKeyDown={checkCharacterCount}
+        theme="snow"
+        value={value}
+        onChange={setValue}
+      />
     </Stack>
+
   )
 }
