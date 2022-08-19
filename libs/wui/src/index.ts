@@ -75,7 +75,9 @@ export * from './components/slideshow/SlideshowImage';
 
 export * from './components/dialogs/DialogTitleCross';
 
-export * from './components/FormGroup';
+export * from './components/form/FormGroup';
+export * from './components/form/InputValidator';
+
 export * from './components/Img';
 export * from './components/Parallax';
 export * from './components/Sections';
