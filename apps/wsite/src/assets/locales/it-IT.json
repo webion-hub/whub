@@ -44,9 +44,9 @@
   "project-2-description": "Yoga holidays è un sito per viaggi a Corfu. I loro pacchetti vacanza danno l'opportunità di ritrovarti sul tappetino da yoga circondato da un paesaggio mozzafiato.",
   "project-3-title": "Kaire Automation",
   "project-3-description": "Kaire automation è una azienda specializzata nella reaizzazione e supervisione di impianti industriali",
-  
+
   "github-button": "Visualizza il codice di questo sito su github",
-  
+
   "how-we-work": "Come lavoriamo",
   "step-1-title": "Obiettivi",
   "step-1-description": "Ti aiutiamo a fissare obiettivi chiari identificando i tuoi problemi e le tue esigenze, definendo ciò che è necessario per risolverli.",
@@ -56,7 +56,7 @@
   "step-3-description": "Iniziamo il processo di sviluppo, assicurandoci di rimanere in contatto con te, per non andare al di fuori di quanto concordato.",
   "step-4-title": "Consegna",
   "step-4-description": "Dopo una risposta finale consegniamo il prodotto finito, rimanendo a disposizione per l'assistenza post vendita.",
-  
+
   "contact-us-title": "Contattaci",
   "contact-us-description": "Siamo qui per te! Hai una domanda? Mettiti in contatto e saremo felici di aiutarti. Compila il nostro form o chiamaci al",
   "name": "Nome",
@@ -70,9 +70,10 @@
   "send": "Invia",
   "message-sent": "Messaggio inviato!",
   "login": "Accedi",
+  "decline": "Rifiuta",
   "accept": "Accetta",
   "cookies": "Questo sito utilizza i cookie per migliorare la tua esperienza.",
-  
+
   "policies": "Policies & Licenze",
   "p-iva": "C.F. e P. Iva 04013210366, PEC",
 
