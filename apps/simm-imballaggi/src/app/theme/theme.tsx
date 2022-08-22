@@ -63,7 +63,10 @@ const normTheme = createTheme({
       styleOverrides: {
         root: {
           border: border,
-          borderRadius: 8
+          borderRadius: 8,
+          "& > .MuiButtonBase-root": {
+            borderRadius: 8,
+          }
         }
       }
     },

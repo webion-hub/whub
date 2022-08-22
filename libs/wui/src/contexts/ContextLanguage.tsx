@@ -42,4 +42,4 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
       {props.children}
     </LanguageContext.Provider>
   )
-} 
+}

@@ -1,4 +1,4 @@
-import { FormValueTypes } from "../abstractions/form/FormValues";
+import { FormValueTypes } from "../abstractions/form/FormInputs";
 import { Validator } from "../abstractions/form/Validator";
 
 export class Validators {

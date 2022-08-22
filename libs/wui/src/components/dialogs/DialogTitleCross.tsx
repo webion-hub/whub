@@ -14,20 +14,18 @@ export const DialogTitleCross = (props: DialogTitleCrossProps) => {
       {...other}
     >
       {props.children}
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseRounded />
-        </IconButton>
-      ) : null}
+      <IconButton
+        aria-label="close"
+        onClick={onClose}
+        sx={{
+          position: 'absolute',
+          right: 8,
+          top: 8,
+          color: (theme) => theme.palette.grey[500],
+        }}
+      >
+        <CloseRounded />
+      </IconButton>
     </DialogTitle>
   )
 }

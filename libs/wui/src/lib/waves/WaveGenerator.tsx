@@ -1,9 +1,5 @@
+import { Coords } from "../../abstractions/coords";
 import { Utils } from "../Utils";
-
-interface Coords {
-  readonly x: number,
-  readonly y: number,
-}
 
 type Vector = Coords
 type WaveOffset = Coords

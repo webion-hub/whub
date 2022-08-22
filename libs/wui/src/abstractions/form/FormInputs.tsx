@@ -1,13 +1,14 @@
 import { Validator } from "./Validator";
 
-export interface FormValue {
+export interface FormInput {
   readonly value: FormValueTypes,
   readonly validators: Validator[],
   readonly isValid?: boolean,
+  readonly disabled?: boolean,
 }
 
-export interface FormValues {
-  [key: string]: FormValue,
+export interface FormInputs {
+  [key: string]: FormInput,
 }
 
 export type FormValueTypes = string | number | boolean

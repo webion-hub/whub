@@ -25,6 +25,7 @@ export default function Home() {
           maxWidth: 600,
           marginLeft: 0,
           marginBlock: 4,
+          paddingInline: { xs: 2, md: 0 },
           justifyContent: { sm: "center", md: "left" },
           width: { xs: "100%", md: "60%" }
         }}
@@ -55,6 +56,7 @@ export default function Home() {
           color="text.secondary"
           sx={{
             maxWidth: 600,
+            marginBottom: 4,
             marginTop: { xs: 2, sm: 2, md: 3 },
             textAlign: { sm: "center", xs: "center", md: "left" },
           }}
@@ -71,9 +73,6 @@ export default function Home() {
             },
             sx: { "& > *": { width: '100%'}},
             spacing: 2,
-          }}
-          sx={{
-            marginTop: 4,
           }}
         >
           <Button

@@ -128,7 +128,9 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
         >
           {props.privacyLink}
         </Link>
-        <>{props.extraText}</>
+        <Typography variant="caption">
+          {props.extraText}
+        </Typography>
         <Link
           sx={{ marginLeft: 1 }}
           color="inherit"
