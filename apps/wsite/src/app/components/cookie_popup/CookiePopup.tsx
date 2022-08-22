@@ -54,10 +54,10 @@ export default function CookiePopup() {
       <Button
         onClick={handleClose}
         color="inherit"
-        variant="text"
         size="small"
+        sx={{ transform: 'scale(0.8)' }}
       >
-        {t("close")}
+        {t("decline")}
       </Button>
       <Button
         onClick={handleClick}
@@ -68,7 +68,6 @@ export default function CookiePopup() {
         {t("accept")}
       </Button>
     </Stack>
-
   )
 
   return (
@@ -83,7 +82,8 @@ export default function CookiePopup() {
       <SnackbarContent
         sx={{
           backgroundColor: "background.paper",
-          color: "white"
+          color: "white",
+          flexDirection: 'column'
         }}
         action={action}
         message={

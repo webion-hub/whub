@@ -25,6 +25,7 @@ export const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>((props
       height={props.height}
     >
       <Img 
+        alt="Service image"
         src={props.src} 
         sx={{ height: 100 }}
       />

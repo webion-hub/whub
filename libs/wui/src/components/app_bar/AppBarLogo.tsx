@@ -1,7 +1,10 @@
-import { Button, useTheme } from "@mui/material"
+import { Button, SxProps, Theme, Typography, useTheme } from "@mui/material"
+import { MaybeShow } from "../conditional_components/MaybeShow"
 import { Img } from "../Img"
 
 export interface AppBarLogoProps {
+  readonly sx?: SxProps<Theme>,
+  readonly label?: string,
   readonly src: string,
   readonly href?: string,
   readonly onClick?: React.MouseEventHandler<HTMLButtonElement>
@@ -33,8 +36,20 @@ export function AppBarLogo(props: AppBarLogoProps) {
             ${appbarPadding} -
             ${appbarPadding}
           )`,
+          ...props.sx
         }}
       />
+      <MaybeShow
+        show={!!props.label}
+      >
+        <Typography
+          color="textPrimary"
+          sx={{ paddingLeft: 1 }}
+          variant="h5"
+        >
+          {props.label}
+        </Typography>
+      </MaybeShow>
     </Button>
   )
 }

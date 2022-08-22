@@ -11,7 +11,6 @@ export const Sections = React.forwardRef<HTMLDivElement, BaseProps>((props, ref)
       ref={ref}
       sx={{
         width: "100%",
-        marginTop: theme.mixins.toolbar.height + 'px',
         "& > section::before": {
           display: "block",
           content: "''",

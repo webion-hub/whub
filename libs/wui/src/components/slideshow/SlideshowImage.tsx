@@ -8,6 +8,7 @@ export interface SlideshowImageProps {
 export function SlideshowImage(props: SlideshowImageProps) {
   return (
     <Img
+      alt="website image"
       draggable="false"
       src={props.img}
       width="100%"

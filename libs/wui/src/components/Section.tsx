@@ -1,4 +1,5 @@
-import { styled, Theme, SxProps } from "@mui/system";
+import { Theme, SxProps } from "@mui/system";
+import { styled } from "@mui/material";
 import { ChildrenProp } from "../abstractions/props/ChildrenProps";
 
 const StyledSection = styled('section')(({theme}) => ({
@@ -26,7 +27,6 @@ export interface SectionProps {
 }
 
 export function Section(props: SectionProps) {
-
   const background: SxProps<Theme> = {
     "&::after": {
       ...props.backgroundSx,
@@ -48,7 +48,7 @@ export function Section(props: SectionProps) {
     <StyledSection
       id={props.id}
       sx={{
-        maxWidth: props.maxWidth,
+        maxWidth: theme => props.maxWidth ?? theme.layoutMaxWidth?.section,
         ...backgroundSx,
         ...props.sx,
       }}
@@ -56,8 +56,4 @@ export function Section(props: SectionProps) {
       {props.children}
     </StyledSection>
   )
-}
-
-Section.defaultProps = {
-  maxWidth: 1600,
 }

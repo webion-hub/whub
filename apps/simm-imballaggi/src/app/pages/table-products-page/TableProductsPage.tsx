@@ -1,8 +1,7 @@
 import { AddRounded } from "@mui/icons-material";
-import { Autocomplete, Button, Dialog, DialogActions, DialogContent, Divider, Stack, TextField, Theme, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Autocomplete, Button, Dialog, DialogActions, DialogContent, Divider, Stack, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { DialogTitleCross, Page, SquareAddAttachment, SquareAddImage, SquareContainer, SquareImageContainer, SquaresGrid, TextEditor, Utils } from "@whub/wui";
-import { useEffect, useRef, useState } from "react";
-import ReactQuill from 'react-quill';
+import { useState } from "react";
 import 'react-quill/dist/quill.snow.css';
 
 export function TableProductsPage() {

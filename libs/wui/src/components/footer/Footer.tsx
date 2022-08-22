@@ -7,7 +7,6 @@ const StyledFooter = styled('footer')({})
 
 export interface FoooterProps {
   readonly children: ChildrenProp,
-  readonly maxWidth?: number | string;
 }
 
 export const Footer = React.forwardRef<HTMLDivElement, FoooterProps>((props, ref) => {
@@ -27,7 +26,7 @@ export const Footer = React.forwardRef<HTMLDivElement, FoooterProps>((props, ref
         direction="column"
         sx={{
           width: '100%',
-          maxWidth: props.maxWidth,
+          maxWidth: theme => theme.layoutMaxWidth?.footer,
           margin: '0 auto'
         }}
       >
@@ -36,7 +35,3 @@ export const Footer = React.forwardRef<HTMLDivElement, FoooterProps>((props, ref
     </StyledFooter>
   );
 });
-
-Footer.defaultProps = {
-  maxWidth: 1270
-}

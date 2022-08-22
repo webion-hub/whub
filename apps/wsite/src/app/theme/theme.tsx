@@ -34,6 +34,16 @@ const theme = createTheme({
       main: "#999999",
     },
   },
+  layoutMaxWidth: {
+    appbar: 1200,
+    footer: 1270,
+    section: 1600,
+  },
+  mixins: {
+    toolbar: {
+      height: 64,
+    }
+  },
   typography: {
     fontFamily: [fontFamily, "sans-serif"].join(','),
     h1: { fontSize: "80px" },
@@ -90,6 +100,7 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
+          boxShadow: 'none',
           borderRadius: 0,
         }
       }

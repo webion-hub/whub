@@ -1,4 +1,4 @@
-import { ChildrenProps, FlagLanguageDropdown, Footer, FooterBottomLabel, FooterColumn, FooterContent, FooterRow, Img, LanguageDropdownButton } from "@whub/wui";
+import { ChildrenProps, FlagLanguageDropdown, Footer, FooterBottomLabel, FooterColumn, FooterContent, FooterRow, Img } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 import { Grid, IconButton, Link, LinkProps, Stack, Typography, TypographyProps, useMediaQuery, useTheme } from "@mui/material";
 import { Facebook, YouTube } from "@mui/icons-material";
@@ -47,9 +47,9 @@ const LinksFooterColumn = (props: ChildrenProps) => {
 }
 
 export default function SimmFooter() {
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
   return(
-    <Footer maxWidth={1600}>
+    <Footer>
       <FooterContent>
         <FooterColumn
           width="40%"

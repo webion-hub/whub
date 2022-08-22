@@ -28,10 +28,14 @@ const normTheme = createTheme({
       default: border,
     }
   },
+  layoutMaxWidth: {
+    appbar: 1400,
+    footer: 1400,
+    section: 1400,
+  },
   mixins: {
     toolbar: {
       height: 64,
-      maxWidth: 1600,
     }
   },
   typography: {

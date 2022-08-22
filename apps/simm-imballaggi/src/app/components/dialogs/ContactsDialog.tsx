@@ -5,7 +5,7 @@ import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import { api } from '@whub/api';
 import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, useBackgroundWaves, Validators } from '@whub/wui';
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { LoadingButton } from '@mui/lab';
 
@@ -107,6 +107,7 @@ export default function ContactsDialog(props: DialogBase) {
             sx={{
               marginBottom: {xs: 4, md: 0},
               height: '100%',
+              zIndex: 1,
             }}
           >
             <Typography

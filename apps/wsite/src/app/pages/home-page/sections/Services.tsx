@@ -6,9 +6,9 @@ export default function Services() {
   const { t } = useTranslation();
 
   return (
-    <Box sx={{ 
+    <Box sx={{
       marginTop: 5,
-      marginInline: 'auto', 
+      marginInline: 'auto',
       width: "95%",
     }}>
       <Typography
@@ -21,6 +21,9 @@ export default function Services() {
       <ResponserGrid
         type="upper"
         size="md"
+        GridProps={{
+          flexWrap: 'wrap'
+        }}
         sx={{
           justifyContent: "center",
           width: "fit-content",
@@ -29,7 +32,7 @@ export default function Services() {
           alignItems: "center",
           marginInline: 'auto',
           marginBlock: 6,
-          "& > *": {margin: 1}, 
+          "& > *": {margin: 1},
         }}
       >
         <ImageCard
@@ -60,7 +63,7 @@ export default function Services() {
           href="/#contacts"
           size="large"
           onClick={() => (window.location.href = "/#contacts")}
-          sx={{ 
+          sx={{
             textTransform: 'none',
             textAlign: "center",
           }}
