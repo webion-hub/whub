@@ -15,6 +15,7 @@ import globalStyle from './theme/globalStyle';
 import PoliciesAndLicensesPage from './pages/policies-licenses-page/PoliciesAndLicensesPage';
 import { useState } from "react";
 import { Language, LanguageWrapper, MaybeShow } from "@whub/wui";
+import LandingPage from "./pages/landing-page/LandingPage";
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -59,6 +60,7 @@ export function App() {
             <Layout>
               <Routes>
                 <Route key="home" path="/"  element={<Homepage/>}/>
+                <Route key="call" path="/call"  element={<LandingPage/>}/>
                 <Route key="policies" path="/policies-licenses" element={<PoliciesAndLicensesPage/>}/>
                 <Route key="all" path="/*" element={<Homepage/>}/>
               </Routes>
