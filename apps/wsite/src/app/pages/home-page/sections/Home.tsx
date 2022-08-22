@@ -71,7 +71,7 @@ export default function Home() {
               xs: "center",
               md: "space-between"
             },
-            sx: { "& > *": { width: '100%'}},
+            sx: { "& > *": { width: {xs: '100%', md: '50%'}}},
             spacing: 2,
           }}
         >
@@ -85,16 +85,7 @@ export default function Home() {
           >
             {t("contact-us-button")}
           </Button>
-          <Button
-            size="large"
-            color="secondary"
-            variant="contained"
-            href="/#about-us"
-            onClick={() => window.location.href = "/#about-us"}
-            sx={{paddingBlock: 2}}
-          >
-            {t("main-button")}
-          </Button>
+
 
         </ResponserGrid>
       </Box>
