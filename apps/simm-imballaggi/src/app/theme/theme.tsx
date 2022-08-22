@@ -77,8 +77,7 @@ const normTheme = createTheme({
     MuiCardContent: {
       styleOverrides: {
         root: {
-          boxShadow: '0px -3px 4px -2px #e0e0e0',
-          borderTop: border
+          borderInline: border
         }
       }
     },

@@ -21,11 +21,12 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
   return (
     <Card
       ref={ref}
-      sx={{ maxWidth: 350 }}
+      sx={{ display: 'flex' }}
     >
       <CardMedia
         component="img"
         sx={{
+          width: 150,
           padding: 2,
           background: '#fff',
           aspectRatio: 1
@@ -60,7 +61,7 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           variant='text'
-          sx={{width: "100%"}}
+          sx={{height: '100%'}}
           endIcon={
             hover
               ? <KeyboardDoubleArrowRightRoundedIcon/>
