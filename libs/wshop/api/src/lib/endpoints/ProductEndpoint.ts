@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { Product } from "../model/product";
-import { UpdateProductRequest } from "../requests/update-product-request";
+import { UpdateProductRequest } from "../requests/UpdateProductRequest";
 import { ProductImagesEndpoint } from "./ProductImagesEndpoint";
 
 export class ProductEndpoint {

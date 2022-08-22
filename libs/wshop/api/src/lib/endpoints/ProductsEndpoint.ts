@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { Product } from "../model/product";
-import { UpdateProductRequest } from "../requests/update-product-request";
+import { UpdateProductRequest } from "../requests/UpdateProductRequest";
 import { ProductEndpoint } from "./ProductEndpoint";
 
 export class ProductsEndpoint {
@@ -19,6 +19,6 @@ export class ProductsEndpoint {
   }
 
   list() {
-    return this.client.get<Product>(this.url);
+    return this.client.get<Product[]>(this.url);
   }
 }

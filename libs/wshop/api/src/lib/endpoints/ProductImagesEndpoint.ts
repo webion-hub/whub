@@ -1,5 +1,4 @@
 import { AxiosInstance } from "axios";
-import { Blob } from "buffer";
 import { Image } from "../model/image";
 import { ProductImageEndpoint } from "./ProductImageEndpoint";
 
