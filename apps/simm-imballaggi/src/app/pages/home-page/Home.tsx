@@ -16,84 +16,86 @@ export default function Home() {
       GridProps={{
         spacing: {xs: 1, md: 6},
         padding: 2,
+        height: 920,
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
       }}
     >
-      <Grid
-        container
-        component={Paper}
-        direction="column"
-        sx={{
-          padding: 4,
-          position: 'relative',
-          overflow: 'hidden',
-          "& > *": { zIndex: 1 },
-          "&::before": {
-            content: "''",
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            opacity: 0.2,
-            top: 0,
-            left: 0,
-            zIndex: 0,
-            transform: 'rotate(180deg)',
-            ...waves,
-          }
-        }}
-        width="auto"
+      <Stack
+        direction="row"
       >
-
-        <Typography
-          variant="h6"
-          textAlign={{xs: 'center', md: 'left'}}
-          sx={{marginTop: 4}}
-        >
-          {t("hero-description")}
-        </Typography>
-        <Stack
-          direction="column"
-          justifyContent="flex-start"
-          spacing={2}
+        <Box
           sx={{
-            marginTop: 4,
+            //background: 'url(assets/images/homepageImage.png)',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            width: '100%',
           }}
         >
-          <HomeCard
-            title={t("materials-card-title")}
-            text={t("materials-description")}
-            img="/assets/images/firstCard.png"
-            buttonText={t("see")}
-          />
-          <HomeCard
-            title={t("machines-card-title")}
-            text={t("machines-description")}
-            img="/assets/images/secondCard.png"
-            buttonText={t("see")}
-          />
-        </Stack>
-      </Grid>
-      <Box
-        sx={{
-          //background: 'url(assets/images/homepageImage.png)',
-          backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          width: '100%',
-          height: { xs: 56, md: 920}
-        }}
-      >
-                <Typography
-          variant="h4"
-          textAlign={{xs: 'center', md: 'left'}}
+                  <Typography
+            variant="h4"
+            textAlign={{xs: 'center', md: 'left'}}
+          >
+            <strong>
+            {t("hero-title")}
+            </strong>
+          </Typography>
+        </Box>
+        <Grid
+          container
+          component={Paper}
+          direction="column"
+          sx={{
+            padding: 4,
+            position: 'relative',
+            overflow: 'hidden',
+            "& > *": { zIndex: 1 },
+            "&::before": {
+              content: "''",
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              opacity: 0.2,
+              top: 0,
+              left: 0,
+              zIndex: 0,
+              transform: 'rotate(180deg)',
+              ...waves,
+            }
+          }}
+          width="auto"
         >
-          <strong>
-          {t("hero-title")}
-          </strong>
-        </Typography>
-      </Box>
+          <Typography
+            variant="h6"
+            textAlign={{xs: 'center', md: 'left'}}
+          >
+            {t("hero-description")}
+          </Typography>
+          <Stack
+            direction="column"
+            justifyContent="flex-start"
+            spacing={2}
+            sx={{
+              marginTop: 4,
+            }}
+          >
+            <HomeCard
+              title={t("materials-card-title")}
+              text={t("materials-description")}
+              img="/assets/images/firstCard.png"
+              buttonText={t("see")}
+            />
+            <HomeCard
+              title={t("machines-card-title")}
+              text={t("machines-description")}
+              img="/assets/images/secondCard.png"
+              buttonText={t("see")}
+            />
+          </Stack>
+        </Grid>
+      </Stack>
     </ResponserGrid>
   )
 }
