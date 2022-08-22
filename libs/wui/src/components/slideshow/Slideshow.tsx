@@ -118,6 +118,7 @@ export function Slideshow(props: SlideshowProps) {
             <IconButton
               onClick={() => handleScroll(true)}
               sx={{
+                width: 40,
                 marginBlock: "auto",
                 marginInline: 0,
               }}
@@ -129,6 +130,7 @@ export function Slideshow(props: SlideshowProps) {
             <IconButton
               onClick={() => handleScroll()}
               sx={{
+                width: 40,
                 marginBlock: "auto",
                 marginInline: 0,
               }}
