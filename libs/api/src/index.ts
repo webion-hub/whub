@@ -9,7 +9,14 @@ export * from "./lib/status-code";
 export * from "./lib/config";
 export * from "./lib/requests/ContactUsRequest";
 export * from "./lib/requests/CreateCustomerRequest";
-export * from "./lib/requests/UpdateCustomerRequest";
+export * from "./lib/requests/CreateCustomerRequest";
+
+export * from "./lib/api-base";
+export * from "./lib/settings/api-config";
+
+export * from "./lib/ApiContext";
+
+export { useApi } from './lib/ApiContext';
 
 export const api = {
   contactUs: ContactUsEndpoint,

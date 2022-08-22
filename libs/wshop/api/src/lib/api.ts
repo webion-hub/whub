@@ -1,15 +1,10 @@
-import axios, { AxiosInstance } from "axios";
 import { ProductsEndpoint } from "./endpoints/ProductsEndpoint";
-import { ApiConfig } from "./settings/api-config";
 import {CategoriesEndpoint} from "./endpoints/CategoriesEndpoint";
+import { ApiBase, ApiConfig } from "@whub/api";
 
-export class WShopApi {
-  private readonly client: AxiosInstance;
-
+export class WShopApi extends ApiBase {
   constructor(config: ApiConfig) {
-    this.client = axios.create({
-      baseURL: config.baseUrl,
-    });
+    super(config)
   }
 
   get products() {
