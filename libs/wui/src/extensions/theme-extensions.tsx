@@ -9,6 +9,12 @@ interface TypeLayout {
   readonly footer: string,
 }
 
+interface TypeLayoutMaxWidth {
+  readonly appbar: number,
+  readonly footer: number,
+  readonly section: number,
+}
+
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
     readonly secondaryBackground?: Palette['background'];
@@ -20,5 +26,15 @@ declare module "@mui/material/styles/createPalette" {
     readonly secondaryBackground?: PaletteOptions['background'];
     readonly layout?: Partial<TypeLayout>;
     readonly border?: Partial<TypeBorder>;
+  }
+}
+
+declare module "@mui/material/styles" {
+  interface Theme {
+    readonly layoutMaxWidth?: TypeLayoutMaxWidth;
+  }
+
+  interface ThemeOptions {
+    readonly layoutMaxWidth?: Partial<TypeLayoutMaxWidth>;
   }
 }

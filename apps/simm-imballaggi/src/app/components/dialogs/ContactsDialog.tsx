@@ -107,6 +107,7 @@ export default function ContactsDialog(props: DialogBase) {
             sx={{
               marginBottom: {xs: 4, md: 0},
               height: '100%',
+              zIndex: 1,
             }}
           >
             <Typography

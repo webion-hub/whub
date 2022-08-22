@@ -20,7 +20,7 @@ export default function Homepage() {
               position: 'absolute',
               width: '100vw',
               height: '100%',
-              opacity: 0.15,
+              opacity: 0.1,
               top: 0,
               zIndex: 0,
               transform: 'rotate(0deg) ',

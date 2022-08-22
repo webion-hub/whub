@@ -47,9 +47,9 @@ const LinksFooterColumn = (props: ChildrenProps) => {
 }
 
 export default function SimmFooter() {
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
   return(
-    <Footer maxWidth={1600}>
+    <Footer>
       <FooterContent>
         <FooterColumn
           width="40%"

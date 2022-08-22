@@ -34,10 +34,14 @@ const theme = createTheme({
       main: "#999999",
     },
   },
+  layoutMaxWidth: {
+    appbar: 1200,
+    footer: 1270,
+    section: 1600,
+  },
   mixins: {
     toolbar: {
       height: 64,
-      maxWidth: 1200,
     }
   },
   typography: {

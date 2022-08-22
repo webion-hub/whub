@@ -17,6 +17,7 @@ export const AppBar = React.forwardRef<HTMLDivElement, BaseProps>((props, ref) =
         sx={{
           width: '100%',
           margin: 'auto',
+          maxWidth: theme => theme.layoutMaxWidth?.appbar ?? 'auto'
         }}
       >
         {props.children}
