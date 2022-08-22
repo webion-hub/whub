@@ -88,7 +88,7 @@ const normTheme = createTheme({
           borderBottom: border,
         },
         groupLabel: {
-          background: alpha('#000', 0.05),
+          background: '#f1f2f2',
         },
         paper: {
           borderTopRightRadius: '0px !important',
