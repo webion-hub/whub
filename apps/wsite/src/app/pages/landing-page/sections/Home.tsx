@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { ResponserGrid } from "@whub/wui";
 import { useTranslation } from "react-i18next";
+import ContactHome from "./ContactHome";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -8,26 +9,28 @@ export default function Home() {
   return (
     <ResponserGrid
       type="upper"
+      invert
       size="md"
       reverse="column"
       sx={{
         marginInline: 'auto',
         maxWidth: 1170,
         width: "100%",
-        minHeight: "800px",
+        minHeight: "470px",
         justifyContent: "space-between",
         alignItems: "center",
+        display: "flex",
+        flexDirection: "row",
         paddingInline:{xs: 0.3, sm: 2},
       }}
       >
       <Box
         sx={{
-          maxWidth: 600,
+          maxWidth: "100%",
           marginLeft: 0,
           marginBlock: 4,
           paddingInline: { xs: 2, md: 0 },
           justifyContent:"center",
-          width: "700px",
         }}
       >
         <Typography
@@ -66,9 +69,10 @@ export default function Home() {
             spacing: 2,
           }}
         >
-
-
         </ResponserGrid>
+      </Box>
+      <Box>
+        <ContactHome></ContactHome>
       </Box>
     </ResponserGrid>
   );

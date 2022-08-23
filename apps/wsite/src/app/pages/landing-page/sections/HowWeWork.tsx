@@ -34,6 +34,7 @@ export default function HowWeWork() {
           width: "100%",
           maxWidth: "100%",
           zIndex: 2,
+          backgroundColor: "black",
         }}
       >
         <Typography
@@ -64,24 +65,28 @@ export default function HowWeWork() {
             title={t("step-1-title")}
             paragraph={t("step-1-description")}
             number={1}
+            sx={{backgroundColor: "#141414"}}
           />
           <HowWeWorkCard
             Icon={BrushRoundedIcon}
             title={t("step-2-title")}
             paragraph={t("step-2-description")}
             number={2}
+            sx={{backgroundColor: "#141414"}}
           />
           <HowWeWorkCard
             Icon={CodeRoundedIcon}
             title={t("step-3-title")}
             paragraph={t("step-3-description")}
             number={3}
+            sx={{backgroundColor: "#141414"}}
           />
           <HowWeWorkCard
             Icon={CheckCircleRoundedIcon}
             title={t("step-4-title")}
             paragraph={t("step-4-description")}
             number={4}
+            sx={{backgroundColor: "#141414"}}
           />
         </ResponserGrid>
       </Box>
@@ -94,32 +99,6 @@ export default function HowWeWork() {
           zIndex: 0,
         }}
       >
-        <Parallax
-          sx={{
-            background: theme => `linear-gradient(0deg,
-              ${theme.palette['secondaryBackground'].default} 0%,
-              ${theme.palette['secondaryBackground'].default} 5%,
-              rgba(0,0,0,0) 10%,
-              rgba(0,0,0,0) 90%,
-              ${theme.palette['secondaryBackground'].default} 95%,
-              ${theme.palette['secondaryBackground'].default} 100%
-            )`
-          }}
-        >
-          <RandomTextBackground
-            textsNum={10}
-            texts={[
-              {
-                text: 'webion',
-                probability: 0.9,
-              },
-              {
-                text: 'console.log(webion)',
-                probability: 0.1,
-              },
-            ]}
-          />
-        </Parallax>
       </Box>
     </>
   );

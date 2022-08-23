@@ -48,36 +48,6 @@ export default function AIDA() {
           zIndex: 0,
         }}
       >
-        <Parallax
-          sx={{
-            background: theme => `linear-gradient(0deg,
-              ${theme.palette['background'].default} 0%,
-              ${theme.palette['background'].default} 5%,
-              rgba(0,0,0,0) 10%,
-              rgba(0,0,0,0) 90%,
-              ${theme.palette['background'].default} 95%,
-              ${theme.palette['background'].default} 100%
-            )`
-          }}
-        >
-          <RandomTextBackground
-            textsNum={60}
-            texts={[
-              {
-                text: '1',
-                probability: 0.45,
-              },
-              {
-                text: '0',
-                probability: 0.45,
-              },
-              {
-                text: 'w',
-                probability: 0.1,
-              }
-            ]}
-          />
-        </Parallax>
       </Box>
     </>
   );

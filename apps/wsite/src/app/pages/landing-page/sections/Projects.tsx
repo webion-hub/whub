@@ -24,7 +24,7 @@ export default function Projects() {
   ]
 
   return (
-    <Box sx={{ height: "fit-content" }}>
+    <Box sx={{ height: "fit-content", }}>
       <Typography
         variant="h2"
         textAlign="center"
