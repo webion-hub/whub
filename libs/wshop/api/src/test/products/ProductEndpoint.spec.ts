@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { api } from "../api"
-import { fakeUpdateProductRequest } from "../fakers/product";
+import { fakeUpdateProductRequest } from "../fakers/FakeProduct";
 
 const createProduct = async () => {
   const created = await api.products.create({
