@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Product endpoint Should delete a product 1`] = `
+Object {
+  "config": Object {
+    "adapter": [Function],
+    "baseURL": "http://localhost:5003",
+    "data": undefined,
+    "env": Object {
+      "FormData": [Function],
+    },
+    "headers": Object {
+      "Accept": "application/json, text/plain, */*",
+    },
+    "maxBodyLength": -1,
+    "maxContentLength": -1,
+    "method": "delete",
+    "timeout": 0,
+    "transformRequest": Array [
+      [Function],
+    ],
+    "transformResponse": Array [
+      [Function],
+    ],
+    "transitional": Object {
+      "clarifyTimeoutError": false,
+      "forcedJSONParsing": true,
+      "silentJSONParsing": true,
+    },
+    "url": "shop/products/9",
+    "validateStatus": [Function],
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+  },
+  "data": "",
+  "headers": Object {
+    "content-length": "0",
+  },
+  "request": XMLHttpRequest {},
+  "status": 200,
+  "statusText": "OK",
+}
+`;
+
+exports[`Product endpoint Should get a product 1`] = `
+Object {
+  "config": Object {
+    "adapter": [Function],
+    "baseURL": "http://localhost:5003",
+    "data": undefined,
+    "env": Object {
+      "FormData": [Function],
+    },
+    "headers": Object {
+      "Accept": "application/json, text/plain, */*",
+    },
+    "maxBodyLength": -1,
+    "maxContentLength": -1,
+    "method": "get",
+    "timeout": 0,
+    "transformRequest": Array [
+      [Function],
+    ],
+    "transformResponse": Array [
+      [Function],
+    ],
+    "transitional": Object {
+      "clarifyTimeoutError": false,
+      "forcedJSONParsing": true,
+      "silentJSONParsing": true,
+    },
+    "url": "shop/products/1",
+    "validateStatus": [Function],
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+  },
+  "data": Object {
+    "attachments": Array [],
+    "category": null,
+    "code": "5zxqb",
+    "createdAt": "0001-01-01T00:00:00",
+    "description": null,
+    "details": Array [],
+    "id": 1,
+    "images": Array [],
+    "lastUpdatedAt": "0001-01-01T00:00:00",
+    "mainVariant": null,
+    "name": "Pants",
+    "price": null,
+    "producer": null,
+    "rating": null,
+    "relatedProducts": Array [],
+    "tags": Array [],
+    "variants": Array [],
+  },
+  "headers": Object {
+    "content-type": "application/json; charset=utf-8",
+  },
+  "request": XMLHttpRequest {},
+  "status": 200,
+  "statusText": "OK",
+}
+`;
+
+exports[`Product endpoint Should update a product 1`] = `
+Object {
+  "config": Object {
+    "adapter": [Function],
+    "baseURL": "http://localhost:5003",
+    "data": "{\\"name\\":\\"Tuna\\",\\"code\\":\\"e8hvum\\"}",
+    "env": Object {
+      "FormData": [Function],
+    },
+    "headers": Object {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    "maxBodyLength": -1,
+    "maxContentLength": -1,
+    "method": "put",
+    "timeout": 0,
+    "transformRequest": Array [
+      [Function],
+    ],
+    "transformResponse": Array [
+      [Function],
+    ],
+    "transitional": Object {
+      "clarifyTimeoutError": false,
+      "forcedJSONParsing": true,
+      "silentJSONParsing": true,
+    },
+    "url": "shop/products/8",
+    "validateStatus": [Function],
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+  },
+  "data": "",
+  "headers": Object {
+    "content-length": "0",
+  },
+  "request": XMLHttpRequest {},
+  "status": 200,
+  "statusText": "OK",
+}
+`;
