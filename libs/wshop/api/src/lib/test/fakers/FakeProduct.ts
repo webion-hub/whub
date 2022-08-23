@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { UpdateProductRequest } from "../../lib/requests/UpdateProductRequest";
+import { UpdateProductRequest } from "../../requests/UpdateProductRequest";
 
 export const fakeUpdateProductRequest = () => ({
   name: faker.commerce.product(),
