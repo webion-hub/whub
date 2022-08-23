@@ -1,13 +1,12 @@
-import ContactUsRequest from "../requests/ContactUsRequest";
-import axios from 'axios';
-import { config } from "../config";
+import { ContactUsRequest } from "../requests/ContactUsRequest";
+import { Endpoint } from "@whub/apis/core";
 
-export default class ContactUsEndpoint {
-  private static readonly client = axios.create({
-    baseURL: `${config.baseUrl}/contactus`,
-  });
+export class ContactUsEndpoint extends Endpoint {
+  get url() {
+    return '';
+  }
 
-  static process(request: ContactUsRequest) {
+  process(request: ContactUsRequest) {
     return this.client.post<void>('', request);
   }
 }

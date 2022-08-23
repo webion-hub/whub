@@ -1,4 +1,4 @@
-import ContactInformation from "../model/contact-information";
+import { ContactInformation } from "../model/ContactInformation";
 
 export interface CreateCustomerRequest {
   readonly name: string;

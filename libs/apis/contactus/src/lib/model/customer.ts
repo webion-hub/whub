@@ -1,6 +1,6 @@
-import ContactInformation from "./contact-information";
+import { ContactInformation } from "./ContactInformation";
 
-export default interface Customer {
+export interface Customer {
   readonly id: number;
   readonly name: string;
   readonly surname: string;

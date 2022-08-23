@@ -1,4 +1,4 @@
-export default interface ContactUsRequest {
+export interface ContactUsRequest {
   readonly name: string;
   readonly surname: string;
   readonly email: string;

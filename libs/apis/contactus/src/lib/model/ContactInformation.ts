@@ -1,4 +1,4 @@
-export default interface ContactInformation {
+export interface ContactInformation {
   readonly city?: string;
   readonly streetAddress?: string;
   readonly postalCode?: string;

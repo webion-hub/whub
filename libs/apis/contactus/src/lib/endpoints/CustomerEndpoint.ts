@@ -1,33 +1,36 @@
-import axios from "axios";
-import { config } from "../config";
-import ContactInformation from "../model/contact-information";
-import Customer from "../model/customer";
+import { Endpoint } from "@whub/apis/core";
+import { AxiosInstance } from "axios";
 import { UpdateCustomerRequest } from "../requests/UpdateCustomerRequest";
+import { ContactInformation } from "../model/ContactInformation";
+import { Customer } from "../model/Customer";
 
-export default class CustomerEndpoint {
-  private readonly client = axios.create({
-    baseURL: `${config.baseUrl}/customers/${this.id}`,
-    withCredentials: true,
-  });
-
+export class CustomerEndpoint extends Endpoint {
   constructor (
-    private readonly id: number
-  ) {}
+    client: AxiosInstance,
+    private readonly id: number,
+  ) {
+    super(client);
+  }
+
+
+  get url() {
+    return `customers/${this.id}`;
+  }
 
 
   load() {
-    return this.client.get<Customer>('');
+    return this.client.get<Customer>(this.url);
   }
 
   update(request: UpdateCustomerRequest) {
-    return this.client.put<void>('', request);
+    return this.client.put<void>(this.url, request);
   }
 
   updateContactInformation(contactInfo: ContactInformation) {
-    return this.client.put<void>('contactinfo', contactInfo);
+    return this.client.put<void>(this.url + 'contactinfo', contactInfo);
   }
 
   delete() {
-    return this.client.delete<void>('');
+    return this.client.delete<void>(this.url);
   }
 }
