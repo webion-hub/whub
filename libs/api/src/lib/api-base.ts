@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import { ApiConfig } from "./settings/api-config";
 
-export class ApiBase {
+export abstract class ApiBase {
   protected readonly client: AxiosInstance;
 
   constructor(config: ApiConfig) {

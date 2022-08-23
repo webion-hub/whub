@@ -16,8 +16,6 @@ export * from "./lib/settings/api-config";
 
 export * from "./lib/ApiContext";
 
-export { useApi } from './lib/ApiContext';
-
 export const api = {
   contactUs: ContactUsEndpoint,
   customers: CustomersEndpoint,

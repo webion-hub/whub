@@ -1,21 +1,28 @@
 import { AxiosInstance } from "axios";
+import { Endpoint } from "../abstractions/Endpoint";
 import { Product } from "../model/product";
 import { UpdateProductRequest } from "../requests/UpdateProductRequest";
+import { ProductDetailsEndpoint } from "./ProductDetailsEndpoint";
 import { ProductImagesEndpoint } from "./ProductImagesEndpoint";
 
-export class ProductEndpoint {
-  private get url() {
+export class ProductEndpoint extends Endpoint {
+  constructor(
+    client: AxiosInstance,
+    private readonly productId: number,
+  ) {
+    super(client);
+  }
+
+  get url() {
     return `shop/products/${this.productId}`;
   }
 
-  constructor (
-    private readonly client: AxiosInstance,
-    private readonly productId: number
-  ) {}
-
-  
   get images() {
     return new ProductImagesEndpoint(this.client, this.productId);
+  }
+
+  get details() {
+    return new ProductDetailsEndpoint(this.client, this.productId);
   }
 
 

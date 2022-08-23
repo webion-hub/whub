@@ -1,11 +1,19 @@
 import {AxiosInstance} from "axios";
+import { Endpoint } from "../abstractions/Endpoint";
 import {UpdateCategoryRequest} from "../requests/UpdateCategoryRequest";
+import { CategoryEndpoint } from "./CategoryEndpoint";
 
-export class CategoriesEndpoint {
-  constructor(private readonly client: AxiosInstance) {}
+export class CategoriesEndpoint extends Endpoint {
+  constructor(client: AxiosInstance) {
+    super(client);
+  }
 
   get url() {
     return 'shop/categories';
+  }
+
+  withId(id: number) {
+    return new CategoryEndpoint(this.client, id);
   }
 
   list() {
