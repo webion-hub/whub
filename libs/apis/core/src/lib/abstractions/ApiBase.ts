@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { ApiConfig } from "./settings/api-config";
+import { ApiConfig } from "../settings/ApiConfig";
 
 export abstract class ApiBase {
   protected readonly client: AxiosInstance;

@@ -2,7 +2,9 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "api": "libs/api",
+    "apis-contactus": "libs/apis/contactus",
+    "apis-core": "libs/apis/core",
+    "apis-react": "libs/apis/react",
     "simm-imballaggi": "apps/simm-imballaggi",
     "simm-imballaggi-e2e": "apps/simm-imballaggi-e2e",
     "wshop-api": "libs/wshop/api",

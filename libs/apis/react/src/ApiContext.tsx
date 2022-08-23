@@ -1,7 +1,6 @@
+import { ApiBase, ApiConfig } from '@whub/apis/core'
 import { useContext } from 'react'
 import { createContext, ReactNode } from "react"
-import { ApiBase } from "./api-base"
-import { ApiConfig } from "./settings/api-config"
 
 export interface IApi {
   readonly api: typeof ApiBase,
