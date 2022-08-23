@@ -14,8 +14,6 @@ export * from "./lib/requests/CreateCustomerRequest";
 export * from "./lib/api-base";
 export * from "./lib/settings/api-config";
 
-export * from "./lib/ApiContext";
-
 export const api = {
   contactUs: ContactUsEndpoint,
   customers: CustomersEndpoint,

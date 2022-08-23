@@ -12,8 +12,8 @@ export class ProductImagesEndpoint extends Endpoint {
   }
 
   get url() {
-    return `shop/products/${this.productId}/images`
-  };
+    return `shop/products/${this.productId}/images`;
+  }
 
 
   withId(imageId: number) {
@@ -25,6 +25,6 @@ export class ProductImagesEndpoint extends Endpoint {
   }
 
   upload(base64Url: string | Blob) {
-    return this.client.post<Image>(this.url, base64Url);
+    return this.client.post<Image>(this.url + `/from_data_url`, base64Url);
   }
 }

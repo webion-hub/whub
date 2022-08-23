@@ -1,5 +1,5 @@
 import { ProductsEndpoint } from "./endpoints/ProductsEndpoint";
-import {CategoriesEndpoint} from "./endpoints/CategoriesEndpoint";
+import { CategoriesEndpoint } from "./endpoints/CategoriesEndpoint";
 import { ApiBase, ApiConfig } from "@whub/api";
 
 export class WShopApi extends ApiBase {
