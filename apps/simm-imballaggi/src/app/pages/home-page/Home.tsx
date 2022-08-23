@@ -6,7 +6,7 @@ import HomeCard from "../../components/cards/HomeCard";
 export default function Home() {
   const { t } = useTranslation();
   const theme = useTheme()
-  const waves = useBackgroundWaves(theme.palette['primary'].dark)
+  const waves = useBackgroundWaves(theme.palette['secondary'].dark)
 
   return (
     <ResponserGrid
@@ -24,31 +24,16 @@ export default function Home() {
     >
       <Stack
         direction="row"
+        alignItems="center"
+        spacing={2}
       >
-        <Box
-          sx={{
-            //background: 'url(assets/images/homepageImage.png)',
-            backgroundPosition: 'center center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            width: '100%',
-          }}
-        >
-                  <Typography
-            variant="h4"
-            textAlign={{xs: 'center', md: 'left'}}
-          >
-            <strong>
-            {t("hero-title")}
-            </strong>
-          </Typography>
-        </Box>
         <Grid
           container
           component={Paper}
           direction="column"
           sx={{
             padding: 4,
+            height: 320,
             position: 'relative',
             overflow: 'hidden',
             "& > *": { zIndex: 1 },
@@ -68,18 +53,35 @@ export default function Home() {
           width="auto"
         >
           <Typography
+            variant="h4"
+            textAlign={{xs: 'center', md: 'left'}}
+          >
+            <strong>
+            {t("hero-title")}
+            </strong>
+          </Typography>
+          <Typography
             variant="h6"
+            sx={{ marginTop: 2 }}
             textAlign={{xs: 'center', md: 'left'}}
           >
             {t("hero-description")}
           </Typography>
+
+        </Grid>
+        <Box
+          sx={{
+            //background: 'url(assets/images/homepageImage.png)',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            width: '100%',
+          }}
+        >
           <Stack
             direction="column"
             justifyContent="flex-start"
             spacing={2}
-            sx={{
-              marginTop: 4,
-            }}
           >
             <HomeCard
               title={t("materials-card-title")}
@@ -94,7 +96,7 @@ export default function Home() {
               buttonText={t("see")}
             />
           </Stack>
-        </Grid>
+        </Box>
       </Stack>
     </ResponserGrid>
   )

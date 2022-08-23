@@ -34,7 +34,10 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
         image={props.img}
       />
       <CardContent
-        sx={{minHeight: 140}}
+        sx={{
+          minHeight: 140,
+          width: '100%'
+        }}
       >
         <Typography
           gutterBottom
