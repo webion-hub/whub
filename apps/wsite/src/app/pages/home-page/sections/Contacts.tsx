@@ -1,4 +1,4 @@
-import { Box, Typography, Link, useTheme } from "@mui/material";
+import { Box, Typography, Link, useTheme, Grid, Stack } from "@mui/material";
 import { api } from "@whub/api";
 import { Form, FormGroup, Img, InputValidator, ResponserGrid, Validators, WuiGrid } from "@whub/wui";
 import { useState } from "react";
@@ -97,8 +97,7 @@ export default function Contacts() {
           />
         </Box>
 
-        <WuiGrid
-          container
+        <Stack
           direction="column"
           spacing={4}
           sx={{ width: { sx: "95%", md: "50%" } }}
@@ -232,7 +231,7 @@ export default function Contacts() {
             </WuiGrid>
 
           </FormGroup>
-        </WuiGrid>
+        </Stack>
       </ResponserGrid>
     </Box>
   );
