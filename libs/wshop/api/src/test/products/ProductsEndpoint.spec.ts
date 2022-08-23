@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { api } from "../api";
 import { fakeUpdateProductRequests } from "../fakers/FakeProduct";
 
-describe('Products endpoint', () => {
+describe.skip('Products endpoint', () => {
   faker.seed(101010);
 
   it('Should create a product', async () => {

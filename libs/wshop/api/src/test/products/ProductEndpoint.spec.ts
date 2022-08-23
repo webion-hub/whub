@@ -12,7 +12,7 @@ const createProduct = async () => {
 }
 
 
-describe('Product endpoint', () => {
+describe.skip('Product endpoint', () => {
   faker.seed(101010);
 
   it('Should get a product', async () => {
