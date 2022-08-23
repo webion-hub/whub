@@ -1,8 +1,8 @@
-import { Category } from "./category";
-import { Image } from "./image";
-import { Producer } from "./producer";
-import { ProductDetail } from "./product-detail";
-import { Tag } from "./tag";
+import { Category } from "./Category";
+import { Image } from "./Image";
+import { Producer } from "./Producer";
+import { ProductDetail } from "./ProductDetail";
+import { Tag } from "./Tag";
 
 export interface Product {
   readonly id: number;

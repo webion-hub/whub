@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { Endpoint } from "../abstractions/Endpoint";
-import { Category } from "../model/category";
+import { Category } from "../model/Category";
 import { UpdateCategoryRequest } from "../requests/UpdateCategoryRequest";
 
 export class CategoryEndpoint extends Endpoint {
@@ -15,7 +15,7 @@ export class CategoryEndpoint extends Endpoint {
     return `shop/categories/${this.categoryId}`;
   }
 
-  
+
   load() {
     return this.client.get<Category>(this.url);
   }

@@ -1,4 +1,4 @@
-import { Image } from "./image";
+import { Image } from "./Image";
 import { Product } from "./product";
 
 export interface Producer {

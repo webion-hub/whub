@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { Endpoint } from "../abstractions/Endpoint";
-import { Image } from "../model/image";
+import { Image } from "../model/Image";
 import { ProductImageEndpoint } from "./ProductImageEndpoint";
 
 export class ProductImagesEndpoint extends Endpoint {
