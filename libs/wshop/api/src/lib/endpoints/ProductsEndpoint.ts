@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { Endpoint } from "../../../../../apis/core/src/lib/abstractions/Endpoint";
+import { Endpoint } from "@whub/apis/core";
 import { Product } from "../model/product";
 import { UpdateProductRequest } from "../requests/UpdateProductRequest";
 import { ProductEndpoint } from "./ProductEndpoint";

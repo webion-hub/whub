@@ -1,5 +1,5 @@
+import { Endpoint } from "@whub/apis/core";
 import {AxiosInstance} from "axios";
-import { Endpoint } from "../../../../../apis/core/src/lib/abstractions/Endpoint";
 import {UpdateCategoryRequest} from "../requests/UpdateCategoryRequest";
 import { CategoryEndpoint } from "./CategoryEndpoint";
 
