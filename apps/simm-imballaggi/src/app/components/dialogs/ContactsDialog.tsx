@@ -3,11 +3,11 @@ import PlaceRoundedIcon from '@mui/icons-material/PlaceRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
-import { api } from '@whub/api';
 import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, useBackgroundWaves, Validators } from '@whub/wui';
 import { useState } from 'react';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { LoadingButton } from '@mui/lab';
+import { useContactUsApi } from '@whub/apis/react';
 
 interface LinkWithIconProps {
   readonly children: string,
@@ -39,6 +39,7 @@ function LinkWithIcon(props: LinkWithIconProps) {
 export default function ContactsDialog(props: DialogBase) {
   const [success, setSuccess] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
+  const contactUsApi = useContactUsApi()
   const theme = useTheme()
   const waves = useBackgroundWaves(theme.palette.secondary.light)
 
@@ -50,10 +51,9 @@ export default function ContactsDialog(props: DialogBase) {
 
     form.disable(true)
     setLoading(true)
-    api.contactUs
+    contactUsApi.contactUs
       .process(form.getValues())
       .then(() => setSuccess(true))
-      .then(() => form.clear())
       .finally(() => setLoading(false))
       .finally(() => form.disable(false))
     };

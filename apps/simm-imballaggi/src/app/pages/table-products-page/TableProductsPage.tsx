@@ -1,6 +1,5 @@
 import { AddRounded } from "@mui/icons-material";
 import { Autocomplete, Button, Dialog, DialogActions, DialogContent, Divider, Stack, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { useApi } from "@whub/api";
 import { DialogTitleCross, Page, SquareAddAttachment, SquareAddImage, SquareContainer, SquareImageContainer, SquaresGrid, TextEditor, Utils } from "@whub/wui";
 import { useState } from "react";
 import 'react-quill/dist/quill.snow.css';

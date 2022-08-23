@@ -1,11 +1,6 @@
-import { ApiBase, ApiConfig } from '@whub/apis/core'
-import { useContext } from 'react'
+import { ContactUsApi } from '@whub/apis/contactus'
+import { WShopApi } from '@whub/wshop-api'
 import { createContext, ReactNode } from "react"
-
-export interface IApi {
-  readonly api: typeof ApiBase,
-  readonly config: ApiConfig,
-}
 
 export interface ApiProps {
   readonly apis: IApiContext,
@@ -13,12 +8,13 @@ export interface ApiProps {
 }
 
 interface IApiContext {
-  readonly [key: string]: ApiBase,
+  readonly contactUs?: ContactUsApi,
+  readonly shop?: WShopApi
 }
 
 export const ApiContext = createContext<IApiContext>({})
 
-export const Api = (props: ApiProps) => {
+export const ApiWrapper = (props: ApiProps) => {
   return (
     <ApiContext.Provider
       value={props.apis}
@@ -26,8 +22,4 @@ export const Api = (props: ApiProps) => {
       {props.children}
     </ApiContext.Provider>
   )
-}
-
-export const useApi = () => {
-  return useContext(ApiContext)
 }

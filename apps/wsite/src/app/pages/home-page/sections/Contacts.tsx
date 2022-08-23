@@ -9,6 +9,7 @@ import PrivacyCheckBox from "../../../components/privacy_checkbox/PrivacyCheckbo
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 import ReactPixel from 'react-facebook-pixel';
+import { useContactUsApi } from "@whub/apis/react";
 
 const TextfieldBase = ({...props}) => {
   const theme = useTheme()
@@ -30,6 +31,7 @@ const TextfieldBase = ({...props}) => {
 export default function Contacts() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const contactUsApi = useContactUsApi()
   const theme = useTheme()
   const borderRadius = theme.spacing(5)
   const textColor = theme.palette.grey[600]
@@ -45,10 +47,9 @@ export default function Contacts() {
 
     setLoading(true)
 
-    api.contactUs
+    contactUsApi.contactUs
       .process(form.getValues())
       .then(() => setSuccess(true))
-      .then(() => form.clear())
       .finally(() => setLoading(false))
   };
 

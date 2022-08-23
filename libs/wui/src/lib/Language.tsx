@@ -1,11 +1,3 @@
-import { FlagComponent } from "country-flag-icons/react/3x2";
-
-interface ILanguage {
-  readonly flag: FlagComponent,
-  readonly lang: string,
-  readonly translation: string,
-}
-
 export type Languages = 'it' | 'en'
 
 export class Language {

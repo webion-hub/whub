@@ -1,3 +1,5 @@
+import { ContactUsApi } from '@whub/apis/contactus';
+import { ApiWrapper } from '@whub/apis/react';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
@@ -15,6 +17,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <App/>
+    <ApiWrapper
+      apis={{
+        contactUs: new ContactUsApi({ baseUrl: 'https://api.webion.it/contactus' })
+      }}
+    >
+      <App />
+    </ApiWrapper>
   </StrictMode>
 );

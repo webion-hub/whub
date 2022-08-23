@@ -1,4 +1,5 @@
-import { Api } from '@whub/api';
+import { ContactUsApi } from '@whub/apis/contactus';
+import { ApiWrapper } from '@whub/apis/react';
 import { WShopApi } from '@whub/wshop-api';
 import { StrictMode,  } from 'react';
 import * as ReactDOM from 'react-dom/client';
@@ -9,12 +10,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <Api
+    <ApiWrapper
       apis={{
-        shop: new WShopApi({ baseUrl: 'https://localhost:7099' })
+        shop: new WShopApi({ baseUrl: 'https://localhost:7099' }),
+        contactUs: new ContactUsApi({ baseUrl: 'https://api.webion.it' })
       }}
     >
       <App />
-    </Api>
+    </ApiWrapper>
   </StrictMode>
 );
