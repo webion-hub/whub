@@ -41,7 +41,7 @@ export default function Home() {
         sx={{
           maxWidth: "100%",
           width: "600px",
-          minHeight: "300px",
+          height: "clamp(300px, calc(95vh - 370px), 7000px)",
           marginLeft: 0,
           marginBlock: 4,
           paddingInline: 3,
@@ -54,24 +54,23 @@ export default function Home() {
           sx={{
             marginLeft: 0,
             fontWeight: "bold",
-            fontSize: {xs: "35px", sm: "45px !important"},
+            fontSize: {xs: "39px", sm: "48px !important"},
             textAlign: { sm: "center", xs: "center", md: "center" },
           }}
         >
-          Siti web personalizzati
+          Creiamo siti web moderni per la tua azienda
         </Typography>
         <Typography
           color="text.secondary"
           sx={{
-            maxWidth: 600,
+            maxWidth: 800,
             marginBottom: 4,
             marginTop: { xs: 2, sm: 2, md: 3 },
-            fontSize: {xs: "15px", sm: "18px !important"},
+            fontSize: {xs: "17px", sm: "20px !important"},
             textAlign: { sm: "center", xs: "center", md: "center" },
           }}
         >
-          Semplifichiamo la vita degli imprenditori fornendo software personalizzato che renderà i loro clienti più felici
-        </Typography>
+Un sito Web che non converte è una perdita di tempo e denaro. Lascia che ti aiutiamo a creare un sito web che non solo abbia un bell'aspetto, ma aiuti anche ad aumentare le tue vendite.        </Typography>
         <ResponserGrid
           type="upper"
           size="sm"

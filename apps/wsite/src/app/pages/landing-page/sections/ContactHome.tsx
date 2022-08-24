@@ -150,7 +150,7 @@ export default function ContactHome() {
                   ReactPixel.track('Contact');
                 }}
               >
-                Ottieni oggi una consulenza gratuita
+                Ottieni oggi una consulenza gratuitass
               </LightModeLoadingButton>
               {/* <Typography
                 color={textColor}
