@@ -22,7 +22,7 @@ export default function LandingPage() {
     return () => {
       layout.setAppBarStatus(true)
       layout.setSidebarStatus(true)
-      layout.setFooterStatus(true)  
+      layout.setFooterStatus(true)
     }
   }, [])
 

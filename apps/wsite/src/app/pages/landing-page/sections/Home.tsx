@@ -1,6 +1,8 @@
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { ResponserGrid } from "@whub/wui";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { interval } from "rxjs";
 import ContactHome from "./ContactHome";
 
 export default function Home() {
@@ -58,7 +60,12 @@ export default function Home() {
             textAlign: { sm: "center", xs: "center", md: "center" },
           }}
         >
-          Creiamo siti web moderni per la tua azienda
+          Creiamo siti web
+          <RotatingText
+            labels={[ 'moderni', 'fieri', 'sus' ]}
+            width={220}
+          />
+          per la tua azienda
         </Typography>
         <Typography
           color="text.secondary"
@@ -97,4 +104,64 @@ Un sito Web che non converte è una perdita di tempo e denaro. Lascia che ti aiu
 
     // </ResponserGrid>
   );
+}
+
+
+interface RotatingTextProps {
+  readonly labels: string[],
+  readonly width: string | number,
+}
+
+function RotatingText(props: RotatingTextProps) {
+  const [index, setIndex] = useState(0)
+  const ref = useRef(0)
+  const duration = 1000
+
+  useEffect(() => {
+    const intervalSub = interval(duration)
+      .subscribe(() => {
+        const newIndex = ref.current + 1
+        ref.current = newIndex > props.labels.length - 1
+          ? 0
+          : newIndex
+        setIndex(ref.current)
+      })
+
+    return () => intervalSub.unsubscribe()
+  }, [])
+
+  return (
+    <Box
+      sx={{
+        width: props.width,
+        display: 'inline-block',
+      }}
+    >
+      <Box
+        sx={{
+          animation: `slide ${duration}ms ease-in-out infinite`,
+          "@keyframes slide": {
+            "0%": {
+              opacity: 0,
+              transform: "translateY(-100%)"
+            },
+            "15%": {
+              opacity: 1,
+              transform: "translateY(0%)"
+            },
+            "85%": {
+              opacity: 1,
+              transform: "translateY(0%)"
+            },
+            "100%": {
+              opacity: 0,
+              transform: "translateY(100%)"
+            }
+          }
+        }}
+      >
+        {` ${props.labels[index]} `}
+      </Box>
+    </Box>
+  )
 }
