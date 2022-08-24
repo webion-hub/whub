@@ -90,7 +90,7 @@ export function TableProductsPage() {
                         backgroundPosition: 'center center',
                         backgroundSize: 'cover',
                         backgroundSiRepeat: 'no-repeat',
-                        backgroundImage: firstImage && `url(${firstImage?.src()})`
+                        backgroundImage: firstImage && `url(${firstImage?.fullUrl})`
                       }}
                     />
                   </Badge>
