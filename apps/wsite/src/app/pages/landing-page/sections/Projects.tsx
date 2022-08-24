@@ -31,7 +31,7 @@ export default function Projects() {
         color="white"
         sx={{ marginBottom: 5 }}
       >
-        {t("projects-title")}
+        Progetti
       </Typography>
       <Slideshow
         imagesProps={slideshowImagesProps}

@@ -59,10 +59,11 @@ export default function LandingPage() {
           position: 'absolute',
           maxWidth: theme => theme.layoutMaxWidth?.section,
           width: '100%',
-          zIndex: 1,
+          zIndex: 3,
           transform: 'translateX(-50%)',
           left: '50%',
           marginTop: 2,
+          paddingLeft: 3,
         }}
       >
         <AppBarLogo
@@ -104,7 +105,7 @@ export default function LandingPage() {
             sx={{ maxWidth: "100%", width: "900px" }}
           >
             <Typography variant="h5" sx={{ textAlign: "center", width: "180px", whiteSpace: "nowrap"}}>
-              Ci hanno scelto
+            {t("chosen-by")}
             </Typography>
             <Stack
               direction="row"
@@ -163,6 +164,9 @@ export default function LandingPage() {
           <Contacts />
         </Section>
       </Sections>
+      <Section
+      showBackground
+      backgroundSx={{ backgroundColor: "black !important" }}>
       <FooterBottomLabel
         TypographyProps={{ variant: "caption" }}
       >
@@ -185,6 +189,8 @@ export default function LandingPage() {
           {"webionsrl@legalmail.it"}
         </Link>
       </FooterBottomLabel>
+      </Section>
+      
     </Page>
   );
 }

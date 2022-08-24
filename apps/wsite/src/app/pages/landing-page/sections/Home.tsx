@@ -61,7 +61,7 @@ export default function Home() {
             fontSize: {xs: "20px", sm: "24px !important"},
           }}
         >
-          Mentre gli altri creano siti web e app
+          {t("landing-page-title")}
         </Typography>
         <Typography
           color="text.primary"
@@ -73,10 +73,10 @@ export default function Home() {
             fontSize: {xs: "35px", sm: "48px !important"},
           }}
         >
-          Noi creiamo
+          {t("landing-page-subtitle-start")}
           <br/>
           <RotatingText
-            labels={[ 'storie', 'risultati', 'soluzioni', 'servizi', 'prodotti' ]}
+            labels={[t("stories"), t("results"), t("solutions"), t("services"),  t("products") ]}
             width={{xs: 160, md: 220}}
             sx={{
               color: 'yellow',
@@ -84,7 +84,7 @@ export default function Home() {
               textAlign: 'end',
             }}
           />
-          digitali di successo
+           {t("landing-page-subtitle-end")}
         </Typography>
         {/* <Typography
           color="text.secondary"
