@@ -7,6 +7,7 @@ export abstract class ApiBase {
   constructor(config: ApiConfig) {
     this.client = axios.create({
       baseURL: config.baseUrl,
+      validateStatus: () => true,
     });
   }
 }
