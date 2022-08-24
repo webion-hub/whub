@@ -4,6 +4,7 @@ import { Img } from "../Img"
 
 export interface AppBarLogoProps {
   readonly sx?: SxProps<Theme>,
+  readonly buttonSx?: SxProps<Theme>,
   readonly label?: string,
   readonly src: string,
   readonly href?: string,
@@ -22,7 +23,8 @@ export function AppBarLogo(props: AppBarLogoProps) {
       sx={{
         padding: btnPadding,
         borderRadius: 1,
-        minWidth: 'auto'
+        minWidth: 'auto',
+        ...props.buttonSx
       }}
     >
       <Img

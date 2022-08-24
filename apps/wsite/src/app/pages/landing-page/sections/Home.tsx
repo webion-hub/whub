@@ -1,6 +1,9 @@
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
-import { ResponserGrid } from "@whub/wui";
+import { Box, Button, Grid, Stack, SxProps, Theme, Typography } from "@mui/material";
+import { ResponsiveStyleValue } from "@mui/system/styleFunctionSx";
+import { AppBarLogo, ResponserGrid, RotatingText } from "@whub/wui";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { interval } from "rxjs";
 import ContactHome from "./ContactHome";
 
 export default function Home() {
@@ -19,7 +22,7 @@ export default function Home() {
     //     justifyContent: "space-between",
     //     alignItems: "center",
     //     display: "flex",
-    //     flexDirection: "row",
+    //     flexDirection: "row"
     //     paddingInline:{xs: 0.3, sm: 2},
     //   }}
     //   >
@@ -37,11 +40,11 @@ export default function Home() {
     >
       <Stack
         direction="column"
-        alignItems="center"
+        alignItems="flex-end"
         sx={{
           maxWidth: "100%",
-          width: "700px",
-          height: "clamp(300px, calc(95vh - 370px), 7000px)",
+          width: "750px",
+          height: "clamp(300px, calc(95vh - 370px), 700px)",
           marginLeft: 0,
           marginBlock: 4,
           paddingInline: 3,
@@ -51,25 +54,37 @@ export default function Home() {
         <Typography
           color="text.primary"
           variant="h4"
+          textAlign="end"
           sx={{
             marginLeft: 0,
             fontWeight: "bold",
-            fontSize: {xs: "39px", sm: "24px !important"},
-            textAlign: { sm: "center", xs: "center", md: "center" },
+            fontSize: {xs: "20px", sm: "24px !important"},
           }}
         >
           Mentre gli altri creano siti web e app
-        </Typography><Typography
+        </Typography>
+        <Typography
           color="text.primary"
           variant="h1"
+          textAlign="end"
           sx={{
             marginLeft: 0,
             fontWeight: "bold",
-            fontSize: {xs: "39px", sm: "48px !important"},
-            textAlign: { sm: "center", xs: "center", md: "center" },
+            fontSize: {xs: "35px", sm: "48px !important"},
           }}
         >
-          Noi creiamo storie digitali di successo
+          Noi creiamo
+          <br/>
+          <RotatingText
+            labels={[ 'storie', 'risultati', 'soluzioni', 'servizi', 'prodotti' ]}
+            width={{xs: 160, md: 220}}
+            sx={{
+              color: 'yellow',
+              marginRight: 1,
+              textAlign: 'end',
+            }}
+          />
+          digitali di successo
         </Typography>
         {/* <Typography
           color="text.secondary"
