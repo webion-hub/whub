@@ -4,6 +4,7 @@ import { Product } from "../model/Product";
 import { UpdateProductRequest } from "../requests/UpdateProductRequest";
 import { ProductDetailsEndpoint } from "./ProductDetailsEndpoint";
 import { ProductImagesEndpoint } from "./ProductImagesEndpoint";
+import { UpdateRelatedProductsRequest } from "../requests/UpdateRelatedProductsRequest";
 
 export class ProductEndpoint extends Endpoint {
   constructor(
@@ -36,5 +37,9 @@ export class ProductEndpoint extends Endpoint {
 
   update(request: UpdateProductRequest) {
     return this.client.put(this.url, request);
+  }
+
+  updateRelatedProducts(request: UpdateRelatedProductsRequest) {
+    return this.client.put(`${this.url}/related_products`, request);
   }
 }
