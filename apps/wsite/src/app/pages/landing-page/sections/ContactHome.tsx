@@ -59,14 +59,16 @@ export default function ContactHome() {
       sx={{
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        maxWidth: "100%",
         paddingTop: 0,
-        padding: 3,
         marginTop: 0,
         borderRadius: {
           md: 0,
           sm: `${borderRadius} 0px 0px ${borderRadius}`,
           xs: `${borderRadius} ${borderRadius} 0px 0px`,
         },
+
+        padding: {xs:1, sm:3},
         width: "500px",
       }}
     >
@@ -76,10 +78,11 @@ export default function ContactHome() {
             sx={{ "& > *": { marginBlock: theme.spacing(0.5, '!important') },
             backgroundColor: "rgba(0, 0, 0, 0.5)", 
             border: "1px solid #444444", 
+            maxWidth: "100%",
             boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
             backdropFilter: "blur(19px)",
               borderRadius: "13px",
-              padding: 3,
+              padding: {xs:2, sm:3},
               height: "fit-content"
             }}
           >
