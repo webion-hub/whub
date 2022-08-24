@@ -59,6 +59,13 @@ export function TableProductsPage() {
                     : `+${imagesNum}`
                 }
 
+                const shopProduct = shopApi.products.withId(p.id);
+                const images = p.images.map(i =>
+                  shopProduct.images.withId(i.id)
+                )
+
+                const firstImage = images[0];
+
                 const areNoExtraImages = () => {
                   return p.images.length - 1 <= 0
                 }
@@ -83,7 +90,7 @@ export function TableProductsPage() {
                         backgroundPosition: 'center center',
                         backgroundSize: 'cover',
                         backgroundSiRepeat: 'no-repeat',
-                        backgroundImage: `url(${p.images?.[0]?.url})`
+                        backgroundImage: firstImage && `url(${firstImage?.src()})`
                       }}
                     />
                   </Badge>

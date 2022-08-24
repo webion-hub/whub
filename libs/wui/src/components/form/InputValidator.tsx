@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useRef, useState } from "react"
 import { InputBaseProps } from "../../abstractions/form/InputBaseProps"
 import { Validator } from "../../abstractions/form/Validator"
 import { useForm } from "../../hooks/useForm"
+import { Form } from "../../lib/Form"
 
 interface InputValidatorPropsBase<T> {
   readonly name: string,
@@ -19,7 +20,7 @@ interface InputValidatorAutoProps<T> extends InputValidatorPropsBase<T> {
 
 interface InputValidatorManualProps<T> extends InputValidatorPropsBase<T> {
   readonly mode: 'manual',
-  readonly children: (input: InputBaseProps<T>) => ReactNode,
+  readonly children: (input: InputBaseProps<T>, form: Form) => ReactNode,
 }
 
 type InputValidatorProps<T> = InputValidatorAutoProps<T> | InputValidatorManualProps<T>
@@ -65,7 +66,7 @@ export function InputValidator<T>(props: InputValidatorProps<T>) {
   }
 
   if(props.mode === 'manual')
-    return props.children(getInputProps())
+    return props.children(getInputProps(), form)
 
   const childrenWithProps = React.Children.map(props.children, (child) => {
     return React.cloneElement(child, getInputProps());

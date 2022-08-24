@@ -22,11 +22,30 @@ export function AddEditProductDialog(props: DialogBase) {
 
   const onCreate = (f: Form) => {
     const product = f.getValues()
+    console.log(product)
 
     shopApi.products
       .create(product)
-      .then(res => console.log(res))
+      .then(res => {
+        const productRes = res.data
 
+        uploadImages(productRes.id, product.images)
+          .then(() => console.log('sus'))
+      })
+
+  }
+
+  const uploadImage = (id: number, image: string) => {
+    return shopApi.products
+      .withId(id)
+      .images
+      .upload(image)
+  }
+
+  const uploadImages = (id: number, images: string[]) => {
+    const tasks = images.map(i => uploadImage(id, i))
+
+    return Promise.all(tasks)
   }
 
 

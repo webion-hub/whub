@@ -14,6 +14,10 @@ export class ProductImageEndpoint extends Endpoint {
     return `shop/products/${this.productId}/images/${this.imageId}`
   };
 
+  src() {
+    return `${this.client.defaults.baseURL}/${this.url}`;
+  }
+
   delete() {
     return this.client.delete(this.url);
   }
