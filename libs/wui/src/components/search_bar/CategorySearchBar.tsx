@@ -4,6 +4,9 @@ import { useTheme, Button, TextField, Stack, Divider, Autocomplete, Typography }
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { Img } from "../Img";
 import { Dropdown } from "../Dropdown";
+import { ProductListItem } from "./ProductListItem";
+import { Product } from "@whub/wshop-api";
+import _ from "lodash";
 
 export interface CategorySearchBarProps {
   readonly filter: string,
@@ -24,6 +27,18 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
       return '#000'
 
     return 'auto'
+  }
+
+  const p: Product = {
+    attachments: [],
+    details: [],
+    id: 1,
+    images: [ { id: 1, url: "assets/images/logo.png" } ],
+    name: 'prova',
+    relatedProducts: [],
+    tags: [],
+    variants: [],
+    category: { id: 1, name: 'rrrr', products: [] },
   }
 
   return (
@@ -64,30 +79,9 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
       />
       <Autocomplete
         fullWidth
-        options={[
-          {
-            title: 'Reggiatrice 1',
-            src: 'assets/images/logo.png',
-            category: 'Reggiatrici',
-          },
-          {
-            title: 'Reggiatrice 2',
-            src: 'assets/images/logo.png',
-            category: 'Reggiatrici',
-          },
-          {
-            title: 'Marcatore 1',
-            src: 'assets/images/logo.png',
-            category: 'Marcatori',
-          },
-          {
-            title: 'Marcatore 2',
-            src: 'assets/images/logo.png',
-            category: 'Marcatori',
-          },
-        ]}
-        groupBy={(option) => option.category}
-        getOptionLabel={(option) => option.title}
+        options={[p]}
+        groupBy={(option) => option.category?.name ?? 'Altro'}
+        getOptionLabel={(option) => option.name}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         onMouseEnter={() => setHover(true)}
@@ -105,46 +99,17 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
           marginRight: '-1px',
         }}
         renderOption={(props, option) => (
-          <Stack
-            spacing={2}
-            component="li"
-            direction="row"
-            sx={{
-              width: '100%',
-              justifyContent: 'space-between !important'
-            }}
-            {...props}
+          <ProductListItem
+            key={_.uniqueId()}
+            listItemProps={props}
+            product={option}
           >
-            <Stack
-              spacing={2}
-              direction="row"
-            >
-              <Img
-                src={option.src}
-                sx={{
-                  aspectRatio: 1,
-                  height: 48,
-                  borderRadius: 1,
-                }}
-              />
-              <Stack
-                direction="column"
-              >
-                <Typography>{option.title}</Typography>
-                <Typography
-                  variant="caption"
-                  color="text.secondary"
-                >
-                  {option.category}
-                </Typography>
-              </Stack>
-            </Stack>
             <Button
               variant="text"
             >
               Vedi
             </Button>
-          </Stack>
+          </ProductListItem>
         )}
         renderInput={(params) => (
           <TextField

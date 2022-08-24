@@ -1,4 +1,4 @@
-import { ContactUsApi } from "@whub/apis/contactus"
+import { ContactUsApi } from "@whub/apis-contactus"
 import { WShopApi } from "@whub/wshop-api"
 import { useContext } from "react"
 import { ApiContext } from "./ApiContext"

@@ -1,4 +1,4 @@
-import { ContactUsApi } from '@whub/apis/contactus'
+import { ContactUsApi } from '@whub/apis-contactus'
 import { WShopApi } from '@whub/wshop-api'
 import { createContext, ReactNode } from "react"
 
@@ -7,7 +7,7 @@ export interface ApiProps {
   readonly children: ReactNode
 }
 
-interface IApiContext {
+export interface IApiContext {
   readonly contactUs?: ContactUsApi,
   readonly shop?: WShopApi
 }

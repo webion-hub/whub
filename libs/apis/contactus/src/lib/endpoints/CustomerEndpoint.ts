@@ -1,4 +1,4 @@
-import { Endpoint } from "@whub/apis/core";
+import { Endpoint } from "@whub/apis-core";
 import { AxiosInstance } from "axios";
 import { UpdateCustomerRequest } from "../requests/UpdateCustomerRequest";
 import { ContactInformation } from "../model/ContactInformation";

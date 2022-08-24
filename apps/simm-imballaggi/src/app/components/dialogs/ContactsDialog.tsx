@@ -7,7 +7,7 @@ import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, useBackg
 import { useState } from 'react';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { LoadingButton } from '@mui/lab';
-import { useContactUsApi } from '@whub/apis/react';
+import { useContactUsApi } from '@whub/apis-react';
 
 interface LinkWithIconProps {
   readonly children: string,

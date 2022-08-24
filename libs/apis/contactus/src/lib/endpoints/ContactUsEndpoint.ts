@@ -1,5 +1,5 @@
 import { ContactUsRequest } from "../requests/ContactUsRequest";
-import { Endpoint } from "@whub/apis/core";
+import { Endpoint } from "@whub/apis-core";
 
 export class ContactUsEndpoint extends Endpoint {
   get url() {
