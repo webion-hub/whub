@@ -1,5 +1,5 @@
-import { ContactUsApi } from '@whub/apis/contactus';
-import { ApiWrapper } from '@whub/apis/react';
+import { ContactUsApi } from '@whub/apis-contactus';
+import { ApiWrapper } from '@whub/apis-react';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 

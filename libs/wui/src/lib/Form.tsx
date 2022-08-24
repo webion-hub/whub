@@ -12,7 +12,6 @@ export class Form {
     this.inputs = inputs;
   }
 
-
   removeInput = (key: string) => {
     delete this.inputs[key]
   }
@@ -22,6 +21,16 @@ export class Form {
       ...this.inputs,
       [key]: input
     }
+  }
+
+  setIsValid = (key: string) => (state: boolean) => {
+    this.setValues(({
+      ...this.inputs,
+      [key]: {
+        ...this.inputs[key],
+        isValid: state
+      }
+    }))
   }
 
   setValues = (inputs: FormInputs) => {
@@ -50,6 +59,13 @@ export class Form {
   getValues = () => {
     const values = Object.entries(this.inputs)
       .map(e => [e[0], e[1].value])
+
+    return Object.fromEntries(values)
+  }
+
+  getErrors = () => {
+    const values = Object.entries(this.inputs)
+      .map(e => [e[0], !e[1].isValid])
 
     return Object.fromEntries(values)
   }
@@ -89,6 +105,11 @@ export class Form {
     return Object
       .values(newFormValues)
       .every(v => v.isValid)
+  }
+
+  clearErrors() {
+    const keys = Object.keys(this.inputs)
+    keys.forEach(k => this.setIsValid(k)(true))
   }
 
   clear() {

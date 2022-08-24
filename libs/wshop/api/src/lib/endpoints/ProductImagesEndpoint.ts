@@ -1,7 +1,7 @@
 import { AxiosInstance } from "axios";
-import { Endpoint } from "@whub/apis/core";
-import { Image } from "../model/Image";
+import { Endpoint } from "@whub/apis-core";
 import { ProductImageEndpoint } from "./ProductImageEndpoint";
+import { Image } from "../model/Image";
 
 export class ProductImagesEndpoint extends Endpoint {
   constructor (

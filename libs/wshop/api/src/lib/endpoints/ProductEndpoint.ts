@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
-import { Endpoint } from "@whub/apis/core";
-import { Product } from "../model/product";
+import { Endpoint } from "@whub/apis-core";
+import { Product } from "../model/Product";
 import { UpdateProductRequest } from "../requests/UpdateProductRequest";
 import { ProductDetailsEndpoint } from "./ProductDetailsEndpoint";
 import { ProductImagesEndpoint } from "./ProductImagesEndpoint";

@@ -11,4 +11,4 @@ export interface FormInputs {
   [key: string]: FormInput,
 }
 
-export type FormValueTypes = string | number | boolean
+export type FormValueTypes = any

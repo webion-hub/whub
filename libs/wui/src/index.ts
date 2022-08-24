@@ -15,6 +15,7 @@ export * from './abstractions/dialogs/DialogOnClose';
 export * from './abstractions/events/InputEvent';
 
 export * from './abstractions/coords';
+export * from './abstractions/FileWithId';
 
 
 //Hooks
@@ -77,6 +78,7 @@ export * from './components/dialogs/DialogTitleCross';
 
 export * from './components/form/FormGroup';
 export * from './components/form/InputValidator';
+export * from './components/form/InputValidatorGroup';
 
 export * from './components/Img';
 export * from './components/Parallax';
@@ -84,7 +86,10 @@ export * from './components/Sections';
 export * from './components/Section';
 export * from './components/WuiGrid';
 export * from './components/Dropdown';
+export * from './components/Stepper';
+
 export * from './components/search_bar/CategorySearchBar';
+export * from './components/search_bar/ProductListItem';
 
 export * from './components/LanguageDropdown';
 export * from './components/FlagLanguageDropdown';
@@ -101,3 +106,5 @@ export * from './components/squares/SquaresGrid';
 export * from './components/inputs/uploaders/AttachmentUploader';
 export * from './components/inputs/uploaders/ImageUploader';
 export * from './components/inputs/TextEditor';
+export * from './components/inputs/ItemSelect';
+export * from './components/inputs/NumberInput';

@@ -6,7 +6,6 @@ import MapSection from "./MapSection";
 
 export default function Homepage() {
   const theme = useTheme()
-  const waves = useBackgroundWaves(theme.palette['secondary'].light)
 
   return (
     <Page>
@@ -20,11 +19,12 @@ export default function Homepage() {
               position: 'absolute',
               width: '100vw',
               height: '100%',
-              opacity: 0.1,
               top: 0,
               zIndex: 0,
-              transform: 'rotate(0deg) ',
-              ...waves,
+              background: 'url(assets/images/homepageImage.jpg)',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center center',
+              backgroundSize: 'cover'
             }
           }}
         >

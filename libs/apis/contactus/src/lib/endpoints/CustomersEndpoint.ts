@@ -1,7 +1,7 @@
 import { CreateCustomerRequest } from "../requests/CreateCustomerRequest";
 import { CustomerEndpoint } from "./CustomerEndpoint";
 import { Customer } from "../model/Customer";
-import { Endpoint } from "@whub/apis/core";
+import { Endpoint } from "@whub/apis-core";
 
 export class CustomersEndpoint extends Endpoint {
   get url() {

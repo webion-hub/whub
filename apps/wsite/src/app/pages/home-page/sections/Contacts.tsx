@@ -9,7 +9,7 @@ import PrivacyCheckBox from "../../../components/privacy_checkbox/PrivacyCheckbo
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 import ReactPixel from 'react-facebook-pixel';
-import { useContactUsApi } from "@whub/apis/react";
+import { useContactUsApi } from "@whub/apis-react";
 
 const TextfieldBase = ({...props}) => {
   const theme = useTheme()

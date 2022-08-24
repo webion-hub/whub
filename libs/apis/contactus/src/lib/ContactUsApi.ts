@@ -1,4 +1,4 @@
-import { ApiBase } from "@whub/apis/core";
+import { ApiBase } from "@whub/apis-core";
 import { ContactUsEndpoint } from "./endpoints/ContactUsEndpoint";
 import { CustomersEndpoint } from "./endpoints/CustomersEndpoint";
 

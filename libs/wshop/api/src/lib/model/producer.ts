@@ -1,5 +1,5 @@
 import { Image } from "./Image";
-import { Product } from "./product";
+import { Product } from "./Product";
 
 export interface Producer {
   readonly id: number;

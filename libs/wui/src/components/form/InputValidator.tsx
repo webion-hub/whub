@@ -1,18 +1,32 @@
-import React, { useEffect, useState } from "react"
-import { FormValueTypes } from "../../abstractions/form/FormInputs"
+import React, { ReactNode, useEffect, useRef, useState } from "react"
+import { InputBaseProps } from "../../abstractions/form/InputBaseProps"
 import { Validator } from "../../abstractions/form/Validator"
 import { useForm } from "../../hooks/useForm"
 
-export interface InputValidatorProps<T> {
+interface InputValidatorPropsBase<T> {
   readonly name: string,
   readonly value?: T,
   readonly isValid?: boolean,
   readonly validators?: Validator[],
+  readonly onSuccess?: (name: string) => void,
+  readonly onError?: (name: string) => void,
+}
+
+interface InputValidatorAutoProps<T> extends InputValidatorPropsBase<T> {
+  readonly mode?: 'auto',
   readonly children: any,
 }
 
-export function InputValidator(props: InputValidatorProps<FormValueTypes>) {
+interface InputValidatorManualProps<T> extends InputValidatorPropsBase<T> {
+  readonly mode: 'manual',
+  readonly children: (input: InputBaseProps<T>) => ReactNode,
+}
+
+type InputValidatorProps<T> = InputValidatorAutoProps<T> | InputValidatorManualProps<T>
+
+export function InputValidator<T>(props: InputValidatorProps<T>) {
   const form = useForm()
+  const isValidRef = useRef(true)
   const [first, setFirst] = useState(true)
 
   useEffect(() => {
@@ -30,18 +44,31 @@ export function InputValidator(props: InputValidatorProps<FormValueTypes>) {
     return () => form.removeInput(props.name)
   }, [])
 
-  const childrenWithProps = React.Children.map(props.children, (child) => {
+  useEffect(() => {
+    isValidRef.current
+      ? props.onSuccess?.(props.name)
+      : props.onError?.(props.name)
+  }, [isValidRef.current])
+
+  const getInputProps = (): InputBaseProps<T> => {
     const formControlName = props.name;
+    const isValid = form.isValid(formControlName)
 
-    if (!formControlName)
-      return child;
+    isValidRef.current = isValid
 
-    return React.cloneElement(child, {
-      error: !form.isValid(formControlName),
-      onChange: form.setTargetValue(formControlName),
+    return {
+      error: !isValid,
+      onChange: (e) => form.setTargetValue(formControlName)(e as any),
       value: form.getValue(formControlName) ?? props.value,
       disabled: form.getDisabled(formControlName) ?? false,
-    });
+    }
+  }
+
+  if(props.mode === 'manual')
+    return props.children(getInputProps())
+
+  const childrenWithProps = React.Children.map(props.children, (child) => {
+    return React.cloneElement(child, getInputProps());
   });
 
   if(first)
