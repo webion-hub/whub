@@ -14,7 +14,7 @@ export class ProductEndpoint extends Endpoint {
   }
 
   get url() {
-    return `shop/products/${this.productId}`;
+    return `products/${this.productId}`;
   }
 
   get images() {
