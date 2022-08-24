@@ -1,5 +1,8 @@
-import { ProductDetail } from "../model/ProductDetail";
-
 export interface UpdateDetailsRequest {
-  readonly details: ProductDetail[];
+  readonly details: ProductDetailUpdate[];
+}
+
+export interface ProductDetailUpdate {
+  readonly title: string;
+  readonly description?: string;
 }
