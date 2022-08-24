@@ -6,4 +6,8 @@ export abstract class Endpoint {
   constructor(
     protected readonly client: AxiosInstance,
   ) {}
+
+  get fullUrl() {
+    return `${this.client.defaults.baseURL}/${this.url}`;
+  }
 }
