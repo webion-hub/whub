@@ -84,6 +84,7 @@ export * from './components/Sections';
 export * from './components/Section';
 export * from './components/WuiGrid';
 export * from './components/Dropdown';
+export * from './components/RotatingText';
 export * from './components/search_bar/CategorySearchBar';
 
 export * from './components/LanguageDropdown';

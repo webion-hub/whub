@@ -1,5 +1,6 @@
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
-import { ResponserGrid } from "@whub/wui";
+import { Box, Button, Grid, Stack, SxProps, Theme, Typography } from "@mui/material";
+import { ResponsiveStyleValue } from "@mui/system/styleFunctionSx";
+import { AppBarLogo, ResponserGrid, RotatingText } from "@whub/wui";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { interval } from "rxjs";
@@ -21,7 +22,7 @@ export default function Home() {
     //     justifyContent: "space-between",
     //     alignItems: "center",
     //     display: "flex",
-    //     flexDirection: "row",
+    //     flexDirection: "row"
     //     paddingInline:{xs: 0.3, sm: 2},
     //   }}
     //   >
@@ -39,11 +40,11 @@ export default function Home() {
     >
       <Stack
         direction="column"
-        alignItems="center"
+        alignItems="flex-end"
         sx={{
           maxWidth: "100%",
-          width: "600px",
-          height: "clamp(300px, calc(95vh - 370px), 7000px)",
+          width: "750px",
+          height: "clamp(300px, calc(95vh - 370px), 700px)",
           marginLeft: 0,
           marginBlock: 4,
           paddingInline: 3,
@@ -52,32 +53,50 @@ export default function Home() {
       >
         <Typography
           color="text.primary"
-          variant="h1"
+          variant="h4"
+          textAlign="end"
           sx={{
             marginLeft: 0,
             fontWeight: "bold",
-            fontSize: {xs: "39px", sm: "48px !important"},
-            textAlign: { sm: "center", xs: "center", md: "center" },
+            fontSize: {xs: "20px", sm: "24px !important"},
           }}
         >
-          Creiamo siti web
-          <RotatingText
-            labels={[ 'moderni', 'fieri', 'sus' ]}
-            width={220}
-          />
-          per la tua azienda
+          Mentre gli altri creano siti web e app
         </Typography>
         <Typography
+          color="text.primary"
+          variant="h1"
+          textAlign="end"
+          sx={{
+            marginLeft: 0,
+            fontWeight: "bold",
+            fontSize: {xs: "35px", sm: "48px !important"},
+          }}
+        >
+          Noi creiamo
+          <br/>
+          <RotatingText
+            labels={[ 'storie', 'risultati', 'soluzioni', 'servizi', 'prodotti' ]}
+            width={{xs: 160, md: 220}}
+            sx={{
+              color: 'yellow',
+              marginRight: 1,
+              textAlign: 'end',
+            }}
+          />
+          digitali di successo
+        </Typography>
+        {/* <Typography
           color="text.secondary"
           sx={{
-            maxWidth: 800,
+            maxWidth: "100%",
             marginBottom: 4,
             marginTop: { xs: 2, sm: 2, md: 3 },
             fontSize: {xs: "17px", sm: "20px !important"},
             textAlign: { sm: "center", xs: "center", md: "center" },
           }}
         >
-Un sito Web che non converte è una perdita di tempo e denaro. Lascia che ti aiutiamo a creare un sito web che non solo abbia un bell'aspetto, ma aiuti anche ad aumentare le tue vendite.        </Typography>
+          Un sito Web che non converte è una perdita di tempo e denaro. Lascia che ti aiutiamo a creare un sito web che non solo abbia un bell'aspetto, ma aiuti anche ad aumentare le tue vendite.        </Typography> */}
         <ResponserGrid
           type="upper"
           size="sm"
@@ -104,64 +123,4 @@ Un sito Web che non converte è una perdita di tempo e denaro. Lascia che ti aiu
 
     // </ResponserGrid>
   );
-}
-
-
-interface RotatingTextProps {
-  readonly labels: string[],
-  readonly width: string | number,
-}
-
-function RotatingText(props: RotatingTextProps) {
-  const [index, setIndex] = useState(0)
-  const ref = useRef(0)
-  const duration = 1000
-
-  useEffect(() => {
-    const intervalSub = interval(duration)
-      .subscribe(() => {
-        const newIndex = ref.current + 1
-        ref.current = newIndex > props.labels.length - 1
-          ? 0
-          : newIndex
-        setIndex(ref.current)
-      })
-
-    return () => intervalSub.unsubscribe()
-  }, [])
-
-  return (
-    <Box
-      sx={{
-        width: props.width,
-        display: 'inline-block',
-      }}
-    >
-      <Box
-        sx={{
-          animation: `slide ${duration}ms ease-in-out infinite`,
-          "@keyframes slide": {
-            "0%": {
-              opacity: 0,
-              transform: "translateY(-100%)"
-            },
-            "15%": {
-              opacity: 1,
-              transform: "translateY(0%)"
-            },
-            "85%": {
-              opacity: 1,
-              transform: "translateY(0%)"
-            },
-            "100%": {
-              opacity: 0,
-              transform: "translateY(100%)"
-            }
-          }
-        }}
-      >
-        {` ${props.labels[index]} `}
-      </Box>
-    </Box>
-  )
 }

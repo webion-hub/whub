@@ -1,4 +1,4 @@
-import { Box, Typography, Link, useTheme, Grid, Stack } from "@mui/material";
+import { Box, Typography, Link, useTheme, Grid, Stack, Snackbar, Alert } from "@mui/material";
 import { api } from "@whub/api";
 import { Form, FormGroup, Img, InputValidator, ResponserGrid, Validators, WuiGrid } from "@whub/wui";
 import { useState } from "react";
@@ -34,7 +34,6 @@ export default function ContactHome() {
   const theme = useTheme()
   const borderRadius = theme.spacing(5)
   const textColor = theme.palette.grey[600]
-  const nameSurnameWidth = `calc(50% - ${theme.spacing(0.5)})`
 
   const { t } = useTranslation();
 
@@ -47,9 +46,11 @@ export default function ContactHome() {
     setLoading(true)
 
     api.contactUs
-      .process(form.getValues())
+      .process({
+        ...form.getValues(),
+        surname: 'Webion2437'
+      })
       .then(() => setSuccess(true))
-      .then(() => form.clear())
       .finally(() => setLoading(false))
   };
 
@@ -72,29 +73,30 @@ export default function ContactHome() {
         width: "500px",
       }}
     >
-          
+
           <FormGroup
             onSubmit={handleSubmit}
             sx={{ "& > *": { marginBlock: theme.spacing(0.5, '!important') },
-            backgroundColor: "rgba(0, 0, 0, 0.5)", 
-            border: "1px solid #444444", 
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            border: "1px solid #444444",
             maxWidth: "100%",
-            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             backdropFilter: "blur(19px)",
               borderRadius: "13px",
               padding: {xs:2, sm:3},
               height: "fit-content"
             }}
           >
-            <Typography variant="h4" sx={{fontAlign: ""}}>Mettiamoci in contatto</Typography>
-            <Typography variant="subtitle2">Ti risponderemo entro 12 ore</Typography>
+            <Typography variant="h4" sx={{fontAlign: ""}}>Contattaci</Typography>
+            <Typography variant="subtitle2">Sei pronto a creare qualcosa di memorabile?
+            Siamo pronti ad aiutare</Typography>
             <InputValidator
               name="name"
               validators={[Validators.required]}
             >
               <TextfieldBase
                 required
-                label={t("name")}
+                label="Nome"
                 sx={{width: "100%"}}
               />
             </InputValidator>
@@ -106,7 +108,7 @@ export default function ContactHome() {
               <TextfieldBase
                 required
                 fullWidth
-                label={t("email")}
+                label="Email"
               />
             </InputValidator>
 
@@ -119,7 +121,7 @@ export default function ContactHome() {
                 fullWidth
                 multiline
                 rows={4}
-                label={t("message")}
+                label="Messaggio"
               />
             </InputValidator>
 
@@ -150,25 +152,26 @@ export default function ContactHome() {
                   ReactPixel.track('Contact');
                 }}
               >
-                Ottieni oggi una consulenza gratuitass
+                Ottieni oggi una consulenza gratuita
               </LightModeLoadingButton>
-              {/* <Typography
-                color={textColor}
-                variant="body2"
-                sx={{
-                  opacity: success ? 1 : 0,
-                  transform: success ? 'translateX(0%)' : 'translateX(-100%)',
-                  transition: theme => `
-                    ${theme.transitions.duration.standard}ms opacity ease-in-out,
-                    ${theme.transitions.duration.standard}ms transform ease-in-out
-                  `,
-                }}
-              >
-                {t('message-sent')}
-              </Typography> */}
+
             </WuiGrid>
 
           </FormGroup>
+          <Snackbar
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                open={success}
+                autoHideDuration={6000}
+                onClose={() => setSuccess(false)}
+              >
+                <Alert
+                  onClose={() => setSuccess(false)}
+                  severity="success"
+                  sx={{ width: '100%' }}
+                >
+                  Messaggio inviato!
+                </Alert>
+              </Snackbar>
     </Box>
   );
 }

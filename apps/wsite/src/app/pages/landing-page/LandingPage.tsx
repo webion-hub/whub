@@ -4,14 +4,14 @@ import Services from "./sections/Services";
 import Contacts from "./sections/Contacts";
 import Projects from "./sections/Projects";
 import HowWeWork from "./sections/HowWeWork";
-import { Page, ResponserGrid, Section, Sections, useLayout } from "@whub/wui";
+import { AppBarLogo, FooterBottomLabel, Page, ResponserGrid, Section, Sections, useLayout } from "@whub/wui";
 import { pcbBackground } from "../../components/backgrounds/pcbBackground";
-import { Stack, Typography, useTheme } from "@mui/material";
-import { Box } from "@mui/system";
+import { Link, Stack, Typography, Box } from "@mui/material";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function LandingPage() {
-  const theme = useTheme();
+  const { t } = useTranslation();
   const layout = useLayout();
 
   useEffect(() => {
@@ -36,7 +36,10 @@ export default function LandingPage() {
         style={{
           position: "fixed",
           backgroundColor: "rgba(0,0,0,.5) !important",
-          maxWidth: "2000px",
+          width: '100vw',
+          height: '100vh',
+          maxHeight: '1200px',
+          objectFit: 'cover',
           left: "50%",
           transform: "translateX(-50%)",
         }}
@@ -51,7 +54,24 @@ export default function LandingPage() {
         />
       </video>
       {/* <iframe name="opinionstage-widget" src="https://www.opinionstage.com/api/v1/widgets/1045129/iframe?em=1"  width="100%" height="800" scrolling="auto" style={{border: "none"}} frameBorder="0" allow="fullscreen"></iframe> */}
-
+      <Box
+        sx={{
+          position: 'absolute',
+          maxWidth: theme => theme.layoutMaxWidth?.section,
+          width: '100%',
+          zIndex: 1,
+          transform: 'translateX(-50%)',
+          left: '50%',
+          marginTop: 2,
+        }}
+      >
+        <AppBarLogo
+          label="Webion"
+          src="assets/images/logoTransparentBackground.svg"
+          buttonSx={{ pointerEvents: 'none' }}
+          sx={{ padding: 1 }}
+        />
+      </Box>
       <Sections
         sx={{
           backgroundImage: "url(../../../assets/images/business)",
@@ -64,7 +84,7 @@ export default function LandingPage() {
         <Section
           showBackground
           backgroundSx={{ backgroundColor: "rgba(0,0,0,.5)" }}
-          sx={{ maxWidth: "100%", width: "100%", }}
+          sx={{ maxWidth: "100%", width: "100%", zIndex: 2 }}
         >
           <Home />
         </Section>
@@ -138,10 +158,33 @@ export default function LandingPage() {
           maxWidth="100%"
           showBackground
           backgroundSx={{ backgroundColor: "black !important" }}
+          sx={{ width: '100vw', paddingBlock: 0, }}
         >
           <Contacts />
         </Section>
       </Sections>
+      <FooterBottomLabel
+        TypographyProps={{ variant: "caption" }}
+      >
+        <Link
+          href="/policies-licenses"
+          target="_blank"
+          sx={{ marginRight: 1 }}
+          color="inherit"
+        >
+          {t("privacy-link")}
+        </Link>
+        <Typography variant="caption">
+          {t("p-iva")}
+        </Typography>
+        <Link
+          sx={{ marginLeft: 1 }}
+          color="inherit"
+          href={"mailto:" + "webionsrl@legalmail.it"}
+        >
+          {"webionsrl@legalmail.it"}
+        </Link>
+      </FooterBottomLabel>
     </Page>
   );
 }
