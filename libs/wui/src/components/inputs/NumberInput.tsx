@@ -20,15 +20,18 @@ export const NumberInput = React.forwardRef<
       {...other}
       getInputRef={ref}
       onValueChange={(values) => {
+        const value = values.value === ''
+          ? NaN
+          : Number(values.value)
+
         onChange({
           target: {
             name: props.name,
-            value: Number(values.value),
+            value: value,
           },
         });
       }}
       isNumericString
-      allowNegative={props.allowNegative}
       decimalSeparator={props.decimalSeparator}
       prefix={props.prefix}
     />

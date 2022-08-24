@@ -1,13 +1,15 @@
 import { Autocomplete, AutocompleteRenderInputParams, List, Paper } from "@mui/material"
 import _ from "lodash"
-import { HTMLAttributes, ReactNode, useState } from "react"
+import { HTMLAttributes, ReactNode, SyntheticEvent, useState } from "react"
 import { MaybeShow } from "../conditional_components/MaybeShow"
 
 export interface ItemSelect<T> {
   readonly options: T[],
   readonly maxHeight?: number | string,
   readonly value?: T[],
+  readonly loading?: boolean,
   readonly onChange?: (option : T[]) => void,
+  readonly onOpen?: (event: SyntheticEvent<Element, Event>) => void,
   readonly groupBy: (option: T) => string,
   readonly getOptionLabel: (option: T) => string,
   readonly renderOption: (props: HTMLAttributes<HTMLLIElement>, option: T, alreadyIn: boolean, onAdd: (option: T) => void) => ReactNode,
@@ -40,8 +42,10 @@ export function ItemSelect<T>(props: ItemSelect<T>) {
   return (
     <>
       <Autocomplete
-        onChange={(_, value) => onAdd(value)}
+        loading={props.loading}
         options={props.options}
+        onChange={(_, value) => onAdd(value)}
+        onOpen={props.onOpen}
         groupBy={props.groupBy}
         getOptionLabel={props.getOptionLabel}
         renderInput={props.renderInput}

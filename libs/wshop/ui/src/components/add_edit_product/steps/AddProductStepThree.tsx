@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material"
-import { FileWithId, InputValidator, InputValidatorGroup, InputValidatorGroupProps, SquareAddAttachment, SquareAddImage, SquareContainer, SquareImageContainer, SquaresGrid, Utils } from "@whub/wui"
+import { FileWithId, InputValidator, InputValidatorGroup, InputValidatorGroupProps, MaybeShow, SquareAddAttachment, SquareAddImage, SquareContainer, SquareImageContainer, SquaresGrid, Utils } from "@whub/wui"
 import { useEffect, useState } from "react"
 
 interface FileProps<T> {
@@ -18,10 +18,25 @@ export function AddProductStepThree(props: InputValidatorGroupProps) {
       >
         {
           i =>
-            <ProductImagesUploader
-              files={i.value}
-              onChange={f => i.onChange?.({ target: { value: f } })}
-            />
+            <Stack
+              direction="column"
+            >
+              <ProductImagesUploader
+                files={i.value}
+                onChange={f => i.onChange?.({ target: { value: f } })}
+                />
+                <MaybeShow
+                  show={!!i.error}
+                >
+                  <Typography
+                    variant="caption"
+                    color="error"
+                  >
+                    Immagini di dimensioni troppo grandi.
+                  </Typography>
+                </MaybeShow>
+              </Stack>
+
         }
       </InputValidator>
       <InputValidator

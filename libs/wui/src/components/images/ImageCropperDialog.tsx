@@ -3,10 +3,11 @@ import { useState } from 'react';
 
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
+
 import { DialogBase } from '../../abstractions/dialogs/DialogBase';
 import { DialogTitleCross } from '../dialogs/DialogTitleCross';
 
-interface ImageCropperDialogProps extends DialogBase {
+export interface ImageCropperDialogProps extends DialogBase {
   readonly image: string,
   readonly onCrop: (cropData: string) => void,
 }
@@ -18,7 +19,12 @@ export function ImageCropperDialog(props: ImageCropperDialogProps) {
     if (typeof cropper === "undefined")
       return
 
-    const cropData = cropper.getCroppedCanvas().toDataURL()
+    const cropData = cropper
+      .getCroppedCanvas({
+        width: 1000,
+      })
+      .toDataURL()
+
     props.onCrop(cropData)
     props.onClose()
   }
@@ -44,12 +50,10 @@ export function ImageCropperDialog(props: ImageCropperDialogProps) {
             zoomTo={0}
             initialAspectRatio={1}
             aspectRatio={1}
-            preview=".img-preview"
             src={props.image}
             viewMode={1}
             minCropBoxHeight={64}
             minCropBoxWidth={64}
-            background={false}
             responsive={true}
             autoCropArea={1}
             checkOrientation={false}

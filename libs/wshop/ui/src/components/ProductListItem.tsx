@@ -1,16 +1,18 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, SxProps, Theme, Typography } from "@mui/material";
 import { Product } from "@whub/wshop-api";
 import { ReactNode } from "react";
-import { Img } from "../Img";
+import { ProductImage } from "./ProductImage";
 
 interface ProductListItem {
   readonly listItemProps?: any,
   readonly product: Product,
+  readonly sx?: SxProps<Theme>,
   readonly children?: ReactNode,
 }
 
 export function ProductListItem(props: ProductListItem) {
   const { listItemProps, product } = props
+
 
   return (
     <Stack
@@ -20,33 +22,21 @@ export function ProductListItem(props: ProductListItem) {
       alignItems="center"
       sx={{
         width: '100%',
-        justifyContent: 'space-between !important'
+        justifyContent: 'space-between !important',
+        ...props.sx
       }}
       {...listItemProps}
     >
       <Stack
         spacing={2}
         direction="row"
+        alignItems="center"
       >
-        <Img
-          src={product.images?.[0].url}
-          sx={{
-            aspectRatio: 1,
-            height: 48,
-            borderRadius: 1,
-          }}
+        <ProductImage
+          product={product}
+          size={48}
         />
-        <Stack
-          direction="column"
-        >
-          <Typography>{product.name}</Typography>
-          <Typography
-            variant="caption"
-            color="text.secondary"
-          >
-            {product.category?.name}
-          </Typography>
-        </Stack>
+        <Typography>{product.name}</Typography>
       </Stack>
       {props.children}
     </Stack>

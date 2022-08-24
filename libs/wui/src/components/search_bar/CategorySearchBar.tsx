@@ -1,12 +1,11 @@
 import React, { useRef } from "react"
-import { useTheme, Button, TextField, Stack, Divider, Autocomplete, Typography } from "@mui/material";
+import { useTheme, Button, TextField, Stack, Divider, Autocomplete } from "@mui/material";
 
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import { Img } from "../Img";
 import { Dropdown } from "../Dropdown";
-import { ProductListItem } from "./ProductListItem";
 import { Product } from "@whub/wshop-api";
 import _ from "lodash";
+import { ProductListItem } from "@whub/wshop-ui";
 
 export interface CategorySearchBarProps {
   readonly filter: string,

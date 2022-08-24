@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material"
 import { SquareContainer, SquareContainerProps } from "./SquareContainer"
 
 export interface SquareImageContainerProps extends SquareContainerProps {
@@ -17,6 +18,8 @@ export function SquareImageContainer(props: SquareImageContainerProps) {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       }}
-    />
+    >
+      <Skeleton/>
+    </SquareContainer>
   )
 }

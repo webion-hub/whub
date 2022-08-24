@@ -63,7 +63,7 @@ export function AddProductStepOne(props: InputValidatorGroupProps) {
                     arrow
                     onClick={() => i.onChange?.({
                       target: {
-                        value: UUIDFactory.generate('W')
+                        value: UUIDFactory.getUUIDFromDate()
                       }
                     })}
                   >
@@ -77,22 +77,30 @@ export function AddProductStepOne(props: InputValidatorGroupProps) {
         }
       </InputValidator>
       <InputValidator
+        mode="manual"
         name="price"
+        value={NaN}
       >
-        <TextField
-          size="small"
-          variant="outlined"
-          label="Prezzo"
-          color="secondary"
-          InputProps={{
-            inputComponent: NumberInput as any,
-            inputProps: {
-              prefix: '€',
-              decimalSeparator: ',',
-              allowNegative: false
-            }
-          }}
-        />
+        {
+          i =>
+            <TextField
+              {...i}
+              onChange={e => i.onChange?.({ target: { value: Number(e.target.value) }})}
+              size="small"
+              variant="outlined"
+              label="Prezzo"
+              color="secondary"
+              InputProps={{
+                inputComponent: NumberInput as any,
+                inputProps: {
+                  prefix: '€',
+                  decimalSeparator: ',',
+                  allowNegative: false
+                }
+              }}
+            />
+        }
+
       </InputValidator>
       <InputValidator
         mode="manual"
@@ -143,13 +151,15 @@ export function AddProductStepOne(props: InputValidatorGroupProps) {
                         </>
                       ),
                     }}
-                  />}
+                  />
+                }
               />
               <Link
                 type="button"
                 component="button"
                 variant="caption"
                 textAlign="inherit"
+                color="secondary"
                 onClick={() => setOpenCreateCategory(true)}
                 sx={{
                   whiteSpace: 'nowrap',

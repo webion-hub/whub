@@ -1,3 +1,4 @@
+import { LoadingButton } from "@mui/lab";
 import { Button, Dialog, DialogActions, DialogContent, useMediaQuery, useTheme } from "@mui/material";
 import { handleResponse } from "@whub/apis-core";
 import { useShopApi } from "@whub/apis-react";
@@ -12,7 +13,11 @@ export function AddEditProductDialog(props: DialogBase) {
   const theme = useTheme();
   const shopApi = useShopApi();
   const isSm = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [step, setStep] = useState(0)
+
+  const [imagesTooBig, setImagesTooBig] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const setStepOnError = (i: number) => {
     if(i > step)
@@ -21,23 +26,40 @@ export function AddEditProductDialog(props: DialogBase) {
     setStep(i)
   }
 
-  const onCreate = async (f: Form) => {
+  const onCreate = (f: Form) => {
+    if(!f.isFormValid())
+      return
+
+    setImagesTooBig(false)
+    setLoading(true)
+
     const formProduct = f.getValues()
 
-    const res = await shopApi.products.create(formProduct)
-    handleResponse(res, {
-      409: () => {
-        f.setIsValid('code')(false)
-        setStep(0)
-      },
-      201: async () => {
-          const imageRes = await uploadImages(res.data.id, formProduct.images
-          handleResponse(imageRes, {
-            201: () => props.onClose(),
+    shopApi.products
+      .create({
+        ...formProduct,
+        categoryId: formProduct.category.id
+      })
+      .then(res => handleResponse(res, {
+        201: () => {
 
-          })
-        )}
-     })
+          uploadImages(res.data.id, formProduct.images)
+            .then(() => onClose())
+            .catch(() => {
+              f.setIsValid('images')(false)
+              setStep(2)
+              setImagesTooBig(true)
+            })
+            .finally(() => setLoading(false))
+        }
+      }))
+      .catch(err => handleResponse(err.response, {
+        409: () => {
+          f.setIsValid('code')(false)
+          setStep(0)
+          setLoading(false)
+        },
+      }))
   }
 
   const uploadImage = (id: number, image: string) => {
@@ -53,6 +75,12 @@ export function AddEditProductDialog(props: DialogBase) {
     return Promise.all(tasks)
   }
 
+  const onClose = () => {
+    props.onClose()
+    setStep(0)
+    setLoading(false)
+    setImagesTooBig(false)
+  }
 
   const steps: IStep[] = [
     {
@@ -64,7 +92,7 @@ export function AddEditProductDialog(props: DialogBase) {
       label: 'Step2',
     },
     {
-      content: <AddProductStepThree/>,
+      content: <AddProductStepThree onError={() => setStepOnError(2)}/>,
       label: 'Step3',
     }
   ]
@@ -109,15 +137,20 @@ export function AddEditProductDialog(props: DialogBase) {
           <MaybeShow
             show={step === 0}
             alternativeChildren={
-              <Button
-                variant='text'
-                onClick={e => {
-                  e.preventDefault()
-                  setStep(step - 1)
-                }}
+              <MaybeShow
+                show={!imagesTooBig}
               >
-                Indietro
-              </Button>
+                <Button
+                  variant='text'
+                  disabled={loading}
+                  onClick={e => {
+                    e.preventDefault()
+                    setStep(step - 1)
+                  }}
+                >
+                  Indietro
+                </Button>
+              </MaybeShow>
             }
           >
             <Button
@@ -142,12 +175,13 @@ export function AddEditProductDialog(props: DialogBase) {
               </Button>
             }
           >
-            <Button
+            <LoadingButton
               type="submit"
               variant='contained'
+              loading={loading}
             >
               Aggiungi
-            </Button>
+            </LoadingButton>
           </MaybeShow>
         </DialogActions>
       </FormGroup>

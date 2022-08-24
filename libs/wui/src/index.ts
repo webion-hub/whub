@@ -28,6 +28,7 @@ export * from './hooks/useScroll';
 export * from './hooks/useBackgroundWaves';
 export * from './hooks/useNavigator';
 export * from './hooks/useScrollAnimation';
+export * from './hooks/useProgressiveImage';
 
 //Contexts
 export * from './contexts/ContextLanguage';
@@ -89,7 +90,6 @@ export * from './components/Dropdown';
 export * from './components/Stepper';
 
 export * from './components/search_bar/CategorySearchBar';
-export * from './components/search_bar/ProductListItem';
 
 export * from './components/LanguageDropdown';
 export * from './components/FlagLanguageDropdown';

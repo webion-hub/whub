@@ -1,10 +1,9 @@
-import { AddRounded, CloseRounded } from "@mui/icons-material";
-import { Autocomplete, Badge, Box, Button, Dialog, DialogActions, DialogContent, Divider, IconButton, Paper, Stack, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { AddRounded } from "@mui/icons-material";
+import { Badge, Button, Stack, TextField } from "@mui/material";
 import { useShopApi } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
-import { AddEditProductDialog } from "@whub/wshop-ui";
+import { AddEditProductDialog, ProductImage } from "@whub/wshop-ui";
 import { Page } from "@whub/wui";
-import _ from "lodash";
 import { useEffect, useState } from "react";
 import DataTable from 'react-data-table-component';
 
@@ -59,41 +58,30 @@ export function TableProductsPage() {
                     : `+${imagesNum}`
                 }
 
-                const shopProduct = shopApi.products.withId(p.id);
-                const images = p.images.map(i =>
-                  shopProduct.images.withId(i.id)
-                )
-
-                const firstImage = images[0];
-
                 const areNoExtraImages = () => {
                   return p.images.length - 1 <= 0
                 }
 
                 return (
-                  <Badge
-                    badgeContent={getExtraImages()}
-                    color={areNoExtraImages() ? undefined : 'primary'}
-                    overlap="circular"
-                    sx={{
-                      '.MuiBadge-badge': {
-                          boxShadow: theme => areNoExtraImages() ? '' : `0px 0px 0 2px ${theme.palette.background.default}`
-                        },
-                    }}
-                  >
-                    <Paper
+
+                    <Badge
+                      badgeContent={getExtraImages()}
+                      color={areNoExtraImages() ? undefined : 'primary'}
+                      overlap="circular"
                       sx={{
-                        aspectRatio: '1',
-                        zIndex: 1,
-                        margin: 0.5,
-                        width: 54,
-                        backgroundPosition: 'center center',
-                        backgroundSize: 'cover',
-                        backgroundSiRepeat: 'no-repeat',
-                        backgroundImage: firstImage && `url(${firstImage?.fullUrl})`
+                        '.MuiBadge-badge': {
+                            boxShadow: theme => areNoExtraImages()
+                              ? ''
+                              : `0px 0px 0 2px ${theme.palette.background.default}`
+                          },
                       }}
-                    />
-                  </Badge>
+                    >
+                      <ProductImage
+                        product={p}
+                        size={54}
+                        sx={{ margin: 0.5 }}
+                      />
+                    </Badge>
                 )
               }
             },
@@ -123,3 +111,5 @@ export function TableProductsPage() {
     </Page>
   )
 }
+
+
