@@ -86,15 +86,16 @@ export default function ContactHome() {
               height: "fit-content"
             }}
           >
-            <Typography variant="h4" sx={{fontAlign: ""}}>Mettiamoci in contatto</Typography>
-            <Typography variant="subtitle2">Ti risponderemo entro 12 ore</Typography>
+            <Typography variant="h4" sx={{fontAlign: ""}}>Contattaci</Typography>
+            <Typography variant="subtitle2">Sei pronto a creare qualcosa di memorabile? 
+            Siamo pronti ad aiutare</Typography>
             <InputValidator
               name="name"
               validators={[Validators.required]}
             >
               <TextfieldBase
                 required
-                label={t("name")}
+                label="Nome"
                 sx={{width: "100%"}}
               />
             </InputValidator>
@@ -106,7 +107,7 @@ export default function ContactHome() {
               <TextfieldBase
                 required
                 fullWidth
-                label={t("email")}
+                label="Email"
               />
             </InputValidator>
 
@@ -119,7 +120,7 @@ export default function ContactHome() {
                 fullWidth
                 multiline
                 rows={4}
-                label={t("message")}
+                label="Messaggio"
               />
             </InputValidator>
 
@@ -150,7 +151,7 @@ export default function ContactHome() {
                   ReactPixel.track('Contact');
                 }}
               >
-                Ottieni oggi una consulenza gratuitass
+                Ottieni oggi una consulenza gratuita
               </LightModeLoadingButton>
               {/* <Typography
                 color={textColor}

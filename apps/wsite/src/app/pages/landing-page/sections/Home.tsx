@@ -40,7 +40,7 @@ export default function Home() {
         alignItems="center"
         sx={{
           maxWidth: "100%",
-          width: "600px",
+          width: "700px",
           height: "clamp(300px, calc(95vh - 370px), 7000px)",
           marginLeft: 0,
           marginBlock: 4,
@@ -50,6 +50,17 @@ export default function Home() {
       >
         <Typography
           color="text.primary"
+          variant="h4"
+          sx={{
+            marginLeft: 0,
+            fontWeight: "bold",
+            fontSize: {xs: "39px", sm: "24px !important"},
+            textAlign: { sm: "center", xs: "center", md: "center" },
+          }}
+        >
+          Mentre gli altri creano siti web e app
+        </Typography><Typography
+          color="text.primary"
           variant="h1"
           sx={{
             marginLeft: 0,
@@ -58,19 +69,19 @@ export default function Home() {
             textAlign: { sm: "center", xs: "center", md: "center" },
           }}
         >
-          Creiamo siti web moderni per la tua azienda
+          Noi creiamo storie digitali di successo
         </Typography>
-        <Typography
+        {/* <Typography
           color="text.secondary"
           sx={{
-            maxWidth: 800,
+            maxWidth: "100%",
             marginBottom: 4,
             marginTop: { xs: 2, sm: 2, md: 3 },
             fontSize: {xs: "17px", sm: "20px !important"},
             textAlign: { sm: "center", xs: "center", md: "center" },
           }}
         >
-Un sito Web che non converte è una perdita di tempo e denaro. Lascia che ti aiutiamo a creare un sito web che non solo abbia un bell'aspetto, ma aiuti anche ad aumentare le tue vendite.        </Typography>
+          Un sito Web che non converte è una perdita di tempo e denaro. Lascia che ti aiutiamo a creare un sito web che non solo abbia un bell'aspetto, ma aiuti anche ad aumentare le tue vendite.        </Typography> */}
         <ResponserGrid
           type="upper"
           size="sm"
