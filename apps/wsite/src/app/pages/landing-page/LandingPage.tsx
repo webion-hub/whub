@@ -45,7 +45,7 @@ export default function LandingPage() {
         }}
       >
         <source
-          src="../../../assets/images/business.mp4"
+          src="../../../assets/images/background.webm"
           type="video/mp4"
           style={{
             backgroundColor: "rgba(0,0,0,.5) !important",

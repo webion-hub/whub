@@ -144,8 +144,9 @@ export default function ContactHome() {
                 type="submit"
                 variant="contained"
                 size="large"
+               
                 loadingPosition="start"
-                sx={{ width: "100%", zIndex: 1 }}
+                sx={{ width: "100%", zIndex: 1,  textTransform: "none" }}
                 startIcon={<SendRoundedIcon/>}
                 onClick={() => {
                   ReactPixel.track('Contact');

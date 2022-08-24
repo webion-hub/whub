@@ -2,10 +2,12 @@ import { Box, Button, Typography } from "@mui/material";
 import { Parallax, useNavigator } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 import RandomTextBackground from "../../../components/backgrounds/RandomTextBackground";
+import parse from 'html-react-parser';
 
 export default function AIDA() {
   const { t } = useTranslation();
   const {clickNavigate} = useNavigator();
+
   return (
     <>
       <Box
@@ -29,19 +31,19 @@ export default function AIDA() {
           color="text.secondary"
           sx={{ marginTop: 6, textAlign: "justify" }}
         >
-          {t("websites-AIDA-p1-1")}
+          {parse(t("websites-AIDA-p1-1"))}
         </Typography>
         <Typography
           color="text.secondary"
           sx={{ marginTop: 2.5, textAlign: "justify" }}
         >
-          {t("websites-AIDA-p1-2")}
+          {parse(t("websites-AIDA-p1-2"))}
         </Typography>
         <Typography
           color="text.secondary"
           sx={{ marginTop: 2.5, textAlign: "justify" }}
         >
-          {t("websites-AIDA-p1-3")}
+          {parse(t("websites-AIDA-p1-3"))}
         </Typography>
         <Box sx={{margin: "auto", width: "fit-content"}}>
           <Button

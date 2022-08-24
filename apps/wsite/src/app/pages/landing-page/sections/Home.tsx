@@ -77,7 +77,7 @@ export default function Home() {
           <br/>
           <RotatingText
             labels={[t("stories"), t("results"), t("solutions"), t("services"),  t("products") ]}
-            width={{xs: 160, md: 220}}
+            width={{xs: 160, sm: 220}}
             sx={{
               color: 'yellow',
               marginRight: 1,
