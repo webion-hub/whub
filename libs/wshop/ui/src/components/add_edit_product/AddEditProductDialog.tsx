@@ -1,4 +1,5 @@
 import { Button, Dialog, DialogActions, DialogContent, useMediaQuery, useTheme } from "@mui/material";
+import { handleResponse } from "@whub/apis-core";
 import { useShopApi } from "@whub/apis-react";
 import { DialogBase, DialogTitleCross, Form, FormGroup, IStep, MaybeShow, Stepper } from "@whub/wui";
 import _ from "lodash";
@@ -20,19 +21,23 @@ export function AddEditProductDialog(props: DialogBase) {
     setStep(i)
   }
 
-  const onCreate = (f: Form) => {
-    const product = f.getValues()
-    console.log(product)
+  const onCreate = async (f: Form) => {
+    const formProduct = f.getValues()
 
-    shopApi.products
-      .create(product)
-      .then(res => {
-        const productRes = res.data
+    const res = await shopApi.products.create(formProduct)
+    handleResponse(res, {
+      409: () => {
+        f.setIsValid('code')(false)
+        setStep(0)
+      },
+      201: async () => {
+          const imageRes = await uploadImages(res.data.id, formProduct.images
+          handleResponse(imageRes, {
+            201: () => props.onClose(),
 
-        uploadImages(productRes.id, product.images)
-          .then(() => console.log('sus'))
-      })
-
+          })
+        )}
+     })
   }
 
   const uploadImage = (id: number, image: string) => {

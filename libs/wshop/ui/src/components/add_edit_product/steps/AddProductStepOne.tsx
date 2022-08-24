@@ -1,10 +1,12 @@
-import { Autocomplete, CircularProgress, Link, Stack, TextField } from "@mui/material";
+import { LoopRounded } from "@mui/icons-material";
+import { Autocomplete, CircularProgress, IconButton, Link, Stack, TextField, Tooltip } from "@mui/material";
 import { Box } from "@mui/system";
 import { useShopApi } from "@whub/apis-react";
 import { Category } from "@whub/wshop-api";
-import { InputValidator, InputValidatorGroup, InputValidatorGroupProps, NumberInput, Validators } from "@whub/wui";
+import { InputValidator, InputValidatorGroup, InputValidatorGroupProps, NumberInput, UUIDFactory, Validators } from "@whub/wui";
 import { useState } from "react";
 import { CreateCategoryDialog } from "../../dialogs/CreateCategoryDialog";
+import _ from "lodash";
 
 export function AddProductStepOne(props: InputValidatorGroupProps) {
   const shopApi = useShopApi()
@@ -38,15 +40,41 @@ export function AddProductStepOne(props: InputValidatorGroupProps) {
         />
       </InputValidator>
       <InputValidator
+        mode="manual"
         name="code"
+        validators={[Validators.required]}
+        value=''
       >
-        <TextField
-          size="small"
-          variant="outlined"
-          label="Codice prodotto"
-          color="secondary"
-          required
-        />
+        {
+          i =>
+            <TextField
+              {...i}
+              size="small"
+              variant="outlined"
+              label="Codice prodotto"
+              color="secondary"
+              required
+              fullWidth
+              helperText={i.error && "Codice non inserito o già esistente."}
+              InputProps={{
+                endAdornment: (
+                  <Tooltip
+                    title="Genera codice"
+                    arrow
+                    onClick={() => i.onChange?.({
+                      target: {
+                        value: UUIDFactory.generate('W')
+                      }
+                    })}
+                  >
+                    <IconButton>
+                      <LoopRounded/>
+                    </IconButton>
+                  </Tooltip>
+                ),
+              }}
+            />
+        }
       </InputValidator>
       <InputValidator
         name="price"
@@ -123,6 +151,10 @@ export function AddProductStepOne(props: InputValidatorGroupProps) {
                 variant="caption"
                 textAlign="inherit"
                 onClick={() => setOpenCreateCategory(true)}
+                sx={{
+                  whiteSpace: 'nowrap',
+                  width: 'min-content'
+                }}
               >
                 Categoria non trovata? Creane una nuova
               </Link>

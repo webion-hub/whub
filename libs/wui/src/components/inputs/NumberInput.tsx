@@ -2,7 +2,7 @@ import React from 'react';
 import NumberFormat, { InputAttributes } from 'react-number-format';
 
 export interface NumberInputProps {
-  readonly onChange: (event: { target: { name: string; value: string } }) => void;
+  readonly onChange: (event: { target: { name: string; value: number } }) => void;
   readonly name: string;
   readonly decimalSeparator?: string;
   readonly prefix?: string;
@@ -23,7 +23,7 @@ export const NumberInput = React.forwardRef<
         onChange({
           target: {
             name: props.name,
-            value: values.value,
+            value: Number(values.value),
           },
         });
       }}
