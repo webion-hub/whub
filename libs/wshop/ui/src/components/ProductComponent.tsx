@@ -2,8 +2,8 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Menu, MenuI
 import { Product, ProductDetail } from "@whub/wshop-api";
 import { ReactNode, useEffect, useState } from "react";
 import { ProductImage } from "./ProductImage";
-import ReactHtmlParser from 'react-html-parser';
 import { GetFormValue, MaybeShow } from "@whub/wui";
+import parse from 'html-react-parser';
 
 interface ProductComponentBaseProps {
   readonly compress?: boolean,
@@ -81,7 +81,7 @@ export function ProductComponent(props: ProductComponentProps) {
               {
                 v =>
                   <Typography variant="h4">
-                    {ReactHtmlParser(v)}
+                    {parse(v)}
                   </Typography>
               }
             </ProductField>
@@ -94,7 +94,7 @@ export function ProductComponent(props: ProductComponentProps) {
               {
                 v =>
                   <Typography component='span'>
-                    {ReactHtmlParser(v)}
+                    {parse(v)}
                   </Typography>
               }
             </ProductField>
@@ -110,7 +110,7 @@ export function ProductComponent(props: ProductComponentProps) {
               v =>
               <Typography color="secondary">
                 <strong>
-                  {ReactHtmlParser(v)}
+                  {parse(v)}
                 </strong>
               </Typography>
             }
@@ -134,14 +134,23 @@ export function ProductComponent(props: ProductComponentProps) {
               />
             ))
           }
-        </Stack>
-        <MaybeShow
-          show={props.product.attachments.length !== 0}
+        </Stack>*/}
+        <ProductField
+          name="attachments"
+          mode={props.mode}
+          product={product}
+          placeholder={[] as File[]}
         >
-          <ProductAttachmentButtonList
-            product={props.product}
-          />
-        </MaybeShow>*/}
+          {
+            a =>
+            <ProductAttachmentButtonList
+              mode={props.mode}
+              product={product}
+              attachments={a}
+            />
+          }
+        </ProductField>
+
         <ProductField
           name="code"
           mode={props.mode}
@@ -155,7 +164,7 @@ export function ProductComponent(props: ProductComponentProps) {
                 variant="caption"
                 color="text.secondary"
               >
-                {ReactHtmlParser(v)}
+                {parse(v)}
               </Typography>
           }
         </ProductField>
@@ -282,7 +291,9 @@ function ProductField<T>(props: ProductFieldProps<T>) {
 
 
 interface ProductAttachmentButtonListProps {
-  readonly product: Product
+  readonly mode?: 'default' | 'preview',
+  readonly product?: Product,
+  readonly attachments: File[],
 }
 
 function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
@@ -312,7 +323,7 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
         onClose={handleClose}
       >
         {
-          props.product.attachments.map((a, i) => (
+          props.product?.attachments.map((a, i) => (
             <MenuItem onClick={handleClose}>{a.fileName}</MenuItem>
           ))
         }
@@ -334,7 +345,7 @@ function ProductDetailAccordion(props: ProductDetailsAccordionProps) {
       </AccordionSummary>
       <AccordionDetails>
         <Typography>
-          {ReactHtmlParser(props.detail.description ?? '')}
+          {parse(props.detail.description ?? '')}
         </Typography>
       </AccordionDetails>
     </Accordion>

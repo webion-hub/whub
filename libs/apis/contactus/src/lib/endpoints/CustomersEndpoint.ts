@@ -7,7 +7,7 @@ export class CustomersEndpoint extends Endpoint {
   get url() {
     return 'customers';
   }
-  
+
   withId(id: number) {
     return new CustomerEndpoint(this.client, id);
   }

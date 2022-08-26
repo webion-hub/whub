@@ -25,8 +25,7 @@ export class ProductImagesEndpoint extends Endpoint {
   }
 
   upload(base64Url: string | Blob) {
-    return this.client.post<Image>(this.url + `/from_data_url`, {
-      image: base64Url,
-    });
+    console.log(base64Url)
+    return this.client.post<Image>(this.url + `/from_data_url`, base64Url);
   }
 }

@@ -35,19 +35,12 @@ export function ProductHandler() {
         201: () => {
           const product = shopApi.products.withId(res.data.id)
 
-          uploadData(product, formProduct.attachment, formProduct.images)
+          uploadData(product, formProduct.attachment, formProduct.images, formProduct.correlated)
             .then(() => onClose())
             .catch(() => {
               f.setIsValid('images')(false)
             })
             .finally(() => setLoading(false))
-          /*product
-            .updateRelatedProducts({
-              relatedProductIds: formProduct.correlated.map((p: Product) => p.id)
-            })
-            .finally(() => {
-
-            })*/
         }
       }))
       .catch(err => {
@@ -61,11 +54,18 @@ export function ProductHandler() {
       })})
   }
 
-  const uploadData = (productEndpoint: ProductEndpoint, files: File[], images: string[]) => {
+  const uploadData = (productEndpoint: ProductEndpoint, files: File[], images: string[], releated: Product[]) => {
     return Promise.all([
       uploadFiles(productEndpoint, files),
       uploadImages(productEndpoint, images),
+      uploadReleated(productEndpoint, releated)
     ])
+  }
+
+  const uploadReleated = (productEndpoint: ProductEndpoint, products: Product[]) => {
+    console.log(products)
+    return productEndpoint
+      .updateRelatedProducts({ productIds: products.map(p => p.id) })
   }
 
   const uploadFile = (productEndpoint: ProductEndpoint, file: File) => {
@@ -94,7 +94,7 @@ export function ProductHandler() {
 
   const onClose = () => {
     setLoading(false)
-    //navigate.navigate('/products-table')
+    navigate.navigate('/products-table')
   }
 
   return (
