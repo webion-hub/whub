@@ -1,13 +1,15 @@
-import React, { createContext, FormEvent, ReactNode, useEffect, useRef } from "react";
-import { Form } from "../../lib/Form";
 import { styled, SxProps, Theme } from "@mui/material";
+import { createContext, FormEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { FormInputs } from "../../abstractions/form/FormInputs";
+import { Form } from "../../lib/Form";
 
 const StyledForm = styled('form')({})
 
+type FormChildren = (form: Form) => ReactNode
+
 interface FormGroupProps {
   readonly values?: FormInputs,
-  readonly children?: ReactNode,
+  readonly children?: ReactNode | FormChildren,
   readonly onSubmit?: (form: Form) => void;
   readonly sx?: SxProps<Theme>,
 }
@@ -21,10 +23,14 @@ export const FormGroupContext = createContext<FormGroupContext>({
 })
 
 export const FormGroup = (props: FormGroupProps) => {
-  const [readyForSubmit, setReadeyForSubmit] = React.useState(false);
-  const [values, setFormValues] = React.useState<FormInputs>(props.values ?? {});
-  const form = useRef<Form>(new Form(setFormValues, props.values ?? {}));
+  const [readyForSubmit, setReadeyForSubmit] = useState(false);
+  const values = useRef<FormInputs>(props.values ?? {});
 
+  const setFormValues = (v: FormInputs) => {
+    values.current = v
+  }
+
+  const form = useRef<Form>(new Form(setFormValues, props.values ?? {}));
 
   useEffect(() => {
     if(!readyForSubmit)
@@ -32,7 +38,7 @@ export const FormGroup = (props: FormGroupProps) => {
 
     setReadeyForSubmit(false)
     submit()
-  }, [values, readyForSubmit])
+  }, [values.current, readyForSubmit])
 
   const submit = () => {
     form.current.isFormValid()
@@ -45,6 +51,10 @@ export const FormGroup = (props: FormGroupProps) => {
     setReadeyForSubmit(true)
   }
 
+  const children = typeof props.children === 'function'
+    ? props.children(form.current)
+    : props.children
+
   return (
     <FormGroupContext.Provider
       value={{ form: form.current }}
@@ -54,7 +64,7 @@ export const FormGroup = (props: FormGroupProps) => {
         noValidate
         sx={props.sx}
       >
-        {props.children}
+        {children}
       </StyledForm>
     </FormGroupContext.Provider>
   )

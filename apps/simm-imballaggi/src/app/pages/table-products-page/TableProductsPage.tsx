@@ -1,23 +1,31 @@
-import { AddRounded } from "@mui/icons-material";
-import { Badge, Button, Stack, TextField } from "@mui/material";
+import { AddRounded, CloseRounded, EditRounded } from "@mui/icons-material";
+import { Badge, Button, IconButton, LinearProgress, Stack, TextField } from "@mui/material";
 import { useShopApi } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
-import { AddEditProductDialog, ProductImage } from "@whub/wshop-ui";
-import { Page } from "@whub/wui";
+import { ProductImage } from "@whub/wshop-ui";
+import { AreYouSureDialog, Page, useNavigator } from "@whub/wui";
 import { useEffect, useState } from "react";
 import DataTable from 'react-data-table-component';
+
 
 export function TableProductsPage() {
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState<Product[]>([])
-  const [openAddProduct, setOpenAddProduct] = useState(false)
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null)
+  const { clickNavigate } = useNavigator()
   const shopApi = useShopApi()
 
   useEffect(() => {
+    fetchProducts()
+  }, [])
+
+  const fetchProducts = () => {
+    setLoading(true)
     shopApi.products
       .list()
       .then(res => setProducts(res.data))
-  }, [])
+      .finally(() => setLoading(false))
+  }
 
   return (
     <Page sx={{ padding: 1 }}>
@@ -39,17 +47,18 @@ export function TableProductsPage() {
             variant="contained"
             startIcon={<AddRounded/>}
             size="small"
-            onClick={() => setOpenAddProduct(true)}
+            href="/add-product"
+            onClick={clickNavigate('/add-product')}
             sx={{ minWidth: 240 }}
           >
             Aggiungi prodotto
           </Button>
         </Stack>
+        {loading && <LinearProgress/>}
         <DataTable
           data={products}
           columns={[
             {
-              name: '',
               cell: (p) => {
                 const getExtraImages = () => {
                   const imagesNum = p.images.length - 1
@@ -100,13 +109,44 @@ export function TableProductsPage() {
             {
               name: 'Prezzo',
               selector: row => row.price ? `${row.price}€` : ''
+            },
+            {
+              maxWidth: '80px',
+              cell: (p) => (
+                <Stack
+                  direction="row"
+                >
+                  <IconButton>
+                    <EditRounded/>
+                  </IconButton>
+                  <IconButton
+                    onClick={() => setProductToDelete(p)}
+                  >
+                    <CloseRounded/>
+                  </IconButton>
+                </Stack>
+              )
             }
           ]}
         />
       </Stack>
-      <AddEditProductDialog
-        open={openAddProduct}
-        onClose={() => setOpenAddProduct(false)}
+
+      <AreYouSureDialog
+        loading={loading}
+        title="Sei sicuro di eliminare il prodotto?"
+        open={!!productToDelete}
+        onClose={() => setProductToDelete(null)}
+        onClick={() => {
+          if(!productToDelete)
+            return
+
+          setLoading(true)
+          shopApi.products
+            .withId(productToDelete?.id)
+            .delete()
+            .finally(() => setLoading(false))
+            .finally(() => setProductToDelete(null))
+        }}
       />
     </Page>
   )

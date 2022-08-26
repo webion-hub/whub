@@ -1,3 +1,4 @@
+import { BehaviorSubject } from "rxjs";
 import { Validator } from "./Validator";
 
 export interface FormInput {
@@ -5,6 +6,8 @@ export interface FormInput {
   readonly validators: Validator[],
   readonly isValid?: boolean,
   readonly disabled?: boolean,
+  readonly setter?: React.Dispatch<any>,
+  readonly subject?: BehaviorSubject<any>
 }
 
 export interface FormInputs {

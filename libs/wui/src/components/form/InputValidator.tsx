@@ -1,12 +1,14 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react"
+import { BehaviorSubject, Observable, Subscriber, TeardownLogic } from "rxjs"
 import { InputBaseProps } from "../../abstractions/form/InputBaseProps"
 import { Validator } from "../../abstractions/form/Validator"
 import { useForm } from "../../hooks/useForm"
+import { useSubjectState } from "../../hooks/useSubject"
 import { Form } from "../../lib/Form"
 
 interface InputValidatorPropsBase<T> {
   readonly name: string,
-  readonly value?: T,
+  readonly value: T,
   readonly isValid?: boolean,
   readonly validators?: Validator[],
   readonly onSuccess?: (name: string) => void,
@@ -29,6 +31,11 @@ export function InputValidator<T>(props: InputValidatorProps<T>) {
   const form = useForm()
   const isValidRef = useRef(true)
   const [first, setFirst] = useState(true)
+  const {
+    state: value,
+    setState: setValue,
+    subject: valueSubject
+  } = useSubjectState<T | undefined>(props.value)
 
   useEffect(() => {
     form.addInput(
@@ -36,14 +43,16 @@ export function InputValidator<T>(props: InputValidatorProps<T>) {
       {
         value: props.value ?? '',
         isValid: props.isValid ?? true,
-        validators: props.validators ?? []
+        validators: props.validators ?? [],
+        setter: setValue,
+        subject: valueSubject
       }
     )
 
     setFirst(false)
 
     return () => form.removeInput(props.name)
-  }, [])
+  }, [valueSubject])
 
   useEffect(() => {
     isValidRef.current
@@ -60,7 +69,7 @@ export function InputValidator<T>(props: InputValidatorProps<T>) {
     return {
       error: !isValid,
       onChange: (e) => form.setTargetValue(formControlName)(e as any),
-      value: form.getValue(formControlName) ?? props.value,
+      value: value ?? props.value,
       disabled: form.getDisabled(formControlName) ?? false,
     }
   }
@@ -68,12 +77,13 @@ export function InputValidator<T>(props: InputValidatorProps<T>) {
   if(props.mode === 'manual')
     return props.children(getInputProps(), form)
 
+  if(first)
+    return props.children
+
   const childrenWithProps = React.Children.map(props.children, (child) => {
     return React.cloneElement(child, getInputProps());
   });
 
-  if(first)
-    return props.children
-
   return childrenWithProps
 }
+

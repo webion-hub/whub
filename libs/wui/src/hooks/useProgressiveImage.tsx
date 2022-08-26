@@ -6,6 +6,12 @@ export const useProgressiveImage = (src: string) => {
   useEffect(() => {
     setSourceLoaded(null)
     const img = new Image()
+
+    if(!src) {
+      setSourceLoaded('')
+      return
+    }
+
     img.src = src
     img.onload = () => setSourceLoaded(src)
   }, [src])

@@ -10,6 +10,7 @@ export function AddProductStepTwo(props: InputValidatorGroupProps) {
     >
       <InputValidator
         name="description"
+        value=''
         validators={[Validators.max(4096)]}
       >
         <TextEditor
@@ -18,7 +19,7 @@ export function AddProductStepTwo(props: InputValidatorGroupProps) {
         />
       </InputValidator>
       <InputValidator
-        name="variants"
+        name="correlated"
         value={[] as Product[]}
       >
         <CorrelatedProductsSelect/>

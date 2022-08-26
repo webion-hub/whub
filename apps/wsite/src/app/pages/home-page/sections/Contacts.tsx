@@ -131,6 +131,7 @@ export default function Contacts() {
             sx={{ "& > *": { marginBlock: theme.spacing(0.5, '!important') }}}
           >
             <InputValidator
+              value=''
               name="name"
               validators={[Validators.required]}
             >
@@ -142,6 +143,7 @@ export default function Contacts() {
             </InputValidator>
 
             <InputValidator
+              value=''
               name="surname"
               validators={[Validators.required]}
             >
@@ -153,6 +155,7 @@ export default function Contacts() {
             </InputValidator>
 
             <InputValidator
+              value=''
               name="phoneNumber"
               validators={[Validators.isATelephoneNumber]}
             >
@@ -163,6 +166,7 @@ export default function Contacts() {
             </InputValidator>
 
             <InputValidator
+              value=''
               name="email"
               validators={[Validators.required, Validators.isAnEmail]}
             >
@@ -174,6 +178,7 @@ export default function Contacts() {
             </InputValidator>
 
             <InputValidator
+              value=''
               name="message"
               validators={[Validators.required]}
             >

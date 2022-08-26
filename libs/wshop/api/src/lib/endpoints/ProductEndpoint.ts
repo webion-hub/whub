@@ -5,6 +5,7 @@ import { UpdateProductRequest } from "../requests/UpdateProductRequest";
 import { ProductDetailsEndpoint } from "./ProductDetailsEndpoint";
 import { ProductImagesEndpoint } from "./ProductImagesEndpoint";
 import { UpdateRelatedProductsRequest } from "../requests/UpdateRelatedProductsRequest";
+import { ProductAttachmentsEndpoint } from "./ProductAttachmentsEndpoint";
 
 export class ProductEndpoint extends Endpoint {
   constructor(
@@ -24,6 +25,10 @@ export class ProductEndpoint extends Endpoint {
 
   get details() {
     return new ProductDetailsEndpoint(this.client, this.productId);
+  }
+
+  get attachments() {
+    return new ProductAttachmentsEndpoint(this.client, this.productId);
   }
 
 

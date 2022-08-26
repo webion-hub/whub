@@ -153,6 +153,7 @@ export default function ContactsDialog(props: DialogBase) {
               >
                 <InputValidator
                   name='name'
+                  value=''
                   validators={[Validators.required]}
                 >
                   <TextField
@@ -163,6 +164,7 @@ export default function ContactsDialog(props: DialogBase) {
                 </InputValidator>
                 <InputValidator
                   name='surname'
+                  value=''
                   validators={[Validators.required]}
                 >
                   <TextField
@@ -174,6 +176,7 @@ export default function ContactsDialog(props: DialogBase) {
               </Stack>
               <InputValidator
                 name="company"
+                value=''
               >
                 <TextField
                   size="small"
@@ -185,6 +188,7 @@ export default function ContactsDialog(props: DialogBase) {
               </InputValidator>
               <InputValidator
                 name="phoneNumber"
+                value=''
                 validators={[Validators.isATelephoneNumber]}
               >
                 <TextField
@@ -197,6 +201,7 @@ export default function ContactsDialog(props: DialogBase) {
               </InputValidator>
               <InputValidator
                 name="email"
+                value=''
                 validators={[Validators.required, Validators.isAnEmail]}
               >
                 <TextField
@@ -210,6 +215,7 @@ export default function ContactsDialog(props: DialogBase) {
               </InputValidator>
               <InputValidator
                 name="message"
+                value=''
                 validators={[Validators.required]}
               >
                 <TextField

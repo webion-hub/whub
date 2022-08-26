@@ -1,3 +1,4 @@
+import { Attachment } from "./Attachment";
 import { Category } from "./Category";
 import { Image } from "./Image";
 import { Producer } from "./Producer";
@@ -15,7 +16,7 @@ export interface Product {
   readonly rating?: number;
   readonly code?: string;
   readonly images: Image[];
-  readonly attachments: string[];
+  readonly attachments: Attachment[];
   readonly tags: Tag[];
   readonly relatedProducts: Product[];
   readonly mainVariant?: Product;

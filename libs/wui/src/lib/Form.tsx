@@ -1,26 +1,31 @@
 import _ from "lodash";
 import { ChangeEvent } from "react";
+import { BehaviorSubject } from "rxjs";
 import { FormInput, FormInputs, FormValueTypes } from "../abstractions/form/FormInputs";
 import { Validator } from "../abstractions/form/Validator";
 import { Validators } from "./Validators";
 
 export class Form {
   public readonly id: string
+  public readonly newInputSubject: BehaviorSubject<string>
 
   private readonly setter: React.Dispatch<FormInputs>
   private inputs: FormInputs
 
-  constructor(setter: React.Dispatch<FormInputs>, inputs: FormInputs) {
+  constructor(setter: (React.Dispatch<FormInputs>), inputs: FormInputs) {
     this.setter = setter;
     this.inputs = inputs;
     this.id = _.uniqueId()
+    this.newInputSubject = new BehaviorSubject<string>('')
   }
 
   removeInput = (key: string) => {
+    this.newInputSubject.next(key)
     delete this.inputs[key]
   }
 
   addInput = (key: string, input: FormInput) => {
+    this.newInputSubject.next(key)
     this.inputs = {
       ...this.inputs,
       [key]: input
@@ -53,7 +58,13 @@ export class Form {
   }
 
   setTargetValue = (key: string) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    this.setValue(key)(e.target.value)
+    const value = e.target.value
+    this.inputs[key]?.setter?.(value)
+    this.setValue(key)(value)
+  }
+
+  getSubject = (key: string) => {
+    return this.inputs[key]?.subject
   }
 
   getValue = (key: string) => {

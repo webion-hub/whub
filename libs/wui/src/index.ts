@@ -29,6 +29,8 @@ export * from './hooks/useBackgroundWaves';
 export * from './hooks/useNavigator';
 export * from './hooks/useScrollAnimation';
 export * from './hooks/useProgressiveImage';
+export * from './hooks/useSubject';
+export * from './hooks/useForceRender';
 
 //Contexts
 export * from './contexts/ContextLanguage';
@@ -76,10 +78,12 @@ export * from './components/slideshow/Slideshow';
 export * from './components/slideshow/SlideshowImage';
 
 export * from './components/dialogs/DialogTitleCross';
+export * from './components/dialogs/AreYouSureDialog';
 
 export * from './components/form/FormGroup';
 export * from './components/form/InputValidator';
 export * from './components/form/InputValidatorGroup';
+export * from './components/form/GetFormValue';
 
 export * from './components/Img';
 export * from './components/Parallax';

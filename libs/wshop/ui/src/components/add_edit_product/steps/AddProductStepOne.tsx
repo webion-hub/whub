@@ -29,6 +29,7 @@ export function AddProductStepOne(props: InputValidatorGroupProps) {
     >
       <InputValidator
         name="name"
+        value=''
         validators={[Validators.required]}
       >
         <TextField

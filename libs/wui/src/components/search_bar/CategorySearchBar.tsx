@@ -3,16 +3,14 @@ import { useTheme, Button, TextField, Stack, Divider, Autocomplete } from "@mui/
 
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { Dropdown } from "../Dropdown";
-import { Product } from "@whub/wshop-api";
 import _ from "lodash";
-import { ProductListItem } from "@whub/wshop-ui";
 
-export interface CategorySearchBarProps {
-  readonly filter: string,
-  readonly elements: string[],
+export interface CategorySearchBarProps<T> {
+  readonly options: T[],
+  readonly children: (props: React.HTMLAttributes<HTMLLIElement>, option: T) => JSX.Element,
 }
 
-export function CategorySearchBar(props: CategorySearchBarProps) {
+export function CategorySearchBar<T>(props: CategorySearchBarProps<T>) {
   const ref = useRef<HTMLDivElement>()
   const theme = useTheme()
   const [focus, setFocus] = React.useState<boolean>(false);
@@ -26,18 +24,6 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
       return '#000'
 
     return 'auto'
-  }
-
-  const p: Product = {
-    attachments: [],
-    details: [],
-    id: 1,
-    images: [ { id: 1, url: "assets/images/logo.png" } ],
-    name: 'prova',
-    relatedProducts: [],
-    tags: [],
-    variants: [],
-    category: { id: 1, name: 'rrrr', products: [] },
   }
 
   return (
@@ -78,9 +64,9 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
       />
       <Autocomplete
         fullWidth
-        options={[p]}
-        groupBy={(option) => option.category?.name ?? 'Altro'}
-        getOptionLabel={(option) => option.name}
+        options={props.options}
+        //groupBy={(option) => option.category?.name ?? 'Altro'}
+        //getOptionLabel={(option) => option.name}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         onMouseEnter={() => setHover(true)}
@@ -97,19 +83,7 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
           marginLeft: '-1px',
           marginRight: '-1px',
         }}
-        renderOption={(props, option) => (
-          <ProductListItem
-            key={_.uniqueId()}
-            listItemProps={props}
-            product={option}
-          >
-            <Button
-              variant="text"
-            >
-              Vedi
-            </Button>
-          </ProductListItem>
-        )}
+        renderOption={(props, option) => props.children}
         renderInput={(params) => (
           <TextField
             {...params}
