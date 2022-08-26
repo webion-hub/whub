@@ -15,6 +15,7 @@ interface ProductImageBaseProps {
 
 interface ProductImageButtonProps extends ProductImageBaseProps {
   readonly component: 'button',
+  readonly zoom?: boolean,
   readonly disabled?: boolean,
   readonly selected?: boolean,
   readonly onClick?: () => void,

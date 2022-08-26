@@ -3,7 +3,7 @@ import { LoadingButton } from "@mui/lab";
 import { Button, Paper, Stack, Typography } from "@mui/material";
 import { handleResponse } from "@whub/apis-core";
 import { useShopApi } from "@whub/apis-react";
-import { Product, ProductEndpoint } from "@whub/wshop-api";
+import { Product, ProductDetail, ProductEndpoint } from "@whub/wshop-api";
 import { Form, FormGroup, GetFormValue, Page, Section, useForm, useNavigator } from "@whub/wui";
 import { ReactNode, useState } from "react";
 import { ProductComponent } from "../ProductComponent";
@@ -36,7 +36,8 @@ export function ProductHandler() {
           uploadData(product, f,
             formProduct.attachments ?? [],
             formProduct.images ?? [],
-            formProduct.correlated ?? []
+            formProduct.correlated ?? [],
+            formProduct.details ?? []
           )
             .then(() => onClose())
             .finally(() => setLoading(false))
@@ -56,24 +57,29 @@ export function ProductHandler() {
     form: Form,
     files: File[],
     images: string[],
-    releated: Product[]
+    releated: Product[],
+    details: ProductDetail[],
   ) => {
     return Promise.all([
       uploadFiles(productEndpoint, files).catch(() => form.setIsValid('attachments')(false)),
       uploadImages(productEndpoint, images).catch(() => form.setIsValid('images')(false)),
-      uploadReleated(productEndpoint, releated).catch(() => form.setIsValid('correlated')(false))
+      uploadReleated(productEndpoint, releated).catch(() => form.setIsValid('correlated')(false)),
+      uploadDetails(productEndpoint, details).catch(() => form.setIsValid('details')(false))
     ])
   }
 
+  const uploadDetails = (productEndpoint: ProductEndpoint, details: ProductDetail[]) => {
+    return productEndpoint
+      .details
+      .update({ details: details })
+  }
+
   const uploadReleated = (productEndpoint: ProductEndpoint, products: Product[]) => {
-    console.log(products)
     return productEndpoint
       .updateRelatedProducts({ productIds: products.map(p => p.id) })
   }
 
   const uploadFile = (productEndpoint: ProductEndpoint, file: File) => {
-    console.log(file)
-
     return productEndpoint
       .attachments
       .upload(file)
