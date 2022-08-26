@@ -48,6 +48,7 @@ export class Form {
   }
 
   setValue = (key: string) => (value: any) => {
+    this.inputs[key]?.setter?.(value)
     this.setValues({
       ...this.inputs,
       [key]: {
@@ -59,7 +60,6 @@ export class Form {
 
   setTargetValue = (key: string) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value
-    this.inputs[key]?.setter?.(value)
     this.setValue(key)(value)
   }
 

@@ -32,7 +32,7 @@ export function AddProductStepThree(props: InputValidatorGroupProps) {
                     variant="caption"
                     color="error"
                   >
-                    Immagini di dimensioni troppo grandi.
+                    Errore caricamento immagini.
                   </Typography>
                 </MaybeShow>
               </Stack>
@@ -40,16 +40,30 @@ export function AddProductStepThree(props: InputValidatorGroupProps) {
         }
       </InputValidator>
       <InputValidator
-        name="attachment"
+        name="attachments"
         mode="manual"
         value={[] as File[]}
       >
         {
           i =>
-            <ProductAttachmentUploader
-              files={i.value}
-              onChange={f => i.onChange?.({ target: { value: f } })}
-            />
+            <Stack
+              direction="column"
+            >
+              <ProductAttachmentUploader
+                files={i.value}
+                onChange={f => i.onChange?.({ target: { value: f } })}
+              />
+              <MaybeShow
+                show={!!i.error}
+              >
+                <Typography
+                  variant="caption"
+                  color="error"
+                >
+                  Errore caricamento file.
+                </Typography>
+              </MaybeShow>
+            </Stack>
         }
       </InputValidator>
     </InputValidatorGroup>
@@ -147,7 +161,15 @@ function ProductAttachmentUploader(props: FileProps<File>) {
               justifyContent="center"
               sx={{ height: '100%' }}
             >
-              <Typography variant="caption">
+              <Typography
+                variant="caption"
+                sx={{
+                  display: '-webkit-box',
+                  WebkitLineClamp: '2',
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden'
+                }}
+              >
                 {f.file.name}
               </Typography>
               <Typography variant="caption">

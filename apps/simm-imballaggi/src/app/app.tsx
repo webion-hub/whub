@@ -19,6 +19,7 @@ import SimmSideBar from "./components/layout/SimmSideBar";
 import SimmFooter from "./components/layout/SimmFooter";
 import { TableProductsPage } from "./pages/table-products-page/TableProductsPage";
 import { ProductHandler } from "@whub/wshop-ui";
+import { ProductPage } from "./pages/product-page/ProductPage";
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -68,6 +69,7 @@ export function App() {
               <Routes>
                 <Route key="home" path="/"  element={<Homepage/>}/>
                 <Route key="login" path="/login"  element={<LoginPage/>}/>
+                <Route key="product" path="/product/:id"  element={<ProductPage/>}/>
                 <Route key="add-product" path="/add-product"  element={<ProductHandler/>}/>
                 <Route key="products-table" path="/products-table"  element={<TableProductsPage/>}/>
               </Routes>

@@ -17,13 +17,11 @@ export function ProductHandler() {
   const [loading, setLoading] = useState(false)
 
   const onCreate = (f: Form) => {
+    console.log(f.getValues())
     if(!f.isFormValid())
       return
 
     setLoading(true)
-
-    console.log(f.getValues())
-
     const formProduct = f.getValues()
 
     shopApi.products
@@ -35,17 +33,16 @@ export function ProductHandler() {
         201: () => {
           const product = shopApi.products.withId(res.data.id)
 
-          uploadData(product, formProduct.attachment, formProduct.images, formProduct.correlated)
+          uploadData(product, f,
+            formProduct.attachments ?? [],
+            formProduct.images ?? [],
+            formProduct.correlated ?? []
+          )
             .then(() => onClose())
-            .catch(() => {
-              f.setIsValid('images')(false)
-            })
             .finally(() => setLoading(false))
         }
       }))
       .catch(err => {
-        console.error(err)
-
         handleResponse(err.response, {
         409: () => {
           f.setIsValid('code')(false)
@@ -54,11 +51,17 @@ export function ProductHandler() {
       })})
   }
 
-  const uploadData = (productEndpoint: ProductEndpoint, files: File[], images: string[], releated: Product[]) => {
+  const uploadData = (
+    productEndpoint: ProductEndpoint,
+    form: Form,
+    files: File[],
+    images: string[],
+    releated: Product[]
+  ) => {
     return Promise.all([
-      uploadFiles(productEndpoint, files),
-      uploadImages(productEndpoint, images),
-      uploadReleated(productEndpoint, releated)
+      uploadFiles(productEndpoint, files).catch(() => form.setIsValid('attachments')(false)),
+      uploadImages(productEndpoint, images).catch(() => form.setIsValid('images')(false)),
+      uploadReleated(productEndpoint, releated).catch(() => form.setIsValid('correlated')(false))
     ])
   }
 
@@ -69,6 +72,8 @@ export function ProductHandler() {
   }
 
   const uploadFile = (productEndpoint: ProductEndpoint, file: File) => {
+    console.log(file)
+
     return productEndpoint
       .attachments
       .upload(file)

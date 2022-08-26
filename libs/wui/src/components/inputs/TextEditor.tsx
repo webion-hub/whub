@@ -104,13 +104,7 @@ export function TextEditor(props: TextEditorProps) {
         onKeyDown={handleKeyDown}
         theme="snow"
         value={props.value}
-        onBlur={(_, __, quill) => {
-          console.log(quill.getHTML());
-
-        }}
-        onChange={(v, _, s) => {
-          console.log(s)
-          props.onChange?.({ target: { value: v } })}}
+        onChange={(v, _, s) => props.onChange?.({ target: { value: v } })}
       />
     </Stack>
 

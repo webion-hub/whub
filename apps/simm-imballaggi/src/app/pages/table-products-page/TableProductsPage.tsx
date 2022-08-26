@@ -1,4 +1,4 @@
-import { AddRounded, CloseRounded, EditRounded } from "@mui/icons-material";
+import { AddRounded, CloseRounded, EditRounded, OpenInNewRounded } from "@mui/icons-material";
 import { Badge, Button, IconButton, LinearProgress, Stack, TextField } from "@mui/material";
 import { useShopApi } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
@@ -111,7 +111,7 @@ export function TableProductsPage() {
               selector: row => row.price ? `${row.price}€` : ''
             },
             {
-              maxWidth: '80px',
+              maxWidth: '160px',
               cell: (p) => (
                 <Stack
                   direction="row"
@@ -123,6 +123,12 @@ export function TableProductsPage() {
                     onClick={() => setProductToDelete(p)}
                   >
                     <CloseRounded/>
+                  </IconButton>
+                  <IconButton
+                    href={`/product/${p.id}`}
+                    onClick={clickNavigate(`/product/${p.id}`)}
+                  >
+                    <OpenInNewRounded/>
                   </IconButton>
                 </Stack>
               )

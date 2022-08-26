@@ -1,9 +1,10 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Menu, MenuItem, Stack, Typography, useTheme } from "@mui/material";
-import { Product, ProductDetail } from "@whub/wshop-api";
+import { Category, Product, ProductDetail } from "@whub/wshop-api";
 import { ReactNode, useEffect, useState } from "react";
 import { ProductImage } from "./ProductImage";
-import { GetFormValue, MaybeShow } from "@whub/wui";
+import { GetFormValue, MaybeShow, Slideshow } from "@whub/wui";
 import parse from 'html-react-parser';
+import { DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
 
 interface ProductComponentBaseProps {
   readonly compress?: boolean,
@@ -32,142 +33,181 @@ export function ProductComponent(props: ProductComponentProps) {
 
   return (
     <Stack
-      direction="row"
-      spacing={6}
-      sx={{
-        "& > *": {
-          width: '50%'
-        },
-        "& .placeholder": {
-          opacity: 0.2,
-          fontStyle: 'italic'
-        }
-      }}
+      direction="column"
     >
-      <ProductField
-        name="images"
-        mode={props.mode}
-        product={product}
-        placeholder={[] as string[]}
-      >
-        {
-          images =>
-            <ProductImagesViewer
-              mode={props.mode}
-              product={product}
-              previewImages={images}
-            />
-        }
-      </ProductField>
-
       <Stack
-        direction="column"
-        spacing={2}
+        direction="row"
+        spacing={6}
+        sx={{
+          "& > *": {
+            width: '50%'
+          },
+          "& .placeholder": {
+            opacity: 0.2,
+            fontStyle: 'italic'
+          }
+        }}
       >
         <Stack
           direction="column"
-          spacing={4}
+          alignItems="flex-end"
         >
-          <Stack
-            direction="column"
-            spacing={1}
-          >
-            <ProductField
-              name="name"
-              mode={props.mode}
-              product={product}
-              placeholder={getStringPlaceholder('Nome')}
-            >
-              {
-                v =>
-                  <Typography variant="h4">
-                    {parse(v)}
-                  </Typography>
-              }
-            </ProductField>
-            <ProductField
-              name="description"
-              mode={props.mode}
-              product={product}
-              placeholder={getStringPlaceholder('Descrizione')}
-            >
-              {
-                v =>
-                  <Typography component='span'>
-                    {parse(v)}
-                  </Typography>
-              }
-            </ProductField>
-          </Stack>
           <ProductField
-            name="price"
+            name="category"
             mode={props.mode}
             product={product}
-            placeholder={getStringPlaceholder('Prezzo')}
-            suffix="€"
+            placeholder=''
           >
             {
-              v =>
-              <Typography color="secondary">
-                <strong>
-                  {parse(v)}
-                </strong>
-              </Typography>
+              category =>
+                <Typography>
+                  { category?.name }
+                </Typography>
+            }
+          </ProductField>
+          <ProductField
+            name="images"
+            mode={props.mode}
+            product={product}
+            placeholder={[] as string[]}
+          >
+            {
+              images =>
+                <ProductImagesViewer
+                  mode={props.mode}
+                  product={product}
+                  previewImages={images}
+                />
             }
           </ProductField>
         </Stack>
-        <Box>
-          <Button
-            variant="contained"
-          >
-            Contattaci per ricevere informazioni
-          </Button>
-        </Box>
-        {/*        <Stack
+
+        <Stack
           direction="column"
+          spacing={2}
         >
-          {
-            props.product.details.map((d, i) => (
-              <ProductDetailAccordion
-                key={i}
-                detail={d}
-              />
-            ))
-          }
-        </Stack>*/}
-        <ProductField
-          name="attachments"
-          mode={props.mode}
-          product={product}
-          placeholder={[] as File[]}
-        >
-          {
-            a =>
-            <ProductAttachmentButtonList
+          <Stack
+            direction="column"
+            spacing={4}
+          >
+            <Stack
+              direction="column"
+              spacing={1}
+            >
+              <ProductField
+                name="name"
+                mode={props.mode}
+                product={product}
+                placeholder={getStringPlaceholder('Nome')}
+              >
+                {
+                  v =>
+                    <Typography variant="h4">
+                      {parse(v)}
+                    </Typography>
+                }
+              </ProductField>
+              <ProductField
+                name="description"
+                mode={props.mode}
+                product={product}
+                placeholder={getStringPlaceholder('Descrizione')}
+              >
+                {
+                  v =>
+                    <Typography component='span'>
+                      {parse(v)}
+                    </Typography>
+                }
+              </ProductField>
+            </Stack>
+            <ProductField
+              name="price"
               mode={props.mode}
               product={product}
-              attachments={a}
-            />
-          }
-        </ProductField>
+              placeholder={getStringPlaceholder('Prezzo')}
+              suffix="€"
+            >
+              {
+                v =>
+                <Typography color="secondary">
+                  <strong>
+                    {parse(v)}
+                  </strong>
+                </Typography>
+              }
+            </ProductField>
+          </Stack>
+          <Box>
+            <Button
+              variant="contained"
+            >
+              Contattaci per ricevere informazioni
+            </Button>
+          </Box>
+          <ProductField
+            name="details"
+            mode={props.mode}
+            product={product}
+            placeholder={[] as ProductDetail[]}
+          >
+            {
+              (details: ProductDetail[]) =>
+                <Stack
+                  direction="column"
+                >
+                  {
+                    details.map((d, i) => (
+                      <ProductDetailAccordion
+                        key={i}
+                        detail={d}
+                      />
+                    ))
+                  }
+                </Stack>
+            }
+          </ProductField>
+          {/*<ProductField
+            name="attachments"
+            mode={props.mode}
+            product={product}
+            placeholder={[] as File[]}
+          >
+            {
+              a =>
+              <ProductAttachmentButtonList
+                mode={props.mode}
+                product={product}
+                attachments={a}
+              />
+            }
+          </ProductField>*/}
 
-        <ProductField
-          name="code"
-          mode={props.mode}
-          product={product}
-          placeholder={getStringPlaceholder('Codice prodotto')}
-          prefix='Codice: '
-        >
-          {
-            v =>
-              <Typography
-                variant="caption"
-                color="text.secondary"
-              >
-                {parse(v)}
-              </Typography>
-          }
-        </ProductField>
+          <ProductField
+            name="code"
+            mode={props.mode}
+            product={product}
+            placeholder={getStringPlaceholder('Codice prodotto')}
+            prefix='Codice: '
+          >
+            {
+              v =>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                >
+                  {parse(v)}
+                </Typography>
+            }
+          </ProductField>
+        </Stack>
+      </Stack>
+      <Stack
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Typography variant="h6" > Prodotti correlati </Typography>
       </Stack>
     </Stack>
   )
@@ -186,6 +226,7 @@ function ProductImagesViewer(props: ProductImagesViewerProps) {
 
   const sideImageSize = 64
   const imageGap = theme.spacing(1)
+  const imageMaxSize = 512
 
   const isAPreview = props.mode === 'preview'
   const product = isAPreview
@@ -209,12 +250,16 @@ function ProductImagesViewer(props: ProductImagesViewerProps) {
       direction="row"
       justifyContent="flex-end"
       spacing={1}
+      sx={{
+        width: '100%',
+        maxWidth: `calc(${imageMaxSize}px + ${imageGap} + ${sideImageSize}px)`,
+      }}
     >
       <Stack
         direction="column"
         spacing={imageGap}
         sx={{
-          height: 512,
+          height: imageMaxSize,
           overflowY: 'auto',
           overflowX: 'hidden',
         }}
@@ -263,7 +308,10 @@ interface ProductFieldProps<T> {
 
 function ProductField<T>(props: ProductFieldProps<T>) {
 
-  const prepareValue = (v: T) => {
+  const prepareValue = (v?: T) => {
+    if(!v)
+      return ''
+
     if(typeof v === 'string' || v instanceof String || typeof v === 'number')
       return `${props.prefix ?? ''}${v}${props.suffix ?? ''}`
 
@@ -308,6 +356,21 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
     setAnchorEl(null);
   };
 
+  const getAttachments = () => {
+    const files =  //props.mode === 'preview'
+      /*?*/ props.attachments
+      //: props.product?.attachments
+
+    return files ?? []
+  }
+
+  const areNoAttachments = () => {
+    return getAttachments()?.length === 0
+  }
+
+  if(areNoAttachments())
+    return null
+
   return (
     <Box>
       <Button
@@ -323,8 +386,26 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
         onClose={handleClose}
       >
         {
-          props.product?.attachments.map((a, i) => (
-            <MenuItem onClick={handleClose}>{a.fileName}</MenuItem>
+          getAttachments().map((a, i) => (
+            <MenuItem
+              key={i}
+              component='a'
+              download={a.name}
+              href={URL.createObjectURL(a)}
+              onClick={handleClose}
+              sx={{ maxWidth: 250 }}
+            >
+              <DownloadRounded/>
+              <Typography
+                sx={{
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
+                }}
+              >
+                {a.name}
+              </Typography>
+            </MenuItem>
           ))
         }
       </Menu>
@@ -340,13 +421,13 @@ interface ProductDetailsAccordionProps {
 function ProductDetailAccordion(props: ProductDetailsAccordionProps) {
   return (
     <Accordion>
-      <AccordionSummary>
+      <AccordionSummary
+        expandIcon={<ExpandMoreRounded/>}
+      >
         <Typography> {props.detail.title} </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Typography>
-          {parse(props.detail.description ?? '')}
-        </Typography>
+        {parse(props.detail.description ?? '')}
       </AccordionDetails>
     </Accordion>
   )
