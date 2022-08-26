@@ -5,6 +5,8 @@ import { ProductImage } from "./ProductImage";
 import { GetFormValue, MaybeShow, Slideshow } from "@whub/wui";
 import parse from 'html-react-parser';
 import { DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
+import { useShopApi } from "@whub/apis-react";
+import { urlToHttpOptions } from "url";
 
 interface ProductComponentBaseProps {
   readonly compress?: boolean,
@@ -167,7 +169,7 @@ export function ProductComponent(props: ProductComponentProps) {
                 </Stack>
             }
           </ProductField>
-          {/*<ProductField
+          <ProductField
             name="attachments"
             mode={props.mode}
             product={product}
@@ -181,7 +183,7 @@ export function ProductComponent(props: ProductComponentProps) {
                 attachments={a}
               />
             }
-          </ProductField>*/}
+          </ProductField>
 
           <ProductField
             name="code"
@@ -345,6 +347,7 @@ interface ProductAttachmentButtonListProps {
 }
 
 function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
+  const shopApi = useShopApi()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -357,11 +360,23 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
   };
 
   const getAttachments = () => {
-    const files =  //props.mode === 'preview'
-      /*?*/ props.attachments
-      //: props.product?.attachments
+    const product = props.product
 
-    return files ?? []
+    if(props.mode === 'preview')
+      return props.attachments
+        .map(a => ({url: URL.createObjectURL(a), name: a.name}))
+
+    if(!product)
+      return []
+
+    const shopProduct = shopApi.products.withId(product.id);
+    const urls = product.attachments
+      .map(a => ({
+        url: shopProduct.attachments.withId(a.id).fullUrl,
+        name: a.fileName
+      }))
+
+    return urls
   }
 
   const areNoAttachments = () => {
@@ -390,8 +405,9 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
             <MenuItem
               key={i}
               component='a'
+              target="_blank"
               download={a.name}
-              href={URL.createObjectURL(a)}
+              href={a.url}
               onClick={handleClose}
               sx={{ maxWidth: 250 }}
             >
