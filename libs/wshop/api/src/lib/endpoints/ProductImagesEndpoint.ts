@@ -1,16 +1,20 @@
 import { AxiosInstance } from "axios";
-import { Image } from "../model/image";
+import { Endpoint } from "@whub/apis-core";
 import { ProductImageEndpoint } from "./ProductImageEndpoint";
+import { Image } from "../model/Image";
 
-export class ProductImagesEndpoint {
-  private get url() {
-    return `shop/products/${this.productId}/images`
-  };
-
+export class ProductImagesEndpoint extends Endpoint {
   constructor (
-    private readonly client: AxiosInstance,
+    client: AxiosInstance,
     private readonly productId: number,
-  ) {}
+  ) {
+    super(client);
+  }
+
+  get url() {
+    return `products/${this.productId}/images`;
+  }
+
 
   withId(imageId: number) {
     return new ProductImageEndpoint(
@@ -21,6 +25,8 @@ export class ProductImagesEndpoint {
   }
 
   upload(base64Url: string | Blob) {
-    return this.client.post<Image>(this.url, base64Url);
+    return this.client.post<Image>(this.url + `/from_data_url`, {
+      image: base64Url,
+    });
   }
 }

@@ -1,9 +1,10 @@
 import { CloseRounded } from "@mui/icons-material";
-import { DialogTitle, DialogTitleProps, IconButton } from "@mui/material";
+import { Box, DialogTitle, DialogTitleProps, IconButton } from "@mui/material";
 import { DialogOnClose } from "../../abstractions/dialogs/DialogOnClose";
 
 export interface DialogTitleCrossProps extends DialogTitleProps {
   readonly onClose?: DialogOnClose;
+  readonly disabled?: boolean;
 }
 
 export const DialogTitleCross = (props: DialogTitleCrossProps) => {
@@ -12,20 +13,32 @@ export const DialogTitleCross = (props: DialogTitleCrossProps) => {
   return (
     <DialogTitle
       {...other}
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        ...other.sx
+      }}
     >
       {props.children}
-      <IconButton
-        aria-label="close"
-        onClick={onClose}
+      <Box
         sx={{
-          position: 'absolute',
-          right: 8,
-          top: 8,
-          color: (theme) => theme.palette.grey[500],
+          marginRight: -2,
+          marginTop: -0.5,
+          marginLeft: 0.5
         }}
       >
-        <CloseRounded />
-      </IconButton>
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          disabled={props.disabled}
+          sx={{
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseRounded />
+        </IconButton>
+      </Box>
     </DialogTitle>
   )
 }

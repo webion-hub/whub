@@ -1,9 +1,10 @@
 import React, { ReactElement } from "react";
+import { ReactNode } from "react";
 import { ChildrenProp } from "../../abstractions/props/ChildrenProps";
 
 export interface MaybeShopBaseProps {
   readonly children: ChildrenProp;
-  readonly alternativeChildren?: ChildrenProp;
+  readonly alternativeChildren?: ChildrenProp | ReactNode;
 }
 
 export interface MaybeShowProps extends MaybeShopBaseProps {

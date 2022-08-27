@@ -1,14 +1,18 @@
 import { AxiosInstance } from "axios";
-import { Product } from "../model/product";
+import { Endpoint } from "@whub/apis-core";
+import { Product } from "../model/Product";
 import { UpdateProductRequest } from "../requests/UpdateProductRequest";
 import { ProductEndpoint } from "./ProductEndpoint";
 
-export class ProductsEndpoint {
-  private get url() {
-    return 'shop/products';
+export class ProductsEndpoint extends Endpoint {
+  constructor (client: AxiosInstance) {
+    super(client);
   }
 
-  constructor (private readonly client: AxiosInstance) {}
+  get url() {
+    return 'products';
+  }
+
 
   withId(id: number) {
     return new ProductEndpoint(this.client, id);

@@ -43,7 +43,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
             hideOnMobile
             fullWidth
           >
-            <CategorySearchBar filter="" elements={[]}/>
+            {/*<CategorySearchBar options={[]}/>*/}
           </AppBarSection>
           <AppBarSection alignment="end">
             <IconButton color="primary">
@@ -77,7 +77,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
               fullWidth
               alignment="center"
             >
-              <CategorySearchBar filter="" elements={[]}/>
+              {/*<CategorySearchBar options={[]}/>*/}
             </AppBarSection>
           </AppBarContent>
         </AppBar>

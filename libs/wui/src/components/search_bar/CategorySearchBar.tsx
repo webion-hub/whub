@@ -1,16 +1,16 @@
 import React, { useRef } from "react"
-import { useTheme, Button, TextField, Stack, Divider, Autocomplete, Typography } from "@mui/material";
+import { useTheme, Button, TextField, Stack, Divider, Autocomplete } from "@mui/material";
 
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import { Img } from "../Img";
 import { Dropdown } from "../Dropdown";
+import _ from "lodash";
 
-export interface CategorySearchBarProps {
-  readonly filter: string,
-  readonly elements: string[],
+export interface CategorySearchBarProps<T> {
+  readonly options: T[],
+  readonly children: (props: React.HTMLAttributes<HTMLLIElement>, option: T) => JSX.Element,
 }
 
-export function CategorySearchBar(props: CategorySearchBarProps) {
+export function CategorySearchBar<T>(props: CategorySearchBarProps<T>) {
   const ref = useRef<HTMLDivElement>()
   const theme = useTheme()
   const [focus, setFocus] = React.useState<boolean>(false);
@@ -64,30 +64,9 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
       />
       <Autocomplete
         fullWidth
-        options={[
-          {
-            title: 'Reggiatrice 1',
-            src: 'assets/images/logo.png',
-            category: 'Reggiatrici',
-          },
-          {
-            title: 'Reggiatrice 2',
-            src: 'assets/images/logo.png',
-            category: 'Reggiatrici',
-          },
-          {
-            title: 'Marcatore 1',
-            src: 'assets/images/logo.png',
-            category: 'Marcatori',
-          },
-          {
-            title: 'Marcatore 2',
-            src: 'assets/images/logo.png',
-            category: 'Marcatori',
-          },
-        ]}
-        groupBy={(option) => option.category}
-        getOptionLabel={(option) => option.title}
+        options={props.options}
+        //groupBy={(option) => option.category?.name ?? 'Altro'}
+        //getOptionLabel={(option) => option.name}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         onMouseEnter={() => setHover(true)}
@@ -104,48 +83,7 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
           marginLeft: '-1px',
           marginRight: '-1px',
         }}
-        renderOption={(props, option) => (
-          <Stack
-            spacing={2}
-            component="li"
-            direction="row"
-            sx={{
-              width: '100%',
-              justifyContent: 'space-between !important'
-            }}
-            {...props}
-          >
-            <Stack
-              spacing={2}
-              direction="row"
-            >
-              <Img
-                src={option.src}
-                sx={{
-                  aspectRatio: 1,
-                  height: 48,
-                  borderRadius: 1,
-                }}
-              />
-              <Stack
-                direction="column"
-              >
-                <Typography>{option.title}</Typography>
-                <Typography
-                  variant="caption"
-                  color="text.secondary"
-                >
-                  {option.category}
-                </Typography>
-              </Stack>
-            </Stack>
-            <Button
-              variant="text"
-            >
-              Vedi
-            </Button>
-          </Stack>
-        )}
+        renderOption={(props, option) => props.children}
         renderInput={(params) => (
           <TextField
             {...params}

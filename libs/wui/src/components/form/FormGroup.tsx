@@ -1,14 +1,17 @@
-import React, { createContext, FormEvent, ReactNode, useRef } from "react";
-import { Form } from "../../lib/Form";
 import { styled, SxProps, Theme } from "@mui/material";
-import { FormInputs } from "../../abstractions/form/FormInputs";
+import _ from "lodash";
+import { createContext, FormEvent, ReactNode, useEffect, useRef, useState } from "react";
+import { FormInputs, FormValueInputs } from "../../abstractions/form/FormInputs";
+import { Form } from "../../lib/Form";
 
 const StyledForm = styled('form')({})
 
+type FormChildren = (form: Form) => ReactNode
+
 interface FormGroupProps {
-  readonly values?: FormInputs,
-  readonly children?: ReactNode,
-  readonly onSubmit: (form: Form) => void;
+  readonly values?: FormValueInputs,
+  readonly children?: ReactNode | FormChildren,
+  readonly onSubmit?: (form: Form) => void;
   readonly sx?: SxProps<Theme>,
 }
 
@@ -21,14 +24,45 @@ export const FormGroupContext = createContext<FormGroupContext>({
 })
 
 export const FormGroup = (props: FormGroupProps) => {
-  const [, setFormValues] = React.useState<FormInputs>(props.values ?? {});
-  const form = useRef<Form>(new Form(setFormValues, props.values ?? {}));
+  const [readyForSubmit, setReadeyForSubmit] = useState(false);
+
+  const setFormValues = (v: FormInputs) => {
+    values.current = v
+  }
+
+  const getPropsFormInputs = (): FormInputs => {
+    const inputs = Object
+    .entries(_.cloneDeep(props.values ?? {}))
+    .map(v => [v[0], { value: v[1], validators: [] }])
+
+    return Object.fromEntries(inputs)
+  }
+
+  const values = useRef<FormInputs>(getPropsFormInputs());
+  const form = useRef<Form>(new Form(setFormValues, getPropsFormInputs()));
+
+  useEffect(() => {
+    if(!readyForSubmit)
+      return
+
+    setReadeyForSubmit(false)
+    submit()
+  }, [values.current, readyForSubmit])
+
+  const submit = () => {
+    form.current.isFormValid()
+    props.onSubmit?.(form.current)
+  }
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    form.current.isFormValid()
-    props.onSubmit(form.current)
+    form.current.clearErrors()
+    setReadeyForSubmit(true)
   }
+
+  const children = typeof props.children === 'function'
+    ? props.children(form.current)
+    : props.children
 
   return (
     <FormGroupContext.Provider
@@ -39,7 +73,7 @@ export const FormGroup = (props: FormGroupProps) => {
         noValidate
         sx={props.sx}
       >
-        {props.children}
+        {children}
       </StyledForm>
     </FormGroupContext.Provider>
   )
