@@ -36,14 +36,14 @@ export function ProductImage(props: ProductImageProps) {
   const [zoomBox, setZoomBox] = useState({
     x: 0,
     y: 0,
-    size: 512
+    size: 0
   })
   const [canZoom, setCanZoom] = useState(false)
+  const ref = useRef<any>(200)
 
-  const zoom = 3
-  const lensSize = 200
+  const zoom = 2
+  const lensSize = 2 * ref.current.offsetWidth / 3
 
-  const ref = useRef<any>()
   const shopApi = useShopApi()
   const { product, size, maxSize } = props
 
@@ -130,7 +130,7 @@ export function ProductImage(props: ProductImageProps) {
       }}
     >
       <MaybeShow
-        show={!!props.zoomable && !loading && canZoom}
+        show={!!props.zoomable && !loading && canZoom && !!srcLoaded}
       >
         <Box
           sx={{
@@ -139,7 +139,7 @@ export function ProductImage(props: ProductImageProps) {
             width: lensSize,
             height: lensSize,
             background: '#fff',
-            borderRadius: '100%',
+            borderRadius: 2,
             border: '1px solid #777',
             backgroundSize: `${zoomBox.size * zoom}px ${zoomBox.size * zoom}px `,
             backgroundImage: srcLoaded && `url(${srcLoaded})`,

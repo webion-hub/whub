@@ -30,6 +30,15 @@ export function AddProductStepTwo(props: InputValidatorGroupProps) {
       <InputValidator
         name="details"
         value={[] as ProductDetail[]}
+        validators={[
+          Validators.customValidator((details: ProductDetail[]) => {
+            return details.every(d =>
+              Validators.required(d.title) &&
+              Validators.max(512)(d.title) &&
+              Validators.max(4096)(d.description)
+            )
+          })
+        ]}
       >
         <ProductDetails/>
       </InputValidator>
@@ -165,6 +174,7 @@ function ProductDetailInput(props: ProductDetailInputProps) {
         disabled={props.disabled}
         error={props.error}
         size="small"
+        required
         variant="outlined"
         label="Titolo"
         value={detail.title}

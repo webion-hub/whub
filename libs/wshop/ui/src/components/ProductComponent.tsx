@@ -1,16 +1,16 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Menu, MenuItem, Stack, Typography, useTheme } from "@mui/material";
-import { Category, Product, ProductDetail } from "@whub/wshop-api";
-import { ReactNode, useEffect, useState } from "react";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Menu, MenuItem, Stack, SxProps, Theme, Typography, useTheme } from "@mui/material";
+import { Product, ProductDetail } from "@whub/wshop-api";
+import { useState } from "react";
 import { ProductImage } from "./ProductImage";
-import { FileWithId, GetFormValue, MaybeShow, Slideshow } from "@whub/wui";
+import { FileWithId, GetFormValue } from "@whub/wui";
 import parse from 'html-react-parser';
 import { DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
 import { useShopApi } from "@whub/apis-react";
-import { urlToHttpOptions } from "url";
 import { ProductUtils } from "../lib/ProductUtils";
 
 interface ProductComponentBaseProps {
   readonly compress?: boolean,
+  readonly sx?: SxProps<Theme>,
 }
 
 interface ProductComponentPreviewProps extends ProductComponentBaseProps {
@@ -37,13 +37,19 @@ export function ProductComponent(props: ProductComponentProps) {
   return (
     <Stack
       direction="column"
+      sx={{
+        width: '100%',
+        ...props.sx
+      }}
+      spacing={4}
     >
       <Stack
-        direction="row"
-        spacing={6}
+        direction={props.compress ? 'column' : "row"}
+        spacing={props.compress ? 0 : 12}
+        alignItems={props.compress ? 'center' : 'flex-start'}
         sx={{
           "& > *": {
-            width: '50%'
+            width: props.compress ? '100%' : '50%'
           },
           "& .placeholder": {
             opacity: 0.2,
@@ -53,7 +59,7 @@ export function ProductComponent(props: ProductComponentProps) {
       >
         <Stack
           direction="column"
-          alignItems="flex-end"
+          alignItems={props.compress ? 'center' : 'flex-end'}
         >
           <ProductField
             name="category"
@@ -77,6 +83,7 @@ export function ProductComponent(props: ProductComponentProps) {
             {
               images =>
                 <ProductImagesViewer
+                  compress={props.compress}
                   mode={props.mode}
                   product={product}
                   previewImages={images}
@@ -88,6 +95,7 @@ export function ProductComponent(props: ProductComponentProps) {
         <Stack
           direction="column"
           spacing={2}
+          sx={{ padding: 1 }}
         >
           <Stack
             direction="column"
@@ -257,6 +265,7 @@ interface ProductImagesViewerProps {
   readonly mode?: 'default' | 'preview',
   readonly previewImages?: FileWithId<string>[],
   readonly product?: Product
+  readonly compress?: boolean
 }
 
 function ProductImagesViewer(props: ProductImagesViewerProps) {
@@ -265,7 +274,7 @@ function ProductImagesViewer(props: ProductImagesViewerProps) {
 
   const sideImageSize = 64
   const imageGap = theme.spacing(1)
-  const imageMaxSize = 512
+  const imageMaxSize = 400
 
   const isAPreview = props.mode === 'preview'
   const product = isAPreview
@@ -286,7 +295,7 @@ function ProductImagesViewer(props: ProductImagesViewerProps) {
 
   return (
     <Stack
-      direction="row"
+      direction={props.compress ? "column-reverse" : "row"}
       justifyContent="flex-end"
       spacing={1}
       sx={{
@@ -295,12 +304,15 @@ function ProductImagesViewer(props: ProductImagesViewerProps) {
       }}
     >
       <Stack
-        direction="column"
+        direction={props.compress ? "row" : "column"}
+        justifyContent={props.compress ? "center" : "flex-start"}
         spacing={imageGap}
         sx={{
-          height: imageMaxSize,
-          overflowY: 'auto',
-          overflowX: 'hidden',
+          height: props.compress ? 'auto' : '100%',
+          maxHeight: props.compress ? 'auto' : imageMaxSize,
+          width: props.compress ? '100%' : 'auto',
+          overflowY: props.compress ? 'hidden' : 'auto',
+          overflowX: props.compress ? 'auto' : 'hidden',
         }}
       >
         {
@@ -318,10 +330,13 @@ function ProductImagesViewer(props: ProductImagesViewerProps) {
           ))
         }
       </Stack>
-      <Box width={`calc(100% - ${sideImageSize}px - ${imageGap})`}>
+      <Box
+        width={`calc(100% - ${sideImageSize}px - ${imageGap})`}
+        sx={{ marginInline: 'auto !important' }}
+      >
         <ProductImage
           size="100%"
-          maxSize={512}
+          maxSize={imageMaxSize}
           imageIndex={imageIndex}
           srcs={images}
           product={product}

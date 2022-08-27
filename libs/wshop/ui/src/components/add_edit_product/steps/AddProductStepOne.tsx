@@ -30,7 +30,7 @@ export function AddProductStepOne(props: InputValidatorGroupProps) {
       <InputValidator
         name="name"
         value=''
-        validators={[Validators.required]}
+        validators={[Validators.required, Validators.max(512)]}
       >
         <TextField
           size="small"
@@ -43,7 +43,7 @@ export function AddProductStepOne(props: InputValidatorGroupProps) {
       <InputValidator
         mode="manual"
         name="code"
-        validators={[Validators.required]}
+        validators={[Validators.required, Validators.max(256)]}
         value=''
       >
         {
@@ -107,6 +107,7 @@ export function AddProductStepOne(props: InputValidatorGroupProps) {
         mode="manual"
         name="category"
         value={{} as Category}
+        validators={[Validators.customValidator((v: Category) => Validators.max(2)(v.name))]}
       >
         {
           (i, form) =>

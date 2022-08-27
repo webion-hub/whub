@@ -56,6 +56,7 @@ export function TableProductsPage() {
         </Stack>
         {loading && <LinearProgress/>}
         <DataTable
+          pagination
           data={products}
           columns={[
             {

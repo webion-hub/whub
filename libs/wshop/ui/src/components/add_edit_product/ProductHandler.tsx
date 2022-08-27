@@ -1,6 +1,6 @@
 import { SaveRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import { Button, LinearProgress, Paper, Stack } from "@mui/material";
+import { Backdrop, Button, CircularProgress, LinearProgress, Paper, Stack, SxProps, Theme, useMediaQuery, useTheme } from "@mui/material";
 import { handleResponse } from "@whub/apis-core";
 import { useShopApi } from "@whub/apis-react";
 import { Category, Product, ProductDetail, ProductEndpoint } from "@whub/wshop-api";
@@ -30,14 +30,20 @@ interface PreviewProduct {
 interface ProductHandlerUpdateProps {
   readonly mode: 'update',
   readonly previewProduct: PreviewProduct,
+  readonly sx?: SxProps<Theme>,
 }
 interface ProductHandlerAddProps {
   readonly mode?: 'add',
+  readonly sx?: SxProps<Theme>,
 }
 
 type ProductHandlerProps = ProductHandlerAddProps | ProductHandlerUpdateProps
 
 export function ProductHandler(props: ProductHandlerProps) {
+  const theme = useTheme()
+  const compressProduct = useMediaQuery(theme.breakpoints.down("lg"));
+  const compressAll = useMediaQuery(theme.breakpoints.down("md"));
+
   const navigate = useNavigator();
   const shopApi = useShopApi();
   const [loading, setLoading] = useState(false)
@@ -105,6 +111,8 @@ export function ProductHandler(props: ProductHandlerProps) {
   }
 
   const cleanProductFiles = (product: PreviewProduct, productEndpoint: ProductEndpoint) => {
+    console.log(product.images)
+
     const cleanImageTasks = product.images?.map(i =>
       productEndpoint.images.withId(i.id).delete()
     )
@@ -179,25 +187,30 @@ export function ProductHandler(props: ProductHandlerProps) {
     <FormGroup
       onSubmit={onCreate}
       values={isUpdateMode ? props.previewProduct : undefined}
-      sx={{ width: '100%' }}
+      sx={{ width: '100%', ...props.sx }}
     >
       <Stack
-        direction="row"
+        direction={compressAll ? "column-reverse" : "row"}
+        alignItems={compressAll ? 'center' : 'flex-start'}
         spacing={4}
         sx={{
+          padding: 2,
           width: '100%',
-          "& > *": { width: '50%' },
         }}
       >
         <ProductComponent
-          compress
+          compress={compressProduct}
           mode='preview'
         />
         <Stack
           component={Paper}
           direction="column"
           spacing={1}
-          sx={{ padding: 2 }}
+          sx={{
+            padding: 2,
+            width: '100%',
+            maxWidth: compressAll ? 'auto' : 400,
+          }}
         >
           <Stack
             justifyContent="flex-end"
@@ -279,19 +292,20 @@ export function EditProduct() {
   return (
     <Page>
       <Section>
-        <MaybeShow
-          show={!loading}
-          alternativeChildren={<LinearProgress/>}
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={loading}
         >
-          {
-            previewProduct
-              ? <ProductHandler
-                  mode='update'
-                  previewProduct={previewProduct}
-                />
-              : <></>
-          }
-        </MaybeShow>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+        {
+          previewProduct
+            ? <ProductHandler
+                mode='update'
+                previewProduct={previewProduct}
+              />
+            : <></>
+        }
       </Section>
     </Page>
   )
