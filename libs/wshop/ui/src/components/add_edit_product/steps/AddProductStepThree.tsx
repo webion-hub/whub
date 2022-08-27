@@ -14,7 +14,7 @@ export function AddProductStepThree(props: InputValidatorGroupProps) {
       <InputValidator
         name="images"
         mode="manual"
-        value={[] as string[]}
+        value={[] as FileWithId<string>[]}
       >
         {
           i =>
@@ -42,7 +42,7 @@ export function AddProductStepThree(props: InputValidatorGroupProps) {
       <InputValidator
         name="attachments"
         mode="manual"
-        value={[] as File[]}
+        value={[] as FileWithId<File>[]}
       >
         {
           i =>
@@ -96,14 +96,20 @@ class MultipleFileController {
 }
 
 
-function ProductImagesUploader(props: FileProps<string>) {
-  const [images, setImages] = useState<FileWithId<string>[]>(
-    MultipleFileController.initFiles(props.files ?? [])
-  )
+function ProductImagesUploader(props: FileProps<FileWithId<string>>) {
+  const [images, setImages] = useState<FileWithId<string>[]>(props.files ?? [])
 
-  useEffect(() => {
-    props.onChange?.(images.map(i => i.file))
-  }, [images])
+  const onAdd = (i: string) => {
+    const prepImg = MultipleFileController.addFile(i, images)
+    setImages(prepImg)
+    props.onChange?.(prepImg)
+  }
+
+  const onRemove = (i: FileWithId<string>) => {
+    const prepImg = MultipleFileController.removeFile(i, images)
+    setImages(prepImg)
+    props.onChange?.(prepImg)
+  }
 
   return (
     <SquaresGrid
@@ -111,7 +117,7 @@ function ProductImagesUploader(props: FileProps<string>) {
       elements={images}
       firstElement={
         <SquareAddImage
-          onAddImage={(i) => setImages(MultipleFileController.addFile(i, images))}
+          onAddImage={onAdd}
         />
       }
     >
@@ -120,7 +126,7 @@ function ProductImagesUploader(props: FileProps<string>) {
           <SquareImageContainer
             key={i.id}
             src={i.file}
-            onDelete={() => setImages(MultipleFileController.removeFile(i, images))}
+            onDelete={() => onRemove(i)}
           />
         )
       }
@@ -130,14 +136,24 @@ function ProductImagesUploader(props: FileProps<string>) {
 
 
 
-function ProductAttachmentUploader(props: FileProps<File>) {
-  const [attachment, setAttachment] = useState<FileWithId<File>[]>(
-    MultipleFileController.initFiles(props.files ?? [])
-  )
+function ProductAttachmentUploader(props: FileProps<FileWithId<File>>) {
+  const [attachment, setAttachment] = useState<FileWithId<File>[]>(props.files ?? [])
 
   useEffect(() => {
-    props.onChange?.(attachment.map(i => i.file))
-  }, [attachment])
+    setAttachment(props.files ?? [])
+  }, [props.files])
+
+  const onAdd = (i: File) => {
+    const prepAttachment = MultipleFileController.addFile(i, attachment)
+    setAttachment(prepAttachment)
+    props.onChange?.(prepAttachment)
+  }
+
+  const onRemove = (i: FileWithId<File>) => {
+    const prepAttachment = MultipleFileController.removeFile(i, attachment)
+    setAttachment(prepAttachment)
+    props.onChange?.(prepAttachment)
+  }
 
   return (
     <SquaresGrid
@@ -145,7 +161,7 @@ function ProductAttachmentUploader(props: FileProps<File>) {
       elements={attachment}
       firstElement={
         <SquareAddAttachment
-          onAddPdf={(f) => setAttachment(MultipleFileController.addFile(f, attachment))}
+          onAddPdf={onAdd}
         />
       }
     >
@@ -153,7 +169,7 @@ function ProductAttachmentUploader(props: FileProps<File>) {
         f => (
           <SquareContainer
             key={f.id}
-            onDelete={() => setAttachment(MultipleFileController.removeFile(f, attachment))}
+            onDelete={() => onRemove(f)}
           >
             <Stack
               direction="column"

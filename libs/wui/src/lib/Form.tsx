@@ -30,6 +30,8 @@ export class Form {
       ...this.inputs,
       [key]: input
     }
+
+    this.setter(this.inputs)
   }
 
   setIsValid = (key: string) => (state: boolean) => {

@@ -100,8 +100,8 @@ function ProductDetails(props: InputBaseProps<ProductDetail[]>) {
               disabled={props.disabled}
               error={props.error}
               value={d}
-              onChange={e => updateDetail(e.target.value, i)}
-              onDelete={() => removeDetail(i)}
+              onChange={e => updateDetail(e.target.value, d.id)}
+              onDelete={() => removeDetail(d.id)}
             />
           ))
         }

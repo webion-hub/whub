@@ -38,10 +38,17 @@ export function InputValidator<T>(props: InputValidatorProps<T>) {
   } = useSubjectState<T | undefined>(props.value)
 
   useEffect(() => {
+    const value = form.getValue(props.name)
+    const isValuePreInserted = !!value
+
+    if(isValuePreInserted) {
+      setValue(value)
+    }
+
     form.addInput(
       props.name,
       {
-        value: props.value ?? '',
+        value: value,
         isValid: props.isValid ?? true,
         validators: props.validators ?? [],
         setter: setValue,
@@ -52,7 +59,7 @@ export function InputValidator<T>(props: InputValidatorProps<T>) {
     setFirst(false)
 
     return () => form.removeInput(props.name)
-  }, [valueSubject])
+  }, [])
 
   useEffect(() => {
     isValidRef.current
@@ -74,11 +81,12 @@ export function InputValidator<T>(props: InputValidatorProps<T>) {
     }
   }
 
-  if(props.mode === 'manual')
-    return props.children(getInputProps(), form)
 
   if(first)
-    return props.children
+    return null
+
+  if(props.mode === 'manual')
+    return props.children(getInputProps(), form)
 
   const childrenWithProps = React.Children.map(props.children, (child) => {
     return React.cloneElement(child, getInputProps());

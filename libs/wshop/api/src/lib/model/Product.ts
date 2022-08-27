@@ -14,7 +14,7 @@ export interface Product {
   readonly category?: Category;
   readonly producer?: Producer;
   readonly rating?: number;
-  readonly code?: string;
+  readonly code: string;
   readonly images: Image[];
   readonly attachments: Attachment[];
   readonly tags: Tag[];

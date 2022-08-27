@@ -41,7 +41,7 @@ export class ProductEndpoint extends Endpoint {
   }
 
   update(request: UpdateProductRequest) {
-    return this.client.put(this.url, request);
+    return this.client.put<Product>(this.url, request);
   }
 
   updateRelatedProducts(request: UpdateRelatedProductsRequest) {

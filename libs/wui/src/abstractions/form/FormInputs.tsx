@@ -10,6 +10,10 @@ export interface FormInput {
   readonly subject?: BehaviorSubject<any>
 }
 
+export interface FormValueInputs {
+  [key: string]: FormValueTypes,
+}
+
 export interface FormInputs {
   [key: string]: FormInput,
 }

@@ -29,7 +29,6 @@ export function ProductPage() {
       .withId(parseInt(productId))
       .load()
       .then(res => {
-        console.log(res)
         setProduct(res.data)
       })
       .finally(() => setLoading(false))
@@ -43,8 +42,8 @@ export function ProductPage() {
       >
         {
           product
-          ? <ProductComponent product={product}/>
-          : <></>
+            ? <ProductComponent product={product}/>
+            : <></>
         }
       </MaybeShow>
     </Page>

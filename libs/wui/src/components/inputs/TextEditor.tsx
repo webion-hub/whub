@@ -83,14 +83,14 @@ export function TextEditor(props: TextEditorProps) {
       sx={{
         '.ql-toolbar': {
           borderColor: getErrorColor,
-          borderTopLeftRadius: '8px',
-          borderTopRightRadius: '8px'
+          borderTopLeftRadius: '4px',
+          borderTopRightRadius: '4px'
         },
         '.ql-container': {
           borderColor: getErrorColor,
           height: 150,
-          borderBottomLeftRadius: '8px',
-          borderBottomRightRadius: '8px'
+          borderBottomLeftRadius: '4px',
+          borderBottomRightRadius: '4px'
         },
       }}
     >

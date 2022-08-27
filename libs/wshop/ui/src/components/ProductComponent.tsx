@@ -1,12 +1,13 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Menu, MenuItem, Stack, Typography, useTheme } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Menu, MenuItem, Stack, Typography, useTheme } from "@mui/material";
 import { Category, Product, ProductDetail } from "@whub/wshop-api";
 import { ReactNode, useEffect, useState } from "react";
 import { ProductImage } from "./ProductImage";
-import { GetFormValue, MaybeShow, Slideshow } from "@whub/wui";
+import { FileWithId, GetFormValue, MaybeShow, Slideshow } from "@whub/wui";
 import parse from 'html-react-parser';
 import { DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
 import { useShopApi } from "@whub/apis-react";
 import { urlToHttpOptions } from "url";
+import { ProductUtils } from "../lib/ProductUtils";
 
 interface ProductComponentBaseProps {
   readonly compress?: boolean,
@@ -210,15 +211,51 @@ export function ProductComponent(props: ProductComponentProps) {
         justifyContent="center"
       >
         <Typography variant="h6" > Prodotti correlati </Typography>
+
       </Stack>
     </Stack>
   )
 }
 
 
+/*
+interface ProductCardProps {
+  readonly product: Product,
+}
+
+function ProductCard(props: ProductCardProps) {
+  return (
+    <Card sx={{ maxWidth: 250 }}>
+      <CardMedia
+        component="img"
+        image={props.src}
+        alt="green iguana"
+        sx={{
+          width: '100%',
+          aspectRatio: '1'
+        }}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {props.title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {props.description}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">
+          Vedi
+        </Button>
+      </CardActions>
+    </Card>
+  )
+}*/
+
+
 interface ProductImagesViewerProps {
   readonly mode?: 'default' | 'preview',
-  readonly previewImages?: string[],
+  readonly previewImages?: FileWithId<string>[],
   readonly product?: Product
 }
 
@@ -236,12 +273,12 @@ function ProductImagesViewer(props: ProductImagesViewerProps) {
     : props.product
 
   const images = isAPreview
-    ? props.previewImages
+    ? props.previewImages?.map(i => i.file)
     : undefined
 
   const getImages = () => {
     const images = isAPreview
-      ? props.previewImages
+      ? props.previewImages?.map(i => i.file)
       : props.product?.images
 
     return images ?? []
@@ -288,6 +325,7 @@ function ProductImagesViewer(props: ProductImagesViewerProps) {
           imageIndex={imageIndex}
           srcs={images}
           product={product}
+          zoomable={!isAPreview}
         />
       </Box>
     </Stack>
@@ -343,7 +381,7 @@ function ProductField<T>(props: ProductFieldProps<T>) {
 interface ProductAttachmentButtonListProps {
   readonly mode?: 'default' | 'preview',
   readonly product?: Product,
-  readonly attachments: File[],
+  readonly attachments: FileWithId<File>[],
 }
 
 function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
@@ -364,19 +402,11 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
 
     if(props.mode === 'preview')
       return props.attachments
-        .map(a => ({url: URL.createObjectURL(a), name: a.name}))
+        .map(a => ({url: URL.createObjectURL(a.file), name: a.file.name}))
 
-    if(!product)
-      return []
-
-    const shopProduct = shopApi.products.withId(product.id);
-    const urls = product.attachments
-      .map(a => ({
-        url: shopProduct.attachments.withId(a.id).fullUrl,
-        name: a.fileName
-      }))
-
-    return urls
+    return !product
+      ? []
+      : ProductUtils.getAttachments(shopApi, product)
   }
 
   const areNoAttachments = () => {

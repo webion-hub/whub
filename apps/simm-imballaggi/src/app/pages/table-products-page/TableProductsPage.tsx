@@ -116,7 +116,10 @@ export function TableProductsPage() {
                 <Stack
                   direction="row"
                 >
-                  <IconButton>
+                  <IconButton
+                    href={`/edit-product/${p.id}`}
+                    onClick={clickNavigate(`/edit-product/${p.id}`)}
+                  >
                     <EditRounded/>
                   </IconButton>
                   <IconButton

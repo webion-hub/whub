@@ -1,47 +1,78 @@
 import { SaveRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import { Button, Paper, Stack, Typography } from "@mui/material";
+import { Button, LinearProgress, Paper, Stack } from "@mui/material";
 import { handleResponse } from "@whub/apis-core";
 import { useShopApi } from "@whub/apis-react";
-import { Product, ProductDetail, ProductEndpoint } from "@whub/wshop-api";
-import { Form, FormGroup, GetFormValue, Page, Section, useForm, useNavigator } from "@whub/wui";
-import { ReactNode, useState } from "react";
+import { Category, Product, ProductDetail, ProductEndpoint } from "@whub/wshop-api";
+import { FileWithId, Form, FormGroup, MaybeShow, Page, Section, useNavigator } from "@whub/wui";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { ProductUtils } from "../../lib/ProductUtils";
 import { ProductComponent } from "../ProductComponent";
 import { AddProductStepOne } from "./steps/AddProductStepOne";
 import { AddProductStepThree } from "./steps/AddProductStepThree";
 import { AddProductStepTwo } from "./steps/AddProductStepTwo";
 
-export function ProductHandler() {
+
+interface PreviewProduct {
+  readonly id: number;
+  readonly name: string;
+  readonly category?: Category;
+  readonly description?: string;
+  readonly price?: number;
+  readonly code: string;
+  readonly attachments?: FileWithId<File>[];
+  readonly images?: FileWithId<string>[];
+  readonly correlated?: Product[];
+  readonly details?: ProductDetail[];
+}
+
+interface ProductHandlerUpdateProps {
+  readonly mode: 'update',
+  readonly previewProduct: PreviewProduct,
+}
+interface ProductHandlerAddProps {
+  readonly mode?: 'add',
+}
+
+type ProductHandlerProps = ProductHandlerAddProps | ProductHandlerUpdateProps
+
+export function ProductHandler(props: ProductHandlerProps) {
   const navigate = useNavigator();
   const shopApi = useShopApi();
   const [loading, setLoading] = useState(false)
+  const isUpdateMode = props.mode === 'update'
 
   const onCreate = (f: Form) => {
-    console.log(f.getValues())
     if(!f.isFormValid())
       return
 
     setLoading(true)
-    const formProduct = f.getValues()
+    const formProduct = f.getValues() as PreviewProduct
 
-    shopApi.products
-      .create({
-        ...formProduct,
-        categoryId: formProduct.category.id
+    const createProduct = () => shopApi.products.create({
+      ...formProduct,
+      categoryId: formProduct.category?.id
+    })
+
+    const updateProduct = () => shopApi.products
+      .withId(isUpdateMode ? props.previewProduct.id : -1)
+      .update({
+        name: formProduct.name,
+        price: formProduct.price,
+        description: formProduct.description,
+        code: formProduct.code,
+        categoryId: formProduct.category?.id
       })
-      .then(res => handleResponse(res, {
-        201: () => {
-          const product = shopApi.products.withId(res.data.id)
 
-          uploadData(product, f,
-            formProduct.attachments ?? [],
-            formProduct.images ?? [],
-            formProduct.correlated ?? [],
-            formProduct.details ?? []
-          )
-            .then(() => onClose())
-            .finally(() => setLoading(false))
-        }
+    const task = isUpdateMode
+      ? updateProduct
+      : createProduct
+
+    task()
+      .then(res => handleResponse(res, {
+        201: () => addProductInformations(res.data, f),
+        200: () => addProductInformations(res.data, f),
       }))
       .catch(err => {
         handleResponse(err.response, {
@@ -50,6 +81,42 @@ export function ProductHandler() {
           setLoading(false)
         },
       })})
+  }
+
+  const addProductInformations = (p: Product, f: Form) => {
+    const previewProduct = props.mode === 'update'
+      ? props.previewProduct
+      : {} as PreviewProduct
+
+    const product = shopApi.products.withId(p.id)
+    const formProduct = f.getValues() as PreviewProduct
+
+    cleanProductFiles(previewProduct, product)
+      .then(() => {
+        uploadData(product, f,
+          formProduct.attachments?.map(a => a.file) ?? [],
+          formProduct.images?.map(a => a.file) ?? [],
+          formProduct.correlated ?? [],
+          formProduct.details ?? []
+        )
+          .then(() => onClose())
+          .finally(() => setLoading(false))
+      })
+  }
+
+  const cleanProductFiles = (product: PreviewProduct, productEndpoint: ProductEndpoint) => {
+    const cleanImageTasks = product.images?.map(i =>
+      productEndpoint.images.withId(i.id).delete()
+    )
+
+    const cleanAttachmentsTasks = product.attachments?.map(i =>
+      productEndpoint.attachments.withId(i.id).delete()
+    )
+
+    return Promise.all([
+      ...cleanImageTasks ?? [],
+      ...cleanAttachmentsTasks ?? []
+    ])
   }
 
   const uploadData = (
@@ -111,57 +178,121 @@ export function ProductHandler() {
   return (
     <FormGroup
       onSubmit={onCreate}
+      values={isUpdateMode ? props.previewProduct : undefined}
+      sx={{ width: '100%' }}
     >
-      <Page>
-        <Section>
+      <Stack
+        direction="row"
+        spacing={4}
+        sx={{
+          width: '100%',
+          "& > *": { width: '50%' },
+        }}
+      >
+        <ProductComponent
+          compress
+          mode='preview'
+        />
+        <Stack
+          component={Paper}
+          direction="column"
+          spacing={1}
+          sx={{ padding: 2 }}
+        >
           <Stack
+            justifyContent="flex-end"
             direction="row"
-            spacing={4}
-            sx={{
-              width: '100%',
-              "& > *": { width: '50%' },
-            }}
+            spacing={1}
           >
-            <ProductComponent
-              compress
-              mode='preview'
-            />
-            <Stack
-              component={Paper}
-              direction="column"
-              spacing={1}
-              sx={{ padding: 2 }}
+            <Button
+              disabled={loading}
+              variant="text"
+              onClick={onClose}
             >
-              <Stack
-                justifyContent="flex-end"
-                direction="row"
-                spacing={1}
-              >
-                <Button
-                  disabled={loading}
-                  variant="text"
-                  onClick={onClose}
-                >
-                  Annulla
-                </Button>
-                <LoadingButton
-                  type="submit"
-                  loading={loading}
-                  variant="contained"
-                  startIcon={<SaveRounded/>}
-                >
-                  Salva
-                </LoadingButton>
-              </Stack>
-              <AddProductStepOne/>
-              <AddProductStepTwo/>
-              <AddProductStepThree/>
-            </Stack>
+              Annulla
+            </Button>
+            <LoadingButton
+              type="submit"
+              loading={loading}
+              variant="contained"
+              startIcon={<SaveRounded/>}
+            >
+              Salva
+            </LoadingButton>
           </Stack>
-        </Section>
-      </Page>
+          <AddProductStepOne/>
+          <AddProductStepTwo/>
+          <AddProductStepThree/>
+        </Stack>
+      </Stack>
     </FormGroup>
   )
 }
 
 
+export function AddProduct() {
+  return (
+    <Page>
+      <Section>
+        <ProductHandler/>
+      </Section>
+    </Page>
+  )
+}
+
+export function EditProduct() {
+  const params = useParams()
+  const productId = params['id']
+
+  const [loading, setLoading] = useState(false)
+  const [previewProduct, setPreviewProduct] = useState<PreviewProduct>()
+
+  const shopApi = useShopApi()
+
+  useEffect(() => {
+    fetchProduct()
+  }, [productId])
+
+  const fetchProduct = () => {
+    if(!productId)
+      return
+
+    setLoading(true)
+    shopApi.products
+      .withId(parseInt(productId))
+      .load()
+      .then(async res => {
+        const product = res.data
+        const files = await ProductUtils.getAttachmentsFiles(shopApi, product)
+        const images = await ProductUtils.getImagesFiles(shopApi, product)
+
+        setPreviewProduct({
+          ...product,
+          attachments: files,
+          images: images,
+          correlated: product.relatedProducts
+        })
+      })
+      .finally(() => setLoading(false))
+  }
+
+  return (
+    <Page>
+      <Section>
+        <MaybeShow
+          show={!loading}
+          alternativeChildren={<LinearProgress/>}
+        >
+          {
+            previewProduct
+              ? <ProductHandler
+                  mode='update'
+                  previewProduct={previewProduct}
+                />
+              : <></>
+          }
+        </MaybeShow>
+      </Section>
+    </Page>
+  )
+}
