@@ -4,11 +4,6 @@
   "affected": {
     "defaultBase": "main"
   },
-  "pluginsConfig": {
-    "@nrwl/js": {
-      "analyzeSourceFiles": true
-    }
-  },
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
