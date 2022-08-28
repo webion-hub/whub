@@ -15,7 +15,7 @@ root.render(
       }),
       contactUs: new ContactUsApi({
         baseUrl: 'https://api.webion.it/contactus',
-      })
+      }),
     }}
   >
     <App />
