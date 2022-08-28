@@ -111,8 +111,6 @@ export function ProductHandler(props: ProductHandlerProps) {
   }
 
   const cleanProductFiles = (product: PreviewProduct, productEndpoint: ProductEndpoint) => {
-    console.log(product.images)
-
     const cleanImageTasks = product.images?.map(i =>
       productEndpoint.images.withId(i.id).delete()
     )
@@ -234,7 +232,7 @@ export function ProductHandler(props: ProductHandlerProps) {
             </LoadingButton>
           </Stack>
           <AddProductStepOne/>
-          <AddProductStepTwo/>
+          <AddProductStepTwo productId={isUpdateMode ? props.previewProduct.id : undefined}/>
           <AddProductStepThree/>
         </Stack>
       </Stack>

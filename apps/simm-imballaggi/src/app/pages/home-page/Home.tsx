@@ -15,15 +15,17 @@ export default function Home() {
       reverse="column"
       GridProps={{
         spacing: {xs: 1, md: 6},
+        marginTop: { xs: theme.mixins.toolbar.height + 'px', md: '0px' },
         padding: 2,
-        height: 920,
+        height: { xs: 'auto', md: '90vh'},
+        maxHeight: 920,
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
       }}
     >
       <Stack
-        direction="row"
+        direction={{xs: "column", lg: "row"}}
         alignItems="center"
         spacing={2}
       >
@@ -33,7 +35,7 @@ export default function Home() {
           direction="column"
           sx={{
             padding: 4,
-            height: 320,
+            height: { xs: 'auto', lg: 320},
             position: 'relative',
             overflow: 'hidden',
             "& > *": { zIndex: 1 },

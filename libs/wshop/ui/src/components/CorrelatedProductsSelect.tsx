@@ -7,7 +7,11 @@ import _ from "lodash"
 import React, { useState } from "react"
 import { ProductListItem } from "./ProductListItem"
 
-export function CorrelatedProductsSelect(props: InputBaseProps<Product[]>) {
+export interface CorrelatedProductsSelectProps extends InputBaseProps<Product[]> {
+  readonly avoidId?: number
+}
+
+export function CorrelatedProductsSelect(props: CorrelatedProductsSelectProps) {
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState<Product[]>([])
   const shopApi = useShopApi()
@@ -16,7 +20,9 @@ export function CorrelatedProductsSelect(props: InputBaseProps<Product[]>) {
     setLoading(true)
     shopApi.products
       .list()
-      .then(res => setProducts(res.data))
+      .then(res =>
+        setProducts(res.data.filter(p => p.id !== props.avoidId))
+      )
       .finally(() => setLoading(false))
   }
 

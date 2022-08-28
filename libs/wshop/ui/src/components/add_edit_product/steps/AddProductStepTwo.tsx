@@ -1,16 +1,16 @@
-import { RemoveDoneTwoTone } from "@mui/icons-material"
-import { Box, Button, Paper, Stack, TextField, Typography } from "@mui/material"
+import { Button, Paper, Stack, TextField, Typography } from "@mui/material"
 import { Product, ProductDetail } from "@whub/wshop-api"
-import { InputBaseProps, InputValidator, InputValidatorGroup, InputValidatorGroupProps, TextEditor, Validators } from "@whub/wui"
+import { InputBaseProps, InputValidator, TextEditor, Validators } from "@whub/wui"
 import { useEffect, useState } from "react"
 import { CorrelatedProductsSelect } from "../../CorrelatedProductsSelect"
 
-export function AddProductStepTwo(props: InputValidatorGroupProps) {
+interface AddProductStepTwoProps {
+  readonly productId?: number
+}
+
+export function AddProductStepTwo(props: AddProductStepTwoProps) {
   return (
-    <InputValidatorGroup
-      onSuccess={props.onSuccess}
-      onError={props.onError}
-    >
+    <>
       <InputValidator
         name="description"
         value=''
@@ -25,7 +25,7 @@ export function AddProductStepTwo(props: InputValidatorGroupProps) {
         name="correlated"
         value={[] as Product[]}
       >
-        <CorrelatedProductsSelect/>
+        <CorrelatedProductsSelect avoidId={props.productId}/>
       </InputValidator>
       <InputValidator
         name="details"
@@ -42,7 +42,7 @@ export function AddProductStepTwo(props: InputValidatorGroupProps) {
       >
         <ProductDetails/>
       </InputValidator>
-    </InputValidatorGroup>
+    </>
   )
 }
 
