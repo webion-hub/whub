@@ -20,10 +20,10 @@ export abstract class ResponseMapper<T> {
       }),
     };
   }
+  
+  abstract map(data: T): T;
 
   protected mapUrl(path: string) {
     return `${this.client.defaults.baseURL}/${path}`;
   }
-
-  protected abstract map(data: T): T;
 }

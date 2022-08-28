@@ -167,9 +167,10 @@ export function ProductHandler(props: ProductHandlerProps) {
   }
 
   const uploadImage = (productEndpoint: ProductEndpoint, image: string) => {
-    return productEndpoint
-      .images
-      .upload(image)
+    return productEndpoint.images.upload({
+      image: image,
+      index: 0,
+    })
   }
 
   const uploadImages = (productEndpoint: ProductEndpoint, images: string[]) => {
