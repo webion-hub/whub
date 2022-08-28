@@ -12,7 +12,7 @@ export class CategoryEndpoint extends Endpoint {
   }
   
   get url(): string {
-    return `categories/${this.categoryId}`;
+    return `shop/categories/${this.categoryId}`;
   }
 
 

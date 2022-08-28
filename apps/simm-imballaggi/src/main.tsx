@@ -11,11 +11,11 @@ root.render(
   <ApiWrapper
     apis={{
       shop: new WShopApi({
-        baseUrl: 'http://localhost:5181/shop',
+        baseUrl: 'http://localhost:5181',
       }),
       contactUs: new ContactUsApi({
         baseUrl: 'https://api.webion.it/contactus',
-      })
+      }),
     }}
   >
     <App />

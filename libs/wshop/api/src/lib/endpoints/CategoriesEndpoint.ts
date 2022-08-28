@@ -10,7 +10,7 @@ export class CategoriesEndpoint extends Endpoint {
   }
 
   get url() {
-    return 'categories';
+    return 'shop/categories';
   }
 
   withId(id: number) {

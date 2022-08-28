@@ -12,7 +12,7 @@ export class ProductAttachmentEndpoint extends Endpoint {
 
 
   get url(): string {
-    return `products/${this.productId}/attachments/${this.attachmentId}`;
+    return `shop/products/${this.productId}/attachments/${this.attachmentId}`;
   }
 
   delete() {
