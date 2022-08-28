@@ -14,7 +14,7 @@ export class ProductsEndpoint extends Endpoint {
   }
 
   get url() {
-    return 'products';
+    return 'shop/products';
   }
 
 

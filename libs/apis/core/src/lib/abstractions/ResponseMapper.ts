@@ -24,6 +24,7 @@ export abstract class ResponseMapper<T> {
   abstract map(data: T): T;
 
   protected mapUrl(path: string) {
-    return `${this.client.defaults.baseURL}/${path}`;
+    const basePath = this.client.defaults.baseURL;
+    return `${basePath}/${path}`;
   }
 }
