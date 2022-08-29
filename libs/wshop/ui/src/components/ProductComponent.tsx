@@ -355,11 +355,11 @@ function RelatedProducts(props: RelatedProductsProps) {
 }
 
 
-interface ProductCardProps {
+export interface ProductCardProps {
   readonly product: Product,
 }
 
-function ProductCard(props: ProductCardProps) {
+export function ProductCard(props: ProductCardProps) {
   const { clickNavigate } = useNavigator()
   const shopApi = useShopApi()
   const images = ProductUtils.getImages(shopApi, props.product)

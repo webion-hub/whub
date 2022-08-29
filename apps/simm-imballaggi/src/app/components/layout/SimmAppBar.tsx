@@ -5,7 +5,7 @@ import { Button, IconButton, useMediaQuery, useScrollTrigger, useTheme } from "@
 import { LoginRounded } from "@mui/icons-material";
 import CallRounded from "@mui/icons-material/CallRounded";
 import { ProductListItem } from "@whub/wshop-ui";
-import _ from "lodash"
+import _, { cond } from "lodash"
 import { Category, Product } from "@whub/wshop-api";
 import { useShopApi } from "@whub/apis-react";
 
@@ -93,7 +93,7 @@ export default SimmAppbar
 
 
 export function ProductSearchBar() {
-  const { clickNavigate } = useNavigator()
+  const { clickNavigate, navigate } = useNavigator()
   const shopApi = useShopApi()
   const [products, setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<string[]>([])
@@ -139,6 +139,7 @@ export function ProductSearchBar() {
 
   return (
     <CategorySearchBar
+      onSearch={() => navigate(`products/${category}/${value}`)}
       getCategoryOptionLabel={option => option}
       getCategoryValue={option => option}
       categories={categories}

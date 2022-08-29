@@ -41,7 +41,10 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
   return (
     <Stack
       ref={ref}
-      onSubmit={props.onSearch}
+      onSubmit={(e: any) => {
+        e.preventDefault()
+        props.onSearch?.()
+      }}
       component="form"
       direction="row"
       sx={{ width: '100%' }}
@@ -134,7 +137,6 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
       <Button
         variant="contained"
         type="submit"
-        onClick={e => e.preventDefault()}
         sx={{
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,

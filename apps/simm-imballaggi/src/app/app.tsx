@@ -19,6 +19,7 @@ import SimmFooter from "./components/layout/SimmFooter";
 import { TableProductsPage } from "./pages/table-products-page/TableProductsPage";
 import { AddProduct, EditProduct } from "@whub/wshop-ui";
 import { ProductPage } from "./pages/product-page/ProductPage";
+import { ProductsPage } from "./pages/products-page/ProductsPage";
 
 export function App() {
   const [isLogged, setIsLogged] = useState(true)
@@ -57,7 +58,7 @@ export function App() {
               <Route path="/" element={<Homepage/>}/>
               <Route path="/login"  element={<LoginPage/>}/>
               <Route path="/product/:id"  element={<ProductPage/>}/>
-              <Route path="/products/:category/:filter"  element={<ProductPage/>}/>
+              <Route path="/products/:category/:filter"  element={<ProductsPage/>}/>
               <Route
                 path="/add-product"
                 element={
