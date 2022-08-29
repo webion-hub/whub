@@ -10,4 +10,8 @@ export abstract class Endpoint {
   get fullUrl() {
     return `${this.client.defaults.baseURL}/${this.url}`;
   }
+
+  protected at(path: string) {
+    return `${this.url}/${path}`;
+  }
 }
