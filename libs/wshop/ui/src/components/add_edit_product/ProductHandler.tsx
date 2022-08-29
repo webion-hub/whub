@@ -23,7 +23,7 @@ interface PreviewProduct {
   readonly code: string;
   readonly attachments?: FileWithId<File>[];
   readonly images?: FileWithId<string>[];
-  readonly correlated?: Product[];
+  readonly relatedProducts?: Product[];
   readonly details?: ProductDetail[];
 }
 
@@ -102,7 +102,7 @@ export function ProductHandler(props: ProductHandlerProps) {
         uploadData(product, f,
           formProduct.attachments?.map(a => a.file) ?? [],
           formProduct.images?.map(a => a.file) ?? [],
-          formProduct.correlated ?? [],
+          formProduct.relatedProducts ?? [],
           formProduct.details ?? []
         )
           .then(() => onClose())
@@ -281,7 +281,6 @@ export function EditProduct() {
           ...product,
           attachments: files,
           images: images,
-          correlated: product.relatedProducts
         })
       })
       .finally(() => setLoading(false))

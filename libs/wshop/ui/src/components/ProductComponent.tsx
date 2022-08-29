@@ -1,10 +1,10 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Menu, MenuItem, Stack, SxProps, Theme, Typography, useTheme } from "@mui/material";
-import { Product, ProductDetail } from "@whub/wshop-api";
-import { useState } from "react";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Breadcrumbs, Button, Card, CardActions, CardContent, CardMedia, IconButton, Link, Menu, MenuItem, Skeleton, Stack, SxProps, Theme, Typography, useTheme } from "@mui/material";
+import { Category, Product, ProductDetail } from "@whub/wshop-api";
+import { useEffect, useState } from "react";
 import { ProductImage } from "./ProductImage";
-import { FileWithId, GetFormValue } from "@whub/wui";
+import { FileWithId, GetFormValue, MaybeShow, useNavigator, useProgressiveImage } from "@whub/wui";
 import parse from 'html-react-parser';
-import { DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
+import { ChevronLeftRounded, ChevronRightRounded, DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
 import { useShopApi } from "@whub/apis-react";
 import { ProductUtils } from "../lib/ProductUtils";
 
@@ -34,6 +34,9 @@ export function ProductComponent(props: ProductComponentProps) {
     return `<span class="placeholder">${value}</span>`
   }
 
+  console.log(props)
+
+
   return (
     <Stack
       direction="column"
@@ -43,6 +46,42 @@ export function ProductComponent(props: ProductComponentProps) {
       }}
       spacing={4}
     >
+      <ProductField
+        name="category"
+        mode={props.mode}
+        product={product}
+        placeholder=''
+      >
+        {
+          (category?: Category) =>
+            <Breadcrumbs sx={{ width: '100%' }}>
+              {
+                (category?.name ?? '')
+                  .split('/')
+                  .map((v, i, all) => {
+                    const isLast = i === all.length - 1
+
+                    return isLast
+                      ? <Typography key={i} color="text.primary">{v}</Typography>
+                      : <Link
+                          key={i}
+                          underline="hover"
+                          color="inherit"
+                          href={`
+                            /${all
+                              .slice(0, i + 1)
+                              .join('/')
+                            }`
+                          }
+                        >
+                          {v}
+                        </Link>
+
+                  })
+              }
+            </Breadcrumbs>
+        }
+      </ProductField>
       <Stack
         direction={props.compress ? 'column' : "row"}
         spacing={props.compress ? 0 : 12}
@@ -59,21 +98,10 @@ export function ProductComponent(props: ProductComponentProps) {
       >
         <Stack
           direction="column"
+          spacing={2}
           alignItems={props.compress ? 'center' : 'flex-end'}
         >
-          <ProductField
-            name="category"
-            mode={props.mode}
-            product={product}
-            placeholder=''
-          >
-            {
-              category =>
-                <Typography>
-                  { category?.name }
-                </Typography>
-            }
-          </ProductField>
+
           <ProductField
             name="images"
             mode={props.mode}
@@ -113,7 +141,14 @@ export function ProductComponent(props: ProductComponentProps) {
               >
                 {
                   v =>
-                    <Typography variant="h4">
+                    <Typography
+                      variant="h4"
+                      sx={{
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                      }}
+                    >
                       {parse(v)}
                     </Typography>
                 }
@@ -213,52 +248,193 @@ export function ProductComponent(props: ProductComponentProps) {
           </ProductField>
         </Stack>
       </Stack>
-      <Stack
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
+      <ProductField
+        name="relatedProducts"
+        mode={props.mode}
+        product={product}
+        placeholder={[] as Product[]}
       >
-        <Typography variant="h6" > Prodotti correlati </Typography>
+        {
+          (products: Product[]) => {
+            return <RelatedProducts
+              products={[...products]}
+              number={props.compress ? 1 : 3}
+            />
+          }
+        }
+      </ProductField>
+    </Stack>
+  )
+}
 
+
+interface RelatedProductsProps {
+  readonly products: Product[],
+  readonly number: number,
+}
+
+function RelatedProducts(props: RelatedProductsProps) {
+  const [index, setIndex] = useState(0)
+  const noProducts = props.products.length === 0
+  const isFirst = index === 0
+  const isLast = index === props.products.length - props.number
+
+  const onIncrease = () => {
+    const newIndex = index + props.number
+
+    setIndex(
+      newIndex > props.products.length - props.number
+        ? props.products.length - props.number
+        : newIndex
+    )
+  }
+
+  const onDecrease = () => {
+    const newIndex = index - props.number
+
+    setIndex(
+      newIndex < 0
+        ? 0
+        : newIndex
+    )
+  }
+
+  if(noProducts)
+    return null
+
+  return (
+    <Stack
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      spacing={2}
+    >
+      <Typography variant="h6" > Prodotti correlati </Typography>
+      <Stack
+        direction="row"
+        alignItems="center"
+        spacing={1}
+      >
+        <Box>
+          <IconButton
+            onClick={() => onDecrease()}
+            disabled={isFirst}
+            sx={{
+              opacity: isFirst
+                ? 0
+                : 1
+            }}
+          >
+            <ChevronLeftRounded/>
+          </IconButton>
+        </Box>
+        {
+          props.products
+            .slice(index, index + props.number)
+            .map((p, i) => (
+              <ProductCard
+                key={i}
+                product={p}
+              />
+            ))
+        }
+        <Box>
+          <IconButton
+            onClick={() => onIncrease()}
+            disabled={isLast}
+            sx={{
+              opacity: isLast
+                ? 0
+                : 1
+            }}
+          >
+            <ChevronRightRounded/>
+          </IconButton>
+        </Box>
       </Stack>
     </Stack>
   )
 }
 
 
-/*
 interface ProductCardProps {
   readonly product: Product,
 }
 
 function ProductCard(props: ProductCardProps) {
+  const { clickNavigate } = useNavigator()
+  const shopApi = useShopApi()
+  const images = ProductUtils.getImages(shopApi, props.product)
+  const firstImage = images?.[0]?.fullUrl
+
+  const { loading, srcLoaded } = useProgressiveImage(firstImage)
+  const noImages = !srcLoaded
+
+  const size = 250
+
   return (
-    <Card sx={{ maxWidth: 250 }}>
-      <CardMedia
-        component="img"
-        image={props.src}
-        alt="green iguana"
-        sx={{
-          width: '100%',
-          aspectRatio: '1'
-        }}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {props.title}
+    <Card sx={{ maxWidth: size }}>
+      <MaybeShow
+        show={!loading}
+        alternativeChildren={
+          <Skeleton
+            variant="rectangular"
+            sx={{
+              width: size,
+              height: size,
+              aspectRatio: '1',
+            }}
+          />
+        }
+      >
+        <CardMedia
+          component="img"
+          image={srcLoaded ?? ''}
+          sx={{
+            width: size,
+            height: size,
+            opacity: noImages ? 0 : 1
+          }}
+        />
+      </MaybeShow>
+      <CardContent sx={{ height: 145}}>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
+        >
+          {props.product.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {props.description}
+        <Typography
+          component="span"
+          color="text.secondary"
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: '3',
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden'
+          }}
+        >
+          {parse(props.product.description ?? '')}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">
+        <Button
+          size="small"
+          href={`/product/${props.product.id}`}
+          onClick={clickNavigate(`/product/${props.product.id}`)}
+        >
           Vedi
         </Button>
       </CardActions>
     </Card>
   )
-}*/
+}
 
 
 interface ProductImagesViewerProps {

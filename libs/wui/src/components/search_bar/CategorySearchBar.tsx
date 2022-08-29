@@ -5,12 +5,21 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { Dropdown } from "../Dropdown";
 import _ from "lodash";
 
-export interface CategorySearchBarProps<T> {
+export interface CategorySearchBarProps<T, G> {
+  readonly loading: boolean,
   readonly options: T[],
+  readonly categories: G[],
+  readonly getCategoryOptionLabel: (option: G) => string,
+  readonly getCategoryValue: (option: G) => string,
+  readonly onCategoryChange?: (category: G) => void,
+  readonly groupBy?: (option: T) => string,
+  readonly getOptionLabel?: (option: T) => string,
+  readonly onOpen?: () => void,
+  readonly onCategoryOpen?: () => void,
   readonly children: (props: React.HTMLAttributes<HTMLLIElement>, option: T) => JSX.Element,
 }
 
-export function CategorySearchBar<T>(props: CategorySearchBarProps<T>) {
+export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
   const ref = useRef<HTMLDivElement>()
   const theme = useTheme()
   const [focus, setFocus] = React.useState<boolean>(false);
@@ -40,17 +49,19 @@ export function CategorySearchBar<T>(props: CategorySearchBarProps<T>) {
       }
     >
       <Dropdown
+        getValue={props.getCategoryValue}
+        getOptionLabel={props.getCategoryOptionLabel}
         variant="outlined"
         size="small"
         label="Categoria"
-        elements={[
-          'Reggiatrici',
-          'Marcatori'
-        ]}
+        elements={props.categories}
+        disabled={props.loading}
+        onOpen={props.onCategoryOpen}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        onValueChange={v => props.onCategoryChange?.(v)}
         sx={{ minWidth: 120 }}
         selectSx={{
           borderTopRightRadius: 0,
@@ -65,8 +76,10 @@ export function CategorySearchBar<T>(props: CategorySearchBarProps<T>) {
       <Autocomplete
         fullWidth
         options={props.options}
-        //groupBy={(option) => option.category?.name ?? 'Altro'}
-        //getOptionLabel={(option) => option.name}
+        groupBy={props.groupBy}
+        getOptionLabel={props.getOptionLabel}
+        loading={props.loading}
+        onOpen={() => props.onOpen?.()}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         onMouseEnter={() => setHover(true)}
@@ -83,7 +96,7 @@ export function CategorySearchBar<T>(props: CategorySearchBarProps<T>) {
           marginLeft: '-1px',
           marginRight: '-1px',
         }}
-        renderOption={(props, option) => props.children}
+        renderOption={props.children}
         renderInput={(params) => (
           <TextField
             {...params}

@@ -13,7 +13,6 @@ interface ProductListItem {
 export function ProductListItem(props: ProductListItem) {
   const { listItemProps, product } = props
 
-
   return (
     <Stack
       spacing={2}
@@ -36,7 +35,16 @@ export function ProductListItem(props: ProductListItem) {
           product={product}
           size={48}
         />
-        <Typography>{product.name}</Typography>
+        <Typography
+          sx={{
+            maxWidth: 150,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
+        >
+          {product.name}
+        </Typography>
       </Stack>
       {props.children}
     </Stack>

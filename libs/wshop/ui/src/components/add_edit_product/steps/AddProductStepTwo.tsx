@@ -22,7 +22,7 @@ export function AddProductStepTwo(props: AddProductStepTwoProps) {
         />
       </InputValidator>
       <InputValidator
-        name="correlated"
+        name="relatedProducts"
         value={[] as Product[]}
       >
         <CorrelatedProductsSelect avoidId={props.productId}/>

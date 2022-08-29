@@ -47,7 +47,6 @@ export function App() {
         <BrowserRouter>
           <Layout
             AppBarComponent={<SimmAppbar/>}
-            SidebarComponent={<SimmSideBar/>}
             FooterComponent={<SimmFooter/>}
           >
             <Routes>
