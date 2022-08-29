@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { ChevronRightRounded } from '@mui/icons-material';
 import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import { border } from '../../theme/theme';
 
 export interface HomeCardProps {
   readonly img: string,
@@ -36,7 +37,8 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
       <CardContent
         sx={{
           minHeight: 140,
-          width: '100%'
+          width: '100%',
+          borderInline: border
         }}
       >
         <Typography

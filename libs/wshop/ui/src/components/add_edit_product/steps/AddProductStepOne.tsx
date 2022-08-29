@@ -107,7 +107,7 @@ export function AddProductStepOne(props: InputValidatorGroupProps) {
         mode="manual"
         name="category"
         value={{} as Category}
-        validators={[Validators.customValidator((v: Category) => Validators.max(2)(v.name))]}
+        validators={[Validators.customValidator((v: Category) => Validators.max(256)(v.name))]}
       >
         {
           (i, form) =>

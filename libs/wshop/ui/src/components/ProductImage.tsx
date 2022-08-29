@@ -135,6 +135,7 @@ export function ProductImage(props: ProductImageProps) {
         <Box
           sx={{
             position: 'absolute',
+            zIndex: 1,
             transform: `translate(${zoomBox.x - lensSize/2}px, ${zoomBox.y - lensSize/2}px)`,
             width: lensSize,
             height: lensSize,

@@ -26,7 +26,7 @@ export function ItemSelect<T>(props: ItemSelect<T>) {
 
     items.push(option)
     setItems([...items])
-    props.onChange?.(items)
+    props.onChange?.([...items])
   }
 
   const onRemove = (option: T) => {

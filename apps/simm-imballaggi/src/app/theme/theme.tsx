@@ -2,7 +2,7 @@ import { alpha, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import Inter from "../../assets/fonts/Inter.ttf"
 
 const fontFamily = "'Inter'"
-const border = "1px solid #e0e0e0"
+export const border = "1px solid #e0e0e0"
 
 const normTheme = createTheme({
   palette: {
@@ -71,13 +71,6 @@ const normTheme = createTheme({
           "& > .MuiButtonBase-root": {
             borderRadius: 8,
           }
-        }
-      }
-    },
-    MuiCardContent: {
-      styleOverrides: {
-        root: {
-          borderInline: border
         }
       }
     },

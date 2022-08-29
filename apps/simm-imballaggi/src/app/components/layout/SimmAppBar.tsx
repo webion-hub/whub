@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, SideBarButton, Responser, useNavigator } from "@whub/wui";
+import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, Responser, useNavigator } from "@whub/wui";
 import { IconButton, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
 import { LoginRounded } from "@mui/icons-material";
 import CallRounded from "@mui/icons-material/CallRounded";
+import { ProductListItem } from "@whub/wshop-ui";
+import _ from "lodash"
+import { Category, Product } from "@whub/wshop-api";
+import { useShopApi } from "@whub/apis-react";
 
-const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
+const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((props, ref) => {
   const { clickNavigate } = useNavigator()
   const theme = useTheme();
   const isMobileView = useMediaQuery(theme.breakpoints.down("md"));
@@ -43,7 +47,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
             hideOnMobile
             fullWidth
           >
-            {/*<CategorySearchBar options={[]}/>*/}
+            <ProductSearchBar/>
           </AppBarSection>
           <AppBarSection alignment="end">
             <IconButton color="primary">
@@ -56,7 +60,6 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
             >
               <LoginRounded/>
             </IconButton>
-            <SideBarButton/>
           </AppBarSection>
         </AppBarContent>
       </AppBar>
@@ -87,3 +90,62 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, r
 });
 
 export default SimmAppbar
+
+
+export function ProductSearchBar() {
+  const shopApi = useShopApi()
+  const [products, setProducts] = useState<Product[]>([])
+  const [categories, setCategories] = useState<string[]>([])
+  const [loading, setLoading] = useState(false)
+
+  const onOpen = () => {
+    setLoading(true)
+
+    shopApi.products
+      .list()
+      .then(res => setProducts(res.data))
+      .finally(() => setLoading(false))
+  }
+
+  const onCategoryOpen = () => {
+    setLoading(true)
+
+    shopApi.categories
+      .list()
+      .then(res => setCategories(prepareCategories(res.data)))
+      .finally(() => setLoading(false))
+  }
+
+  const prepareCategories = (categories: Category[]) => {
+    return _(categories)
+      .map(c => c.name.split('/')?.[0])
+      .uniq()
+      .value()
+  }
+
+  return (
+    <CategorySearchBar
+      getCategoryOptionLabel={option => option}
+      getCategoryValue={option => option}
+      categories={categories}
+      onCategoryOpen={onCategoryOpen}
+      options={products}
+      onOpen={onOpen}
+      loading={loading}
+      groupBy={option => option.category?.name ?? 'Altro'}
+      getOptionLabel={option => option.name}
+    >
+      {
+        (props, option) =>
+          <ProductListItem
+            key={_.uniqueId()}
+            listItemProps={{
+              ...props,
+              onClick: (e: Event) => e.preventDefault()
+            }}
+            product={option}
+          />
+      }
+    </CategorySearchBar>
+  )
+}

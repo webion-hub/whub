@@ -1,12 +1,17 @@
 import { Product, WShopApi } from "@whub/wshop-api";
+import _ from "lodash";
 
 export class ProductUtils {
   static getImages(shopApi: WShopApi, product: Product) {
     const shopProduct = shopApi.products.withId(product.id);
-    return product.images.map(i => ({
-      id: i.id,
-      fullUrl: shopProduct.images.withId(i.id).fullUrl
-    }))
+
+    return _(product.images)
+      .sortBy(i => i.index)
+      .map(i => ({
+        id: i.id,
+        fullUrl: shopProduct.images.withId(i.id).fullUrl
+      }))
+      .value()
   }
 
   static getAttachments(shopApi: WShopApi, product: Product) {
@@ -22,10 +27,12 @@ export class ProductUtils {
   static getImagesFiles(shopApi: WShopApi, product: Product) {
     const images = this.getImages(shopApi, product)
 
-    const tasks = images.map(async i => ({
-      id: i.id,
-      file: await this.getBase64FromUrl(i.fullUrl) as string
-    }))
+    const tasks = images
+      .map(async i => ({
+        id: i.id,
+        file: await this.getBase64FromUrl(i.fullUrl) as string
+      }))
+
     return Promise.all(tasks)
   }
 

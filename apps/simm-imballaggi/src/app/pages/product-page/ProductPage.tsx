@@ -38,7 +38,7 @@ export function ProductPage() {
 
   return (
     <Page sx={{ padding: 1 }}>
-      <Section>
+      <Section sx={{ padding: 0 }}>
         <MaybeShow
           show={!loading}
           alternativeChildren={<LinearProgress/>}
@@ -48,7 +48,7 @@ export function ProductPage() {
               ? <ProductComponent
                   product={product}
                   compress={isMobileView}
-                  sx={{ marginTop: { xs: 10, md: 6} }}
+                  sx={{ marginTop: { xs: 10, md: 0} }}
                 />
               : <></>
           }

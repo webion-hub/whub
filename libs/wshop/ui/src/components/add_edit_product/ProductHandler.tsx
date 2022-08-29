@@ -23,7 +23,7 @@ interface PreviewProduct {
   readonly code: string;
   readonly attachments?: FileWithId<File>[];
   readonly images?: FileWithId<string>[];
-  readonly correlated?: Product[];
+  readonly relatedProducts?: Product[];
   readonly details?: ProductDetail[];
 }
 
@@ -102,7 +102,7 @@ export function ProductHandler(props: ProductHandlerProps) {
         uploadData(product, f,
           formProduct.attachments?.map(a => a.file) ?? [],
           formProduct.images?.map(a => a.file) ?? [],
-          formProduct.correlated ?? [],
+          formProduct.relatedProducts ?? [],
           formProduct.details ?? []
         )
           .then(() => onClose())
@@ -111,8 +111,6 @@ export function ProductHandler(props: ProductHandlerProps) {
   }
 
   const cleanProductFiles = (product: PreviewProduct, productEndpoint: ProductEndpoint) => {
-    console.log(product.images)
-
     const cleanImageTasks = product.images?.map(i =>
       productEndpoint.images.withId(i.id).delete()
     )
@@ -166,15 +164,17 @@ export function ProductHandler(props: ProductHandlerProps) {
     return Promise.all(tasks)
   }
 
-  const uploadImage = (productEndpoint: ProductEndpoint, image: string) => {
-    return productEndpoint.images.upload({
-      image: image,
-      index: 0,
-    })
+  const uploadImage = (productEndpoint: ProductEndpoint, image: string, index: number) => {
+    return productEndpoint
+      .images
+      .upload({
+        image: image,
+        index: index,
+      })
   }
 
   const uploadImages = (productEndpoint: ProductEndpoint, images: string[]) => {
-    const tasks = images.map(i => uploadImage(productEndpoint, i))
+    const tasks = images.map((image, i) => uploadImage(productEndpoint, image, i))
 
     return Promise.all(tasks)
   }
@@ -235,7 +235,7 @@ export function ProductHandler(props: ProductHandlerProps) {
             </LoadingButton>
           </Stack>
           <AddProductStepOne/>
-          <AddProductStepTwo/>
+          <AddProductStepTwo productId={isUpdateMode ? props.previewProduct.id : undefined}/>
           <AddProductStepThree/>
         </Stack>
       </Stack>
@@ -284,7 +284,6 @@ export function EditProduct() {
           ...product,
           attachments: files,
           images: images,
-          correlated: product.relatedProducts
         })
       })
       .finally(() => setLoading(false))

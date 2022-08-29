@@ -10,7 +10,7 @@ import { ProductMapper } from "../mappings/ProductMapper";
 
 export class ProductEndpoint extends Endpoint {
   private readonly mapper: ProductMapper;
-  
+
   constructor(
     client: AxiosInstance,
     private readonly productId: number,

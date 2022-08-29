@@ -10,7 +10,7 @@ export class ProductAttachmentsEndpoint extends Endpoint {
   ) {
     super(client);
   }
-  
+
   get url(): string {
     return `shop/products/${this.productId}/attachments`;
   }
