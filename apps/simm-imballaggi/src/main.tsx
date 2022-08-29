@@ -19,6 +19,7 @@ root.render(
       }),
       auth: new SimpleAuthApi({
         baseUrl: 'http://localhost:5181',
+        withCredentials: true,
       }),
     }}
   >

@@ -9,18 +9,18 @@ export class AccountEndpoint extends Endpoint {
 
 
   info() {
-    return this.client.get<AccountInfo>(this.at('/info'));
+    return this.client.get<AccountInfo>(this.at('info'));
   }
 
   isLoggedIn() {
-    return this.client.get<boolean>(this.at('/is_logged_in'));
+    return this.client.get<boolean>(this.at('is_logged_in'));
   }
 
   login(request: LoginRequest) {
-    return this.client.post(this.at('/login'), request);
+    return this.client.post(this.at('login'), request);
   }
 
   logout() {
-    return this.client.post(this.at('/login'));
+    return this.client.post(this.at('logout'));
   }
 }
