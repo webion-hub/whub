@@ -7,6 +7,7 @@ import parse from 'html-react-parser';
 import { ChevronLeftRounded, ChevronRightRounded, DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
 import { useShopApi } from "@whub/apis-react";
 import { ProductUtils } from "../lib/ProductUtils";
+import _ from "lodash";
 
 interface ProductComponentBaseProps {
   readonly compress?: boolean,
@@ -33,9 +34,6 @@ export function ProductComponent(props: ProductComponentProps) {
   const getStringPlaceholder = (value: string) => {
     return `<span class="placeholder">${value}</span>`
   }
-
-  console.log(props)
-
 
   return (
     <Stack
@@ -464,7 +462,7 @@ function ProductImagesViewer(props: ProductImagesViewerProps) {
   const getImages = () => {
     const images = isAPreview
       ? props.previewImages?.map(i => i.file)
-      : props.product?.images
+      : _(props.product?.images).sortBy(i => i.index).value()
 
     return images ?? []
   }

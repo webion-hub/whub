@@ -10,9 +10,9 @@ export class ProductAttachmentsEndpoint extends Endpoint {
   ) {
     super(client);
   }
-  
+
   get url(): string {
-    return `products/${this.productId}/attachments`;
+    return `shop/products/${this.productId}/attachments`;
   }
 
   withId(attachmentId: number) {

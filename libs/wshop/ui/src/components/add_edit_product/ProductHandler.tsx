@@ -164,14 +164,17 @@ export function ProductHandler(props: ProductHandlerProps) {
     return Promise.all(tasks)
   }
 
-  const uploadImage = (productEndpoint: ProductEndpoint, image: string) => {
+  const uploadImage = (productEndpoint: ProductEndpoint, image: string, index: number) => {
     return productEndpoint
       .images
-      .upload(image)
+      .upload({
+        image: image,
+        index: index,
+      })
   }
 
   const uploadImages = (productEndpoint: ProductEndpoint, images: string[]) => {
-    const tasks = images.map(i => uploadImage(productEndpoint, i))
+    const tasks = images.map((image, i) => uploadImage(productEndpoint, image, i))
 
     return Promise.all(tasks)
   }

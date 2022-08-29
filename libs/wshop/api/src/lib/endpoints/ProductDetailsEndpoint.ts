@@ -11,7 +11,7 @@ export class ProductDetailsEndpoint extends Endpoint {
   }
 
   get url() {
-    return `products/${this.productId}/details`;
+    return `shop/products/${this.productId}/details`;
   }
 
   update(request: UpdateDetailsRequest) {

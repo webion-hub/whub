@@ -6,17 +6,21 @@ import { ProductDetailsEndpoint } from "./ProductDetailsEndpoint";
 import { ProductImagesEndpoint } from "./ProductImagesEndpoint";
 import { UpdateRelatedProductsRequest } from "../requests/UpdateRelatedProductsRequest";
 import { ProductAttachmentsEndpoint } from "./ProductAttachmentsEndpoint";
+import { ProductMapper } from "../mappings/ProductMapper";
 
 export class ProductEndpoint extends Endpoint {
+  private readonly mapper: ProductMapper;
+
   constructor(
     client: AxiosInstance,
     private readonly productId: number,
   ) {
     super(client);
+    this.mapper = new ProductMapper(client);
   }
 
   get url() {
-    return `products/${this.productId}`;
+    return `shop/products/${this.productId}`;
   }
 
   get images() {
@@ -32,16 +36,20 @@ export class ProductEndpoint extends Endpoint {
   }
 
 
-  load() {
-    return this.client.get<Product>(this.url);
+  async load() {
+    return this.client
+      .get<Product>(this.url)
+      .then(r => this.mapper.mapOne(r));
+  }
+
+  async update(request: UpdateProductRequest) {
+    return this.client
+      .put<Product>(this.url, request)
+      .then(r => this.mapper.mapOne(r));
   }
 
   delete() {
     return this.client.delete(this.url);
-  }
-
-  update(request: UpdateProductRequest) {
-    return this.client.put<Product>(this.url, request);
   }
 
   updateRelatedProducts(request: UpdateRelatedProductsRequest) {
