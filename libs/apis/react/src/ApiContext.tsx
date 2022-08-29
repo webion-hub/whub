@@ -1,4 +1,5 @@
 import { ContactUsApi } from '@whub/apis-contactus'
+import { SimpleAuthApi } from '@whub/simple-auth'
 import { WShopApi } from '@whub/wshop-api'
 import { createContext, ReactNode } from "react"
 
@@ -9,7 +10,8 @@ export interface ApiProps {
 
 export interface IApiContext {
   readonly contactUs?: ContactUsApi,
-  readonly shop?: WShopApi
+  readonly shop?: WShopApi,
+  readonly auth?: SimpleAuthApi,
 }
 
 export const ApiContext = createContext<IApiContext>({})
