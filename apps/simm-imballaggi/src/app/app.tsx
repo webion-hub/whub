@@ -5,23 +5,27 @@ import en from "../assets/locales/en-EN.json";
 import it from "../assets/locales/it-IT.json";
 
 import { ThemeProvider } from '@mui/material/styles';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, RouteProps, Routes, Navigate, useNavigate } from "react-router-dom";
 
 import Homepage from './pages/home-page/Homepage';
 import theme from './theme/theme'
 import { GlobalStyles, CssBaseline } from '@mui/material';
 import globalStyle from './theme/globalStyle';
-import { useEffect } from "react";
-import { Language, LanguageWrapper, Layout } from "@whub/wui";
+import { ReactNode, useEffect, useState } from "react";
+import { Guard, Language, LanguageWrapper, Layout } from "@whub/wui";
 import LoginPage from "./pages/login-page/LoginPage";
 import SimmAppbar from "./components/layout/SimmAppBar";
-import SimmSideBar from "./components/layout/SimmSideBar";
 import SimmFooter from "./components/layout/SimmFooter";
 import { TableProductsPage } from "./pages/table-products-page/TableProductsPage";
 import { AddProduct, EditProduct } from "@whub/wshop-ui";
 import { ProductPage } from "./pages/product-page/ProductPage";
 
 export function App() {
+  const [isLogged, setIsLogged] = useState(false)
+
+  useEffect(() => {
+    return
+  }, [])
 
   i18n
     .use(initReactI18next)
@@ -50,12 +54,27 @@ export function App() {
             FooterComponent={<SimmFooter/>}
           >
             <Routes>
-              <Route key="home" path="/"  element={<Homepage/>}/>
-              <Route key="login" path="/login"  element={<LoginPage/>}/>
-              <Route key="product" path="/product/:id"  element={<ProductPage/>}/>
-              <Route key="add-product" path="/add-product"  element={<AddProduct/>}/>
-              <Route key="add-product" path="/edit-product/:id"  element={<EditProduct/>}/>
-              <Route key="products-table" path="/products-table"  element={<TableProductsPage/>}/>
+              <Route path="/" element={<Homepage/>}/>
+              <Route path="/login"  element={<LoginPage/>}/>
+              <Route path="/product/:id"  element={<ProductPage/>}/>
+              <Route
+                path="/add-product"
+                element={
+                  <Guard canNavigate={isLogged} redirectTo="/" el={<AddProduct/>}/>
+                }
+              />
+              <Route
+                path="/edit-product/:id"
+                element={
+                  <Guard canNavigate={isLogged} redirectTo="/" el={<EditProduct/>}/>
+                }
+              />
+              <Route
+                path="/products-table"
+                element={
+                  <Guard canNavigate={isLogged} redirectTo="/" el={<TableProductsPage/>}/>
+                }
+              />
             </Routes>
           </Layout>
         </BrowserRouter>

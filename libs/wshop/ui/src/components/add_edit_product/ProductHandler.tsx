@@ -210,7 +210,7 @@ export function ProductHandler(props: ProductHandlerProps) {
           sx={{
             padding: 2,
             width: '100%',
-            maxWidth: compressAll ? 'auto' : 400,
+            maxWidth: compressAll ? 'auto' : 500,
           }}
         >
           <Stack
