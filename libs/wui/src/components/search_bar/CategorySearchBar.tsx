@@ -9,21 +9,24 @@ export interface CategorySearchBarProps<T, G> {
   readonly loading: boolean,
   readonly options: T[],
   readonly categories: G[],
+  readonly onSearch?: () => void,
+  readonly onValueChange?: (value: string) => void,
+  readonly onCategoryChange?: (category: G) => void,
   readonly getCategoryOptionLabel: (option: G) => string,
   readonly getCategoryValue: (option: G) => string,
-  readonly onCategoryChange?: (category: G) => void,
   readonly groupBy?: (option: T) => string,
-  readonly getOptionLabel?: (option: T) => string,
+  readonly getOptionLabel?: (option: T | string) => string,
   readonly onOpen?: () => void,
-  readonly onCategoryOpen?: () => void,
   readonly children: (props: React.HTMLAttributes<HTMLLIElement>, option: T) => JSX.Element,
 }
 
 export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
   const ref = useRef<HTMLDivElement>()
   const theme = useTheme()
-  const [focus, setFocus] = React.useState<boolean>(false);
+  const [focusCategory, setFocusCategory] = React.useState<boolean>(false);
+  const [focusAutocomplete, setFocusAutocomplete] = React.useState<boolean>(false);
   const [hover, setHover] = React.useState<boolean>(false);
+  const focus = focusAutocomplete || focusCategory
 
   const getColor = () => {
     if(focus)
@@ -38,6 +41,8 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
   return (
     <Stack
       ref={ref}
+      onSubmit={props.onSearch}
+      component="form"
       direction="row"
       sx={{ width: '100%' }}
       divider={
@@ -54,11 +59,14 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
         variant="outlined"
         size="small"
         label="Categoria"
+        focused={focusCategory}
         elements={props.categories}
         disabled={props.loading}
-        onOpen={props.onCategoryOpen}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
+        onFocus={() => {
+          setFocusCategory(true)
+          setFocusAutocomplete(false)
+        }}
+        onBlur={() => setFocusCategory(false)}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onValueChange={v => props.onCategoryChange?.(v)}
@@ -75,13 +83,18 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
       />
       <Autocomplete
         fullWidth
+        freeSolo
+        filterOptions={options => options}
         options={props.options}
         groupBy={props.groupBy}
         getOptionLabel={props.getOptionLabel}
         loading={props.loading}
         onOpen={() => props.onOpen?.()}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
+        onFocus={() => {
+          setFocusAutocomplete(true)
+          setFocusCategory(false)
+        }}
+        onBlur={() => setFocusAutocomplete(false)}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         componentsProps={{
@@ -100,6 +113,8 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
         renderInput={(params) => (
           <TextField
             {...params}
+            focused={focusAutocomplete}
+            onChange={e => props.onValueChange?.(e.target.value)}
             variant="outlined"
             size="small"
             label="Cerca prodotto"
@@ -118,6 +133,8 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
       />
       <Button
         variant="contained"
+        type="submit"
+        onClick={e => e.preventDefault()}
         sx={{
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,

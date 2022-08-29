@@ -9,7 +9,7 @@ export interface ApiProps {
 
 export interface IApiContext {
   readonly contactUs?: ContactUsApi,
-  readonly shop?: WShopApi
+  readonly shop?: WShopApi,
 }
 
 export const ApiContext = createContext<IApiContext>({})

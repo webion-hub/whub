@@ -21,7 +21,7 @@ import { AddProduct, EditProduct } from "@whub/wshop-ui";
 import { ProductPage } from "./pages/product-page/ProductPage";
 
 export function App() {
-  const [isLogged, setIsLogged] = useState(false)
+  const [isLogged, setIsLogged] = useState(true)
 
   useEffect(() => {
     return
@@ -57,6 +57,7 @@ export function App() {
               <Route path="/" element={<Homepage/>}/>
               <Route path="/login"  element={<LoginPage/>}/>
               <Route path="/product/:id"  element={<ProductPage/>}/>
+              <Route path="/products/:category/:filter"  element={<ProductPage/>}/>
               <Route
                 path="/add-product"
                 element={

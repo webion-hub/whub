@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, Responser, useNavigator } from "@whub/wui";
-import { IconButton, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
+import { Button, IconButton, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
 import { LoginRounded } from "@mui/icons-material";
 import CallRounded from "@mui/icons-material/CallRounded";
 import { ProductListItem } from "@whub/wshop-ui";
@@ -80,7 +80,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((prop
               fullWidth
               alignment="center"
             >
-              {/*<CategorySearchBar options={[]}/>*/}
+              <ProductSearchBar/>
             </AppBarSection>
           </AppBarContent>
         </AppBar>
@@ -93,21 +93,35 @@ export default SimmAppbar
 
 
 export function ProductSearchBar() {
+  const { clickNavigate } = useNavigator()
   const shopApi = useShopApi()
   const [products, setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<string[]>([])
+  const [value, setValue] = useState('')
+  const [category, setCategory] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const onOpen = () => {
+  useEffect(() => {
+    fetchCategories()
+  }, [])
+
+  const fetchProducts = (filter: string) => {
+    setValue(filter)
     setLoading(true)
 
     shopApi.products
-      .list()
+      .search
+      .filter({
+        query: filter,
+        category: category,
+        skip: 0,
+        take: 20,
+      })
       .then(res => setProducts(res.data))
       .finally(() => setLoading(false))
   }
 
-  const onCategoryOpen = () => {
+  const fetchCategories = () => {
     setLoading(true)
 
     shopApi.categories
@@ -128,12 +142,17 @@ export function ProductSearchBar() {
       getCategoryOptionLabel={option => option}
       getCategoryValue={option => option}
       categories={categories}
-      onCategoryOpen={onCategoryOpen}
+      onCategoryChange={setCategory}
+      onValueChange={fetchProducts}
+      onOpen={() => fetchProducts('')}
       options={products}
-      onOpen={onOpen}
       loading={loading}
       groupBy={option => option.category?.name ?? 'Altro'}
-      getOptionLabel={option => option.name}
+      getOptionLabel={option =>
+        typeof option === 'string' || option instanceof String
+          ? option as string
+          : option.name
+      }
     >
       {
         (props, option) =>
@@ -144,7 +163,13 @@ export function ProductSearchBar() {
               onClick: (e: Event) => e.preventDefault()
             }}
             product={option}
-          />
+          >
+            <Button
+              onClick={clickNavigate(`/product/${option.id}`)}
+            >
+              Vedi
+            </Button>
+          </ProductListItem>
       }
     </CategorySearchBar>
   )
