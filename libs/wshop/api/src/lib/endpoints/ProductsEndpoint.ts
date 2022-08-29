@@ -4,6 +4,7 @@ import { Product } from "../model/Product";
 import { UpdateProductRequest } from "../requests/UpdateProductRequest";
 import { ProductEndpoint } from "./ProductEndpoint";
 import { ProductMapper } from "../mappings/ProductMapper";
+import { SearchEndpoint } from "./SearchEndpoint";
 
 export class ProductsEndpoint extends Endpoint {
   private readonly mapper: ProductMapper;
@@ -11,6 +12,10 @@ export class ProductsEndpoint extends Endpoint {
   constructor (client: AxiosInstance) {
     super(client);
     this.mapper = new ProductMapper(client);
+  }
+
+  get search() {
+    return new SearchEndpoint(this.client);
   }
 
   get url() {
