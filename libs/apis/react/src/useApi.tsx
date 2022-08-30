@@ -1,4 +1,5 @@
 import { ContactUsApi } from "@whub/apis-contactus"
+import { SimpleAuthApi } from "@whub/simple-auth"
 import { WShopApi } from "@whub/wshop-api"
 import { useContext } from "react"
 import { ApiContext } from "./ApiContext"
@@ -12,3 +13,6 @@ export const useContactUsApi = () =>
 
 export const useShopApi = () =>
   useApi().shop ?? {} as WShopApi
+
+export const useAuthApi = () =>
+  useApi().auth ?? {} as SimpleAuthApi
