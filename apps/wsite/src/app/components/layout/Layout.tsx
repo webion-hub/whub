@@ -1,11 +1,23 @@
 import Page from "../Page";
-import React from "react";
+import React, { createContext } from "react";
 import CookiePopup from "../cookie_popup/CookiePopup";
 import { ChildrenProps, useLanguage } from "@whub/wui";
 import WebionSideBar from "./WebionSideBar";
 import WebionAppbar from "./WebionAppBar";
 import WebionFooter from "./WebionFooter";
 import { Backdrop, CircularProgress, Grid } from "@mui/material";
+
+interface LayoutContextProps {
+  readonly setAppBarStatus: (status: boolean) => void,
+  readonly setFooterStatus: (status: boolean) => void,
+  readonly setSidebarStatus: (status: boolean) => void,
+}
+
+const LayoutContext = createContext<LayoutContextProps>({
+  setAppBarStatus: () => { return },
+  setFooterStatus: () => { return },
+  setSidebarStatus: () => { return },
+})
 
 const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
   const { t, loading } = useLanguage()

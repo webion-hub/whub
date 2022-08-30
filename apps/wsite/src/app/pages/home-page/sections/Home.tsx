@@ -1,68 +1,102 @@
-import { Box, Button, Typography } from "@mui/material";
-import { ResponserGrid } from "@whub/wui";
+import { Box, Button, Grid, Stack, SxProps, Theme, Typography } from "@mui/material";
+import { ResponsiveStyleValue } from "@mui/system/styleFunctionSx";
+import { AppBarLogo, ResponserGrid, RotatingText } from "@whub/wui";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { interval } from "rxjs";
 
 export default function Home() {
   const { t } = useTranslation();
 
   return (
-    <ResponserGrid
-      type="upper"
-      size="md"
-      reverse="column"
+    // <ResponserGrid
+    //   type="upper"
+    //   size="md"
+    //   reverse="column"
+    //   sx={{
+    //     marginInline: 'auto',
+    //     maxWidth: 1170,
+    //     width: "100%",
+    //     minHeight: "470px",
+    //     justifyContent: "space-between",
+    //     alignItems: "center",
+    //     display: "flex",
+    //     flexDirection: "row"
+    //     paddingInline:{xs: 0.3, sm: 2},
+    //   }}
+    //   >
+    <Stack
+      direction={{xs: "column", md: "row",}}
       sx={{
-        marginInline: 'auto',
-        maxWidth: 1170,
-        width: "100%",
-        minHeight: "800px",
+        minHeight: "470px",
         justifyContent: "space-between",
-        alignItems: "center",
-        paddingInline:{xs: 0.3, sm: 2},
+        alignItems: "right",
+        display: "flex",
+        flexDirection: "row",
+        maxWidth: "1152px",
+        marginTop: "60px",
+        paddingInline:{xs: 0.6, sm: 1, md: 0},
       }}
-      >
-      <Box
+    >
+      <Stack
+        direction="column"
+        alignItems="flex-end"
         sx={{
-          maxWidth: 600,
+          maxWidth: "100%",
+          width: "fit-content",
+          height: "clamp(300px, calc(95vh - 370px), 700px)",
           marginLeft: 0,
           marginBlock: 4,
-          paddingInline: { xs: 2, md: 0 },
-          justifyContent: { sm: "center", md: "left" },
-          width: { xs: "100%", md: "60%" }
+          paddingInline:{xs: 0.3, sm: 1, md: 3, lg: 0},
+          justifyContent:"center",
         }}
       >
         <Typography
           color="text.primary"
-          variant="h1"
+          variant="h4"
+          textAlign="end"
           sx={{
             marginLeft: 0,
             fontWeight: "bold",
-            textAlign: { sm: "center", xs: "center", md: "left" },
+            fontSize: {xs: "20px", sm: "24px !important"},
           }}
         >
-          {t("title-bold")}
+          {t("landing-page-title")}
         </Typography>
         <Typography
           color="text.primary"
-          variant="h2"
+          variant="h1"
+          textAlign="end"
           sx={{
-            marginTop: {xs: 1, sm: 0},
+            marginLeft: 0,
             fontWeight: "bold",
-            textAlign: { sm: "center", xs: "center", md: "left" },
+            fontSize: {xs: "35px", sm: "48px !important"},
           }}
         >
-          {t("title")}
+          {t("landing-page-subtitle-start")}
+          <br/>
+          <RotatingText
+            labels={[t("stories"), t("results"), t("solutions"), t("services"),  t("products") ]}
+            width={{xs: 160, sm: 220}}
+            sx={{
+              color: 'yellow',
+              marginRight: 0,
+              textAlign: 'end',
+            }}
+          />
+           {t("landing-page-subtitle-end")}
         </Typography>
-        <Typography
+        {/* <Typography
           color="text.secondary"
           sx={{
-            maxWidth: 600,
+            maxWidth: "100%",
             marginBottom: 4,
             marginTop: { xs: 2, sm: 2, md: 3 },
-            textAlign: { sm: "center", xs: "center", md: "left" },
+            fontSize: {xs: "17px", sm: "20px !important"},
+            textAlign: { sm: "center", xs: "center", md: "center" },
           }}
         >
-          {t("subtitle")}
-        </Typography>
+          Un sito Web che non converte è una perdita di tempo e denaro. Lascia che ti aiutiamo a creare un sito web che non solo abbia un bell'aspetto, ma aiuti anche ad aumentare le tue vendite.        </Typography> */}
         <ResponserGrid
           type="upper"
           size="sm"
@@ -75,22 +109,24 @@ export default function Home() {
             spacing: 2,
           }}
         >
-          <Button
-            size="large"
-            color="primary"
-            variant="contained"
-            href="/#contacts"
-            onClick={() => window.location.href = "/#contacts"}
-            sx={{boxShadow: "none", paddingBlock: 2}}
-          >
-            {t("contact-us-button")}
-          </Button>
-
-
         </ResponserGrid>
-      </Box>
-      <Box sx={{ width: { xs: "40%", sm: "35%", md: "30%" } }}>
-      </Box>
-    </ResponserGrid>
+        <Button
+          variant="contained"
+          href="/#contacts"
+          size="large"
+          onClick={() => (window.location.href = "/#contacts")}
+          sx={{
+            textTransform: 'none',
+            textAlign: "center",
+            marginTop: "30px",
+          }}
+        >
+          {t("services-consultation")}
+        </Button>
+      </Stack>
+
+    </Stack>
+
+    // </ResponserGrid>
   );
 }

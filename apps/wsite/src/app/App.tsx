@@ -6,15 +6,19 @@ import it from "../assets/locales/it-IT.json";
 
 import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from './components/layout/Layout';
 
 import Homepage from './pages/home-page/Homepage';
 import theme from './theme/theme'
-import { GlobalStyles, CssBaseline, CircularProgress, Grid} from '@mui/material';
+import { GlobalStyles, CssBaseline, CircularProgress, Grid, Backdrop} from '@mui/material';
 import globalStyle from './theme/globalStyle';
 import PoliciesAndLicensesPage from './pages/policies-licenses-page/PoliciesAndLicensesPage';
 import { useState } from "react";
-import { Language, LanguageWrapper, MaybeShow } from "@whub/wui";
+import { Language, LanguageWrapper, Layout, MaybeShow } from "@whub/wui";
+import LandingPage from "./pages/landing-page/LandingPage";
+import WebionFooter from "./components/layout/WebionFooter";
+import WebionSideBar from "./components/layout/WebionSideBar";
+import WebionAppbar from "./components/layout/WebionAppBar";
+import CookiePopup from "./components/cookie_popup/CookiePopup";
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -56,9 +60,15 @@ export function App() {
           }
         >
           <BrowserRouter>
-            <Layout>
+            <Layout
+              AppBarComponent={<WebionAppbar/>}
+              FooterComponent={<WebionFooter/>}
+              SidebarComponent={<WebionSideBar/>}
+            >
+             <CookiePopup/>
               <Routes>
                 <Route key="home" path="/"  element={<Homepage/>}/>
+                <Route key="call" path="/call"  element={<LandingPage/>}/>
                 <Route key="policies" path="/policies-licenses" element={<PoliciesAndLicensesPage/>}/>
                 <Route key="all" path="/*" element={<Homepage/>}/>
               </Routes>

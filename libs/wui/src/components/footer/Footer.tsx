@@ -15,6 +15,7 @@ export const Footer = React.forwardRef<HTMLDivElement, FoooterProps>((props, ref
   return (
     <StyledFooter
       sx={{
+        zIndex: 1,
         display: 'flex',
         width: '100%',
         background: theme.palette.layout?.footer,

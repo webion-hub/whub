@@ -29,7 +29,6 @@ export interface SectionProps {
 export function Section(props: SectionProps) {
   const background: SxProps<Theme> = {
     "&::after": {
-      ...props.backgroundSx,
       content: "''",
       width: '100vw',
       position: 'absolute',
@@ -38,6 +37,7 @@ export function Section(props: SectionProps) {
       background: theme =>
         props.background ??
         theme.palette['secondaryBackground'].default,
+      ...props.backgroundSx,
     },
   }
   const backgroundSx = props.showBackground
