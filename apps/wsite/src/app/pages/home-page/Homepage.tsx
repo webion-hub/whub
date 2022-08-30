@@ -7,10 +7,17 @@ import HowWeWork from "./sections/HowWeWork";
 import { Page, Section, Sections } from "@whub/wui";
 import { pcbBackground } from "../../components/backgrounds/pcbBackground";
 import { useTheme } from "@mui/material";
+import { Box } from "@mui/system";
+import { useEffect } from "react";
+import ReactPixel from 'react-facebook-pixel';
+
 
 
 export default function Homepage() {
-  const theme = useTheme()
+  const theme = useTheme();
+  useEffect(() => {
+    ReactPixel.track('Homepage-view');
+  });
 
   return (
     <Page sx={{ marginTop: 0, backgroundColor: "black", margin: "Auto" }}>
@@ -51,9 +58,17 @@ export default function Homepage() {
         <Section
           showBackground
           backgroundSx={{ backgroundColor: "rgba(0,0,0,.5)" }}
-          sx={{ maxWidth: "100%", width: "100%", zIndex: 2 }}
+          sx={{  width: "100%", zIndex: 2, margin: "auto"}}
         >
-          <Home />
+          <Box sx={{
+            width: "1152px",
+             zIndex: 2,  
+             right: 0,
+             display: "flex",
+             justifyContent: "flex-end"
+          }}>
+            <Home />
+          </Box>
         </Section>
         <Section
           id="about-us"
@@ -88,7 +103,10 @@ export default function Homepage() {
           id="contacts"
           maxWidth="100%"
           showBackground
-          sx={{ padding: 0 }}
+          sx={{ 
+            padding: 0,
+            width: '100vw'
+          }}
         >
           <Contacts />
         </Section>

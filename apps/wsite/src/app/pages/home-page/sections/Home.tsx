@@ -30,11 +30,12 @@ export default function Home() {
       sx={{
         minHeight: "470px",
         justifyContent: "space-between",
-        alignItems: "center",
+        alignItems: "right",
         display: "flex",
         flexDirection: "row",
-        maxWidth: "100%",
-        paddingInline:{xs: 0.3, sm: 2},
+        maxWidth: "1152px",
+        marginTop: "60px",
+        paddingInline:{xs: 0.6, sm: 1, md: 0},
       }}
     >
       <Stack
@@ -46,7 +47,7 @@ export default function Home() {
           height: "clamp(300px, calc(95vh - 370px), 700px)",
           marginLeft: 0,
           marginBlock: 4,
-          paddingInline: 3,
+          paddingInline:{xs: 0.3, sm: 1, md: 3, lg: 0},
           justifyContent:"center",
         }}
       >
@@ -79,7 +80,7 @@ export default function Home() {
             width={{xs: 160, sm: 220}}
             sx={{
               color: 'yellow',
-              marginRight: 1,
+              marginRight: 0,
               textAlign: 'end',
             }}
           />

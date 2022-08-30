@@ -12,7 +12,7 @@ export interface RotatingTextProps {
 export function RotatingText(props: RotatingTextProps) {
   const [index, setIndex] = useState(0)
   const ref = useRef(0)
-  const duration = 1000
+  const duration = 2000
 
   useEffect(() => {
     const intervalSub = interval(duration)
