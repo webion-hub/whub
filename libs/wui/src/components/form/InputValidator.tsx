@@ -47,7 +47,7 @@ export function InputValidator<T>(props: InputValidatorProps<T>) {
     form.addInput(
       props.name,
       {
-        value: value,
+        value: value ?? props.value,
         isValid: props.isValid ?? true,
         validators: props.validators ?? [],
         setter: setValue,

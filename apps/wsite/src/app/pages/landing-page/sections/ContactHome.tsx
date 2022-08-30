@@ -174,7 +174,7 @@ export default function ContactHome() {
                   severity="success"
                   sx={{ width: '100%' }}
                 >
-                  M{t("message-sent")}
+                  {t("message-sent")}
                 </Alert>
               </Snackbar>
     </Box>
