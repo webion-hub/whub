@@ -52,32 +52,9 @@ export function ProductComponent(props: ProductComponentProps) {
       >
         {
           (category?: Category) =>
-            <Breadcrumbs sx={{ width: '100%' }}>
-              {
-                (category?.name ?? '')
-                  .split('/')
-                  .map((v, i, all) => {
-                    const isLast = i === all.length - 1
-
-                    return isLast
-                      ? <Typography key={i} color="text.primary">{v}</Typography>
-                      : <Link
-                          key={i}
-                          underline="hover"
-                          color="inherit"
-                          href={`
-                            /${all
-                              .slice(0, i + 1)
-                              .join('/')
-                            }`
-                          }
-                        >
-                          {v}
-                        </Link>
-
-                  })
-              }
-            </Breadcrumbs>
+            <ProductCategory
+              categoryName={category?.name}
+            />
         }
       </ProductField>
       <Stack
@@ -265,6 +242,41 @@ export function ProductComponent(props: ProductComponentProps) {
   )
 }
 
+
+interface ProductCategoryProps {
+  readonly categoryName?: string
+}
+
+export function ProductCategory(props: ProductCategoryProps) {
+  return (
+    <Breadcrumbs sx={{ width: '100%' }}>
+      {
+        (props.categoryName ?? '')
+          .split('/')
+          .map((v, i, all) => {
+            const isLast = i === all.length - 1
+
+            return isLast
+              ? <Typography key={i} color="text.primary">{v}</Typography>
+              : <Link
+                  key={i}
+                  underline="hover"
+                  color="inherit"
+                  href={`
+                    /${all
+                      .slice(0, i + 1)
+                      .join('/')
+                    }`
+                  }
+                >
+                  {v}
+                </Link>
+
+          })
+      }
+    </Breadcrumbs>
+  )
+}
 
 interface RelatedProductsProps {
   readonly products: Product[],

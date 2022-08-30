@@ -6,7 +6,7 @@ import { SearchRequest as SearchRequest } from "../requests/SearchRequest";
 
 export class SearchEndpoint extends Endpoint {
   private readonly mapper: ProductMapper;
-  
+
   constructor (client: AxiosInstance) {
     super(client);
     this.mapper = new ProductMapper(client);

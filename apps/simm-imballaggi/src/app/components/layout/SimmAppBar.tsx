@@ -139,7 +139,7 @@ export function ProductSearchBar() {
 
   return (
     <CategorySearchBar
-      onSearch={() => navigate(`products/${category}/${value}`)}
+      onSearch={() => navigate(`products?category=${category}&filter=${value}`)}
       getCategoryOptionLabel={option => option}
       getCategoryValue={option => option}
       categories={categories}

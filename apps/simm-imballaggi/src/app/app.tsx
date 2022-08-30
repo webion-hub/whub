@@ -58,7 +58,7 @@ export function App() {
               <Route path="/" element={<Homepage/>}/>
               <Route path="/login"  element={<LoginPage/>}/>
               <Route path="/product/:id"  element={<ProductPage/>}/>
-              <Route path="/products/:category/:filter"  element={<ProductsPage/>}/>
+              <Route path="/products"  element={<ProductsPage/>}/>
               <Route
                 path="/add-product"
                 element={
