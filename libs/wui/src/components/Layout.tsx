@@ -1,6 +1,18 @@
-import React, { ReactNode } from "react";
+import React, { createContext, ReactNode, useContext, useState } from "react";
 import { Box, Stack, useTheme } from "@mui/material";
 import { useLanguage } from "../hooks/useLanguage";
+
+interface LayoutContextProps {
+  readonly setAppBarStatus: (status: boolean) => void,
+  readonly setFooterStatus: (status: boolean) => void,
+  readonly setSidebarStatus: (status: boolean) => void,
+}
+
+const LayoutContext = createContext<LayoutContextProps>({
+  setAppBarStatus: () => { return },
+  setFooterStatus: () => { return },
+  setSidebarStatus: () => { return },
+})
 
 export interface LayoutProps {
   readonly AppBarComponent?: ReactNode,
@@ -10,22 +22,36 @@ export interface LayoutProps {
 }
 
 export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
-  const theme = useTheme()
+  const [ appBarState, setAppBarState ] = useState(true)
+  const [ footerState, setFooterState ] = useState(true)
+  const [ sideBarState, setSidebarState ] = useState(true)
+
   const { t } = useLanguage()
 
   document.title = t('tab-title')
 
   return (
-    <Stack
-      direction="column"
-      justifyContent="space-between"
-      sx={{ minHeight: '100vh' }}
+    <LayoutContext.Provider
+      value={{
+        setAppBarStatus: setAppBarState,
+        setFooterStatus: setFooterState,
+        setSidebarStatus: setSidebarState,
+      }}
     >
-      <Box/>
-      {props.SidebarComponent}
-      {props.AppBarComponent}
-      {props.children}
-      {props.FooterComponent}
-    </Stack>
+      <Stack
+        direction="column"
+        justifyContent="space-between"
+        sx={{ minHeight: '100vh' }}
+      >
+        <Box/>
+        {sideBarState && props.SidebarComponent}
+        {appBarState && props.AppBarComponent}
+        {props.children}
+        {footerState && props.FooterComponent}
+      </Stack>
+    </LayoutContext.Provider>
   );
 });
+
+
+export const useLayout = () => useContext(LayoutContext)
