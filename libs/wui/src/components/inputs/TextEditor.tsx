@@ -1,7 +1,8 @@
 import { Stack, Theme, Typography } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import ReactQuill from "react-quill";
 import { InputBaseProps } from "../../abstractions/form/InputBaseProps";
+import 'react-quill/dist/quill.snow.css';
 
 export interface TextEditorProps extends InputBaseProps<string> {
   readonly label?: string,
@@ -9,12 +10,7 @@ export interface TextEditorProps extends InputBaseProps<string> {
 }
 
 export function TextEditor(props: TextEditorProps) {
-  const [value, setValue] = useState(props.value ?? '');
   const reactQuillRef = useRef<any>();
-
-  useEffect(() => {
-    props.onChange?.({ target: { value: value }})
-  }, [value, props])
 
   const areTooManyCharacters = (ignoreFirst?: boolean) => {
     if(!props.maxCharacters)
@@ -87,14 +83,14 @@ export function TextEditor(props: TextEditorProps) {
       sx={{
         '.ql-toolbar': {
           borderColor: getErrorColor,
-          borderTopLeftRadius: '8px',
-          borderTopRightRadius: '8px'
+          borderTopLeftRadius: '4px',
+          borderTopRightRadius: '4px'
         },
         '.ql-container': {
           borderColor: getErrorColor,
           height: 150,
-          borderBottomLeftRadius: '8px',
-          borderBottomRightRadius: '8px'
+          borderBottomLeftRadius: '4px',
+          borderBottomRightRadius: '4px'
         },
       }}
     >
@@ -107,8 +103,8 @@ export function TextEditor(props: TextEditorProps) {
         ref={reactQuillRef}
         onKeyDown={handleKeyDown}
         theme="snow"
-        value={value}
-        onChange={setValue}
+        value={props.value}
+        onChange={(v, _, s) => props.onChange?.({ target: { value: v } })}
       />
     </Stack>
 

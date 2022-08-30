@@ -1,5 +1,4 @@
-import { Box, Typography, Link, useTheme, Grid, Stack } from "@mui/material";
-import { api } from "@whub/api";
+import { Box, Typography, Link, useTheme, Stack } from "@mui/material";
 import { Form, FormGroup, Img, InputValidator, ResponserGrid, Validators, WuiGrid } from "@whub/wui";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -10,6 +9,7 @@ import PrivacyCheckBox from "../../../components/privacy_checkbox/PrivacyCheckbo
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 import ReactPixel from 'react-facebook-pixel';
+import { useContactUsApi } from "@whub/apis-react";
 
 const TextfieldBase = ({...props}) => {
   const theme = useTheme()
@@ -31,6 +31,7 @@ const TextfieldBase = ({...props}) => {
 export default function Contacts() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const contactUsApi = useContactUsApi()
   const theme = useTheme()
   const borderRadius = theme.spacing(5)
   const textColor = theme.palette.grey[600]
@@ -46,10 +47,9 @@ export default function Contacts() {
 
     setLoading(true)
 
-    api.contactUs
+    contactUsApi.contactUs
       .process(form.getValues())
       .then(() => setSuccess(true))
-      .then(() => form.clear())
       .finally(() => setLoading(false))
   };
 
@@ -131,6 +131,7 @@ export default function Contacts() {
             sx={{ "& > *": { marginBlock: theme.spacing(0.5, '!important') }}}
           >
             <InputValidator
+              value=''
               name="name"
               validators={[Validators.required]}
             >
@@ -142,6 +143,7 @@ export default function Contacts() {
             </InputValidator>
 
             <InputValidator
+              value=''
               name="surname"
               validators={[Validators.required]}
             >
@@ -153,6 +155,7 @@ export default function Contacts() {
             </InputValidator>
 
             <InputValidator
+              value=''
               name="phoneNumber"
               validators={[Validators.isATelephoneNumber]}
             >
@@ -163,6 +166,7 @@ export default function Contacts() {
             </InputValidator>
 
             <InputValidator
+              value=''
               name="email"
               validators={[Validators.required, Validators.isAnEmail]}
             >
@@ -174,6 +178,7 @@ export default function Contacts() {
             </InputValidator>
 
             <InputValidator
+              value=''
               name="message"
               validators={[Validators.required]}
             >

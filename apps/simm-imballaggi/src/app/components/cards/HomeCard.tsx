@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { ChevronRightRounded } from '@mui/icons-material';
 import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import { border } from '../../theme/theme';
 
 export interface HomeCardProps {
   readonly img: string,
@@ -21,11 +22,12 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
   return (
     <Card
       ref={ref}
-      sx={{ maxWidth: 350 }}
+      sx={{ display: 'flex' }}
     >
       <CardMedia
         component="img"
         sx={{
+          width: 150,
           padding: 2,
           background: '#fff',
           aspectRatio: 1
@@ -33,7 +35,11 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
         image={props.img}
       />
       <CardContent
-        sx={{minHeight: 140}}
+        sx={{
+          minHeight: 140,
+          width: '100%',
+          borderInline: border
+        }}
       >
         <Typography
           gutterBottom
@@ -60,7 +66,7 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           variant='text'
-          sx={{width: "100%"}}
+          sx={{height: '100%'}}
           endIcon={
             hover
               ? <KeyboardDoubleArrowRightRoundedIcon/>

@@ -1,21 +1,20 @@
 import { AxiosInstance } from "axios";
+import { Endpoint } from "@whub/apis-core";
 
-export class ProductImageEndpoint {
-  private get url() {
+export class ProductImageEndpoint extends Endpoint {
+  constructor(
+    client: AxiosInstance,
+    private readonly productId: number,
+    private readonly imageId: number,
+  ) {
+    super(client);
+  }
+
+  get url() {
     return `shop/products/${this.productId}/images/${this.imageId}`
   };
 
-  constructor(
-    private readonly client: AxiosInstance,
-    private readonly productId: number,
-    private readonly imageId: number,
-  ) {}
-
-  src() {
-    return this.url;
-  }
-
   delete() {
-    return this.client.delete(this.url);
+    return this.client.delete<void>(this.url);
   }
 }

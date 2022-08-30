@@ -1,16 +1,25 @@
 import { AxiosInstance } from "axios";
-import { Image } from "../model/image";
+import { Endpoint } from "@whub/apis-core";
 import { ProductImageEndpoint } from "./ProductImageEndpoint";
+import { Image } from "../model/Image";
+import { UploadImageRequest } from "../requests/UploadImageRequest";
+import { ProductImageMapper } from "../mappings/ProductImageMapper";
 
-export class ProductImagesEndpoint {
-  private get url() {
-    return `shop/products/${this.productId}/images`
-  };
+export class ProductImagesEndpoint extends Endpoint {
+  private readonly mapper: ProductImageMapper;
 
   constructor (
-    private readonly client: AxiosInstance,
+    client: AxiosInstance,
     private readonly productId: number,
-  ) {}
+  ) {
+    super(client);
+    this.mapper = new ProductImageMapper(client);
+  }
+
+  get url() {
+    return `shop/products/${this.productId}/images`;
+  }
+
 
   withId(imageId: number) {
     return new ProductImageEndpoint(
@@ -20,7 +29,9 @@ export class ProductImagesEndpoint {
     );
   }
 
-  upload(base64Url: string | Blob) {
-    return this.client.post<Image>(this.url, base64Url);
+  async upload(request: UploadImageRequest) {
+    return this.client
+      .post<Image>(this.url + `/from_data_url`, request)
+      .then(r => this.mapper.mapOne(r));
   }
 }

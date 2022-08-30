@@ -1,12 +1,30 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectProps, SxProps, Theme } from "@mui/material"
+import { useState } from "react"
 
-export interface DropdownProps extends SelectProps {
-  readonly elements: string[],
-  readonly selectSx: SxProps<Theme>
+export interface DropdownProps<T> extends SelectProps {
+  readonly getOptionLabel: (option: T) => string,
+  readonly getValue: (option: T) => string,
+  readonly elements: T[],
+  readonly selectSx: SxProps<Theme>,
+  readonly onValueChange: (value: T) => void
 }
 
-export function Dropdown(props: DropdownProps) {
-  const { elements, selectSx, sx, ...others } = props
+export function Dropdown<T>(props: DropdownProps<T>) {
+  const {
+    elements,
+    selectSx,
+    sx,
+    onValueChange,
+    getOptionLabel,
+    getValue,
+    ...others
+  } = props
+  const [value, setValue] = useState<T>()
+
+  const handleValueChange = (value: T) => {
+    setValue(value)
+    onValueChange?.(value)
+  }
 
   return (
     <FormControl
@@ -17,14 +35,15 @@ export function Dropdown(props: DropdownProps) {
       <Select
         {...others}
         sx={selectSx}
-        value={''}
+        value={value ? props.getValue(value) : ''}
+        onChange={e => handleValueChange(e.target.value as T)}
       >
-        {elements?.map((el: string, i: number) => (
+        {elements?.map((el: T, i: number) => (
           <MenuItem
-            value={i}
+            value={props.getValue(el)}
             key={i}
           >
-            {el}
+            {props.getOptionLabel(el)}
           </MenuItem>
         ))}
       </Select>

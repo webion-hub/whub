@@ -2,7 +2,7 @@ import { alpha, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import Inter from "../../assets/fonts/Inter.ttf"
 
 const fontFamily = "'Inter'"
-const border = "1px solid #e0e0e0"
+export const border = "1px solid #e0e0e0"
 
 const normTheme = createTheme({
   palette: {
@@ -74,21 +74,13 @@ const normTheme = createTheme({
         }
       }
     },
-    MuiCardContent: {
-      styleOverrides: {
-        root: {
-          boxShadow: '0px -3px 4px -2px #e0e0e0',
-          borderTop: border
-        }
-      }
-    },
     MuiAutocomplete: {
       styleOverrides: {
         option: {
           borderBottom: border,
         },
         groupLabel: {
-          background: alpha('#000', 0.05),
+          background: '#f1f2f2',
         },
         paper: {
           borderTopRightRadius: '0px !important',

@@ -1,16 +1,25 @@
 import React, { useRef } from "react"
-import { useTheme, Button, TextField, Stack, Divider, Autocomplete, Typography } from "@mui/material";
+import { useTheme, Button, TextField, Stack, Divider, Autocomplete } from "@mui/material";
 
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import { Img } from "../Img";
 import { Dropdown } from "../Dropdown";
+import _ from "lodash";
 
-export interface CategorySearchBarProps {
-  readonly filter: string,
-  readonly elements: string[],
+export interface CategorySearchBarProps<T, G> {
+  readonly loading: boolean,
+  readonly options: T[],
+  readonly categories: G[],
+  readonly getCategoryOptionLabel: (option: G) => string,
+  readonly getCategoryValue: (option: G) => string,
+  readonly onCategoryChange?: (category: G) => void,
+  readonly groupBy?: (option: T) => string,
+  readonly getOptionLabel?: (option: T) => string,
+  readonly onOpen?: () => void,
+  readonly onCategoryOpen?: () => void,
+  readonly children: (props: React.HTMLAttributes<HTMLLIElement>, option: T) => JSX.Element,
 }
 
-export function CategorySearchBar(props: CategorySearchBarProps) {
+export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
   const ref = useRef<HTMLDivElement>()
   const theme = useTheme()
   const [focus, setFocus] = React.useState<boolean>(false);
@@ -40,17 +49,19 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
       }
     >
       <Dropdown
+        getValue={props.getCategoryValue}
+        getOptionLabel={props.getCategoryOptionLabel}
         variant="outlined"
         size="small"
         label="Categoria"
-        elements={[
-          'Reggiatrici',
-          'Marcatori'
-        ]}
+        elements={props.categories}
+        disabled={props.loading}
+        onOpen={props.onCategoryOpen}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        onValueChange={v => props.onCategoryChange?.(v)}
         sx={{ minWidth: 120 }}
         selectSx={{
           borderTopRightRadius: 0,
@@ -64,30 +75,11 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
       />
       <Autocomplete
         fullWidth
-        options={[
-          {
-            title: 'Reggiatrice 1',
-            src: 'assets/images/logo.png',
-            category: 'Reggiatrici',
-          },
-          {
-            title: 'Reggiatrice 2',
-            src: 'assets/images/logo.png',
-            category: 'Reggiatrici',
-          },
-          {
-            title: 'Marcatore 1',
-            src: 'assets/images/logo.png',
-            category: 'Marcatori',
-          },
-          {
-            title: 'Marcatore 2',
-            src: 'assets/images/logo.png',
-            category: 'Marcatori',
-          },
-        ]}
-        groupBy={(option) => option.category}
-        getOptionLabel={(option) => option.title}
+        options={props.options}
+        groupBy={props.groupBy}
+        getOptionLabel={props.getOptionLabel}
+        loading={props.loading}
+        onOpen={() => props.onOpen?.()}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         onMouseEnter={() => setHover(true)}
@@ -104,48 +96,7 @@ export function CategorySearchBar(props: CategorySearchBarProps) {
           marginLeft: '-1px',
           marginRight: '-1px',
         }}
-        renderOption={(props, option) => (
-          <Stack
-            spacing={2}
-            component="li"
-            direction="row"
-            sx={{
-              width: '100%',
-              justifyContent: 'space-between !important'
-            }}
-            {...props}
-          >
-            <Stack
-              spacing={2}
-              direction="row"
-            >
-              <Img
-                src={option.src}
-                sx={{
-                  aspectRatio: 1,
-                  height: 48,
-                  borderRadius: 1,
-                }}
-              />
-              <Stack
-                direction="column"
-              >
-                <Typography>{option.title}</Typography>
-                <Typography
-                  variant="caption"
-                  color="text.secondary"
-                >
-                  {option.category}
-                </Typography>
-              </Stack>
-            </Stack>
-            <Button
-              variant="text"
-            >
-              Vedi
-            </Button>
-          </Stack>
-        )}
+        renderOption={props.children}
         renderInput={(params) => (
           <TextField
             {...params}

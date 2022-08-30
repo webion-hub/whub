@@ -75,7 +75,7 @@ export function App() {
             </Layout>
           </BrowserRouter>
         </MaybeShow>
-      </LanguageWrapper>  
+      </LanguageWrapper>
     </ThemeProvider>
   )
 }

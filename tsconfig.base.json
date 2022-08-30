@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@whub/api": ["libs/api/src/index.ts"],
+      "@whub/apis-contactus": ["libs/apis/contactus/src/index.ts"],
+      "@whub/apis-core": ["libs/apis/core/src/index.ts"],
+      "@whub/apis-react": ["libs/apis/react/src/index.ts"],
       "@whub/wshop-api": ["libs/wshop/api/src/index.ts"],
       "@whub/wshop-ui": ["libs/wshop/ui/src/index.ts"],
       "@whub/wui": ["libs/wui/src/index.ts"]

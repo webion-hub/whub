@@ -9,18 +9,19 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Homepage from './pages/home-page/Homepage';
 import theme from './theme/theme'
-import { GlobalStyles, CssBaseline, CircularProgress, Grid} from '@mui/material';
+import { GlobalStyles, CssBaseline } from '@mui/material';
 import globalStyle from './theme/globalStyle';
-import { useState } from "react";
-import { Language, LanguageWrapper, Layout, MaybeShow } from "@whub/wui";
+import { useEffect } from "react";
+import { Language, LanguageWrapper, Layout } from "@whub/wui";
 import LoginPage from "./pages/login-page/LoginPage";
 import SimmAppbar from "./components/layout/SimmAppBar";
 import SimmSideBar from "./components/layout/SimmSideBar";
 import SimmFooter from "./components/layout/SimmFooter";
 import { TableProductsPage } from "./pages/table-products-page/TableProductsPage";
+import { AddProduct, EditProduct } from "@whub/wshop-ui";
+import { ProductPage } from "./pages/product-page/ProductPage";
 
 export function App() {
-  const [loading, setLoading] = useState(true)
 
   i18n
     .use(initReactI18next)
@@ -35,7 +36,6 @@ export function App() {
         escapeValue: false
       }
     })
-    .finally(() => setLoading(false))
 
   document.title = 'Simm'
 
@@ -44,34 +44,21 @@ export function App() {
       <CssBaseline/>
       <GlobalStyles styles={globalStyle}></GlobalStyles>
       <LanguageWrapper i18n={i18n}>
-        <MaybeShow
-          show={!loading}
-          alternativeChildren={
-            <Grid
-              container
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-              sx={{height: '100vh'}}
-            >
-              <CircularProgress/>
-            </Grid>
-          }
-        >
-          <BrowserRouter>
-            <Layout
-              AppBarComponent={<SimmAppbar/>}
-              SidebarComponent={<SimmSideBar/>}
-              FooterComponent={<SimmFooter/>}
-            >
-              <Routes>
-                <Route key="home" path="/"  element={<Homepage/>}/>
-                <Route key="login" path="/login"  element={<LoginPage/>}/>
-                <Route key="products-table" path="/products-table"  element={<TableProductsPage/>}/>
-              </Routes>
-            </Layout>
-          </BrowserRouter>
-        </MaybeShow>
+        <BrowserRouter>
+          <Layout
+            AppBarComponent={<SimmAppbar/>}
+            FooterComponent={<SimmFooter/>}
+          >
+            <Routes>
+              <Route key="home" path="/"  element={<Homepage/>}/>
+              <Route key="login" path="/login"  element={<LoginPage/>}/>
+              <Route key="product" path="/product/:id"  element={<ProductPage/>}/>
+              <Route key="add-product" path="/add-product"  element={<AddProduct/>}/>
+              <Route key="add-product" path="/edit-product/:id"  element={<EditProduct/>}/>
+              <Route key="products-table" path="/products-table"  element={<TableProductsPage/>}/>
+            </Routes>
+          </Layout>
+        </BrowserRouter>
       </LanguageWrapper>
     </ThemeProvider>
   )
