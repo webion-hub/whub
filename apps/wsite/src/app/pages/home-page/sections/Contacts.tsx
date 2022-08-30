@@ -41,6 +41,7 @@ export default function Contacts() {
 
   const handleSubmit = (form: Form) => {
     setSuccess(false)
+    console.log(form.getValues())
 
     if(!form.isFormValid())
       return

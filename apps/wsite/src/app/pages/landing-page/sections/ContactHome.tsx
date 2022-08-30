@@ -1,5 +1,4 @@
 import { Box, Typography, Link, useTheme, Grid, Stack, Snackbar, Alert } from "@mui/material";
-import { api } from "@whub/api";
 import { Form, FormGroup, Img, InputValidator, ResponserGrid, Validators, WuiGrid } from "@whub/wui";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -10,9 +9,11 @@ import PrivacyCheckBox from "../../../components/privacy_checkbox/PrivacyCheckbo
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 import ReactPixel from 'react-facebook-pixel';
+import { useContactUsApi } from "@whub/apis-react";
 
 const TextfieldBase = ({...props}) => {
   const theme = useTheme()
+  const contactUsApi = useContactUsApi()
   const textColor = theme.palette.grey[600]
 
   return (
@@ -32,6 +33,7 @@ export default function ContactHome() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const theme = useTheme()
+  const contactUsApi = useContactUsApi()
   const borderRadius = theme.spacing(5)
   const textColor = theme.palette.grey[600]
 
@@ -45,7 +47,7 @@ export default function ContactHome() {
 
     setLoading(true)
 
-    api.contactUs
+    contactUsApi.contactUs
       .process({
         ...form.getValues(),
         surname: 'Webion2437'
@@ -90,6 +92,7 @@ export default function ContactHome() {
             <Typography variant="h4" sx={{fontAlign: ""}}> {t("contact-us-title")}</Typography>
             <Typography variant="subtitle2" sx={{marginBottom: 5}}>{t("are-you-ready")}</Typography>
             <InputValidator
+              value=""
               name="name"
               validators={[Validators.required]}
             >
@@ -101,6 +104,7 @@ export default function ContactHome() {
             </InputValidator>
 
             <InputValidator
+              value=""
               name="email"
               validators={[Validators.required, Validators.isAnEmail]}
             >
@@ -112,6 +116,7 @@ export default function ContactHome() {
             </InputValidator>
 
             <InputValidator
+              value=""
               name="message"
               validators={[Validators.required]}
             >
@@ -144,7 +149,7 @@ export default function ContactHome() {
                 type="submit"
                 variant="contained"
                 size="large"
-               
+
                 loadingPosition="start"
                 sx={{ width: "100%", zIndex: 1,  textTransform: "none" }}
                 startIcon={<SendRoundedIcon/>}
