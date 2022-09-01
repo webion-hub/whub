@@ -25,6 +25,7 @@ export interface AuthActionsUser {
 
 interface IAuthContext {
   readonly user?: AccountInfo,
+  readonly isAdmin: boolean,
   readonly isLogged: boolean,
   readonly checkUser: (actions: AuthActionsUser) => void,
   readonly checkIsLogged: (actions: AuthActionsIsLoogedIn) => void,
@@ -33,6 +34,7 @@ interface IAuthContext {
 }
 
 export const AuthContext = createContext<IAuthContext>({
+  isAdmin: false,
   isLogged: false,
   checkUser: () => { return },
   checkIsLogged: () => { return },
@@ -113,6 +115,7 @@ export const AuthWrapper = (props: ChildrenProps) => {
   return (
     <AuthContext.Provider
       value={{
+        isAdmin: !!user?.roles.some(r => r.toLowerCase() === 'admin'),
         isLogged,
         user,
         checkUser,

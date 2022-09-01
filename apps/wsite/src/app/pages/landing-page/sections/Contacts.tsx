@@ -1,11 +1,10 @@
 import { Box, Typography, Link, useTheme, Grid, Stack } from "@mui/material";
-import { Form, FormGroup, Img, InputValidator, ResponserGrid, Validators, WuiGrid } from "@whub/wui";
+import { Form, FormGroup, Img, InputValidator, PrivacyCheckBox, ResponserGrid, Validators, WuiGrid } from "@whub/wui";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LightModeLoadingButton } from "../../../components/light_mode/LightModeLoadingButton";
 import { LightModeTextField } from "../../../components/light_mode/LightModeTextField";
 
-import PrivacyCheckBox from "../../../components/privacy_checkbox/PrivacyCheckbox";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 import ReactPixel from 'react-facebook-pixel';
@@ -197,7 +196,7 @@ export default function Contacts() {
               value={true}
               validators={[Validators.required]}
             >
-              <PrivacyCheckBox/>
+              <PrivacyCheckBox privacyUrl="/policies-licenses"/>
             </InputValidator>
 
             <WuiGrid

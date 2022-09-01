@@ -6,16 +6,22 @@ import { Link, Slide, SnackbarContent, Stack, Typography } from '@mui/material';
 import Cookies from 'js-cookie'
 import ReactPixel from 'react-facebook-pixel';
 
+export interface CookiePopupProps {
+  readonly name: string,
+  readonly privacyUrl: string,
+  readonly usePixel?: boolean
+}
+
 export interface State extends SnackbarOrigin {
   readonly open: boolean;
 }
 
-export default function CookiePopup() {
+export function CookiePopup(props: CookiePopupProps) {
   const [open, setOpen] = useState<boolean>(false)
   const { t } = useTranslation()
 
   useEffect(() => {
-    const got = Cookies.get('webion');
+    const got = Cookies.get(props.name);
     if(got)
       return;
 
@@ -25,23 +31,23 @@ export default function CookiePopup() {
 
   const handleClick = () => {
     Cookies.set(
-      'webion',
+      props.name,
       'true',
       { expires: 365, secure: true }
     )
 
-    ReactPixel.grantConsent()
+    props.usePixel && ReactPixel.grantConsent()
     setOpen(false);
   }
 
   const handleClose = () => {
     Cookies.set(
-      'webion',
+      props.name,
       'false',
       { expires: 365, secure: true }
     )
 
-    ReactPixel.revokeConsent()
+    props.usePixel && ReactPixel.revokeConsent()
     setOpen(false);
   }
 
@@ -91,7 +97,7 @@ export default function CookiePopup() {
             {t("cookies")}
             <br/>
             <Link
-              onClick={() => window.open("/policies-licenses", '_blank')?.focus()}
+              onClick={() => window.open(props.privacyUrl, '_blank')?.focus()}
             >
               {t('privacy-link')}
             </Link>

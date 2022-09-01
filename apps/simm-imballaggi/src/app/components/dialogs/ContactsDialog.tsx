@@ -3,7 +3,7 @@ import PlaceRoundedIcon from '@mui/icons-material/PlaceRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
-import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, useBackgroundWaves, Validators } from '@whub/wui';
+import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, PrivacyCheckBox, useBackgroundWaves, Validators } from '@whub/wui';
 import { MouseEvent, useState } from 'react';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { LoadingButton } from '@mui/lab';
@@ -82,6 +82,7 @@ export default function ContactsDialog(props: DialogBase) {
           "& > *": { zIndex: 1 },
           "&::before": {
             content: "''",
+            pointerEvents: 'none',
             position: 'absolute',
             width: '100%',
             height: '100%',
@@ -243,6 +244,13 @@ export default function ContactsDialog(props: DialogBase) {
                   multiline
                   rows={5}
                 />
+              </InputValidator>
+              <InputValidator
+                name="privacy"
+                value={true}
+                validators={[Validators.required]}
+              >
+                <PrivacyCheckBox privacyUrl='/privacy'/>
               </InputValidator>
               <LoadingButton
                 color="primary"

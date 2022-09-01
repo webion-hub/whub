@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, Responser, useNavigator, useGlobalDialogs } from "@whub/wui";
+import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, Responser, useNavigator, useGlobalDialogs, MaybeShow } from "@whub/wui";
 import { Button, IconButton, ListItemIcon, ListItemText, Menu, MenuItem, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
 import { AddBoxRounded, LoginRounded, LogoutRounded, PersonRounded, TableRowsRounded } from "@mui/icons-material";
 import CallRounded from "@mui/icons-material/CallRounded";
@@ -187,7 +187,7 @@ export function ProductSearchBar() {
 
 function AuthBtn() {
   const { clickNavigate, navigate } = useNavigator()
-  const { isLogged, user, logOut } = useAuth()
+  const { isLogged, isAdmin, user, logOut } = useAuth()
   const [loading, setLoading] = useState(false)
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -247,14 +247,16 @@ function AuthBtn() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={goToTable}>
-          <ListItemIcon> <TableRowsRounded/> </ListItemIcon>
-          <ListItemText> Tabella prodotti </ListItemText>
-        </MenuItem>
-        <MenuItem onClick={goToAddProduct}>
-          <ListItemIcon> <AddBoxRounded/> </ListItemIcon>
-          <ListItemText> Aggiungi prodotto </ListItemText>
-        </MenuItem>
+        <MaybeShow  show={isAdmin}>
+          <MenuItem onClick={goToTable}>
+            <ListItemIcon> <TableRowsRounded/> </ListItemIcon>
+            <ListItemText> Tabella prodotti </ListItemText>
+          </MenuItem>
+          <MenuItem onClick={goToAddProduct}>
+            <ListItemIcon> <AddBoxRounded/> </ListItemIcon>
+            <ListItemText> Aggiungi prodotto </ListItemText>
+          </MenuItem>
+        </MaybeShow>
         <MenuItem onClick={onLogout}>
           <ListItemIcon> <LogoutRounded/> </ListItemIcon>
           <ListItemText> Logout </ListItemText>

@@ -1,18 +1,22 @@
 import { Checkbox, Grid, Link, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
-import { InputBaseProps } from "@whub/wui";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { InputBaseProps } from "../../abstractions/form/InputBaseProps";
 
 
-const PrivacyCheckBox = React.forwardRef<HTMLDivElement, InputBaseProps<boolean>>((props, ref) => {
+export interface PrivacyCheckBoxProps extends InputBaseProps<boolean> {
+  readonly privacyUrl: string
+}
+
+export const PrivacyCheckBox = React.forwardRef<HTMLDivElement, PrivacyCheckBoxProps>((props, ref) => {
   const theme = useTheme()
   const { t } = useTranslation()
 
   const getTextColor = () => {
     return props.error
       ? "red"
-      : theme.palette['info'].main
+      : theme.palette['secondary'].main
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,12 +54,9 @@ const PrivacyCheckBox = React.forwardRef<HTMLDivElement, InputBaseProps<boolean>
       >
         {t('privacy')}
         <Link
+          href={props.privacyUrl}
+          target="_blank"
           color="inherit"
-          sx={{cursor: "pointer"}}
-          onClick={(e) => {
-            e.stopPropagation()
-            window.open("/policies-licenses", '_blank')?.focus()
-          }}
         >
           {t('privacy-link')}
         </Link>
@@ -64,4 +65,3 @@ const PrivacyCheckBox = React.forwardRef<HTMLDivElement, InputBaseProps<boolean>
   )
 })
 
-export default PrivacyCheckBox

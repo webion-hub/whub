@@ -9,7 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CssBaseline, GlobalStyles } from '@mui/material';
 import { AddProduct, EditProduct } from "@whub/wshop-ui";
-import { GlobalDialogs, Language, LanguageWrapper, Layout } from "@whub/wui";
+import { CookiePopup, GlobalDialogs, Language, LanguageWrapper, Layout } from "@whub/wui";
 import ContactsDialog from "./components/dialogs/ContactsDialog";
 import SimmAppbar from "./components/layout/SimmAppBar";
 import SimmFooter from "./components/layout/SimmFooter";
@@ -21,6 +21,7 @@ import { TableProductsPage } from "./pages/table-products-page/TableProductsPage
 import globalStyle from './theme/globalStyle';
 import theme from './theme/theme';
 import { Guard, Guards, useAuth } from "@whub/apis-react";
+import { PrivacyPolicy } from "./pages/privacy-policy/PrivacyPolicy";
 
 export function App() {
   const isAdminGuard = Guards.useIsAdminGuard()
@@ -60,8 +61,13 @@ export function App() {
                 AppBarComponent={<SimmAppbar/>}
                 FooterComponent={<SimmFooter/>}
               >
+                <CookiePopup
+                  name="simm-imballaggi"
+                  privacyUrl="privacy"
+                />
                 <Routes>
                   <Route path="/" element={<Homepage/>}/>
+                  <Route path="/privacy" element={<PrivacyPolicy/>}/>
                   <Route path="/login"  element={<LoginPage/>}/>
                   <Route path="/product/:id"  element={<ProductPage/>}/>
                   <Route path="/products"  element={<ProductsPage/>}/>
