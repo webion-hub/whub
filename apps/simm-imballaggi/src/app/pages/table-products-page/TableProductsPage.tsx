@@ -42,7 +42,10 @@ export function TableProductsPage() {
   }
 
   return (
-    <Page sx={{ padding: 1 }}>
+    <Page sx={{
+      padding: 1,
+      marginTop: { xs: 16, md: 8 },
+    }}>
       <Stack
         direction="column"
         spacing={1}
@@ -177,6 +180,7 @@ export function TableProductsPage() {
             .delete()
             .finally(() => setLoading(false))
             .finally(() => setProductToDelete(null))
+            .finally(() => fetchProducts())
         }}
       />
     </Page>

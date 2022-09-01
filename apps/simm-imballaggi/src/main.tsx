@@ -14,9 +14,11 @@ root.render(
     apis={{
       shop: new WShopApi({
         baseUrl: 'http://localhost:5181',
+        withCredentials: true,
       }),
       contactUs: new ContactUsApi({
         baseUrl: 'https://api.webion.it/contactus',
+        withCredentials: true,
       }),
       auth: new SimpleAuthApi({
         baseUrl: 'http://localhost:5181',
