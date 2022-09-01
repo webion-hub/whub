@@ -41,7 +41,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((prop
         >
           <AppBarSection alignment="start">
             <AppBarLogo
-              src="assets/images/logo.png"
+              src="assets/images/logo.webp"
               href='/'
               onClick={clickNavigate('/')}
             />

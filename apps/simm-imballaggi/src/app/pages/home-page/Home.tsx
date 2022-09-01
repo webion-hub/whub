@@ -73,7 +73,7 @@ export default function Home() {
         </Grid>
         <Box
           sx={{
-            //background: 'url(assets/images/homepageImage.png)',
+            //background: 'url(assets/images/homepageImage.webp)',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
@@ -88,13 +88,13 @@ export default function Home() {
             <HomeCard
               title={t("materials-card-title")}
               text={t("materials-description")}
-              img="/assets/images/firstCard.png"
+              img="/assets/images/firstCard.webp"
               buttonText={t("see")}
             />
             <HomeCard
               title={t("machines-card-title")}
               text={t("machines-description")}
-              img="/assets/images/secondCard.png"
+              img="/assets/images/secondCard.webp"
               buttonText={t("see")}
             />
           </Stack>
