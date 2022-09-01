@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, Responser, useNavigator } from "@whub/wui";
+import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, Responser, useNavigator, useGlobalDialogs } from "@whub/wui";
 import { Button, IconButton, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
 import { LoginRounded } from "@mui/icons-material";
 import CallRounded from "@mui/icons-material/CallRounded";
@@ -10,6 +10,7 @@ import { Category, Product } from "@whub/wshop-api";
 import { useShopApi } from "@whub/apis-react";
 
 const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((props, ref) => {
+  const { openDialog } = useGlobalDialogs()
   const { clickNavigate } = useNavigator()
   const theme = useTheme();
   const isMobileView = useMediaQuery(theme.breakpoints.down("md"));
@@ -50,7 +51,10 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((prop
             <ProductSearchBar/>
           </AppBarSection>
           <AppBarSection alignment="end">
-            <IconButton color="primary">
+            <IconButton
+              color="primary"
+              onClick={() => openDialog('contacts')}
+            >
               <CallRounded/>
             </IconButton>
             <IconButton
@@ -95,6 +99,7 @@ export default SimmAppbar
 export function ProductSearchBar() {
   const { clickNavigate, navigate } = useNavigator()
   const shopApi = useShopApi()
+  const allCategory = 'Tutte'
   const [products, setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<string[]>([])
   const [value, setValue] = useState('')
@@ -105,6 +110,12 @@ export function ProductSearchBar() {
     fetchCategories()
   }, [])
 
+  const getCategory = () => {
+    return category === allCategory
+      ? ''
+      : category
+  }
+
   const fetchProducts = (filter: string) => {
     setValue(filter)
     setLoading(true)
@@ -113,11 +124,11 @@ export function ProductSearchBar() {
       .search
       .filter({
         query: filter,
-        category: category,
+        category: getCategory(),
         skip: 0,
         take: 20,
       })
-      .then(res => setProducts(res.data))
+      .then(res => setProducts(res.data.results))
       .finally(() => setLoading(false))
   }
 
@@ -139,10 +150,11 @@ export function ProductSearchBar() {
 
   return (
     <CategorySearchBar
-      onSearch={() => navigate(`products?category=${category}&filter=${value}`)}
+      defaultCategory={allCategory}
+      onSearch={() => navigate(`products?filter=${value}&category=${getCategory()}`)}
       getCategoryOptionLabel={option => option}
       getCategoryValue={option => option}
-      categories={categories}
+      categories={[...categories, allCategory]}
       onCategoryChange={setCategory}
       onValueChange={fetchProducts}
       onOpen={() => fetchProducts('')}

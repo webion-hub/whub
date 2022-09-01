@@ -1,4 +1,4 @@
-import { ChildrenProps, FlagLanguageDropdown, Footer, FooterBottomLabel, FooterColumn, FooterContent, FooterRow, Img } from "@whub/wui";
+import { ChildrenProps, FlagLanguageDropdown, Footer, FooterBottomLabel, FooterColumn, FooterContent, FooterRow, Img, useNavigator } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 import { Grid, IconButton, Link, LinkProps, Stack, Typography, TypographyProps, useMediaQuery, useTheme } from "@mui/material";
 import { Facebook, YouTube } from "@mui/icons-material";
@@ -28,6 +28,7 @@ const FooterLink = (props: LinkProps) => (
 const LinksFooterColumn = (props: ChildrenProps) => {
   const theme = useTheme()
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <FooterColumn
       showBorder={!isMd}
@@ -47,7 +48,9 @@ const LinksFooterColumn = (props: ChildrenProps) => {
 }
 
 export default function SimmFooter() {
+  const { clickNavigate } = useNavigator();
   const { t } = useTranslation();
+
   return(
     <Footer>
       <FooterContent>
@@ -81,11 +84,15 @@ export default function SimmFooter() {
           >
             <IconButton
               color="primary"
+              target="_blank"
+              href="https://www.facebook.com/simmimballaggi/"
             >
               <Facebook/>
             </IconButton>
             <IconButton
               color="primary"
+              target="_blank"
+              href="https://www.youtube.com/channel/UCNawmda-zHQCIeh20N5nslg"
             >
               <YouTube/>
             </IconButton>
@@ -101,8 +108,18 @@ export default function SimmFooter() {
             <FooterLinkTitle>
             {t("company")}
             </FooterLinkTitle>
-            <FooterLink href="#"> {t("home")} </FooterLink>
-            <FooterLink href="#"> {t("who-are-we")} </FooterLink>
+            <FooterLink
+              href="/#home"
+              onClick={clickNavigate('/#home')}
+            >
+              {t("home")}
+            </FooterLink>
+            <FooterLink
+              href="/#chi-siamo"
+              onClick={clickNavigate('/#chi-siamo')}
+            >
+              {t("who-are-we")}
+            </FooterLink>
           </LinksFooterColumn>
           <LinksFooterColumn>
             <FooterLinkTitle>
@@ -115,10 +132,22 @@ export default function SimmFooter() {
             <FooterLinkTitle>
             {t("contacts")}
             </FooterLinkTitle>
-            <FooterLink href="#"> {t("email")}: {t("email-link")} </FooterLink>
-            <FooterLink href="#"> {t("telephone")}: {t("telephone-link")} </FooterLink>
-            <FooterLink href="#"> {t("fax")}: {t("fax-link")}</FooterLink>
-            <FooterLink href="#"> {t("address-link")} </FooterLink>
+            <FooterLink
+              href="mailto:info@simmimballaggi.com"
+            >
+              {t("email")}: {t("email-link")}
+            </FooterLink>
+            <FooterLink
+              href="tel:051 800 960"
+            >
+              {t("telephone")}: {t("telephone-link")}
+            </FooterLink>
+            <FooterLink
+              target="_blank"
+              href="https://www.google.com/maps?ll=44.535115,11.413146&z=16&t=m&hl=it&gl=IT&mapclient=embed&q=Via+Gian+Luigi+Lazzari,+18+40057+Quarto+Inferiore+BO"
+            >
+              {t("address-link")}
+            </FooterLink>
           </LinksFooterColumn>
         </FooterRow>
       </FooterContent>
@@ -138,19 +167,27 @@ export default function SimmFooter() {
           }
         }}
       >
-        <FooterLink href='#' variant="caption">
+        <FooterLink
+          variant="caption"
+          href='https://webion.it/'
+          target="_blank"
+        >
         {t("powered-by-webion")}
         </FooterLink>
         <Stack
           direction="row"
           spacing={2}
         >
-          <FooterLink href='#' variant="caption">
+          <FooterLink
+            variant="caption"
+            href='/policies'
+            target="_blank"
+          >
           {t("policies")}
           </FooterLink>
-          <FooterLink href='#' variant="caption">
+          <Typography variant="caption">
           {t("copyright")}
-          </FooterLink>
+          </Typography>
         </Stack>
       </FooterBottomLabel>
     </Footer>

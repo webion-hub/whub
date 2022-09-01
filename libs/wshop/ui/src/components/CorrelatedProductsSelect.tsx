@@ -34,6 +34,7 @@ export function CorrelatedProductsSelect(props: CorrelatedProductsSelectProps) {
       value={props.value}
       onChange={items => props.onChange?.({ target: { value: items } })}
       options={products}
+      isAlreadyIn={(option, items) => !!items.find(i => i.id === option.id)}
       groupBy={(option) => option.category?.name ?? 'Altro'}
       getOptionLabel={(option) => option.name}
       renderOption={(props, option, isAlreadyIn, onAdd) => (

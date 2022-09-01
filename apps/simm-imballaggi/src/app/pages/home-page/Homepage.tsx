@@ -31,7 +31,7 @@ export default function Homepage() {
           <Home/>
         </Section>
         <Section
-          id="who"
+          id="chi-siamo"
           showBackground
         >
           <MapSection/>

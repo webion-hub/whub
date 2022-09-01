@@ -34,6 +34,7 @@ export * from './hooks/useForceRender';
 
 //Contexts
 export * from './contexts/ContextLanguage';
+export * from './contexts/GlobalDialogsContext';
 
 //Libs
 export * from './lib/EventsDispatcher';

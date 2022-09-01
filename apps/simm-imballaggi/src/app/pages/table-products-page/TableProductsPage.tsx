@@ -3,7 +3,7 @@ import { Badge, Button, IconButton, LinearProgress, Stack, TextField } from "@mu
 import { useShopApi } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
 import { ProductImage } from "@whub/wshop-ui";
-import { AreYouSureDialog, Page, useNavigator } from "@whub/wui";
+import { AreYouSureDialog, MaybeShow, Page, useNavigator } from "@whub/wui";
 import { useEffect, useState } from "react";
 import DataTable from 'react-data-table-component';
 
@@ -11,19 +11,33 @@ import DataTable from 'react-data-table-component';
 export function TableProductsPage() {
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState<Product[]>([])
+  const [page, setPage] = useState(1)
+  const [perPage, setPerPage] = useState(10)
+  const [filter, setFilter] = useState('')
+  const [totalResults, setTotalResults] = useState(0)
   const [productToDelete, setProductToDelete] = useState<Product | null>(null)
   const { clickNavigate } = useNavigator()
   const shopApi = useShopApi()
 
   useEffect(() => {
     fetchProducts()
-  }, [])
+  }, [filter, page, perPage])
 
   const fetchProducts = () => {
+    const pagePrep = page - 1
+
     setLoading(true)
     shopApi.products
-      .list()
-      .then(res => setProducts(res.data))
+      .search
+      .filter({
+        skip: pagePrep * perPage,
+        take: perPage,
+        query: filter
+      })
+      .then(res => {
+        setProducts(res.data.results)
+        setTotalResults(res.data.totalResults)
+      })
       .finally(() => setLoading(false))
   }
 
@@ -42,6 +56,7 @@ export function TableProductsPage() {
             label="Cerca prodotto"
             fullWidth
             size="small"
+            onChange={e => setFilter(e.target.value)}
           />
           <Button
             variant="contained"
@@ -56,8 +71,13 @@ export function TableProductsPage() {
         </Stack>
         {loading && <LinearProgress/>}
         <DataTable
+          progressPending={loading}
           pagination
+          paginationServer
           data={products}
+          paginationTotalRows={totalResults}
+          onChangePage={setPage}
+          onChangeRowsPerPage={setPerPage}
           columns={[
             {
               cell: (p) => {

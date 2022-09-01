@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Breadcrumbs, Button
 import { Category, Product, ProductDetail } from "@whub/wshop-api";
 import { useEffect, useState } from "react";
 import { ProductImage } from "./ProductImage";
-import { FileWithId, GetFormValue, MaybeShow, useNavigator, useProgressiveImage } from "@whub/wui";
+import { FileWithId, GetFormValue, MaybeShow, useGlobalDialogs, useNavigator, useProgressiveImage } from "@whub/wui";
 import parse from 'html-react-parser';
 import { ChevronLeftRounded, ChevronRightRounded, DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
 import { useShopApi } from "@whub/apis-react";
@@ -26,6 +26,7 @@ interface ProductComponentDefaultProps extends ProductComponentBaseProps {
 export type ProductComponentProps = ProductComponentPreviewProps | ProductComponentDefaultProps
 
 export function ProductComponent(props: ProductComponentProps) {
+  const { openDialog } = useGlobalDialogs()
   const isAPreview = props.mode === 'preview'
   const product = isAPreview
     ? undefined
@@ -162,6 +163,7 @@ export function ProductComponent(props: ProductComponentProps) {
           <Box>
             <Button
               variant="contained"
+              onClick={() => openDialog('contacts')}
             >
               Contattaci per ricevere informazioni
             </Button>
@@ -248,33 +250,52 @@ interface ProductCategoryProps {
 }
 
 export function ProductCategory(props: ProductCategoryProps) {
-  return (
-    <Breadcrumbs sx={{ width: '100%' }}>
-      {
-        (props.categoryName ?? '')
-          .split('/')
-          .map((v, i, all) => {
-            const isLast = i === all.length - 1
+  const { clickNavigate } = useNavigator()
 
-            return isLast
-              ? <Typography key={i} color="text.primary">{v}</Typography>
-              : <Link
+  const getUrl = (category: string[], index: number) => {
+    const categoryUrl =  category
+      .slice(0, index + 1)
+      .join('/')
+
+    return `/products?filter=&category=${categoryUrl}`
+  }
+
+  if(!props.categoryName)
+    return null
+
+  return (
+    <Stack
+      direction="column"
+      sx={{ width: '100%' }}
+    >
+      <Typography
+        variant="caption"
+        color="text.secondary"
+      >
+        Categoria
+      </Typography>
+      <Breadcrumbs sx={{ width: '100%' }}>
+        {
+          (props.categoryName ?? '')
+            .split('/')
+            .map((v, i, all) => {
+              const isLast = i === all.length - 1
+
+              return (
+                <Link
                   key={i}
                   underline="hover"
-                  color="inherit"
-                  href={`
-                    /${all
-                      .slice(0, i + 1)
-                      .join('/')
-                    }`
-                  }
+                  color={isLast ? 'text.primary' : "inherit"}
+                  href={getUrl(all, i)}
+                  onClick={clickNavigate(getUrl(all, i))}
                 >
                   {v}
                 </Link>
-
-          })
-      }
-    </Breadcrumbs>
+              )
+            })
+        }
+      </Breadcrumbs>
+    </Stack>
   )
 }
 
@@ -287,7 +308,7 @@ function RelatedProducts(props: RelatedProductsProps) {
   const [index, setIndex] = useState(0)
   const noProducts = props.products.length === 0
   const isFirst = index === 0
-  const isLast = index === props.products.length - props.number
+  const isLast = props.products.length - props.number <= index
 
   const onIncrease = () => {
     const newIndex = index + props.number

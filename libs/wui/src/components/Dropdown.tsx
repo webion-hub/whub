@@ -6,6 +6,7 @@ export interface DropdownProps<T> extends SelectProps {
   readonly getValue: (option: T) => string,
   readonly elements: T[],
   readonly focused: boolean,
+  readonly value?: T,
   readonly selectSx?: SxProps<Theme>,
   readonly onValueChange: (value: T) => void
 }
@@ -21,7 +22,7 @@ export function Dropdown<T>(props: DropdownProps<T>) {
     getValue,
     ...others
   } = props
-  const [value, setValue] = useState<T>()
+  const [value, setValue] = useState<T>(props.value as T)
 
   const handleValueChange = (value: T) => {
     setValue(value)

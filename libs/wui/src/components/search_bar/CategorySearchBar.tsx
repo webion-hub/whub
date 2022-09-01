@@ -9,6 +9,7 @@ export interface CategorySearchBarProps<T, G> {
   readonly loading: boolean,
   readonly options: T[],
   readonly categories: G[],
+  readonly defaultCategory?: G,
   readonly onSearch?: () => void,
   readonly onValueChange?: (value: string) => void,
   readonly onCategoryChange?: (category: G) => void,
@@ -57,6 +58,7 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
       }
     >
       <Dropdown
+        value={props.defaultCategory}
         getValue={props.getCategoryValue}
         getOptionLabel={props.getCategoryOptionLabel}
         variant="outlined"

@@ -4,13 +4,16 @@ import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, useBackgroundWaves, Validators } from '@whub/wui';
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { LoadingButton } from '@mui/lab';
 import { useContactUsApi } from '@whub/apis-react';
 
 interface LinkWithIconProps {
   readonly children: string,
+  readonly href?: string,
+  readonly target?: string,
+  readonly onClick?: (e: any) => void,
   readonly Icon: OverridableComponent<any>
 }
 
@@ -25,6 +28,9 @@ function LinkWithIcon(props: LinkWithIconProps) {
       <Link
         color="secondary"
         variant="body1"
+        href={props.href}
+        target={props.target}
+        onClick={props.onClick}
         sx={{
           width: 'calc(100% - 24px)',
           paddingLeft: 1
@@ -123,16 +129,20 @@ export default function ContactsDialog(props: DialogBase) {
             >
               <LinkWithIcon
                 Icon={PlaceRoundedIcon}
+                target="_blank"
+                href="https://www.google.com/maps?ll=44.535115,11.413146&z=16&t=m&hl=it&gl=IT&mapclient=embed&q=Via+Gian+Luigi+Lazzari,+18+40057+Quarto+Inferiore+BO"
               >
                 Via Gian Luigi Lazzari 18, Quarto Inferiore (BO)
               </LinkWithIcon>
               <LinkWithIcon
                 Icon={PhoneRoundedIcon}
+                href="tel:051 800 960"
               >
                 051 800 960
               </LinkWithIcon>
               <LinkWithIcon
                 Icon={MailRoundedIcon}
+                href="mailto:info@simmimballaggi.com"
               >
                 info@simmimballaggi.com
               </LinkWithIcon>

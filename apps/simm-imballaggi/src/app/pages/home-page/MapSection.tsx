@@ -1,5 +1,5 @@
-import { Box, Button, Grid, Stack, styled, Typography } from "@mui/material";
-import { ResponserGrid } from "@whub/wui";
+import { Box, Button, Grid, Link, Stack, styled, Typography } from "@mui/material";
+import { ResponserGrid, useGlobalDialogs } from "@whub/wui";
 import CallRoundedIcon from '@mui/icons-material/CallRounded';
 import { useTranslation } from "react-i18next";
 import ContactsDialog from "../../components/dialogs/ContactsDialog";
@@ -11,9 +11,9 @@ const StyledMap = styled('iframe')(() => ({
 }))
 
 export default function MapSection() {
-  const [openContacts, setOpenContact] = useState<boolean>(false)
+  const { openDialog } = useGlobalDialogs()
 
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
   return (
     <Stack
       direction="column"
@@ -68,18 +68,21 @@ export default function MapSection() {
               height: {xs: 225, lg: 450},
             }}
           />
-          <Typography
+          <Link
             variant="caption"
             textAlign="center"
             color="secondary"
+            target="_blank"
+            href="https://www.google.com/maps?ll=44.535115,11.413146&z=16&t=m&hl=it&gl=IT&mapclient=embed&q=Via+Gian+Luigi+Lazzari,+18+40057+Quarto+Inferiore+BO"
           >
             {t("address-link")}
-          </Typography>
+          </Link>
         </Grid>
       </ResponserGrid>
       <Button
         variant='contained'
-        onClick={() => setOpenContact(true)}
+        size="large"
+        onClick={() => openDialog('contacts')}
         sx={{
           margin: 'auto'
         }}
@@ -87,10 +90,6 @@ export default function MapSection() {
       >
         {t("contact-us-button")}
       </Button>
-      <ContactsDialog
-        open={openContacts}
-        onClose={() => setOpenContact(false)}
-      />
     </Stack>
   )
 }
