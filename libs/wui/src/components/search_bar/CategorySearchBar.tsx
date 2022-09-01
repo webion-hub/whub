@@ -4,9 +4,12 @@ import { useTheme, Button, TextField, Stack, Divider, Autocomplete } from "@mui/
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { Dropdown } from "../Dropdown";
 import _ from "lodash";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export interface CategorySearchBarProps<T, G> {
   readonly loading: boolean,
+  readonly label: string,
   readonly options: T[],
   readonly categories: G[],
   readonly defaultCategory?: G,
@@ -23,6 +26,7 @@ export interface CategorySearchBarProps<T, G> {
 
 export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
   const ref = useRef<HTMLDivElement>()
+  const { t } = useTranslation()
   const theme = useTheme()
   const [focusCategory, setFocusCategory] = React.useState<boolean>(false);
   const [focusAutocomplete, setFocusAutocomplete] = React.useState<boolean>(false);
@@ -63,7 +67,7 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
         getOptionLabel={props.getCategoryOptionLabel}
         variant="outlined"
         size="small"
-        label="Categoria"
+        label={t('category')}
         focused={focusCategory}
         elements={props.categories}
         disabled={props.loading}
@@ -122,7 +126,7 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
             onChange={e => props.onValueChange?.(e.target.value)}
             variant="outlined"
             size="small"
-            label="Cerca prodotto"
+            label={props.label}
             sx={{
               '.MuiOutlinedInput-root': {
                 borderRadius: 0,

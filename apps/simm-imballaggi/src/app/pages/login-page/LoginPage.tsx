@@ -106,7 +106,7 @@ export default function LoginPage() {
               size="small"
               fullWidth
               color="secondary"
-              label="Nome utente"
+              label={t("username")}
               variant="outlined"
               InputProps={{ endAdornment: <PersonRounded/>}}
             />
@@ -119,7 +119,7 @@ export default function LoginPage() {
             <TextField
               required
               variant="outlined"
-              label="Password"
+              label={t("password")}
               size="small"
               color="secondary"
               type={values.showPassword ? 'text' : 'password'}

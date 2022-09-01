@@ -180,7 +180,7 @@ export default function SimmFooter() {
         >
           <FooterLink
             variant="caption"
-            href='/policies'
+            href='/privacy'
             target="_blank"
           >
           {t("policies")}

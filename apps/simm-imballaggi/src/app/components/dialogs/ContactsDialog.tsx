@@ -4,10 +4,11 @@ import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, PrivacyCheckBox, useBackgroundWaves, Validators } from '@whub/wui';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useState, useTransition } from 'react';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { LoadingButton } from '@mui/lab';
 import { useContactUsApi } from '@whub/apis-react';
+import { useTranslation } from 'react-i18next';
 
 interface LinkWithIconProps {
   readonly children: string,
@@ -46,6 +47,7 @@ export default function ContactsDialog(props: DialogBase) {
   const [success, setSuccess] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
   const contactUsApi = useContactUsApi()
+  const { t } = useTranslation()
   const theme = useTheme()
   const waves = useBackgroundWaves(theme.palette.secondary.light)
 
@@ -73,7 +75,7 @@ export default function ContactsDialog(props: DialogBase) {
       <DialogTitleCross
         onClose={props.onClose}
       >
-        Contattaci
+        {t('contact-us-title')}
       </DialogTitleCross>
       <DialogContent
         sx={{
@@ -122,7 +124,7 @@ export default function ContactsDialog(props: DialogBase) {
               sx={{maxWidth: "500px"}}
               textAlign={{xs: 'center', md: 'left'}}
             >
-              Se hai bisogno di maggiori informazioni ti invitiamo a compilare il seguente modulo. Riceverai una risposta il prima possibile.
+              {t('contact-us-caption')}
             </Typography>
             <Stack
               direction="column"
@@ -171,7 +173,7 @@ export default function ContactsDialog(props: DialogBase) {
                     color="secondary"
                     size="small"
                     required
-                    label="Nome"
+                    label={t("name")}
                   />
                 </InputValidator>
                 <InputValidator
@@ -183,7 +185,7 @@ export default function ContactsDialog(props: DialogBase) {
                     color="secondary"
                     size="small"
                     required
-                    label="Cognome"
+                    label={t("surname")}
                   />
                 </InputValidator>
               </Stack>
@@ -195,7 +197,7 @@ export default function ContactsDialog(props: DialogBase) {
                   color="secondary"
                   size="small"
                   fullWidth
-                  label="Azienda"
+                  label={t("company")}
                   variant="outlined"
                   InputProps={{ endAdornment: <BusinessRoundedIcon/>}}
                 />
@@ -209,7 +211,7 @@ export default function ContactsDialog(props: DialogBase) {
                   color="secondary"
                   size="small"
                   fullWidth
-                  label="Telefono"
+                  label={t("telephone-full")}
                   variant="outlined"
                   InputProps={{ endAdornment: <PhoneRoundedIcon/>}}
                 />
@@ -224,7 +226,7 @@ export default function ContactsDialog(props: DialogBase) {
                   size="small"
                   name="email"
                   required
-                  label="Mail"
+                  label={t("email")}
                   variant="outlined"
                   InputProps={{ endAdornment: <MailRoundedIcon/>}}
                 />
@@ -239,7 +241,7 @@ export default function ContactsDialog(props: DialogBase) {
                   size="small"
                   fullWidth
                   required
-                  label="Scrivi qualcosa..."
+                  label={t("write-something")}
                   variant="outlined"
                   multiline
                   rows={5}
@@ -258,7 +260,7 @@ export default function ContactsDialog(props: DialogBase) {
                 variant="contained"
                 loading={loading}
               >
-                Invia
+                {t('send')}
               </LoadingButton>
               <Snackbar
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
@@ -271,7 +273,7 @@ export default function ContactsDialog(props: DialogBase) {
                   severity="success"
                   sx={{ width: '100%' }}
                 >
-                  Messaggio inviato!
+                 {t('message-sent')}
                 </Alert>
               </Snackbar>
             </Stack>

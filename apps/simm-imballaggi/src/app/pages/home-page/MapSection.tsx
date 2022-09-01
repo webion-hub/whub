@@ -84,7 +84,8 @@ export default function MapSection() {
         size="large"
         onClick={() => openDialog('contacts')}
         sx={{
-          margin: 'auto'
+          margin: 'auto',
+          textTransform: 'capitalize'
         }}
         startIcon={<CallRoundedIcon/>}
       >

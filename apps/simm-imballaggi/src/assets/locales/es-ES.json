@@ -1,5 +1,5 @@
 {
-  "category": "categoría",
+  "category": "Categoría",
   "search-product": "Buscar producto",
 
   "hero-title": "Construcción, personalización y venta de máquinas y materiales de embalaje.",
@@ -20,7 +20,7 @@
   "contact-us-button": "Contáctenos ahora para recibir información",
 
   "company-name": "S.I.M.M. Imballaggi s.r.l. ",
-  "p-iva": "S.I.M.M. Imballaggi s.r.l. Partita I.V.A./C.F. 02666561200",
+  "p-iva": "Partita I.V.A./C.F. 02666561200",
 
   "company": "Agencia",
   "home": "Home",
@@ -60,5 +60,24 @@
 
   "forgot-password": "¿Se te olvidó tu contraseña?",
   "fogot-password-tooltip": "Póngase en contacto con el administrador del sitio",
-  "enter": "ingresar"
+  "enter": "Ingresar",
+
+  "privacy": "Se ha bisogno di maggiori informazioni ti invitiamo a compilare il seguente modulo. Riceverai una risposta il prima possibile.",
+  "privacy-link": "Política de privacidad",
+  "cookies": "Este sitio utiliza cookies para mejorar su experiencia.",
+  "decline": "Rechazar",
+  "accept": "Aceptar",
+  "all": "Todos",
+  "see-attachments": "Ver adjuntos",
+  "username": "Nombre de usuario",
+  "password": "Clave",
+  "other": "Otra",
+  "name": "Nombre",
+  "surname": "Apellido",
+  "telephone-full": "Teléfono",
+  "write-something": "Escribe algo...",
+  "send": "Enviar",
+  "message-sent": "¡Mensaje enviado!",
+  "contact-us-caption": "Si necesita más información, por favor llene el siguiente formulario. Recibirá una respuesta lo antes posible."
+
 }

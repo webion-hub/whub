@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import { useTranslation } from 'react-i18next';
-import { Link, Slide, SnackbarContent, Stack, Typography } from '@mui/material';
+import { Alert, Link, Slide, SnackbarContent, Stack, Typography } from '@mui/material';
 import Cookies from 'js-cookie'
 import ReactPixel from 'react-facebook-pixel';
 
@@ -85,25 +85,26 @@ export function CookiePopup(props: CookiePopupProps) {
       open={open}
       TransitionComponent={Slide}
     >
-      <SnackbarContent
-        sx={{
-          backgroundColor: "background.paper",
-          color: "white",
-          flexDirection: 'column'
-        }}
-        action={action}
-        message={
-          <Typography variant='caption'>
-            {t("cookies")}
-            <br/>
-            <Link
-              onClick={() => window.open(props.privacyUrl, '_blank')?.focus()}
-            >
-              {t('privacy-link')}
-            </Link>
-          </Typography>
-        }
-      />
+      <Alert
+        severity="info"
+      >
+        <Stack
+          direction="column"
+          alignItems="flex-end"
+          spacing={1}
+        >
+          {t("cookies")}
+          <br/>
+          <Link
+            color="secondary"
+            href={props.privacyUrl}
+            target="_blank"
+          >
+            {t('privacy-link')}
+          </Link>
+          {action}
+        </Stack>
+      </Alert>
     </Snackbar>
   )
 }

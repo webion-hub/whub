@@ -10,6 +10,7 @@ import { Category, Product } from "@whub/wshop-api";
 import { useAuth, useShopApi } from "@whub/apis-react";
 import { Box } from "@mui/system";
 import { LoadingButton } from "@mui/lab";
+import { useTranslation } from "react-i18next";
 
 const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((props, ref) => {
   const { openDialog } = useGlobalDialogs()
@@ -95,7 +96,8 @@ export default SimmAppbar
 export function ProductSearchBar() {
   const { clickNavigate, navigate } = useNavigator()
   const shopApi = useShopApi()
-  const allCategory = 'Tutte'
+  const { t } = useTranslation()
+  const allCategory = t('all')
   const [products, setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<string[]>([])
   const [value, setValue] = useState('')
@@ -146,7 +148,7 @@ export function ProductSearchBar() {
 
   return (
     <CategorySearchBar
-      defaultCategory={allCategory}
+      label={t('search-product')}
       onSearch={() => navigate(`products?filter=${value}&category=${getCategory()}`)}
       getCategoryOptionLabel={option => option}
       getCategoryValue={option => option}
@@ -156,7 +158,7 @@ export function ProductSearchBar() {
       onOpen={() => fetchProducts('')}
       options={products}
       loading={loading}
-      groupBy={option => option.category?.name ?? 'Altro'}
+      groupBy={option => option.category?.name ?? t('other')}
       getOptionLabel={option =>
         typeof option === 'string' || option instanceof String
           ? option as string
@@ -176,7 +178,7 @@ export function ProductSearchBar() {
             <Button
               onClick={clickNavigate(`/product/${option.id}`)}
             >
-              Vedi
+              {t('see')}
             </Button>
           </ProductListItem>
       }

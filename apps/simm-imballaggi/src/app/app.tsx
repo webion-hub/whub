@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 
 import en from "../assets/locales/en-EN.json";
 import it from "../assets/locales/it-IT.json";
+import es from "../assets/locales/es-ES.json";
 
 import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -31,7 +32,8 @@ export function App() {
     .init({
       resources: {
         en: { translation: en },
-        it: { translation: it }
+        it: { translation: it },
+        es: { translation: es },
       },
       lng: Language.getLocalLanguage(),
 

@@ -8,6 +8,7 @@ import { ChevronLeftRounded, ChevronRightRounded, DownloadRounded, ExpandMoreRou
 import { useShopApi } from "@whub/apis-react";
 import { ProductUtils } from "../lib/ProductUtils";
 import _ from "lodash";
+import { useTranslation } from "react-i18next";
 
 interface ProductComponentBaseProps {
   readonly compress?: boolean,
@@ -26,6 +27,7 @@ interface ProductComponentDefaultProps extends ProductComponentBaseProps {
 export type ProductComponentProps = ProductComponentPreviewProps | ProductComponentDefaultProps
 
 export function ProductComponent(props: ProductComponentProps) {
+  const { t } = useTranslation()
   const { openDialog } = useGlobalDialogs()
   const isAPreview = props.mode === 'preview'
   const product = isAPreview
@@ -165,7 +167,7 @@ export function ProductComponent(props: ProductComponentProps) {
               variant="contained"
               onClick={() => openDialog('contacts')}
             >
-              Contattaci per ricevere informazioni
+              {t('contact-us-button')}
             </Button>
           </Box>
           <ProductField
@@ -250,6 +252,7 @@ interface ProductCategoryProps {
 }
 
 export function ProductCategory(props: ProductCategoryProps) {
+  const { t } = useTranslation()
   const { clickNavigate } = useNavigator()
 
   const getUrl = (category: string[], index: number) => {
@@ -272,7 +275,7 @@ export function ProductCategory(props: ProductCategoryProps) {
         variant="caption"
         color="text.secondary"
       >
-        Categoria
+        {t('category')}
       </Typography>
       <Breadcrumbs sx={{ width: '100%' }}>
         {
@@ -395,6 +398,7 @@ export interface ProductCardProps {
 export function ProductCard(props: ProductCardProps) {
   const { clickNavigate } = useNavigator()
   const shopApi = useShopApi()
+  const { t } = useTranslation()
   const images = ProductUtils.getImages(shopApi, props.product)
   const firstImage = images?.[0]?.fullUrl
 
@@ -460,7 +464,7 @@ export function ProductCard(props: ProductCardProps) {
           href={`/product/${props.product.id}`}
           onClick={clickNavigate(`/product/${props.product.id}`)}
         >
-          Vedi
+          {t('see')}
         </Button>
       </CardActions>
     </Card>
@@ -608,6 +612,7 @@ interface ProductAttachmentButtonListProps {
 
 function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
   const shopApi = useShopApi()
+  const { t } = useTranslation()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -645,7 +650,7 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
         color="inherit"
         onClick={handleClick}
       >
-        Vedi allegati
+        {t('see-attachments')}
       </Button>
       <Menu
         anchorEl={anchorEl}

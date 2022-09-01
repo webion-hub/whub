@@ -1,5 +1,5 @@
-import { alpha, createTheme, responsiveFontSizes } from '@mui/material/styles';
-import Inter from "../../assets/fonts/Inter.ttf"
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import Inter from "../../assets/fonts/Inter.ttf";
 
 const fontFamily = "'Inter'"
 export const border = "1px solid #e0e0e0"
