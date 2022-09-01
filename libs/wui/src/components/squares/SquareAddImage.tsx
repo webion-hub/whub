@@ -1,5 +1,6 @@
 import { AddAPhotoRounded } from "@mui/icons-material";
 import { useState } from "react";
+import FileResizer from "react-image-file-resizer";
 import { InputEvent } from "../../abstractions/events/InputEvent";
 import { ImageCropperDialog } from "../images/ImageCropperDialog";
 import { ImageUploader } from "../inputs/uploaders/ImageUploader";
@@ -17,19 +18,30 @@ export function SquareAddImage(props: SquareAddImageProps) {
     e.preventDefault();
 
     const files = e.target.files
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      setImage(reader.result as string);
-    };
 
     if(!files)
       return
 
-    reader.readAsDataURL(files[0]);
-    setOpenCrop(true)
-    e.target.value = ''
+    resize(files?.[0])
+      .then(i => {
+        setImage(i)
+        setOpenCrop(true)
+        e.target.value = ''
+      })
   };
+
+  const resize = (file: File) => new Promise<string>(res => {
+    FileResizer.imageFileResizer(
+      file,
+      1000,
+      1000,
+      'webp',
+      100,
+      0,
+      uri => res(uri as string),
+      'base64'
+    )
+  })
 
   return (
     <SquareButton

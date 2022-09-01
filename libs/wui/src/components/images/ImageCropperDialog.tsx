@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogActions, DialogContent, Stack } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
@@ -14,6 +14,7 @@ export interface ImageCropperDialogProps extends DialogBase {
 
 export function ImageCropperDialog(props: ImageCropperDialogProps) {
   const [cropper, setCropper] = useState<Cropper>()
+  const [img, setImg] = useState<string>('')
 
   const onCrop = () => {
     if (typeof cropper === "undefined")
@@ -29,6 +30,32 @@ export function ImageCropperDialog(props: ImageCropperDialogProps) {
     props.onClose()
   }
 
+  const getImage = () => {
+    const ctx = document
+      .createElement('canvas')
+      .getContext('2d')
+
+    if(!ctx)
+      return
+
+    const img = new Image()
+    img.src = props.image
+
+    img.onload = () => {
+      const border = img.width / 3
+
+      ctx.canvas.height = img.height + border;
+      ctx.canvas.width = img.width + border;
+
+      ctx.drawImage(img, border / 2, border / 2)
+
+      setImg(ctx.canvas.toDataURL())
+    }
+  }
+
+  useEffect(() => {
+    getImage()
+  }, [props])
 
   return (
     <Dialog
@@ -50,7 +77,7 @@ export function ImageCropperDialog(props: ImageCropperDialogProps) {
             zoomTo={0}
             initialAspectRatio={1}
             aspectRatio={1}
-            src={props.image}
+            src={img}
             viewMode={1}
             minCropBoxHeight={64}
             minCropBoxWidth={64}

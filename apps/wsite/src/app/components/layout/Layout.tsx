@@ -1,7 +1,7 @@
 import Page from "../Page";
 import React, { createContext } from "react";
 import CookiePopup from "../cookie_popup/CookiePopup";
-import { ChildrenProps, useLanguage } from "@whub/wui";
+import { ChildrenProps, FullScreenLoading, useLanguage } from "@whub/wui";
 import WebionSideBar from "./WebionSideBar";
 import WebionAppbar from "./WebionAppBar";
 import WebionFooter from "./WebionFooter";
@@ -21,21 +21,16 @@ const LayoutContext = createContext<LayoutContextProps>({
 
 const Layout = React.forwardRef<HTMLDivElement, ChildrenProps>((props, ref) => {
   const { t, loading } = useLanguage()
-  
+
   document.title = t('tab-title')
 
   return (
     <>
       <WebionSideBar/>
       <WebionAppbar/>
-      <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={loading}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      <FullScreenLoading loading={loading}/>
       <Page ref={ref}>
-        <Grid 
+        <Grid
           container
           direction="column"
           justifyContent="space-between"

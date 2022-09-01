@@ -1,6 +1,6 @@
 import { Link } from "@mui/material";
+import Paragraph from "libs/wui/src/components/Paragraph";
 import React from "react";
-import Paragraph from "../../../components/text_boxes/Paragraph";
 
 export default function CookiePolicy() {
   return (

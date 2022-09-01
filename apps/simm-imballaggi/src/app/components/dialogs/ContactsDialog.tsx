@@ -3,14 +3,18 @@ import PlaceRoundedIcon from '@mui/icons-material/PlaceRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
-import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, useBackgroundWaves, Validators } from '@whub/wui';
-import { useState } from 'react';
+import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, PrivacyCheckBox, useBackgroundWaves, Validators } from '@whub/wui';
+import { MouseEvent, useState, useTransition } from 'react';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { LoadingButton } from '@mui/lab';
 import { useContactUsApi } from '@whub/apis-react';
+import { useTranslation } from 'react-i18next';
 
 interface LinkWithIconProps {
   readonly children: string,
+  readonly href?: string,
+  readonly target?: string,
+  readonly onClick?: (e: any) => void,
   readonly Icon: OverridableComponent<any>
 }
 
@@ -25,6 +29,9 @@ function LinkWithIcon(props: LinkWithIconProps) {
       <Link
         color="secondary"
         variant="body1"
+        href={props.href}
+        target={props.target}
+        onClick={props.onClick}
         sx={{
           width: 'calc(100% - 24px)',
           paddingLeft: 1
@@ -40,6 +47,7 @@ export default function ContactsDialog(props: DialogBase) {
   const [success, setSuccess] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
   const contactUsApi = useContactUsApi()
+  const { t } = useTranslation()
   const theme = useTheme()
   const waves = useBackgroundWaves(theme.palette.secondary.light)
 
@@ -67,7 +75,7 @@ export default function ContactsDialog(props: DialogBase) {
       <DialogTitleCross
         onClose={props.onClose}
       >
-        Contattaci
+        {t('contact-us-title')}
       </DialogTitleCross>
       <DialogContent
         sx={{
@@ -76,6 +84,7 @@ export default function ContactsDialog(props: DialogBase) {
           "& > *": { zIndex: 1 },
           "&::before": {
             content: "''",
+            pointerEvents: 'none',
             position: 'absolute',
             width: '100%',
             height: '100%',
@@ -115,7 +124,7 @@ export default function ContactsDialog(props: DialogBase) {
               sx={{maxWidth: "500px"}}
               textAlign={{xs: 'center', md: 'left'}}
             >
-              Se hai bisogno di maggiori informazioni ti invitiamo a compilare il seguente modulo. Riceverai una risposta il prima possibile.
+              {t('contact-us-caption')}
             </Typography>
             <Stack
               direction="column"
@@ -123,16 +132,20 @@ export default function ContactsDialog(props: DialogBase) {
             >
               <LinkWithIcon
                 Icon={PlaceRoundedIcon}
+                target="_blank"
+                href="https://www.google.com/maps?ll=44.535115,11.413146&z=16&t=m&hl=it&gl=IT&mapclient=embed&q=Via+Gian+Luigi+Lazzari,+18+40057+Quarto+Inferiore+BO"
               >
                 Via Gian Luigi Lazzari 18, Quarto Inferiore (BO)
               </LinkWithIcon>
               <LinkWithIcon
                 Icon={PhoneRoundedIcon}
+                href="tel:051 800 960"
               >
                 051 800 960
               </LinkWithIcon>
               <LinkWithIcon
                 Icon={MailRoundedIcon}
+                href="mailto:info@simmimballaggi.com"
               >
                 info@simmimballaggi.com
               </LinkWithIcon>
@@ -157,9 +170,11 @@ export default function ContactsDialog(props: DialogBase) {
                   validators={[Validators.required]}
                 >
                   <TextField
+                    color="secondary"
                     size="small"
+                    fullWidth
                     required
-                    label="Nome"
+                    label={t("name")}
                   />
                 </InputValidator>
                 <InputValidator
@@ -168,9 +183,11 @@ export default function ContactsDialog(props: DialogBase) {
                   validators={[Validators.required]}
                 >
                   <TextField
+                    color="secondary"
                     size="small"
+                    fullWidth
                     required
-                    label="Cognome"
+                    label={t("surname")}
                   />
                 </InputValidator>
               </Stack>
@@ -179,9 +196,10 @@ export default function ContactsDialog(props: DialogBase) {
                 value=''
               >
                 <TextField
+                  color="secondary"
                   size="small"
                   fullWidth
-                  label="Azienda"
+                  label={t("company")}
                   variant="outlined"
                   InputProps={{ endAdornment: <BusinessRoundedIcon/>}}
                 />
@@ -192,9 +210,10 @@ export default function ContactsDialog(props: DialogBase) {
                 validators={[Validators.isATelephoneNumber]}
               >
                 <TextField
+                  color="secondary"
                   size="small"
                   fullWidth
-                  label="Telefono"
+                  label={t("telephone-full")}
                   variant="outlined"
                   InputProps={{ endAdornment: <PhoneRoundedIcon/>}}
                 />
@@ -205,10 +224,11 @@ export default function ContactsDialog(props: DialogBase) {
                 validators={[Validators.required, Validators.isAnEmail]}
               >
                 <TextField
+                  color="secondary"
                   size="small"
                   name="email"
                   required
-                  label="Mail"
+                  label={t("email")}
                   variant="outlined"
                   InputProps={{ endAdornment: <MailRoundedIcon/>}}
                 />
@@ -219,14 +239,22 @@ export default function ContactsDialog(props: DialogBase) {
                 validators={[Validators.required]}
               >
                 <TextField
+                  color="secondary"
                   size="small"
                   fullWidth
                   required
-                  label="Scrivi qualcosa..."
+                  label={t("write-something")}
                   variant="outlined"
                   multiline
                   rows={5}
                 />
+              </InputValidator>
+              <InputValidator
+                name="privacy"
+                value={true}
+                validators={[Validators.required]}
+              >
+                <PrivacyCheckBox privacyUrl='/privacy'/>
               </InputValidator>
               <LoadingButton
                 color="primary"
@@ -234,7 +262,7 @@ export default function ContactsDialog(props: DialogBase) {
                 variant="contained"
                 loading={loading}
               >
-                Invia
+                {t('send')}
               </LoadingButton>
               <Snackbar
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
@@ -247,7 +275,7 @@ export default function ContactsDialog(props: DialogBase) {
                   severity="success"
                   sx={{ width: '100%' }}
                 >
-                  Messaggio inviato!
+                 {t('message-sent')}
                 </Alert>
               </Snackbar>
             </Stack>

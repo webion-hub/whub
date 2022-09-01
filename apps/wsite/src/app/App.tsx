@@ -13,12 +13,11 @@ import { GlobalStyles, CssBaseline, CircularProgress, Grid, Backdrop} from '@mui
 import globalStyle from './theme/globalStyle';
 import PoliciesAndLicensesPage from './pages/policies-licenses-page/PoliciesAndLicensesPage';
 import { useState } from "react";
-import { Language, LanguageWrapper, Layout, MaybeShow } from "@whub/wui";
+import { CookiePopup, Language, LanguageWrapper, Layout, MaybeShow } from "@whub/wui";
 import LandingPage from "./pages/landing-page/LandingPage";
 import WebionFooter from "./components/layout/WebionFooter";
 import WebionSideBar from "./components/layout/WebionSideBar";
 import WebionAppbar from "./components/layout/WebionAppBar";
-import CookiePopup from "./components/cookie_popup/CookiePopup";
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -65,7 +64,11 @@ export function App() {
               FooterComponent={<WebionFooter/>}
               SidebarComponent={<WebionSideBar/>}
             >
-             <CookiePopup/>
+             <CookiePopup
+              usePixel
+              name="webion"
+              privacyUrl="/policies-licenses"
+             />
               <Routes>
                 <Route key="home" path="/"  element={<Homepage/>}/>
                 <Route key="call" path="/call"  element={<LandingPage/>}/>

@@ -32,6 +32,7 @@
     "react-dom": "18.2.0",
     "react-facebook-pixel": "^1.0.4",
     "react-i18next": "^11.18.3",
+    "react-image-file-resizer": "^0.4.8",
     "react-number-format": "^4.9.3",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.3.0",

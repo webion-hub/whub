@@ -34,6 +34,7 @@ export * from './hooks/useForceRender';
 
 //Contexts
 export * from './contexts/ContextLanguage';
+export * from './contexts/GlobalDialogsContext';
 
 //Libs
 export * from './lib/EventsDispatcher';
@@ -93,6 +94,9 @@ export * from './components/WuiGrid';
 export * from './components/Dropdown';
 export * from './components/RotatingText';
 export * from './components/Stepper';
+export * from './components/CookiePopup';
+export * from './components/FullScreenLoading';
+export * from './components/Paragraph';
 
 export * from './components/search_bar/CategorySearchBar';
 
@@ -113,3 +117,4 @@ export * from './components/inputs/uploaders/ImageUploader';
 export * from './components/inputs/TextEditor';
 export * from './components/inputs/ItemSelect';
 export * from './components/inputs/NumberInput';
+export * from './components/inputs/PrivacyCheckbox';

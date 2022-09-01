@@ -1,5 +1,5 @@
 export interface AccountInfo {
-  readonly username: string;
+  readonly userName: string;
   readonly email?: string;
   readonly roles: string[];
 }

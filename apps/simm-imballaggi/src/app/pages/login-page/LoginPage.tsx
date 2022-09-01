@@ -1,11 +1,12 @@
-import { IconButton, Button, Paper, Stack, TextField, Typography } from '@mui/material'
+import { IconButton, Paper, Stack, TextField, Typography } from '@mui/material';
 
-import MailRoundedIcon from '@mui/icons-material/MailRounded';
-import { VisibilityOff, Visibility } from '@mui/icons-material';
-import { useTranslation } from "react-i18next";
-import React from 'react';
+import { PersonRounded, Visibility, VisibilityOff } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import { Form, FormGroup, Img, InputValidator, Page, Validators } from '@whub/wui';
-import { useAuthApi } from '@whub/apis-react';
+import React, { useState } from 'react';
+import { useTranslation } from "react-i18next";
+import { useAuth } from '@whub/apis-react';
+import { useNavigate } from 'react-router-dom';
 
 interface State {
   amount: string;
@@ -16,7 +17,9 @@ interface State {
 }
 
 export default function LoginPage() {
-  const authApi = useAuthApi();
+  const { logIn } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
   const { t } = useTranslation();
 
   const [values, setValues] = React.useState<State>({
@@ -44,9 +47,16 @@ export default function LoginPage() {
   };
 
   const login = (form: Form) => {
-    authApi.account
-      .login(form.getValues())
-      .then(res => console.log(res))
+    setLoading(true)
+
+    logIn(form.getValues(), {
+      onError: () => {
+        form.setIsValid('username')(false)
+        form.setIsValid('password')(false)
+      },
+      onSuccess: () => { navigate('/products-table') },
+      onComplete: () => setLoading(false)
+    })
   }
 
   return (
@@ -68,7 +78,7 @@ export default function LoginPage() {
           }}
         >
           <Img
-            src="assets/images/logo.png"
+            src="assets/images/logo.webp"
             sx={{
               width: 80,
               margin: "auto",
@@ -95,9 +105,10 @@ export default function LoginPage() {
               required
               size="small"
               fullWidth
-              label="Nome utente"
+              color="secondary"
+              label={t("username")}
               variant="outlined"
-              InputProps={{ endAdornment: <MailRoundedIcon/>}}
+              InputProps={{ endAdornment: <PersonRounded/>}}
             />
           </InputValidator>
           <InputValidator
@@ -108,8 +119,9 @@ export default function LoginPage() {
             <TextField
               required
               variant="outlined"
-              label="Password"
+              label={t("password")}
               size="small"
+              color="secondary"
               type={values.showPassword ? 'text' : 'password'}
               value={values.password}
               onChange={handleChange('password')}
@@ -126,22 +138,14 @@ export default function LoginPage() {
             />
           </InputValidator>
 
-          <Typography
-            variant="caption"
-            sx={{
-              textAlign:"right",
-              marginBlock: theme => theme.spacing(0, "!important"),
-            }}
-          >
-            {t("forgot-password")}
-          </Typography>
-          <Button
+          <LoadingButton
             color="primary"
             type="submit"
             variant="contained"
+            loading={loading}
           >
             {t("enter")}
-          </Button>
+          </LoadingButton>
         </Stack>
       </FormGroup>
     </Page>

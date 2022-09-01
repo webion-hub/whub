@@ -21,7 +21,7 @@ export default function Homepage() {
               height: '100%',
               top: 0,
               zIndex: 0,
-              background: 'url(assets/images/homepageImage.jpg)',
+              background: 'url(assets/images/homepageImage.webp)',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center center',
               backgroundSize: 'cover'
@@ -31,7 +31,7 @@ export default function Homepage() {
           <Home/>
         </Section>
         <Section
-          id="who"
+          id="chi-siamo"
           showBackground
         >
           <MapSection/>

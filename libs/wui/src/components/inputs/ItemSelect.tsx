@@ -9,6 +9,7 @@ export interface ItemSelect<T> {
   readonly value?: T[],
   readonly loading?: boolean,
   readonly onChange?: (option : T[]) => void,
+  readonly isAlreadyIn: (option: T, items: T[]) => boolean,
   readonly onOpen?: (event: SyntheticEvent<Element, Event>) => void,
   readonly groupBy: (option: T) => string,
   readonly getOptionLabel: (option: T) => string,
@@ -36,7 +37,7 @@ export function ItemSelect<T>(props: ItemSelect<T>) {
   }
 
   const isAlreadyIn = (option: T) => {
-    return !!items.find(item => _.isEqual(option, item))
+    return !!props.isAlreadyIn?.(option, items)
   }
 
   return (

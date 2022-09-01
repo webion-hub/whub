@@ -20,7 +20,7 @@
   "contact-us-button": "Contattaci ora per ricevere informazioni",
 
   "company-name": "S.I.M.M. Imballaggi s.r.l. ",
-  "p-iva": "S.I.M.M. Imballaggi s.r.l. Partita I.V.A./C.F. 02666561200",
+  "p-iva": "Partita I.V.A./C.F. 02666561200",
 
   "company": "Azienda",
   "home": "Home",
@@ -30,7 +30,7 @@
   "machines": "Macchine",
   "materials": "Materiali",
 
-  "contacs": "Contatti",
+  "contacts": "Contatti",
   "email": "Email",
   "email-link": "info@simimballaggi.com",
   "telephone": "Tel",
@@ -61,5 +61,24 @@
 
   "forgot-password": "Password dimenticata?",
   "fogot-password-tooltip": "Contatta l'amministratore del sito",
-  "enter": "entra"
+  "enter": "entra",
+
+
+  "privacy": "Ho preso visione dell'",
+  "privacy-link": "Informativa sulla privacy",
+  "cookies": "Questo sito utilizza i cookie per migliorare la tua esperienza.",
+  "decline": "Rifiuta",
+  "accept": "Accetta",
+  "all": "Tutte",
+  "see-attachments": "Vedi allegati",
+  "username": "Nome utente",
+  "password": "Password",
+  "other": "Altro",
+  "name": "Nome",
+  "surname": "Cognome",
+  "telephone-full": "Telefono",
+  "write-something": "Scrivi qualcosa...",
+  "send": "Invia",
+  "message-sent": "Messaggio inviato!",
+  "contact-us-caption": "Se hai bisogno di maggiori informazioni ti invitiamo a compilare il seguente modulo. Riceverai una risposta il prima possibile."
 }

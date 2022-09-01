@@ -1,13 +1,14 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Breadcrumbs, Button, Card, CardActions, CardContent, CardMedia, IconButton, Link, Menu, MenuItem, Skeleton, Stack, SxProps, Theme, Typography, useTheme } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Breadcrumbs, Button, Card, CardActions, CardContent, CardMedia, IconButton, Link, ListItemIcon, ListItemText, Menu, MenuItem, Skeleton, Stack, SxProps, Theme, Typography, useTheme } from "@mui/material";
 import { Category, Product, ProductDetail } from "@whub/wshop-api";
 import { useEffect, useState } from "react";
 import { ProductImage } from "./ProductImage";
-import { FileWithId, GetFormValue, MaybeShow, useNavigator, useProgressiveImage } from "@whub/wui";
+import { FileWithId, GetFormValue, MaybeShow, useGlobalDialogs, useNavigator, useProgressiveImage } from "@whub/wui";
 import parse from 'html-react-parser';
 import { ChevronLeftRounded, ChevronRightRounded, DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
 import { useShopApi } from "@whub/apis-react";
 import { ProductUtils } from "../lib/ProductUtils";
 import _ from "lodash";
+import { useTranslation } from "react-i18next";
 
 interface ProductComponentBaseProps {
   readonly compress?: boolean,
@@ -26,6 +27,8 @@ interface ProductComponentDefaultProps extends ProductComponentBaseProps {
 export type ProductComponentProps = ProductComponentPreviewProps | ProductComponentDefaultProps
 
 export function ProductComponent(props: ProductComponentProps) {
+  const { t } = useTranslation()
+  const { openDialog } = useGlobalDialogs()
   const isAPreview = props.mode === 'preview'
   const product = isAPreview
     ? undefined
@@ -52,32 +55,9 @@ export function ProductComponent(props: ProductComponentProps) {
       >
         {
           (category?: Category) =>
-            <Breadcrumbs sx={{ width: '100%' }}>
-              {
-                (category?.name ?? '')
-                  .split('/')
-                  .map((v, i, all) => {
-                    const isLast = i === all.length - 1
-
-                    return isLast
-                      ? <Typography key={i} color="text.primary">{v}</Typography>
-                      : <Link
-                          key={i}
-                          underline="hover"
-                          color="inherit"
-                          href={`
-                            /${all
-                              .slice(0, i + 1)
-                              .join('/')
-                            }`
-                          }
-                        >
-                          {v}
-                        </Link>
-
-                  })
-              }
-            </Breadcrumbs>
+            <ProductCategory
+              categoryName={category?.name}
+            />
         }
       </ProductField>
       <Stack
@@ -185,8 +165,9 @@ export function ProductComponent(props: ProductComponentProps) {
           <Box>
             <Button
               variant="contained"
+              onClick={() => openDialog('contacts')}
             >
-              Contattaci per ricevere informazioni
+              {t('contact-us-button')}
             </Button>
           </Box>
           <ProductField
@@ -266,6 +247,61 @@ export function ProductComponent(props: ProductComponentProps) {
 }
 
 
+interface ProductCategoryProps {
+  readonly categoryName?: string
+}
+
+export function ProductCategory(props: ProductCategoryProps) {
+  const { t } = useTranslation()
+  const { clickNavigate } = useNavigator()
+
+  const getUrl = (category: string[], index: number) => {
+    const categoryUrl =  category
+      .slice(0, index + 1)
+      .join('/')
+
+    return `/products?filter=&category=${categoryUrl}`
+  }
+
+  if(!props.categoryName)
+    return null
+
+  return (
+    <Stack
+      direction="column"
+      sx={{ width: '100%' }}
+    >
+      <Typography
+        variant="caption"
+        color="text.secondary"
+      >
+        {t('category')}
+      </Typography>
+      <Breadcrumbs sx={{ width: '100%' }}>
+        {
+          (props.categoryName ?? '')
+            .split('/')
+            .map((v, i, all) => {
+              const isLast = i === all.length - 1
+
+              return (
+                <Link
+                  key={i}
+                  underline="hover"
+                  color={isLast ? 'text.primary' : "inherit"}
+                  href={getUrl(all, i)}
+                  onClick={clickNavigate(getUrl(all, i))}
+                >
+                  {v}
+                </Link>
+              )
+            })
+        }
+      </Breadcrumbs>
+    </Stack>
+  )
+}
+
 interface RelatedProductsProps {
   readonly products: Product[],
   readonly number: number,
@@ -275,7 +311,7 @@ function RelatedProducts(props: RelatedProductsProps) {
   const [index, setIndex] = useState(0)
   const noProducts = props.products.length === 0
   const isFirst = index === 0
-  const isLast = index === props.products.length - props.number
+  const isLast = props.products.length - props.number <= index
 
   const onIncrease = () => {
     const newIndex = index + props.number
@@ -355,13 +391,14 @@ function RelatedProducts(props: RelatedProductsProps) {
 }
 
 
-interface ProductCardProps {
+export interface ProductCardProps {
   readonly product: Product,
 }
 
-function ProductCard(props: ProductCardProps) {
+export function ProductCard(props: ProductCardProps) {
   const { clickNavigate } = useNavigator()
   const shopApi = useShopApi()
+  const { t } = useTranslation()
   const images = ProductUtils.getImages(shopApi, props.product)
   const firstImage = images?.[0]?.fullUrl
 
@@ -427,7 +464,7 @@ function ProductCard(props: ProductCardProps) {
           href={`/product/${props.product.id}`}
           onClick={clickNavigate(`/product/${props.product.id}`)}
         >
-          Vedi
+          {t('see')}
         </Button>
       </CardActions>
     </Card>
@@ -575,6 +612,7 @@ interface ProductAttachmentButtonListProps {
 
 function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
   const shopApi = useShopApi()
+  const { t } = useTranslation()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -612,7 +650,7 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
         color="inherit"
         onClick={handleClick}
       >
-        Vedi allegati
+        {t('see-attachments')}
       </Button>
       <Menu
         anchorEl={anchorEl}
@@ -630,8 +668,9 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
               onClick={handleClose}
               sx={{ maxWidth: 250 }}
             >
-              <DownloadRounded/>
-              <Typography
+              <ListItemIcon> <DownloadRounded/> </ListItemIcon>
+
+              <ListItemText
                 sx={{
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
@@ -639,7 +678,7 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
                 }}
               >
                 {a.name}
-              </Typography>
+              </ListItemText>
             </MenuItem>
           ))
         }
