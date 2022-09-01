@@ -7,4 +7,4 @@ export * from './contexts/AuthContext'
 
 export * from './components/Guard';
 
-export * from './guards/isLoggedIn';
+export * from './guards/Guards';

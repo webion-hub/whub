@@ -23,7 +23,7 @@ import theme from './theme/theme';
 import { Guard, Guards, useAuth } from "@whub/apis-react";
 
 export function App() {
-  const isLoggedInGuard = Guards.useIsLoggedInGuard()
+  const isAdminGuard = Guards.useIsAdminGuard()
   const { isLogged } = useAuth()
 
   i18n
@@ -68,19 +68,19 @@ export function App() {
                   <Route
                     path="/add-product"
                     element={
-                      <Guard canNavigate={isLoggedInGuard} redirectTo="/" el={<AddProduct/>}/>
+                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<AddProduct/>}/>
                     }
                   />
                   <Route
                     path="/edit-product/:id"
                     element={
-                      <Guard canNavigate={isLoggedInGuard} redirectTo="/" el={<EditProduct/>}/>
+                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<EditProduct/>}/>
                     }
                   />
                   <Route
                     path="/products-table"
                     element={
-                      <Guard canNavigate={isLoggedInGuard} redirectTo="/" el={<TableProductsPage/>}/>
+                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<TableProductsPage/>}/>
                     }
                   />
                 </Routes>

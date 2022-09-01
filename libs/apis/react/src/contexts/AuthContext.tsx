@@ -17,9 +17,16 @@ export interface AuthActionsIsLoogedIn {
   readonly onComplete?: () => void,
 }
 
+export interface AuthActionsUser {
+  readonly onSuccess?: (user: AccountInfo) => void,
+  readonly onError?: () => void,
+  readonly onComplete?: () => void,
+}
+
 interface IAuthContext {
   readonly user?: AccountInfo,
   readonly isLogged: boolean,
+  readonly checkUser: (actions: AuthActionsUser) => void,
   readonly checkIsLogged: (actions: AuthActionsIsLoogedIn) => void,
   readonly logIn: (credentials: LoginRequest, actions: AuthActions) => void,
   readonly logOut: (actions: AuthActions) => void,
@@ -27,6 +34,7 @@ interface IAuthContext {
 
 export const AuthContext = createContext<IAuthContext>({
   isLogged: false,
+  checkUser: () => { return },
   checkIsLogged: () => { return },
   logIn: () => { return },
   logOut: () => { return }
@@ -38,14 +46,28 @@ export const AuthWrapper = (props: ChildrenProps) => {
   const [isLogged, setIsLogged] = useState<boolean>(false)
   const [user, setUser] = useState<AccountInfo>()
 
+  const checkUser = (actions: AuthActionsUser) => {
+    checkIsLogged({
+      onIsLooged: () => fetchUser(actions),
+      onIsNotLooged: actions.onError,
+    })
+
+  }
+
+  const fetchUser = (actions: AuthActionsUser) => {
+    authApi.account
+      .info()
+      .then(res => handleResponse(res, { 200: () => onUserFetch(res.data, actions) }))
+      .catch(err => handleResponse(err.response, { 401: () => actions.onError?.() }))
+      .finally(() => actions.onComplete?.())
+  }
+
   const checkIsLogged = (actions: AuthActionsIsLoogedIn) => {
     authApi.account
       .isLoggedIn()
       .then(res => handleResponse(res, { 200: () => onIsLoggedCheck(res.data, actions) }))
-      .catch(err => handleResponse(err.response, { 401: () => {
-        actions.onError?.()
-        actions.onComplete?.()
-      }}))
+      .catch(err => handleResponse(err.response, { 401: () => actions.onError?.()}))
+      .finally(() => actions.onComplete?.())
   }
 
   const onIsLoggedCheck = (isLogged: boolean, actions: AuthActionsIsLoogedIn) => {
@@ -68,17 +90,13 @@ export const AuthWrapper = (props: ChildrenProps) => {
     authApi.account
       .logout()
       .then(res => handleResponse(res, { 200: () => onLogOut(actions) }))
-      .catch(err => handleResponse(err.response, { 405: actions.onError }))
+      .catch(err => handleResponse(err.response, { 401: actions.onError }))
       .finally(() => actions.onComplete?.())
   }
 
   const onLogIn = (actions: AuthActions) => {
     setIsLogged(true)
-    authApi.account
-      .info()
-      .then(res => handleResponse(res, { 200: () => onUserFetch(res.data, actions)}))
-      .catch(err => handleResponse(err.response, { 405: () => actions.onError?.() }))
-      .finally(() => actions.onComplete?.())
+    fetchUser(actions)
   }
 
   const onLogOut = (actions: AuthActions) => {
@@ -87,9 +105,9 @@ export const AuthWrapper = (props: ChildrenProps) => {
     actions.onSuccess?.()
   }
 
-  const onUserFetch = (user: AccountInfo, actions: AuthActions) => {
+  const onUserFetch = (user: AccountInfo, actions: AuthActionsUser) => {
     setUser(user)
-    actions.onSuccess?.()
+    actions.onSuccess?.(user)
   }
 
   return (
@@ -97,6 +115,7 @@ export const AuthWrapper = (props: ChildrenProps) => {
       value={{
         isLogged,
         user,
+        checkUser,
         checkIsLogged,
         logIn,
         logOut
