@@ -172,6 +172,7 @@ export default function ContactsDialog(props: DialogBase) {
                   <TextField
                     color="secondary"
                     size="small"
+                    fullWidth
                     required
                     label={t("name")}
                   />
@@ -184,6 +185,7 @@ export default function ContactsDialog(props: DialogBase) {
                   <TextField
                     color="secondary"
                     size="small"
+                    fullWidth
                     required
                     label={t("surname")}
                   />
