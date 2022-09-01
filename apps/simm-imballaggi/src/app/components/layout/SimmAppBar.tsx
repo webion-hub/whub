@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, Responser, useNavigator, useGlobalDialogs } from "@whub/wui";
-import { Button, IconButton, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
-import { LoginRounded } from "@mui/icons-material";
+import { Button, IconButton, ListItemIcon, ListItemText, Menu, MenuItem, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
+import { AddBoxRounded, LoginRounded, LogoutRounded, PersonRounded, TableRowsRounded } from "@mui/icons-material";
 import CallRounded from "@mui/icons-material/CallRounded";
 import { ProductListItem } from "@whub/wshop-ui";
 import _, { cond } from "lodash"
 import { Category, Product } from "@whub/wshop-api";
-import { useShopApi } from "@whub/apis-react";
+import { useAuth, useShopApi } from "@whub/apis-react";
+import { Box } from "@mui/system";
+import { LoadingButton } from "@mui/lab";
 
 const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((props, ref) => {
   const { openDialog } = useGlobalDialogs()
@@ -57,13 +59,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((prop
             >
               <CallRounded/>
             </IconButton>
-            <IconButton
-              color="primary"
-              href="/login"
-              onClick={clickNavigate('/login')}
-            >
-              <LoginRounded/>
-            </IconButton>
+            <AuthBtn/>
           </AppBarSection>
         </AppBarContent>
       </AppBar>
@@ -185,5 +181,85 @@ export function ProductSearchBar() {
           </ProductListItem>
       }
     </CategorySearchBar>
+  )
+}
+
+
+function AuthBtn() {
+  const { clickNavigate, navigate } = useNavigator()
+  const { isLogged, user, logOut } = useAuth()
+  const [loading, setLoading] = useState(false)
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const goToTable = () => {
+    navigate('/products-table')
+    handleClose()
+  }
+
+  const goToAddProduct = () => {
+    navigate('/add-product')
+    handleClose()
+  }
+
+  const onLogout = () => {
+    setLoading(true)
+    logOut({
+      onComplete: () => {
+        handleClose()
+        navigate('')
+        setLoading(false)
+      }
+    })
+  }
+
+  if(!isLogged)
+    return (
+      <IconButton
+        color="primary"
+        href="/login"
+        onClick={clickNavigate('/login')}
+      >
+        <LoginRounded/>
+      </IconButton>
+    )
+
+  return (
+    <>
+      <LoadingButton
+        loading={loading}
+        startIcon={<PersonRounded/>}
+        onClick={handleClick}
+      >
+        {user?.userName}
+      </LoadingButton>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={goToTable}>
+          <ListItemIcon> <TableRowsRounded/> </ListItemIcon>
+          <ListItemText> Tabella prodotti </ListItemText>
+        </MenuItem>
+        <MenuItem onClick={goToAddProduct}>
+          <ListItemIcon> <AddBoxRounded/> </ListItemIcon>
+          <ListItemText> Aggiungi prodotto </ListItemText>
+        </MenuItem>
+        <MenuItem onClick={onLogout}>
+          <ListItemIcon> <LogoutRounded/> </ListItemIcon>
+          <ListItemText> Logout </ListItemText>
+        </MenuItem>
+      </Menu>
+    </>
   )
 }

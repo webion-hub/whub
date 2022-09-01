@@ -1,1 +1,3 @@
-export * from './lib/apis-simple-auth';
+export * from './lib/SimpleAuthApi';
+export * from './lib/requests/LoginRequest';
+export * from './lib/model/AccountInfo';

@@ -167,6 +167,7 @@ export default function ContactsDialog(props: DialogBase) {
                   validators={[Validators.required]}
                 >
                   <TextField
+                    color="secondary"
                     size="small"
                     required
                     label="Nome"
@@ -178,6 +179,7 @@ export default function ContactsDialog(props: DialogBase) {
                   validators={[Validators.required]}
                 >
                   <TextField
+                    color="secondary"
                     size="small"
                     required
                     label="Cognome"
@@ -189,6 +191,7 @@ export default function ContactsDialog(props: DialogBase) {
                 value=''
               >
                 <TextField
+                  color="secondary"
                   size="small"
                   fullWidth
                   label="Azienda"
@@ -202,6 +205,7 @@ export default function ContactsDialog(props: DialogBase) {
                 validators={[Validators.isATelephoneNumber]}
               >
                 <TextField
+                  color="secondary"
                   size="small"
                   fullWidth
                   label="Telefono"
@@ -215,6 +219,7 @@ export default function ContactsDialog(props: DialogBase) {
                 validators={[Validators.required, Validators.isAnEmail]}
               >
                 <TextField
+                  color="secondary"
                   size="small"
                   name="email"
                   required
@@ -229,6 +234,7 @@ export default function ContactsDialog(props: DialogBase) {
                 validators={[Validators.required]}
               >
                 <TextField
+                  color="secondary"
                   size="small"
                   fullWidth
                   required

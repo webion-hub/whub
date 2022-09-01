@@ -1,9 +1,9 @@
 import { ChevronLeftRounded, ChevronRightRounded } from "@mui/icons-material"
-import { Backdrop, CircularProgress, IconButton, LinearProgress, Stack, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { IconButton, LinearProgress, Stack, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { useShopApi } from "@whub/apis-react"
 import { Product } from "@whub/wshop-api"
 import { ProductCard, ProductCategory } from "@whub/wshop-ui"
-import { MaybeShow, Page, Section } from "@whub/wui"
+import { FullScreenLoading, MaybeShow, Page, Section } from "@whub/wui"
 import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 
@@ -61,12 +61,7 @@ export function ProductsPage() {
   return (
     <Page sx={{ padding: 1 }}>
       <Section sx={{ padding: 0 }}>
-        <Backdrop
-          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={loading}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
+        <FullScreenLoading loading={loading}/>
         <MaybeShow
           show={!loading}
           alternativeChildren={<LinearProgress/>}

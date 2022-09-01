@@ -1,5 +1,6 @@
 import { ContactUsApi } from '@whub/apis-contactus';
-import { ApiWrapper } from '@whub/apis-react';
+import { ApiWrapper, AuthWrapper } from '@whub/apis-react';
+import { SimpleAuthApi } from '@whub/simple-auth';
 import { WShopApi } from '@whub/wshop-api';
 import * as ReactDOM from 'react-dom/client';
 import { App } from './app/app';
@@ -17,8 +18,14 @@ root.render(
       contactUs: new ContactUsApi({
         baseUrl: 'https://api.webion.it/contactus',
       }),
+      auth: new SimpleAuthApi({
+        baseUrl: 'http://localhost:5181',
+        withCredentials: true,
+      }),
     }}
   >
-    <App/>
+    <AuthWrapper>
+      <App/>
+    </AuthWrapper>
   </ApiWrapper>
 );

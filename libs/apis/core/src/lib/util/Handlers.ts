@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 
-type HttpCodes = 200 | 201 | 204 | 400 | 404 | 405 | 409 | 413 | 415 | 'any';
+type HttpCodes = 200 | 201 | 204 | 400 | 401 | 404 | 405 | 409 | 413 | 415 | 'any';
 
 type StatusHandler = () => void;
 type HandleMap = Record<HttpCodes, StatusHandler>;

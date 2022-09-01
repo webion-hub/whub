@@ -1,10 +1,12 @@
-import { IconButton, Button, Paper, Stack, TextField, Typography } from '@mui/material'
+import { IconButton, Paper, Stack, TextField, Typography } from '@mui/material';
 
-import MailRoundedIcon from '@mui/icons-material/MailRounded';
-import { VisibilityOff, Visibility } from '@mui/icons-material';
+import { PersonRounded, Visibility, VisibilityOff } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
+import { Form, FormGroup, Img, InputValidator, Page, Validators } from '@whub/wui';
+import React, { useState } from 'react';
 import { useTranslation } from "react-i18next";
-import React from 'react';
-import { Img, Page } from '@whub/wui';
+import { useAuth } from '@whub/apis-react';
+import { useNavigate } from 'react-router-dom';
 
 interface State {
   amount: string;
@@ -15,6 +17,9 @@ interface State {
 }
 
 export default function LoginPage() {
+  const { logIn } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
   const { t } = useTranslation();
 
   const [values, setValues] = React.useState<State>({
@@ -41,82 +46,108 @@ export default function LoginPage() {
     event.preventDefault();
   };
 
+  const login = (form: Form) => {
+    setLoading(true)
+
+    logIn(form.getValues(), {
+      onError: () => {
+        form.setIsValid('username')(false)
+        form.setIsValid('password')(false)
+      },
+      onSuccess: () => { navigate('/products-table') },
+      onComplete: () => setLoading(false)
+    })
+  }
+
   return (
     <Page centered>
-      <Stack
-        spacing={2}
-        component={Paper}
-        direction="column"
-        alignContent="center"
-        justifyContent="center"
-        sx={{
-          marginInline: "auto",
-          width: '100%',
-          maxWidth: 350,
-          padding: 2,
-        }}
+      <FormGroup
+        onSubmit={login}
       >
-        <Img
-          src="assets/images/logo.png"
+        <Stack
+          spacing={2}
+          component={Paper}
+          direction="column"
+          alignContent="center"
+          justifyContent="center"
           sx={{
-            width: 80,
-            margin: "auto",
-            marginBlock: 2,
-          }}
-        />
-        <Typography
-          variant="h5"
-          fontWeight="700"
-          sx={{
-            textAlign:"center",
-            marginBottom: 2,
+            marginInline: "auto",
+            width: '100%',
+            maxWidth: 350,
+            padding: 2,
           }}
         >
-          Log in
-        </Typography>
-        <TextField
-          name="company"
-          size="small"
-          fullWidth
-          label="Email"
-          variant="outlined"
-          InputProps={{ endAdornment: <MailRoundedIcon/>}}
-        />
-        <TextField
-          variant="outlined"
-          label="Password"
-          size="small"
-          type={values.showPassword ? 'text' : 'password'}
-          value={values.password}
-          onChange={handleChange('password')}
-          InputProps={{ endAdornment:
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              edge="end"
-            >
-              {values.showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>,
-          }}
-        />
-        <Typography
-          variant="caption"
-          sx={{
-            textAlign:"right",
-            marginBlock: theme => theme.spacing(0, "!important"),
-          }}
-        >
-          {t("forgot-password")}
-        </Typography>
-        <Button
-          color="primary"
-          type="submit"
-          variant="contained"
-        >
-          {t("enter")}
-        </Button>
-      </Stack>
+          <Img
+            src="assets/images/logo.png"
+            sx={{
+              width: 80,
+              margin: "auto",
+              marginBlock: 2,
+            }}
+          />
+          <Typography
+            variant="h5"
+            fontWeight="700"
+            sx={{
+              textAlign:"center",
+              marginBottom: 2,
+            }}
+          >
+            Log in
+          </Typography>
+
+          <InputValidator
+            name='username'
+            value=""
+            validators={[Validators.required]}
+          >
+            <TextField
+              required
+              size="small"
+              fullWidth
+              color="secondary"
+              label="Nome utente"
+              variant="outlined"
+              InputProps={{ endAdornment: <PersonRounded/>}}
+            />
+          </InputValidator>
+          <InputValidator
+            name='password'
+            value=""
+            validators={[Validators.required]}
+          >
+            <TextField
+              required
+              variant="outlined"
+              label="Password"
+              size="small"
+              color="secondary"
+              type={values.showPassword ? 'text' : 'password'}
+              value={values.password}
+              onChange={handleChange('password')}
+              InputProps={{ endAdornment:
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>,
+              }}
+            />
+          </InputValidator>
+
+          <LoadingButton
+            color="primary"
+            type="submit"
+            variant="contained"
+            loading={loading}
+          >
+            {t("enter")}
+          </LoadingButton>
+        </Stack>
+      </FormGroup>
     </Page>
   )
 }

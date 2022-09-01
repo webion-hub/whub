@@ -14,6 +14,7 @@ export const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => 
     <Box
       ref={ref}
       sx={{
+        position: 'relative',
         flex: props.centered ? 'none' : 1,
         marginTop: theme.mixins.toolbar.height + 'px',
         ...props.sx,

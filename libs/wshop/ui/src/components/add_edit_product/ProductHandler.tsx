@@ -4,7 +4,7 @@ import { Backdrop, Button, CircularProgress, LinearProgress, Paper, Stack, SxPro
 import { handleResponse } from "@whub/apis-core";
 import { useShopApi } from "@whub/apis-react";
 import { Category, Product, ProductDetail, ProductEndpoint } from "@whub/wshop-api";
-import { FileWithId, Form, FormGroup, MaybeShow, Page, Section, useNavigator } from "@whub/wui";
+import { FileWithId, Form, FormGroup, FullScreenLoading, MaybeShow, Page, Section, useNavigator } from "@whub/wui";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductUtils } from "../../lib/ProductUtils";
@@ -292,12 +292,7 @@ export function EditProduct() {
   return (
     <Page>
       <Section>
-        <Backdrop
-          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={loading}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
+      <FullScreenLoading loading={loading}/>
         {
           previewProduct
             ? <ProductHandler

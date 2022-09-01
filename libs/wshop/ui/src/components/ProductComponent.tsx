@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Breadcrumbs, Button, Card, CardActions, CardContent, CardMedia, IconButton, Link, Menu, MenuItem, Skeleton, Stack, SxProps, Theme, Typography, useTheme } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Breadcrumbs, Button, Card, CardActions, CardContent, CardMedia, IconButton, Link, ListItemIcon, ListItemText, Menu, MenuItem, Skeleton, Stack, SxProps, Theme, Typography, useTheme } from "@mui/material";
 import { Category, Product, ProductDetail } from "@whub/wshop-api";
 import { useEffect, useState } from "react";
 import { ProductImage } from "./ProductImage";
@@ -663,8 +663,9 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
               onClick={handleClose}
               sx={{ maxWidth: 250 }}
             >
-              <DownloadRounded/>
-              <Typography
+              <ListItemIcon> <DownloadRounded/> </ListItemIcon>
+
+              <ListItemText
                 sx={{
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
@@ -672,7 +673,7 @@ function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
                 }}
               >
                 {a.name}
-              </Typography>
+              </ListItemText>
             </MenuItem>
           ))
         }

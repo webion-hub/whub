@@ -9,8 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CssBaseline, GlobalStyles } from '@mui/material';
 import { AddProduct, EditProduct } from "@whub/wshop-ui";
-import { GlobalDialogs, Guard, Language, LanguageWrapper, Layout } from "@whub/wui";
-import { useEffect, useState } from "react";
+import { GlobalDialogs, Language, LanguageWrapper, Layout } from "@whub/wui";
 import ContactsDialog from "./components/dialogs/ContactsDialog";
 import SimmAppbar from "./components/layout/SimmAppBar";
 import SimmFooter from "./components/layout/SimmFooter";
@@ -21,13 +20,11 @@ import { ProductsPage } from "./pages/products-page/ProductsPage";
 import { TableProductsPage } from "./pages/table-products-page/TableProductsPage";
 import globalStyle from './theme/globalStyle';
 import theme from './theme/theme';
+import { Guard, Guards, useAuth } from "@whub/apis-react";
 
 export function App() {
-  const [isLogged, setIsLogged] = useState(true)
-
-  useEffect(() => {
-    return
-  }, [])
+  const isLoggedInGuard = Guards.useIsLoggedInGuard()
+  const { isLogged } = useAuth()
 
   i18n
     .use(initReactI18next)
@@ -71,19 +68,19 @@ export function App() {
                   <Route
                     path="/add-product"
                     element={
-                      <Guard canNavigate={isLogged} redirectTo="/" el={<AddProduct/>}/>
+                      <Guard canNavigate={isLoggedInGuard} redirectTo="/" el={<AddProduct/>}/>
                     }
                   />
                   <Route
                     path="/edit-product/:id"
                     element={
-                      <Guard canNavigate={isLogged} redirectTo="/" el={<EditProduct/>}/>
+                      <Guard canNavigate={isLoggedInGuard} redirectTo="/" el={<EditProduct/>}/>
                     }
                   />
                   <Route
                     path="/products-table"
                     element={
-                      <Guard canNavigate={isLogged} redirectTo="/" el={<TableProductsPage/>}/>
+                      <Guard canNavigate={isLoggedInGuard} redirectTo="/" el={<TableProductsPage/>}/>
                     }
                   />
                 </Routes>

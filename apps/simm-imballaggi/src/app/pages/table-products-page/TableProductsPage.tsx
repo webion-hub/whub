@@ -52,6 +52,7 @@ export function TableProductsPage() {
           spacing={1}
         >
           <TextField
+            color="secondary"
             variant="outlined"
             label="Cerca prodotto"
             fullWidth
