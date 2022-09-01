@@ -1,5 +1,5 @@
 import { i18n } from "i18next";
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import { ChildrenProp } from "../abstractions/props/ChildrenProps";
 import { Language, Languages } from "../lib/Language";
 
@@ -21,10 +21,23 @@ export const LanguageContext = createContext<ILanguageContext>({
 })
 
 export const LanguageWrapper = (props: LanguageWrapperProps) => {
+  const [language, setLanguage] = useState<Languages>(Language.DEFAULT_LANGUAGE)
   const [loading, setLoading] = useState(false)
 
-  const setLanguage = (language: Languages) => {
+  useEffect(() => {
+    const lang = localStorage.getItem('language')
+    const language = lang === 'null'
+      ? Language.getLocalLanguage()
+      : lang as Languages
+
+    updateLanguage(language)
+  }, [])
+
+  const updateLanguage = (language: Languages) => {
     setLoading(true)
+    setLanguage(language)
+
+    localStorage.setItem('language', language)
 
     props.i18n
       .changeLanguage(language)
@@ -34,9 +47,9 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
   return (
     <LanguageContext.Provider
       value={{
-        language: props.i18n.language,
+        language: language,
         loading: loading,
-        setLanguage: setLanguage
+        setLanguage: updateLanguage
       }}
     >
       {props.children}

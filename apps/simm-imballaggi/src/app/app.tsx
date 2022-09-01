@@ -20,12 +20,11 @@ import { ProductsPage } from "./pages/products-page/ProductsPage";
 import { TableProductsPage } from "./pages/table-products-page/TableProductsPage";
 import globalStyle from './theme/globalStyle';
 import theme from './theme/theme';
-import { Guard, Guards, useAuth } from "@whub/apis-react";
+import { Guard, Guards } from "@whub/apis-react";
 import { PrivacyPolicy } from "./pages/privacy-policy/PrivacyPolicy";
 
 export function App() {
   const isAdminGuard = Guards.useIsAdminGuard()
-  const { isLogged } = useAuth()
 
   i18n
     .use(initReactI18next)
