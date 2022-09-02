@@ -117,6 +117,7 @@ export function Slideshow(props: SlideshowProps) {
           <Box width={40}>
             <IconButton
               onClick={() => handleScroll(true)}
+              aria-label="left"
               sx={{
                 width: 40,
                 marginBlock: "auto",
@@ -128,6 +129,7 @@ export function Slideshow(props: SlideshowProps) {
           </Box>
           <Box width={40}>
             <IconButton
+              aria-label="right"
               onClick={() => handleScroll()}
               sx={{
                 width: 40,
@@ -167,6 +169,7 @@ export function Slideshow(props: SlideshowProps) {
         >
           <IconButton
             onClick={() => handleScroll(true)}
+            aria-lable="left"
             sx={{
               marginBlock: "auto",
               marginInline: 0,
@@ -191,6 +194,7 @@ export function Slideshow(props: SlideshowProps) {
           </Grid>
           <IconButton
             onClick={() => handleScroll()}
+            aria-label="right"
             sx={{
               marginBlock: "auto",
               marginInline: 0,
