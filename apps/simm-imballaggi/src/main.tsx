@@ -13,15 +13,15 @@ root.render(
   <ApiWrapper
     apis={{
       shop: new WShopApi({
-        baseUrl: 'http://localhost:5181',
+        baseUrl: 'https://api.simm.webion.it',
         withCredentials: true,
       }),
       contactUs: new ContactUsApi({
-        baseUrl: 'https://api.webion.it/contactus',
+        baseUrl: 'https://api.simm.webion.it/contactus',
         withCredentials: true,
       }),
       auth: new SimpleAuthApi({
-        baseUrl: 'http://localhost:5181',
+        baseUrl: 'https://api.simm.webion.it',
         withCredentials: true,
       }),
     }}
