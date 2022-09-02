@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
+import { Paragraph } from "@whub/wui";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import Paragraph from "../../../components/text_boxes/Paragraph";
 
 export default function Licenses() {
   const {t} = useTranslation()

@@ -6,7 +6,7 @@ export interface ParagrapProps {
     readonly children: ChildrenProp,
 }
 
-export default function Paragraph(props: ParagrapProps) {
+export function Paragraph(props: ParagrapProps) {
   return (
     <Grid
       container
