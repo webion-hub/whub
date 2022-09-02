@@ -16,7 +16,7 @@ import ReactPixel from 'react-facebook-pixel';
 export default function Homepage() {
   const theme = useTheme();
   useEffect(() => {
-    ReactPixel.track('Homepage-view');
+    ReactPixel.track('ViewContent');
   });
 
   return (
