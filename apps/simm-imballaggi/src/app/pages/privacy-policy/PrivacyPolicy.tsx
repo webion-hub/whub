@@ -1,4 +1,4 @@
-import { Page, Section } from "@whub/wui";
+import { Page, Paragraph, Section } from "@whub/wui";
 
 export function PrivacyPolicy() {
   return (
