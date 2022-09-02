@@ -12,6 +12,7 @@ export function SlideshowImage(props: SlideshowImageProps) {
       draggable="false"
       src={props.img}
       width="100%"
+      height="fit-content"
       sx={{
         userDrag: "none", 
         userSelect: "none",

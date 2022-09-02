@@ -58,7 +58,7 @@ export default function WebionFooter() {
     },
     {
       href: "https://www.quora.com/profile/Webion",
-      icon: <Img width="25px" height="20px" src="/assets/images/quoraIcon.svg"/>
+      icon: <Img width="25px" alt="quora logo" height="20px" src="/assets/images/quoraIcon.svg"/>
     },
     {
       href: "https://www.instagram.com/webion.it/",

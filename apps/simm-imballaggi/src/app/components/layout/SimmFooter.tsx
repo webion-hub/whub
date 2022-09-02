@@ -60,6 +60,7 @@ export default function SimmFooter() {
         >
           <Img
             sx={{ width: '100%', maxWidth: 300 }}
+            alt="full logo"
             src="assets/images/full-logo.webp"
           />
           <Typography
