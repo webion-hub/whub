@@ -32,6 +32,7 @@ const theme = createTheme({
     },
     info: {
       main: "#999999",
+      contrastText: '#fff'
     },
   },
   layoutMaxWidth: {

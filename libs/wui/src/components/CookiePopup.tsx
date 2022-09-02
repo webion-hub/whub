@@ -101,7 +101,7 @@ export function CookiePopup(props: CookiePopupProps) {
               sx={{ width: '100%' }}
             >
               <Link
-                color="secondary.contrastText"
+                color="info.contrastText"
                 href={props.privacyUrl}
                 target="_blank"
               >
