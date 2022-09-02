@@ -79,7 +79,7 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
           />
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             href="#contacts"
           >
             {t("navbar-button5")}
