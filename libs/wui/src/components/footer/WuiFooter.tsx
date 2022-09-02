@@ -103,6 +103,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
               target="_blank"
               color="primary"
               key={i}
+              aria-label="button"
             >
               {el.icon}
             </IconButton>)
