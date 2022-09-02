@@ -1,4 +1,4 @@
-import { Checkbox, Grid, Link, Typography } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid, Link, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -28,40 +28,40 @@ export const PrivacyCheckBox = React.forwardRef<HTMLDivElement, PrivacyCheckBoxP
   }
 
   return (
-    <Grid
-      container
-      direction="row"
-      alignItems="center"
-      ref={ref}
-    >
-      <Checkbox
-        disabled={props.disabled}
-        sx={{
-          color: getTextColor() + " !important",
-          '&.Mui-checked': {
-            color: "secondary",
-          },
-        }}
-        onChange={handleChange}
-        checked={props.value}
-      />
-      <Typography
-        variant="caption"
-        color={getTextColor()}
-        sx={{
-          width: "calc(100% - 42px)",
-        }}
-      >
-        {t('privacy')}
-        <Link
-          href={props.privacyUrl}
-          target="_blank"
-          color="inherit"
+    <FormControlLabel
+      disabled={props.disabled}
+      control={
+        <Checkbox
+          disabled={props.disabled}
+          sx={{
+            color: getTextColor() + " !important",
+            '&.Mui-checked': {
+              color: "secondary",
+            },
+          }}
+          onChange={handleChange}
+          checked={props.value}
+        />
+      } 
+      label={
+        <Typography
+          variant="caption"
+          color={getTextColor()}
+          sx={{
+            width: "calc(100% - 42px)",
+          }}
         >
-          {t('privacy-link')}
-        </Link>
-      </Typography>
-    </Grid>
+          {t('privacy')}
+          <Link
+            href={props.privacyUrl}
+            target="_blank"
+            color="inherit"
+          >
+            {t('privacy-link')}
+          </Link>
+        </Typography>
+      }
+    />
   )
 })
 

@@ -169,7 +169,7 @@ export function Slideshow(props: SlideshowProps) {
         >
           <IconButton
             onClick={() => handleScroll(true)}
-            aria-lable="left"
+            aria-label="left"
             sx={{
               marginBlock: "auto",
               marginInline: 0,

@@ -33,6 +33,7 @@ export const BaseCard = React.forwardRef<HTMLDivElement, BaseCardProps>((props, 
         className="WuiBaseCard-title"
         color="white"
         variant="h4"
+        component="h3"
         align="center"
         sx={{ marginTop: 3 }}
       >
@@ -42,6 +43,7 @@ export const BaseCard = React.forwardRef<HTMLDivElement, BaseCardProps>((props, 
         className="WuiBaseCard-paragraph"
         color="text.secondary"
         variant="subtitle2"
+        component="p"
         align="center"
         sx={{ marginTop: 3 }}
       >
