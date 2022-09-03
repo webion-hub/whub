@@ -147,7 +147,7 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
         sx={{
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
-          boxShadow: 'none !important'          
+          boxShadow: 'none !important'
         }}
       >
         <SearchRoundedIcon/>
