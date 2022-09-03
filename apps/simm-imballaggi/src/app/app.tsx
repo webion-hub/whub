@@ -9,20 +9,42 @@ import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CssBaseline, GlobalStyles } from '@mui/material';
-import { AddProduct, EditProduct } from "@whub/wshop-ui";
 import { CookiePopup, GlobalDialogs, Language, LanguageWrapper, Layout } from "@whub/wui";
-import ContactsDialog from "./components/dialogs/ContactsDialog";
-import SimmAppbar from "./components/layout/SimmAppBar";
-import SimmFooter from "./components/layout/SimmFooter";
-import Homepage from './pages/home-page/Homepage';
-import LoginPage from "./pages/login-page/LoginPage";
-import { ProductPage } from "./pages/product-page/ProductPage";
-import { ProductsPage } from "./pages/products-page/ProductsPage";
-import { TableProductsPage } from "./pages/table-products-page/TableProductsPage";
 import globalStyle from './theme/globalStyle';
 import theme from './theme/theme';
 import { Guard, Guards } from "@whub/apis-react";
-import { PrivacyPolicy } from "./pages/privacy-policy/PrivacyPolicy";
+import React from "react";
+import ContactsDialog from "./components/dialogs/ContactsDialog";
+
+const SimmAppbar = React.lazy(() => import('./components/layout/SimmAppBar'))
+const SimmFooter = React.lazy(() => import('./components/layout/SimmFooter'))
+
+const Homepage = React.lazy(() => import('./pages/home-page/Homepage'))
+const LoginPage = React.lazy(() => import('./pages/login-page/LoginPage'))
+
+const PrivacyPolicy = React.lazy(
+  () => import('./pages/privacy-policy/PrivacyPolicy').then(module => ({ default: module.PrivacyPolicy }))
+)
+
+const ProductPage = React.lazy(
+  () => import('./pages/product-page/ProductPage').then(module => ({ default: module.ProductPage }))
+)
+
+const ProductsPage = React.lazy(
+  () => import('./pages/products-page/ProductsPage').then(module => ({ default: module.ProductsPage }))
+)
+
+const TableProductsPage = React.lazy(
+  () => import('./pages/table-products-page/TableProductsPage').then(module => ({ default: module.TableProductsPage }))
+)
+
+const AddProduct = React.lazy(
+  () => import('@whub/wshop-ui').then(module => ({ default: module.AddProduct }))
+)
+
+const EditProduct = React.lazy(
+  () => import('@whub/wshop-ui').then(module => ({ default: module.EditProduct }))
+)
 
 export function App() {
   const isAdminGuard = Guards.useIsAdminGuard()
