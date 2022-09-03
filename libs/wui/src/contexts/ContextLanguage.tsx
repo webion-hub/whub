@@ -1,4 +1,4 @@
-import { FlagComponent, GB } from "country-flag-icons/react/3x2";
+import { FlagComponent } from "country-flag-icons/react/3x2";
 import { i18n } from "i18next";
 import { createContext, useEffect, useState } from "react"
 import { ChildrenProp } from "../abstractions/props/ChildrenProps";
@@ -20,7 +20,7 @@ interface LanguageWrapperProps {
   readonly availableLanguages: LanguageItemWithTranslations[],
 }
 
-interface ILanguageContext {
+export interface ILanguageContext {
   readonly loading: boolean,
   readonly language: LanguageItem,
   readonly languages: LanguageItem[],
