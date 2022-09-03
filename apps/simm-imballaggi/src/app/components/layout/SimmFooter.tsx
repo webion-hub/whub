@@ -2,7 +2,7 @@ import { ChildrenProps, FlagLanguageDropdown, Footer, FooterBottomLabel, FooterC
 import { useTranslation } from "react-i18next";
 import { Grid, IconButton, Link, LinkProps, Stack, Typography, TypographyProps, useMediaQuery, useTheme } from "@mui/material";
 import { Facebook, YouTube } from "@mui/icons-material";
-import { homeCatergoryUrls } from "apps/simm-imballaggi/src/assets/category-routes.config";
+import { homeCatergoryUrls } from "../../category-routes.config";
 
 const FooterLinkTitle = (props: TypographyProps) => (
   <Typography

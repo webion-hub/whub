@@ -1,7 +1,7 @@
 import { Grid, Typography, Stack, Box, Paper, useTheme, useMediaQuery } from "@mui/material";
 import { ResponserGrid, useBackgroundWaves, useNavigator } from "@whub/wui";
-import { homeCatergoryUrls } from "apps/simm-imballaggi/src/assets/category-routes.config";
 import { useTranslation } from "react-i18next";
+import { homeCatergoryUrls } from "../../category-routes.config";
 import HomeCard from "../../components/cards/HomeCard";
 
 export default function Home() {
