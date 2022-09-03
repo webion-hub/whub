@@ -1,8 +1,8 @@
 import { handleResponse } from "@whub/apis-core"
-import { useAuthApi } from "@whub/apis-react"
 import { AccountInfo, LoginRequest } from "@whub/simple-auth"
 import { ChildrenProps } from "@whub/wui"
 import { createContext, useContext, useState } from "react"
+import { useAuthApi } from "../hooks/useApi"
 
 export interface AuthActions {
   readonly onSuccess?: () => void,

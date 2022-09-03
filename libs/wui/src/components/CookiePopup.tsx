@@ -88,22 +88,29 @@ export function CookiePopup(props: CookiePopupProps) {
       <Alert
         severity="info"
       >
-        <Stack
-          direction="column"
-          alignItems="flex-end"
-          spacing={1}
-        >
-          {t("cookies")}
-          <br/>
-          <Link
-            color="secondary"
-            href={props.privacyUrl}
-            target="_blank"
+        <Typography variant='caption'>
+          <Stack
+            direction="column"
+            alignItems="flex-end"
+            spacing={1}
           >
-            {t('privacy-link')}
-          </Link>
-          {action}
-        </Stack>
+            {t("cookies")}
+            <br/>
+            <Stack
+              direction="row"
+              sx={{ width: '100%' }}
+            >
+              <Link
+                color="info.contrastText"
+                href={props.privacyUrl}
+                target="_blank"
+              >
+                {t('privacy-link')}
+              </Link>
+            </Stack>
+            {action}
+          </Stack>
+        </Typography>
       </Alert>
     </Snackbar>
   )

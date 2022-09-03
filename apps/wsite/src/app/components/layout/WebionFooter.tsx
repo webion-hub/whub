@@ -54,23 +54,23 @@ export default function WebionFooter() {
   const socials = [
     {
       href: "https://www.facebook.com/webionsrl",
-      icon: <FacebookIcon fontSize="inherit" />
+      icon: <FacebookIcon fontSize="inherit"  aria-label="facebook button"/>
     },
     {
       href: "https://www.quora.com/profile/Webion",
-      icon: <Img width="25px" height="20px" src="/assets/images/quoraIcon.svg"/>
+      icon: <Img width="25px" alt="quora logo" height="20px" src="/assets/images/quoraIcon.svg"/>
     },
     {
       href: "https://www.instagram.com/webion.it/",
-      icon: <InstagramIcon fontSize="inherit" />
+      icon: <InstagramIcon fontSize="inherit" aria-label="instagram button"/>
     },
     {
       href: "https://www.linkedin.com/company/webion-srl/about/",
-      icon: <LinkedInIcon fontSize="inherit" />
+      icon: <LinkedInIcon fontSize="inherit" aria-label="linkedin button" />
     },
     {
       href: "https://github.com/webion-hub",
-      icon: <GitHubIcon fontSize="inherit" />
+      icon: <GitHubIcon fontSize="inherit" aria-label="github button"/>
     },
   ]
 

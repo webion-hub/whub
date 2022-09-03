@@ -9,20 +9,43 @@ import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CssBaseline, GlobalStyles } from '@mui/material';
-import { AddProduct, EditProduct } from "@whub/wshop-ui";
-import { CookiePopup, GlobalDialogs, Language, LanguageWrapper, Layout } from "@whub/wui";
-import ContactsDialog from "./components/dialogs/ContactsDialog";
-import SimmAppbar from "./components/layout/SimmAppBar";
-import SimmFooter from "./components/layout/SimmFooter";
-import Homepage from './pages/home-page/Homepage';
-import LoginPage from "./pages/login-page/LoginPage";
-import { ProductPage } from "./pages/product-page/ProductPage";
-import { ProductsPage } from "./pages/products-page/ProductsPage";
-import { TableProductsPage } from "./pages/table-products-page/TableProductsPage";
+import { CookiePopup, FullScreenLoading, GlobalDialogs, Language, LanguageWrapper, Layout } from "@whub/wui";
 import globalStyle from './theme/globalStyle';
 import theme from './theme/theme';
 import { Guard, Guards } from "@whub/apis-react";
-import { PrivacyPolicy } from "./pages/privacy-policy/PrivacyPolicy";
+import React, { Suspense } from "react";
+import ContactsDialog from "./components/dialogs/ContactsDialog";
+import { ES, GB, IT } from "country-flag-icons/react/3x2";
+
+const SimmAppbar = React.lazy(() => import('./components/layout/SimmAppBar'))
+const SimmFooter = React.lazy(() => import('./components/layout/SimmFooter'))
+
+const Homepage = React.lazy(() => import('./pages/home-page/Homepage'))
+const LoginPage = React.lazy(() => import('./pages/login-page/LoginPage'))
+
+const PrivacyPolicy = React.lazy(
+  () => import('./pages/privacy-policy/PrivacyPolicy').then(module => ({ default: module.PrivacyPolicy }))
+)
+
+const ProductPage = React.lazy(
+  () => import('./pages/product-page/ProductPage').then(module => ({ default: module.ProductPage }))
+)
+
+const ProductsPage = React.lazy(
+  () => import('./pages/products-page/ProductsPage').then(module => ({ default: module.ProductsPage }))
+)
+
+const TableProductsPage = React.lazy(
+  () => import('./pages/table-products-page/TableProductsPage').then(module => ({ default: module.TableProductsPage }))
+)
+
+const AddProduct = React.lazy(
+  () => import('@whub/wshop-ui').then(module => ({ default: module.AddProduct }))
+)
+
+const EditProduct = React.lazy(
+  () => import('@whub/wshop-ui').then(module => ({ default: module.EditProduct }))
+)
 
 export function App() {
   const isAdminGuard = Guards.useIsAdminGuard()
@@ -56,7 +79,14 @@ export function App() {
       >
           <CssBaseline/>
           <GlobalStyles styles={globalStyle}></GlobalStyles>
-          <LanguageWrapper i18n={i18n}>
+          <LanguageWrapper
+            i18n={i18n}
+            availableLanguages={[
+              { code: 'it', flag: IT },
+              { code: 'en', flag: GB },
+              { code: 'es', flag: ES }
+            ]}
+          >
             <BrowserRouter>
               <Layout
                 AppBarComponent={<SimmAppbar/>}
@@ -66,31 +96,35 @@ export function App() {
                   name="simm-imballaggi"
                   privacyUrl="privacy"
                 />
-                <Routes>
-                  <Route path="/" element={<Homepage/>}/>
-                  <Route path="/privacy" element={<PrivacyPolicy/>}/>
-                  <Route path="/login"  element={<LoginPage/>}/>
-                  <Route path="/product/:id"  element={<ProductPage/>}/>
-                  <Route path="/products"  element={<ProductsPage/>}/>
-                  <Route
-                    path="/add-product"
-                    element={
-                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<AddProduct/>}/>
-                    }
-                  />
-                  <Route
-                    path="/edit-product/:id"
-                    element={
-                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<EditProduct/>}/>
-                    }
-                  />
-                  <Route
-                    path="/products-table"
-                    element={
-                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<TableProductsPage/>}/>
-                    }
-                  />
-                </Routes>
+                <Suspense
+                  fallback={ <FullScreenLoading loading/> }
+                >
+                  <Routes>
+                    <Route path="/" element={<Homepage/>}/>
+                    <Route path="/privacy" element={<PrivacyPolicy/>}/>
+                    <Route path="/login"  element={<LoginPage/>}/>
+                    <Route path="/product/:id"  element={<ProductPage/>}/>
+                    <Route path="/products"  element={<ProductsPage/>}/>
+                    <Route
+                      path="/add-product"
+                      element={
+                        <Guard canNavigate={isAdminGuard} redirectTo="/" el={<AddProduct/>}/>
+                      }
+                    />
+                    <Route
+                      path="/edit-product/:id"
+                      element={
+                        <Guard canNavigate={isAdminGuard} redirectTo="/" el={<EditProduct/>}/>
+                      }
+                    />
+                    <Route
+                      path="/products-table"
+                      element={
+                        <Guard canNavigate={isAdminGuard} redirectTo="/" el={<TableProductsPage/>}/>
+                      }
+                    />
+                  </Routes>
+                </Suspense>
               </Layout>
             </BrowserRouter>
           </LanguageWrapper>

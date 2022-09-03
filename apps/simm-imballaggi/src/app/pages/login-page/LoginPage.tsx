@@ -60,9 +60,15 @@ export default function LoginPage() {
   }
 
   return (
-    <Page centered>
+    <Page 
+      centered
+      sx={{
+        marginTop: { xs: 16, md: 0 }
+      }}
+    >
       <FormGroup
         onSubmit={login}
+        sx={{ padding: 2 }}
       >
         <Stack
           spacing={2}

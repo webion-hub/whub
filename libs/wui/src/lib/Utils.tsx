@@ -18,4 +18,8 @@ export class Utils {
       ? `${bytes} ${sizes[i]})`
       : `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`;
   }
+
+  static capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 }

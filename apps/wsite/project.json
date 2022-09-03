@@ -15,7 +15,11 @@
         "main": "apps/wsite/src/main.tsx",
         "polyfills": "apps/wsite/src/polyfills.ts",
         "tsConfig": "apps/wsite/tsconfig.app.json",
-        "assets": ["apps/wsite/src/favicon.ico", "apps/wsite/src/assets"],
+        "assets": [
+          "apps/wsite/src/favicon.ico",
+          "apps/wsite/src/robots.txt",
+          "apps/wsite/src/assets"
+        ],
         "styles": ["apps/wsite/src/styles.css"],
         "scripts": [],
         "webpackConfig": "apps/wsite/webpack.config.js"

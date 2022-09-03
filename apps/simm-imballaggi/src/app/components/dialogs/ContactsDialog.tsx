@@ -1,4 +1,4 @@
-import { Alert, Dialog, DialogContent, Grid, Link, Snackbar, Stack, TextField, Typography, useTheme } from '@mui/material'
+import { Alert, Dialog, DialogContent, Grid, Link, Snackbar, Stack, TextField, Typography, useMediaQuery, useTheme } from '@mui/material'
 import PlaceRoundedIcon from '@mui/icons-material/PlaceRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
@@ -49,6 +49,7 @@ export default function ContactsDialog(props: DialogBase) {
   const contactUsApi = useContactUsApi()
   const { t } = useTranslation()
   const theme = useTheme()
+  const isSm = useMediaQuery(theme.breakpoints.up("sm"));
   const waves = useBackgroundWaves(theme.palette.secondary.light)
 
   const handleSubmit = (form: Form) => {
@@ -70,15 +71,10 @@ export default function ContactsDialog(props: DialogBase) {
     <Dialog
       open={props.open}
       maxWidth="md"
+      fullScreen={!isSm}
       onClose={props.onClose}
-    >
-      <DialogTitleCross
-        onClose={props.onClose}
-      >
-        {t('contact-us-title')}
-      </DialogTitleCross>
-      <DialogContent
-        sx={{
+      PaperProps={{
+        sx: {
           position: 'relative',
           overflow: 'hidden',
           "& > *": { zIndex: 1 },
@@ -98,8 +94,15 @@ export default function ContactsDialog(props: DialogBase) {
             },
             ...waves,
           }
-        }}
+        }
+      }}
+    >
+      <DialogTitleCross
+        onClose={props.onClose}
       >
+        {t('contact-us-title')}
+      </DialogTitleCross>
+      <DialogContent>
         <Stack
           sx={{ marginTop: 1 }}
           spacing={4}

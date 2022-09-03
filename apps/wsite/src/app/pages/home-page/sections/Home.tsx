@@ -80,7 +80,7 @@ export default function Home() {
             width={{xs: 160, sm: 220}}
             sx={{
               color: 'yellow',
-              marginRight: 0,
+              marginRight: 1,
               textAlign: 'end',
             }}
           />

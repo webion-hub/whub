@@ -1,12 +1,12 @@
 import { Grid, Typography } from "@mui/material";
-import { ChildrenProp } from "@whub/wui";
+import { ChildrenProp } from "../abstractions/props/ChildrenProps";
 
-export interface ParagrapProps {
-    readonly title: string,
-    readonly children: ChildrenProp,
+export interface ParagraphProps {
+  readonly title: string,
+  readonly children: ChildrenProp,
 }
 
-export default function Paragraph(props: ParagrapProps) {
+export function Paragraph(props: ParagraphProps) {
   return (
     <Grid
       container

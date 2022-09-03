@@ -16,7 +16,7 @@ export const LanguageDropdownButton = React.forwardRef<HTMLDivElement, LanguageD
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const { t } = useTranslation();
-  const { setLanguage } = useLanguage();
+  const { setLanguage, languages } = useLanguage();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -26,17 +26,11 @@ export const LanguageDropdownButton = React.forwardRef<HTMLDivElement, LanguageD
     setAnchorEl(null);
   };
 
-  const texts = Language.LANGUAGES.map((el, _i) => {
-    return {
-      long: t(el),
-      short: el,
-    }
-  })
-
   return (
     <>
       <Button
         onClick={handleClick}
+        aria-label="languages"
         color="inherit"
       >
         <props.icon />
@@ -47,17 +41,17 @@ export const LanguageDropdownButton = React.forwardRef<HTMLDivElement, LanguageD
         open={open}
         onClose={handleClose}
       >
-        {texts.map((text) => {
+        {languages.map((lang) => {
           return(
             <MenuItem
-              key={text.short}
+              key={lang.code}
               onClick={() => {
-                setLanguage(text.short)
+                setLanguage(lang.code)
                 handleClose()
               }}
             >
               <Typography variant="caption">
-                {text.long}
+                {Language.getTranslation(lang.code)}
               </Typography>
             </MenuItem>
           )

@@ -1,5 +1,5 @@
 import { Link } from "@mui/material";
-import Paragraph from "libs/wui/src/components/Paragraph";
+import { Paragraph } from "@whub/wui";
 import React from "react";
 
 export default function CookiePolicy() {

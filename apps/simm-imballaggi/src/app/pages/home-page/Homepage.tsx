@@ -1,12 +1,9 @@
-import { useTheme } from "@mui/material";
-import { Page, Section, Sections, useBackgroundWaves } from "@whub/wui";
+import { Page, Section, Sections } from "@whub/wui";
 import Home from "./Home";
 import MapSection from "./MapSection";
 
 
 export default function Homepage() {
-  const theme = useTheme()
-
   return (
     <Page>
       <Sections>
@@ -24,7 +21,8 @@ export default function Homepage() {
               background: 'url(assets/images/homepageImage.webp)',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center center',
-              backgroundSize: 'cover'
+              backgroundSize: 'cover',
+              filter: { xs: 'brightness(0.4)', lg: 'none' }
             }
           }}
         >

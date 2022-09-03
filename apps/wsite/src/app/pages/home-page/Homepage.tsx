@@ -16,7 +16,7 @@ import ReactPixel from 'react-facebook-pixel';
 export default function Homepage() {
   const theme = useTheme();
   useEffect(() => {
-    ReactPixel.track('Homepage-view');
+    ReactPixel.track('ViewContent');
   });
 
   return (
@@ -56,6 +56,7 @@ export default function Homepage() {
         }}
       >
         <Section
+          id="home"
           showBackground
           backgroundSx={{ backgroundColor: "rgba(0,0,0,.5)" }}
           sx={{  width: "100%", zIndex: 2, margin: "auto"}}

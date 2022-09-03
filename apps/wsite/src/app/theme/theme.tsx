@@ -19,7 +19,7 @@ const theme = createTheme({
       main: "#1f4bff",
     },
     secondary: {
-      main: "rgba(255,255,255,0.1)",
+      main: "#757575",
       contrastText: '#fff'
     },
     layout: {
@@ -32,6 +32,7 @@ const theme = createTheme({
     },
     info: {
       main: "#999999",
+      contrastText: '#fff'
     },
   },
   layoutMaxWidth: {

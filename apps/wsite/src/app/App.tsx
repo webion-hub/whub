@@ -9,7 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Homepage from './pages/home-page/Homepage';
 import theme from './theme/theme'
-import { GlobalStyles, CssBaseline, CircularProgress, Grid, Backdrop} from '@mui/material';
+import { GlobalStyles, CssBaseline, CircularProgress, Grid } from '@mui/material';
 import globalStyle from './theme/globalStyle';
 import PoliciesAndLicensesPage from './pages/policies-licenses-page/PoliciesAndLicensesPage';
 import { useState } from "react";
@@ -18,6 +18,7 @@ import LandingPage from "./pages/landing-page/LandingPage";
 import WebionFooter from "./components/layout/WebionFooter";
 import WebionSideBar from "./components/layout/WebionSideBar";
 import WebionAppbar from "./components/layout/WebionAppBar";
+import { GB, IT } from "country-flag-icons/react/3x2";
 
 export function App() {
   const [loading, setLoading] = useState(true)
@@ -43,7 +44,13 @@ export function App() {
     <ThemeProvider theme={theme}>
         <CssBaseline/>
         <GlobalStyles styles={globalStyle}></GlobalStyles>
-      <LanguageWrapper i18n={i18n}>
+      <LanguageWrapper
+        i18n={i18n}
+        availableLanguages={[
+          { code: 'it', flag: IT },
+          { code: 'en', flag: GB },
+        ]}
+      >
         <MaybeShow
           show={!loading}
           alternativeChildren={
