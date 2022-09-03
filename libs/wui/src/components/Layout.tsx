@@ -1,6 +1,6 @@
+import { Box, Stack } from "@mui/material";
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import { Box, Stack, useTheme } from "@mui/material";
-import { useLanguage } from "../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 interface LayoutContextProps {
   readonly setAppBarStatus: (status: boolean) => void,
@@ -26,7 +26,7 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref)
   const [ footerState, setFooterState ] = useState(true)
   const [ sideBarState, setSidebarState ] = useState(true)
 
-  const { t } = useLanguage()
+  const { t } = useTranslation()
 
   document.title = t('tab-title')
 

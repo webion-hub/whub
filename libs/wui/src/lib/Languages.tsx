@@ -3,7 +3,9 @@ export interface ILanguage {
   readonly translation: string,
 }
 
-export const ALL_LANGUAGES: ILanguage[] =[
+export type LanguagesCodes = typeof ALL_LANGUAGES[number]["code"]
+
+export const ALL_LANGUAGES =[
   {
       code: "af",
       translation: "Afrikaans",
@@ -980,4 +982,5 @@ export const ALL_LANGUAGES: ILanguage[] =[
       code: "zu",
       translation: "isiZulu",
   }
-]
+] as const
+

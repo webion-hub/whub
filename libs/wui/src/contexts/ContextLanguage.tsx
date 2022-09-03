@@ -1,41 +1,58 @@
+import { FlagComponent, GB } from "country-flag-icons/react/3x2";
 import { i18n } from "i18next";
 import { createContext, useEffect, useState } from "react"
 import { ChildrenProp } from "../abstractions/props/ChildrenProps";
-import { Language, Languages } from "../lib/Language";
+import { Language } from "../lib/Language";
+import { LanguagesCodes } from "../lib/Languages";
+
+interface LanguageItemWithTranslations extends LanguageItem {
+  readonly translations?: any[]
+}
+
+export interface LanguageItem {
+  readonly code: LanguagesCodes,
+  readonly flag?: FlagComponent,
+}
 
 interface LanguageWrapperProps {
   readonly children: ChildrenProp,
-  readonly i18n: i18n
+  readonly i18n: i18n,
+  readonly availableLanguages: LanguageItemWithTranslations[],
 }
 
 interface ILanguageContext {
   readonly loading: boolean,
-  readonly language: string,
-  readonly setLanguage: (language: Languages) => void
+  readonly language: LanguageItem,
+  readonly languages: LanguageItem[],
+  readonly setLanguage: (language: LanguagesCodes) => void
 }
 
 export const LanguageContext = createContext<ILanguageContext>({
   language: Language.DEFAULT_LANGUAGE,
+  languages: [],
   loading: false,
   setLanguage: () => { return }
 })
 
 export const LanguageWrapper = (props: LanguageWrapperProps) => {
-  const [language, setLanguage] = useState<Languages>(Language.DEFAULT_LANGUAGE)
+  const [language, setLanguage] = useState<LanguageItem>(Language.DEFAULT_LANGUAGE)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const lang = localStorage.getItem('language')
     const language = lang === 'null'
       ? Language.getLocalLanguage()
-      : lang as Languages
+      : lang as LanguagesCodes
 
     updateLanguage(language)
   }, [])
 
-  const updateLanguage = (language: Languages) => {
+  const updateLanguage = (language: LanguagesCodes) => {
     setLoading(true)
-    setLanguage(language)
+    setLanguage(
+      props.availableLanguages.find(l => l.code === language) ??
+      Language.DEFAULT_LANGUAGE
+    )
 
     localStorage.setItem('language', language)
 
@@ -47,6 +64,7 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
   return (
     <LanguageContext.Provider
       value={{
+        languages: props.availableLanguages,
         language: language,
         loading: loading,
         setLanguage: updateLanguage

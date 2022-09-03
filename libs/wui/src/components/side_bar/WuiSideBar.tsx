@@ -27,9 +27,8 @@ export interface WuiSideBarProps {
 
 export const WuiSideBar = React.forwardRef<HTMLDivElement, WuiSideBarProps>((props, ref) => {
   const { t } = useTranslation();
-  const { setLanguage } = useLanguage();
+  const { setLanguage, languages } = useLanguage();
   const [ open, setOpen ] = React.useState<boolean>(false);
-  const languages = Language.LANGUAGES
   const theme = useTheme()
   const { toggleSidebar } = useSidebar();
 
@@ -89,11 +88,11 @@ export const WuiSideBar = React.forwardRef<HTMLDivElement, WuiSideBarProps>((pro
             return(
               <ListItemButton sx={{ paddingLeft: 4 }} key={i}>
                 <ListItemText
-                  secondary={t(el)}
+                  secondary={Language.getTranslation(el.code)}
                   key={i}
                   secondaryTypographyProps={{color: theme.palette.text.primary}}
                   onClick={() => {
-                    setLanguage(el)
+                    setLanguage(el.code)
                     toggleSidebar()
                   }}
                 />

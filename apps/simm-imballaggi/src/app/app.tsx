@@ -15,6 +15,7 @@ import theme from './theme/theme';
 import { Guard, Guards } from "@whub/apis-react";
 import React, { Suspense } from "react";
 import ContactsDialog from "./components/dialogs/ContactsDialog";
+import { ES, GB, IT } from "country-flag-icons/react/3x2";
 
 const SimmAppbar = React.lazy(() => import('./components/layout/SimmAppBar'))
 const SimmFooter = React.lazy(() => import('./components/layout/SimmFooter'))
@@ -78,7 +79,14 @@ export function App() {
       >
           <CssBaseline/>
           <GlobalStyles styles={globalStyle}></GlobalStyles>
-          <LanguageWrapper i18n={i18n}>
+          <LanguageWrapper
+            i18n={i18n}
+            availableLanguages={[
+              { code: 'it', flag: IT },
+              { code: 'en', flag: GB },
+              { code: 'es', flag: ES }
+            ]}
+          >
             <BrowserRouter>
               <Layout
                 AppBarComponent={<SimmAppbar/>}
