@@ -1,12 +1,9 @@
+import { CardActionArea, useMediaQuery, useTheme } from '@mui/material';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import React, { useState } from 'react';
-import { ChevronRightRounded } from '@mui/icons-material';
-import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import React from 'react';
 import { border } from '../../theme/theme';
 
 export interface HomeCardProps {
@@ -17,65 +14,62 @@ export interface HomeCardProps {
 }
 
 const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) => {
-  const [hover, setHover] = useState(false)
+  const theme = useTheme()
+  const showDescription = useMediaQuery(theme.breakpoints.up(400));
 
   return (
     <Card
       ref={ref}
-      sx={{ display: 'flex' }}
+      sx={{
+        marginInline: 'auto !important',
+        maxWidth: 'calc(100vw - 32px)'
+      }}
     >
-      <CardMedia
-        component="img"
-        sx={{
-          width: 150,
-          padding: 2,
-          background: '#fff',
-          aspectRatio: 1
-        }}
-        image={props.img}
-      />
-      <CardContent
-        sx={{
-          minHeight: 140,
-          width: '100%',
-          borderInline: border
-        }}
+      <CardActionArea
+        sx={{ display: 'flex' }}
       >
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-        >
-          {props.title}
-        </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
+        <CardMedia
+          component="img"
           sx={{
-            display: '-webkit-box',
-            WebkitLineClamp: '3',
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden'
+            width: 150,
+            height: 150,
+            padding: 2,
+            background: '#fff',
+            aspectRatio: 1
+          }}
+          image={props.img}
+        />
+        <CardContent
+          sx={{
+            height: 150,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: showDescription ? 'flex-start' : 'flex-end',
+            borderInline: border
           }}
         >
-          {props.text}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          variant='text'
-          sx={{height: '100%'}}
-          endIcon={
-            hover
-              ? <KeyboardDoubleArrowRightRoundedIcon/>
-              : <ChevronRightRounded/>
-          }
-        >
-          {props.buttonText}
-        </Button>
-      </CardActions>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+          >
+            {props.title}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              display: showDescription ? '-webkit-box' : 'none',
+              WebkitLineClamp: '3',
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden'
+            }}
+          >
+            {props.text}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
     </Card>
   );
 })
