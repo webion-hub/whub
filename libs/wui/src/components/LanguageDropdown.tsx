@@ -36,7 +36,8 @@ export const LanguageDropdownButton = React.forwardRef<HTMLDivElement, LanguageD
   return (
     <>
       <Button
-        onClick={handleClick}
+        onClick={handleClick}        
+        aria-label="languages"
         color="inherit"
       >
         <props.icon />

@@ -19,7 +19,7 @@ export default function AIDA() {
         }}
       >
         <Typography
-          variant="h3"
+          variant="h2"
           color="text.primary"
           sx={{ textAlign: "center" }}
         >

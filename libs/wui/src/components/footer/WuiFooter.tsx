@@ -71,7 +71,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
           sx={{marginBottom: {xs: 4, md: 0}}}
           key={i}
         >
-          <Typography variant="subtitle2">
+          <Typography variant="subtitle2" component="p">
             {el.title}
           </Typography>
           {createButtons(el)}
@@ -89,7 +89,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
       <FooterColumn
         alignItems={{xs:'center', md: "left"}}
       >
-        <Typography variant="subtitle2">
+        <Typography variant="subtitle2" component="p">
           SOCIAL
         </Typography>
         <Grid
@@ -103,6 +103,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
               target="_blank"
               color="primary"
               key={i}
+              aria-label="button"
             >
               {el.icon}
             </IconButton>)

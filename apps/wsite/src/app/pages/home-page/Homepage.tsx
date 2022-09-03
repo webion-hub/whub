@@ -56,6 +56,7 @@ export default function Homepage() {
         }}
       >
         <Section
+          id="home"
           showBackground
           backgroundSx={{ backgroundColor: "rgba(0,0,0,.5)" }}
           sx={{  width: "100%", zIndex: 2, margin: "auto"}}
