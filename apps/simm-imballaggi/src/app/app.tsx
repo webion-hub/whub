@@ -9,11 +9,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CssBaseline, GlobalStyles } from '@mui/material';
-import { CookiePopup, GlobalDialogs, Language, LanguageWrapper, Layout } from "@whub/wui";
+import { CookiePopup, FullScreenLoading, GlobalDialogs, Language, LanguageWrapper, Layout } from "@whub/wui";
 import globalStyle from './theme/globalStyle';
 import theme from './theme/theme';
 import { Guard, Guards } from "@whub/apis-react";
-import React from "react";
+import React, { Suspense } from "react";
 import ContactsDialog from "./components/dialogs/ContactsDialog";
 
 const SimmAppbar = React.lazy(() => import('./components/layout/SimmAppBar'))
@@ -88,31 +88,35 @@ export function App() {
                   name="simm-imballaggi"
                   privacyUrl="privacy"
                 />
-                <Routes>
-                  <Route path="/" element={<Homepage/>}/>
-                  <Route path="/privacy" element={<PrivacyPolicy/>}/>
-                  <Route path="/login"  element={<LoginPage/>}/>
-                  <Route path="/product/:id"  element={<ProductPage/>}/>
-                  <Route path="/products"  element={<ProductsPage/>}/>
-                  <Route
-                    path="/add-product"
-                    element={
-                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<AddProduct/>}/>
-                    }
-                  />
-                  <Route
-                    path="/edit-product/:id"
-                    element={
-                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<EditProduct/>}/>
-                    }
-                  />
-                  <Route
-                    path="/products-table"
-                    element={
-                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<TableProductsPage/>}/>
-                    }
-                  />
-                </Routes>
+                <Suspense
+                  fallback={ <FullScreenLoading loading/> }
+                >
+                  <Routes>
+                    <Route path="/" element={<Homepage/>}/>
+                    <Route path="/privacy" element={<PrivacyPolicy/>}/>
+                    <Route path="/login"  element={<LoginPage/>}/>
+                    <Route path="/product/:id"  element={<ProductPage/>}/>
+                    <Route path="/products"  element={<ProductsPage/>}/>
+                    <Route
+                      path="/add-product"
+                      element={
+                        <Guard canNavigate={isAdminGuard} redirectTo="/" el={<AddProduct/>}/>
+                      }
+                    />
+                    <Route
+                      path="/edit-product/:id"
+                      element={
+                        <Guard canNavigate={isAdminGuard} redirectTo="/" el={<EditProduct/>}/>
+                      }
+                    />
+                    <Route
+                      path="/products-table"
+                      element={
+                        <Guard canNavigate={isAdminGuard} redirectTo="/" el={<TableProductsPage/>}/>
+                      }
+                    />
+                  </Routes>
+                </Suspense>
               </Layout>
             </BrowserRouter>
           </LanguageWrapper>
