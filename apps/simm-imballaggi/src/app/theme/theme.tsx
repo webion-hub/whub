@@ -20,6 +20,10 @@ const normTheme = createTheme({
     secondaryBackground: {
       default: "#F7F7F7"
     },
+    info: {
+      main: '#222',
+      contrastText: '#000'
+    },
     layout: {
       footer: '#E4E7EB',
       appbar: '#F8F9FA',
