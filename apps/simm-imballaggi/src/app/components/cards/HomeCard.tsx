@@ -11,6 +11,8 @@ export interface HomeCardProps {
   readonly title: string,
   readonly text: string,
   readonly buttonText: string,
+  readonly onClick: (e: any) => void,
+  readonly href: string,
 }
 
 const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) => {
@@ -27,6 +29,8 @@ const HomeCard = React.forwardRef<HTMLDivElement, HomeCardProps>((props, ref) =>
     >
       <CardActionArea
         sx={{ display: 'flex' }}
+        href={props.href}
+        onClick={props.onClick}
       >
         <CardMedia
           component="img"

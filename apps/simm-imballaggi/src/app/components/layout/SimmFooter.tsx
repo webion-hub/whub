@@ -2,6 +2,7 @@ import { ChildrenProps, FlagLanguageDropdown, Footer, FooterBottomLabel, FooterC
 import { useTranslation } from "react-i18next";
 import { Grid, IconButton, Link, LinkProps, Stack, Typography, TypographyProps, useMediaQuery, useTheme } from "@mui/material";
 import { Facebook, YouTube } from "@mui/icons-material";
+import { homeCatergoryUrls } from "apps/simm-imballaggi/src/assets/category-routes.config";
 
 const FooterLinkTitle = (props: TypographyProps) => (
   <Typography
@@ -126,8 +127,18 @@ export default function SimmFooter() {
             <FooterLinkTitle>
             {t("products")}
             </FooterLinkTitle>
-            <FooterLink href="#"> {t("machines")} </FooterLink>
-            <FooterLink href="#"> {t("materials")} </FooterLink>
+            <FooterLink
+              href={homeCatergoryUrls.materials}
+              onClick={clickNavigate(homeCatergoryUrls.materials)}
+            >
+              {t("materials")}
+            </FooterLink>
+            <FooterLink
+              href={homeCatergoryUrls.machines}
+              onClick={clickNavigate(homeCatergoryUrls.machines)}
+            >
+              {t("machines")}
+            </FooterLink>
           </LinksFooterColumn>
           <LinksFooterColumn>
             <FooterLinkTitle>

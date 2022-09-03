@@ -1,10 +1,12 @@
 import { Grid, Typography, Stack, Box, Paper, useTheme, useMediaQuery } from "@mui/material";
-import { ResponserGrid, useBackgroundWaves } from "@whub/wui";
+import { ResponserGrid, useBackgroundWaves, useNavigator } from "@whub/wui";
+import { homeCatergoryUrls } from "apps/simm-imballaggi/src/assets/category-routes.config";
 import { useTranslation } from "react-i18next";
 import HomeCard from "../../components/cards/HomeCard";
 
 export default function Home() {
   const { t } = useTranslation();
+  const { clickNavigate } = useNavigator()
   const theme = useTheme()
   const isLg = useMediaQuery(theme.breakpoints.up("lg"));
   const waves = useBackgroundWaves(theme.palette['secondary'].dark)
@@ -80,7 +82,6 @@ export default function Home() {
         </Grid>
         <Box
           sx={{
-            //background: 'url(assets/images/homepageImage.webp)',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
@@ -97,12 +98,16 @@ export default function Home() {
               text={t("materials-description")}
               img="/assets/images/firstCard.webp"
               buttonText={t("see")}
+              href={homeCatergoryUrls.materials}
+              onClick={clickNavigate(homeCatergoryUrls.materials)}
             />
             <HomeCard
               title={t("machines-card-title")}
               text={t("machines-description")}
               img="/assets/images/secondCard.webp"
               buttonText={t("see")}
+              href={homeCatergoryUrls.machines}
+              onClick={clickNavigate(homeCatergoryUrls.machines)}
             />
           </Stack>
         </Box>
