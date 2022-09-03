@@ -1,14 +1,15 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Breadcrumbs, Button, Card, CardActions, CardContent, CardMedia, IconButton, Link, ListItemIcon, ListItemText, Menu, MenuItem, Skeleton, Stack, SxProps, Theme, Typography, useTheme } from "@mui/material";
-import { Category, Product, ProductDetail } from "@whub/wshop-api";
-import { useEffect, useState } from "react";
-import { ProductImage } from "./ProductImage";
-import { FileWithId, GetFormValue, MaybeShow, useGlobalDialogs, useNavigator, useProgressiveImage } from "@whub/wui";
-import parse from 'html-react-parser';
 import { ChevronLeftRounded, ChevronRightRounded, DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Breadcrumbs, Button, IconButton, Link, ListItemIcon, ListItemText, Menu, MenuItem, Stack, SxProps, Theme, Typography, useTheme } from "@mui/material";
 import { useShopApi } from "@whub/apis-react";
-import { ProductUtils } from "../lib/ProductUtils";
+import { Category, Product, ProductDetail } from "@whub/wshop-api";
+import { FileWithId, GetFormValue, useGlobalDialogs, useNavigator } from "@whub/wui";
+import parse from 'html-react-parser';
 import _ from "lodash";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ProductUtils } from "../lib/ProductUtils";
+import { ProductCard } from "./ProductCard";
+import { ProductImage } from "./ProductImage";
 
 interface ProductComponentBaseProps {
   readonly compress?: boolean,
@@ -391,85 +392,7 @@ function RelatedProducts(props: RelatedProductsProps) {
 }
 
 
-export interface ProductCardProps {
-  readonly product: Product,
-}
 
-export function ProductCard(props: ProductCardProps) {
-  const { clickNavigate } = useNavigator()
-  const shopApi = useShopApi()
-  const { t } = useTranslation()
-  const images = ProductUtils.getImages(shopApi, props.product)
-  const firstImage = images?.[0]?.fullUrl
-
-  const { loading, srcLoaded } = useProgressiveImage(firstImage)
-  const noImages = !srcLoaded
-
-  const size = 250
-
-  return (
-    <Card sx={{ maxWidth: size }}>
-      <MaybeShow
-        show={!loading}
-        alternativeChildren={
-          <Skeleton
-            variant="rectangular"
-            sx={{
-              width: size,
-              height: size,
-              aspectRatio: '1',
-            }}
-          />
-        }
-      >
-        <CardMedia
-          component="img"
-          image={srcLoaded ?? ''}
-          sx={{
-            width: size,
-            height: size,
-            opacity: noImages ? 0 : 1
-          }}
-        />
-      </MaybeShow>
-      <CardContent sx={{ height: 145}}>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          sx={{
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis'
-          }}
-        >
-          {props.product.name}
-        </Typography>
-        <Typography
-          component="span"
-          color="text.secondary"
-          sx={{
-            display: '-webkit-box',
-            WebkitLineClamp: '3',
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden'
-          }}
-        >
-          {parse(props.product.description ?? '')}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button
-          size="small"
-          href={`/product/${props.product.id}`}
-          onClick={clickNavigate(`/product/${props.product.id}`)}
-        >
-          {t('see')}
-        </Button>
-      </CardActions>
-    </Card>
-  )
-}
 
 
 interface ProductImagesViewerProps {

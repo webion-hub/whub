@@ -1,11 +1,14 @@
-import { Grid, Typography, Stack, Box, Paper, useTheme } from "@mui/material";
-import { ResponserGrid, useBackgroundWaves } from "@whub/wui";
+import { Grid, Typography, Stack, Box, Paper, useTheme, useMediaQuery } from "@mui/material";
+import { ResponserGrid, useBackgroundWaves, useNavigator } from "@whub/wui";
 import { useTranslation } from "react-i18next";
+import { homeCatergoryUrls } from "../../category-routes.config";
 import HomeCard from "../../components/cards/HomeCard";
 
 export default function Home() {
   const { t } = useTranslation();
+  const { clickNavigate } = useNavigator()
   const theme = useTheme()
+  const isLg = useMediaQuery(theme.breakpoints.up("lg"));
   const waves = useBackgroundWaves(theme.palette['secondary'].dark)
 
   return (
@@ -22,6 +25,7 @@ export default function Home() {
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
+        maxWidth: { xs: 500, lg: '100%' }
       }}
     >
       <Stack
@@ -31,16 +35,21 @@ export default function Home() {
       >
         <Grid
           container
-          component={Paper}
+          component={isLg ? Paper : 'div'}
           direction="column"
           sx={{
             padding: 4,
+            paddingInline: { xs: 0, lg: 4 },
             height: { xs: 'auto', lg: 320},
             position: 'relative',
             overflow: 'hidden',
-            "& > *": { zIndex: 1 },
+            color: { xs: 'white', lg: 'unset' },
+            "& > *": {
+              zIndex: 1,
+            },
             "&::before": {
               content: "''",
+              display: { xs: 'none', lg: 'block' },
               position: 'absolute',
               width: '100%',
               height: '100%',
@@ -74,7 +83,6 @@ export default function Home() {
         </Grid>
         <Box
           sx={{
-            //background: 'url(assets/images/homepageImage.webp)',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
@@ -91,12 +99,16 @@ export default function Home() {
               text={t("materials-description")}
               img="/assets/images/firstCard.webp"
               buttonText={t("see")}
+              href={homeCatergoryUrls.materials}
+              onClick={clickNavigate(homeCatergoryUrls.materials)}
             />
             <HomeCard
               title={t("machines-card-title")}
               text={t("machines-description")}
               img="/assets/images/secondCard.webp"
               buttonText={t("see")}
+              href={homeCatergoryUrls.machines}
+              onClick={clickNavigate(homeCatergoryUrls.machines)}
             />
           </Stack>
         </Box>

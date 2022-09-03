@@ -1,50 +1,28 @@
 import { Button, Paper, Stack, TextField, Typography } from "@mui/material"
-import { Product, ProductDetail } from "@whub/wshop-api"
+import { ProductDetail } from "@whub/wshop-api"
 import { InputBaseProps, InputValidator, TextEditor, Validators } from "@whub/wui"
 import { useEffect, useState } from "react"
-import { CorrelatedProductsSelect } from "../../CorrelatedProductsSelect"
 
-interface AddProductStepTwoProps {
-  readonly productId?: number
-}
-
-export function AddProductStepTwo(props: AddProductStepTwoProps) {
+export function ProductDetailsInput() {
   return (
-    <>
-      <InputValidator
-        name="description"
-        value=''
-        validators={[Validators.max(4096)]}
-      >
-        <TextEditor
-          label="Descrizione"
-          maxCharacters={4096}
-        />
-      </InputValidator>
-      <InputValidator
-        name="relatedProducts"
-        value={[] as Product[]}
-      >
-        <CorrelatedProductsSelect avoidId={props.productId}/>
-      </InputValidator>
-      <InputValidator
-        name="details"
-        value={[] as ProductDetail[]}
-        validators={[
-          Validators.customValidator((details: ProductDetail[]) => {
-            return details.every(d =>
-              Validators.required(d.title) &&
-              Validators.max(512)(d.title) &&
-              Validators.max(4096)(d.description)
-            )
-          })
-        ]}
-      >
-        <ProductDetails/>
-      </InputValidator>
-    </>
+    <InputValidator
+      name="details"
+      value={[] as ProductDetail[]}
+      validators={[
+        Validators.customValidator((details: ProductDetail[]) => {
+          return details.every(d =>
+            Validators.required(d.title) &&
+            Validators.max(512)(d.title) &&
+            Validators.max(4096)(d.description)
+          )
+        })
+      ]}
+    >
+      <ProductDetails/>
+    </InputValidator>
   )
 }
+
 
 function ProductDetails(props: InputBaseProps<ProductDetail[]>) {
   const [details, setDetails] = useState<ProductDetail[]>(props.value ?? [])

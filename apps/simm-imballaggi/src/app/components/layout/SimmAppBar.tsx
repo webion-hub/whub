@@ -174,6 +174,7 @@ export function ProductSearchBar() {
               onClick: (e: Event) => e.preventDefault()
             }}
             product={option}
+            onClick={() => navigate(`/product/${option.id}`)}
           >
             <Button
               onClick={clickNavigate(`/product/${option.id}`)}

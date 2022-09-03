@@ -1,20 +1,24 @@
 import { SaveRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import { Backdrop, Button, CircularProgress, LinearProgress, Paper, Stack, SxProps, Theme, useMediaQuery, useTheme } from "@mui/material";
+import { Button, Paper, Stack, SxProps, Theme, useMediaQuery, useTheme } from "@mui/material";
 import { handleResponse } from "@whub/apis-core";
 import { useShopApi } from "@whub/apis-react";
 import { Category, Product, ProductDetail, ProductEndpoint } from "@whub/wshop-api";
-import { FileWithId, Form, FormGroup, FullScreenLoading, MaybeShow, Page, Section, useNavigator } from "@whub/wui";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { ProductUtils } from "../../lib/ProductUtils";
-import { ProductComponent } from "../ProductComponent";
-import { AddProductStepOne } from "./steps/AddProductStepOne";
-import { AddProductStepThree } from "./steps/AddProductStepThree";
-import { AddProductStepTwo } from "./steps/AddProductStepTwo";
+import { FileWithId, Form, FormGroup, useNavigator } from "@whub/wui";
+import { useState } from "react";
+import { ProductCategoryInput } from "./inputs/ProductCategoryInput";
+import { ProductCodeInput } from "./inputs/ProductCodeInput";
+import { ProductRelatedInput } from "./inputs/ProductRelatedInput";
+import { ProductDescriptionInput } from "./inputs/ProductDescriptionInput";
+import { ProductNameInput } from "./inputs/ProductNameInput";
+import { ProductPriceInput } from "./inputs/ProductPriceInput copy";
+import { ProductComponent } from "./ProductComponent";
+import { ProductDetailsInput } from "./inputs/ProductDetailsInput";
+import { ProductImagesInput } from "./inputs/ProductImagesInput";
+import { ProductAttachmentsInput } from "./inputs/ProductAttachmentsInput";
 
 
-interface PreviewProduct {
+export interface PreviewProduct {
   readonly id: number;
   readonly name: string;
   readonly category?: Category;
@@ -234,74 +238,17 @@ export function ProductHandler(props: ProductHandlerProps) {
               Salva
             </LoadingButton>
           </Stack>
-          <AddProductStepOne/>
-          <AddProductStepTwo productId={isUpdateMode ? props.previewProduct.id : undefined}/>
-          <AddProductStepThree/>
+          <ProductNameInput/>
+          <ProductCodeInput/>
+          <ProductPriceInput/>
+          <ProductCategoryInput/>
+          <ProductDescriptionInput/>
+          <ProductRelatedInput productId={isUpdateMode ? props.previewProduct.id : undefined}/>
+          <ProductDetailsInput/>
+          <ProductImagesInput/>
+          <ProductAttachmentsInput/>
         </Stack>
       </Stack>
     </FormGroup>
-  )
-}
-
-
-export function AddProduct() {
-  return (
-    <Page>
-      <Section>
-        <ProductHandler/>
-      </Section>
-    </Page>
-  )
-}
-
-export function EditProduct() {
-  const params = useParams()
-  const productId = params['id']
-
-  const [loading, setLoading] = useState(false)
-  const [previewProduct, setPreviewProduct] = useState<PreviewProduct>()
-
-  const shopApi = useShopApi()
-
-  useEffect(() => {
-    fetchProduct()
-  }, [productId])
-
-  const fetchProduct = () => {
-    if(!productId)
-      return
-
-    setLoading(true)
-    shopApi.products
-      .withId(parseInt(productId))
-      .load()
-      .then(async res => {
-        const product = res.data
-        const files = await ProductUtils.getAttachmentsFiles(shopApi, product)
-        const images = await ProductUtils.getImagesFiles(shopApi, product)
-
-        setPreviewProduct({
-          ...product,
-          attachments: files,
-          images: images,
-        })
-      })
-      .finally(() => setLoading(false))
-  }
-
-  return (
-    <Page>
-      <Section>
-      <FullScreenLoading loading={loading}/>
-        {
-          previewProduct
-            ? <ProductHandler
-                mode='update'
-                previewProduct={previewProduct}
-              />
-            : <></>
-        }
-      </Section>
-    </Page>
   )
 }

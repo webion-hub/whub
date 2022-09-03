@@ -8,6 +8,7 @@ interface ProductListItem {
   readonly product: Product,
   readonly sx?: SxProps<Theme>,
   readonly children?: ReactNode,
+  readonly onClick?: () => void,
 }
 
 export function ProductListItem(props: ProductListItem) {
@@ -19,6 +20,7 @@ export function ProductListItem(props: ProductListItem) {
       component="li"
       direction="row"
       alignItems="center"
+      onClick={props.onClick}
       sx={{
         width: '100%',
         justifyContent: 'space-between !important',
