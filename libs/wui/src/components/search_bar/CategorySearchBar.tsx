@@ -143,10 +143,11 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
       <Button
         variant="contained"
         type="submit"
+        aria-label="search"
         sx={{
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
-          boxShadow: 'none !important'
+          boxShadow: 'none !important'          
         }}
       >
         <SearchRoundedIcon/>

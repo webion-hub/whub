@@ -260,7 +260,7 @@ function AuthBtn() {
           </MenuItem>
         </MaybeShow>
         <MenuItem onClick={onLogout}>
-          <ListItemIcon> <LogoutRounded/> </ListItemIcon>
+          <ListItemIcon> <LogoutRounded aria-label="logout"/> </ListItemIcon>
           <ListItemText> Logout </ListItemText>
         </MenuItem>
       </Menu>

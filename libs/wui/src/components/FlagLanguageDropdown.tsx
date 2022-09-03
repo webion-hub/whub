@@ -17,9 +17,9 @@ export const FlagLanguageDropdown = React.forwardRef<HTMLDivElement, Record<stri
   const { language, setLanguage } = useLanguage();
 
   const flags: { [id: string] : any; } = {
-    "en": <GB width="28px" style={{borderRadius: 2}}/>,
-    "it": <IT width="28px" style={{borderRadius: 2}}/>,
-    "es": <ES width="28px" style={{borderRadius: 2}}/>,
+    "en": <GB width="28px" style={{borderRadius: 2}} aria-label="english"/>,
+    "it": <IT width="28px" style={{borderRadius: 2}} aria-label="italian"/>,
+    "es": <ES width="28px" style={{borderRadius: 2}} aria-label="spanish"/>,
   };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

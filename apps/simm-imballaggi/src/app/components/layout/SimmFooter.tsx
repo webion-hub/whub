@@ -7,7 +7,7 @@ const FooterLinkTitle = (props: TypographyProps) => (
   <Typography
     variant="h6"
     marginBottom={1}
-    {...props}
+    component="p"
   >
     {props.children}
   </Typography>
@@ -59,7 +59,7 @@ export default function SimmFooter() {
           alignItems={{xs: 'center', md: 'flex-start'}}
         >
           <Img
-            sx={{ width: '100%', maxWidth: 300 }}
+            sx={{ width: 300, maxWidth: "100%", height: "auto" }}
             alt="full logo"
             src="assets/images/full-logo.webp"
           />
@@ -87,12 +87,14 @@ export default function SimmFooter() {
               color="primary"
               target="_blank"
               href="https://www.facebook.com/simmimballaggi/"
+              aria-label="facebook icon"
             >
               <Facebook/>
             </IconButton>
             <IconButton
               color="primary"
               target="_blank"
+              aria-label="youtube icon"
               href="https://www.youtube.com/channel/UCNawmda-zHQCIeh20N5nslg"
             >
               <YouTube/>
