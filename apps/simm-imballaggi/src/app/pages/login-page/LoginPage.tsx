@@ -87,6 +87,7 @@ export default function LoginPage() {
             src="assets/images/logo.webp"
             sx={{
               width: 80,
+              height: "auto",
               margin: "auto",
               marginBlock: 2,
             }}

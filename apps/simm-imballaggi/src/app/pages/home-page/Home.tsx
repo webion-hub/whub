@@ -73,6 +73,7 @@ export default function Home() {
           </Typography>
           <Typography
             variant="h6"
+            component="p"
             sx={{ marginTop: 2 }}
             textAlign={{xs: 'center', md: 'left'}}
           >
