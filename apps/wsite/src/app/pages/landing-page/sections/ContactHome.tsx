@@ -133,7 +133,10 @@ export default function ContactHome() {
               value={true}
               validators={[Validators.required]}
             >
-              <PrivacyCheckBox privacyUrl="/policies-licenses"/>
+              <PrivacyCheckBox
+                privacyUrl="/policies-licenses"
+                color='#888'
+              />
             </InputValidator>
 
             <WuiGrid

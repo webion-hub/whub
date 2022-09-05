@@ -196,7 +196,10 @@ export default function Contacts() {
               value={true}
               validators={[Validators.required]}
             >
-              <PrivacyCheckBox privacyUrl="/policies-licenses"/>
+              <PrivacyCheckBox
+                privacyUrl="/policies-licenses"
+                color='#555'
+              />
             </InputValidator>
 
             <WuiGrid

@@ -1,3 +1,4 @@
+import { ArrowForwardRounded, ArrowRightAltRounded } from "@mui/icons-material";
 import { Box, Button, Grid, Stack, SxProps, Theme, Typography } from "@mui/material";
 import { ResponsiveStyleValue } from "@mui/system/styleFunctionSx";
 import { AppBarLogo, ResponserGrid, RotatingText } from "@whub/wui";
@@ -79,7 +80,7 @@ export default function Home() {
             labels={[t("stories"), t("results"), t("solutions"), t("services"),  t("products") ]}
             width={{xs: 160, sm: 220}}
             sx={{
-              color: 'yellow',
+              color: theme => theme.palette.secondary.main,
               marginRight: 1,
               textAlign: 'end',
             }}
@@ -110,23 +111,68 @@ export default function Home() {
           }}
         >
         </ResponserGrid>
-        <Button
-          variant="contained"
-          href="/#contacts"
-          size="large"
-          onClick={() => (window.location.href = "/#contacts")}
-          sx={{
-            textTransform: 'none',
-            textAlign: "center",
-            marginTop: "30px",
-          }}
+        <Stack
+          direction="row"
+          alignItems="center"
+          spacing={2}
+          sx={{ marginTop: 7 }}
         >
-          {t("services-consultation")}
-        </Button>
-      </Stack>
+          <ArrowsAnimated/>
+          <Button
+            variant="contained"
+            href="/#contacts"
+            size="large"
+            onClick={() => (window.location.href = "/#contacts")}
+            sx={{
+              textTransform: 'none',
+              textAlign: "center",
+            }}
+          >
+            {t("services-consultation")}
+          </Button>
+        </Stack>
 
+      </Stack>
     </Stack>
 
     // </ResponserGrid>
   );
+}
+
+
+function ArrowsAnimated() {
+
+  const animation = (delay: number) => ({
+    animation: `fade-in 4000ms ease-in-out infinite`,
+    animationDelay: delay + 'ms',
+    "@keyframes fade-in": {
+      "0%": {
+        opacity: 0,
+        transform: "scale(2) rotate(-90deg)"
+      },
+      "20%": {
+        opacity: 1,
+        transform: "rotate(0deg)"
+      },
+      "40%": {
+        opacity: 0,
+        transform: "translateX(32px)"
+      },
+      "100%": {
+        opacity: 0,
+        transform: "translateX(32px)"
+      }
+    }
+  })
+
+  return (
+    <Stack
+      direction="row"
+      spacing={2}
+    >
+      <ArrowForwardRounded color="secondary" sx={animation(250)}/>
+      <ArrowForwardRounded color="secondary" sx={animation(500)}/>
+      <ArrowForwardRounded color="secondary" sx={animation(750)}/>
+    </Stack>
+  )
 }

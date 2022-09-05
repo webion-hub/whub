@@ -38,7 +38,7 @@ export default function Homepage() {
         }}
       >
         <source
-          src="../../../assets/images/background.webm"
+          src="../../../assets/images/pexels-cottonbro-8721932.mp4"
           type="video/mp4"
           style={{
             backgroundColor: "rgba(0,0,0,.5) !important",
@@ -63,7 +63,7 @@ export default function Homepage() {
         >
           <Box sx={{
             width: "1152px",
-             zIndex: 2,  
+             zIndex: 2,
              right: 0,
              display: "flex",
              justifyContent: "flex-end"
@@ -104,7 +104,7 @@ export default function Homepage() {
           id="contacts"
           maxWidth="100%"
           showBackground
-          sx={{ 
+          sx={{
             padding: 0,
             width: '100vw'
           }}

@@ -28,7 +28,7 @@ export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps
           {props.number}
         </Typography>
       }
-      color="primary"
+      color="secondary"
       sx={{
         '.MuiBadge-badge': {
           width: size,

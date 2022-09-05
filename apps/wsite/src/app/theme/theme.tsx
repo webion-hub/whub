@@ -19,8 +19,8 @@ const theme = createTheme({
       main: "#1f4bff",
     },
     secondary: {
-      main: "#757575",
-      contrastText: '#fff'
+      main: "#81FF05",
+      contrastText: '#333'
     },
     layout: {
       footer: '#000',
