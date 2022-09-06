@@ -9,6 +9,7 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 import ReactPixel from 'react-facebook-pixel';
 import { useContactUsApi } from "@whub/apis-react";
+import { WebionRepository } from "../../lib/WebionRepositiory";
 
 const TextfieldBase = ({...props}) => {
   const theme = useTheme()
@@ -115,14 +116,14 @@ export default function Contacts() {
           >
             {t("contact-us-description")}
             <Link
-              href="tel:+39 389 008 6632"
+              href={WebionRepository.HREF_PHONE}
               sx={{
                 color: textColor,
                 textDecoration: "none",
                 borderBottom: `1px solid ${textColor}`
               }}
             >
-              {' +39 389 008 6632'}
+              {WebionRepository.PHONE}
             </Link>
           </Typography>
           <FormGroup

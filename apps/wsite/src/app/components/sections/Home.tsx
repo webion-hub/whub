@@ -1,4 +1,4 @@
-import { ArrowForwardRounded, ArrowRightRounded, ArrowUpwardRounded } from "@mui/icons-material";
+import { ArrowForwardRounded, ArrowUpwardRounded } from "@mui/icons-material";
 import { alpha, Box, Button, Stack, SvgIconTypeMap, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { Parallax, ResponserGrid, RotatingText } from "@whub/wui";
@@ -8,6 +8,7 @@ export default function Home() {
   const theme = useTheme()
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
   const { t } = useTranslation();
+
 
   return (
     <>
@@ -137,24 +138,23 @@ export default function Home() {
             autoPlay
             muted
             loop
-            id="myVideo"
             style={{
+              top: 0,
               filter: 'brightness(0.3)',
-              position: "fixed",
+              position: "absolute",
               backgroundColor: "rgba(0,0,0,.5) !important",
               width: '100vw',
               height: '100vh',
               maxHeight: '1800px',
               objectFit: 'cover',
               left: "50%",
-              transform: "translateX(-50%)",
+              transform: "translate(-50%, 0%)",
             }}
           >
             <source
               src="assets/images/pexels-cottonbro-8720752.mp4"
               type="video/mp4"
               style={{
-                backgroundColor: "rgba(0,0,0,.5) !important",
                 width: "130%",
               }}
             />

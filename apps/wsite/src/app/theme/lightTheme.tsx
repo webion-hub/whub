@@ -36,7 +36,7 @@ const lightTheme = createTheme({
     },
   },
   layoutMaxWidth: {
-    appbar: 1200,
+    appbar: 1600,
     footer: 1270,
     section: 1600,
   },

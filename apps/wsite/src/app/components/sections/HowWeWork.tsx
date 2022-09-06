@@ -1,13 +1,13 @@
-import { Box, Grow, Typography, useTheme } from "@mui/material";
+import { Box, Grow, Paper, Typography, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 import BrushRoundedIcon from '@mui/icons-material/BrushRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import { CardWithBadge, CardWithBadgeProps, Parallax, ResponserGrid } from "@whub/wui";
+import { CardWithBadge, CardWithBadgeProps, Parallax, ResponserGrid, useOnScreen } from "@whub/wui";
 import RandomTextBackground from "../backgrounds/RandomTextBackground";
-import React from "react";
+import React, { useRef } from "react";
 
 const HowWeWorkCard = React.forwardRef<HTMLDivElement, CardWithBadgeProps>((props: CardWithBadgeProps, ref) => {
   const theme = useTheme()
@@ -16,25 +16,46 @@ const HowWeWorkCard = React.forwardRef<HTMLDivElement, CardWithBadgeProps>((prop
   return (
     <CardWithBadge
       ref={ref}
-      sx={{ background: theme => theme.palette['primary'].main }}
+      {...props}
       badgeXOffset={5}
       badgeYOffset={-12}
       badgeColor={badgeColor}
-      animateBadge
-      animationDelay={1000}
-      animationTimeout={1000}
-      {...props}
+      animationTimeout={400}
+      animationDelay={(props.animationDelay ?? 0) + 800}
+      sx={{
+        color: theme => theme.palette['primary'].contrastText,
+        background: theme => theme.palette['primary'].main,
+        transform: 'scale(0)',
+        "@keyframes grow-card": {
+          "0%": {
+            opacity: 0,
+            transform: `scale(0)`,
+          },
+          "100%": {
+            opacity: 1,
+            transform: `scale(1)`,
+          },
+        },
+        animation: props.animateBadge
+          ? `grow-card ${300}ms ease-in-out forwards`
+          : ''
+        ,
+        animationDelay: `${(props.animationDelay ?? 0)}ms`
+      }}
     />
   )
 })
 
 export default function HowWeWork() {
   const { t } = useTranslation();
+  const ref = useRef()
+  const cardIn = useOnScreen(ref)
 
 
   return (
     <>
       <Box
+        ref={ref}
         sx={{
           marginInline: "auto",
           width: "100%",
@@ -65,41 +86,38 @@ export default function HowWeWork() {
             }
           }}
         >
-          <Grow
-            in
-            timeout={1000}
-          >
-            <HowWeWorkCard
-              Icon={FlagRoundedIcon}
-              title={t("step-1-title")}
-              paragraph={t("step-1-description")}
-              number={1}
-            />
-          </Grow>
-          <Grow>
-            <HowWeWorkCard
-              Icon={BrushRoundedIcon}
-              title={t("step-2-title")}
-              paragraph={t("step-2-description")}
-              number={2}
-            />
-          </Grow>
-          <Grow>
-            <HowWeWorkCard
-              Icon={CodeRoundedIcon}
-              title={t("step-3-title")}
-              paragraph={t("step-3-description")}
-              number={3}
-            />
-          </Grow>
-          <Grow>
-            <HowWeWorkCard
-              Icon={CheckCircleRoundedIcon}
-              title={t("step-4-title")}
-              paragraph={t("step-4-description")}
-              number={4}
-            />
-          </Grow>
+          <HowWeWorkCard
+            Icon={FlagRoundedIcon}
+            title={t("step-1-title")}
+            paragraph={t("step-1-description")}
+            number={1}
+            animationDelay={0}
+            animateBadge={cardIn}
+          />
+          <HowWeWorkCard
+            Icon={BrushRoundedIcon}
+            title={t("step-2-title")}
+            paragraph={t("step-2-description")}
+            number={2}
+            animationDelay={150}
+            animateBadge={cardIn}
+          />
+          <HowWeWorkCard
+            Icon={CodeRoundedIcon}
+            title={t("step-3-title")}
+            paragraph={t("step-3-description")}
+            number={3}
+            animationDelay={300}
+            animateBadge={cardIn}
+          />
+          <HowWeWorkCard
+            Icon={CheckCircleRoundedIcon}
+            title={t("step-4-title")}
+            paragraph={t("step-4-description")}
+            number={4}
+            animationDelay={450}
+            animateBadge={cardIn}
+          />
         </ResponserGrid>
       </Box>
       <Box

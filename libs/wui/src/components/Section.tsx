@@ -1,6 +1,9 @@
 import { Theme, SxProps } from "@mui/system";
 import { styled } from "@mui/material";
 import { ChildrenProp } from "../abstractions/props/ChildrenProps";
+import { useOnScreen } from "../hooks/useOnScreen";
+import { useEffect, useRef } from "react";
+import { useLayout } from "./Layout";
 
 const StyledSection = styled('section')(({theme}) => ({
   paddingBlock: theme.spacing(8),
@@ -26,6 +29,15 @@ export interface SectionProps {
 }
 
 export function Section(props: SectionProps) {
+  const ref = useRef<any>()
+  const sectionIn = useOnScreen(ref, {
+    observeOptions: {
+      rootMargin: '0px 0px -50% 0px',
+      threshold: 0.5
+    }
+  })
+  const { setSection } = useLayout()
+
   const background: SxProps<Theme> = {
     "&::after": {
       content: "''",
@@ -43,9 +55,18 @@ export function Section(props: SectionProps) {
     ? background
     : {}
 
+  useEffect(() => {
+    if(!sectionIn)
+      return
+
+    console.log(props.id)
+    setSection(props.id ?? '')
+  }, [sectionIn])
+
   return (
     <StyledSection
       id={props.id}
+      ref={ref}
       sx={{
         maxWidth: theme => props.maxWidth ?? theme.layoutMaxWidth?.section,
         ...backgroundSx,

@@ -7,7 +7,7 @@ import it from "../assets/locales/it-IT.json";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CssBaseline, GlobalStyles } from '@mui/material';
-import { CookiePopup, Language, LanguageWrapper, Layout, ThemeWrapper } from "@whub/wui";
+import { CookiePopup, Language, LanguageWrapper, Layout, SpeedDial, ThemeWrapper } from "@whub/wui";
 import { GB, IT } from "country-flag-icons/react/3x2";
 import WebionAppbar from "./components/layout/WebionAppBar";
 import WebionFooter from "./components/layout/WebionFooter";
@@ -18,6 +18,8 @@ import PoliciesAndLicensesPage from './pages/policies-licenses-page/PoliciesAndL
 import globalStyle from './theme/globalStyle';
 import darkTheme from "./theme/darkTheme";
 import lightTheme from "./theme/lightTheme";
+import { EmailRounded, Facebook, GitHub, Instagram, LinkedIn, PhoneRounded } from "@mui/icons-material";
+import { WebionRepository } from "./lib/WebionRepositiory";
 
 export function App() {
   i18n
@@ -72,7 +74,18 @@ export function App() {
             </Routes>
           </Layout>
         </BrowserRouter>
+        <SpeedDial
+          actions={[
+            { name: 'Email',     Icon: EmailRounded, onClick: WebionRepository.openEmail },
+            { name: 'Telefono',  Icon: PhoneRounded, onClick: WebionRepository.openPhone },
+            { name: 'GitHub',    Icon: GitHub,       onClick: WebionRepository.openGithub },
+            { name: 'Instagram', Icon: Instagram,    onClick: WebionRepository.openInstagram },
+            { name: 'Facebook',  Icon: Facebook,     onClick: WebionRepository.openFacebook },
+            { name: 'Linkedin',  Icon: LinkedIn,     onClick: WebionRepository.openLinkedin },
+          ]}
+        />
       </LanguageWrapper>
     </ThemeWrapper>
   )
 }
+

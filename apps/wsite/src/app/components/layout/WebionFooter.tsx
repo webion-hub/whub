@@ -5,6 +5,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { WebionRepository } from "../../lib/WebionRepositiory";
 
 export default function WebionFooter() {
   const {t} = useTranslation()
@@ -36,16 +37,16 @@ export default function WebionFooter() {
       buttons:
         [
           {
-            text: "via Panfilo Castaldi 3, Modena",
-            onClick: () => window.open("http://maps.google.com/?q=Webion SRL", '_blank')?.focus()
+            text: WebionRepository.ADDRESS,
+            onClick: WebionRepository.openAddress
           },
           {
-            text: "+39 389 008 6632",
-            href: "tel:+39 389 008 6632",
+            text: WebionRepository.PHONE,
+            href: WebionRepository.HREF_PHONE,
           },
           {
-            text: "amministrazione@webion.it",
-            href: "mailto:amministrazione@webion.it",
+            text: WebionRepository.EMAIL,
+            href: WebionRepository.HREF_EMAIL,
           },
       ]
     },
@@ -53,23 +54,23 @@ export default function WebionFooter() {
 
   const socials = [
     {
-      href: "https://www.facebook.com/webionsrl",
+      href: WebionRepository.FACEBOOK,
       icon: <FacebookIcon fontSize="inherit"  aria-label="facebook button"/>
     },
     {
-      href: "https://www.quora.com/profile/Webion",
+      href: WebionRepository.QUORA,
       icon: <Img width="25px" alt="quora logo" height="20px" src="/assets/images/quoraIcon.svg"/>
     },
     {
-      href: "https://www.instagram.com/webion.it/",
+      href: WebionRepository.INSTAGRAM,
       icon: <InstagramIcon fontSize="inherit" aria-label="instagram button"/>
     },
     {
-      href: "https://www.linkedin.com/company/webion-srl/about/",
+      href: WebionRepository.LINKEDIN,
       icon: <LinkedInIcon fontSize="inherit" aria-label="linkedin button" />
     },
     {
-      href: "https://github.com/webion-hub",
+      href: WebionRepository.GITHUB,
       icon: <GitHubIcon fontSize="inherit" aria-label="github button"/>
     },
   ]
@@ -79,8 +80,8 @@ export default function WebionFooter() {
       sectionsProps={sections}
       socialsProps={socials}
       privacyLink={t("privacy-link")}
-      extraText={t("p-iva")}
-      mailLink="webionsrl@legalmail.it"
+      extraText={`P.Iva/CF ${WebionRepository.IVA}`}
+      mailLink={WebionRepository.PEC}
     />
   )
 }

@@ -101,6 +101,7 @@ export * from './components/CookiePopup';
 export * from './components/FullScreenLoading';
 export * from './components/Paragraph';
 export * from './components/BasicThemeButton';
+export * from './components/SpeedDial';
 
 export * from './components/search_bar/CategorySearchBar';
 

@@ -34,19 +34,32 @@ export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps
       color="secondary"
       sx={{
         '.MuiBadge-badge': {
-          "@keyframes grow": {
+          "@keyframes grow-badge": {
             "0%": {
-              transform: `scale(0) translate(${props.badgeXOffset}px, ${props.badgeYOffset}px)`,
+              transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(0)`,
+            },
+            "40%": {
+              transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(1.2)`,
+            },
+            "60%": {
+              transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(0.8)`,
+            },
+            "80%": {
+              transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(1.2)`,
             },
             "100%": {
-              transform: `scale(1) translate(${props.badgeXOffset}px, ${props.badgeYOffset}px)`,
+              transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(1)`,
             },
           },
           width: size,
           height: size,
-          transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px)`,
+          transformOrigin: 'center',
+          transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(0)`,
           borderRadius: "100%",
-          animation: `grow ${props.animationTimeout}ms cubic-bezier(0.84, 0.01, 0.31, 1.45)`,
+          animation: props.animateBadge
+            ? `grow-badge ${props.animationTimeout}ms ease-in-out forwards`
+            : '',
+          animationDelay: `${props.animationDelay}ms`,
           boxShadow: theme => `0px 0px 0 5px ${props.badgeColor ?? theme.palette.background.default}`
         },
         justifyContent: 'center'

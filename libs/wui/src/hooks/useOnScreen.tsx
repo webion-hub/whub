@@ -1,16 +1,21 @@
 import React, { useEffect } from "react"
 
-export function useOnScreen(ref: React.RefObject<any>, oneTime: boolean) {
+interface Options {
+  readonly oneTime?: boolean,
+  readonly observeOptions?: IntersectionObserverInit,
+}
+
+export function useOnScreen(ref: React.RefObject<any>, options?: Options) {
   const [isIntersecting, setIntersecting] = React.useState(false)
   const isIntersectingRef = React.useRef(isIntersecting)
 
   const observer = new IntersectionObserver(([entry]) => {
-    if(oneTime && isIntersectingRef.current)
+    if(options?.oneTime && isIntersectingRef.current)
       return;
 
     isIntersectingRef.current = entry.isIntersecting
     setIntersecting(entry.isIntersecting)
-  })
+  }, options?.observeOptions)
 
   useEffect(() => {
     observer.observe(ref.current)
