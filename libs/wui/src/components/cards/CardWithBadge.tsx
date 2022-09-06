@@ -16,6 +16,9 @@ export interface CardWithBadgeProps {
   readonly height?: number;
   readonly BadgeProps?: BadgeProps;
   readonly badgeColor?: string;
+  readonly animateBadge?: boolean;
+  readonly animationDelay?: number;
+  readonly animationTimeout?: number;
 }
 
 export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps>((props, ref) => {
@@ -31,10 +34,19 @@ export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps
       color="secondary"
       sx={{
         '.MuiBadge-badge': {
+          "@keyframes grow": {
+            "0%": {
+              transform: `scale(0) translate(${props.badgeXOffset}px, ${props.badgeYOffset}px)`,
+            },
+            "100%": {
+              transform: `scale(1) translate(${props.badgeXOffset}px, ${props.badgeYOffset}px)`,
+            },
+          },
           width: size,
           height: size,
-          borderRadius: "100%",
           transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px)`,
+          borderRadius: "100%",
+          animation: `grow ${props.animationTimeout}ms cubic-bezier(0.84, 0.01, 0.31, 1.45)`,
           boxShadow: theme => `0px 0px 0 5px ${props.badgeColor ?? theme.palette.background.default}`
         },
         justifyContent: 'center'
@@ -58,4 +70,5 @@ export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps
 CardWithBadge.defaultProps = {
   width: 290,
   height: 320,
+  animateBadge: false
 }

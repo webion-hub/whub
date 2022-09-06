@@ -8,7 +8,7 @@ const FooterLinkTitle = (props: TypographyProps) => (
   <Typography
     variant="h6"
     marginBottom={1}
-    {...props}
+    component="p"
   >
     {props.children}
   </Typography>
@@ -88,12 +88,14 @@ export default function SimmFooter() {
               color="primary"
               target="_blank"
               href="https://www.facebook.com/simmimballaggi/"
+              aria-label="facebook icon"
             >
               <Facebook/>
             </IconButton>
             <IconButton
               color="primary"
               target="_blank"
+              aria-label="youtube icon"
               href="https://www.youtube.com/channel/UCNawmda-zHQCIeh20N5nslg"
             >
               <YouTube/>

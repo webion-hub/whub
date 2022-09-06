@@ -36,6 +36,7 @@ export * from './hooks/useForceRender';
 //Contexts
 export * from './contexts/ContextLanguage';
 export * from './contexts/GlobalDialogsContext';
+export * from './contexts/ThemeContext';
 
 //Libs
 export * from './lib/EventsDispatcher';
@@ -99,6 +100,7 @@ export * from './components/Stepper';
 export * from './components/CookiePopup';
 export * from './components/FullScreenLoading';
 export * from './components/Paragraph';
+export * from './components/BasicThemeButton';
 
 export * from './components/search_bar/CategorySearchBar';
 
