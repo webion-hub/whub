@@ -60,10 +60,10 @@ export default function LoginPage() {
   }
 
   return (
-    <Page 
+    <Page
       centered
       sx={{
-        marginTop: { xs: 16, md: 0 }
+        marginTop: { xs: 16, md: 8 }
       }}
     >
       <FormGroup
