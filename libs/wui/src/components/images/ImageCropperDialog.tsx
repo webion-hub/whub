@@ -42,7 +42,7 @@ export function ImageCropperDialog(props: ImageCropperDialogProps) {
     img.src = props.image
 
     img.onload = () => {
-      const border = img.width / 3
+      const border = img.width
 
       ctx.canvas.height = img.height + border;
       ctx.canvas.width = img.width + border;
