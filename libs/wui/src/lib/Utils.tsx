@@ -22,4 +22,13 @@ export class Utils {
   static capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  static stripHtml(html: string) {
+    const temp = document.createElement("div")
+    if(!temp)
+      return ''
+
+    temp.innerHTML = html
+    return temp.textContent || temp.innerText || ""
+  }
 }
