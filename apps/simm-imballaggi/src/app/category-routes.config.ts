@@ -1,6 +1,6 @@
 const categoryRoutes = {
-  materials: '',
-  machines: '',
+  materials: 'Macchine e materiali per proteggere',
+  machines: "Macchine per l'imballaggio",
 }
 
 export const homeCatergoryUrls = {
