@@ -20,13 +20,13 @@ export function ProductListItem(props: ProductListItem) {
       component="li"
       direction="row"
       alignItems="center"
-      onClick={props.onClick}
       sx={{
         width: '100%',
         justifyContent: 'space-between !important',
         ...props.sx
       }}
       {...listItemProps}
+      onClick={props.onClick}
     >
       <Stack
         spacing={2}
