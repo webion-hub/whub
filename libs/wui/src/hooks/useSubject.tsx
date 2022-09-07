@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import { BehaviorSubject } from "rxjs"
 
+export const useSubject = <T,>(initialValue: T) => {
+  return useRef(new BehaviorSubject<T>(initialValue)).current
+}
+
 export const useSubjectState = <T,>(initialValue: T) => {
   const subjectRef$ = useRef(new BehaviorSubject<T>(initialValue))
   const [state, setState] = useState<T>(initialValue)

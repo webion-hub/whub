@@ -57,3 +57,8 @@ export function Section(props: SectionProps) {
     </StyledSection>
   )
 }
+
+
+Section.defaultProps = {
+  id: ''
+}

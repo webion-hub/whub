@@ -21,7 +21,7 @@ export interface CategorySearchBarProps<T, G> {
   readonly groupBy?: (option: T) => string,
   readonly getOptionLabel?: (option: T | string) => string,
   readonly onOpen?: () => void,
-  readonly children: (props: React.HTMLAttributes<HTMLLIElement>, option: T) => JSX.Element,
+  readonly children: (props: React.HTMLAttributes<HTMLLIElement>, option: T, onClose: () => void) => JSX.Element,
 }
 
 export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
@@ -31,6 +31,7 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
   const [focusCategory, setFocusCategory] = React.useState<boolean>(false);
   const [focusAutocomplete, setFocusAutocomplete] = React.useState<boolean>(false);
   const [hover, setHover] = React.useState<boolean>(false);
+  const [open, setOpen] = React.useState<boolean>(false);
   const focus = focusAutocomplete || focusCategory
 
   const getColor = () => {
@@ -41,6 +42,14 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
       return '#000'
 
     return 'auto'
+  }
+
+  const onClose = () => {
+    setOpen(false)
+    setHover(false)
+    setFocusAutocomplete(false)
+    setFocusCategory(false);
+    (document.activeElement as HTMLElement).blur();
   }
 
   return (
@@ -76,10 +85,10 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
           setFocusAutocomplete(false)
         }}
         onBlur={() => setFocusCategory(false)}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
+        onMouseEnter={() => !focus && setHover(true)}
+        onMouseLeave={() => !focus && setHover(false)}
         onValueChange={v => props.onCategoryChange?.(v)}
-        sx={{ minWidth: 120 }}
+        sx={{ maxWidth: 180, width: '100%' }}
         selectSx={{
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
@@ -91,6 +100,7 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
         }}
       />
       <Autocomplete
+        open={open}
         fullWidth
         freeSolo
         filterOptions={options => options}
@@ -100,12 +110,16 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
         loading={props.loading}
         onOpen={() => props.onOpen?.()}
         onFocus={() => {
+          setOpen(true)
           setFocusAutocomplete(true)
           setFocusCategory(false)
         }}
-        onBlur={() => setFocusAutocomplete(false)}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
+        onBlur={() => {
+          setOpen(false)
+          setFocusAutocomplete(false)
+        }}
+        onMouseEnter={() => !focus && setHover(true)}
+        onMouseLeave={() => !focus && setHover(false)}
         componentsProps={{
           popper: {
             anchorEl: ref.current,
@@ -118,7 +132,9 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
           marginLeft: '-1px',
           marginRight: '-1px',
         }}
-        renderOption={props.children}
+        renderOption={(propsOptions, option) =>
+          props.children(propsOptions, option, () => onClose())
+        }
         renderInput={(params) => (
           <TextField
             {...params}

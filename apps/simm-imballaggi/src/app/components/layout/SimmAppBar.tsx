@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, Responser, useNavigator, useGlobalDialogs, MaybeShow } from "@whub/wui";
+import { CategorySearchBar, AppBar, AppBarContent, AppBarSection, AppBarLogo, Responser, useNavigator, useGlobalDialogs, MaybeShow, useSubjectState, useSubject } from "@whub/wui";
 import { Button, IconButton, ListItemIcon, ListItemText, Menu, MenuItem, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
 import { AddBoxRounded, LoginRounded, LogoutRounded, PersonRounded, TableRowsRounded } from "@mui/icons-material";
 import CallRounded from "@mui/icons-material/CallRounded";
@@ -11,6 +11,7 @@ import { useAuth, useShopApi } from "@whub/apis-react";
 import { Box } from "@mui/system";
 import { LoadingButton } from "@mui/lab";
 import { useTranslation } from "react-i18next";
+import { Subject, throttle, throttleTime } from "rxjs";
 
 const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((props, ref) => {
   const { openDialog } = useGlobalDialogs()
@@ -95,6 +96,7 @@ export default SimmAppbar
 
 export function ProductSearchBar() {
   const { clickNavigate, navigate } = useNavigator()
+  const searchSubject$ = useSubject<string>('')
   const shopApi = useShopApi()
   const { t } = useTranslation()
   const allCategory = t('all')
@@ -106,7 +108,17 @@ export function ProductSearchBar() {
 
   useEffect(() => {
     fetchCategories()
+
+    const sub = searchSubject$
+      .pipe(throttleTime(10))
+      .subscribe(val => setValue(val))
+
+    return () => sub.unsubscribe()
   }, [])
+
+  useEffect(() => {
+    fetchProducts()
+  }, [value])
 
   const getCategory = () => {
     return category === allCategory
@@ -114,14 +126,13 @@ export function ProductSearchBar() {
       : category
   }
 
-  const fetchProducts = (filter: string) => {
-    setValue(filter)
+  const fetchProducts = () => {
     setLoading(true)
 
     shopApi.products
       .search
       .filter({
-        query: filter,
+        query: value,
         category: getCategory(),
         skip: 0,
         take: 20,
@@ -154,9 +165,9 @@ export function ProductSearchBar() {
       getCategoryValue={option => option}
       categories={[...categories, allCategory]}
       onCategoryChange={setCategory}
-      onValueChange={fetchProducts}
-      onOpen={() => fetchProducts('')}
-      options={products}
+      onValueChange={value => searchSubject$.next(value)}
+      onOpen={() => fetchProducts()}
+      options={_(products).sortBy(p => p.category?.name).value()}
       loading={loading}
       groupBy={option => option.category?.name ?? t('other')}
       getOptionLabel={option =>
@@ -166,18 +177,24 @@ export function ProductSearchBar() {
       }
     >
       {
-        (props, option) =>
+        (props, option, onClose) =>
           <ProductListItem
-            key={_.uniqueId()}
+            key={option.id}
             listItemProps={{
               ...props,
               onClick: (e: Event) => e.preventDefault()
             }}
             product={option}
-            onClick={() => navigate(`/product/${option.id}`)}
+            onClick={() => {
+              navigate(`/product/${option.id}`)
+              onClose()
+            }}
           >
             <Button
-              onClick={clickNavigate(`/product/${option.id}`)}
+              onClick={e => {
+                clickNavigate(`/product/${option.id}`)(e)
+                onClose()
+              }}
             >
               {t('see')}
             </Button>
