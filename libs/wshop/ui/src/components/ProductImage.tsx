@@ -52,7 +52,7 @@ export function ProductImage(props: ProductImageProps) {
     if(!product)
       return []
 
-    return product.images.map(i => i.url)
+    return ProductUtils.getImages(product).map(i => i.url)
   }
 
   const getImage = () => {
