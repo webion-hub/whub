@@ -54,7 +54,7 @@ export function ProductImage(props: ProductImageProps) {
     if(!product)
       return []
 
-    return ProductUtils.getImages(shopApi, product).map(i => i.fullUrl)
+    return ProductUtils.getImages(product).map(i => i.url)
   }
 
   const getImage = () => {

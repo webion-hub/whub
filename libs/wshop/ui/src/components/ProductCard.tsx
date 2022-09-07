@@ -12,10 +12,9 @@ export interface ProductCardProps {
 
 export function ProductCard(props: ProductCardProps) {
   const { clickNavigate } = useNavigator()
-  const shopApi = useShopApi()
   const { t } = useTranslation()
-  const images = ProductUtils.getImages(shopApi, props.product)
-  const firstImage = images?.[0]?.fullUrl
+  const images = ProductUtils.getImages(props.product).map(i => i.url)
+  const firstImage = images?.[0]
 
   const { loading, srcLoaded } = useProgressiveImage(firstImage)
   const noImages = !srcLoaded
