@@ -79,7 +79,7 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onValueChange={v => props.onCategoryChange?.(v)}
-        sx={{ minWidth: 120 }}
+        sx={{ maxWidth: 180, width: '100%' }}
         selectSx={{
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
@@ -91,6 +91,7 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
         }}
       />
       <Autocomplete
+        open
         fullWidth
         freeSolo
         filterOptions={options => options}

@@ -67,7 +67,10 @@ export function ProductCard(props: ProductCardProps) {
             display: '-webkit-box',
             WebkitLineClamp: '3',
             WebkitBoxOrient: 'vertical',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            "& *": {
+              display: 'inline'
+            },
           }}
         >
           {parse(props.product.description ?? '')}
