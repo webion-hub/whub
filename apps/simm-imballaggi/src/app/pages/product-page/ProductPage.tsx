@@ -37,8 +37,10 @@ export function ProductPage() {
   }
 
   return (
-    <Page sx={{ padding: 1 }}>
-      <Section sx={{ padding: 0 }}>
+    <Page
+      sx={{ padding: 1 }}
+    >
+      <Section id="" sx={{ padding: 0 }}>
         <FullScreenLoading loading={loading}/>
         <MaybeShow
           show={!loading}
