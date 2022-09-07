@@ -43,8 +43,6 @@ export function ProductImage(props: ProductImageProps) {
 
   const zoom = 2
   const lensSize = 2 * ref.current.offsetWidth / 3
-
-  const shopApi = useShopApi()
   const { product, size, maxSize } = props
 
   const getImages = () => {
@@ -114,7 +112,7 @@ export function ProductImage(props: ProductImageProps) {
         })
       }}
       sx={{
-        zIndex: 1,
+        zIndex: 0,
         width: size,
         maxWidth: maxSize,
         aspectRatio: '1',

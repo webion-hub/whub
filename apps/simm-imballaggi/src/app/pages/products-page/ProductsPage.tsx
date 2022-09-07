@@ -62,87 +62,82 @@ export function ProductsPage() {
     <Page sx={{ padding: 1 }}>
       <Section sx={{ padding: 0 }}>
         <FullScreenLoading loading={loading}/>
-        <MaybeShow
-          show={!loading}
-          alternativeChildren={<LinearProgress/>}
+        <Stack
+          direction="column"
+          alignItems="center"
+          sx={{
+            width: '100%',
+            marginTop: { xs: 10, md: 0}
+          }}
         >
+          <ProductCategory categoryName={category} />
           <Stack
-            direction="column"
-            alignItems="center"
+            direction="row"
+            flexWrap='wrap'
+            alignContent="flex-start"
             sx={{
               width: '100%',
-              marginTop: { xs: 10, md: 0}
+              minHeight: {
+                xl: 461 * 2,
+                lg: 266 * 4,
+                md: 266 * 3,
+                sm: 266 * 2,
+                xs: 266 * 1,
+              },
+              maxWidth: {
+                xl: 266 * 5,
+                lg: 266 * 4,
+                md: 266 * 3,
+                sm: 266 * 2,
+                xs: 266 * 1,
+              },
+              "& > *": {
+                margin: 1
+              }
             }}
           >
-            <ProductCategory categoryName={category} />
-            <Stack
-              direction="row"
-              flexWrap='wrap'
-              alignContent="flex-start"
+            {
+              products.map((p, i) => {
+                if(!products?.[0])
+                  return null
+
+                return(
+                <ProductCard
+                  key={i}
+                  product={p}
+                />)
+              })
+            }
+          </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            sx={{ width: '100%' }}
+          >
+            <IconButton
+              disabled={page === 0}
+              onClick={() => setPage(page - 1)}
+            >
+              <ChevronLeftRounded/>
+            </IconButton>
+            <Typography
               sx={{
                 width: '100%',
-                minHeight: {
-                  xl: 461 * 2,
-                  lg: 266 * 4,
-                  md: 266 * 3,
-                  sm: 266 * 2,
-                  xs: 266 * 1,
-                },
-                maxWidth: {
-                  xl: 266 * 5,
-                  lg: 266 * 4,
-                  md: 266 * 3,
-                  sm: 266 * 2,
-                  xs: 266 * 1,
-                },
-                "& > *": {
-                  margin: 1
-                }
+                maxWidth: 300
               }}
+              align="center"
             >
-              {
-                products.map((p, i) => {
-                  if(!products?.[0])
-                    return null
-
-                  return(
-                  <ProductCard
-                    key={i}
-                    product={p}
-                  />)
-                })
-              }
-            </Stack>
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="center"
-              sx={{ width: '100%' }}
+              Pagina {page + 1} / {Math.ceil(totalProducts / take)}
+            </Typography>
+            <IconButton
+              disabled={totalPages === page}
+              onClick={() => setPage(page + 1)}
             >
-              <IconButton
-                disabled={page === 0}
-                onClick={() => setPage(page - 1)}
-              >
-                <ChevronLeftRounded/>
-              </IconButton>
-              <Typography
-                sx={{
-                  width: '100%',
-                  maxWidth: 300
-                }}
-                align="center"
-              >
-                Pagina {page + 1}
-              </Typography>
-              <IconButton
-                disabled={totalPages === page}
-                onClick={() => setPage(page + 1)}
-              >
-                <ChevronRightRounded/>
-              </IconButton>
-            </Stack>
+              <ChevronRightRounded/>
+            </IconButton>
           </Stack>
-        </MaybeShow>
+        </Stack>
       </Section>
     </Page>
   )
