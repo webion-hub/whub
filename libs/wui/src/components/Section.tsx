@@ -30,9 +30,9 @@ export function Section(props: SectionProps) {
   const background: SxProps<Theme> = {
     "&::after": {
       content: "''",
-      width: '100vw',
       position: 'absolute',
       height: '100%',
+      width: '100vw',
       zIndex: 0,
       background: theme =>
         props.background ??
@@ -48,7 +48,7 @@ export function Section(props: SectionProps) {
     <StyledSection
       id={props.id}
       sx={{
-        maxWidth: theme => props.maxWidth ?? theme.layoutMaxWidth?.section,
+        maxWidth: props.maxWidth,
         ...backgroundSx,
         ...props.sx,
       }}

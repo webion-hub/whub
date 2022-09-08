@@ -99,6 +99,7 @@ export * from './components/Stepper';
 export * from './components/CookiePopup';
 export * from './components/FullScreenLoading';
 export * from './components/Paragraph';
+export * from './components/ScrollToTop';
 
 export * from './components/search_bar/CategorySearchBar';
 

@@ -5,8 +5,10 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { useNavigate } from "react-router-dom";
 
 export default function WebionFooter() {
+  const navigate = useNavigate()
   const {t} = useTranslation()
   const sections: WuiFooterSectionProps[] = [
     {
@@ -16,18 +18,22 @@ export default function WebionFooter() {
           {
             text: t("navbar-button1"),
             href: "/#home",
+            onClick: () => navigate('/#home')
           },
           {
             text: t("navbar-button2"),
             href: "/#services",
+            onClick: () => navigate('/#services')
           },
           {
             text: t("navbar-button3"),
             href: "/#projects",
+            onClick: () => navigate('/#projects')
           },
           {
             text: t("navbar-button5"),
             href: "/#contacts",
+            onClick: () => navigate('/#contacts')
           },
       ]
     },
