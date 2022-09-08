@@ -103,6 +103,7 @@ const ScrollSpyDot = (props: ScrollSpyDotProps) => {
       <TimelineDot
         sx={{
           padding: 0,
+          transition: '0.25s background',
           background: theme => props.selected
             ? theme.palette.primary.contrastText
             : theme.palette.primary.main
@@ -113,6 +114,7 @@ const ScrollSpyDot = (props: ScrollSpyDotProps) => {
           href={props.href ?? ''}
           onClick={props.onClick}
           sx={{
+            transition: '0.25s color',
             color: theme => props.selected
               ? theme.palette.primary.main
               : theme.palette.primary.contrastText
