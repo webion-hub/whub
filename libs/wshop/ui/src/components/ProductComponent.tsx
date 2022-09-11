@@ -221,6 +221,7 @@ export function ProductComponent(props: ProductComponentProps) {
                 <Typography
                   variant="caption"
                   color="text.secondary"
+                  sx={{ textTransform: 'uppercase' }}
                 >
                   {parse(v)}
                 </Typography>

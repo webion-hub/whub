@@ -1,6 +1,6 @@
 import { Button, Paper, Stack, TextField, Typography } from "@mui/material"
 import { ProductDetail } from "@whub/wshop-api"
-import { InputBaseProps, InputValidator, TextEditor, Validators } from "@whub/wui"
+import { InputBaseProps, InputValidator, TextEditor, Utils, Validators } from "@whub/wui"
 import { useEffect, useState } from "react"
 
 export function ProductDetailsInput() {
@@ -10,11 +10,12 @@ export function ProductDetailsInput() {
       value={[] as ProductDetail[]}
       validators={[
         Validators.customValidator((details: ProductDetail[]) => {
-          return details.every(d =>
-            Validators.required(d.title) &&
-            Validators.max(512)(d.title) &&
-            Validators.max(4096)(d.description)
-          )
+          return details.every(d => {
+            const desc = Utils.stripHtml(d.description ?? '')
+            return Validators.required(d.title) &&
+              Validators.max(512)(d.title) &&
+              Validators.max(4096)(desc)
+          })
         })
       ]}
     >

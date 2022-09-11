@@ -29,7 +29,7 @@ export function EditProduct() {
       .then(async res => {
         const product = res.data
         const files = await ProductUtils.getAttachmentsFiles(shopApi, product)
-        const images = await ProductUtils.getImagesFiles(shopApi, product)
+        const images = await ProductUtils.getImagesFiles(product)
 
         setPreviewProduct({
           ...product,
