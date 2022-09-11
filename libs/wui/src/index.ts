@@ -78,8 +78,7 @@ export * from './components/cards/CardWithBadge';
 export * from './components/cards/CardsGroup';
 export * from './components/cards/ImageCard';
 
-export * from './components/slideshow/Slideshow';
-export * from './components/slideshow/SlideshowImage';
+export * from './components/Slideshow';
 
 export * from './components/dialogs/DialogTitleCross';
 export * from './components/dialogs/AreYouSureDialog';
