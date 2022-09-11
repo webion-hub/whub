@@ -1,9 +1,11 @@
-import { Page, Section, Sections } from "@whub/wui";
+import { Page, Section, Sections, useBackgroundWaves } from "@whub/wui";
 import Home from "./Home";
 import MapSection from "./MapSection";
 
 
 export default function Homepage() {
+  const waves = useBackgroundWaves('#eaeaea')
+
   return (
     <Page>
       <Sections>
@@ -18,11 +20,7 @@ export default function Homepage() {
               height: '100%',
               top: 0,
               zIndex: 0,
-              background: 'url(assets/images/homepageImage.webp)',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center center',
-              backgroundSize: 'cover',
-              filter: { xs: 'brightness(0.4)', lg: 'none' }
+              ...waves,
             }
           }}
         >
