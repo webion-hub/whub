@@ -1,5 +1,5 @@
-import { Box, Typography, Link, useTheme, Stack } from "@mui/material";
-import { Form, FormGroup, Img, InputValidator, PrivacyCheckBox, ResponserGrid, Validators, WuiGrid } from "@whub/wui";
+import { Box, Typography, Link, useTheme, Stack, Button } from "@mui/material";
+import { Form, FormGroup, Img, InputValidator, PrivacyCheckBox, ResponserGrid, SquareButton, Validators, WuiGrid } from "@whub/wui";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LightModeLoadingButton } from "../light_mode/LightModeLoadingButton";
@@ -10,6 +10,7 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import ReactPixel from 'react-facebook-pixel';
 import { useContactUsApi } from "@whub/apis-react";
 import { WebionRepository } from "../../lib/WebionRepositiory";
+import { AdbRounded, FactoryRounded, LanguageRounded, PendingRounded } from "@mui/icons-material";
 
 const TextfieldBase = ({...props}) => {
   const theme = useTheme()
@@ -55,192 +56,66 @@ export default function Contacts() {
 
 
   return (
-    <Box
-      sx={{
-        backgroundColor: { xs: "white", sm: "white", md: "transparent" },
-        backgroundImage: {
-          md: "url('assets/images/circle.svg')",
-          xs: "none",
-        },
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        paddingTop: 0,
-        marginTop: 0,
-        borderRadius: {
-          md: 0,
-          sm: `${borderRadius} 0px 0px ${borderRadius}`,
-          xs: `${borderRadius} ${borderRadius} 0px 0px`,
-        },
-        width: "100%",
-      }}
+    <Stack
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      spacing={3}
+      sx={{ paddingBlock: 8 }}
     >
-      <ResponserGrid
-        type="upper"
-        size="md"
-        sx={{
-          maxWidth: 1100,
-          minHeight: 800,
-          margin: "auto",
-          paddingBottom: 4,
-          paddingTop: 8,
-          width: "90%",
-        }}
+      <Typography
+        variant="h2"
+        component="h4"
+        align="center"
+        color="primary.dark"
       >
-        <Box sx={{
-          width: '50%',
-          margin: "auto",
-        }}>
-          <Img
-            alt="Contact"
-            src="assets/images/contact.svg"
-            sx={{ width:"100%", margin:"auto" }}
-          />
-        </Box>
+        Quale servizio hai bisogno?
+      </Typography>
+      <Typography
+        align="center"
+        color="info.dark"
+        variant="body2"
+        sx={{ maxWidth: 800 }}
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper nisi quis dolor tincidunt, a venenatis libero bibendum. Nulla tristique at lacus vitae rutrum. Nam hendrerit nisl id justo sollicitudin, vel pharetra justo hendrerit.
+      </Typography>
 
-        <Stack
-          direction="column"
-          spacing={4}
-          sx={{ width: { sx: "95%", md: "50%" } }}
+      <Stack
+        direction="row"
+        spacing={2}
+      >
+        <SquareButton
+          size={102}
+          icon={LanguageRounded}
+          label="Sito web"
+        />
+        <SquareButton
+          size={102}
+          icon={AdbRounded}
+          label="App"
+        />
+        <SquareButton
+          size={102}
+          icon={FactoryRounded}
+          label="Industria 4.0"
+        />
+        <SquareButton
+          size={102}
+          icon={PendingRounded}
+          label="Altro"
+        />
+      </Stack>
+      <Stack
+        direction="row"
+        justifyContent="flex-end"
+        sx={{ width: '100%' }}
+      >
+        <Button
+          variant="contained"
         >
-          <Typography
-            variant="h2"
-            color="primary.dark"
-            sx={{ textAlign: { xs: "center", lg: "left" } }}
-          >
-            {t("contact-us-title")}
-          </Typography>
-          <Typography
-            color={textColor}
-            variant="body2"
-            sx={{ textAlign: { xs: "center", lg: "left" } }}
-          >
-            {t("contact-us-description")}
-            <Link
-              href={WebionRepository.HREF_PHONE}
-              sx={{
-                color: textColor,
-                textDecoration: "none",
-                borderBottom: `1px solid ${textColor}`
-              }}
-            >
-              {WebionRepository.PHONE}
-            </Link>
-          </Typography>
-          <FormGroup
-            onSubmit={handleSubmit}
-            sx={{ "& > *": { marginBlock: theme.spacing(0.5, '!important') }}}
-          >
-            <InputValidator
-              value=''
-              name="name"
-              validators={[Validators.required]}
-            >
-              <TextfieldBase
-                required
-                label={t("name")}
-                sx={{ width: nameSurnameWidth, marginRight: 0.5 }}
-              />
-            </InputValidator>
-
-            <InputValidator
-              value=''
-              name="surname"
-              validators={[Validators.required]}
-            >
-              <TextfieldBase
-                required
-                label={t("surname")}
-                sx={{ width: nameSurnameWidth, marginLeft: 0.5 }}
-              />
-            </InputValidator>
-
-            <InputValidator
-              value=''
-              name="phoneNumber"
-              validators={[Validators.isATelephoneNumber]}
-            >
-              <TextfieldBase
-                fullWidth
-                label={t("phone-number")}
-              />
-            </InputValidator>
-
-            <InputValidator
-              value=''
-              name="email"
-              validators={[Validators.required, Validators.isAnEmail]}
-            >
-              <TextfieldBase
-                required
-                fullWidth
-                label={t("email")}
-              />
-            </InputValidator>
-
-            <InputValidator
-              value=''
-              name="message"
-              validators={[Validators.required]}
-            >
-              <TextfieldBase
-                required
-                fullWidth
-                multiline
-                rows={4}
-                label={t("message")}
-              />
-            </InputValidator>
-
-            <InputValidator
-              name="privacy"
-              value={true}
-              validators={[Validators.required]}
-            >
-              <PrivacyCheckBox
-                privacyUrl="/policies-licenses"
-                color='#555'
-              />
-            </InputValidator>
-
-            <WuiGrid
-              container
-              direction="row"
-              alignItems="center"
-              spacing={2}
-            >
-              <LightModeLoadingButton
-                loading={loading}
-                type="submit"
-                variant="contained"
-                size="large"
-                loadingPosition="start"
-                sx={{ width: 190, zIndex: 1 }}
-                startIcon={<SendRoundedIcon/>}
-                onClick={() => {
-                  ReactPixel.track('Contact');
-                }}
-              >
-                {t("contact-us-button")}
-              </LightModeLoadingButton>
-              <Typography
-                color={textColor}
-                variant="body2"
-                sx={{
-                  opacity: success ? 1 : 0,
-                  transform: success ? 'translateX(0%)' : 'translateX(-100%)',
-                  transition: theme => `
-                    ${theme.transitions.duration.standard}ms opacity ease-in-out,
-                    ${theme.transitions.duration.standard}ms transform ease-in-out
-                  `,
-                }}
-              >
-                {t('message-sent')}
-              </Typography>
-            </WuiGrid>
-
-          </FormGroup>
-        </Stack>
-      </ResponserGrid>
-    </Box>
+          Avanti
+        </Button>
+      </Stack>
+    </Stack>
   );
 }

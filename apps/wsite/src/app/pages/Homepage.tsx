@@ -1,8 +1,8 @@
 import { AccountTreeRounded, AddRounded, ContactPhoneRounded, GroupsRounded, HomeRounded, InfoRounded, SettingsSuggestRounded } from "@mui/icons-material";
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator } from "@mui/lab";
-import { Box, ButtonBase, Divider, IconButton, Stack, Tooltip, useTheme } from "@mui/material";
+import { Box, ButtonBase, Divider, IconButton, Stack, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { Page, Section, Sections, useLayout } from "@whub/wui";
+import { MaybeShow, Page, Section, Sections, useLayout } from "@whub/wui";
 import { useEffect } from "react";
 import ReactPixel from 'react-facebook-pixel';
 import { pcbBackground } from "../components/backgrounds/pcbBackground";
@@ -17,6 +17,7 @@ import Services from "../components/sections/Services";
 
 export default function Homepage() {
   const theme = useTheme();
+  const hideScrollSpy = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     ReactPixel.track('ViewContent');
@@ -24,16 +25,20 @@ export default function Homepage() {
 
   return (
     <Page sx={{ marginTop: 0, margin: "Auto" }}>
-      <NavigationScrollSpy
-        dots={[
-          { Icon: HomeRounded, title: 'Home', section: 'home' },
-          { Icon: GroupsRounded, title: 'Cosa facciamo', section: 'about-us' },
-          { Icon: InfoRounded, title: 'Servizi', section: 'services' },
-          { Icon: AccountTreeRounded, title: 'Progetti', section: 'projects' },
-          { Icon: SettingsSuggestRounded, title: 'Come lavoriamo', section: 'how-we-work' },
-          { Icon: ContactPhoneRounded, title: 'Contattaci', section: 'contacts' },
-        ]}
-      />
+      <MaybeShow
+        show={!hideScrollSpy}
+      >
+        <NavigationScrollSpy
+          dots={[
+            { Icon: HomeRounded, title: 'Home', section: 'home' },
+            { Icon: GroupsRounded, title: 'Cosa facciamo', section: 'about-us' },
+            { Icon: InfoRounded, title: 'Servizi', section: 'services' },
+            { Icon: AccountTreeRounded, title: 'Progetti', section: 'projects' },
+            { Icon: SettingsSuggestRounded, title: 'Come lavoriamo', section: 'how-we-work' },
+            { Icon: ContactPhoneRounded, title: 'Contattaci', section: 'contacts' },
+          ]}
+        />
+      </MaybeShow>
       <Sections>
         <Section
           id="home"
@@ -57,13 +62,11 @@ export default function Homepage() {
         </Section>
         <Section
           id="projects"
-          showBackground
         >
           <Projects />
         </Section>
         <Section
           id="how-we-work"
-          showBackground
           maxWidth="100%"
         >
           <HowWeWork />
@@ -72,6 +75,7 @@ export default function Homepage() {
           id="contacts"
           maxWidth="100%"
           showBackground
+          background="white"
           sx={{
             padding: 0,
             width: '100vw'
@@ -163,11 +167,15 @@ function ScrollSpy(props: ScrollSpyProps) {
     >
       <ScrollSpyConnector />
       {
-        props.dots.map(d => (
-          <TimelineItem>
+        props.dots.map((d, i) => (
+          <TimelineItem key={i}>
             <TimelineSeparator>
               <ScrollSpyDot {...d}/>
-              <ScrollSpyConnector/>
+              <MaybeShow
+                show={i !== (props.dots.length - 1)}
+              >
+                <ScrollSpyConnector/>
+              </MaybeShow>
             </TimelineSeparator>
           </TimelineItem>
         ))

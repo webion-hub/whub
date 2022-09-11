@@ -59,7 +59,6 @@ export function Section(props: SectionProps) {
     if(!sectionIn)
       return
 
-    console.log(props.id)
     setSection(props.id ?? '')
   }, [sectionIn])
 
