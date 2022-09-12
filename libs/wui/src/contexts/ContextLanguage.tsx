@@ -40,7 +40,7 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
 
   useEffect(() => {
     const lang = localStorage.getItem('language')
-    const language = lang === 'null'
+    const language = lang === 'null' || !lang
       ? Language.getLocalLanguage()
       : lang as LanguagesCodes
 

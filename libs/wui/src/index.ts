@@ -36,6 +36,7 @@ export * from './hooks/useForceRender';
 //Contexts
 export * from './contexts/ContextLanguage';
 export * from './contexts/GlobalDialogsContext';
+export * from './contexts/ThemeContext';
 
 //Libs
 export * from './lib/EventsDispatcher';
@@ -77,8 +78,7 @@ export * from './components/cards/CardWithBadge';
 export * from './components/cards/CardsGroup';
 export * from './components/cards/ImageCard';
 
-export * from './components/slideshow/Slideshow';
-export * from './components/slideshow/SlideshowImage';
+export * from './components/Slideshow';
 
 export * from './components/dialogs/DialogTitleCross';
 export * from './components/dialogs/AreYouSureDialog';
@@ -99,7 +99,8 @@ export * from './components/Stepper';
 export * from './components/CookiePopup';
 export * from './components/FullScreenLoading';
 export * from './components/Paragraph';
-export * from './components/ScrollToTop';
+export * from './components/BasicThemeButton';
+export * from './components/SpeedDial';
 
 export * from './components/search_bar/CategorySearchBar';
 

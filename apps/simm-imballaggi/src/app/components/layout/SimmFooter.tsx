@@ -49,7 +49,7 @@ const LinksFooterColumn = (props: ChildrenProps) => {
 }
 
 export default function SimmFooter() {
-  const { clickNavigate, navigate } = useNavigator();
+  const { clickNavigate } = useNavigator();
   const { t } = useTranslation();
 
   return(
@@ -113,14 +113,14 @@ export default function SimmFooter() {
             {t("company")}
             </FooterLinkTitle>
             <FooterLink
-              href="/"
-              onClick={clickNavigate('/')}
+              href="/#home"
+              onClick={clickNavigate('/#home')}
             >
               {t("home")}
             </FooterLink>
             <FooterLink
               href="/#chi-siamo"
-              onClick={() => navigate('/#chi-siamo')}
+              onClick={clickNavigate('/#chi-siamo')}
             >
               {t("who-are-we")}
             </FooterLink>

@@ -41,15 +41,18 @@ export function EditProduct() {
   }
 
   return (
-    <Page loading={loading}>
-      {
-        previewProduct
-          ? <ProductHandler
-              mode='update'
-              previewProduct={previewProduct}
-            />
-          : <></>
-      }
+    <Page>
+      <Section>
+      <FullScreenLoading loading={loading}/>
+        {
+          previewProduct
+            ? <ProductHandler
+                mode='update'
+                previewProduct={previewProduct}
+              />
+            : <></>
+        }
+      </Section>
     </Page>
   )
 }

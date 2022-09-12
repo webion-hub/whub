@@ -20,18 +20,17 @@ export const BaseCard = React.forwardRef<HTMLDivElement, BaseCardProps>((props, 
       container
       direction="column"
       alignItems="center"
-      sx={{ 
-        width: props.width, 
-        height: props.height, 
+      sx={{
+        width: props.width,
+        height: props.height,
         maxWidth: props.maxWidth,
         padding: 2,
-        ...props.sx 
+        ...props.sx
       }}
     >
       {props.children}
       <Typography
         className="WuiBaseCard-title"
-        color="white"
         variant="h4"
         component="h3"
         align="center"

@@ -2,9 +2,7 @@ import { ContactUsApi } from '@whub/apis-contactus';
 import { ApiWrapper, AuthWrapper } from '@whub/apis-react';
 import { SimpleAuthApi } from '@whub/simple-auth';
 import { WShopApi } from '@whub/wshop-api';
-import { ScrollToTop } from '@whub/wui';
 import * as ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import { App } from './app/app';
 
 const root = ReactDOM.createRoot(
@@ -29,10 +27,7 @@ root.render(
     }}
   >
     <AuthWrapper>
-      <BrowserRouter>
-        <ScrollToTop/>
-        <App/>
-      </BrowserRouter>
+      <App/>
     </AuthWrapper>
   </ApiWrapper>
 );

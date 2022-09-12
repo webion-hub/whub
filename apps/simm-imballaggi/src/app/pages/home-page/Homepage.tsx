@@ -1,28 +1,16 @@
-import { Page, Section, Sections, useBackgroundWaves } from "@whub/wui";
+import { Page, Section, Sections } from "@whub/wui";
 import Home from "./Home";
 import MapSection from "./MapSection";
 
 
 export default function Homepage() {
-  const waves = useBackgroundWaves('#eaeaea')
-
   return (
     <Page>
       <Sections>
         <Section
           id="home"
-          sx={{
-            padding: 0,
-            "&::after": {
-              content: "''",
-              position: 'absolute',
-              width: '100vw',
-              height: '100%',
-              top: 0,
-              zIndex: 0,
-              ...waves,
-            }
-          }}
+          maxWidth='100vw'
+          sx={{ padding: 0 }}
         >
           <Home/>
         </Section>
@@ -36,3 +24,4 @@ export default function Homepage() {
     </Page>
   );
 }
+
