@@ -126,7 +126,6 @@ export default function Home() {
         containerWidth={{ width: '100vw' }}
         itemWidth={{ width: '100vw' }}
         items={pages}
-        startIndex={0}
         color="#000"
       />
     </Stack>
