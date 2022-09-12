@@ -43,6 +43,10 @@ export function RotatingText(props: RotatingTextProps) {
               opacity: 0,
               transform: "translateY(-100%)"
             },
+            "5%": {
+              opacity: 0,
+              transform: "translateY(-100%)"
+            },
             "15%": {
               opacity: 1,
               transform: "translateY(0%)"
@@ -50,6 +54,10 @@ export function RotatingText(props: RotatingTextProps) {
             "85%": {
               opacity: 1,
               transform: "translateY(0%)"
+            },
+            "95%": {
+              opacity: 0,
+              transform: "translateY(100%)"
             },
             "100%": {
               opacity: 0,

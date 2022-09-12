@@ -80,16 +80,16 @@ export function ProductCard(props: ProductCardProps) {
             {parse(props.product.description ?? '')}
           </Typography>
         </CardContent>
+        <CardActions>
+          <Button
+            size="small"
+            href={`/product/${props.product.id}`}
+            onClick={clickNavigate(`/product/${props.product.id}`)}
+          >
+            {t('see')}
+          </Button>
+        </CardActions>
       </CardActionArea>
-      <CardActions>
-        <Button
-          size="small"
-          href={`/product/${props.product.id}`}
-          onClick={clickNavigate(`/product/${props.product.id}`)}
-        >
-          {t('see')}
-        </Button>
-      </CardActions>
     </Card>
   )
 }

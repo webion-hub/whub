@@ -2,20 +2,20 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 import en from "../assets/locales/en-EN.json";
-import es from "../assets/locales/es-ES.json";
 import it from "../assets/locales/it-IT.json";
+import es from "../assets/locales/es-ES.json";
 
 import { ThemeProvider } from '@mui/material/styles';
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CssBaseline, GlobalStyles } from '@mui/material';
-import { Guard, Guards } from "@whub/apis-react";
 import { CookiePopup, FullScreenLoading, GlobalDialogs, Language, LanguageWrapper, Layout } from "@whub/wui";
-import { ES, GB, IT } from "country-flag-icons/react/3x2";
-import React, { Suspense } from "react";
-import ContactsDialog from "./components/dialogs/ContactsDialog";
 import globalStyle from './theme/globalStyle';
 import theme from './theme/theme';
+import { Guard, Guards } from "@whub/apis-react";
+import React, { Suspense } from "react";
+import ContactsDialog from "./components/dialogs/ContactsDialog";
+import { ES, GB, IT } from "country-flag-icons/react/3x2";
 
 const SimmAppbar = React.lazy(() => import('./components/layout/SimmAppBar'))
 const SimmFooter = React.lazy(() => import('./components/layout/SimmFooter'))
@@ -87,44 +87,46 @@ export function App() {
               { code: 'es', flag: ES }
             ]}
           >
-            <Layout
-              AppBarComponent={<SimmAppbar/>}
-              FooterComponent={<SimmFooter/>}
-            >
-              <CookiePopup
-                name="simm-imballaggi"
-                privacyUrl="privacy"
-              />
-              <Suspense
-                fallback={ <FullScreenLoading loading/> }
+            <BrowserRouter>
+              <Layout
+                AppBarComponent={<SimmAppbar/>}
+                FooterComponent={<SimmFooter/>}
               >
-                <Routes>
-                  <Route path="/" element={<Homepage/>}/>
-                  <Route path="/privacy" element={<PrivacyPolicy/>}/>
-                  <Route path="/login"  element={<LoginPage/>}/>
-                  <Route path="/product/:id"  element={<ProductPage/>}/>
-                  <Route path="/products"  element={<ProductsPage/>}/>
-                  <Route
-                    path="/add-product"
-                    element={
-                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<AddProduct/>}/>
-                    }
-                  />
-                  <Route
-                    path="/edit-product/:id"
-                    element={
-                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<EditProduct/>}/>
-                    }
-                  />
-                  <Route
-                    path="/products-table"
-                    element={
-                      <Guard canNavigate={isAdminGuard} redirectTo="/" el={<TableProductsPage/>}/>
-                    }
-                  />
-                </Routes>
-              </Suspense>
-            </Layout>
+                <CookiePopup
+                  name="simm-imballaggi"
+                  privacyUrl="privacy"
+                />
+                <Suspense
+                  fallback={ <FullScreenLoading loading/> }
+                >
+                  <Routes>
+                    <Route path="/" element={<Homepage/>}/>
+                    <Route path="/privacy" element={<PrivacyPolicy/>}/>
+                    <Route path="/login"  element={<LoginPage/>}/>
+                    <Route path="/product/:id"  element={<ProductPage/>}/>
+                    <Route path="/products"  element={<ProductsPage/>}/>
+                    <Route
+                      path="/add-product"
+                      element={
+                        <Guard canNavigate={isAdminGuard} redirectTo="/" el={<AddProduct/>}/>
+                      }
+                    />
+                    <Route
+                      path="/edit-product/:id"
+                      element={
+                        <Guard canNavigate={isAdminGuard} redirectTo="/" el={<EditProduct/>}/>
+                      }
+                    />
+                    <Route
+                      path="/products-table"
+                      element={
+                        <Guard canNavigate={isAdminGuard} redirectTo="/" el={<TableProductsPage/>}/>
+                      }
+                    />
+                  </Routes>
+                </Suspense>
+              </Layout>
+            </BrowserRouter>
           </LanguageWrapper>
       </GlobalDialogs>
     </ThemeProvider>
