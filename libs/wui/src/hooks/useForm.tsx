@@ -1,9 +1,6 @@
-import React from "react";
-import { FormValues } from "../abstractions/form/FormValues";
-import { Form } from "../lib/Form";
+import { useContext } from "react"
+import { FormGroupContext } from "../components/form/FormGroup"
 
-export const useForm = (values: FormValues) => {
-  const [, setFormValues] = React.useState<FormValues>(values);
-  const form = React.useRef(new Form(setFormValues, values));
-  return form.current;
-};
+export const useForm = () => {
+  return useContext(FormGroupContext).form
+}

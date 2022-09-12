@@ -34,7 +34,7 @@ export function Slideshow(props: SlideshowProps) {
   const handleDrag = () => {
     if(!ref.current)
       return
-      
+
     const currentImgPosition = ref.current.clientWidth * idxRef.current
     const threshold = ref.current.clientWidth/4
 
@@ -67,7 +67,7 @@ export function Slideshow(props: SlideshowProps) {
 
     return () => scrollSub$.unsubscribe()
   }, [ref.current])
-  
+
 
   const handleScroll = (prev = false) => {
     if (!ref.current)
@@ -76,8 +76,8 @@ export function Slideshow(props: SlideshowProps) {
     const backOrNextFactor = prev ? -1 : 1
     const nextImageIdx = imageIdx + backOrNextFactor;
 
-    const inRangeIdx = nextImageIdx < 0 
-      ? nextImageIdx + props.imagesProps.length 
+    const inRangeIdx = nextImageIdx < 0
+      ? nextImageIdx + props.imagesProps.length
       : nextImageIdx % props.imagesProps.length;
 
     handleImageIdx(inRangeIdx);
@@ -106,29 +106,33 @@ export function Slideshow(props: SlideshowProps) {
             ></SlideshowImage>
           ))}
         </Grid>
-        <Grid 
-          container 
+        <Grid
+          container
           justifyContent="space-between"
           sx={{
             width: '100%',
             paddingInline: 2
           }}
         >
-          <Box>
+          <Box width={40}>
             <IconButton
               onClick={() => handleScroll(true)}
-              sx={{ 
+              aria-label="left"
+              sx={{
+                width: 40,
                 marginBlock: "auto",
-                marginInline: 0, 
+                marginInline: 0,
               }}
             >
               <ChevronLeftRoundedIcon sx={props.iconSx} />
             </IconButton>
           </Box>
-          <Box>
+          <Box width={40}>
             <IconButton
+              aria-label="right"
               onClick={() => handleScroll()}
-              sx={{ 
+              sx={{
+                width: 40,
                 marginBlock: "auto",
                 marginInline: 0,
               }}
@@ -140,11 +144,11 @@ export function Slideshow(props: SlideshowProps) {
       </Grid>
       <Typography
         textAlign="center"
-        color="text.primary"
-        sx={{ 
+        color="text.secondary"
+        sx={{
           marginBlock: 5,
-          marginInline: "auto", 
-          width: "80%" 
+          marginInline: "auto",
+          width: "80%"
         }}
       >
         {props.imagesProps[imageIdx].label}
@@ -158,17 +162,18 @@ export function Slideshow(props: SlideshowProps) {
       alternativeChildren={AlternativeChildren}
     >
       <Box sx={{ maxWidth: 1600, width: '100%', marginInline: 'auto' }}>
-        <Grid 
-          container 
-          alignItems="center" 
+        <Grid
+          container
+          alignItems="center"
           justifyContent="center"
         >
           <IconButton
             onClick={() => handleScroll(true)}
-            sx={{ 
+            aria-label="left"
+            sx={{
               marginBlock: "auto",
               marginInline: 0,
-            }} 
+            }}
           >
             <ChevronLeftRoundedIcon sx={{ ...props.iconSx, fontSize: "70px" }} />
           </IconButton>
@@ -187,9 +192,10 @@ export function Slideshow(props: SlideshowProps) {
               ></SlideshowImage>
             ))}
           </Grid>
-          <IconButton 
-            onClick={() => handleScroll()} 
-            sx={{ 
+          <IconButton
+            onClick={() => handleScroll()}
+            aria-label="right"
+            sx={{
               marginBlock: "auto",
               marginInline: 0,
             }}
@@ -199,11 +205,11 @@ export function Slideshow(props: SlideshowProps) {
         </Grid>
         <Typography
           textAlign="center"
-          color="text.primary"
+          color="text.secondary"
           sx={{
             marginBlock: 10,
             marginInline: "auto",
-            width: "60%" 
+            width: "60%"
           }}
         >
           {props.imagesProps[imageIdx].label}

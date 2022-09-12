@@ -2,14 +2,6 @@ import { createTheme } from "@mui/material/styles";
 import ReadexPro from "../../assets/fonts/ReadexPro-VariableFont_wght.ttf"
 
 import "@mui/material/styles/createPalette";
-declare module "@mui/material/styles/createPalette" {
-  interface Palette {
-    secondaryBackground?: Palette['background'];
-  }
-  interface PaletteOptions {
-    secondaryBackground?: PaletteOptions['background'];
-  }
-}
 
 const fontFamily = "'ReadexPro'"
 
@@ -21,22 +13,37 @@ const theme = createTheme({
       paper: "#060E2B",
     },
     secondaryBackground: {
-      default: '#020612'
+      default: '#020612',
     },
     primary: {
       main: "#1f4bff",
     },
     secondary: {
-      main: "rgba(255,255,255,0.1)",
+      main: "#757575",
       contrastText: '#fff'
     },
-    text: {   
-      primary: "rgba(255, 255, 255, 0.8)",
-      secondary: "#fff",
+    layout: {
+      footer: '#000',
+      appbar: '#040A20'
+    },
+    text: {
+      primary: "#fff",
+      secondary: "rgba(255, 255, 255, 0.8)",
     },
     info: {
       main: "#999999",
+      contrastText: '#fff'
     },
+  },
+  layoutMaxWidth: {
+    appbar: 1200,
+    footer: 1270,
+    section: 1600,
+  },
+  mixins: {
+    toolbar: {
+      height: 64,
+    }
   },
   typography: {
     fontFamily: [fontFamily, "sans-serif"].join(','),
@@ -94,6 +101,7 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
+          boxShadow: 'none',
           borderRadius: 0,
         }
       }
@@ -103,7 +111,7 @@ const theme = createTheme({
         paper: {
           borderRadius: 0,
           maxWidth: 250,
-          width: '100%' 
+          width: '100%'
         }
       }
     },
@@ -201,17 +209,17 @@ theme.typography.body1 = {
     fontSize: "20px",
   },
   [theme.breakpoints.down("sm")]: {
-    fontSize: "17px", 
+    fontSize: "17px",
   },
 };
 
 theme.typography.body2 = {
   fontFamily: fontFamily,
   [theme.breakpoints.up("md")]: {
-    fontSize: "19px",  
+    fontSize: "19px",
   },
   [theme.breakpoints.down("md")]: {
-    fontSize: "16px", 
+    fontSize: "16px",
   },
   [theme.breakpoints.down("sm")]: {
     fontSize: "15px",
@@ -221,10 +229,10 @@ theme.typography.body2 = {
 theme.typography.caption = {
   fontFamily: fontFamily,
   [theme.breakpoints.up("md")]: {
-    fontSize: "14px",  
+    fontSize: "14px",
   },
   [theme.breakpoints.down("md")]: {
-    fontSize: "13px", 
+    fontSize: "13px",
   },
   [theme.breakpoints.down("sm")]: {
     fontSize: "12px",

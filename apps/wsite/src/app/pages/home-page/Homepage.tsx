@@ -4,76 +4,114 @@ import Services from "./sections/Services";
 import Contacts from "./sections/Contacts";
 import Projects from "./sections/Projects";
 import HowWeWork from "./sections/HowWeWork";
-import { styled } from "@mui/system";
-import { Sections } from "@whub/wui";
+import { Page, Section, Sections } from "@whub/wui";
 import { pcbBackground } from "../../components/backgrounds/pcbBackground";
+import { useTheme } from "@mui/material";
+import { Box } from "@mui/system";
+import { useEffect } from "react";
+import ReactPixel from 'react-facebook-pixel';
 
-const Section = styled('section')(({theme}) => ({
-  paddingBlock: theme.spacing(8),
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  position: 'relative'
-}))
+
 
 export default function Homepage() {
+  const theme = useTheme();
+  useEffect(() => {
+    ReactPixel.track('ViewContent');
+  });
 
   return (
-    <Sections sx={{overflow: "hidden"}}>
-      <Section 
-        id="home"
+    <Page sx={{ marginTop: 0, backgroundColor: "black", margin: "Auto" }}>
+      <video
+        autoPlay
+        muted
+        loop
+        id="myVideo"
+        style={{
+          position: "fixed",
+          backgroundColor: "rgba(0,0,0,.5) !important",
+          width: '100vw',
+          height: '100vh',
+          maxHeight: '1200px',
+          objectFit: 'cover',
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
+      >
+        <source
+          src="../../../assets/images/background.webm"
+          type="video/mp4"
+          style={{
+            backgroundColor: "rgba(0,0,0,.5) !important",
+            width: "130%",
+          }}
+        />
+      </video>
+      <Sections
         sx={{
-          padding: 0,
-          backgroundImage: {
-            xs: "url('assets/images/backgroundMobile-min.webp')",
-            md: "url('assets/images/background-min.webp')",
-          },
-          backgroundPosition: {
-            xs: "45% 50%",
-            md: "calc(50% + 300px) 0px",
-          },
-          backgroundSize: "cover",
+          backgroundImage: "url(../../../assets/images/business)",
           backgroundRepeat: "no-repeat",
-          minHeight: "800px",
-        }
-      }>
-        <Home />
-      </Section>
-      <Section id="about-us">
-        <AIDA />
-      </Section>
-      <Section 
-        id="services"
-        sx={{
-          backgroundImage: theme => pcbBackground(theme)
-        }}  
-      >
-        <Services />
-      </Section>
-      <Section 
-        id="projects"
-        sx={{ 
-          background: theme => theme.palette['secondaryBackground'].default,
-          boxShadow: '0px -8px 8px #00000085'
+          backgroundColor: "black",
+          margin: "auto",
+          maxWidth: "100vw !important"
         }}
       >
-        <Projects />
-      </Section>
-      <Section 
-        id="how-we-work"
-        sx={{ background: theme => theme.palette['secondaryBackground'].default}}  
-      >
-        <HowWeWork />
-      </Section>
-      <Section 
-        id="contacts" 
-        sx={{ 
-          background: theme => theme.palette['secondaryBackground'].default, 
-          padding: 0
-        }}
-      >
-        <Contacts />
-      </Section>
-    </Sections>
+        <Section
+          id="home"
+          showBackground
+          backgroundSx={{ backgroundColor: "rgba(0,0,0,.5)" }}
+          sx={{  width: "100%", zIndex: 2, margin: "auto"}}
+        >
+          <Box sx={{
+            width: "1152px",
+             zIndex: 2,  
+             right: 0,
+             display: "flex",
+             justifyContent: "flex-end"
+          }}>
+            <Home />
+          </Box>
+        </Section>
+        <Section
+          id="about-us"
+          maxWidth="100%"
+          showBackground
+          backgroundSx={{ backgroundColor: "black !important" }}
+        >
+          <AIDA />
+        </Section>
+        <Section
+          id="services"
+          showBackground
+          background={pcbBackground(theme)}
+          backgroundSx={{ backgroundColor: "black !important" }}
+        >
+          <Services />
+        </Section>
+        <Section
+          id="projects"
+          showBackground
+        >
+          <Projects />
+        </Section>
+        <Section
+          id="how-we-work"
+          showBackground
+          maxWidth="100%"
+        >
+          <HowWeWork />
+        </Section>
+        <Section
+          id="contacts"
+          maxWidth="100%"
+          showBackground
+          sx={{ 
+            padding: 0,
+            width: '100vw'
+          }}
+        >
+          <Contacts />
+        </Section>
+      </Sections>
+    </Page>
   );
 }

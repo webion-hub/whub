@@ -10,15 +10,15 @@ export const Sections = React.forwardRef<HTMLDivElement, BaseProps>((props, ref)
     <Box
       ref={ref}
       sx={{
-        ...props.sx,
         width: "100%",
         "& > section::before": {
           display: "block",
           content: "''",
-          marginTop: "-" + theme.mixins.toolbar.minHeight + "px",
-          height: theme.mixins.toolbar.minHeight + "px",
+          marginTop: "-" + theme.mixins.toolbar.height + "px",
+          height: theme.mixins.toolbar.height + "px",
           visibility: "hidden",
         },
+        ...props.sx,
       }}
     >
       {props.children}

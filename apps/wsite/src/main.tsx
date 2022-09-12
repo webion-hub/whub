@@ -1,4 +1,5 @@
-import { StrictMode } from 'react';
+import { ContactUsApi } from '@whub/apis-contactus';
+import { ApiWrapper } from '@whub/apis-react';
 import ReactDOM from 'react-dom/client';
 
 import ReactPixel from 'react-facebook-pixel';
@@ -12,9 +13,12 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-
 root.render(
-  <StrictMode>
-    <App/>
-  </StrictMode>
+  <ApiWrapper
+    apis={{
+      contactUs: new ContactUsApi({ baseUrl: 'https://api.webion.it/contactus' })
+    }}
+  >
+    <App />
+  </ApiWrapper>
 );

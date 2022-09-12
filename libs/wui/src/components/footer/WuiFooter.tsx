@@ -1,32 +1,32 @@
-import { Button, Divider, Grid, IconButton, Link, Typography } from "@mui/material";
+import { Button, Grid, IconButton, Link, Typography } from "@mui/material";
 
 import { useTranslation } from "react-i18next";
 import React from "react";
-import { FooterColumn } from "./FooterColumn";
+import { FooterColumn } from "./FooterLayout";
 import { FooterContent } from "./FooterContent";
 import { Footer } from "./Footer";
 import { FooterBottomLabel } from "./FooterBottomLabel";
 
-export interface FooterSocialProps {
+export interface WuiFooterSocialProps {
   readonly href: string,
   readonly icon: any,
 }
 
-export interface FooterButtonProps {
+export interface WuiFooterButtonProps {
   readonly text: string,
   readonly href?: string,
   readonly onClick?: any,
 }
 
-export interface SectionProps {
+export interface WuiFooterSectionProps {
   readonly title: string,
-  readonly buttons: FooterButtonProps[],
+  readonly buttons: WuiFooterButtonProps[],
 }
 
 export interface WuiFooterProps {
-  readonly sectionsProps: SectionProps[],
+  readonly sectionsProps: WuiFooterSectionProps[],
   readonly showSocials?: boolean,
-  readonly socialsProps: FooterSocialProps[],
+  readonly socialsProps: WuiFooterSocialProps[],
   readonly privacyLink?: string,
   readonly extraText?: string,
   readonly mailLink?: string,
@@ -35,9 +35,9 @@ export interface WuiFooterProps {
 export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props, ref) => {
   const { t } = useTranslation();
 
-  const createButtons = (el: SectionProps) => {
+  const createButtons = (el: WuiFooterSectionProps) => {
     const elements: any = []
-    el.buttons.map((btn: FooterButtonProps, i: number) => (
+    el.buttons.map((btn: WuiFooterButtonProps, i: number) => (
       elements.push(
         <Button
           color="info"
@@ -49,7 +49,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
             width: "fit-content",
             minWidth: 0,
             marginLeft: theme => ({
-              sm: theme.spacing(-1, '!important'),
+              md: theme.spacing(-1, '!important'),
               xs: 0
             })
           }}
@@ -65,8 +65,13 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
     const elements: any = []
     props.sectionsProps.map((el, i) => (
       elements.push(
-        <FooterColumn StackProps={{ alignItems: {xs:'center', md: "baseline"}}} key={i}>
-          <Typography variant="subtitle2">
+        <FooterColumn
+          alignItems={{xs:'center', md: "baseline"}}
+          spacing={1}
+          sx={{marginBottom: {xs: 4, md: 0}}}
+          key={i}
+        >
+          <Typography variant="subtitle2" component="p">
             {el.title}
           </Typography>
           {createButtons(el)}
@@ -82,11 +87,9 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
 
     return (
       <FooterColumn
-        StackProps={{
-          alignItems: {xs:'center', md: "left"},
-        }}
+        alignItems={{xs:'center', md: "left"}}
       >
-        <Typography variant="subtitle2">
+        <Typography variant="subtitle2" component="p">
           SOCIAL
         </Typography>
         <Grid
@@ -100,6 +103,7 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
               target="_blank"
               color="primary"
               key={i}
+              aria-label="button"
             >
               {el.icon}
             </IconButton>)
@@ -115,7 +119,6 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
         {createSections()}
         {socialsSection()}
       </FooterContent>
-      <Divider sx={{ width: "90%", margin: 'auto' }}/>
       <FooterBottomLabel
         TypographyProps={{ variant: "caption" }}
       >
@@ -127,7 +130,9 @@ export const WuiFooter = React.forwardRef<HTMLDivElement, WuiFooterProps>((props
         >
           {props.privacyLink}
         </Link>
-        <>{props.extraText}</>
+        <Typography variant="caption">
+          {props.extraText}
+        </Typography>
         <Link
           sx={{ marginLeft: 1 }}
           color="inherit"
