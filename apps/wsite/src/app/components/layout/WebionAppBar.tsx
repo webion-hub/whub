@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { AppBar, AppBarContent, AppBarLogo, AppBarSection, BasicThemeButton, LanguageDropdownButton, SideBarButton, useScrollAnimation } from "@whub/wui";
+import { AppBar, AppBarContent, AppBarLogo, AppBarSection, LanguageDropdownButton, SideBarButton, useScrollAnimation } from "@whub/wui";
 import { alpha, Button, useTheme } from "@mui/material";
 import { PublicRounded } from "@mui/icons-material";
 
@@ -76,7 +76,6 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
           <LanguageDropdownButton
             icon={PublicRounded}
           />
-          <BasicThemeButton/>
           <Button
             variant="contained"
             color="primary"

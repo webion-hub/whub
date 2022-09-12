@@ -6,16 +6,12 @@ interface LayoutContextProps {
   readonly setAppBarStatus: (status: boolean) => void,
   readonly setFooterStatus: (status: boolean) => void,
   readonly setSidebarStatus: (status: boolean) => void,
-  readonly setSection: (section: string) => void,
-  readonly currentSection: string,
 }
 
 const LayoutContext = createContext<LayoutContextProps>({
   setAppBarStatus: () => { return },
   setFooterStatus: () => { return },
   setSidebarStatus: () => { return },
-  setSection: () => { return },
-  currentSection: ''
 })
 
 export interface LayoutProps {
@@ -29,7 +25,6 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref)
   const [ appBarState, setAppBarState ] = useState(true)
   const [ footerState, setFooterState ] = useState(true)
   const [ sideBarState, setSidebarState ] = useState(true)
-  const [ section, setSection ] = useState('')
 
   const { t } = useTranslation()
 
@@ -41,8 +36,6 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref)
         setAppBarStatus: setAppBarState,
         setFooterStatus: setFooterState,
         setSidebarStatus: setSidebarState,
-        setSection: setSection,
-        currentSection: section
       }}
     >
       <Stack

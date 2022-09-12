@@ -26,14 +26,14 @@ const RandomTextComp = React.forwardRef<HTMLDivElement, RandomTextBackgroundProp
   const getRandomText = () => {
     const index = Math.floor(Math.random() * 100)
     return texts[index]
-  }
+  } 
 
   return (
     <Box
       ref={ref}
       sx={{
         ...props.sx,
-        position: 'absolute',
+        position: 'absolute', 
         zIndex: -1,
         width: '100%',
         height: '100%',

@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, Link, Typography } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid, Link, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -6,8 +6,7 @@ import { InputBaseProps } from "../../abstractions/form/InputBaseProps";
 
 
 export interface PrivacyCheckBoxProps extends InputBaseProps<boolean> {
-  readonly privacyUrl: string,
-  readonly color?: string
+  readonly privacyUrl: string
 }
 
 export const PrivacyCheckBox = React.forwardRef<HTMLDivElement, PrivacyCheckBoxProps>((props, ref) => {
@@ -17,7 +16,7 @@ export const PrivacyCheckBox = React.forwardRef<HTMLDivElement, PrivacyCheckBoxP
   const getTextColor = () => {
     return props.error
       ? "red"
-      : (props.color ?? theme.palette['secondary'].main)
+      : theme.palette['secondary'].main
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +42,7 @@ export const PrivacyCheckBox = React.forwardRef<HTMLDivElement, PrivacyCheckBoxP
           onChange={handleChange}
           checked={props.value}
         />
-      }
+      } 
       label={
         <Typography
           variant="caption"

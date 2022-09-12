@@ -1,4 +1,5 @@
-import { ChevronLeftRounded, ChevronRightRounded, DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
+import { ArrowDropDownRounded, ChevronLeftRounded, ChevronRightRounded, DownloadRounded, ExpandMoreRounded } from "@mui/icons-material";
+import { TreeItem, TreeView } from "@mui/lab";
 import { Accordion, AccordionDetails, AccordionSummary, Box, Breadcrumbs, Button, IconButton, Link, ListItemIcon, ListItemText, Menu, MenuItem, Stack, SxProps, Theme, Typography, useTheme } from "@mui/material";
 import { useShopApi } from "@whub/apis-react";
 import { Category, Product, ProductDetail } from "@whub/wshop-api";
@@ -265,8 +266,9 @@ export function ProductCategory(props: ProductCategoryProps) {
     return `/products?filter=&category=${categoryUrl}`
   }
 
-  if(!props.categoryName)
-    return null
+  const categoryName = props.categoryName === ''
+    ? t('all')
+    : props.categoryName
 
   return (
     <Stack
@@ -281,7 +283,7 @@ export function ProductCategory(props: ProductCategoryProps) {
       </Typography>
       <Breadcrumbs sx={{ width: '100%' }}>
         {
-          (props.categoryName ?? '')
+          (categoryName ?? '')
             .split('/')
             .map((v, i, all) => {
               const isLast = i === all.length - 1

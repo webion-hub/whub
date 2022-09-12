@@ -7,7 +7,6 @@ export interface SquareContainerProps {
   readonly sx?: SxProps<Theme>,
   readonly children?: ChildrenProp,
   readonly onDelete?: () => void,
-  readonly size?: number,
 }
 
 export function SquareContainer(props: SquareContainerProps) {
@@ -15,8 +14,8 @@ export function SquareContainer(props: SquareContainerProps) {
     <Paper
       sx={{
         ...props.sx,
-        width: props.size,
-        height: props.size,
+        width: 96,
+        height: 96,
       }}
     >
       {props.children}
@@ -53,8 +52,4 @@ export function SquareContainer(props: SquareContainerProps) {
       {squarePaper}
     </Badge>
   )
-}
-
-SquareContainer.defaultProps = {
-  size: 96
 }
