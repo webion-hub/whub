@@ -2,20 +2,20 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 import en from "../assets/locales/en-EN.json";
-import it from "../assets/locales/it-IT.json";
 import es from "../assets/locales/es-ES.json";
+import it from "../assets/locales/it-IT.json";
 
 import { ThemeProvider } from '@mui/material/styles';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { CssBaseline, GlobalStyles } from '@mui/material';
-import { CookiePopup, FullScreenLoading, GlobalDialogs, Language, LanguageWrapper, Layout, ScrollToTop } from "@whub/wui";
-import globalStyle from './theme/globalStyle';
-import theme from './theme/theme';
 import { Guard, Guards } from "@whub/apis-react";
+import { CookiePopup, FullScreenLoading, GlobalDialogs, Language, LanguageWrapper, Layout } from "@whub/wui";
+import { ES, GB, IT } from "country-flag-icons/react/3x2";
 import React, { Suspense } from "react";
 import ContactsDialog from "./components/dialogs/ContactsDialog";
-import { ES, GB, IT } from "country-flag-icons/react/3x2";
+import globalStyle from './theme/globalStyle';
+import theme from './theme/theme';
 
 const SimmAppbar = React.lazy(() => import('./components/layout/SimmAppBar'))
 const SimmFooter = React.lazy(() => import('./components/layout/SimmFooter'))

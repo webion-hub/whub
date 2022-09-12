@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useShopApi } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
 import { ProductComponent } from "@whub/wshop-ui";
-import { FullScreenLoading, MaybeShow, Page, Section } from "@whub/wui";
+import { MaybeShow } from "@whub/wui";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { SimmPage } from "../../components/SimmPage";

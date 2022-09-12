@@ -1,8 +1,6 @@
-import { Grid, Typography, Stack, Box, Paper, useTheme, useMediaQuery } from "@mui/material";
-import { ResponserGrid, useBackgroundWaves, useNavigator } from "@whub/wui";
+import { Stack, useMediaQuery, useTheme } from "@mui/material";
+import { useBackgroundWaves, useNavigator } from "@whub/wui";
 import { useTranslation } from "react-i18next";
-import { homeCatergoryUrls } from "../../category-routes.config";
-import HomeCard from "../../components/cards/HomeCard";
 
 export default function Home() {
   const { t } = useTranslation();
