@@ -1,4 +1,4 @@
-import theme from "./darkTheme"
+import theme from "./theme"
 
 const globalStyle = {
   'body': {

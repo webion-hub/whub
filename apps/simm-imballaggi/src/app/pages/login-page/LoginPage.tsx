@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { useTranslation } from "react-i18next";
 import { useAuth } from '@whub/apis-react';
 import { useNavigate } from 'react-router-dom';
+import { SimmPage } from '../../components/SimmPage';
 
 interface State {
   amount: string;
@@ -60,12 +61,7 @@ export default function LoginPage() {
   }
 
   return (
-    <Page
-      centered
-      sx={{
-        marginTop: { xs: 16, md: 8 }
-      }}
-    >
+    <SimmPage centered>
       <FormGroup
         onSubmit={login}
         sx={{ padding: 2 }}
@@ -155,6 +151,6 @@ export default function LoginPage() {
           </LoadingButton>
         </Stack>
       </FormGroup>
-    </Page>
+    </SimmPage>
   )
 }

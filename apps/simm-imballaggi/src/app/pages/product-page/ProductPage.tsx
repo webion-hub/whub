@@ -2,9 +2,10 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useShopApi } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
 import { ProductComponent } from "@whub/wshop-ui";
-import { FullScreenLoading, MaybeShow, Page, Section } from "@whub/wui";
+import { MaybeShow } from "@whub/wui";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { SimmPage } from "../../components/SimmPage";
 
 
 export function ProductPage() {
@@ -37,26 +38,23 @@ export function ProductPage() {
   }
 
   return (
-    <Page
+    <SimmPage
       sx={{ padding: 1 }}
+      loading={loading}
     >
-      <Section id="" sx={{ padding: 0 }}>
-        <FullScreenLoading loading={loading}/>
-        <MaybeShow
-          show={!loading}
-        >
-          {
-            product
-              ? <ProductComponent
-                  product={product}
-                  compress={isMobileView}
-                  sx={{ marginTop: { xs: 10, md: 0} }}
-                />
-              : <></>
-          }
-        </MaybeShow>
-      </Section>
-    </Page>
+      <MaybeShow
+        show={!loading}
+      >
+        {
+          product
+            ? <ProductComponent
+                product={product}
+                compress={isMobileView}
+              />
+            : <></>
+        }
+      </MaybeShow>
+    </SimmPage>
   )
 }
 

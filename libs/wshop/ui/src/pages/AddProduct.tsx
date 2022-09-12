@@ -4,9 +4,7 @@ import { ProductHandler } from "../components/ProductHandler";
 export function AddProduct() {
   return (
     <Page>
-      <Section>
-        <ProductHandler/>
-      </Section>
+      <ProductHandler/>
     </Page>
   )
 }

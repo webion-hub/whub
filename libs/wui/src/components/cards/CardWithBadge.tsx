@@ -16,9 +16,6 @@ export interface CardWithBadgeProps {
   readonly height?: number;
   readonly BadgeProps?: BadgeProps;
   readonly badgeColor?: string;
-  readonly animateBadge?: boolean;
-  readonly animationDelay?: number;
-  readonly animationTimeout?: number;
 }
 
 export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps>((props, ref) => {
@@ -31,35 +28,13 @@ export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps
           {props.number}
         </Typography>
       }
-      color="secondary"
+      color="primary"
       sx={{
         '.MuiBadge-badge': {
-          "@keyframes grow-badge": {
-            "0%": {
-              transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(0)`,
-            },
-            "40%": {
-              transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(1.2)`,
-            },
-            "60%": {
-              transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(0.8)`,
-            },
-            "80%": {
-              transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(1.2)`,
-            },
-            "100%": {
-              transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(1)`,
-            },
-          },
           width: size,
           height: size,
-          transformOrigin: 'center',
-          transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px) scale(0)`,
           borderRadius: "100%",
-          animation: props.animateBadge
-            ? `grow-badge ${props.animationTimeout}ms ease-in-out forwards`
-            : '',
-          animationDelay: `${props.animationDelay}ms`,
+          transform: `translate(${props.badgeXOffset}px, ${props.badgeYOffset}px)`,
           boxShadow: theme => `0px 0px 0 5px ${props.badgeColor ?? theme.palette.background.default}`
         },
         justifyContent: 'center'
@@ -83,5 +58,4 @@ export const CardWithBadge = React.forwardRef<HTMLDivElement, CardWithBadgeProps
 CardWithBadge.defaultProps = {
   width: 290,
   height: 320,
-  animateBadge: false
 }

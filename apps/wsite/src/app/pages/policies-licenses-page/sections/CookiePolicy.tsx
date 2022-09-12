@@ -1,7 +1,6 @@
 import { Link } from "@mui/material";
 import { Paragraph } from "@whub/wui";
 import React from "react";
-import { WebionRepository } from "../../../lib/WebionRepositiory";
 
 export default function CookiePolicy() {
   return (
@@ -56,7 +55,7 @@ export default function CookiePolicy() {
       <p>For more general information on cookies, please read <Link color="inherit" href="https://www.generateprivacypolicy.com/#cookies">&quot;Cookies&quot; article from the Privacy Policy Generator</Link>.</p>
       <p>However if you are still looking for more information then you can contact us through one of our preferred contact methods:</p>
       <ul>
-        <li>Email: {WebionRepository.EMAIL}</li>
+        <li>Email: amministrazione@webion.it</li>
       </ul>
     </Paragraph>
   )
