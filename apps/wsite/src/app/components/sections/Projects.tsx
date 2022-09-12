@@ -81,9 +81,8 @@ export default function Projects() {
         {t("projects-title")}
       </Typography>
       <Slideshow
-        startIndex={1}
-        itemWidth={reduceSlideshow ? 300 : 600}
-        containerWidth="100vw"
+        itemWidth={{width: reduceSlideshow ? 300 : 600}}
+        containerWidth={{ width: "100vw" }}
         items={items}
       />
     </Box>

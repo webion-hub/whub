@@ -3,24 +3,30 @@ import { Box, IconButton } from "@mui/material";
 import { Stack } from "@mui/system";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { BehaviorSubject, debounceTime } from "rxjs";
+import { useOnScreen } from "../hooks/useOnScreen";
 
 export interface SlideshowItem {
   readonly item: (selected: boolean) => ReactNode,
-  readonly onClick: (e: any) => void
+  readonly onClick?: (e: any) => void
 }
 
+interface Width {
+  readonly width: string | number,
+  readonly maxWidth?: number
+}
 
 export interface SlideshowProps {
   readonly items: SlideshowItem[],
-  readonly itemWidth: number,
-  readonly containerWidth: number | string,
-  readonly startIndex: number
+  readonly itemWidth: Width,
+  readonly containerWidth: Width,
+  readonly color?: string,
 }
 
 export function Slideshow(props: SlideshowProps) {
   const ref = useRef<HTMLDivElement>()
+  const inView = useOnScreen(ref)
   const selection$ = useRef(new BehaviorSubject(0))
-  const [index, setIndex] = useState(props.startIndex)
+  const [index, setIndex] = useState(0)
   const [indexToZoom, setIndexToZoom] = useState(0)
 
   useEffect(() => {
@@ -35,25 +41,37 @@ export function Slideshow(props: SlideshowProps) {
   }, [ref.current])
 
   useEffect(() => {
-    if(!ref.current)
+    if(!ref.current || !inView)
       return
 
     const nodes = ref.current.childNodes;
 
-    (nodes[index + 1] as HTMLDivElement).scrollIntoView({
+    (nodes[index + 1] as HTMLDivElement)?.scrollIntoView({
       block: 'nearest',
       inline: 'center',
       behavior: 'smooth'
     })
   }, [index])
 
-  const getWidth = () => {
-    const isAString = typeof props.containerWidth === 'string'
+  const getWidth = (width: Width) => {
+    const isAString = typeof width.width === 'string'
 
-    return isAString
-      ? window.innerWidth * Number(props.containerWidth.slice(0, -2)) / 100
-      : props.containerWidth
+    const widthPrep = isAString
+      ? window.innerWidth * Number(width.width.slice(0, -2)) / 100
+      : width.width
+
+    if(!width.maxWidth)
+      return widthPrep
+
+    return widthPrep > width.maxWidth
+      ? width.maxWidth
+      : widthPrep
   }
+
+  const prepContainerWidth = getWidth(props.containerWidth)
+  const prepItemWidth = getWidth(props.itemWidth)
+
+
 
   const getIcon = (i: number) => {
     return i === indexToZoom
@@ -91,13 +109,13 @@ export function Slideshow(props: SlideshowProps) {
 
   const onScroll = (e: any) => {
     const x = ref.current?.scrollLeft ?? 0
-    const index = Math.round(x / props.itemWidth)
+    const index = Math.round(x / prepItemWidth)
 
     selection$.current.next(index)
   }
 
   const getSide = () => {
-    const sideWidth = (getWidth() / 2) - (props.itemWidth / 2)
+    const sideWidth = (prepContainerWidth / 2) - (prepItemWidth / 2)
 
     return (
       <Box
@@ -120,10 +138,10 @@ export function Slideshow(props: SlideshowProps) {
         onScroll={onScroll}
         sx={{
           display: 'flex',
-          width: props.containerWidth,
+          width: props.containerWidth.width,
+          maxWidth: props.containerWidth.maxWidth,
           overflowX: 'auto',
           scrollSnapType: 'x mandatory',
-          scrollPadding: '128px',
           "::-webkit-scrollbar": {
             display: 'none'
           }
@@ -152,12 +170,14 @@ export function Slideshow(props: SlideshowProps) {
                 sx={{
                   width: props.itemWidth,
                   "&:hover": {
-                    cursor: 'pointer'
+                    cursor: i === indexToZoom && item.onClick || i !== indexToZoom
+                      ? 'pointer'
+                      : 'cursor'
                   }
                 }}
                 onClick={(e) => {
                   i === indexToZoom
-                    ? item.onClick(e)
+                    ? item.onClick?.(e)
                     : setIndex(i)
                 }}
               >
@@ -172,7 +192,7 @@ export function Slideshow(props: SlideshowProps) {
         direction="row"
         sx={{
           "& > *": {
-            color: 'rgba(255, 255, 255, 0.2) !important'
+            color: props.color ?? 'rgba(255, 255, 255, 0.2) !important'
           }
         }}
       >

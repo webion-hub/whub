@@ -1,14 +1,16 @@
-import { AccountTreeRounded, AddRounded, ContactPhoneRounded, GroupsRounded, HomeRounded, InfoRounded, SettingsSuggestRounded } from "@mui/icons-material";
-import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator } from "@mui/lab";
-import { Box, ButtonBase, Divider, IconButton, Stack, Tooltip, useMediaQuery, useTheme } from "@mui/material";
+import { AccountTreeRounded, ContactPhoneRounded, GroupsRounded, HomeRounded, InfoRounded, SettingsSuggestRounded } from "@mui/icons-material";
+import { Timeline, TimelineConnector, TimelineDot, TimelineItem, TimelineSeparator } from "@mui/lab";
+import { IconButton, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { Stack } from "@mui/system";
 import { MaybeShow, Page, Section, Sections, useLayout } from "@whub/wui";
 import { useEffect } from "react";
 import ReactPixel from 'react-facebook-pixel';
 import { pcbBackground } from "../components/backgrounds/pcbBackground";
 import AIDA from "../components/sections/AIDA";
+import { ChosenBy } from "../components/sections/ChosenBy";
 import Contacts from "../components/sections/Contacts";
-import Home from "../components/sections/Home";
+import { HomeWithServices } from "../components/sections/HomeWithServices";
 import HowWeWork from "../components/sections/HowWeWork";
 import Projects from "../components/sections/Projects";
 import Services from "../components/sections/Services";
@@ -42,9 +44,23 @@ export default function Homepage() {
       <Sections>
         <Section
           id="home"
-          sx={{  width: "100%", zIndex: 2, margin: "auto"}}
+          maxWidth='100vw'
+          sx={{
+            width: "100%",
+            zIndex: 2,
+            margin: "auto",
+            padding: 0
+          }}
         >
-          <Home />
+          <HomeWithServices />
+        </Section>
+        <Section
+          id="chosen-by"
+          ignoreSection
+          maxWidth="100%"
+          sx={{ paddingBlock: 4 }}
+        >
+          <ChosenBy />
         </Section>
         <Section
           id="about-us"

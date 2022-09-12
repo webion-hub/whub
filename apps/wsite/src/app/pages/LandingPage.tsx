@@ -80,13 +80,6 @@ export default function LandingPage() {
           sx={{ paddingBlock: 3 }}
         >
           <ChosenBy/>
-          <Divider
-            sx={{
-              position: 'absolute',
-              width: '100vw',
-              bottom: 0
-            }}
-          />
         </Section>
         <Section
           id="about-us"

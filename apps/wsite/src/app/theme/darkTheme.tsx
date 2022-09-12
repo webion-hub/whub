@@ -3,14 +3,20 @@ import ReadexPro from "../../assets/fonts/ReadexPro-VariableFont_wght.ttf"
 
 import "@mui/material/styles/createPalette";
 
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    'first-action': true;
+  }
+}
+
 const fontFamily = "'ReadexPro'"
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: "#000001",
-      paper: "#060E2B",
+      default: "#121212",
+      paper: "#0e0e0e",
     },
     secondaryBackground: {
       default: '#000000',
@@ -77,6 +83,15 @@ const darkTheme = createTheme({
       }
     },
     MuiButton: {
+      variants: [{
+        props: { variant: 'first-action' },
+        style: {
+          backdropFilter: 'blur(8px)',
+          paddingBlock: 16,
+          paddingInline: 24,
+          background: 'rgba(255,255,255, 0.1)'
+        }
+      }],
       styleOverrides: {
         root: {
           borderRadius: 999,
@@ -94,7 +109,7 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: 'none',
-          borderRadius: 32
+          borderRadius: 16
         },
       }
     },

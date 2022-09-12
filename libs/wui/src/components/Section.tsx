@@ -19,6 +19,7 @@ const StyledSection = styled('section')(({theme}) => ({
 
 export interface SectionProps {
   readonly id?: string;
+  readonly ignoreSection?: boolean;
   readonly maxWidth?: number | string;
   readonly centered?: boolean;
   readonly showBackground?: boolean;
@@ -56,7 +57,7 @@ export function Section(props: SectionProps) {
     : {}
 
   useEffect(() => {
-    if(!sectionIn)
+    if(!sectionIn || props.ignoreSection)
       return
 
     setSection(props.id ?? '')

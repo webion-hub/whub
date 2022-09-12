@@ -1,17 +1,17 @@
-import { Box, Grow, Paper, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 import BrushRoundedIcon from '@mui/icons-material/BrushRounded';
-import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 import { CardWithBadge, CardWithBadgeProps, Parallax, ResponserGrid, useOnScreen } from "@whub/wui";
-import RandomTextBackground from "../backgrounds/RandomTextBackground";
 import React, { useRef } from "react";
+import RandomTextBackground from "../backgrounds/RandomTextBackground";
 
 const HowWeWorkCard = React.forwardRef<HTMLDivElement, CardWithBadgeProps>((props: CardWithBadgeProps, ref) => {
   const theme = useTheme()
-  const badgeColor = theme.palette['secondaryBackground']?.default
+  const badgeColor = theme.palette['background']?.default
 
   return (
     <CardWithBadge
@@ -133,12 +133,12 @@ export default function HowWeWork() {
           speedY={0.2}
           sx={{
             background: theme => `linear-gradient(0deg,
-              ${theme.palette['secondaryBackground'].default} 0%,
-              ${theme.palette['secondaryBackground'].default} 5%,
+              ${theme.palette['background'].default} 0%,
+              ${theme.palette['background'].default} 5%,
               rgba(0,0,0,0) 10%,
               rgba(0,0,0,0) 90%,
-              ${theme.palette['secondaryBackground'].default} 95%,
-              ${theme.palette['secondaryBackground'].default} 100%
+              ${theme.palette['background'].default} 95%,
+              ${theme.palette['background'].default} 100%
             )`
           }}
         >
