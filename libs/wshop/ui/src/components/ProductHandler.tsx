@@ -2,7 +2,7 @@ import { SaveRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import { Button, Paper, Stack, SxProps, Theme, useMediaQuery, useTheme } from "@mui/material";
 import { handleResponse } from "@whub/apis-core";
-import { useShopApi } from "@whub/apis-react";
+import { useShop } from "@whub/apis-react";
 import { Category, Product, ProductDetail, ProductEndpoint } from "@whub/wshop-api";
 import { FileWithId, Form, FormGroup, useNavigator } from "@whub/wui";
 import { useState } from "react";
@@ -49,7 +49,7 @@ export function ProductHandler(props: ProductHandlerProps) {
   const compressAll = useMediaQuery(theme.breakpoints.down("md"));
 
   const navigate = useNavigator();
-  const shopApi = useShopApi();
+  const shopApi = useShop().api;
   const [loading, setLoading] = useState(false)
   const isUpdateMode = props.mode === 'update'
 

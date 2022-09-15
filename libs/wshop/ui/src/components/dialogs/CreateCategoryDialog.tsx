@@ -1,7 +1,7 @@
 import { LoadingButton } from "@mui/lab"
 import { Button, Dialog, DialogActions, DialogContent, TextField } from "@mui/material"
 import { handleResponse } from "@whub/apis-core"
-import { useShopApi } from "@whub/apis-react"
+import { useShop } from "@whub/apis-react"
 import { Category } from "@whub/wshop-api"
 import { DialogBase, DialogTitleCross } from "@whub/wui"
 import { useState } from "react"
@@ -11,7 +11,7 @@ export interface CreateCategoryDialogProps extends DialogBase {
 }
 
 export function CreateCategoryDialog(props: CreateCategoryDialogProps) {
-  const shopApi = useShopApi()
+  const shopApi = useShop().api
   const [name, setName] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)

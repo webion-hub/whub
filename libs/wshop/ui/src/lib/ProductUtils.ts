@@ -1,7 +1,25 @@
 import { Product, WShopApi } from "@whub/wshop-api";
 import _ from "lodash";
+import { PreviewProduct } from "../components/ProductHandler";
 
 export class ProductUtils {
+  static async prepareAllForUI(shopApi: WShopApi, product: Product[]): Promise<PreviewProduct[]> {
+    return await Promise.all(
+      product.map(p => ProductUtils.prepareForUI(shopApi, p))
+    )
+}
+
+  static async prepareForUI(shopApi: WShopApi, product: Product): Promise<PreviewProduct> {
+      const files = await this.getAttachmentsFiles(shopApi, product)
+      const images = await this.getImagesFiles(product)
+
+      return {
+        ...product,
+        attachments: files,
+        images: images
+      }
+  }
+
   static getImages(product: Product) {
     return _(product.images)
       .sortBy(i => i.index)

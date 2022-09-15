@@ -1,31 +1,46 @@
 import { Button, Paper, Stack, TextField, Typography } from "@mui/material"
 import { ProductDetail } from "@whub/wshop-api"
-import { InputBaseProps, InputValidator, TextEditor, Utils, Validators } from "@whub/wui"
+import { InputBaseProps, TextEditor, Utils, Validators } from "@whub/wui"
 import { useEffect, useState } from "react"
+import { ConfigUtils } from "../../lib/ConfigUtils"
+import { ProductInput } from "../ProductInput"
 
 export function ProductDetailsInput() {
   return (
-    <InputValidator
+    <ProductInput
       name="details"
-      value={[] as ProductDetail[]}
-      validators={[
+      value={[]}
+      getValidators={config => [
+        ...ConfigUtils.getValidators(config, 'general'),
+        Validators.min(config.required ? 1 : 0),
         Validators.customValidator((details: ProductDetail[]) => {
           return details.every(d => {
             const desc = Utils.stripHtml(d.description ?? '')
-            return Validators.required(d.title) &&
-              Validators.max(512)(d.title) &&
-              Validators.max(4096)(desc)
+            return true &&
+              Validators.required(d.title) &&
+              Validators.validate(d.title, ConfigUtils.getValidators(config, 'title')) &&
+              Validators.validate(desc, ConfigUtils.getValidators(config, 'description'))
           })
         })
       ]}
     >
-      <ProductDetails/>
-    </InputValidator>
+      {
+        (config, i) =>
+          <ProductDetails
+            {...i}
+            required={config.required}
+          />
+      }
+    </ProductInput>
+
   )
 }
 
+interface ProductDetailProps extends InputBaseProps<ProductDetail[]> {
+  readonly required?: boolean
+}
 
-function ProductDetails(props: InputBaseProps<ProductDetail[]>) {
+function ProductDetails(props: ProductDetailProps) {
   const [details, setDetails] = useState<ProductDetail[]>(props.value ?? [])
 
   const updateDetails = (details: ProductDetail[]) => {
@@ -67,10 +82,13 @@ function ProductDetails(props: InputBaseProps<ProductDetail[]>) {
       direction="column"
       component={Paper}
       spacing={1}
-      sx={{ padding: 1 }}
+      sx={{
+        padding: 1,
+        borderColor: theme => props.error ? theme.palette.error.main : undefined
+      }}
     >
       <Typography>
-        Dettagli
+        Dettagli{props.required ? '*' : ''}
       </Typography>
 
       <Stack

@@ -1,8 +1,10 @@
 import { handleResponse } from "@whub/apis-core"
-import { AccountInfo, LoginRequest } from "@whub/simple-auth"
-import { ChildrenProps } from "@whub/wui"
+import { AccountInfo, LoginRequest, SimpleAuthApi } from "@whub/simple-auth"
 import { createContext, useContext, useState } from "react"
-import { useAuthApi } from "../hooks/useApi"
+import { ApiContext, ApiContextProps } from "../abstractions/ApiContextProps"
+
+export type IAuthContext = ApiContext<SimpleAuthApi, unknown>
+export type IAuthContextProps = ApiContextProps<SimpleAuthApi, unknown>
 
 export interface AuthActions {
   readonly onSuccess?: () => void,
@@ -23,7 +25,7 @@ export interface AuthActionsUser {
   readonly onComplete?: () => void,
 }
 
-interface IAuthContext {
+interface IAuthContextFull extends IAuthContext {
   readonly user?: AccountInfo,
   readonly isAdmin: boolean,
   readonly isLogged: boolean,
@@ -33,17 +35,18 @@ interface IAuthContext {
   readonly logOut: (actions: AuthActions) => void,
 }
 
-export const AuthContext = createContext<IAuthContext>({
+export const AuthContext = createContext<IAuthContextFull>({
   isAdmin: false,
   isLogged: false,
   checkUser: () => { return },
   checkIsLogged: () => { return },
   logIn: () => { return },
-  logOut: () => { return }
+  logOut: () => { return },
+  api: {} as SimpleAuthApi,
 })
 
-export const AuthWrapper = (props: ChildrenProps) => {
-  const authApi = useAuthApi()
+export const AuthWrapper = (props: IAuthContextProps) => {
+  const authApi = props.api
 
   const [isLogged, setIsLogged] = useState<boolean>(false)
   const [user, setUser] = useState<AccountInfo>()
@@ -121,7 +124,9 @@ export const AuthWrapper = (props: ChildrenProps) => {
         checkUser,
         checkIsLogged,
         logIn,
-        logOut
+        logOut,
+        api: props.api,
+        config: props.config
       }}
     >
       {props.children}

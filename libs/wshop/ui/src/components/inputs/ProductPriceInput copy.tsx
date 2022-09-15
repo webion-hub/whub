@@ -1,19 +1,25 @@
 import { TextField } from "@mui/material";
-import { InputValidator, NumberInput } from "@whub/wui";
+import { NumberInput, Validators } from "@whub/wui";
+import { ConfigUtils } from "../../lib/ConfigUtils";
+import { ProductInput } from "../ProductInput";
 
 export function ProductPriceInput() {
   return (
-    <InputValidator
-      mode="manual"
+    <ProductInput
       name="price"
       value={NaN}
+      getValidators={config => [
+        Validators.isRequired(config.required),
+        ...ConfigUtils.getValidators(config, 'general'),
+      ]}
     >
       {
-        i =>
+        (config, i) =>
           <TextField
             {...i}
             onChange={e => i.onChange?.({ target: { value: Number(e.target.value) }})}
             size="small"
+            required={config.required}
             variant="outlined"
             label="Prezzo"
             color="secondary"
@@ -27,8 +33,7 @@ export function ProductPriceInput() {
             }}
           />
       }
-
-    </InputValidator>
+    </ProductInput>
   )
 }
 

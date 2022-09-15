@@ -7,7 +7,7 @@ import { DialogBase, DialogTitleCross, Form, FormGroup, InputValidator, PrivacyC
 import { MouseEvent, useState, useTransition } from 'react';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { LoadingButton } from '@mui/lab';
-import { useContactUsApi } from '@whub/apis-react';
+import { useContactUs } from '@whub/apis-react';
 import { useTranslation } from 'react-i18next';
 
 interface LinkWithIconProps {
@@ -46,7 +46,7 @@ function LinkWithIcon(props: LinkWithIconProps) {
 export default function ContactsDialog(props: DialogBase) {
   const [success, setSuccess] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
-  const contactUsApi = useContactUsApi()
+  const contactUsApi = useContactUs().api
   const { t } = useTranslation()
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.up("sm"));

@@ -90,8 +90,6 @@ export default function Homepage() {
         <Section
           id="contacts"
           maxWidth="100%"
-          showBackground
-          background="white"
           sx={{
             padding: 0,
             width: '100vw'

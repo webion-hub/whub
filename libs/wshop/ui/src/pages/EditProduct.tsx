@@ -1,4 +1,4 @@
-import { useShopApi } from "@whub/apis-react"
+import { useShop } from "@whub/apis-react"
 import { FullScreenLoading, Page, Section } from "@whub/wui"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
@@ -12,7 +12,7 @@ export function EditProduct() {
   const [loading, setLoading] = useState(false)
   const [previewProduct, setPreviewProduct] = useState<PreviewProduct>()
 
-  const shopApi = useShopApi()
+  const shopApi = useShop().api
 
   useEffect(() => {
     fetchProduct()
@@ -27,15 +27,8 @@ export function EditProduct() {
       .withId(parseInt(productId))
       .load()
       .then(async res => {
-        const product = res.data
-        const files = await ProductUtils.getAttachmentsFiles(shopApi, product)
-        const images = await ProductUtils.getImagesFiles(product)
-
-        setPreviewProduct({
-          ...product,
-          attachments: files,
-          images: images,
-        })
+        const product = await ProductUtils.prepareForUI(shopApi, res.data)
+        setPreviewProduct(product)
       })
       .finally(() => setLoading(false))
   }

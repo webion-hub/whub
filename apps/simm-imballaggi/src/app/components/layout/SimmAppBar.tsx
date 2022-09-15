@@ -7,7 +7,7 @@ import CallRounded from "@mui/icons-material/CallRounded";
 import { ProductListItem } from "@whub/wshop-ui";
 import _, { cond } from "lodash"
 import { Category, Product } from "@whub/wshop-api";
-import { useAuth, useShopApi } from "@whub/apis-react";
+import { useAuth, useShop } from "@whub/apis-react";
 import { Box } from "@mui/system";
 import { LoadingButton } from "@mui/lab";
 import { useTranslation } from "react-i18next";
@@ -97,7 +97,7 @@ export default SimmAppbar
 export function ProductSearchBar() {
   const { clickNavigate, navigate } = useNavigator()
   const searchSubject$ = useSubject<string>('')
-  const shopApi = useShopApi()
+  const shopApi = useShop().api
   const { t } = useTranslation()
   const allCategory = t('all')
   const [products, setProducts] = useState<Product[]>([])

@@ -1,6 +1,6 @@
 import { CloseRounded } from "@mui/icons-material"
 import { Box, Button, CircularProgress, Divider, IconButton, TextField } from "@mui/material"
-import { useShopApi } from "@whub/apis-react"
+import { useShop } from "@whub/apis-react"
 import { Product } from "@whub/wshop-api"
 import { InputBaseProps, ItemSelect } from "@whub/wui"
 import _ from "lodash"
@@ -8,13 +8,14 @@ import React, { useState } from "react"
 import { ProductListItem } from "./ProductListItem"
 
 export interface CorrelatedProductsSelectProps extends InputBaseProps<Product[]> {
-  readonly avoidId?: number
+  readonly avoidId?: number,
+  readonly required?: boolean,
 }
 
 export function CorrelatedProductsSelect(props: CorrelatedProductsSelectProps) {
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState<Product[]>([])
-  const shopApi = useShopApi()
+  const shopApi = useShop().api
 
   const fetchProducts = () => {
     setLoading(true)
@@ -39,7 +40,7 @@ export function CorrelatedProductsSelect(props: CorrelatedProductsSelectProps) {
       getOptionLabel={(option) => option.name}
       renderOption={(props, option, isAlreadyIn, onAdd) => (
         <ProductListItem
-          key={_.uniqueId()}
+          key={option.id}
           listItemProps={{
             ...props,
             onClick: (e: Event) => e.preventDefault()
@@ -60,6 +61,7 @@ export function CorrelatedProductsSelect(props: CorrelatedProductsSelectProps) {
           {...params}
           error={props.error}
           disabled={props.disabled}
+          required={props.required}
           size="small"
           variant="outlined"
           label="Prodotti correlati"

@@ -32,6 +32,7 @@ export * from './hooks/useScrollAnimation';
 export * from './hooks/useProgressiveImage';
 export * from './hooks/useSubject';
 export * from './hooks/useForceRender';
+export * from './hooks/useGenerator';
 
 //Contexts
 export * from './contexts/ContextLanguage';

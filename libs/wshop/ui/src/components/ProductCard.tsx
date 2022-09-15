@@ -1,5 +1,5 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Skeleton, Typography } from "@mui/material"
-import { useShopApi } from "@whub/apis-react"
+import { useShop } from "@whub/apis-react"
 import { Product } from "@whub/wshop-api"
 import { MaybeShow, useNavigator, useProgressiveImage } from "@whub/wui"
 import { useTranslation } from "react-i18next"

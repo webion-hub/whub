@@ -1,20 +1,26 @@
 import { Stack, Typography } from "@mui/material"
-import { FileProps, FileWithId, InputValidator, MaybeShow, MultipleFileController, SquareAddAttachment, SquareContainer, SquaresGrid, Utils } from "@whub/wui"
+import { FileProps, FileWithId, MaybeShow, MultipleFileController, SquareAddAttachment, SquareContainer, SquaresGrid, Utils, Validators } from "@whub/wui"
 import { useEffect, useState } from "react"
+import { ConfigUtils } from "../../lib/ConfigUtils"
+import { ProductInput } from "../ProductInput"
 
 export function ProductAttachmentsInput() {
   return (
-    <InputValidator
+    <ProductInput
       name="attachments"
-      mode="manual"
-      value={[] as FileWithId<File>[]}
+      value={[]}
+      getValidators={config => [
+        Validators.min(config.required ? 1 :0),
+        ...ConfigUtils.getValidators(config, 'general')
+      ]}
     >
       {
-        i =>
+        (config, i) =>
           <Stack
             direction="column"
           >
             <ProductAttachmentUploader
+              required={config.required}
               files={i.value}
               onChange={f => i.onChange?.({ target: { value: f } })}
             />
@@ -25,16 +31,20 @@ export function ProductAttachmentsInput() {
                 variant="caption"
                 color="error"
               >
-                Errore caricamento file.
+                Errore.
               </Typography>
             </MaybeShow>
           </Stack>
       }
-    </InputValidator>
+    </ProductInput>
   )
 }
 
-function ProductAttachmentUploader(props: FileProps<FileWithId<File>>) {
+interface ProductAttachmentUploaderProps extends FileProps<FileWithId<File>> {
+  readonly required?: boolean
+}
+
+function ProductAttachmentUploader(props: ProductAttachmentUploaderProps) {
   const [attachment, setAttachment] = useState<FileWithId<File>[]>(props.files ?? [])
 
   useEffect(() => {
@@ -55,7 +65,7 @@ function ProductAttachmentUploader(props: FileProps<FileWithId<File>>) {
 
   return (
     <SquaresGrid
-      title="Allegati"
+      title={`Allegati${props.required ? '*' : ''}`}
       elements={attachment}
       firstElement={
         <SquareAddAttachment

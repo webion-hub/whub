@@ -4,6 +4,7 @@ import { Stack } from "@mui/system";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { BehaviorSubject, debounceTime } from "rxjs";
 import { useOnScreen } from "../hooks/useOnScreen";
+import { useSubject } from "../hooks/useSubject";
 
 export interface SlideshowItem {
   readonly item: (selected: boolean) => ReactNode,
@@ -25,13 +26,12 @@ export interface SlideshowProps {
 export function Slideshow(props: SlideshowProps) {
   const ref = useRef<HTMLDivElement>()
   const inView = useOnScreen(ref)
-  const selection$ = useRef(new BehaviorSubject(0))
+  const selection$ = useSubject(0)
   const [index, setIndex] = useState(0)
   const [indexToZoom, setIndexToZoom] = useState(0)
 
   useEffect(() => {
     const sub = selection$
-      .current
       .pipe(debounceTime(10))
       .subscribe(res => {
         setIndexToZoom(res)
@@ -111,7 +111,7 @@ export function Slideshow(props: SlideshowProps) {
     const x = ref.current?.scrollLeft ?? 0
     const index = Math.round(x / prepItemWidth)
 
-    selection$.current.next(index)
+    selection$.next(index)
   }
 
   const getSide = () => {

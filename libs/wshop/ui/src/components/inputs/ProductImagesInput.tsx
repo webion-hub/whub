@@ -1,41 +1,51 @@
 import { Stack, Typography } from "@mui/material"
-import { FileProps, FileWithId, InputValidator, MaybeShow, MultipleFileController, SquareAddImage, SquareImageContainer, SquaresGrid } from "@whub/wui"
+import { FileProps, FileWithId, MaybeShow, MultipleFileController, SquareAddImage, SquareImageContainer, SquaresGrid, Validators } from "@whub/wui"
 import { useState } from "react"
+import { ConfigUtils } from "../../lib/ConfigUtils"
+import { ProductInput } from "../ProductInput"
 
 export function ProductImagesInput() {
   return (
-    <InputValidator
+    <ProductInput
       name="images"
-      mode="manual"
-      value={[] as FileWithId<string>[]}
+      value={[]}
+      getValidators={config => [
+        Validators.min(config.required ? 1 :0),
+        ...ConfigUtils.getValidators(config, 'general')
+      ]}
     >
       {
-        i =>
+        (config, i) =>
           <Stack
             direction="column"
           >
             <ProductImagesUploader
+              required={config.required}
               files={i.value}
               onChange={f => i.onChange?.({ target: { value: f } })}
-              />
-              <MaybeShow
-                show={!!i.error}
+            />
+            <MaybeShow
+              show={!!i.error}
+            >
+              <Typography
+                variant="caption"
+                color="error"
               >
-                <Typography
-                  variant="caption"
-                  color="error"
-                >
-                  Errore caricamento immagini.
-                </Typography>
-              </MaybeShow>
-            </Stack>
-
+                Errore.
+              </Typography>
+            </MaybeShow>
+          </Stack>
       }
-    </InputValidator>
+    </ProductInput>
+
   )
 }
 
-function ProductImagesUploader(props: FileProps<FileWithId<string>>) {
+interface ProductImagesUploaderProps extends FileProps<FileWithId<string>> {
+  readonly required?: boolean
+}
+
+function ProductImagesUploader(props: ProductImagesUploaderProps) {
   const [images, setImages] = useState<FileWithId<string>[]>(props.files ?? [])
 
   const onAdd = (i: string) => {
@@ -52,7 +62,7 @@ function ProductImagesUploader(props: FileProps<FileWithId<string>>) {
 
   return (
     <SquaresGrid
-      title="Immagini"
+      title={`Immagini${props.required ? '*' : ''}`}
       elements={images}
       firstElement={
         <SquareAddImage

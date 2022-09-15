@@ -1,44 +1,46 @@
 import { AddRounded, CloseRounded, EditRounded, OpenInNewRounded } from "@mui/icons-material";
 import { Badge, Button, IconButton, LinearProgress, Stack, TextField } from "@mui/material";
-import { useShopApi } from "@whub/apis-react";
+import { useShop } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
-import { ProductImage } from "@whub/wshop-ui";
+import { PreviewProduct, ProductImage } from "@whub/wshop-ui";
 import { AreYouSureDialog, MaybeShow, Page, useNavigator } from "@whub/wui";
+import { ProductUtils } from "libs/wshop/ui/src/lib/ProductUtils";
 import { useEffect, useState } from "react";
 import DataTable from 'react-data-table-component';
 
 
 export function TableProductsPage() {
   const [loading, setLoading] = useState(false)
-  const [products, setProducts] = useState<Product[]>([])
+  const [products, setProducts] = useState<PreviewProduct[]>([])
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(10)
   const [filter, setFilter] = useState('')
   const [totalResults, setTotalResults] = useState(0)
-  const [productToDelete, setProductToDelete] = useState<Product | null>(null)
+  const [productToDelete, setProductToDelete] = useState<PreviewProduct | null>(null)
   const { clickNavigate } = useNavigator()
-  const shopApi = useShopApi()
+  const shopApi = useShop().api
 
   useEffect(() => {
     fetchProducts()
   }, [filter, page, perPage])
 
-  const fetchProducts = () => {
+  const fetchProducts = async () => {
     const pagePrep = page - 1
 
     setLoading(true)
-    shopApi.products
+    const res = await shopApi.products
       .search
       .filter({
         skip: pagePrep * perPage,
         take: perPage,
         query: filter
       })
-      .then(res => {
-        setProducts(res.data.results)
-        setTotalResults(res.data.totalResults)
-      })
-      .finally(() => setLoading(false))
+
+    const prods = await ProductUtils.prepareAllForUI(shopApi, res.data.results)
+
+    setProducts(prods)
+    setTotalResults(res.data.totalResults)
+    setLoading(false)
   }
 
   return (
@@ -85,15 +87,19 @@ export function TableProductsPage() {
           columns={[
             {
               cell: (p) => {
+                const imagesNum = p.images
+                  ? p.images.length - 1
+                  : 0
+
                 const getExtraImages = () => {
-                  const imagesNum = p.images.length - 1
+
                   return imagesNum <= 0
                     ? ''
                     : `+${imagesNum}`
                 }
 
                 const areNoExtraImages = () => {
-                  return p.images.length - 1 <= 0
+                  return imagesNum <= 0
                 }
 
                 return (
@@ -111,7 +117,7 @@ export function TableProductsPage() {
                       }}
                     >
                       <ProductImage
-                        product={p}
+                        srcs={p.images?.map(i => i.file) ?? []}
                         size={54}
                         sx={{ margin: 0.5 }}
                       />

@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 
 export interface TextEditorProps extends InputBaseProps<string> {
   readonly label?: string,
+  readonly required?: boolean,
   readonly maxCharacters?: number,
 }
 
@@ -97,7 +98,7 @@ export function TextEditor(props: TextEditorProps) {
       <Typography
         sx={{ color: getErrorColor }}
       >
-        {props.label} {getMaxCharactersLabel()}
+        {props.label}{props.required ? '*' : ''} {getMaxCharactersLabel()}
       </Typography>
       <ReactQuill
         ref={reactQuillRef}
