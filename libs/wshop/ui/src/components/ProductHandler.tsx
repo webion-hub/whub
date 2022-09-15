@@ -3,37 +3,25 @@ import { LoadingButton } from "@mui/lab";
 import { Button, Paper, Stack, SxProps, Theme, useMediaQuery, useTheme } from "@mui/material";
 import { handleResponse } from "@whub/apis-core";
 import { useShop } from "@whub/apis-react";
-import { Category, Product, ProductDetail, ProductEndpoint } from "@whub/wshop-api";
-import { FileWithId, Form, FormGroup, useNavigator } from "@whub/wui";
+import { Image, Product, ProductDetail, ProductEndpoint } from "@whub/wshop-api";
+import { Form, FormGroup, useNavigator } from "@whub/wui";
 import { useState } from "react";
+import { ProductUtils } from "../lib/ProductUtils";
+import { ProductAttachmentsInput } from "./inputs/ProductAttachmentsInput";
 import { ProductCategoryInput } from "./inputs/ProductCategoryInput";
 import { ProductCodeInput } from "./inputs/ProductCodeInput";
-import { ProductRelatedInput } from "./inputs/ProductRelatedInput";
 import { ProductDescriptionInput } from "./inputs/ProductDescriptionInput";
-import { ProductNameInput } from "./inputs/ProductNameInput";
-import { ProductPriceInput } from "./inputs/ProductPriceInput copy";
-import { ProductComponent } from "./ProductComponent";
 import { ProductDetailsInput } from "./inputs/ProductDetailsInput";
 import { ProductImagesInput } from "./inputs/ProductImagesInput";
-import { ProductAttachmentsInput } from "./inputs/ProductAttachmentsInput";
+import { ProductNameInput } from "./inputs/ProductNameInput";
+import { ProductPriceInput } from "./inputs/ProductPriceInput copy";
+import { ProductRelatedInput } from "./inputs/ProductRelatedInput";
+import { ProductComponent } from "./ProductComponent";
 
-
-export interface PreviewProduct {
-  readonly id: number;
-  readonly name: string;
-  readonly category?: Category;
-  readonly description?: string;
-  readonly price?: number;
-  readonly code: string;
-  readonly attachments?: FileWithId<File>[];
-  readonly images?: FileWithId<string>[];
-  readonly relatedProducts?: Product[];
-  readonly details?: ProductDetail[];
-}
 
 interface ProductHandlerUpdateProps {
   readonly mode: 'update',
-  readonly previewProduct: PreviewProduct,
+  readonly product: Product,
   readonly sx?: SxProps<Theme>,
 }
 interface ProductHandlerAddProps {
@@ -58,7 +46,7 @@ export function ProductHandler(props: ProductHandlerProps) {
       return
 
     setLoading(true)
-    const formProduct = f.getValues() as PreviewProduct
+    const formProduct = f.getValues() as Product
 
     const createProduct = () => shopApi.products.create({
       ...formProduct,
@@ -66,7 +54,7 @@ export function ProductHandler(props: ProductHandlerProps) {
     })
 
     const updateProduct = () => shopApi.products
-      .withId(isUpdateMode ? props.previewProduct.id : -1)
+      .withId(isUpdateMode ? props.product.id : -1)
       .update({
         name: formProduct.name,
         price: formProduct.price,
@@ -93,28 +81,34 @@ export function ProductHandler(props: ProductHandlerProps) {
       })})
   }
 
-  const addProductInformations = (p: Product, f: Form) => {
-    const previewProduct = props.mode === 'update'
-      ? props.previewProduct
-      : {} as PreviewProduct
+  const addProductInformations = async (p: Product, f: Form) => {
+    const productToClean = props.mode === 'update'
+      ? props.product
+      : {} as Product
 
     const product = shopApi.products.withId(p.id)
-    const formProduct = f.getValues() as PreviewProduct
+    const formProduct = f.getValues() as Product
 
-    cleanProductFiles(previewProduct, product)
+    const attachments = await ProductUtils
+      .getAllAttachementAsFile(formProduct.attachments)
+
+    const images = await ProductUtils
+      .getAllImagesAsData64(formProduct.images)
+
+    cleanProductFiles(productToClean, product)
       .then(() => {
         uploadData(product, f,
-          formProduct.attachments?.map(a => a.file) ?? [],
-          formProduct.images?.map(a => a.file) ?? [],
-          formProduct.relatedProducts ?? [],
-          formProduct.details ?? []
+          attachments,
+          images,
+          formProduct.relatedProducts,
+          formProduct.details
         )
           .then(() => onClose())
           .finally(() => setLoading(false))
       })
   }
 
-  const cleanProductFiles = (product: PreviewProduct, productEndpoint: ProductEndpoint) => {
+  const cleanProductFiles = (product: Product, productEndpoint: ProductEndpoint) => {
     const cleanImageTasks = product.images?.map(i =>
       productEndpoint.images.withId(i.id).delete()
     )
@@ -133,7 +127,7 @@ export function ProductHandler(props: ProductHandlerProps) {
     productEndpoint: ProductEndpoint,
     form: Form,
     files: File[],
-    images: string[],
+    images: Image[],
     releated: Product[],
     details: ProductDetail[],
   ) => {
@@ -168,17 +162,17 @@ export function ProductHandler(props: ProductHandlerProps) {
     return Promise.all(tasks)
   }
 
-  const uploadImage = (productEndpoint: ProductEndpoint, image: string, index: number) => {
+  const uploadImage = (productEndpoint: ProductEndpoint, image: Image) => {
     return productEndpoint
       .images
       .upload({
-        image: image,
-        index: index,
+        image: image.url,
+        index: image.index,
       })
   }
 
-  const uploadImages = (productEndpoint: ProductEndpoint, images: string[]) => {
-    const tasks = images.map((image, i) => uploadImage(productEndpoint, image, i))
+  const uploadImages = (productEndpoint: ProductEndpoint, images: Image[]) => {
+    const tasks = images.map((image, i) => uploadImage(productEndpoint, image))
 
     return Promise.all(tasks)
   }
@@ -191,7 +185,7 @@ export function ProductHandler(props: ProductHandlerProps) {
   return (
     <FormGroup
       onSubmit={onCreate}
-      values={isUpdateMode ? props.previewProduct : undefined}
+      values={isUpdateMode ? props.product : undefined}
       sx={{ width: '100%', ...props.sx }}
     >
       <Stack
@@ -243,7 +237,7 @@ export function ProductHandler(props: ProductHandlerProps) {
           <ProductPriceInput/>
           <ProductCategoryInput/>
           <ProductDescriptionInput/>
-          <ProductRelatedInput productId={isUpdateMode ? props.previewProduct.id : undefined}/>
+          <ProductRelatedInput productId={isUpdateMode ? props.product.id : undefined}/>
           <ProductDetailsInput/>
           <ProductImagesInput/>
           <ProductAttachmentsInput/>

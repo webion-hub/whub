@@ -1,23 +1,12 @@
-import { Product, WShopApi } from "@whub/wshop-api";
+import { Attachment, Image, Product, WShopApi } from "@whub/wshop-api";
 import _ from "lodash";
-import { PreviewProduct } from "../components/ProductHandler";
 
 export class ProductUtils {
-  static async prepareAllForUI(shopApi: WShopApi, product: Product[]): Promise<PreviewProduct[]> {
-    return await Promise.all(
-      product.map(p => ProductUtils.prepareForUI(shopApi, p))
-    )
-}
-
-  static async prepareForUI(shopApi: WShopApi, product: Product): Promise<PreviewProduct> {
-      const files = await this.getAttachmentsFiles(shopApi, product)
-      const images = await this.getImagesFiles(product)
-
-      return {
-        ...product,
-        attachments: files,
-        images: images
-      }
+  static prepareImages(images?: Image[]) {
+    return _(images ?? [])
+      .sortBy(i => i.index)
+      .map(i => i.url)
+      .value()
   }
 
   static getImages(product: Product) {
@@ -36,31 +25,49 @@ export class ProductUtils {
       }))
   }
 
-  static getImagesFiles(product: Product) {
-    const images = this.getImages(product)
+  static getAttachment(a: Attachment) {
+    return a.file
+      ? URL.createObjectURL(a.file)
+      : a.url
+  }
 
-    const tasks = images
-      .map(async i => ({
+  static async getAllImagesAsData64(images: Image[]) {
+    const temp = [...images]
+    const notData64 = _.remove(temp, a => !a.url.startsWith('data:'))
+
+    const tasks = notData64
+      .map(async (i) => ({
         id: i.id,
-        file: await this.getBase64FromUrl(i.url) as string
+        index: i.index,
+        url: await this.getBase64FromUrl(i.url) as string
       }))
+
+    const images1 = await Promise.all(tasks)
+    return [...temp, ...images1]
+  }
+
+  static getAttachmentsFiles(attachments: Attachment[]) {
+    const tasks = attachments.map(a => {
+      return this.getAttachmentFile(a)
+    })
 
     return Promise.all(tasks)
   }
 
-  static getAttachmentsFiles(shopApi: WShopApi, product: Product) {
-    const attachments = this.getAttachments(shopApi, product)
-
-    const tasks = attachments.map(async a => {
-      const res = await fetch(a.url)
+  static async getAttachmentFile(attachment: Attachment) {
+      const res = await fetch(attachment.url)
       const buf = await res.arrayBuffer()
-      return {
-        id: a.id,
-        file: new File([buf], a.name)
-      }
-    })
+      return new File([buf], attachment.fileName)
+  }
 
-    return Promise.all(tasks)
+  static async getAllAttachementAsFile(attachments: Attachment[]) {
+    const temp = [...attachments]
+    const notFiles = _.remove(temp, a => !a.file)
+
+    const files1 = await this.getAttachmentsFiles(notFiles)
+    const files2 = temp.map(f => f.file as File)
+
+    return [...files1, ...files2]
   }
 
   private static async getBase64FromUrl(url: string) {

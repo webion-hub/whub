@@ -1,22 +1,22 @@
 import { ShopConfig } from "@whub/apis-react"
+import { Product } from "@whub/wshop-api"
 import { Form, InputBaseProps, InputValidator, Validator } from "@whub/wui"
 import { ProductFieldConfig } from "./ProductFieldConfig"
-import { PreviewProduct } from "./ProductHandler"
 
 type ProductInputs = keyof ShopConfig
 
-interface ProductInputProps<T extends ProductInputs & keyof PreviewProduct> {
-  readonly value: PreviewProduct[T]
+interface ProductInputProps<T extends ProductInputs & keyof Product> {
+  readonly value: Product[T]
   readonly name: T,
   readonly getValidators?: (config: ShopConfig[T]) => Validator[],
   readonly children:(
     config: ShopConfig[T],
-    input: InputBaseProps<PreviewProduct[T]>,
+    input: InputBaseProps<Product[T]>,
     form: Form,
   ) => JSX.Element | null
 }
 
-export function ProductInput<T extends ProductInputs & keyof PreviewProduct>(props: ProductInputProps<T>) {
+export function ProductInput<T extends ProductInputs & keyof Product>(props: ProductInputProps<T>) {
 
   const getInputValidator = (config: ShopConfig[T]) => {
     return (

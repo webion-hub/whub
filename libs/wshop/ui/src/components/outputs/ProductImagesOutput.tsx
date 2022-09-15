@@ -1,7 +1,9 @@
 import { Box, Stack, useTheme } from "@mui/material";
+import { Image } from "@whub/wshop-api";
 import { FileWithId } from "@whub/wui";
 import _ from "lodash";
 import { useState } from "react";
+import { ProductUtils } from "../../lib/ProductUtils";
 import { ProductImage } from "../ProductImage";
 import { GeneralProductOutputProps, ProductOutput } from "../ProductOutput";
 import { useProduct } from "../ProductWrapper";
@@ -19,7 +21,7 @@ export function ProductImagesOutput(props: GeneralProductOutputProps) {
         images =>
           <ProductImagesViewer
             compress={compress}
-            previewImages={images ?? []}
+            images={images ?? []}
           />
       }
     </ProductOutput>
@@ -27,7 +29,7 @@ export function ProductImagesOutput(props: GeneralProductOutputProps) {
 }
 
 interface ProductImagesViewerProps {
-  readonly previewImages: FileWithId<string>[],
+  readonly images: Image[],
   readonly compress?: boolean
 }
 
@@ -40,12 +42,7 @@ export function ProductImagesViewer(props: ProductImagesViewerProps) {
   const imageMaxSize = 400
 
   const getImages = () => {
-    const images = _(props.previewImages)
-      .sortBy(i => i.id)
-      .map(i => i.file)
-      .value()
-
-    return images ?? []
+    return ProductUtils.prepareImages(props.images)
   }
 
   return (

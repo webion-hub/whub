@@ -1,8 +1,8 @@
+import { Product } from "@whub/wshop-api";
 import { createContext, ReactNode, useContext } from "react";
-import { PreviewProduct } from "./ProductHandler";
 
 interface ProductWrapperContext {
-  readonly product?: PreviewProduct,
+  readonly product?: Product,
   readonly compress?: boolean,
   readonly preview?: boolean,
 }

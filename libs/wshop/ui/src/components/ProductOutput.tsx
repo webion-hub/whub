@@ -1,9 +1,9 @@
 import { styled } from "@mui/material"
 import { ShopConfig } from "@whub/apis-react"
+import { Product } from "@whub/wshop-api"
 import { GetFormValue } from "@whub/wui"
 import { ReactNode } from "react"
 import { ProductFieldConfig, ProductInputs } from "./ProductFieldConfig"
-import { PreviewProduct } from "./ProductHandler"
 import { useProduct } from "./ProductWrapper"
 
 export const Placeholder = styled('span')({
@@ -15,13 +15,13 @@ export interface GeneralProductOutputProps {
   readonly placeholder?: ReactNode,
 }
 
-export interface ProductOutputProps<T extends ProductInputs & keyof PreviewProduct> extends GeneralProductOutputProps {
+export interface ProductOutputProps<T extends ProductInputs & keyof Product> extends GeneralProductOutputProps {
   readonly name: T,
-  readonly children: (value?: PreviewProduct[T], config?: ShopConfig[T]) => any,
-  readonly showPlaceholder?: (value: PreviewProduct[T]) => boolean,
+  readonly children: (value?: Product[T], config?: ShopConfig[T]) => any,
+  readonly showPlaceholder?: (value: Product[T]) => boolean,
 }
 
-export function ProductOutput<T extends ProductInputs & keyof PreviewProduct>(props: ProductOutputProps<T>) {
+export function ProductOutput<T extends ProductInputs & keyof Product>(props: ProductOutputProps<T>) {
   const {
     product,
     preview
@@ -29,7 +29,7 @@ export function ProductOutput<T extends ProductInputs & keyof PreviewProduct>(pr
 
   const getPreviewComponent = (config: ShopConfig[T]) =>
     <GetFormValue name={props.name}>
-      {(v: PreviewProduct[T]) => {
+      {(v: Product[T]) => {
         if(props.showPlaceholder?.(v) ?? !v)
           return <Placeholder>{props.placeholder}</Placeholder>
 

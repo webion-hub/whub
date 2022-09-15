@@ -1,15 +1,15 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useShop } from "@whub/apis-react";
-import { PreviewProduct, ProductComponent } from "@whub/wshop-ui";
+import { Product } from "@whub/wshop-api";
+import { ProductComponent } from "@whub/wshop-ui";
 import { FullScreenLoading, MaybeShow } from "@whub/wui";
-import { ProductUtils } from "libs/wshop/ui/src/lib/ProductUtils";
 import { ReactNode, useEffect, useState } from "react";
 
 interface ProductProps {
   readonly productId?: string
 }
 
-export function Product(props: ProductProps) {
+export function ProductVisualizer(props: ProductProps) {
   const productId = props.productId
   const theme = useTheme()
   const isMobileView = useMediaQuery(theme.breakpoints.down("md"));
@@ -40,13 +40,13 @@ export function Product(props: ProductProps) {
 }
 
 interface ProductGetter extends ProductProps {
-  readonly children: (product?: PreviewProduct, loading?: boolean) => any,
+  readonly children: (product?: Product, loading?: boolean) => any,
   readonly loadingComponent?: (loading: boolean) => ReactNode
 }
 
 export function ProductGetter(props: ProductGetter) {
   const [loading, setLoading] = useState(false)
-  const [product, setProduct] = useState<PreviewProduct>()
+  const [product, setProduct] = useState<Product>()
 
   const shopApi = useShop().api
 
@@ -62,10 +62,7 @@ export function ProductGetter(props: ProductGetter) {
     shopApi.products
       .withId(parseInt(props.productId))
       .load()
-      .then(async res => {
-        const product = await ProductUtils.prepareForUI(shopApi, res.data)
-        setProduct(product)
-      })
+      .then(res => setProduct(res.data))
       .finally(() => setLoading(false))
   }
 

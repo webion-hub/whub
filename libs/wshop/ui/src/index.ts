@@ -10,4 +10,5 @@ export * from './components/ProductOutput';
 export * from './pages/AddProduct';
 export * from './pages/EditProduct';
 export * from './pages/ProductsList';
-export * from './pages/Product';
+export * from './pages/ProductVisualizer';
+export * from './pages/TableProducts';

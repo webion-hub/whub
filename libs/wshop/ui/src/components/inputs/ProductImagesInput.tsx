@@ -1,5 +1,7 @@
 import { Stack, Typography } from "@mui/material"
-import { FileProps, FileWithId, MaybeShow, MultipleFileController, SquareAddImage, SquareImageContainer, SquaresGrid, Validators } from "@whub/wui"
+import { Image } from "@whub/wshop-api"
+import { FileProps, MaybeShow, SquareAddImage, SquareImageContainer, SquaresGrid, Validators } from "@whub/wui"
+import _ from "lodash"
 import { useState } from "react"
 import { ConfigUtils } from "../../lib/ConfigUtils"
 import { ProductInput } from "../ProductInput"
@@ -41,21 +43,34 @@ export function ProductImagesInput() {
   )
 }
 
-interface ProductImagesUploaderProps extends FileProps<FileWithId<string>> {
+interface ProductImagesUploaderProps extends FileProps<Image> {
   readonly required?: boolean
 }
 
 function ProductImagesUploader(props: ProductImagesUploaderProps) {
-  const [images, setImages] = useState<FileWithId<string>[]>(props.files ?? [])
+  const [images, setImages] =
+    useState<Image[]>(_(props.files).sortBy(f => f.index).value() ?? [])
 
   const onAdd = (i: string) => {
-    const prepImg = MultipleFileController.addFile(i, images)
-    setImages(prepImg)
-    props.onChange?.(prepImg)
+    const maxIndex = _(images).maxBy(i => i.index)?.index ?? 0
+    const newImages = [...images]
+      .map((i, k) => ({...i, id: k}))
+
+    newImages.push({
+        id: images.length,
+        index: maxIndex + 1,
+        url: i,
+      })
+
+    setImages(newImages)
+    props.onChange?.(newImages)
   }
 
-  const onRemove = (i: FileWithId<string>) => {
-    const prepImg = MultipleFileController.removeFile(i, images)
+  const onRemove = (img: Image) => {
+    const prepImg = images
+      .filter(i => i.id !== img.id)
+      .map((i, k) => ({ ...i, id: k }))
+
     setImages(prepImg)
     props.onChange?.(prepImg)
   }
@@ -74,7 +89,7 @@ function ProductImagesUploader(props: ProductImagesUploaderProps) {
         i => (
           <SquareImageContainer
             key={i.id}
-            src={i.file}
+            src={i.url}
             onDelete={() => onRemove(i)}
           />
         )

@@ -6,7 +6,6 @@ import { ApiContext, ApiContextProps } from '../abstractions/ApiContextProps'
 export interface ShopFieldConfig<T> {
   readonly show: boolean,
   readonly validators: T
-  readonly addTableColumn?: boolean,
   readonly required?: boolean,
 }
 
@@ -24,7 +23,6 @@ type BaseShopFieldConfig = ShopFieldConfig<BaseField>
 type ComplexShopFieldConfig<T> = ShopFieldConfig<ComplexFieldConfig<T>>
 
 interface RequiredField {
-  readonly addTableColumn?: boolean,
   readonly validators: BaseField
 }
 

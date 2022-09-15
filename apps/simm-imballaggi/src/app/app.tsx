@@ -105,19 +105,15 @@ export function App() {
                     <Route path="/login"  element={<LoginPage/>}/>
                     <Route path="/product/:id"  element={<ProductPage/>}/>
                     <Route path="/products"  element={<ProductsPage/>}/>
-                    <Route path="/test"  element={<AddProduct/>}/>
+                    <Route path="/test"  element={<TableProductsPage/>}/>
+                    <Route path="//edit-product/:id"  element={<EditProduct/>}/>
                     <Route
                       path="/add-product"
                       element={
                         <Guard canNavigate={isAdminGuard} redirectTo="/" el={<AddProduct/>}/>
                       }
                     />
-                    <Route
-                      path="/edit-product/:id"
-                      element={
-                        <Guard canNavigate={isAdminGuard} redirectTo="/" el={<EditProduct/>}/>
-                      }
-                    />
+
                     <Route
                       path="/products-table"
                       element={

@@ -1,4 +1,5 @@
 import { Button, SxProps, Theme } from "@mui/material";
+import { Product } from "@whub/wshop-api";
 import { useGlobalDialogs } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 import { ProductAttachmentsOutput } from "./outputs/ProductAttachmentsOutput";
@@ -11,7 +12,6 @@ import { ProductNameOutput } from "./outputs/ProductNameOutput";
 import { ProductPriceOutput } from "./outputs/ProductPriceOutput";
 import { ProductRelatedOutput } from "./outputs/ProductRelatedOutput";
 import { ProductFrame } from "./ProductFrame";
-import { PreviewProduct } from "./ProductHandler";
 import { ProductWrapper } from "./ProductWrapper";
 
 interface ProductComponentBaseProps {
@@ -25,7 +25,7 @@ interface ProductComponentPreviewProps extends ProductComponentBaseProps {
 
 interface ProductComponentDefaultProps extends ProductComponentBaseProps {
   readonly mode?: 'default',
-  readonly product: PreviewProduct,
+  readonly product: Product,
 }
 
 export type ProductComponentProps = ProductComponentPreviewProps | ProductComponentDefaultProps

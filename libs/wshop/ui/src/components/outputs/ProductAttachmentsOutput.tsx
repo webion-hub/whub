@@ -1,8 +1,10 @@
 import { DownloadRounded } from "@mui/icons-material";
+import { LoadingButton } from "@mui/lab";
 import { Box, Button, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
-import { FileWithId } from "@whub/wui";
+import { Attachment } from "@whub/wshop-api";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ProductUtils } from "../../lib/ProductUtils";
 import { GeneralProductOutputProps, ProductOutput } from "../ProductOutput";
 
 export function ProductAttachmentsOutput(props: GeneralProductOutputProps) {
@@ -22,7 +24,7 @@ export function ProductAttachmentsOutput(props: GeneralProductOutputProps) {
 }
 
 interface ProductAttachmentButtonListProps {
-  readonly attachments: FileWithId<File>[],
+  readonly attachments: Attachment[],
 }
 
 export function ProductAttachmentButtonList(props: ProductAttachmentButtonListProps) {
@@ -31,6 +33,9 @@ export function ProductAttachmentButtonList(props: ProductAttachmentButtonListPr
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+
+
+
     setAnchorEl(event.currentTarget);
   };
 
@@ -38,9 +43,17 @@ export function ProductAttachmentButtonList(props: ProductAttachmentButtonListPr
     setAnchorEl(null);
   };
 
+  const getAttachment = (a: Attachment) => {
+    const attachment = ProductUtils.getAttachment(a)
+
+    return {
+      name: a.fileName,
+      url: attachment
+    }
+  }
+
   const getAttachments = () => {
-    return props.attachments
-      .map(a => ({url: URL.createObjectURL(a.file), name: a.file.name}))
+    return props.attachments.map(getAttachment)
   }
 
   const areNoAttachments = () => {

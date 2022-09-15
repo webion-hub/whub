@@ -1,7 +1,9 @@
-import { Stack, Typography } from "@mui/material"
+import { CircularProgress, Stack, Typography } from "@mui/material"
+import { Attachment } from "@whub/wshop-api"
 import { FileProps, FileWithId, MaybeShow, MultipleFileController, SquareAddAttachment, SquareContainer, SquaresGrid, Utils, Validators } from "@whub/wui"
-import { useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { ConfigUtils } from "../../lib/ConfigUtils"
+import { ProductUtils } from "../../lib/ProductUtils"
 import { ProductInput } from "../ProductInput"
 
 export function ProductAttachmentsInput() {
@@ -21,7 +23,7 @@ export function ProductAttachmentsInput() {
           >
             <ProductAttachmentUploader
               required={config.required}
-              files={i.value}
+              files={i.value ?? []}
               onChange={f => i.onChange?.({ target: { value: f } })}
             />
             <MaybeShow
@@ -40,33 +42,46 @@ export function ProductAttachmentsInput() {
   )
 }
 
-interface ProductAttachmentUploaderProps extends FileProps<FileWithId<File>> {
+interface ProductAttachmentUploaderProps extends FileProps<Attachment> {
   readonly required?: boolean
 }
 
 function ProductAttachmentUploader(props: ProductAttachmentUploaderProps) {
-  const [attachment, setAttachment] = useState<FileWithId<File>[]>(props.files ?? [])
+  const [attachments, setAttachments] = useState<Attachment[]>(props.files ?? [])
 
   useEffect(() => {
-    setAttachment(props.files ?? [])
+    setAttachments(props.files ?? [])
   }, [props.files])
 
-  const onAdd = (i: File) => {
-    const prepAttachment = MultipleFileController.addFile(i, attachment)
-    setAttachment(prepAttachment)
-    props.onChange?.(prepAttachment)
+  const onAdd = (file: File) => {
+    const newAttachments = [...attachments]
+      .map((a, k) => ({...a, id: k}))
+
+    newAttachments.push({
+        id: attachments.length,
+        url: '',
+        file: file,
+        fileName: file.name
+      })
+
+    setAttachments(newAttachments)
+    props.onChange?.(newAttachments)
   }
 
-  const onRemove = (i: FileWithId<File>) => {
-    const prepAttachment = MultipleFileController.removeFile(i, attachment)
-    setAttachment(prepAttachment)
-    props.onChange?.(prepAttachment)
+  const onRemove = (attachment: Attachment) => {
+    const prepAttachments = attachments
+      .filter(a => a.id !== attachment.id)
+      .map((a, k) => ({ ...a, id: k }))
+
+    setAttachments(prepAttachments)
+    props.onChange?.(prepAttachments)
   }
+
 
   return (
     <SquaresGrid
       title={`Allegati${props.required ? '*' : ''}`}
-      elements={attachment}
+      elements={attachments}
       firstElement={
         <SquareAddAttachment
           onAddPdf={onAdd}
@@ -85,24 +100,59 @@ function ProductAttachmentUploader(props: ProductAttachmentUploaderProps) {
               justifyContent="center"
               sx={{ height: '100%' }}
             >
-              <Typography
-                variant="caption"
-                sx={{
-                  display: '-webkit-box',
-                  WebkitLineClamp: '2',
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden'
-                }}
+              <PromiseComponent
+                promise={ProductUtils.getAttachmentFile(f)}
+                loadingComponent={<CircularProgress/>}
               >
-                {f.file.name}
-              </Typography>
-              <Typography variant="caption">
-                {Utils.bytesToSize(f.file.size)}
-              </Typography>
+                {
+                  res =>
+                    <>
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          display: '-webkit-box',
+                          WebkitLineClamp: '2',
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden'
+                        }}
+                      >
+                        {res.name}
+                      </Typography>
+                      <Typography variant="caption">
+                        {Utils.bytesToSize(res.size ?? 0)}
+                      </Typography>
+                    </>
+                }
+              </PromiseComponent>
             </Stack>
           </SquareContainer>
         )
       }
     </SquaresGrid>
   )
+}
+
+
+interface PromiseComponentProps<T> {
+  readonly promise: Promise<T>,
+  readonly deps?: any[]
+  readonly loadingComponent?: ReactNode
+  readonly children: (res: T) => any
+}
+
+function PromiseComponent<T>(props: PromiseComponentProps<T>) {
+  const [loading, setLoading] = useState(false)
+  const [res, setRes] = useState<T>()
+  const deps = props.deps ?? []
+
+  useEffect(() => {
+    setLoading(true)
+    props.promise
+      .then(setRes)
+      .finally(() => setLoading(false))
+  }, deps)
+
+  return loading || !res
+    ? props.loadingComponent
+    : props.children(res)
 }
