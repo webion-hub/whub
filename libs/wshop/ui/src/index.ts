@@ -6,6 +6,7 @@ export * from './components/ProductCard';
 export * from './components/ProductFieldConfig';
 export * from './components/ProductInput';
 export * from './components/ProductOutput';
+export * from './components/ProductSearchBar';
 
 export * from './pages/AddProduct';
 export * from './pages/EditProduct';

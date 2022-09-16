@@ -2,6 +2,7 @@ import { handleResponse } from "@whub/apis-core"
 import { AccountInfo, LoginRequest, SimpleAuthApi } from "@whub/simple-auth"
 import { createContext, useContext, useState } from "react"
 import { ApiContext, ApiContextProps } from "../abstractions/ApiContextProps"
+import { UserUtils } from "../libs/UserUtils"
 
 export type IAuthContext = ApiContext<SimpleAuthApi, unknown>
 export type IAuthContextProps = ApiContextProps<SimpleAuthApi, unknown>
@@ -118,7 +119,7 @@ export const AuthWrapper = (props: IAuthContextProps) => {
   return (
     <AuthContext.Provider
       value={{
-        isAdmin: !!user?.roles.some(r => r.toLowerCase() === 'admin'),
+        isAdmin: UserUtils.hasRole('admin', user),
         isLogged,
         user,
         checkUser,

@@ -6,5 +6,8 @@ export * from './contexts/ContactUsContext'
 export * from './contexts/ShopContext'
 
 export * from './components/Guard';
+export * from './components/AuthBtn';
 
 export * from './guards/Guards';
+
+export * from './libs/UserUtils';
