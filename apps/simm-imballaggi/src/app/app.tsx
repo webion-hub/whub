@@ -16,6 +16,7 @@ import { Guard, Guards } from "@whub/apis-react";
 import React, { Suspense } from "react";
 import ContactsDialog from "./components/dialogs/ContactsDialog";
 import { ES, GB, IT } from "country-flag-icons/react/3x2";
+import { ShopRoutes } from "@whub/wshop-ui";
 
 const SimmAppbar = React.lazy(() => import('./components/layout/SimmAppBar'))
 const SimmFooter = React.lazy(() => import('./components/layout/SimmFooter'))
@@ -103,23 +104,23 @@ export function App() {
                     <Route path="/" element={<Homepage/>}/>
                     <Route path="/privacy" element={<PrivacyPolicy/>}/>
                     <Route path="/login"  element={<LoginPage/>}/>
-                    <Route path="/product/:id"  element={<ProductPage/>}/>
-                    <Route path="/products"  element={<ProductsPage/>}/>
+                    <Route path={ShopRoutes.PRODUCT}  element={<ProductPage/>}/>
+                    <Route path={ShopRoutes.PRODUCTS}  element={<ProductsPage/>}/>
                     <Route
-                      path="/edit-product/:id"
+                      path={ShopRoutes.PRODUCT_EDIT}
                       element={
                         <Guard canNavigate={isAdminGuard} redirectTo="/" el={<EditProduct/>}/>
                       }
                     />
                     <Route
-                      path="/add-product"
+                      path={ShopRoutes.PRODUCT_ADD}
                       element={
                         <Guard canNavigate={isAdminGuard} redirectTo="/" el={<AddProduct/>}/>
                       }
                     />
 
                     <Route
-                      path="/products-table"
+                      path={ShopRoutes.PRODUCTS_TABLE}
                       element={
                         <Guard canNavigate={isAdminGuard} redirectTo="/" el={<TableProductsPage/>}/>
                       }

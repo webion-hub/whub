@@ -3,7 +3,7 @@ import React from "react";
 import CallRounded from "@mui/icons-material/CallRounded";
 import { IconButton, ListItemIcon, ListItemText, MenuItem, useMediaQuery, useScrollTrigger, useTheme } from "@mui/material";
 import { AppBar, AppBarContent, AppBarLogo, AppBarSection, MaybeShow, Responser, useGlobalDialogs, useNavigator } from "@whub/wui";
-import { ProductSearchBar } from "@whub/wshop-ui";
+import { ProductSearchBar, ShopRoutes } from "@whub/wshop-ui";
 import { AuthBtn, UserUtils } from "@whub/apis-react";
 import { AddBoxRounded, TableRowsRounded } from "@mui/icons-material";
 
@@ -19,12 +19,12 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((prop
   });
 
   const goToTable = (onClose: () => void) => {
-    navigate('/products-table')
+    navigate(ShopRoutes.PRODUCTS_TABLE)
     onClose()
   }
 
   const goToAddProduct = (onClose: () => void) => {
-    navigate('/add-product')
+    navigate(ShopRoutes.PRODUCT_ADD)
     onClose()
   }
 

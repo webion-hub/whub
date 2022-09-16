@@ -6,6 +6,7 @@ import _ from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { throttleTime } from "rxjs";
+import { ShopRoutes } from "../lib/ShopRoutes";
 import { ProductListItem } from "./ProductListItem";
 
 export function ProductSearchBar() {
@@ -100,13 +101,13 @@ export function ProductSearchBar() {
             }}
             product={option}
             onClick={() => {
-              navigate(`/product/${option.id}`)
+              navigate(ShopRoutes.getProductRoute(option.id))
               onClose()
             }}
           >
             <Button
               onClick={e => {
-                clickNavigate(`/product/${option.id}`)(e)
+                clickNavigate(ShopRoutes.getProductRoute(option.id))(e)
                 onClose()
               }}
             >

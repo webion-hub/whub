@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import DataTable from 'react-data-table-component';
 import { ProductImage } from "../components/ProductImage";
 import { ProductUtils } from "../lib/ProductUtils";
+import { ShopRoutes } from "../lib/ShopRoutes";
 
 
 export function TableProducts() {
@@ -63,8 +64,8 @@ export function TableProducts() {
             variant="contained"
             startIcon={<AddRounded/>}
             size="small"
-            href="/add-product"
-            onClick={clickNavigate('/add-product')}
+            href={ShopRoutes.PRODUCT_ADD}
+            onClick={clickNavigate(ShopRoutes.PRODUCT_ADD)}
             sx={{ minWidth: 240 }}
           >
             Aggiungi prodotto
@@ -143,8 +144,8 @@ export function TableProducts() {
                   direction="row"
                 >
                   <IconButton
-                    href={`/edit-product/${p.id}`}
-                    onClick={clickNavigate(`/edit-product/${p.id}`)}
+                    href={ShopRoutes.getEditRoute(p.id)}
+                    onClick={clickNavigate(ShopRoutes.getEditRoute(p.id))}
                   >
                     <EditRounded/>
                   </IconButton>
@@ -154,8 +155,8 @@ export function TableProducts() {
                     <CloseRounded/>
                   </IconButton>
                   <IconButton
-                    href={`/product/${p.id}`}
-                    onClick={clickNavigate(`/product/${p.id}`)}
+                    href={ShopRoutes.getProductRoute(p.id)}
+                    onClick={clickNavigate(ShopRoutes.getProductRoute(p.id))}
                   >
                     <OpenInNewRounded/>
                   </IconButton>

@@ -13,3 +13,5 @@ export * from './pages/EditProduct';
 export * from './pages/ProductsList';
 export * from './pages/ProductVisualizer';
 export * from './pages/TableProducts';
+
+export * from './lib/ShopRoutes';

@@ -32,10 +32,10 @@ export const AuthContext = createContext<IAuthContextFull>({
   isAdmin: false,
   isLogged: false,
   loading: false,
-  checkUser: () => new Promise<AccountInfo>(res => res({} as AccountInfo)),
-  checkIsLogged: () => new Promise<void>(res => res()),
-  logIn: () => new Promise<boolean>(res => res(false)),
-  logOut: () => new Promise<void>(res => res()),
+  checkUser: () => Promise.resolve({} as AccountInfo),
+  checkIsLogged: () => Promise.resolve(),
+  logIn: () => Promise.resolve(false),
+  logOut: () => Promise.resolve(),
   api: {} as SimpleAuthApi,
 })
 

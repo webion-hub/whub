@@ -5,6 +5,7 @@ import { MaybeShow, useNavigator, useProgressiveImage } from "@whub/wui"
 import { useTranslation } from "react-i18next"
 import { ProductUtils } from "../lib/ProductUtils"
 import parse from 'html-react-parser';
+import { ShopRoutes } from "../lib/ShopRoutes"
 
 export interface ProductCardProps {
   readonly product: Product,
@@ -22,11 +23,13 @@ export function ProductCard(props: ProductCardProps) {
 
   const size = 250
 
+  const productUrl = ShopRoutes.getProductRoute(props.product.id)
+
   return (
     <Card sx={{ maxWidth: size }}>
       <CardActionArea
-        href={`/product/${props.product.id}`}
-        onClick={clickNavigate(`/product/${props.product.id}`)}
+        href={productUrl}
+        onClick={clickNavigate(productUrl)}
       >
         <MaybeShow
           show={!loading}
@@ -84,8 +87,8 @@ export function ProductCard(props: ProductCardProps) {
       <CardActions>
         <Button
           size="small"
-          href={`/product/${props.product.id}`}
-          onClick={clickNavigate(`/product/${props.product.id}`)}
+          href={productUrl}
+          onClick={clickNavigate(productUrl)}
         >
           {t('see')}
         </Button>

@@ -11,7 +11,7 @@ interface Actions {
   readonly onAttachmentsError?: () => void,
   readonly onImagesError?: () => void,
   readonly onRelatedProductsError?: () => void,
-  readonly onDetailsrror?: () => void,
+  readonly onDetailsError?: () => void,
 }
 
 export class ProductController {
@@ -20,8 +20,6 @@ export class ProductController {
     private readonly product: Product,
     private readonly actions: Actions,
   ) {}
-
-  getEndpoint(id: number) { return this.shopApi.products.withId(id) }
 
   async create() {
     const res = await this.shopApi
@@ -56,6 +54,10 @@ export class ProductController {
     ])
   }
 
+  private getEndpoint(id: number) {
+    return this.shopApi.products.withId(id)
+  }
+
   private handleResponse(res: AxiosResponse<Product, any>) {
     handleResponse(res, {
       201: async () => await this.addProductInformations(res.data.id),
@@ -69,7 +71,7 @@ export class ProductController {
       this.uploadFiles(id, attachments).catch(this.actions.onAttachmentsError),
       this.uploadImages(id, images).catch(this.actions.onImagesError),
       this.uploadReleated(id).catch(this.actions.onRelatedProductsError),
-      this.uploadDetails(id).catch(this.actions.onDetailsrror)
+      this.uploadDetails(id).catch(this.actions.onDetailsError)
     ])
   }
 
@@ -77,7 +79,7 @@ export class ProductController {
     const details = this.product.details
 
     if(details.length === 0)
-      return new Promise<void>(res => res())
+      return Promise.resolve()
 
     return this.getEndpoint(id)
       .details

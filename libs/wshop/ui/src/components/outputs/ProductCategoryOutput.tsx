@@ -1,6 +1,7 @@
 import { Breadcrumbs, Link, Stack, Typography } from "@mui/material";
 import { useNavigator } from "@whub/wui";
 import { useTranslation } from "react-i18next";
+import { ShopRoutes } from "../../lib/ShopRoutes";
 import { GeneralProductOutputProps, ProductOutput } from "../ProductOutput";
 
 export function ProductCategoryOutput(props: GeneralProductOutputProps) {
@@ -32,7 +33,7 @@ export function ProductCategory(props: ProductCategoryProps) {
       .slice(0, index + 1)
       .join('/')
 
-    return `/products?filter=&category=${categoryUrl}`
+    return `${ShopRoutes.PRODUCTS}?filter=&category=${categoryUrl}`
   }
 
   if(!props.categoryName)

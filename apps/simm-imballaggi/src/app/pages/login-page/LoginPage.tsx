@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
 import { useAuth } from '@whub/apis-react';
 import { useNavigate } from 'react-router-dom';
+import { ShopRoutes } from '@whub/wshop-ui';
 
 interface State {
   amount: string;
@@ -24,7 +25,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if(isLogged)
-      navigate('/products-table')
+      navigate(ShopRoutes.PRODUCTS_TABLE)
   }, [isLogged])
 
   const [values, setValues] = React.useState<State>({
