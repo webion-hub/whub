@@ -3,7 +3,7 @@ import { IconButton, Paper, Stack, TextField, Typography } from '@mui/material';
 import { PersonRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 import { Form, FormGroup, Img, InputValidator, Page, Validators } from '@whub/wui';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
 import { useAuth } from '@whub/apis-react';
 import { useNavigate } from 'react-router-dom';
@@ -17,10 +17,15 @@ interface State {
 }
 
 export default function LoginPage() {
-  const { logIn } = useAuth();
+  const { logIn, isLogged } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false)
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if(isLogged)
+      navigate('/products-table')
+  }, [isLogged])
 
   const [values, setValues] = React.useState<State>({
     amount: '',
@@ -46,17 +51,17 @@ export default function LoginPage() {
     event.preventDefault();
   };
 
-  const login = (form: Form) => {
+  const login = async (form: Form) => {
     setLoading(true)
 
-    logIn(form.getValues(), {
+    await logIn(form.getValues(), {
       onError: () => {
         form.setIsValid('username')(false)
         form.setIsValid('password')(false)
       },
-      onSuccess: () => { navigate('/products-table') },
-      onComplete: () => setLoading(false)
     })
+
+    setLoading(false)
   }
 
   return (

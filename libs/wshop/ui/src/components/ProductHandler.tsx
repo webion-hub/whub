@@ -6,6 +6,7 @@ import { useShop } from "@whub/apis-react";
 import { Image, Product, ProductDetail, ProductEndpoint } from "@whub/wshop-api";
 import { Form, FormGroup, useNavigator } from "@whub/wui";
 import { useState } from "react";
+import { ProductController } from "../lib/ProductController";
 import { ProductUtils } from "../lib/ProductUtils";
 import { ProductAttachmentsInput } from "./inputs/ProductAttachmentsInput";
 import { ProductCategoryInput } from "./inputs/ProductCategoryInput";
@@ -19,17 +20,11 @@ import { ProductRelatedInput } from "./inputs/ProductRelatedInput";
 import { ProductComponent } from "./ProductComponent";
 
 
-interface ProductHandlerUpdateProps {
-  readonly mode: 'update',
-  readonly product: Product,
+interface ProductHandlerProps {
+  readonly mode?: 'add' | 'update',
+  readonly product?: Product,
   readonly sx?: SxProps<Theme>,
 }
-interface ProductHandlerAddProps {
-  readonly mode?: 'add',
-  readonly sx?: SxProps<Theme>,
-}
-
-type ProductHandlerProps = ProductHandlerAddProps | ProductHandlerUpdateProps
 
 export function ProductHandler(props: ProductHandlerProps) {
   const theme = useTheme()
@@ -41,20 +36,38 @@ export function ProductHandler(props: ProductHandlerProps) {
   const [loading, setLoading] = useState(false)
   const isUpdateMode = props.mode === 'update'
 
-  const onCreate = (f: Form) => {
+  const onCreate = async (f: Form) => {
     if(!f.isFormValid())
       return
 
     setLoading(true)
-    const formProduct = f.getValues() as Product
+    const pController = new ProductController(
+      shopApi,
+      f.getValues() as Product,
+      {
+        onCodeConflict: () => f.setIsValid('code')(false),
+        onAttachmentsError: () => f.setIsValid('attachments')(false),
+        onImagesError: () => f.setIsValid('images')(false),
+        onRelatedProductsError: () => f.setIsValid('relatedProducts')(false),
+        onDetailsrror: () => f.setIsValid('details')(false),
+        onComplete: () => setLoading(false),
+        onSuccess: () => onClose()
+      }
+    )
 
+    isUpdateMode
+      ? pController.update(props.product?.id ?? -1)
+      : pController.create()
+
+    /*
+    const formProduct = f.getValues() as Product
     const createProduct = () => shopApi.products.create({
       ...formProduct,
       categoryId: formProduct.category?.id
     })
 
     const updateProduct = () => shopApi.products
-      .withId(isUpdateMode ? props.product.id : -1)
+      .withId(props.product?.id ?? -1)
       .update({
         name: formProduct.name,
         price: formProduct.price,
@@ -67,45 +80,44 @@ export function ProductHandler(props: ProductHandlerProps) {
       ? updateProduct
       : createProduct
 
-    task()
-      .then(res => handleResponse(res, {
-        201: () => addProductInformations(res.data, f),
-        200: () => addProductInformations(res.data, f),
-      }))
-      .catch(err => {
-        handleResponse(err.response, {
-        409: () => {
-          f.setIsValid('code')(false)
-          setLoading(false)
-        },
-      })})
+    setLoading(true)
+    const res = await task()
+
+    await handleResponse(res, {
+      201: async () => await addProductInformations(res.data, f),
+      200: async () => await addProductInformations(res.data, f),
+      409: () => f.setIsValid('code')(false)
+    })
+
+    setLoading(false)*/
   }
 
   const addProductInformations = async (p: Product, f: Form) => {
-    const productToClean = props.mode === 'update'
-      ? props.product
-      : {} as Product
-
     const product = shopApi.products.withId(p.id)
     const formProduct = f.getValues() as Product
 
-    const attachments = await ProductUtils
-      .getAllAttachementAsFile(formProduct.attachments)
+    const productToClean = props.product
 
-    const images = await ProductUtils
-      .getAllImagesAsData64(formProduct.images)
+    try {
+      const attachments =
+        await ProductUtils.getAllAttachementAsFile(formProduct.attachments)
+      const images =
+        await ProductUtils.getAllImagesAsData64(formProduct.images)
 
-    cleanProductFiles(productToClean, product)
-      .then(() => {
-        uploadData(product, f,
-          attachments,
-          images,
-          formProduct.relatedProducts,
-          formProduct.details
-        )
-          .then(() => onClose())
-          .finally(() => setLoading(false))
-      })
+      if(productToClean)
+        await cleanProductFiles(productToClean, product)
+
+      await uploadData(product, f,
+        attachments,
+        images,
+        formProduct.relatedProducts,
+        formProduct.details
+      )
+
+      onClose()
+    }
+    finally { setLoading(false) }
+
   }
 
   const cleanProductFiles = (product: Product, productEndpoint: ProductEndpoint) => {
@@ -185,7 +197,7 @@ export function ProductHandler(props: ProductHandlerProps) {
   return (
     <FormGroup
       onSubmit={onCreate}
-      values={isUpdateMode ? props.product : undefined}
+      values={props.product}
       sx={{ width: '100%', ...props.sx }}
     >
       <Stack
@@ -237,7 +249,7 @@ export function ProductHandler(props: ProductHandlerProps) {
           <ProductPriceInput/>
           <ProductCategoryInput/>
           <ProductDescriptionInput/>
-          <ProductRelatedInput productId={isUpdateMode ? props.product.id : undefined}/>
+          <ProductRelatedInput productId={props.product?.id}/>
           <ProductDetailsInput/>
           <ProductImagesInput/>
           <ProductAttachmentsInput/>

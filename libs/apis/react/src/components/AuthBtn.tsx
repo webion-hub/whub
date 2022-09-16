@@ -12,8 +12,7 @@ interface AuthBtnProps {
 
 export function AuthBtn(props: AuthBtnProps) {
   const { clickNavigate, navigate } = useNavigator()
-  const { isLogged, user, logOut } = useAuth()
-  const [loading, setLoading] = useState(false)
+  const { isLogged, user, logOut, loading } = useAuth()
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -26,15 +25,10 @@ export function AuthBtn(props: AuthBtnProps) {
     setAnchorEl(null);
   };
 
-  const onLogout = () => {
-    setLoading(true)
-    logOut({
-      onComplete: () => {
-        handleClose()
-        navigate('')
-        setLoading(false)
-      }
-    })
+  const onLogout = async () => {
+    await logOut()
+    handleClose()
+    navigate('')
   }
 
   if(!isLogged)

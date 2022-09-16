@@ -1,6 +1,6 @@
 import { handleResponse } from "@whub/apis-core"
 import { AccountInfo, LoginRequest, SimpleAuthApi } from "@whub/simple-auth"
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { ApiContext, ApiContextProps } from "../abstractions/ApiContextProps"
 import { UserUtils } from "../libs/UserUtils"
 
@@ -8,41 +8,34 @@ export type IAuthContext = ApiContext<SimpleAuthApi, unknown>
 export type IAuthContextProps = ApiContextProps<SimpleAuthApi, unknown>
 
 export interface AuthActions {
-  readonly onSuccess?: () => void,
   readonly onError?: () => void,
-  readonly onComplete?: () => void,
 }
 
 export interface AuthActionsIsLoogedIn {
   readonly onIsLooged?: () => void,
   readonly onIsNotLooged?: () => void,
   readonly onError?: () => void,
-  readonly onComplete?: () => void,
-}
-
-export interface AuthActionsUser {
-  readonly onSuccess?: (user: AccountInfo) => void,
-  readonly onError?: () => void,
-  readonly onComplete?: () => void,
 }
 
 interface IAuthContextFull extends IAuthContext {
   readonly user?: AccountInfo,
   readonly isAdmin: boolean,
   readonly isLogged: boolean,
-  readonly checkUser: (actions: AuthActionsUser) => void,
-  readonly checkIsLogged: (actions: AuthActionsIsLoogedIn) => void,
-  readonly logIn: (credentials: LoginRequest, actions: AuthActions) => void,
-  readonly logOut: (actions: AuthActions) => void,
+  readonly loading: boolean,
+  readonly checkUser: (actions?: AuthActions) => Promise<AccountInfo>,
+  readonly checkIsLogged: (actions?: AuthActionsIsLoogedIn) => Promise<void>,
+  readonly logIn: (credentials: LoginRequest, actions?: AuthActions) => Promise<boolean>,
+  readonly logOut: (actions?: AuthActions) => Promise<void>,
 }
 
 export const AuthContext = createContext<IAuthContextFull>({
   isAdmin: false,
   isLogged: false,
-  checkUser: () => { return },
-  checkIsLogged: () => { return },
-  logIn: () => { return },
-  logOut: () => { return },
+  loading: false,
+  checkUser: () => new Promise<AccountInfo>(res => res({} as AccountInfo)),
+  checkIsLogged: () => new Promise<void>(res => res()),
+  logIn: () => new Promise<boolean>(res => res(false)),
+  logOut: () => new Promise<void>(res => res()),
   api: {} as SimpleAuthApi,
 })
 
@@ -51,69 +44,93 @@ export const AuthWrapper = (props: IAuthContextProps) => {
 
   const [isLogged, setIsLogged] = useState<boolean>(false)
   const [user, setUser] = useState<AccountInfo>()
+  const [loading, setLoading] = useState(false)
 
-  const checkUser = (actions: AuthActionsUser) => {
-    checkIsLogged({
-      onIsLooged: () => fetchUser(actions),
-      onIsNotLooged: actions.onError,
+  useEffect(() => {
+    setLoading(true)
+    checkUser()
+      .finally(() => setLoading(false))
+  }, [])
+
+  const checkUser = async (actions?: AuthActions) => {
+    setLoading(true)
+    await checkIsLogged(actions)
+    const res = await fetchUser(actions)
+    setLoading(false)
+    return res
+  }
+
+  const fetchUser = async (actions?: AuthActions) => {
+    setLoading(true)
+    const res = await authApi.account.info()
+
+    handleResponse(res, {
+      200: () => onUserFetch(res.data),
+      401: actions?.onError
+    })
+    setLoading(false)
+
+    return res.data
+  }
+
+  const checkIsLogged = async (actions?: AuthActionsIsLoogedIn) => {
+    setLoading(true)
+    const res = await authApi.account.isLoggedIn()
+
+    handleResponse(res, {
+      200: async () => await onIsLoggedCheck(res.data, actions),
+      401: actions?.onError
     })
 
+    setLoading(false)
   }
 
-  const fetchUser = (actions: AuthActionsUser) => {
-    authApi.account
-      .info()
-      .then(res => handleResponse(res, { 200: () => onUserFetch(res.data, actions) }))
-      .catch(err => handleResponse(err.response, { 401: () => actions.onError?.() }))
-      .finally(() => actions.onComplete?.())
-  }
+  const onIsLoggedCheck = async (isLogged: boolean, actions?: AuthActionsIsLoogedIn) => {
+    if(isLogged)
+      actions?.onIsLooged?.()
 
-  const checkIsLogged = (actions: AuthActionsIsLoogedIn) => {
-    authApi.account
-      .isLoggedIn()
-      .then(res => handleResponse(res, { 200: () => onIsLoggedCheck(res.data, actions) }))
-      .catch(err => handleResponse(err.response, { 401: () => actions.onError?.()}))
-      .finally(() => actions.onComplete?.())
-  }
-
-  const onIsLoggedCheck = (isLogged: boolean, actions: AuthActionsIsLoogedIn) => {
     isLogged
-      ? onLogIn({ ...actions, onSuccess: actions.onIsLooged })
-      : actions.onIsNotLooged?.()
+      ? await onLogIn({ onError: actions?.onError })
+      : actions?.onIsNotLooged?.()
   }
 
-  const logIn = (credentials: LoginRequest, actions: AuthActions) => {
-    authApi.account
-      .login(credentials)
-      .then(res => handleResponse(res, { 200: () => onLogIn(actions) }))
-      .catch(err => handleResponse(err.response, { 401: () => {
-        actions.onError?.()
-        actions.onComplete?.()
-      }}))
+  const logIn = async (credentials: LoginRequest, actions?: AuthActions) => {
+    setLoading(true)
+    const res = await authApi.account.login(credentials)
+
+    handleResponse(res, {
+      200: async () => await onLogIn(actions),
+      401: actions?.onError
+    })
+
+    setLoading(false)
+    return res.status === 200
   }
 
-  const logOut = (actions: AuthActions) => {
-    authApi.account
-      .logout()
-      .then(res => handleResponse(res, { 200: () => onLogOut(actions) }))
-      .catch(err => handleResponse(err.response, { 401: actions.onError }))
-      .finally(() => actions.onComplete?.())
+  const logOut = async (actions?: AuthActions) => {
+    setLoading(true)
+    const res = await authApi.account.logout()
+    handleResponse(res, {
+      200: () => onLogOut(),
+      401: actions?.onError
+    })
+
+    setLoading(false)
   }
 
-  const onLogIn = (actions: AuthActions) => {
+  const onLogIn = async (actions?: AuthActions) => {
     setIsLogged(true)
-    fetchUser(actions)
+    await fetchUser(actions)
   }
 
-  const onLogOut = (actions: AuthActions) => {
+  const onLogOut = () => {
+    console.log('aaa')
     setIsLogged(false)
     setUser(undefined)
-    actions.onSuccess?.()
   }
 
-  const onUserFetch = (user: AccountInfo, actions: AuthActionsUser) => {
+  const onUserFetch = (user: AccountInfo) => {
     setUser(user)
-    actions.onSuccess?.(user)
   }
 
   return (
@@ -126,6 +143,7 @@ export const AuthWrapper = (props: IAuthContextProps) => {
         checkIsLogged,
         logIn,
         logOut,
+        loading: loading,
         api: props.api,
         config: props.config
       }}
