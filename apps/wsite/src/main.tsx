@@ -7,6 +7,12 @@ import { App } from './app/App';
 
 import './styles.css'
 
+
+const contactUs = new ContactUsApi({
+  baseUrl: 'https://api.simm.webion.it/contactus',
+  withCredentials: true,
+})
+
 ReactPixel.init('592480175654211');
 
 const root = ReactDOM.createRoot(
@@ -16,7 +22,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <ApiWrapper
     apis={{
-      contactUs: new ContactUsApi({ baseUrl: 'https://api.webion.it/contactus' })
+      contactUs: { api: contactUs }
     }}
   >
     <App />
