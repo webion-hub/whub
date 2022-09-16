@@ -2,10 +2,10 @@ import { AddRounded, CloseRounded, EditRounded, OpenInNewRounded } from "@mui/ic
 import { Badge, Button, IconButton, LinearProgress, Stack, TextField } from "@mui/material";
 import { useShop } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
-import { ProductImage } from "@whub/wshop-ui";
 import { AreYouSureDialog, useNavigator } from "@whub/wui";
 import { useEffect, useState } from "react";
 import DataTable from 'react-data-table-component';
+import { ProductImage } from "../components/ProductImage";
 import { ProductUtils } from "../lib/ProductUtils";
 
 

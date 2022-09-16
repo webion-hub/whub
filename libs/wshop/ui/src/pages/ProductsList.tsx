@@ -2,10 +2,10 @@ import { ChevronLeftRounded, ChevronRightRounded } from "@mui/icons-material"
 import { IconButton, Stack, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { useShop } from "@whub/apis-react"
 import { Product } from "@whub/wshop-api"
-import { ProductCard } from "@whub/wshop-ui"
 import { FullScreenLoading } from "@whub/wui"
 import { ReactNode, useEffect, useState } from "react"
 import { ProductCategory } from "../components/outputs/ProductCategoryOutput"
+import { ProductCard } from "../components/ProductCard"
 
 interface ProductListProps {
   readonly filter: string,

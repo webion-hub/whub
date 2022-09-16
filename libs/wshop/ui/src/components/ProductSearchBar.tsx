@@ -1,12 +1,12 @@
 import { Button } from "@mui/material";
 import { useShop } from "@whub/apis-react";
 import { Category, Product } from "@whub/wshop-api";
-import { ProductListItem } from "@whub/wshop-ui";
 import { CategorySearchBar, useNavigator, useSubject } from "@whub/wui";
 import _ from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { throttleTime } from "rxjs";
+import { ProductListItem } from "./ProductListItem";
 
 export function ProductSearchBar() {
   const { clickNavigate, navigate } = useNavigator()

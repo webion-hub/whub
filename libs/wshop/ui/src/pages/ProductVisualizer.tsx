@@ -1,9 +1,9 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useShop } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
-import { ProductComponent } from "@whub/wshop-ui";
 import { FullScreenLoading, MaybeShow } from "@whub/wui";
 import { ReactNode, useEffect, useState } from "react";
+import { ProductComponent } from "../components/ProductComponent";
 
 interface ProductProps {
   readonly productId?: string
