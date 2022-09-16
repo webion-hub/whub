@@ -7,12 +7,12 @@ import * as ReactDOM from 'react-dom/client';
 import { App } from './app/app';
 
 const auth = new SimpleAuthApi({
-  baseUrl: 'http://localhost:5181',
+  baseUrl: 'http://localhost:5181',//'https://api.simm.webion.it',
   withCredentials: true,
 })
 
 const shop = new WShopApi({
-  baseUrl: 'http://localhost:5181',
+  baseUrl: 'http://localhost:5181',//'https://api.simm.webion.it',
   withCredentials: true,
 })
 
