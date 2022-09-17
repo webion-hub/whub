@@ -9,6 +9,13 @@ export class Validators {
       ?? true
   }
 
+  static isRequired = (isRequired?: boolean) => (value: any) => {
+    if(!isRequired)
+      return true
+
+    return Boolean(value)
+  }
+
   static required = (value: FormValueTypes) => {
     return Boolean(value)
   }
@@ -25,12 +32,12 @@ export class Validators {
       (value);
   }
 
-  static max = (maxValue: number) => (value?: string) => {
-    return !value || value.length < maxValue
+  static max = (maxValue: number) => (value?: string | any[]) => {
+    return !value || value.length <= maxValue
   }
 
-  static min = (minValue: number) => (value?: string) => {
-    return !value || value.length > minValue
+  static min = (minValue: number) => (value?: string | any[]) => {
+    return !value || value.length >= minValue
   }
 
   static isAPattern = (pattern: RegExp) => (value?: string) => {

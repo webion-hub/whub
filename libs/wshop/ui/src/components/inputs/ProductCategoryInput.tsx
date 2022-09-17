@@ -1,33 +1,39 @@
 import { Autocomplete, Box, CircularProgress, Link, Stack, TextField } from "@mui/material"
-import { useShopApi } from "@whub/apis-react"
+import { useShop } from "@whub/apis-react"
 import { Category } from "@whub/wshop-api"
-import { InputValidator, Validators } from "@whub/wui"
+import { Validators } from "@whub/wui"
 import { useState } from "react"
 import { CreateCategoryDialog } from "../dialogs/CreateCategoryDialog"
+import { ProductInput } from "../ProductInput"
 
 export function ProductCategoryInput() {
-  const shopApi = useShopApi()
+  const api = useShop().api
+
   const [categories, setCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState(false)
   const [openCreateCategory, setOpenCreateCategory] = useState(false)
 
   const fetchCategories = () => {
     setLoading(true)
-    shopApi.categories
+    api.categories
       .list()
       .then(res => setCategories(res.data))
       .finally(() => setLoading(false))
   }
 
   return (
-    <InputValidator
-      mode="manual"
-      name="category"
+    <ProductInput
+      name='category'
       value={{} as Category}
-      validators={[Validators.customValidator((v: Category) => Validators.max(256)(v.name))]}
+      getValidators={config => [
+        Validators.customValidator((c: Category) =>
+        Validators.isRequired(!!config.required)(c.name) &&
+        Validators.validate(c.name, config.validators.general ?? [])
+      )
+      ]}
     >
       {
-        (i, form) =>
+        (config, i, form) =>
           <Stack
             direction="column"
           >
@@ -46,6 +52,7 @@ export function ProductCategoryInput() {
               renderInput={(params) =>
                 <TextField
                   {...params}
+                  required={config.required}
                   error={i.error}
                   disabled={i.disabled}
                   size="small"
@@ -94,6 +101,6 @@ export function ProductCategoryInput() {
             />
           </Stack>
       }
-    </InputValidator>
+    </ProductInput>
   )
 }

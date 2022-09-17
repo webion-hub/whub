@@ -1,17 +1,21 @@
 import { LoopRounded } from "@mui/icons-material";
 import { IconButton, TextField, Tooltip } from "@mui/material";
-import { InputValidator, UUIDFactory, Validators } from "@whub/wui";
+import { UUIDFactory, Validators } from "@whub/wui";
+import { ConfigUtils } from "../../lib/ConfigUtils";
+import { ProductInput } from "../ProductInput";
 
 export function ProductCodeInput() {
   return (
-    <InputValidator
-      mode="manual"
-      name="code"
-      validators={[Validators.required, Validators.max(256)]}
+    <ProductInput
+      name='code'
       value=''
+      getValidators={config => [
+        Validators.required,
+        ...ConfigUtils.getValidators(config, 'general')
+      ]}
     >
       {
-        i =>
+        (_, i) =>
           <TextField
             {...i}
             size="small"
@@ -41,7 +45,7 @@ export function ProductCodeInput() {
             }}
           />
       }
-    </InputValidator>
+    </ProductInput>
   )
 }
 

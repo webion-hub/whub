@@ -58,6 +58,7 @@ export function CategorySearchBar<T, G>(props: CategorySearchBarProps<T, G>) {
       onSubmit={(e: any) => {
         e.preventDefault()
         props.onSearch?.()
+        setOpen(false)
       }}
       component="form"
       direction="row"

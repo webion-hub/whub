@@ -1,6 +1,6 @@
 import { SendRounded } from "@mui/icons-material";
 import { Alert, Box, Snackbar, Stack, Typography, useTheme } from "@mui/material";
-import { useContactUsApi } from "@whub/apis-react";
+import { useContactUs } from "@whub/apis-react";
 import { Form, FormGroup, InputValidator, PrivacyCheckBox, ResponserGrid, RotatingText, Validators, WuiGrid } from "@whub/wui";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -119,7 +119,7 @@ function ContactUsSmallForm() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const theme = useTheme()
-  const contactUsApi = useContactUsApi()
+  const contactUsApi = useContactUs().api
   const borderRadius = theme.spacing(5)
 
   const { t } = useTranslation();

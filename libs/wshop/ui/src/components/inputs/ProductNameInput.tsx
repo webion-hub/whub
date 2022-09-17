@@ -1,20 +1,29 @@
 import { TextField } from "@mui/material";
-import { InputValidator, Validators } from "@whub/wui";
+import { Validators } from "@whub/wui";
+import { ConfigUtils } from "../../lib/ConfigUtils";
+import { ProductInput } from "../ProductInput";
 
 export function ProductNameInput() {
   return (
-    <InputValidator
-      name="name"
-      value=''
-      validators={[Validators.required, Validators.max(512)]}
+    <ProductInput
+      name='name'
+      value=""
+      getValidators={config => [
+        Validators.required,
+        ...ConfigUtils.getValidators(config, 'general')
+      ]}
     >
-      <TextField
-        size="small"
-        variant="outlined"
-        label="Nome"
-        color="secondary"
-        required
-      />
-    </InputValidator>
+      {
+        (_, i)  =>
+          <TextField
+            {...i}
+            size="small"
+            variant="outlined"
+            label="Nome"
+            color="secondary"
+            required
+          />
+      }
+    </ProductInput>
   )
 }

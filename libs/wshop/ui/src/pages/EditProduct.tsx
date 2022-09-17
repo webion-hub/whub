@@ -1,18 +1,18 @@
-import { useShopApi } from "@whub/apis-react"
+import { useShop } from "@whub/apis-react"
+import { Product } from "@whub/wshop-api"
 import { FullScreenLoading, Page, Section } from "@whub/wui"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { PreviewProduct, ProductHandler } from "../components/ProductHandler"
-import { ProductUtils } from "../lib/ProductUtils"
+import { ProductHandler } from "../components/ProductHandler"
 
 export function EditProduct() {
   const params = useParams()
   const productId = params['id']
 
   const [loading, setLoading] = useState(false)
-  const [previewProduct, setPreviewProduct] = useState<PreviewProduct>()
+  const [product, setProduct] = useState<Product>()
 
-  const shopApi = useShopApi()
+  const shopApi = useShop().api
 
   useEffect(() => {
     fetchProduct()
@@ -26,17 +26,7 @@ export function EditProduct() {
     shopApi.products
       .withId(parseInt(productId))
       .load()
-      .then(async res => {
-        const product = res.data
-        const files = await ProductUtils.getAttachmentsFiles(shopApi, product)
-        const images = await ProductUtils.getImagesFiles(product)
-
-        setPreviewProduct({
-          ...product,
-          attachments: files,
-          images: images,
-        })
-      })
+      .then(res => setProduct(res.data))
       .finally(() => setLoading(false))
   }
 
@@ -45,10 +35,10 @@ export function EditProduct() {
       <Section>
       <FullScreenLoading loading={loading}/>
         {
-          previewProduct
+          product
             ? <ProductHandler
                 mode='update'
-                previewProduct={previewProduct}
+                product={product}
               />
             : <></>
         }
