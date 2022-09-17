@@ -75,7 +75,7 @@ export function ProductSearchBar() {
   return (
     <CategorySearchBar
       label={t('search-product')}
-      onSearch={() => navigate(`products?filter=${value}&category=${getCategory()}`)}
+      onSearch={() => navigate(ShopRoutes.products({ category: getCategory(), filter: value }))}
       getCategoryOptionLabel={option => option}
       getCategoryValue={option => option}
       categories={[...categories, allCategory]}

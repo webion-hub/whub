@@ -6,6 +6,6 @@ const categoryRoutes = {
 }
 
 export const homeCatergoryUrls = {
-  materials: `${ShopRoutes.PRODUCTS}?category=${categoryRoutes.materials}`,
-  machines: `${ShopRoutes.PRODUCTS}?category=${categoryRoutes.machines}`,
+  materials: ShopRoutes.products({ category: categoryRoutes.materials }),
+  machines: ShopRoutes.products({ category: categoryRoutes.machines }),
 }

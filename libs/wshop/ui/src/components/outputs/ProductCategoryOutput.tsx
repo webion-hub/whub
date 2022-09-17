@@ -33,7 +33,7 @@ export function ProductCategory(props: ProductCategoryProps) {
       .slice(0, index + 1)
       .join('/')
 
-    return `${ShopRoutes.PRODUCTS}?filter=&category=${categoryUrl}`
+    return ShopRoutes.products({ category: categoryUrl })
   }
 
   if(!props.categoryName)
