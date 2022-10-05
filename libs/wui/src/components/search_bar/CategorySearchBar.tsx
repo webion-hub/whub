@@ -11,7 +11,6 @@ import {
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { Dropdown } from '../Dropdown';
 import _ from 'lodash';
-import { t } from 'i18next';
 import { useLanguage } from '../../contexts/ContextLanguage';
 
 export interface CategorySearchBarProps<T, G> {

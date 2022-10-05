@@ -4,7 +4,7 @@ import { Category, Product } from '@whub/wshop-api';
 import {
   CategorySearchBar,
   useLanguage,
-  useNavigator,
+  useNextNavigator,
   useSubject,
 } from '@whub/wui';
 import _ from 'lodash';
@@ -15,7 +15,7 @@ import { ShopRoutes } from '../lib/ShopRoutes';
 import { ProductListItem } from './ProductListItem';
 
 export function ProductSearchBar() {
-  const { clickNavigate, navigate } = useNavigator();
+  const { clickNavigate, navigate } = useNextNavigator();
   const searchSubject$ = useSubject<string>('');
   const shopApi = useShop().api;
   const { t } = useLanguage();

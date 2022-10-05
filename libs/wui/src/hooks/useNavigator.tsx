@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
-export const useNavigator = () => {
+/*
+export const useNextNavigator = () => {
   const navigate = useNavigate();
 
   const clickNavigate = (url: string) => (e: React.MouseEvent<any, any>) => {
@@ -14,7 +15,7 @@ export const useNavigator = () => {
     navigate,
     clickNavigate,
   };
-};
+};*/
 
 export const useNextNavigator = () => {
   const router = useRouter();

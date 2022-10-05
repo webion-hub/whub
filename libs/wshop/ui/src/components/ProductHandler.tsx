@@ -3,7 +3,7 @@ import { LoadingButton } from "@mui/lab";
 import { Button, Paper, Stack, SxProps, Theme, useMediaQuery, useTheme } from "@mui/material";
 import { useShop } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
-import { Form, FormGroup, useNavigator } from "@whub/wui";
+import { Form, FormGroup, useNextNavigator } from "@whub/wui";
 import { useState } from "react";
 import { ProductController } from "../lib/ProductController";
 import { ShopRoutes } from "../lib/ShopRoutes";
@@ -30,7 +30,7 @@ export function ProductHandler(props: ProductHandlerProps) {
   const compressProduct = useMediaQuery(theme.breakpoints.down("lg"));
   const compressAll = useMediaQuery(theme.breakpoints.down("md"));
 
-  const navigate = useNavigator();
+  const navigate = useNextNavigator();
   const shopApi = useShop().api;
   const [loading, setLoading] = useState(false)
   const isUpdateMode = props.mode === 'update'

@@ -2,7 +2,7 @@ import { LoginRounded, LogoutRounded, PersonRounded } from "@mui/icons-material"
 import { LoadingButton } from "@mui/lab";
 import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import { AccountInfo } from "@whub/simple-auth";
-import { useNavigator } from "@whub/wui";
+import { useNextNavigator } from "@whub/wui";
 import React, { ReactNode, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -11,7 +11,7 @@ interface AuthBtnProps {
 }
 
 export function AuthBtn(props: AuthBtnProps) {
-  const { clickNavigate, navigate } = useNavigator()
+  const { clickNavigate, navigate } = useNextNavigator()
   const { isLogged, user, logOut, loading } = useAuth()
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

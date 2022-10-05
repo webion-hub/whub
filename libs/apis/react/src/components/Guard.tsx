@@ -1,6 +1,6 @@
-import { FullScreenLoading } from "@whub/wui"
+import { FullScreenLoading, useNextNavigator } from "@whub/wui"
 import { useEffect, useState } from "react"
-import { Navigate } from "react-router-dom"
+//import { Navigate } from "react-router-dom"
 import { CanNavigateStatus, GuardAction } from "../abstractions/Guard"
 
 
@@ -11,6 +11,7 @@ export interface GuardProps {
 }
 
 export function Guard(props: GuardProps) {
+  const { navigate } = useNextNavigator()
   const [go, setGo] = useState<CanNavigateStatus>('loading')
   const { canNavigate, redirectTo, el } = props
 
@@ -21,9 +22,12 @@ export function Guard(props: GuardProps) {
   if(go === 'loading')
     return <FullScreenLoading loading/>
 
+  if(go === 'block')
+    navigate(redirectTo)
+
   return go === 'go'
     ? el
-    : <Navigate to={redirectTo} />
+    : null
 }
 
 

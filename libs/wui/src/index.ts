@@ -99,7 +99,6 @@ export * from './components/Paragraph';
 export * from './components/BasicThemeButton';
 export * from './components/SpeedDial';
 export * from './components/ScrollSpy';
-export * from './components/ScrollTop';
 export * from './components/Transition';
 
 export * from './components/search_bar/CategorySearchBar';

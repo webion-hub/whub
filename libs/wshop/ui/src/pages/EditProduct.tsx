@@ -1,5 +1,4 @@
 import { useShop } from "@whub/apis-react"
-import { Product } from "@whub/wshop-api"
 import { FullScreenLoading, Page, Section } from "@whub/wui"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"

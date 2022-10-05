@@ -2,7 +2,7 @@ import { AddRounded, CloseRounded, EditRounded, OpenInNewRounded } from "@mui/ic
 import { Badge, Button, IconButton, LinearProgress, Stack, TextField } from "@mui/material";
 import { useShop } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
-import { AreYouSureDialog, useNavigator } from "@whub/wui";
+import { AreYouSureDialog, useNextNavigator } from "@whub/wui";
 import { useEffect, useState } from "react";
 import DataTable from 'react-data-table-component';
 import { ProductImage } from "../components/ProductImage";
@@ -18,7 +18,7 @@ export function TableProducts() {
   const [filter, setFilter] = useState('')
   const [totalResults, setTotalResults] = useState(0)
   const [productToDelete, setProductToDelete] = useState<Product | null>(null)
-  const { clickNavigate } = useNavigator()
+  const { clickNavigate } = useNextNavigator()
   const shopApi = useShop().api
 
   useEffect(() => {

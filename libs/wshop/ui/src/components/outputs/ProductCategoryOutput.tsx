@@ -1,5 +1,5 @@
 import { Breadcrumbs, Link, Stack, Typography } from '@mui/material';
-import { useLanguage, useNavigator } from '@whub/wui';
+import { useLanguage, useNextNavigator } from '@whub/wui';
 
 import { ShopRoutes } from '../../lib/ShopRoutes';
 import { GeneralProductOutputProps, ProductOutput } from '../ProductOutput';
@@ -18,7 +18,7 @@ interface ProductCategoryProps {
 
 export function ProductCategory(props: ProductCategoryProps) {
   const { t } = useLanguage();
-  const { clickNavigate } = useNavigator();
+  const { clickNavigate } = useNextNavigator();
 
   const getUrl = (category: string[], index: number) => {
     const categoryUrl = category.slice(0, index + 1).join('/');

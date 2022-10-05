@@ -13,7 +13,7 @@ import { Product } from '@whub/wshop-api';
 import {
   MaybeShow,
   useLanguage,
-  useNavigator,
+  useNextNavigator,
   useProgressiveImage,
 } from '@whub/wui';
 import { ProductUtils } from '../lib/ProductUtils';
@@ -25,7 +25,7 @@ export interface ProductCardProps {
 }
 
 export function ProductCard(props: ProductCardProps) {
-  const { clickNavigate } = useNavigator();
+  const { clickNavigate } = useNextNavigator();
   const { t } = useLanguage();
 
   const images = ProductUtils.getImages(props.product).map((i) => i.url);
