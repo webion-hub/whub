@@ -2,7 +2,10 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "whub": "apps/whub",
-    "whub-e2e": "apps/whub-e2e"
+    "apis-react": "libs/apis/react",
+    "wshop-ui": "libs/wshop/ui",
+    "wsite": "apps/wsite",
+    "wsite-e2e": "apps/wsite-e2e",
+    "wui": "libs/wui"
   }
 }
