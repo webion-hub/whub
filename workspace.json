@@ -2,7 +2,11 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "apis-contactus": "libs/apis/contactus",
+    "apis-core": "libs/apis/core",
     "apis-react": "libs/apis/react",
+    "apis-simple-auth": "libs/apis/simple-auth",
+    "wshop-api": "libs/wshop/api",
     "wshop-ui": "libs/wshop/ui",
     "wsite": "apps/wsite",
     "wsite-e2e": "apps/wsite-e2e",
