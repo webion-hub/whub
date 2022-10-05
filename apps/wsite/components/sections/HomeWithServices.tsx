@@ -71,6 +71,9 @@ export function HomeWithServices() {
     setPage(newPage);
   };
 
+  const zoomAnimationName = `grow-img-${page?.key ?? ''}`
+  const zoomAnimationKeyframes = `@keyframes ${zoomAnimationName}`
+
   return (
     <>
       <Stack
@@ -89,7 +92,7 @@ export function HomeWithServices() {
           justifyContent="center"
           spacing={4}
           sx={{
-            minHeight: 400,
+            minHeight: 800,
             '& > *': {
               color: '#fff',
             },
@@ -161,7 +164,6 @@ export function HomeWithServices() {
         </Stack>
       </Stack>
       <Box
-        key={page?.key}
         sx={{
           zIndex: -1,
           position: 'absolute',
@@ -171,27 +173,35 @@ export function HomeWithServices() {
           overflow: 'hidden',
         }}
       >
-        <NextImg
-          src={page?.src}
-          alt="slide-show-img"
-          fill
-          sizes="100vw"
-          sx={{
-            objectFit: 'cover',
-            objectPosition: 'center center',
-            transform: 'scale(0)',
-            '@keyframes grow-img': {
-              '0%': {
-                transform: `scale(1)`,
-              },
-              '100%': {
-                opacity: 1,
-                transform: `scale(1.2)`,
-              },
-            },
-            animation: `grow-img 15000ms ease-in-out forwards`,
-          }}
-        />
+        {
+          pages.map(p => (
+            <NextImg
+              key={p.key}
+              quality={100}
+              src={p?.src}
+              alt="slide-show-img"
+              fill
+              sizes="100vw"
+              priority
+              sx={{
+                display: p.key === page?.key ? 'block' : 'none',
+                objectFit: 'cover',
+                objectPosition: 'center center',
+                transform: 'scale(0)',
+                [zoomAnimationKeyframes]: {
+                  '0%': {
+                    transform: `scale(1)`,
+                  },
+                  '100%': {
+                    opacity: 1,
+                    transform: `scale(1.2)`,
+                  },
+                },
+                animation: `${zoomAnimationName} 15000ms ease-in-out forwards`,
+              }}
+            />
+          ))
+        }
       </Box>
     </>
   );

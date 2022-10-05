@@ -53,26 +53,26 @@
   "process4-title": "Consegna",
 
   "process1-desc": "Ti aiutiamo a fissare obiettivi chiari identificando i tuoi problemi e le tue esigenze, definendo ciò che è necessario per risolverli.",
-  "process2-desc": "Creiamo prima una bozza a bassa fedeltà e poi continuiamo a perfezionarla finché non ti otteniamo esattamente ciò che stai cercando.",
+  "process2-desc": "Creiamo prima una bozza a bassa fedeltà e poi continuiamo a perfezionarla finché non otteniamo esattamente ciò che stai cercando.",
   "process3-desc": "Iniziamo il processo di sviluppo, assicurandoci di rimanere in contatto con te, per non andare al di fuori di quanto concordato.",
   "process4-desc": "Dopo una risposta finale consegniamo il prodotto finito, rimanendo a disposizione per l'assistenza post vendita.",
 
-  "quote-title": "<b>Richiedi un preventivo gratuito!</b>",
+  "quote-title": "<strong>Richiedi un preventivo gratuito!</strong>",
   "quote-desc": "Contattaci e ti risponderemo in 48 ore. Pianificheremo una chiamata per vedere come possiamo aiutarti.",
 
   "faq": "Domande frequenti",
   "faq-q1": "Cos'è lo sviluppo software?",
-  "faq-a1": "Lo sviluppo software è il processo di creazione di software tramite la scrittura di codice. È un processo che prevede la pianificazione, la progettazione, la codifica, il test e la manutenzione del software. L'obiettivo dello sviluppo del software è creare un prodotto di alta qualità che soddisfi le esigenze del cliente.",
-  "faq-q2": "Come scegliere una società di sviluppo software personalizzata",
-  "faq-a2": "La quantità di tempo necessaria per creare un software personalizzato dipende da una varietà di fattori, <strong>dalle dimensioni e complessità del progetto</strong> alle risorse e all'esperienza del team di sviluppo. Nella maggior parte dei casi, i piccoli progetti possono essere completati nel giro di poche settimane, mentre lo sviluppo di applicazioni più grandi e complesse può richiedere diversi mesi o addirittura anni.<br><br>Non esiste una risposta univoca a questa domanda, poiché i tempi di sviluppo di ogni progetto varieranno in base ai suoi requisiti unici. Tuttavia, in generale, è importante prevedere almeno alcuni mesi di tempo di sviluppo quando si pianifica un progetto software personalizzato. Ciò contribuirà a garantire che il tuo progetto raggiunga la scadenza ed eviti ritardi imprevisti.",
+  "faq-a1": "Lo sviluppo software è il processo di creazione di software tramite la scrittura di codice. È un processo che prevede la pianificazione, la progettazione, la codifica, il test e la manutenzione di esso. L'obiettivo dello sviluppo del software è creare un prodotto di alta qualità che soddisfi le esigenze del cliente.",
+  "faq-q2": "Come scegliere una società di sviluppo software personalizzata?",
+  "faq-a2": "Il primo passo è <strong>identificare le tue esigenze e requisiti specifici</strong>. Che tipo di software ti serve? Quali sono le caratteristiche e le funzioni che sono importanti per te? Una volta che hai una chiara comprensione delle tue esigenze, puoi iniziare a ricercare potenziali società di sviluppo software.<br/><br/>Ci sono molti fattori da considerare quando si seleziona una società di sviluppo software personalizzato, tra cui:<br/>- Esperienza e competenza<br/>- Dimensioni dell'azienda<br/>- Metodologia e processo<br/>- Modello di prezzo<br/>- Riferimenti e recensioni<br/><br/>È importante <strong>porre le domande giuste</strong> e ottenere quante più informazioni possibili in modo da poter prendere una decisione informata. Assicurati di chiedere informazioni sull'esperienza e sulla competenza dell'azienda nello sviluppo del tipo di software di cui hai bisogno, sul modello dei prezzi e sul processo di sviluppo del software.",
   "faq-q3": "Quanto costa lo sviluppo di software personalizzato?",
   "faq-a3": "Il costo dello sviluppo di software personalizzato può variare notevolmente a seconda dell'ambito e della complessità del progetto. In generale, più un progetto è complesso e personalizzato, maggiore sarà il costo. ‍ <br /><br />Alcuni fattori che possono influenzare il costo dello sviluppo di software personalizzato includono:<br /> <br /> - Le dimensioni e la complessità del progetto <br />- Il livello di personalizzazione richiesto <br /> - Il numero di caratteristiche e funzioni necessarie <br />- Il livello di test e di garanzia della qualità richiesti <br />- Il livello di documentazione e supporto richiesto",
   "faq-q4": "Che tecnologie usate?",
-  "faq-a4": "Utilizziamo principalmente C#, Angular, React, Flutter, Docker e .Net Core.<br>Puoi controllare le tecnologie che utilizziamo nello specifico <a href='about'>qui.</a>",
+  "faq-a4": "Utilizziamo principalmente C#, Angular, React, Flutter, Docker e .Net Core.<br>Puoi controllare le tecnologie che utilizziamo nello specifico",
   "faq-q5": "Quanto tempo ci vuole per creare un software personalizzato?",
   "faq-a5": "La quantità di tempo necessaria per creare un software personalizzato dipende da una varietà di fattori, <strong>dalle dimensioni e complessità del progetto</strong> alle risorse e all'esperienza del team di sviluppo. Nella maggior parte dei casi, i piccoli progetti possono essere completati nel giro di poche settimane, mentre lo sviluppo di applicazioni più grandi e complesse può richiedere diversi mesi o addirittura anni.<br><br>Non esiste una risposta univoca a questa domanda, poiché i tempi di sviluppo di ogni progetto varieranno in base ai suoi requisiti unici. Tuttavia, in generale, è importante prevedere almeno alcuni mesi di tempo di sviluppo quando si pianifica un progetto software personalizzato. Ciò contribuirà a garantire che il tuo progetto raggiunga la scadenza ed eviti ritardi imprevisti.",
   "faq-q6": "Che controllo hai sullo sviluppo del progetto?",
-  "faq-a6": "<strong>Sarai in grado di monitorare il processo a</strong>ttraverso chiamate e riunioni regolari, monitorare lo stato delle tue attività man mano che avanzano.",
+  "faq-a6": "<strong>Sarai in grado di monitorare il processo</strong>attraverso chiamate e riunioni regolari, monitorare lo stato delle tue attività man mano che avanzano.",
   "forget-anything": "Ci siamo persi la tua domanda?",
   "send-a-message": "Mandaci un messaggio",
   "answer-in-48h": "e ti risponderemo in 48ore.",
@@ -80,7 +80,7 @@
 
   "website": "Siti web",
   "website-page-title": "Realizziamo siti web personalizzati per la tua attività.",
-  "website-page-description": "Comprendiamo che il tuo sito web è molto più di un biglietto da visita per la tua attività. Ecco perché ci prendiamo il tempo per conoscere te e la tua azienda prima di iniziare a lavorare al tuo progetto.<br/><br/>Impareremo a conoscere i tuoi prodotti o servizi, il tuo pubblico di destinazione e i tuoi obiettivi per il sito. Con queste informazioni in mano, saremo in grado di creare un sito Web personalizzato che sia visivamente accattivante ed efficace nel soddisfare le tue esigenze.<br/><br/>‍ Inoltre, il nostro team di designer esperti lavorerà con te durante tutto il processo per garantire che il prodotto finito sia esattamente quello che avevi in mente.",
+  "website-page-description": "Comprendiamo che il tuo sito web è molto più di un biglietto da visita per la tua attività. Ecco perché ci prendiamo il tempo per conoscere te e la tua azienda prima di iniziare a lavorare al tuo progetto.<br/><br/>Impareremo a conoscere i tuoi prodotti o servizi, il tuo pubblico di destinazione e i tuoi obiettivi per il sito. Con queste informazioni in mano, saremo in grado di creare un sito Web personalizzato che sia visivamente accattivante ed efficace nel soddisfare le tue esigenze.<br/><br/>‍Inoltre, il nostro team di designer esperti lavorerà con te durante tutto il processo per garantire che il prodotto finito sia esattamente quello che avevi in mente.",
   "why-website": "Perché ogni azienda ha bisogno di un sito web.",
   "website-reason-1": "degli utenti ammette di esprimere giudizi sulla credibilità di un'azienda in base al design del proprio sito web",
   "website-reason-2": "dei clienti B2b effettua una ricerca sul web prima di effettuare un acquisto",
@@ -105,7 +105,7 @@
 
   "app": "App ios & Android",
   "app-page-title": "Creiamo applicazioni moderne",
-  "app-page-description": "In Webion, siamo appassionati di creare app che non sono solo utili, ma anche facili e divertenti da usare. Riteniamo che un ottimo design sia essenziale per offrire un'esperienza utente eccezionale, quindi ci prendiamo cura di realizzare ogni app con un alto livello di attenzione e dettaglio. In breve, facciamo il possibile per creare app che i tuoi utenti adoreranno.",
+  "app-page-description": "In Webion, creaiamo app che non sono solo utili, ma anche facili e divertenti da usare. Riteniamo che un ottimo design sia essenziale per offrire un'esperienza utente eccezionale, quindi ci prendiamo cura di realizzare ogni app con un alto livello di attenzione e dettaglio. In breve, facciamo il possibile per creare app che i tuoi utenti adoreranno.",
   "app-features": "Funzionalità",
   "app-features-title": "Alcune delle funzionalità delle nostre app.",
   "app-features-1-title": "Design moderno",
@@ -119,7 +119,7 @@
   "app-features-5-title": "Sicurezza",
   "app-features-5-description": "La sicurezza è della massima importanza per noi durante la creazione di app. Comprendiamo che gli utenti si affidano a noi con i loro dati personali e prendiamo questa responsabilità molto seriamente.",
   "app-features-6-title": "Sincronizzazione multidispositivo",
-  "app-features-6-description": "Il nostro team comprende quanto sia importante poter accedere ai tuoi dati da qualsiasi luogo e in qualsiasi momento. Ecco perché creiamo app che hanno la sincronizzazione multi-dispositivo integrata.",
+  "app-features-6-description": "Il nostro team comprende quanto sia importante poter accedere ai dati da qualsiasi luogo e in qualsiasi momento. Ecco perché creiamo app che sono multi-dispositivo.",
 
   "industry": "Industria 4.0",
   "industry-page-title": "Creiamo soluzioni software per l'Industria 4.0.",
@@ -192,13 +192,13 @@
 
   "case-study": "Caso studio",
   "simm-study-title": "Macchine e materiali per l'imballaggio",
-  "simm-study-description": "Simm Imballaggi è un'azienda specializzata nella costruzione, personalizzazione e vendita di macchine e materiali per il confezionamento. I prodotti trattati sono selezionati sulla base di un attento e continuo monitoraggio del mercato nazionale ed internazionale, con l'obiettivo di migliorare costantemente qualità e tecnologia. la qualità del servizio è il risultato del massimo impegno che tutto il personale quotidianamente pone, al fine di offrire sempre il miglior prodotto e la massima professionalità.",
+  "simm-study-description": "Simm Imballaggi è un'azienda specializzata nella costruzione, personalizzazione e vendita di macchine e materiali per il confezionamento. I prodotti trattati sono selezionati sulla base di un attento e continuo monitoraggio del mercato nazionale ed internazionale, con l'obiettivo di migliorare costantemente qualità e tecnologia.<br/><br/>La qualità del servizio è il risultato del massimo impegno che tutto il personale quotidianamente pone, al fine di offrire sempre il miglior prodotto e la massima professionalità.",
 
   "simm-problem-title": "Il problema",
   "simm-problem-description": "Il sito Web che avevano era obsoleto e non rifletteva i loro valori aziendali. Doveva cambiare per consentire loro non solo di acquisire nuovi clienti, ma anche di dare agli utenti un'idea di ciò che rende la loro attività così eccezionale!",
 
   "simm-solution-title": "La soluzione",
-  "simm-solution-description": "  Quando abbiamo riprogettato il nostro sito web, si è modernizzato e ha iniziato a rispecchiare i valori di questa azienda. Anche l'esperienza dell'utente è migliorata in modo significativo, in modo che gli utenti siano più propensi ad acquistare da loro una volta che hanno visitato il sito Web!",
+  "simm-solution-description": "  Quando abbiamo riprogettato il loro sito web, si è modernizzato e ha iniziato a rispecchiare i valori di questa azienda. Anche l'esperienza dell'utente è migliorata in modo significativo, in modo che gli utenti siano più propensi ad acquistare da loro una volta che hanno visitato il sito Web!",
 
   "message-sent": "Messaggio inviato!",
   "we-will-answer-in-48h": "Ti risponderemo entro 48h.",

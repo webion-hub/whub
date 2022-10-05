@@ -25,8 +25,8 @@ export default function SimmCaseStudy() {
               direction="row"
               label={t('case-study')}
               title={t('simm-study-title')}
-              description={t('simm-study-description')}
-              src="https://webion.it/images/industry-4-p-500.webp"
+              description={t('simm-study-description', true)}
+              src="/assets/images/projects/simm.png"
               actionComponent={
                 <Button
                   variant="contained"

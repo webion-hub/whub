@@ -48,6 +48,7 @@ export function ImageAndDescription(props: ImageAndDescriptionProps) {
             overflow: 'hidden',
             maxHeight: 600,
             minHeight: 250,
+            position: 'relative',
             ...props.paperSx,
           }}
         >
@@ -59,6 +60,11 @@ export function ImageAndDescription(props: ImageAndDescriptionProps) {
               src={props.src}
               alt={props.alt}
               fill
+              sizes='
+                (max-width: 700px) 100vw,
+                (max-width: 1327px) 50vw,
+                600px
+              '
               sx={{
                 objectFit: 'cover',
                 position: 'relative !important',

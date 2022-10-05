@@ -33,7 +33,6 @@ import {
 
 function ServicesButton() {
   const { t } = useLanguage();
-  const theme = useTheme();
   const { clickNavigate } = useNextNavigator();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -113,6 +112,7 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
     return (
       <AppBar
         sx={{
+          border: 'none',
           background: isHome ? 'transparent' : appbarColor,
           transition: `250ms background ease-in-out`,
           '& > *': {

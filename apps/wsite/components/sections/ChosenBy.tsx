@@ -24,6 +24,7 @@ export function ChosenBy() {
               margin: 2,
               filter: 'grayscale(100%)',
             },
+            position: 'relative',
             width: '100%',
             paddingTop: { xs: 1, md: 0 },
           }}
@@ -31,24 +32,28 @@ export function ChosenBy() {
           <NextImg
             auto
             height="40px"
+            sizes='25vw'
             alt="kaire"
             src="/assets/images/clients/kaire-logo.webp"
           />
           <NextImg
             auto
             height="40px"
+            sizes='25vw'
             alt="bocconi"
             src="/assets/images/clients/bocconi-logo.png"
           />
           <NextImg
             auto
             height="40px"
+            sizes='25vw'
             alt="simm"
             src="/assets/images/clients/simm-logo.png"
           />
           <NextImg
             auto
             height="30px"
+            sizes='25vw'
             alt="mentorz"
             src="/assets/images/clients/mentorz-logo.png"
             sx={{ background: '#444' }}

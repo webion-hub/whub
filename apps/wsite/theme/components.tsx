@@ -1,7 +1,8 @@
 import { Components, Theme } from '@mui/material';
 
 export const getComponents = (
-  fontFamily: string
+  fontFamily: string,
+  mode: 'light' | 'dark'
 ): Components<Omit<Theme, 'components'>> => ({
   MuiCssBaseline: {
     styleOverrides: {
@@ -41,12 +42,15 @@ export const getComponents = (
   },
   MuiPaper: {
     defaultProps: {
-      elevation: 3,
+      elevation: 0,
     },
     styleOverrides: {
       root: {
         backgroundImage: 'none',
         borderRadius: 16,
+        border: mode === 'dark'
+            ? '1px solid #10172d'
+            : '1px solid #e2e7fa',
       },
     },
   },

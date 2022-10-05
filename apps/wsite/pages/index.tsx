@@ -1,10 +1,11 @@
 import { useTheme } from '@mui/material';
 import { Page, Section, Sections, useBackgroundWaves } from '@whub/wui';
 import { useEffect } from 'react';
+import { netBackground } from '../components/backgrounds/netBackground';
 import { pcbBackground } from '../components/backgrounds/pcbBackground';
 import { ChosenBy } from '../components/sections/ChosenBy';
 import { Faq } from '../components/sections/Faq';
-import { GetAQuote, GetAQuoteSection } from '../components/sections/GetAQuote';
+import { GetAQuoteSection } from '../components/sections/GetAQuote';
 import { HomeWithServices } from '../components/sections/HomeWithServices';
 import OurProcess from '../components/sections/OurProcess';
 import Services from '../components/sections/Services';
@@ -61,10 +62,12 @@ export default function Homepage() {
         <Section
           id="faq"
           showBackground
+          background={netBackground(theme)}
           backgroundSx={{
-            transform: 'rotate(180deg)',
-            opacity: 0.4,
-            ...waves,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'top',
+            opacity: 0.05,
           }}
         >
           <Faq />

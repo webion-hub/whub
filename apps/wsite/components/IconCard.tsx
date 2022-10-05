@@ -51,6 +51,7 @@ export function IconCard(props: IconCardProps) {
             margin: 1,
             marginBottom: 4,
             borderRadius: '100%',
+            position: 'relative',
             background: (theme) =>
               props.iconBackgroundColor
                 ? props.iconBackgroundColor
@@ -71,11 +72,7 @@ export function WebionCard(props: BaseProps) {
       sx={{
         position: 'relative',
         minWidth: { xs: '100%', md: 350 },
-        transition: '0.5s transform, 0.5s box-shadow, 0.5s border-color',
-        border: (theme) =>
-          theme.palette.mode === 'dark'
-            ? '1px solid #10172d'
-            : '1px solid #e2e7fa',
+        transition: '0.5s transform, 0.5s box-shadow',
         boxShadow: 'none',
         '&:hover': {
           transform: 'translateY(-8px)',

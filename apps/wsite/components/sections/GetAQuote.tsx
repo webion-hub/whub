@@ -38,7 +38,7 @@ export function GetAQuote({
         sx={{
           marginTop: (theme) => theme.spacing(8, '!important'),
           '& > *': {
-            margin: 1,
+            margin: theme => theme.spacing(1, "!important"),
           },
         }}
       >

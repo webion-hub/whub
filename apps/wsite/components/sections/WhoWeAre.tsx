@@ -18,6 +18,7 @@ export function WhoWeAre() {
       paperSx={{
         backgroundColor: '#fff',
         boxShadow: 'none',
+        border: 'none',
       }}
       actionComponent={
         <Button
