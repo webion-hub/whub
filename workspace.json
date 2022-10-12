@@ -6,6 +6,7 @@
     "apis-core": "libs/apis/core",
     "apis-react": "libs/apis/react",
     "apis-simple-auth": "libs/apis/simple-auth",
+    "page-sections": "libs/page-sections",
     "simm-imballaggi": "apps/simm-imballaggi",
     "simm-imballaggi-e2e": "apps/simm-imballaggi-e2e",
     "wshop-api": "libs/wshop/api",

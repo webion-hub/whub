@@ -1,10 +1,10 @@
-import { useTheme } from '@mui/material';
-import { Page, Section, Sections, useBackgroundWaves } from '@whub/wui';
+import { HelpRounded } from '@mui/icons-material';
+import { alpha, Link, Stack, useTheme } from '@mui/material';
+import { ChosenBy, Faq } from '@whub/page-sections';
+import { NextImg, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
 import { useEffect } from 'react';
 import { netBackground } from '../components/backgrounds/netBackground';
 import { pcbBackground } from '../components/backgrounds/pcbBackground';
-import { ChosenBy } from '../components/sections/ChosenBy';
-import { Faq } from '../components/sections/Faq';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
 import { HomeWithServices } from '../components/sections/HomeWithServices';
 import OurProcess from '../components/sections/OurProcess';
@@ -13,7 +13,8 @@ import { WhoWeAre } from '../components/sections/WhoWeAre';
 
 export default function Homepage() {
   const theme = useTheme();
-  const waves = useBackgroundWaves(theme.palette.primary.light);
+  const { t } = useLanguage();
+  const { clickNavigate } = useNextNavigator();
 
   useEffect(() => {
     import('react-facebook-pixel')
@@ -42,7 +43,37 @@ export default function Homepage() {
           maxWidth="100%"
           sx={{ paddingBlock: 4 }}
         >
-          <ChosenBy />
+          <ChosenBy blackAndWhite>
+            <NextImg
+              auto
+              height="40px"
+              sizes='25vw'
+              alt="kaire"
+              src="/assets/images/clients/kaire-logo.webp"
+            />
+            <NextImg
+              auto
+              height="40px"
+              sizes='25vw'
+              alt="bocconi"
+              src="/assets/images/clients/bocconi-logo.png"
+            />
+            <NextImg
+              auto
+              height="40px"
+              sizes='25vw'
+              alt="simm"
+              src="/assets/images/clients/simm-logo.png"
+            />
+            <NextImg
+              auto
+              height="30px"
+              sizes='25vw'
+              alt="mentorz"
+              src="/assets/images/clients/mentorz-logo.png"
+              sx={{ background: '#444' }}
+            />
+          </ChosenBy>
         </Section>
         <Section id="who-we-are">
           <WhoWeAre />
@@ -70,7 +101,52 @@ export default function Homepage() {
             opacity: 0.05,
           }}
         >
-          <Faq />
+          <Faq
+            bottomLabel={
+              <>
+                {t('forget-anything')}&nbsp;
+                <Link href="/contact-us" onClick={clickNavigate('/contact-us')}>
+                  {t('send-a-message')}
+                </Link>
+                &nbsp;{t('answer-in-48h')}
+              </>
+            }
+            questions={[
+              { question: t('faq-q1'), answer: t('faq-a1', true) },
+              { question: t('faq-q2'), answer: t('faq-a2', true) },
+              { question: t('faq-q3'), answer: t('faq-a3', true) },
+              { question: t('faq-q4'), answer: <>{t('faq-a4', true)}&nbsp; <Link href="/techs" onClick={clickNavigate('/techs')}> {t('here')} </Link>.</> },
+              { question: t('faq-q5'), answer: t('faq-a5', true) },
+              { question: t('faq-q6'), answer: t('faq-a6', true) },
+            ]}
+            title={t('faq')}
+            sx={{
+              marginInline: 2,
+              marginTop: 10,
+              marginBottom: 8,
+            }}
+            questionBoxSx={{
+              marginTop: (theme) => theme.spacing(12, '!important')
+            }}
+            icon={
+              <Stack
+                alignItems="center"
+                justifyContent="center"
+                sx={{
+                  padding: 2,
+                  borderRadius: '100%',
+                  background: (theme) => alpha(theme.palette.primary.light, 0.2),
+                }}
+              >
+                <HelpRounded
+                  fontSize="large"
+                  sx={{
+                    color: (theme) => theme.palette.primary.light,
+                  }}
+                />
+              </Stack>
+            }
+          />
         </Section>
       </Sections>
     </Page>

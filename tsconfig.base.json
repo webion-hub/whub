@@ -18,6 +18,7 @@
       "@whub/apis-contactus": ["libs/apis/contactus/src/index.ts"],
       "@whub/apis-core": ["libs/apis/core/src/index.ts"],
       "@whub/apis-react": ["libs/apis/react/src/index.ts"],
+      "@whub/page-sections": ["libs/page-sections/src/index.ts"],
       "@whub/simple-auth": ["libs/apis/simple-auth/src/index.ts"],
       "@whub/wshop-api": ["libs/wshop/api/src/index.ts"],
       "@whub/wshop-ui": ["libs/wshop/ui/src/index.ts"],

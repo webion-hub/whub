@@ -1,4 +1,5 @@
 import { Components, Theme } from '@mui/material';
+import shadows from '@mui/material/styles/shadows';
 
 export const getComponents = (
   fontFamily: string,
@@ -10,6 +11,18 @@ export const getComponents = (
         fontFamily: fontFamily,
       },
     },
+  },
+  MuiAccordion: {
+    styleOverrides: {
+      root: {
+        padding: 8,
+        transition: '0.5s box-shadow',
+
+        "&.Mui-expanded": {
+          boxShadow: shadows[10]
+        }
+      }
+    }
   },
   MuiSnackbarContent: {
     styleOverrides: {
