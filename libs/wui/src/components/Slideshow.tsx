@@ -56,7 +56,8 @@ export function Slideshow(props: SlideshowProps) {
   }, [index]);
 
   const getWidth = (width: Width) => {
-    if (!window) return 0;
+    if (typeof window === "undefined")
+      return 0;
 
     const isAString = typeof width.width === 'string';
 

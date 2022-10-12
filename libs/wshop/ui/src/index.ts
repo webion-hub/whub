@@ -15,3 +15,4 @@ export * from './pages/ProductVisualizer';
 export * from './pages/TableProducts';
 
 export * from './lib/ShopRoutes';
+export * from './lib/ProductUtils';

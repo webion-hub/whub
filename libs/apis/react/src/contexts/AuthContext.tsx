@@ -22,8 +22,8 @@ interface IAuthContextFull extends IAuthContext {
   readonly isAdmin: boolean,
   readonly isLogged: boolean,
   readonly loading: boolean,
-  readonly checkUser: (actions?: AuthActions) => Promise<AccountInfo>,
-  readonly checkIsLogged: (actions?: AuthActionsIsLoogedIn) => Promise<void>,
+  readonly checkUser: (actions?: AuthActions) => Promise<AccountInfo | undefined>,
+  readonly checkIsLogged: (actions?: AuthActionsIsLoogedIn) => Promise<boolean>,
   readonly logIn: (credentials: LoginRequest, actions?: AuthActions) => Promise<boolean>,
   readonly logOut: (actions?: AuthActions) => Promise<void>,
 }
@@ -33,7 +33,7 @@ export const AuthContext = createContext<IAuthContextFull>({
   isLogged: false,
   loading: false,
   checkUser: () => Promise.resolve({} as AccountInfo),
-  checkIsLogged: () => Promise.resolve(),
+  checkIsLogged: () => Promise.resolve(false),
   logIn: () => Promise.resolve(false),
   logOut: () => Promise.resolve(),
   api: {} as SimpleAuthApi,
@@ -54,8 +54,12 @@ export const AuthWrapper = (props: IAuthContextProps) => {
 
   const checkUser = async (actions?: AuthActions) => {
     setLoading(true)
-    await checkIsLogged(actions)
-    const res = await fetchUser(actions)
+    const isLogged = await checkIsLogged(actions)
+
+    const res = isLogged
+      ? await fetchUser(actions)
+      : undefined
+
     setLoading(false)
     return res
   }
@@ -83,6 +87,7 @@ export const AuthWrapper = (props: IAuthContextProps) => {
     })
 
     setLoading(false)
+    return res.data;
   }
 
   const onIsLoggedCheck = async (isLogged: boolean, actions?: AuthActionsIsLoogedIn) => {

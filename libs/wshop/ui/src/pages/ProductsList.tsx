@@ -42,6 +42,7 @@ export function ProductsList(props: ProductListProps) {
       page={page}
       take={take}
       loadingComponent={loading => <FullScreenLoading loading={loading}/>}
+      noResultComponent={() => 'Nessun risultato'}
     >
       {
         (products, totalPages, totalProducts) =>
@@ -131,7 +132,8 @@ export interface ProductListGetterProps extends ProductListProps {
   readonly children: (products: Product[], totPages: number, totProds: number) => any,
   readonly page: number,
   readonly take: number,
-  readonly loadingComponent?: (loading: boolean) => ReactNode
+  readonly noResultComponent?: () => ReactNode,
+  readonly loadingComponent?: (loading: boolean) => ReactNode,
 }
 
 export function ProductListGetter(props: ProductListGetterProps) {
@@ -163,15 +165,17 @@ export function ProductListGetter(props: ProductListGetterProps) {
       })
       .then(res => {
         setProducts(res.data.results)
+
         setTotalProducts(res.data.totalResults)
       })
       .finally(() => setLoading(false))
   }, [filter, category, page, take])
 
-  return (
-    <>
-      {props.loadingComponent?.(loading)}
-      {props.children(products, totalPages, totalProducts)}
-    </>
-  )
+  if(loading)
+    return props.loadingComponent?.(loading)
+
+  if(products.length === 0)
+    return props.noResultComponent?.()
+
+  return props.children(products, totalPages, totalProducts)
 }

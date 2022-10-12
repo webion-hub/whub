@@ -1,13 +1,13 @@
 import { useShop } from "@whub/apis-react"
 import { Product } from "@whub/wshop-api"
+import { ProductHandler } from "@whub/wshop-ui"
 import { FullScreenLoading, Page, Section } from "@whub/wui"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import { ProductHandler } from "../components/ProductHandler"
 
-export function EditProduct() {
+export default function EditProduct() {
   const params = useRouter().query
-  const productId = params['id'] as string
+  const productId = params['productId'] as string
 
   const [loading, setLoading] = useState(false)
   const [product, setProduct] = useState<Product>()

@@ -38,11 +38,15 @@ const contextGenerator = function* (apis: IApiContext) {
 };
 
 export const ApiWrapper = (props: ApiProps) => {
-  const cxtGenerator = useGenerator(contextGenerator(props.apis));
+  const { generator: cxtGenerator, reset } = useGenerator(() => contextGenerator(props.apis));
 
   const insertContext = (children: ReactNode): ReactNode => {
     const cxt = cxtGenerator.next();
-    if (cxt.done || !cxt.value) return props.children;
+
+    if (cxt.done || !cxt.value) {
+      reset()
+      return props.children;
+    }
 
     return (
       <cxt.value.context
