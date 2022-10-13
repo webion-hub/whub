@@ -2,7 +2,7 @@ import { Box, ButtonBase, Paper, Skeleton, SxProps, Theme } from "@mui/material"
 import { Product, WShopApi } from "@whub/wshop-api"
 import { ResponsiveStyleValue } from "@mui/system/styleFunctionSx";
 import { useShop } from "@whub/apis-react";
-import { Coords, MaybeShow, useProgressiveImage } from "@whub/wui";
+import { Coords, MaybeShow, NextImg, useProgressiveImage } from "@whub/wui";
 import { MouseEvent, useRef, useState } from "react";
 import { ProductUtils } from "../lib/ProductUtils";
 

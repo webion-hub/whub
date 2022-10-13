@@ -102,7 +102,7 @@ function CustomApp({ Component, pageProps }: ComponentWithPageLayout) {
             <CssBaseline />
             <GlobalStyles styles={globalStyle}></GlobalStyles>
               <Head>
-                <title>Welcome to simm-imballaggi!</title>
+                <title>SIMM Imballaggi</title>
               </Head>
               <Layout>
                 <CookiePopup name="simm-imballaggi" privacyUrl="privacy" />

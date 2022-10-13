@@ -1,4 +1,4 @@
-import { Breadcrumbs, Link, Stack, Typography } from '@mui/material';
+import { Breadcrumbs, Link } from '@mui/material';
 import { useLanguage, useNextNavigator } from '@whub/wui';
 
 import { ShopRoutes } from '../../lib/ShopRoutes';
@@ -26,10 +26,13 @@ export function ProductCategory(props: ProductCategoryProps) {
     return ShopRoutes.products({ category: categoryUrl });
   };
 
-  if (!props.categoryName) return null;
-
   return (
-    <Breadcrumbs sx={{ width: '100%' }}>
+    <Breadcrumbs
+      sx={{
+        width: '100%',
+        minHeight: 24
+      }}
+    >
       {(props.categoryName ?? '').split('/').map((v, i, all) => {
         const isLast = i === all.length - 1;
 

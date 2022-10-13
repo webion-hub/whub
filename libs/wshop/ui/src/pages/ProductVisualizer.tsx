@@ -13,7 +13,7 @@ interface ProductProps {
 export function ProductVisualizer(props: ProductProps) {
   const productId = props.productId
   const theme = useTheme()
-  const isMobileView = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobileView = useMediaQuery(theme.breakpoints.down(1100));
 
   return (
     <ProductGetter
