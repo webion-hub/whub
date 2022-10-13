@@ -63,8 +63,8 @@ const StyledTreeItem = styled((props: TreeItemProps) => (
   <TreeItem {...props} />
 ))(({ theme }) => ({
   [`& .${treeItemClasses.content}`]: {
-    borderTopRightRadius: theme.spacing(2),
-    borderBottomRightRadius: theme.spacing(2),
+    borderRadius: theme.spacing(0.5),
+    marginBlock: theme.spacing(0.5),
   },
   [`& .${treeItemClasses.iconContainer}`]: {
     '& .close': {
