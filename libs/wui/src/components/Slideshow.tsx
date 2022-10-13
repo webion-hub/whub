@@ -10,6 +10,7 @@ import { ReactNode, useEffect, useRef, useState } from 'react';
 import { BehaviorSubject, debounceTime } from 'rxjs';
 import { useOnScreen } from '../hooks/useOnScreen';
 import { useSubject } from '../hooks/useSubject';
+import { Utils } from '../lib/Utils';
 
 export interface SlideshowItem {
   readonly item: (selected: boolean) => ReactNode;
@@ -30,6 +31,8 @@ export interface SlideshowProps {
 
 export function Slideshow(props: SlideshowProps) {
   const ref = useRef<HTMLDivElement>();
+  const firstItemRef = useRef<HTMLDivElement>();
+
   const inView = useOnScreen(ref);
   const selection$ = useSubject(0);
   const [index, setIndex] = useState(0);
@@ -55,23 +58,22 @@ export function Slideshow(props: SlideshowProps) {
     });
   }, [index]);
 
-  const getWidth = (width: Width) => {
-    if (typeof window === "undefined")
-      return 0;
 
-    const isAString = typeof width.width === 'string';
+  const getContainerWidth = () => {
+    const containerWidth = ref.current?.getBoundingClientRect().width
 
-    const widthPrep = isAString
-      ? (window.innerWidth * Number(width.width.slice(0, -2))) / 100
-      : width.width;
+    return containerWidth
+      ? containerWidth
+      : 0
+  }
 
-    if (!width.maxWidth) return widthPrep;
+  const getItemWidth = () => {
+    const itemWidth = firstItemRef.current?.getBoundingClientRect().width
 
-    return widthPrep > width.maxWidth ? width.maxWidth : widthPrep;
-  };
-
-  const prepContainerWidth = getWidth(props.containerWidth);
-  const prepItemWidth = getWidth(props.itemWidth);
+    return itemWidth
+      ? itemWidth
+      : 0
+  }
 
   const getIcon = (i: number) => {
     return i === indexToZoom ? (
@@ -99,13 +101,13 @@ export function Slideshow(props: SlideshowProps) {
 
   const onScroll = (e: any) => {
     const x = ref.current?.scrollLeft ?? 0;
-    const index = Math.round(x / prepItemWidth);
+    const index = Math.round(x / getItemWidth());
 
     selection$.next(index);
   };
 
   const getSide = () => {
-    const sideWidth = prepContainerWidth / 2 - prepItemWidth / 2;
+    const sideWidth = getContainerWidth() / 2 - getItemWidth() / 2;
 
     return (
       <Box
@@ -137,11 +139,13 @@ export function Slideshow(props: SlideshowProps) {
         {getSide()}
         {props.items.map((item, i) => (
           <Box
+            ref={i === 0 ? firstItemRef : undefined}
             key={i}
             sx={{
               display: 'flex',
-              width: props.itemWidth,
-              flex: `0 0 ${props.itemWidth}px`,
+              maxWidth: props.itemWidth.maxWidth,
+              width: props.itemWidth.width,
+              flex: `0 0 ${Utils.getWidth(props.itemWidth.width)}`,
               alignItems: 'center',
               justifyContent: 'center',
               scrollSnapAlign: 'center',
@@ -154,7 +158,7 @@ export function Slideshow(props: SlideshowProps) {
           >
             <Box
               sx={{
-                width: props.itemWidth,
+                width: props.itemWidth.width,
                 '&:hover': {
                   cursor:
                     (i === indexToZoom && item.onClick) || i !== indexToZoom

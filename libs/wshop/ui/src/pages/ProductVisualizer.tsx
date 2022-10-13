@@ -6,7 +6,8 @@ import { ReactNode, useEffect, useState } from "react";
 import { ProductComponent } from "../components/ProductComponent";
 
 interface ProductProps {
-  readonly productId?: string
+  readonly productId?: string,
+  readonly onProductFetch?: (product: Product) => void,
 }
 
 export function ProductVisualizer(props: ProductProps) {
@@ -16,6 +17,7 @@ export function ProductVisualizer(props: ProductProps) {
 
   return (
     <ProductGetter
+      onProductFetch={props.onProductFetch}
       productId={productId}
       loadingComponent={loading => <FullScreenLoading loading={loading}/>}
     >
@@ -29,7 +31,6 @@ export function ProductVisualizer(props: ProductProps) {
                 ? <ProductComponent
                     product={product}
                     compress={isMobileView}
-                    sx={{ marginTop: { xs: 10, md: 0} }}
                   />
                 : <></>
             }
@@ -40,6 +41,7 @@ export function ProductVisualizer(props: ProductProps) {
 }
 
 interface ProductGetter extends ProductProps {
+  readonly onProductFetch?: (product: Product) => void,
   readonly children: (product?: Product, loading?: boolean) => any,
   readonly loadingComponent?: (loading: boolean) => ReactNode
 }
@@ -53,6 +55,13 @@ export function ProductGetter(props: ProductGetter) {
   useEffect(() => {
     fetchProduct()
   }, [props.productId])
+
+  useEffect(() => {
+    if(!product)
+      return
+
+    props.onProductFetch?.(product)
+  }, [product])
 
   const fetchProduct = () => {
     if(!props.productId)

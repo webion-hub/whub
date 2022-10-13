@@ -46,7 +46,6 @@ export function ProductComponent(props: ProductComponentProps) {
     >
       <ProductFrame
         sx={props.sx}
-        categoryComponent={<ProductCategoryOutput />}
         imagesComponent={<ProductImagesOutput />}
         nameComponent={<ProductNameOutput placeholder="Nome" />}
         descriptionComponent={

@@ -78,9 +78,6 @@ export default function Login() {
   return (
     <Page
       centered
-      sx={{
-        marginTop: { xs: 16, md: 8 },
-      }}
     >
       <FormGroup onSubmit={login} sx={{ padding: 2 }}>
         <Stack

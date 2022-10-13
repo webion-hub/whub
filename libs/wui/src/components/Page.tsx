@@ -8,15 +8,12 @@ export interface PageProps {
 }
 
 export const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => {
-  const theme = useTheme()
-
   return (
     <Box
       ref={ref}
       sx={{
         position: 'relative',
         flex: props.centered ? 'none' : 1,
-        marginTop: theme.mixins.toolbar.height + 'px',
         ...props.sx,
       }}
     >

@@ -15,9 +15,11 @@ import theme from '../theme/theme';
 import './styles.css';
 
 
+import { ComponentType, ReactNode } from 'react';
 import en from '../public/assets/locales/en-EN.json';
-import it from '../public/assets/locales/it-IT.json';
 import es from '../public/assets/locales/es-ES.json';
+import it from '../public/assets/locales/it-IT.json';
+import { SimmLayout } from '../components/layout/SimmLayout';
 
 const auth = new SimpleAuthApi({
   baseUrl: 'https://api.simm.webion.it', //'http://localhost:5181'
@@ -34,7 +36,20 @@ const contactUs = new ContactUsApi({
   withCredentials: true,
 });
 
-function CustomApp({ Component, pageProps }: AppProps) {
+
+
+
+type ComponentWithPageLayout = AppProps & {
+  Component: AppProps['Component'] & {
+    Layout?: ComponentType
+  }
+}
+
+
+function CustomApp({ Component, pageProps }: ComponentWithPageLayout) {
+
+  const Layout = Component.Layout || SimmLayout
+
   return (
     <ApiWrapper
       apis={{
@@ -89,15 +104,10 @@ function CustomApp({ Component, pageProps }: AppProps) {
               <Head>
                 <title>Welcome to simm-imballaggi!</title>
               </Head>
-              <main>
-                <Layout
-                  AppBarComponent={<SimmAppbar />}
-                  FooterComponent={<SimmFooter />}
-                >
-                  <CookiePopup name="simm-imballaggi" privacyUrl="privacy" />
-                      <Component {...pageProps} />
-                </Layout>
-              </main>
+              <Layout>
+                <CookiePopup name="simm-imballaggi" privacyUrl="privacy" />
+                <Component {...pageProps} />
+              </Layout>
           </GlobalDialogs>
         </LanguageWrapper>
       </ThemeProvider>
@@ -106,3 +116,6 @@ function CustomApp({ Component, pageProps }: AppProps) {
 }
 
 export default CustomApp;
+
+
+const EmptyLayout = ({ children }: { children: ReactNode }) => <>{children}</>

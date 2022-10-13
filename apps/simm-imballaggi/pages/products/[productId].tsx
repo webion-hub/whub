@@ -1,28 +1,24 @@
 import { ProductVisualizer } from "@whub/wshop-ui";
 import { Page, Section } from "@whub/wui";
+import { SimmLayoutWithCategories, useProductLayout } from "../../components/layout/SimmLayoutWithCategories";
 import { useRouter } from "next/router";
 
 
-export default function ProductPage(props: any) {
+export default function ProductPage() {
   const params = useRouter().query
+  const { setCategory } = useProductLayout()
   const productId = params['productId'] as string
 
   return (
-    <Page
-      sx={{ padding: 1 }}
-    >
-      <Section id="" sx={{ padding: 0 }}>
-        <ProductVisualizer productId={productId}/>
+    <Page>
+      <Section>
+        <ProductVisualizer
+          productId={productId}
+          onProductFetch={p => setCategory(p?.category.name ?? '')}
+        />
       </Section>
     </Page>
   )
 }
 
-
-export async function getServerSideProps(context) {
-  console.log(context)
-
-  return {
-    props: {}
-  }
-}
+ProductPage.Layout = SimmLayoutWithCategories

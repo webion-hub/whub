@@ -29,27 +29,22 @@ export function ProductCategory(props: ProductCategoryProps) {
   if (!props.categoryName) return null;
 
   return (
-    <Stack direction="column" sx={{ width: '100%' }}>
-      <Typography variant="caption" color="text.secondary">
-        {t('category')}
-      </Typography>
-      <Breadcrumbs sx={{ width: '100%' }}>
-        {(props.categoryName ?? '').split('/').map((v, i, all) => {
-          const isLast = i === all.length - 1;
+    <Breadcrumbs sx={{ width: '100%' }}>
+      {(props.categoryName ?? '').split('/').map((v, i, all) => {
+        const isLast = i === all.length - 1;
 
-          return (
-            <Link
-              key={i}
-              underline="hover"
-              color={isLast ? 'text.primary' : 'inherit'}
-              href={getUrl(all, i)}
-              onClick={clickNavigate(getUrl(all, i))}
-            >
-              {v}
-            </Link>
-          );
-        })}
-      </Breadcrumbs>
-    </Stack>
+        return (
+          <Link
+            key={i}
+            underline="hover"
+            color={isLast ? 'text.primary' : 'inherit'}
+            href={getUrl(all, i)}
+            onClick={clickNavigate(getUrl(all, i))}
+          >
+            {v}
+          </Link>
+        );
+      })}
+    </Breadcrumbs>
   );
 }

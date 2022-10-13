@@ -1,9 +1,9 @@
 import { ChevronLeftRounded, ChevronRightRounded } from "@mui/icons-material"
-import { IconButton, Stack, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { Box, IconButton, LinearProgress, Stack, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { useShop } from "@whub/apis-react"
 import { Product } from "@whub/wshop-api"
-import { FullScreenLoading } from "@whub/wui"
-import { ReactNode, useEffect, useState } from "react"
+import { FullScreenLoading, MaybeShow } from "@whub/wui"
+import { ReactNode, useEffect, useRef, useState } from "react"
 import { ProductCategory } from "../components/outputs/ProductCategoryOutput"
 import { ProductCard } from "../components/ProductCard"
 
@@ -13,23 +13,41 @@ interface ProductListProps {
 }
 
 export function ProductsList(props: ProductListProps) {
-  const theme = useTheme()
-  const isXl = useMediaQuery(theme.breakpoints.up("xl"))
-  const isMd = useMediaQuery(theme.breakpoints.up("md"))
+  const containerRef = useRef<HTMLDivElement>()
+
+  const [totalElements, setTotalElements] = useState({ tot: 0, rows: 0, cols: 0 })
+  const [page, setPage] = useState(0)
+
   const { filter, category } = props
 
-  const getTake = () => {
-    if(isXl)
-      return 10
+  const elementMaxWidth = 266
+  const elementMinHeight = 461
+  const minElements = 10
 
-    if(isMd)
-      return 12
+  useEffect(() => {
+    if(!containerRef.current)
+      return
 
-    return 10
-  }
+    const element = containerRef.current
+    const observer = new ResizeObserver(() => {
+      const width = element.getBoundingClientRect().width
 
-  const take = getTake()
-  const [page, setPage] = useState(0)
+
+      const elementPerRow = Math.floor(width / elementMaxWidth)
+      const totalElements = Math.ceil(minElements / elementPerRow) * elementPerRow
+
+      setPage(0)
+      setTotalElements({
+        tot: totalElements,
+        rows: elementPerRow,
+        cols: Math.ceil(totalElements / elementPerRow),
+      })
+    })
+
+    observer.observe(element)
+
+    return () => observer.unobserve(element)
+  }, [containerRef.current])
 
   useEffect(() => {
     setPage(0)
@@ -40,21 +58,24 @@ export function ProductsList(props: ProductListProps) {
       filter={filter}
       category={category}
       page={page}
-      take={take}
-      loadingComponent={loading => <FullScreenLoading loading={loading}/>}
-      noResultComponent={() => 'Nessun risultato'}
+      take={totalElements.tot}
+      loadingComponent={loading =>
+        <MaybeShow
+          show={loading}
+          alternativeChildren={<Box height={4}/>}
+        >
+          <LinearProgress sx={{width: '100%'}} />
+        </MaybeShow>
+      }
     >
       {
         (products, totalPages, totalProducts) =>
           <Stack
+            ref={containerRef}
             direction="column"
             alignItems="center"
-            sx={{
-              width: '100%',
-              marginTop: { xs: 10, md: 0}
-            }}
+            sx={{ width: '100%' }}
           >
-            <ProductCategory categoryName={category} />
             <Stack
               direction="row"
               flexWrap='wrap'
@@ -62,19 +83,10 @@ export function ProductsList(props: ProductListProps) {
               sx={{
                 width: '100%',
                 minHeight: {
-                  xl: 461 * 2,
-                  lg: 266 * 4,
-                  md: 266 * 3,
-                  sm: 266 * 2,
-                  xs: 266 * 1,
+                  xl: elementMinHeight * totalElements.cols,
+                  xs: 'auto'
                 },
-                maxWidth: {
-                  xl: 266 * 5,
-                  lg: 266 * 4,
-                  md: 266 * 3,
-                  sm: 266 * 2,
-                  xs: 266 * 1,
-                },
+                maxWidth: elementMaxWidth * totalElements.rows,
                 "& > *": {
                   margin: 1
                 }
@@ -112,7 +124,7 @@ export function ProductsList(props: ProductListProps) {
                 }}
                 align="center"
               >
-                Pagina {page + 1} / {Math.ceil(totalProducts / take)}
+                Pagina {page + 1} / {Math.ceil(totalProducts / totalElements.tot)}
               </Typography>
               <IconButton
                 disabled={totalPages === page}
@@ -132,7 +144,6 @@ export interface ProductListGetterProps extends ProductListProps {
   readonly children: (products: Product[], totPages: number, totProds: number) => any,
   readonly page: number,
   readonly take: number,
-  readonly noResultComponent?: () => ReactNode,
   readonly loadingComponent?: (loading: boolean) => ReactNode,
 }
 
@@ -171,11 +182,13 @@ export function ProductListGetter(props: ProductListGetterProps) {
       .finally(() => setLoading(false))
   }, [filter, category, page, take])
 
-  if(loading)
-    return props.loadingComponent?.(loading)
-
-  if(products.length === 0)
-    return props.noResultComponent?.()
-
-  return props.children(products, totalPages, totalProducts)
+  return (
+    <Stack
+      direction="column"
+      sx={{ width: '100%' }}
+    >
+      {props.loadingComponent?.(loading)}
+      {props.children(products, totalPages, totalProducts)}
+    </Stack>
+  )
 }

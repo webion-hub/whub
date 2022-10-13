@@ -31,4 +31,13 @@ export class Utils {
     temp.innerHTML = html
     return temp.textContent || temp.innerText || ""
   }
+
+  static getWidth(width: string | number) {
+
+    const isAString = typeof width === 'string'
+
+    return isAString
+      ? width
+      : width + 'px'
+  }
 }

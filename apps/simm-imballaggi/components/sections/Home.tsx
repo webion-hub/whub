@@ -1,116 +1,128 @@
 import { ArrowForwardRounded } from '@mui/icons-material';
-import { Button, Divider, Paper, Stack, Typography } from '@mui/material';
-import { Img, Slideshow, SlideshowItem, useBackgroundWaves } from '@whub/wui';
+import { Button, Stack, Typography } from '@mui/material';
+import { Slideshow } from '@whub/wui';
+import { useEffect, useRef } from 'react';
 
-interface SlideshowPageProps {
-  readonly selected: boolean;
+interface VideoPlayerProps {
+  readonly src: string,
+  readonly play: boolean,
+  readonly label: string,
+  readonly onClick?: (e: any) => void,
 }
 
-function SlideshowPage(props: SlideshowPageProps) {
-  const waves = useBackgroundWaves('#eaeaea');
+function VideoPlayer(props: VideoPlayerProps) {
+  const videoRef = useRef<HTMLVideoElement>()
+
+  useEffect(() => {
+    videoRef.current.currentTime = 0;
+
+    props.play
+     ? videoRef.current.play()
+     : videoRef.current.pause()
+  }, [props.play])
 
   return (
     <Stack
-      spacing={8}
-      direction="column"
-      alignItems="center"
+      direction="row"
       justifyContent="center"
       sx={{
-        transition: '0.25s, box-shadow',
-        boxShadow: props.selected ? 'unset' : (theme) => theme.shadows[10],
-        position: 'relative',
-        overflow: 'hidden',
-        height: 920,
-        background: '#fff',
-        '& > *': { zIndex: 1 },
-        '&::after': {
-          content: "''",
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          top: 0,
-          zIndex: 0,
-          ...waves,
-        },
+        width: '100%',
       }}
     >
+      <video
+        ref={videoRef}
+        muted
+        loop
+        style={{
+          width: '100%'
+        }}
+      >
+        <source
+          src={props.src}
+          type="video/mp4"
+          style={{
+          }}
+        />
+      </video>
       <Stack
         direction="row"
-        divider={
-          <Divider
-            orientation="vertical"
-            flexItem
-            sx={{ borderColor: (theme) => theme.palette.primary.dark }}
-          />
-        }
-        spacing={10}
+        alignItems="center"
+        justifyContent="space-between"
+        sx={{
+          position: 'absolute',
+          bottom: 0,
+          padding: 2,
+          width: '100%',
+          background: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)'
+        }}
       >
-        <Stack direction="column" spacing={2} sx={{ width: 450 }}>
-          <Typography variant="h2">
-            <strong>Reggiatrici</strong>
-          </Typography>
-          <Typography>
-            Ut sed venenatis augue. Nulla auctor pellentesque condimentum.
-            Quisque malesuada libero in dui sagittis scelerisque. Donec sed
-            lacus ut tellus eleifend condimentum id eu arcu. Curabitur volutpat
-            feugiat turpis a tristique.
-          </Typography>
-          <Button variant="contained" endIcon={<ArrowForwardRounded />}>
-            Scopri di più
-          </Button>
-        </Stack>
-        <Img src="assets/images/secondCard.webp" sx={{ width: 400 }} />
+        <Typography
+          variant="h4"
+          color="#fff"
+        >
+          {props.label}
+        </Typography>
+        <Button
+          variant="contained"
+          endIcon={<ArrowForwardRounded/>}
+          onClick={props.onClick}
+        >
+          Vedi
+        </Button>
       </Stack>
-      <Stack direction="row" spacing={2}>
-        <Paper
-          sx={{
-            width: 256,
-            aspectRatio: '1',
-          }}
-        />
-        <Paper
-          sx={{
-            width: 256,
-            aspectRatio: '1',
-          }}
-        />
-        <Paper
-          sx={{
-            width: 256,
-            aspectRatio: '1',
-          }}
-        />
-        <Paper
-          sx={{
-            width: 256,
-            aspectRatio: '1',
-          }}
-        />
-      </Stack>
-    </Stack>
-  );
-}
 
-const pages: SlideshowItem[] = [
-  { item: (selected) => <SlideshowPage selected={selected} /> },
-  { item: (selected) => <SlideshowPage selected={selected} /> },
-  { item: (selected) => <SlideshowPage selected={selected} /> },
-];
+    </Stack>
+  )
+}
 
 export default function Home() {
   return (
     <Stack
+      direction="column"
       sx={{
+        paddingBlock: 8,
+        paddingInline: 4,
         width: '100%',
-        background: '#eaeaea',
+        minHeight: '85vh',
       }}
     >
-      <Slideshow
-        containerWidth={{ width: '100vw' }}
-        itemWidth={{ width: '100vw' }}
-        items={pages}
-        color="#000"
-      />
+      <Stack
+        direction={{xs: "column", md: "row"}}
+        spacing={8}
+        sx={{
+          paddingTop: { xs: 4, md: 0 },
+          "& > *": {
+            width: {xs: '100%', md: '50%'}
+          }
+        }}
+      >
+        <Stack
+          direction="column"
+          spacing={2}
+        >
+          <Typography
+            variant="h2"
+            component="h1"
+          >
+            Simm Imballaggi
+          </Typography>
+          <Typography color="text.secondary">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis congue erat. Proin ultricies, mi vitae bibendum rutrum, dui nisl faucibus neque, sed venenatis elit purus vel metus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis congue erat. Proin ultricies, mi vitae bibendum rutrum, dui nisl faucibus neque, sed venenatis elit purus vel metus.
+          </Typography>
+        </Stack>
+        <Slideshow
+          color='red'
+          containerWidth={{ width: '100%' }}
+          itemWidth={{ width: '100%' }}
+          items={[
+            { item: (selected) => <VideoPlayer label="Ciao" play={selected} src="assets/videos/Assembly Line.mp4"/> },
+            { item: (selected) => <VideoPlayer label="Ciao" play={selected} src="assets/videos/Assembly Line.mp4"/> },
+            { item: (selected) => <VideoPlayer label="Ciao" play={selected} src="assets/videos/Assembly Line.mp4"/> },
+            { item: (selected) => <VideoPlayer label="Ciao" play={selected} src="assets/videos/Assembly Line.mp4"/> }
+          ]}
+        />
+      </Stack>
     </Stack>
   );
 }

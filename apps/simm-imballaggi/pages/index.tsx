@@ -10,7 +10,6 @@ export function Index() {
       <Sections>
         <Section
           id="home"
-          maxWidth='100vw'
           sx={{ padding: 0 }}
         >
           <Home/>

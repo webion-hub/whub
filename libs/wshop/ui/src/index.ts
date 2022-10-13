@@ -7,6 +7,7 @@ export * from './components/ProductFieldConfig';
 export * from './components/ProductInput';
 export * from './components/ProductOutput';
 export * from './components/ProductSearchBar';
+export * from './components/outputs/ProductCategoryOutput';
 
 export * from './pages/AddProduct';
 export * from './pages/EditProduct';

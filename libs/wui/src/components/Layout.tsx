@@ -1,6 +1,7 @@
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, styled, SxProps, Theme } from '@mui/material';
 import React, { createContext, ReactNode, useContext, useState } from 'react';
 import { useLanguage } from '../contexts/ContextLanguage';
+import { Utils } from '../lib/Utils';
 
 interface LayoutContextProps {
   readonly setAppBarStatus: (status: boolean) => void;
@@ -26,10 +27,13 @@ const LayoutContext = createContext<LayoutContextProps>({
   currentSection: '',
 });
 
+const Main = styled('main')({})
+
 export interface LayoutProps {
   readonly AppBarComponent?: ReactNode;
   readonly FooterComponent?: ReactNode;
   readonly SidebarComponent?: ReactNode;
+  readonly sx?: SxProps<Theme>;
   readonly children: ReactNode;
 }
 
@@ -39,8 +43,6 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
     const [footerState, setFooterState] = useState(true);
     const [sideBarState, setSidebarState] = useState(true);
     const [section, setSection] = useState('');
-
-    const { t } = useLanguage();
 
     return (
       <LayoutContext.Provider
@@ -60,7 +62,19 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
           <Box />
           {sideBarState && props.SidebarComponent}
           {appBarState && props.AppBarComponent}
-          {props.children}
+          <Main
+            sx={{
+              marginTop: theme => Utils.getWidth(theme.mixins.toolbar.height ?? 0),
+              display: 'flex',
+              flex: '1 1',
+              "& > *": {
+                width: '100%'
+              },
+              ...props.sx,
+            }}
+          >
+            {props.children}
+          </Main>
           {footerState && props.FooterComponent}
         </Stack>
       </LayoutContext.Provider>
