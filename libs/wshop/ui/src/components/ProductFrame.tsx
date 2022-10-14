@@ -24,6 +24,7 @@ export function ProductFrame(props: Partial<ProductFrameProps>) {
       direction="column"
       sx={{
         width: '100%',
+        paddingTop: 4,
         ...props.sx
       }}
       spacing={4}

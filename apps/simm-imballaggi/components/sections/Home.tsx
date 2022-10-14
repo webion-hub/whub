@@ -27,6 +27,8 @@ function VideoPlayer(props: VideoPlayerProps) {
       justifyContent="center"
       sx={{
         width: '100%',
+        borderRadius: 1,
+        overflow: 'hidden'
       }}
     >
       <video
@@ -53,6 +55,7 @@ function VideoPlayer(props: VideoPlayerProps) {
           bottom: 0,
           padding: 2,
           width: '100%',
+          borderRadius: 1,
           background: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)'
         }}
       >

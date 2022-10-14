@@ -9,7 +9,7 @@ export const useIsAdmin = (): GuardFunction => {
       onError: () => go('block'),
     })
 
-    return user.roles.some(r => r.toLowerCase() === 'admin')
+    return user?.roles.some(r => r.toLowerCase() === 'admin')
       ? go('go')
       : go('block')
   }

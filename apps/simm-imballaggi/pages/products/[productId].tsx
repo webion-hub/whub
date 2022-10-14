@@ -11,7 +11,9 @@ export default function ProductPage() {
 
   return (
     <Page>
-      <Section>
+      <Section
+        sx={{ padding: 0 }}
+      >
         <ProductVisualizer
           productId={productId}
           onProductFetch={p => setCategory(p?.category.name ?? '')}
