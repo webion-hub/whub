@@ -50,7 +50,11 @@ export const ShopContext = createContext<IShopContext>({
   api: {} as WShopApi,
 })
 
-export const ShopWrapper = (props: IShopContextProps) => {
+
+/**
+ * @deprecated
+ */
+const ShopWrapper = (props: IShopContextProps) => {
   const { children, ...other } = props
 
   return (
@@ -62,4 +66,4 @@ export const ShopWrapper = (props: IShopContextProps) => {
   )
 }
 
-export const useShop = () => useContext(ShopContext)
+const useShop = () => useContext(ShopContext)

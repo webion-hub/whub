@@ -82,8 +82,8 @@ export function ProductSearchBar() {
           ShopRoutes.products({ category: getCategory(), filter: value })
         )
       }
-      getCategoryOptionLabel={(option) => option}
-      getCategoryValue={(option) => option}
+      getCategoryOptionLabel={(option) => option as string}
+      getCategoryValue={(option) => option as string}
       categories={[...categories, allCategory]}
       onCategoryChange={setCategory}
       onValueChange={(value) => searchSubject$.next(value)}

@@ -36,7 +36,7 @@ export class ProductEndpoint extends Endpoint {
   }
 
 
-  async load() {
+  load = async () => {
     return this.client
       .get<Product>(this.url)
       .then(r => this.mapper.mapOne(r));

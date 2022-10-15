@@ -9,6 +9,9 @@ export const ContactUsContext = createContext<IContactUsContext>({
   api: {} as ContactUsApi,
 })
 
+/**
+ * @deprecated
+ */
 export const ContactUsWrapper = (props: IContactUsContextProps) => {
   const { children, ...other } = props
 

@@ -1,7 +1,7 @@
-import { Box, Stack, styled, SxProps, Theme } from '@mui/material';
+import { Box, LinearProgress, Stack, styled, SxProps, Theme } from '@mui/material';
 import React, { createContext, ReactNode, useContext, useState } from 'react';
-import { useLanguage } from '../contexts/ContextLanguage';
 import { Utils } from '../lib/Utils';
+import { MaybeShow } from './conditional_components/MaybeShow';
 
 interface LayoutContextProps {
   readonly setAppBarStatus: (status: boolean) => void;
@@ -9,21 +9,17 @@ interface LayoutContextProps {
   readonly setSidebarStatus: (status: boolean) => void;
   readonly setSection: (section: string) => void;
   readonly currentSection: string;
+  readonly loading: boolean;
+  readonly setLoading: (status: boolean) => void
 }
 
 const LayoutContext = createContext<LayoutContextProps>({
-  setAppBarStatus: () => {
-    return;
-  },
-  setFooterStatus: () => {
-    return;
-  },
-  setSidebarStatus: () => {
-    return;
-  },
-  setSection: () => {
-    return;
-  },
+  setAppBarStatus: () => { return },
+  setFooterStatus: () => { return },
+  setSidebarStatus: () => { return },
+  setSection: () => { return },
+  setLoading: () => { return },
+  loading: false,
   currentSection: '',
 });
 
@@ -43,6 +39,7 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
     const [footerState, setFooterState] = useState(true);
     const [sideBarState, setSidebarState] = useState(true);
     const [section, setSection] = useState('');
+    const [loading, setLoading] = useState(false);
 
     return (
       <LayoutContext.Provider
@@ -52,6 +49,8 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
           setSidebarStatus: setSidebarState,
           setSection: setSection,
           currentSection: section,
+          loading,
+          setLoading
         }}
       >
         <Stack
@@ -60,6 +59,17 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
           sx={{ minHeight: '100vh' }}
         >
           <Box />
+
+          <MaybeShow show={loading}>
+            <LinearProgress
+              sx={{
+                zIndex: 4000,
+                position: 'absolute',
+                width: '100%'
+              }}
+            />
+          </MaybeShow>
+
           {sideBarState && props.SidebarComponent}
           {appBarState && props.AppBarComponent}
           <Main

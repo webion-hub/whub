@@ -4,7 +4,6 @@ import Home from '../components/sections/Home';
 import MapSection from '../components/sections/MapSection';
 
 export function Index() {
-
   return (
     <Page>
       <Sections>

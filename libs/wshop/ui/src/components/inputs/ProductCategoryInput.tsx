@@ -40,9 +40,9 @@ export function ProductCategoryInput() {
             <Autocomplete
               value={i.value}
               onOpen={fetchCategories}
-              onChange={(_, value) => i.onChange?.({ target: { value: value ?? {} as Category } })}
+              onChange={(_, value) => i.onChange?.({ target: { value: (value ?? {}) as Category } })}
               options={categories}
-              getOptionLabel={option => option.name ?? ''}
+              getOptionLabel={option => (option as Category).name ?? ''}
               isOptionEqualToValue={(o, v) =>
                 v.name === o.name ||
                 !v.name && o.name === categories?.[0].name

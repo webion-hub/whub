@@ -2,8 +2,8 @@ import { useGenerator } from '@whub/wui';
 import { createContext, ReactNode, useEffect, useRef, useState } from 'react';
 import { AuthWrapper, IAuthContext } from './AuthContext';
 import { ContactUsWrapper, IContactUsContext } from './ContactUsContext';
-import { IShopContext, ShopWrapper } from './ShopContext';
-
+import { IShopContext } from './ShopContext';
+/*
 export interface ApiProps {
   readonly apis: IApiContext;
   readonly children: ReactNode;
@@ -36,7 +36,12 @@ const contextGenerator = function* (apis: IApiContext) {
     yield { context, props: value, key };
   }
 };
+*/
 
+/**
+ * @deprecated
+ */
+/*
 export const ApiWrapper = (props: ApiProps) => {
   const { generator: cxtGenerator, reset } = useGenerator(() => contextGenerator(props.apis));
 
@@ -65,3 +70,4 @@ export const ApiWrapper = (props: ApiProps) => {
     </ApiContext.Provider>
   );
 };
+*/

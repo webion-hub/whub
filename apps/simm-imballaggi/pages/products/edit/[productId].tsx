@@ -1,9 +1,13 @@
-import { useShop } from "@whub/apis-react"
+import { Guards, useShop } from "@whub/apis-react"
 import { Product } from "@whub/wshop-api"
 import { ProductHandler } from "@whub/wshop-ui"
 import { FullScreenLoading, Page, Section } from "@whub/wui"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+
+export async function getServerSideProps() {
+  return await Guards.isAdmin('/')
+}
 
 export default function EditProduct() {
   const params = useRouter().query

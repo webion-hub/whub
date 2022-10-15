@@ -1,8 +1,8 @@
-import { useIsAdmin } from "./isAdmin";
-import { useIsLoggedIn } from "./isLoggedIn";
+import { isAdminGuard } from "./isAdmin";
+import { isLoggedInGuard } from "./isLoggedIn";
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Guards {
-  export const useIsLoggedInGuard = useIsLoggedIn
-  export const useIsAdminGuard = useIsAdmin
+  export const isAdmin = isAdminGuard
+  export const isLoggedIn = isLoggedInGuard
 }

@@ -1,12 +1,13 @@
 import { Box, LinearProgress, Stack, useMediaQuery, useTheme } from "@mui/material";
 import { useShop } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
-import { FullScreenLoading, MaybeShow } from "@whub/wui";
+import { MaybeShow, useLayout } from "@whub/wui";
 import { ReactNode, useEffect, useState } from "react";
+import useSWR from "swr";
 import { ProductComponent } from "../components/ProductComponent";
 
 interface ProductProps {
-  readonly productId?: string,
+  readonly productId: number,
   readonly onProductFetch?: (product: Product) => void,
 }
 
@@ -19,14 +20,6 @@ export function ProductVisualizer(props: ProductProps) {
     <ProductGetter
       onProductFetch={props.onProductFetch}
       productId={productId}
-      loadingComponent={loading =>
-        <MaybeShow
-          show={loading}
-          alternativeChildren={<Box height={4}/>}
-        >
-          <LinearProgress sx={{width: '100%'}} />
-        </MaybeShow>
-      }
     >
       {
         (product, loading) =>
@@ -50,45 +43,35 @@ export function ProductVisualizer(props: ProductProps) {
 interface ProductGetter extends ProductProps {
   readonly onProductFetch?: (product: Product) => void,
   readonly children: (product?: Product, loading?: boolean) => any,
-  readonly loadingComponent?: (loading: boolean) => ReactNode
 }
 
 export function ProductGetter(props: ProductGetter) {
-  const [loading, setLoading] = useState(false)
-  const [product, setProduct] = useState<Product>()
-
+  const { setLoading } = useLayout()
   const shopApi = useShop().api
+  const endpoint = shopApi.products.withId(props.productId)
+
+  const { data } = useSWR(endpoint.url, async () => {
+    const res = await endpoint.load()
+    return res.data
+  })
 
   useEffect(() => {
-    fetchProduct()
-  }, [props.productId])
-
-  useEffect(() => {
-    if(!product)
+    if(!data) {
+      setLoading(true)
       return
+    }
 
-    props.onProductFetch?.(product)
-  }, [product])
-
-  const fetchProduct = () => {
-    if(!props.productId)
-      return
-
-    setLoading(true)
-    shopApi.products
-      .withId(parseInt(props.productId))
-      .load()
-      .then(res => setProduct(res.data))
-      .finally(() => setLoading(false))
-  }
+    setLoading(false)
+    props.onProductFetch?.(data)
+  }, [data])
 
   return (
     <Stack
       direction="column"
       sx={{ width: '100%' }}
     >
-      {props.loadingComponent?.(loading)}
-      {props.children(product, loading)}
+      {props.children(data, !data)}
     </Stack>
   )
+
 }

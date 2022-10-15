@@ -1,14 +1,22 @@
-import { GuardAction, GuardFunction } from "../abstractions/Guard"
-import { useAuth } from "../contexts/AuthContext"
+import { AppContext } from "../libs/AppContext"
 
-export const useIsLoggedIn = (): GuardFunction => {
-  const { checkIsLogged } = useAuth()
+export const isLoggedInGuard = async (redirect: string) => {
+  const res = await AppContext
+    .authApi
+    .account
+    .isLoggedIn()
 
-  return (go: GuardAction) => {
-    checkIsLogged({
-      onIsLooged: () => go('go'),
-      onIsNotLooged: () => go('block'),
-      onError: () => go('block'),
-    })
+  const isLoggedIn = res.data
+
+  if(isLoggedIn)
+    return {
+      props: { success: true }
+    }
+
+  return {
+    redirect: {
+      destination: redirect,
+      permanent: false
+    }
   }
 }

@@ -2,7 +2,7 @@ import { ChevronLeftRounded, ChevronRightRounded } from "@mui/icons-material"
 import { Box, IconButton, LinearProgress, Stack, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { useShop } from "@whub/apis-react"
 import { Product } from "@whub/wshop-api"
-import { FullScreenLoading, MaybeShow } from "@whub/wui"
+import { FullScreenLoading, MaybeShow, useLayout } from "@whub/wui"
 import { ReactNode, useEffect, useRef, useState } from "react"
 import { ProductCategory } from "../components/outputs/ProductCategoryOutput"
 import { ProductCard } from "../components/ProductCard"
@@ -36,7 +36,6 @@ export function ProductsList(props: ProductListProps) {
       const elementPerRow = Math.floor(width / elementMaxWidth)
       const totalElements = Math.ceil(minElements / elementPerRow) * elementPerRow
 
-      setPage(0)
       setTotalElements({
         tot: totalElements,
         rows: elementPerRow,
@@ -59,14 +58,6 @@ export function ProductsList(props: ProductListProps) {
       category={category}
       page={page}
       take={totalElements.tot}
-      loadingComponent={loading =>
-        <MaybeShow
-          show={loading}
-          alternativeChildren={<Box height={4}/>}
-        >
-          <LinearProgress sx={{width: '100%'}} />
-        </MaybeShow>
-      }
     >
       {
         (products, totalPages, totalProducts) =>
@@ -144,7 +135,6 @@ export interface ProductListGetterProps extends ProductListProps {
   readonly children: (products: Product[], totPages: number, totProds: number) => any,
   readonly page: number,
   readonly take: number,
-  readonly loadingComponent?: (loading: boolean) => ReactNode,
 }
 
 export function ProductListGetter(props: ProductListGetterProps) {
@@ -157,7 +147,7 @@ export function ProductListGetter(props: ProductListGetterProps) {
     page
   } = props
 
-  const [loading, setLoading] = useState(false)
+  const { setLoading } = useLayout()
   const [products, setProducts] = useState<Product[]>([])
   const [totalProducts, setTotalProducts] = useState(0)
 
@@ -176,7 +166,6 @@ export function ProductListGetter(props: ProductListGetterProps) {
       })
       .then(res => {
         setProducts(res.data.results)
-
         setTotalProducts(res.data.totalResults)
       })
       .finally(() => setLoading(false))
@@ -187,7 +176,6 @@ export function ProductListGetter(props: ProductListGetterProps) {
       direction="column"
       sx={{ width: '100%' }}
     >
-      {props.loadingComponent?.(loading)}
       {props.children(products, totalPages, totalProducts)}
     </Stack>
   )

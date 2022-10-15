@@ -12,6 +12,7 @@ const StyledSection = styled('section')(({ theme }) => ({
   alignItems: 'center',
   position: 'relative',
   margin: '0 auto',
+  width: '100%',
   '& > *': {
     zIndex: 1,
   },

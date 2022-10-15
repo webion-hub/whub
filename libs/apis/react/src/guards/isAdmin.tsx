@@ -1,16 +1,24 @@
-import { GuardAction, GuardFunction } from "../abstractions/Guard"
-import { useAuth } from "../contexts/AuthContext"
+import { AppContext } from "../libs/AppContext"
 
-export const useIsAdmin = (): GuardFunction => {
-  const { checkUser } = useAuth()
+export const isAdminGuard = async (redirect: string) => {
+  const res = await AppContext
+    .authApi
+    .account
+    .info()
 
-  return async (go: GuardAction) => {
-    const user = await checkUser({
-      onError: () => go('block'),
-    })
+  const isAdmin = res.data
+    .roles
+    .some(r => r.toLowerCase() === 'admin')
 
-    return user?.roles.some(r => r.toLowerCase() === 'admin')
-      ? go('go')
-      : go('block')
+  if(isAdmin)
+    return {
+      props: { success: true }
+    }
+
+  return {
+    redirect: {
+      destination: redirect,
+      permanent: false
+    }
   }
 }

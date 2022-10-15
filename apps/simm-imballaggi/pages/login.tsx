@@ -10,13 +10,14 @@ import {
   NextImg,
   Page,
   useLanguage,
+  useLayout,
   useNextNavigator,
   Validators,
 } from '@whub/wui';
 import React, { useEffect, useState } from 'react';
 
-import { useAuth } from '@whub/apis-react';
 import { ShopRoutes } from '@whub/wshop-ui';
+import { useAuth } from '@whub/apis-react';
 
 interface State {
   amount: string;
@@ -28,6 +29,7 @@ interface State {
 
 export default function Login() {
   const { logIn, isLogged } = useAuth();
+  const { setLoading: setAppBarLoding } = useLayout();
   const { navigate } = useNextNavigator();
   const [loading, setLoading] = useState(false);
   const { t } = useLanguage();
@@ -64,22 +66,23 @@ export default function Login() {
 
   const login = async (form: Form) => {
     setLoading(true);
-
-    await logIn(form.getValues(), {
-      onError: () => {
-        form.setIsValid('username')(false);
-        form.setIsValid('password')(false);
-      },
-    });
-
+    setAppBarLoding(true)
+    const success = await logIn(form.getValues())
     setLoading(false);
+    setAppBarLoding(false)
+
+    if(success)
+      return
+
+    form.setIsValid('username')(false);
+    form.setIsValid('password')(false);
   };
 
   return (
     <Page
       centered
     >
-      <FormGroup onSubmit={login} sx={{ padding: 2 }}>
+      <FormGroup onSubmit={login} sx={{ padding: 2, width: '100%' }}>
         <Stack
           spacing={2}
           component={Paper}

@@ -58,7 +58,7 @@ export class ProductController {
     return this.shopApi.products.withId(id)
   }
 
-  private handleResponse(res: AxiosResponse<Product, any>) {
+  private handleResponse(res: AxiosResponse<Product>) {
     handleResponse(res, {
       201: async () => await this.addProductInformations(res.data.id),
       200: async () => await this.addProductInformations(res.data.id),

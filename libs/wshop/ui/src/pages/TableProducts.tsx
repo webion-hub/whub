@@ -1,6 +1,6 @@
 import { AddRounded, CloseRounded, EditRounded, OpenInNewRounded } from "@mui/icons-material";
 import { Badge, Button, IconButton, LinearProgress, Stack, TextField } from "@mui/material";
-import { useShop } from "@whub/apis-react";
+import { AppContext, useShop } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
 import { AreYouSureDialog, useNextNavigator } from "@whub/wui";
 import { useEffect, useState } from "react";
@@ -8,7 +8,6 @@ import DataTable from 'react-data-table-component';
 import { ProductImage } from "../components/ProductImage";
 import { ProductUtils } from "../lib/ProductUtils";
 import { ShopRoutes } from "../lib/ShopRoutes";
-
 
 export function TableProducts() {
   const [loading, setLoading] = useState(false)
