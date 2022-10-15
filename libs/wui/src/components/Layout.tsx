@@ -1,5 +1,6 @@
 import { Box, LinearProgress, Stack, styled, SxProps, Theme } from '@mui/material';
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import { Router } from 'next/router';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { Utils } from '../lib/Utils';
 import { MaybeShow } from './conditional_components/MaybeShow';
 
@@ -40,6 +41,23 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
     const [sideBarState, setSidebarState] = useState(true);
     const [section, setSection] = useState('');
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+      const handleRouteChange = () => {
+        setLoading(true)
+      }
+
+      const handleRouteChangeComplete = () => {
+        setLoading(false)
+      }
+
+      Router.events.on('routeChangeStart', handleRouteChange)
+      Router.events.on('routeChangeComplete', handleRouteChangeComplete)
+      return () => {
+        Router.events.off('routeChangeStart', handleRouteChange)
+        Router.events.off('routeChangeComplete', handleRouteChangeComplete)
+      }
+    }, [])
 
     return (
       <LayoutContext.Provider
