@@ -7,6 +7,7 @@ import { ProductImagesEndpoint } from "./ProductImagesEndpoint";
 import { UpdateRelatedProductsRequest } from "../requests/UpdateRelatedProductsRequest";
 import { ProductAttachmentsEndpoint } from "./ProductAttachmentsEndpoint";
 import { ProductMapper } from "../mappings/ProductMapper";
+import { UpdateEmbedsRequest } from "../requests/UpdateEmbedsRequest";
 
 export class ProductEndpoint extends Endpoint {
   private readonly mapper: ProductMapper;
@@ -54,5 +55,9 @@ export class ProductEndpoint extends Endpoint {
 
   updateRelatedProducts(request: UpdateRelatedProductsRequest) {
     return this.client.put(`${this.url}/related_products`, request);
+  }
+
+  updateEmbeds(request: UpdateEmbedsRequest) {
+    return this.client.put(`${this.url}/embeds`, request);
   }
 }

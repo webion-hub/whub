@@ -1,5 +1,6 @@
 import { Attachment } from "./Attachment";
 import { Category } from "./Category";
+import { Embed } from "./embed";
 import { Image } from "./Image";
 import { Producer } from "./Producer";
 import { ProductDetail } from "./ProductDetail";
@@ -21,4 +22,5 @@ export interface Product {
   readonly relatedProducts: Product[];
   readonly mainVariant?: Product;
   readonly variants: Product[];
+  readonly embeds: Embed[];
 }
