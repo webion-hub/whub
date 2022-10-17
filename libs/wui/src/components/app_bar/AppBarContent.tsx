@@ -63,7 +63,7 @@ export const AppBarContent = React.forwardRef<HTMLDivElement, AppBarContentProps
       return getWidth(props.extremisWidth)
 
     if(props.centerWidth)
-      return `calc(50% - ${getWidth(props.centerWidth)})`
+      return `calc(100% - ${getWidth(props.centerWidth)})`
 
     if(isCenterEmpty() && isSomeExtremisEmpty())
       return '100%'

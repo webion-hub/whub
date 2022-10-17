@@ -3,7 +3,6 @@ import { Product } from '@whub/wshop-api';
 import { useGlobalDialogs, useLanguage } from '@whub/wui';
 
 import { ProductAttachmentsOutput } from './outputs/ProductAttachmentsOutput';
-import { ProductCategoryOutput } from './outputs/ProductCategoryOutput';
 import { ProductCodeOutput } from './outputs/ProductCodeOutput';
 import { ProductDescriptionOutput } from './outputs/ProductDescriptionOutput';
 import { ProductDetailsOutput } from './outputs/ProductDetailsOutput';
@@ -11,6 +10,7 @@ import { ProductImagesOutput } from './outputs/ProductImagesOutput';
 import { ProductNameOutput } from './outputs/ProductNameOutput';
 import { ProductPriceOutput } from './outputs/ProductPriceOutput';
 import { ProductRelatedOutput } from './outputs/ProductRelatedOutput';
+import { ProductVideosOutput } from './outputs/ProductVideosOutput';
 import { ProductFrame } from './ProductFrame';
 import { ProductWrapper } from './ProductWrapper';
 
@@ -56,6 +56,7 @@ export function ProductComponent(props: ProductComponentProps) {
         attachmentsComponent={<ProductAttachmentsOutput />}
         codeComponent={<ProductCodeOutput placeholder="Codice" />}
         relatedComponent={<ProductRelatedOutput />}
+        videosComponent={<ProductVideosOutput />}
         actionButton={
           <Button variant="contained" onClick={() => openDialog('contacts')}>
             {t('contact-us-button')}

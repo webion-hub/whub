@@ -21,4 +21,5 @@ export interface Product {
   readonly relatedProducts: Product[];
   readonly mainVariant?: Product;
   readonly variants: Product[];
+  readonly videos: string[];
 }

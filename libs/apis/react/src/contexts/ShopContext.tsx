@@ -41,6 +41,7 @@ export interface ShopConfig {
   readonly details:  ComplexShopFieldConfig<ProductDetail>;
   readonly producer: ComplexShopFieldConfig<Producer>;
   readonly tags:     ComplexShopFieldConfig<Tag>;
+  readonly videos:    BaseShopFieldConfig;
 }
 
 export type IShopContext = ApiContext<WShopApi, Partial<ShopConfig>>

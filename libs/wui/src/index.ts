@@ -31,6 +31,7 @@ export * from './hooks/useProgressiveImage';
 export * from './hooks/useSubject';
 export * from './hooks/useForceRender';
 export * from './hooks/useGenerator';
+export * from './hooks/useSet';
 
 //Contexts
 export * from './contexts/ContextLanguage';

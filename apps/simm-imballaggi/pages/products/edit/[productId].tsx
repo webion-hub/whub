@@ -2,14 +2,19 @@ import { Guards, useShop } from "@whub/apis-react"
 import { Product } from "@whub/wshop-api"
 import { ProductHandler } from "@whub/wshop-ui"
 import { FullScreenLoading, Page, Section } from "@whub/wui"
+import IsAdminGuard from "libs/apis/react/src/client-guards/IsAdminGuard"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
-export async function getServerSideProps() {
-  return await Guards.isAdmin('/')
+export default function Edit() {
+  return (
+    <IsAdminGuard redirectTo="/">
+      <EditProduct/>
+    </IsAdminGuard>
+    )
 }
 
-export default function EditProduct() {
+export function EditProduct() {
   const params = useRouter().query
   const productId = params['productId'] as string
 

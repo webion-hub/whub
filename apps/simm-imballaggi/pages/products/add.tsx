@@ -1,12 +1,17 @@
 import { Guards } from "@whub/apis-react";
 import { ProductHandler } from "@whub/wshop-ui";
-import { Page, Section } from "@whub/wui";
+import { MaybeShow, Page, Section } from "@whub/wui";
+import IsAdminGuard from "libs/apis/react/src/client-guards/IsAdminGuard";
 
-export async function getServerSideProps() {
-  return await Guards.isAdmin('/')
+export default function Add() {
+  return (
+    <IsAdminGuard redirectTo="/">
+      <AddProduct/>
+    </IsAdminGuard>
+    )
 }
 
-export default function AddProduct() {
+export function AddProduct() {
   return (
     <Page>
       <Section>

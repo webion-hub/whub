@@ -13,6 +13,7 @@ interface ProductFrameProps {
   readonly detailsComponent: ReactNode,
   readonly attachmentsComponent: ReactNode,
   readonly relatedComponent: ReactNode,
+  readonly videosComponent: ReactNode,
   readonly actionButton: ReactNode,
 }
 
@@ -74,6 +75,7 @@ export function ProductFrame(props: Partial<ProductFrameProps>) {
           {props.codeComponent}
         </Stack>
       </Stack>
+      {props.videosComponent}
       {props.relatedComponent}
     </Stack>
   )

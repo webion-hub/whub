@@ -16,6 +16,7 @@ import { ProductImagesInput } from "./inputs/ProductImagesInput";
 import { ProductNameInput } from "./inputs/ProductNameInput";
 import { ProductPriceInput } from "./inputs/ProductPriceInput copy";
 import { ProductRelatedInput } from "./inputs/ProductRelatedInput";
+import { ProductVideosInput } from "./inputs/ProductVideosInput";
 import { ProductComponent } from "./ProductComponent";
 
 
@@ -86,7 +87,7 @@ export function ProductHandler(props: ProductHandlerProps) {
         <Stack
           component={Paper}
           direction="column"
-          spacing={1}
+          spacing={2}
           sx={{
             padding: 2,
             width: '100%',
@@ -121,6 +122,7 @@ export function ProductHandler(props: ProductHandlerProps) {
           <ProductDescriptionInput/>
           <ProductRelatedInput productId={props.product?.id}/>
           <ProductDetailsInput/>
+          <ProductVideosInput/>
           <ProductImagesInput/>
           <ProductAttachmentsInput/>
         </Stack>

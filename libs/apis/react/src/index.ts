@@ -6,7 +6,8 @@ export * from './contexts/AuthContext';
 export * from './components/Guard';
 export * from './components/AuthBtn';
 
-export * from './guards/Guards';
+export * from './server-guards/Guards';
+export * from './client-guards/IsAdminGuard';
 
 export * from './hooks/useAppContext';
 

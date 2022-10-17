@@ -8,7 +8,7 @@ export const isAdminGuard = async (redirect: string) => {
 
   const isAdmin = res.data
     .roles
-    .some(r => r.toLowerCase() === 'admin')
+    ?.some(r => r.toLowerCase() === 'admin')
 
   if(isAdmin)
     return {

@@ -3,16 +3,20 @@ import { Badge, Button, IconButton, LinearProgress, Stack, TextField } from "@mu
 import { Guards, useShop } from "@whub/apis-react";
 import { Product } from "@whub/wshop-api";
 import { ProductImage, ProductUtils, ShopRoutes } from "@whub/wshop-ui";
-import { AreYouSureDialog, Page, Section, useNextNavigator } from "@whub/wui";
+import { AreYouSureDialog, MaybeShow, Page, Section, useNextNavigator } from "@whub/wui";
+import IsAdminGuard from "libs/apis/react/src/client-guards/IsAdminGuard";
 import { useEffect, useState } from "react";
 import DataTable from 'react-data-table-component';
 
-
-export async function getServerSideProps() {
-  return await Guards.isAdmin('/')
+export default function Table() {
+  return (
+    <IsAdminGuard redirectTo="/">
+      <TableProducts/>
+    </IsAdminGuard>
+    )
 }
 
-export default function TableProducts() {
+export function TableProducts() {
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState<Product[]>([])
   const [page, setPage] = useState(1)

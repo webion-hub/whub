@@ -16,6 +16,7 @@ interface ProductInputProps<T extends ProductInputs & keyof Product> {
   ) => JSX.Element | null
 }
 
+
 export function ProductInput<T extends ProductInputs & keyof Product>(props: ProductInputProps<T>) {
 
   const getInputValidator = (config: ShopConfig[T]) => {

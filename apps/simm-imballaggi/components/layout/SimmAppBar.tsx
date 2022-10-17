@@ -50,7 +50,7 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((prop
         <AppBarContent
           centerWidth={{
             mobile: 'calc(100% - 200px)',
-            default: '60%'
+            default: '70%'
           }}
         >
           <AppBarSection alignment="start">
@@ -60,9 +60,9 @@ const SimmAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((prop
               sx={{ padding: 1 }}
             >
               <NextImg
-                src="/assets/images/logo.webp"
-                width={42}
-                height={42}
+                src="/assets/images/full-logo.webp"
+                height='56px'
+                auto
                 alt="logo"
               />
             </AppBarLogo>

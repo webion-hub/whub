@@ -19,7 +19,7 @@ import es from '../public/assets/locales/es-ES.json';
 import it from '../public/assets/locales/it-IT.json';
 
 const auth = new SimpleAuthApi({
-  baseUrl: 'https://api.simm.webion.it', //'http://localhost:5181'
+  baseUrl: 'http://localhost:5181', //'https://api.simm.webion.it'
   withCredentials: true,
 });
 
@@ -72,6 +72,7 @@ AppContext.shop = {
     },
     images: { show: true, validators: { general: [] } },
     attachments: { show: true, validators: { general: [] } },
+    videos: { show: true, validators: { general: [] } },
   }
 }
 

@@ -42,8 +42,6 @@ function VideoPlayer(props: VideoPlayerProps) {
         <source
           src={props.src}
           type="video/mp4"
-          style={{
-          }}
         />
       </video>
       <Stack
