@@ -1,6 +1,6 @@
 import { Attachment } from "./Attachment";
 import { Category } from "./Category";
-import { Embed } from "./embed";
+import { Embed } from "./Embed";
 import { Image } from "./Image";
 import { Producer } from "./Producer";
 import { ProductDetail } from "./ProductDetail";
