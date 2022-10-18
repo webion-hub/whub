@@ -1,6 +1,6 @@
 import { ShopRoutes } from "@whub/wshop-ui"
 
-const categoryRoutes = {
+export const categoryRoutes = {
   materials: 'Macchine e materiali per proteggere',
   machines: "Macchine per l'imballaggio",
 }

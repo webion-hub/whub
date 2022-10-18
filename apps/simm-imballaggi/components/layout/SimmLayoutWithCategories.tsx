@@ -1,12 +1,11 @@
-import { CategoryRounded, ChevronRightRounded, ClearAllRounded, ClearRounded, CloseRounded, ExpandMoreRounded } from "@mui/icons-material";
+import { CategoryRounded, ChevronRightRounded, ClearAllRounded, ExpandMoreRounded } from "@mui/icons-material";
 import { TreeItem, treeItemClasses, TreeItemProps, TreeView } from "@mui/lab";
 import { Box, Fade, IconButton, Stack, Typography, useTheme } from "@mui/material";
 import { alpha, styled } from "@mui/system";
 import { useShop } from "@whub/apis-react";
 import { Category } from "@whub/wshop-api";
 import { ProductCategory, ShopRoutes } from "@whub/wshop-ui";
-import { MaybeShow, useLanguage, useNextNavigator } from "@whub/wui";
-import _ from "lodash";
+import { useLanguage, useNextNavigator } from "@whub/wui";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { SimmLayout } from "./SimmLayout";
 
@@ -22,7 +21,20 @@ const SimmLayoutWithCategoriesContext = createContext<ISimmLayoutWithCategoriesC
 })
 
 export function SimmLayoutWithCategories({ children }: { children: ReactNode }) {
+  const shopApi = useShop().api
+  const { t } = useLanguage()
+  const { navigate } = useNextNavigator()
+
   const [category, setCategory] = useState('')
+  const [categories, setCategories] = useState<Category[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
+
+  useEffect(() => {
+    shopApi.categories
+      .list()
+      .then((res) => setCategories(res.data))
+      .finally(() => setLoading(false));
+  }, [])
 
   return (
     <SimmLayoutWithCategoriesContext.Provider
@@ -35,7 +47,47 @@ export function SimmLayoutWithCategories({ children }: { children: ReactNode }) 
         <Stack
           direction={{ xs: "column", md: "row"}}
         >
-          <CategoryTree category={category}/>
+
+          <Stack
+            spacing={2}
+            sx={{
+              width: '100%',
+              maxWidth: { xs: '100%', md: 300},
+              padding: 2,
+              background: theme => theme.palette.secondaryBackground.default
+            }}
+          >
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+            >
+              <Stack
+                direction="row"
+                alignItems="center"
+                spacing={2}
+              >
+                <CategoryRounded/>
+                <Typography variant="h5">
+                  <strong>{t('category')}</strong>
+                </Typography>
+              </Stack>
+              <Fade
+                in={category.length !== 0}
+              >
+                <IconButton
+                  onClick={() => navigate(ShopRoutes.products({}))}
+                >
+                  <ClearAllRounded/>
+                </IconButton>
+              </Fade>
+            </Stack>
+            <CategoryTree
+              categories={categories}
+              category={category}
+              loading={loading}
+            />
+          </Stack>
+
           <Stack
             direction="column"
             sx={{
@@ -83,28 +135,21 @@ interface TreeNode {
 }
 
 interface CategoryTreeProps {
+  readonly categories: Category[],
   readonly category: string,
+  readonly loading?: boolean,
 }
 
-function CategoryTree(props: CategoryTreeProps) {
-  const shopApi = useShop().api
+export function CategoryTree(props: CategoryTreeProps) {
   const theme = useTheme()
-  const { t } = useLanguage()
   const { navigate } = useNextNavigator()
 
-  const [categories, setCategories] = useState<Category[]>([])
   const [tree, setTree] = useState<TreeNode[]>([])
-  const [loading, setLoading] = useState<boolean>(false)
 
   const [expanded, setExpanded] = useState<string[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
 
-  useEffect(() => {
-    shopApi.categories
-      .list()
-      .then((res) => setCategories(res.data))
-      .finally(() => setLoading(false));
-  }, [])
+  const { categories, loading } = props
 
   useEffect(() => {
     setTree(createTree(categories))
@@ -120,7 +165,7 @@ function CategoryTree(props: CategoryTreeProps) {
     const level = {result};
 
     categories
-      .map(c => c.name)
+      ?.map(c => c.name)
       .forEach(path => {
         path.split('/').reduce((r, name) => {
           if(!r[name]) {
@@ -168,10 +213,10 @@ function CategoryTree(props: CategoryTreeProps) {
   }
 
   const getDefaultExpanded = (category: string) => {
-    const splittedCategory = category.split('/')
+    const splittedCategory = category?.split('/')
 
     return splittedCategory
-      .map((_, i) => {
+      ?.map((_, i) => {
         return splittedCategory
           .slice(0, i + 1)
           .reduce((prev, category) => {
@@ -194,51 +239,15 @@ function CategoryTree(props: CategoryTreeProps) {
     return null
 
   return (
-    <Stack
-      spacing={2}
-      sx={{
-        width: '100%',
-        maxWidth: { xs: '100%', md: 300},
-        padding: 2,
-        background: theme => theme.palette.secondaryBackground.default
-      }}
+    <TreeView
+      defaultCollapseIcon={<ExpandMoreRounded />}
+      defaultExpandIcon={<ChevronRightRounded />}
+      expanded={expanded}
+      selected={selected}
+      onNodeToggle={handleToggle}
+      onNodeSelect={handleSelect}
     >
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-      >
-        <Stack
-          direction="row"
-          alignItems="center"
-          spacing={2}
-        >
-          <CategoryRounded/>
-          <Typography variant="h5">
-            <strong>{t('category')}</strong>
-          </Typography>
-        </Stack>
-        <Fade
-          in={props.category.length !== 0}
-        >
-          <IconButton
-            onClick={() => navigate(ShopRoutes.products({}))}
-          >
-            <ClearAllRounded/>
-          </IconButton>
-        </Fade>
-      </Stack>
-
-      <TreeView
-        defaultCollapseIcon={<ExpandMoreRounded />}
-        defaultExpandIcon={<ChevronRightRounded />}
-        expanded={expanded}
-        selected={selected}
-        onNodeToggle={handleToggle}
-        onNodeSelect={handleSelect}
-      >
-        {generateTree(tree, '')}
-      </TreeView>
-    </Stack>
-
+      {generateTree(tree, '')}
+    </TreeView>
   )
 }

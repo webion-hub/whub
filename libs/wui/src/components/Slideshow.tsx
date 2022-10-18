@@ -2,12 +2,12 @@ import {
   ArrowLeftRounded,
   ArrowRightRounded,
   RadioButtonCheckedRounded,
-  RadioButtonUncheckedRounded,
+  RadioButtonUncheckedRounded
 } from '@mui/icons-material';
 import { Box, IconButton } from '@mui/material';
 import { Stack } from '@mui/system';
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import { BehaviorSubject, debounceTime } from 'rxjs';
+import { debounceTime, interval } from 'rxjs';
 import { useOnScreen } from '../hooks/useOnScreen';
 import { useSubject } from '../hooks/useSubject';
 import { Utils } from '../lib/Utils';
@@ -22,11 +22,17 @@ interface Width {
   readonly maxWidth?: number;
 }
 
+interface AutoScroll {
+  readonly timeout: number;
+}
+
 export interface SlideshowProps {
   readonly items: SlideshowItem[];
   readonly itemWidth: Width;
   readonly containerWidth: Width;
   readonly color?: string;
+  readonly reduceFactor?: number;
+  readonly autoScroll?: AutoScroll;
 }
 
 export function Slideshow(props: SlideshowProps) {
@@ -37,6 +43,16 @@ export function Slideshow(props: SlideshowProps) {
   const selection$ = useSubject(0);
   const [index, setIndex] = useState(0);
   const [indexToZoom, setIndexToZoom] = useState(0);
+
+  useEffect(() => {
+    if(!props.autoScroll)
+      return
+
+    const sub = interval(props.autoScroll?.timeout)
+      .subscribe(() => next())
+
+    return () => sub.unsubscribe()
+  }, [props.autoScroll, index])
 
   useEffect(() => {
     const sub = selection$.pipe(debounceTime(10)).subscribe((res) => {
@@ -53,7 +69,6 @@ export function Slideshow(props: SlideshowProps) {
 
     (nodes[index + 1] as HTMLDivElement)?.scrollIntoView({
       block: 'nearest',
-      inline: 'center',
       behavior: 'smooth',
     });
   }, [index]);
@@ -84,15 +99,23 @@ export function Slideshow(props: SlideshowProps) {
   };
 
   const next = () => {
-    setIndex(index === props.items.length - 1 ? 0 : index + 1);
+    setIndex(index =>
+      index === props.items.length - 1
+        ? 0
+        : index + 1
+    );
   };
 
   const back = () => {
-    setIndex(index === 0 ? props.items.length - 1 : index - 1);
+    setIndex(
+      index === 0
+        ? props.items.length - 1
+        : index - 1
+    );
   };
 
   const getScale = (i: number) => {
-    return i === indexToZoom ? 'scale(1)' : 'scale(0.75)';
+    return i === indexToZoom ? 'scale(1)' : `scale(${props.reduceFactor})`;
   };
 
   const getOpacity = (i: number) => {
@@ -158,13 +181,13 @@ export function Slideshow(props: SlideshowProps) {
           >
             <Box
               sx={{
-                width: props.itemWidth.width,
                 '&:hover': {
                   cursor:
                     (i === indexToZoom && item.onClick) || i !== indexToZoom
                       ? 'pointer'
                       : 'cursor',
                 },
+                "& > *": { pointerEvents: i === indexToZoom ? 'auto' : 'none' }
               }}
               onClick={(e) => {
                 i === indexToZoom ? item.onClick?.(e) : setIndex(i);
@@ -206,4 +229,8 @@ export function Slideshow(props: SlideshowProps) {
       </Stack>
     </Stack>
   );
+}
+
+Slideshow.defaultProps = {
+  reduceFactor: 0.75
 }

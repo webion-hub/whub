@@ -6,11 +6,13 @@ import { GeneralProductOutputProps, ProductOutput } from "../ProductOutput";
 export function ProductVideosOutput(props: GeneralProductOutputProps) {
   return (
     <ProductOutput
-      name="videos"
+      name="embeds"
       {...props}
     >
       {
-        (videos) => {
+        (embeds) => {
+          const videos = embeds?.map(e => e.value)
+
           return (
             <MaybeShow
               show={(videos?.length ?? 0) > 1}
@@ -33,8 +35,8 @@ export function ProductVideosOutput(props: GeneralProductOutputProps) {
             >
               <Slideshow
                 color='red'
-                containerWidth={{ width: '100%', maxWidth: 500 }}
-                itemWidth={{ width: '100%' }}
+                containerWidth={{ width: '100%' }}
+                itemWidth={{ width: '100%', maxWidth: 500 }}
                 items={
                   videos?.map(v => ({
                     item: () => (

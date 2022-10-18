@@ -8,7 +8,7 @@ import { ProductInput } from "../ProductInput"
 export function ProductVideosInput() {
   return (
     <ProductInput
-      name="videos"
+      name="embeds"
       value={[]}
       getValidators={config => [
         Validators.min(config.required ? 1 :0),
@@ -19,8 +19,8 @@ export function ProductVideosInput() {
         (config, i) => (
           <ProductVideosAdder
             required={config.required}
-            videos={i.value ?? []}
-            onChange={videos => i.onChange?.({ target: { value: videos } })}
+            videos={i.value?.map(e => e.value) ?? []}
+            onChange={videos => i.onChange?.({ target: { value: videos.map(e => ({ title: '', value: e })) } })}
           />
         )
       }

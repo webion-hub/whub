@@ -5,7 +5,7 @@ import { ProductImageMapper } from "./ProductImageMapper";
 
 export class ProductMapper extends ResponseMapper<Product> {
   private readonly imageMapper: ProductImageMapper;
-  
+
   constructor(client: AxiosInstance) {
     super(client);
     this.imageMapper = new ProductImageMapper(client);
@@ -14,13 +14,13 @@ export class ProductMapper extends ResponseMapper<Product> {
   map(product: Product): Product {
     return {
       ...product,
-      
-      attachments: product.attachments.map(a => ({
+
+      attachments: product.attachments?.map(a => ({
         ...a,
         url: this.mapUrl(a.url),
       })),
 
-      images: product.images.map(i => this.imageMapper.map(i)),
+      images: product.images?.map(i => this.imageMapper.map(i)),
     };
   }
 }

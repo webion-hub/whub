@@ -1,5 +1,5 @@
 import { handleResponse } from "@whub/apis-core";
-import { Attachment, Image, Product, WShopApi } from "@whub/wshop-api";
+import { Attachment, Embed, Image, Product, WShopApi } from "@whub/wshop-api";
 import { AxiosResponse } from "axios";
 import { ProductUtils } from "./ProductUtils";
 
@@ -71,15 +71,20 @@ export class ProductController {
       this.uploadFiles(id, attachments).catch(this.actions.onAttachmentsError),
       this.uploadImages(id, images).catch(this.actions.onImagesError),
       this.uploadReleated(id).catch(this.actions.onRelatedProductsError),
-      this.uploadDetails(id).catch(this.actions.onDetailsError)
+      this.uploadDetails(id).catch(this.actions.onDetailsError),
+      this.uploadEmbeds(id)
     ])
+  }
+
+  private uploadEmbeds(id: number) {
+    const embeds = this.product.embeds
+
+    return this.getEndpoint(id)
+      .updateEmbeds({ embeds: embeds })
   }
 
   private uploadDetails(id: number) {
     const details = this.product.details
-
-    if(details.length === 0)
-      return Promise.resolve()
 
     return this.getEndpoint(id)
       .details

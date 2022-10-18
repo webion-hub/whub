@@ -2,10 +2,25 @@ import { NextImg, Page, Section, Sections } from '@whub/wui';
 import { ChosenBy, Faq } from '@whub/page-sections';
 import Home from '../components/sections/Home';
 import MapSection from '../components/sections/MapSection';
+import { AppContext } from '@whub/apis-react';
+
+export async function getStaticProps({ params }) {
+  const endpoint = AppContext.shopApi.categories
+  const res = await endpoint.list()
+
+  return {
+    revalidate: 60,
+    props: {
+      fallback: {
+        [endpoint.url]: res.data
+      }
+    }
+  }
+}
 
 export function Index() {
   return (
-    <Page>
+    <Page sx={{ overflowX: 'hidden' }}>
       <Sections>
         <Section
           id="home"

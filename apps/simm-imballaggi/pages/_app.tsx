@@ -19,7 +19,7 @@ import es from '../public/assets/locales/es-ES.json';
 import it from '../public/assets/locales/it-IT.json';
 
 const auth = new SimpleAuthApi({
-  baseUrl: 'http://localhost:5181', //'https://api.simm.webion.it'
+  baseUrl: 'https://api.simm.webion.it', //'http://localhost:5181'
   withCredentials: true,
 });
 
@@ -72,7 +72,7 @@ AppContext.shop = {
     },
     images: { show: true, validators: { general: [] } },
     attachments: { show: true, validators: { general: [] } },
-    videos: { show: true, validators: { general: [] } },
+    embeds: { show: true, validators: { general: [] } },
   }
 }
 
@@ -102,6 +102,7 @@ function CustomApp({ Component, pageProps }: ComponentWithPageLayout) {
             <GlobalStyles styles={globalStyle}></GlobalStyles>
               <Head>
                 <title>SIMM Imballaggi</title>
+                <link rel="shortcut icon" href="assets/favicon.ico" />
               </Head>
               <Layout>
                 <CookiePopup name="simm-imballaggi" privacyUrl="privacy" />

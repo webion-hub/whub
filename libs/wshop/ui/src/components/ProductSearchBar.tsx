@@ -69,7 +69,7 @@ export function ProductSearchBar() {
 
   const prepareCategories = (categories: Category[]) => {
     return _(categories)
-      .map((c) => c.name.split('/')?.[0])
+      .map((c) => c.name?.split('/')?.[0])
       .uniq()
       .value();
   };

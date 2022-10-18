@@ -26,7 +26,7 @@ export class SearchEndpoint extends Endpoint {
         ...r,
         data: {
           ...r.data,
-          results: r.data.results.map(p =>
+          results: r.data.results?.map(p =>
             this.mapper.map(p)
           ),
         }
