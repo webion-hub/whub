@@ -3,8 +3,122 @@ import { CardGroup } from '../components/CardGroup';
 import { IconCard } from '../components/IconCard';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
 
+type DateTypes = Date | number | ITimeSpan
+type ToMs = () => number;
+type ToDate = () => Date;
+type DateOperation = <T extends DateTypes>(date: T) => ITimeSpan;
+
+abstract class ITimeSpan {
+  public abstract readonly add: DateOperation;
+  public abstract readonly sub: DateOperation;
+  public abstract readonly toMs: ToMs;
+  public abstract readonly toDate: ToDate;
+
+  protected static isDate = <T extends DateTypes>(val: T) => {
+    return !!(val as Date)?.getMonth
+  }
+
+  protected static isMs = <T extends DateTypes>(val: T) => {
+    return typeof val === 'number'
+  }
+
+  protected static isTimeSpan = <T extends DateTypes>(val: T) => {
+    return !!(val as ITimeSpan).toMs
+  }
+
+  protected static getType = <T extends DateTypes>(val: T) => {
+    if(this.isDate(val))
+      return 'date'
+
+    if(this.isMs(val))
+      return 'ms'
+
+    if(this.isTimeSpan(val))
+      return 'timespan'
+
+    return 'unknow'
+  }
+
+  protected static getMs = <T extends DateTypes>(val: T) => {
+    return {
+      "date": () => (val as Date).getTime(),
+      "ms": () => val,
+      "timespan": () => (val as ITimeSpan).toMs()
+    }[this.getType(val)]?.()
+  }
+}
+
+
+class TimeSpan<T extends DateTypes> extends ITimeSpan {
+  static readonly SECOND = new TimeSpan(1000)
+  static readonly MIN = new TimeSpan( this.SECOND.toMs() * 60 )
+  static readonly HOUR = new TimeSpan( this.MIN.toMs() * 60 )
+  static readonly DAY = new TimeSpan( this.HOUR.toMs() * 24 )
+
+  private ms = 0;
+
+  constructor(date: T) {
+    super()
+
+    this.ms = ITimeSpan.getMs(date)
+  }
+
+  static getSeconds = (seconds: number) => {
+    return new TimeSpan( TimeSpan.SECOND.toMs() * seconds )
+  }
+
+  static getMins = (mins: number) => {
+    return new TimeSpan( TimeSpan.MIN.toMs() * mins )
+  }
+
+  static getHours = (mins: number) => {
+    return new TimeSpan( TimeSpan.MIN.toMs() * mins )
+  }
+
+  static getDays = (days: number) => {
+    return new TimeSpan( TimeSpan.DAY.toMs() * days )
+  }
+
+  toDate = () => {
+    return new Date(this.ms)
+  };
+
+  toMs = () => {
+    return this.ms
+  };
+
+  add = <T extends DateTypes,>(date: T) => {
+    const dateMs = ITimeSpan.getMs(date)
+
+    return new TimeSpan(
+      this.toMs() +
+      dateMs
+    )
+  }
+
+  sub = <T extends DateTypes,>(date: T) => {
+    const dateMs = ITimeSpan.getMs(date)
+
+    return new TimeSpan(
+      this.toMs() -
+      dateMs
+    )
+  }
+}
+
+
+
 export default function Techs() {
   const { t } = useLanguage();
+
+  const a = new TimeSpan(new Date())
+    .sub(
+      new TimeSpan(new Date())
+        .sub(TimeSpan.DAY)
+    )
+
+
+  console.log(a.toMs())
 
   return (
     <Page>

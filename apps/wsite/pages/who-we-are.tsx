@@ -1,5 +1,5 @@
 import { CallRounded } from '@mui/icons-material';
-import { Avatar, Button, Paper, Stack, Typography } from '@mui/material';
+import { alpha, Avatar, Box, Button, Paper, Stack, Typography } from '@mui/material';
 import {
   Page,
   Section,
@@ -7,6 +7,7 @@ import {
   useLanguage,
   useNextNavigator,
 } from '@whub/wui';
+import { ColorUtils } from 'libs/wui/src/lib/ColorUtils';
 import { ImageAndDescription } from '../components/ImageAndDescription';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
 
@@ -53,25 +54,48 @@ export default function WhoWeArePage() {
             flexWrap="wrap"
             sx={{
               width: '100%',
-              maxWidth: 900,
+              maxWidth: 1200,
               marginBottom: 10,
+              position: 'relative',
+              '&::before': {
+                content: "'Il team'",
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                fontSize: 'clamp(0px, 30vw, 550px)',
+                fontWeight: 'bolder',
+                color: theme => theme.palette.mode === 'light'
+                  ? alpha('#000', 0.1)
+                  : alpha('#fff', 0.08),
+                whiteSpace: 'nowrap'
+              },
               '& > *': { margin: 2 },
             }}
           >
             <Member
               name="Matteo Budriesi"
-              memberRole="Frontend Developer"
-              src=""
+              memberRole="Co-Founder & Frontend Developer"
+              src="/assets/images/members/budda.png"
             />
             <Member
               name="Stefano Calabretti"
-              memberRole="Backend Developer"
-              src=""
+              memberRole="Co-Founder & Backend Developer"
+              src="/assets/images/members/cala.png"
             />
-            <Member name="Alessandro Dodi" memberRole="Designer" src="" />
+            <Member
+              name="Alessandro Dodi"
+              memberRole="Co-Founder & Frontend Developer"
+              src="/assets/images/members/alle.png"
+            />
+            <Member
+              name="Davide Messori"
+              memberRole="Backend Developer"
+              src="/assets/images/members/davido.png"
+            />
           </Stack>
         </Section>
-        <GetAQuoteSection />
+        <GetAQuoteSection sx={{ zIndex: 0 }} />
       </Sections>
     </Page>
   );
@@ -85,11 +109,45 @@ interface MemberProps {
 
 function Member(props: MemberProps) {
   return (
-    <Stack direction="column" alignItems="center" spacing={2}>
-      <Avatar src={props.src} sx={{ width: 150, height: 150 }} />
-      <Stack direction="column">
+    <Stack
+      direction="column"
+      alignItems="center"
+      spacing={2}
+      sx={{
+        zIndex: 3,
+        maxWidth: 200,
+        padding: 2,
+        transition: '0.25s background, 0.5s transform',
+        borderRadius: 4,
+        "&:hover": {
+          background: theme => theme.palette.primary.main,
+          transform: 'rotateY(180deg)'
+        }
+      }}
+    >
+      <Avatar
+        src={props.src}
+        sx={{
+          zIndex: 1,
+          width: 175,
+          height: 175,
+          position: 'relative',
+          boxShadow: theme => theme.shadows[10],
+          border: theme => `4px solid ${theme.palette.primary.main}`
+        }}
+      />
+      <Stack
+        direction="column"
+        alignItems="center"
+        sx={{ zIndex: 1 }}
+      >
         <Typography textAlign="center">{props.name}</Typography>
-        <Typography variant="caption" textAlign="center" color="text.secondary">
+        <Typography
+          variant="body2"
+          textAlign="center"
+          color="text.secondary"
+          sx={{ width: '70%' }}
+        >
           {props.memberRole}
         </Typography>
       </Stack>

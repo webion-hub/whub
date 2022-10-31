@@ -74,9 +74,7 @@ export default function WebionSideBar() {
           key={i}
           icon={<btn.icon />}
           text={btn.text}
-          onClick={() => {
-            return;
-          }}
+          onClick={clickNavigate(btn.href)}
         />
       );
     });

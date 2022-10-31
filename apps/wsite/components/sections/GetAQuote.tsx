@@ -1,5 +1,5 @@
 import { AccountTreeRounded, CallRounded } from '@mui/icons-material';
-import { Button, Stack, Typography, useTheme } from '@mui/material';
+import { Button, Stack, SxProps, Theme, Typography, useTheme } from '@mui/material';
 import {
   MaybeShow,
   Section,
@@ -71,8 +71,10 @@ export function GetAQuote({
 
 export function GetAQuoteSection({
   hideSecondaryBtn,
+  sx,
 }: {
-  hideSecondaryBtn?: boolean;
+  hideSecondaryBtn?: boolean,
+  sx?: SxProps<Theme>,
 }) {
   const theme = useTheme();
 
@@ -82,6 +84,7 @@ export function GetAQuoteSection({
       ignoreSection
       showBackground
       background={theme.palette.primary.dark}
+      sx={sx}
     >
       <GetAQuote hideSecondaryBtn={hideSecondaryBtn} />
     </Section>
