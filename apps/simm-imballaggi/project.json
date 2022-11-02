@@ -50,6 +50,7 @@
       "executor": "@nrwl/web:dev-server",
       "defaultConfiguration": "development",
       "options": {
+        "ssl": true,
         "buildTarget": "simm-imballaggi:build",
         "hmr": true,
         "webpackConfig": "apps/simm-imballaggi/webpack.config.js"

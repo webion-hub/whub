@@ -64,6 +64,7 @@ export const FooterRow = React.forwardRef<HTMLDivElement, FooterGridProps>((prop
 
   const {
     ref: _ref,
+    height,
     ...others
   } = props
 
@@ -72,7 +73,7 @@ export const FooterRow = React.forwardRef<HTMLDivElement, FooterGridProps>((prop
       ref={ref}
       {...others}
       direction={isMd ? "column" : "row"}
-      height={isMd ? 'auto' : others.height}
+      minHeight={isMd ? 'auto' : height}
     >
       {props.children}
     </FooterGrid>

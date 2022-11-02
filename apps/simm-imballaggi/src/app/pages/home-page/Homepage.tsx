@@ -9,8 +9,22 @@ export default function Homepage() {
       <Sections>
         <Section
           id="home"
-          maxWidth='100vw'
-          sx={{ padding: 0 }}
+          sx={{
+            padding: 0,
+            "&::after": {
+              content: "''",
+              position: 'absolute',
+              width: '100vw',
+              height: '100%',
+              top: 0,
+              zIndex: 0,
+              background: 'url(assets/images/homepageImage.webp)',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center center',
+              backgroundSize: 'cover',
+              filter: { xs: 'brightness(0.4)', lg: 'none' }
+            }
+          }}
         >
           <Home/>
         </Section>
