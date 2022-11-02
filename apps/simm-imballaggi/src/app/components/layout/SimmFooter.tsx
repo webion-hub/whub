@@ -1,8 +1,9 @@
 import { ChildrenProps, FlagLanguageDropdown, Footer, FooterBottomLabel, FooterColumn, FooterContent, FooterRow, Img, useNavigator } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 import { Grid, IconButton, Link, LinkProps, Stack, Typography, TypographyProps, useMediaQuery, useTheme } from "@mui/material";
-import { Facebook, YouTube } from "@mui/icons-material";
+import { EmailRounded, Facebook, PhoneRounded, WhatsappRounded, YouTube } from "@mui/icons-material";
 import { homeCatergoryUrls } from "../../category-routes.config";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 
 const FooterLinkTitle = (props: TypographyProps) => (
   <Typography
@@ -23,6 +24,31 @@ const FooterLink = (props: LinkProps) => (
     {...props}
   >
     {props.children}
+  </Link>
+)
+
+
+interface FooterLinkWithIconProps extends LinkProps {
+  readonly Icon: OverridableComponent<any>
+}
+
+const FooterLinkWithIcon = (props: FooterLinkWithIconProps) => (
+  <Link
+    underline="hover"
+    variant="body2"
+    color={theme => theme.palette.text.secondary}
+    sx={{ width: 'fit-content' }}
+    {...props}
+  >
+    <Stack
+      direction="row"
+      spacing={1}
+    >
+      <props.Icon fontSize="small"/>
+      <span>
+        {props.children}
+      </span>
+    </Stack>
   </Link>
 )
 
@@ -146,16 +172,31 @@ export default function SimmFooter() {
             <FooterLinkTitle>
             {t("contacts")}
             </FooterLinkTitle>
-            <FooterLink
+            <FooterLinkWithIcon
               href="mailto:info@simmimballaggi.com"
+              Icon={EmailRounded}
             >
-              {t("email")}: {t("email-link")}
-            </FooterLink>
-            <FooterLink
+              {t("email-link")}
+            </FooterLinkWithIcon>
+            <FooterLinkWithIcon
               href="tel:051 800 960"
+              Icon={PhoneRounded}
             >
-              {t("telephone")}: {t("telephone-link")}
-            </FooterLink>
+              051 800 960
+            </FooterLinkWithIcon>
+            <FooterLinkWithIcon
+              href="tel:051 19581354"
+              Icon={PhoneRounded}
+            >
+              051 19581354
+            </FooterLinkWithIcon>
+            <FooterLinkWithIcon
+              href="https://wa.me/393287409942"
+              target='_black'
+              Icon={WhatsappRounded}
+            >
+              328 7409942
+            </FooterLinkWithIcon>
             <FooterLink
               target="_blank"
               href="https://www.google.com/maps?ll=44.535115,11.413146&z=16&t=m&hl=it&gl=IT&mapclient=embed&q=Via+Gian+Luigi+Lazzari,+18+40057+Quarto+Inferiore+BO"

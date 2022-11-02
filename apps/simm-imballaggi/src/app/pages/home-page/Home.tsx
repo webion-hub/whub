@@ -1,133 +1,118 @@
-import { ArrowForwardRounded, ArrowRightRounded, KeyboardArrowLeftRounded } from "@mui/icons-material";
-import { Grid, Typography, Stack, Box, Paper, useTheme, useMediaQuery, Button, Divider } from "@mui/material";
-import { Img, ResponserGrid, Slideshow, SlideshowItem, useBackgroundWaves, useNavigator } from "@whub/wui";
+import { Grid, Typography, Stack, Box, Paper, useTheme, useMediaQuery } from "@mui/material";
+import { ResponserGrid, useBackgroundWaves, useNavigator } from "@whub/wui";
 import { useTranslation } from "react-i18next";
 import { homeCatergoryUrls } from "../../category-routes.config";
 import HomeCard from "../../components/cards/HomeCard";
 
-interface SlideshowPageProps {
-  readonly selected: boolean,
-}
-
-function SlideshowPage(props: SlideshowPageProps) {
-  const waves = useBackgroundWaves('#eaeaea')
+export default function Home() {
+  const { t } = useTranslation();
+  const { clickNavigate } = useNavigator()
+  const theme = useTheme()
+  const isLg = useMediaQuery(theme.breakpoints.up("lg"));
+  const waves = useBackgroundWaves(theme.palette['secondary'].dark)
 
   return (
-    <Stack
-      spacing={8}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      sx={{
-        transition: '0.25s, box-shadow',
-        boxShadow: props.selected
-          ? 'unset'
-          : theme => theme.shadows[10],
-        position: 'relative',
-        overflow: 'hidden',
-        height: 920,
-        background: '#fff',
-        "& > *": { zIndex: 1 },
-        "&::after": {
-          content: "''",
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          top: 0,
-          zIndex: 0,
-          ...waves,
-        }
+    <ResponserGrid
+      type="upper"
+      size="md"
+      reverse="column"
+      GridProps={{
+        spacing: {xs: 1, md: 6},
+        marginTop: { xs: theme.mixins.toolbar.height + 'px', md: '0px' },
+        padding: 2,
+        height: { xs: 'auto', md: '90vh'},
+        maxHeight: 920,
+        justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%",
+        maxWidth: { xs: 500, lg: '100%' }
       }}
     >
       <Stack
-        direction="row"
-        divider={
-          <Divider
-            orientation="vertical"
-            flexItem
-            sx={{ borderColor: theme => theme.palette.primary.dark }}
-          />
-        }
-        spacing={10}
-      >
-        <Stack
-          direction="column"
-          spacing={2}
-          sx={{ width: 450 }}
-        >
-          <Typography variant="h2">
-            <strong>
-              Reggiatrici
-            </strong>
-          </Typography>
-          <Typography>
-            Ut sed venenatis augue. Nulla auctor pellentesque condimentum. Quisque malesuada libero in dui sagittis scelerisque. Donec sed lacus ut tellus eleifend condimentum id eu arcu. Curabitur volutpat feugiat turpis a tristique.
-          </Typography>
-          <Button
-            variant="contained"
-            endIcon={<ArrowForwardRounded/>}
-          >
-            Scopri di più
-          </Button>
-        </Stack>
-        <Img
-          src="assets/images/secondCard.webp"
-          sx={{ width: 400 }}
-        />
-      </Stack>
-      <Stack
-        direction="row"
+        direction={{xs: "column", lg: "row"}}
+        alignItems="center"
         spacing={2}
       >
-        <Paper
+        <Grid
+          container
+          component={isLg ? Paper : 'div'}
+          direction="column"
           sx={{
-            width: 256,
-            aspectRatio: '1',
+            padding: 4,
+            paddingInline: { xs: 0, lg: 4 },
+            height: { xs: 'auto', lg: 320},
+            position: 'relative',
+            overflow: 'hidden',
+            color: { xs: 'white', lg: 'unset' },
+            "& > *": {
+              zIndex: 1,
+            },
+            "&::before": {
+              content: "''",
+              display: { xs: 'none', lg: 'block' },
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              opacity: 0.2,
+              top: 0,
+              left: 0,
+              zIndex: 0,
+              transform: 'rotate(180deg)',
+              ...waves,
+            }
           }}
-        />
-        <Paper
+          width="auto"
+        >
+          <Typography
+            variant="h4"
+            textAlign={{xs: 'center', md: 'left'}}
+          >
+            <strong>
+            {t("hero-title")}
+            </strong>
+          </Typography>
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{ marginTop: 2 }}
+            textAlign={{xs: 'center', md: 'left'}}
+          >
+            {t("hero-description")}
+          </Typography>
+
+        </Grid>
+        <Box
           sx={{
-            width: 256,
-            aspectRatio: '1',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            width: '100%',
           }}
-        />
-        <Paper
-          sx={{
-            width: 256,
-            aspectRatio: '1',
-          }}
-        />
-        <Paper
-          sx={{
-            width: 256,
-            aspectRatio: '1',
-          }}
-        />
+        >
+          <Stack
+            direction="column"
+            justifyContent="flex-start"
+            spacing={2}
+          >
+            <HomeCard
+              title={t("materials-card-title")}
+              text={t("materials-description")}
+              img="/assets/images/firstCard.webp"
+              buttonText={t("see")}
+              href={homeCatergoryUrls.materials}
+              onClick={clickNavigate(homeCatergoryUrls.materials)}
+            />
+            <HomeCard
+              title={t("machines-card-title")}
+              text={t("machines-description")}
+              img="/assets/images/secondCard.webp"
+              buttonText={t("see")}
+              href={homeCatergoryUrls.machines}
+              onClick={clickNavigate(homeCatergoryUrls.machines)}
+            />
+          </Stack>
+        </Box>
       </Stack>
-    </Stack>
-  )
-}
-
-const pages: SlideshowItem[] = [
-  { item: (selected) => <SlideshowPage selected={selected}/> },
-  { item: (selected) => <SlideshowPage selected={selected}/> },
-  { item: (selected) => <SlideshowPage selected={selected}/> }
-]
-
-export default function Home() {
-  return (
-    <Stack
-      sx={{
-        width: '100%',
-        background: '#eaeaea'
-      }}
-    >
-      <Slideshow
-        containerWidth={{ width: '100vw' }}
-        itemWidth={{ width: '100vw' }}
-        items={pages}
-        color="#000"
-      />
-    </Stack>
+    </ResponserGrid>
   )
 }

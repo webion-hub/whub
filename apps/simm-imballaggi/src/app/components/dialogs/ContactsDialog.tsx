@@ -9,6 +9,7 @@ import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { LoadingButton } from '@mui/lab';
 import { useContactUs } from '@whub/apis-react';
 import { useTranslation } from 'react-i18next';
+import { WhatsappRounded } from '@mui/icons-material';
 
 interface LinkWithIconProps {
   readonly children: string,
@@ -147,6 +148,19 @@ export default function ContactsDialog(props: DialogBase) {
                 051 800 960
               </LinkWithIcon>
               <LinkWithIcon
+                Icon={PhoneRoundedIcon}
+                href="tel:051 19581354"
+              >
+                051 19581354
+              </LinkWithIcon>
+              <LinkWithIcon
+                Icon={WhatsappRounded}
+                href="https://wa.me/393287409942"
+                target='_black'
+              >
+                328 7409942
+              </LinkWithIcon>
+              <LinkWithIcon
                 Icon={MailRoundedIcon}
                 href="mailto:info@simmimballaggi.com"
               >
@@ -278,7 +292,7 @@ export default function ContactsDialog(props: DialogBase) {
                   severity="success"
                   sx={{ width: '100%' }}
                 >
-                 {t('message-sent')}
+                  {t('message-sent')}
                 </Alert>
               </Snackbar>
             </Stack>
