@@ -1,3 +1,4 @@
+import { WhatsApp } from '@mui/icons-material';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
@@ -153,6 +154,19 @@ export default function ContactsDialog(props: DialogBase) {
               </LinkWithIcon>
               <LinkWithIcon Icon={PhoneRoundedIcon} href="tel:051 800 960">
                 051 800 960
+              </LinkWithIcon>
+              <LinkWithIcon
+                Icon={PhoneRoundedIcon}
+                href="tel:051 19581354"
+              >
+                051 19581354
+              </LinkWithIcon>
+              <LinkWithIcon
+                Icon={WhatsApp}
+                href="https://wa.me/393287409942"
+                target='_black'
+              >
+                328 7409942
               </LinkWithIcon>
               <LinkWithIcon
                 Icon={MailRoundedIcon}
