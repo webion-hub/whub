@@ -59,12 +59,12 @@ export function Index() {
             title='Faq'
             questions={[
               {
-                question: 'CIAO',
-                answer: '234',
+                question: 'Domanda 1',
+                answer: 'Risposta 1',
               },
               {
-                question: 'CIAO DDD',
-                answer: '234',
+                question: 'Domanda 2',
+                answer: 'Risposta 2',
               }
             ]}
           />

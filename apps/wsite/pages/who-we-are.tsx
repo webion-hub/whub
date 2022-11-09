@@ -119,10 +119,6 @@ function Member(props: MemberProps) {
         padding: 2,
         transition: '0.25s background, 0.5s transform',
         borderRadius: 4,
-        "&:hover": {
-          background: theme => theme.palette.primary.main,
-          transform: 'rotateY(180deg)'
-        }
       }}
     >
       <Avatar

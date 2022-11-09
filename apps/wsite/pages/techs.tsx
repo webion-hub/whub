@@ -111,11 +111,14 @@ class TimeSpan<T extends DateTypes> extends ITimeSpan {
 export default function Techs() {
   const { t } = useLanguage();
 
+  const d = DateTime.Now;
+  const d2 = d
+    .sub(t`10s`)
+    .add(t`10m`)
+
   const a = new TimeSpan(new Date())
-    .sub(
-      new TimeSpan(new Date())
-        .sub(TimeSpan.DAY)
-    )
+    .sub(new Date(0))
+    .add(new TimeSpan(1000))
 
 
   console.log(a.toMs())
