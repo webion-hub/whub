@@ -40,12 +40,6 @@ export function HomeWithServices() {
   useEffect(() => {
     setPages([
       {
-        key: 'websites',
-        title: t('service1-desc', true),
-        src: '/assets/images/websites.jpg',
-        onClick: () => router.push('/services/websites'),
-      },
-      {
         key: 'apps',
         title: t('service2-desc', true),
         src: '/assets/images/apps.jpg',
@@ -56,6 +50,12 @@ export function HomeWithServices() {
         title: t('service3-desc', true),
         src: '/assets/images/industry.jpg',
         onClick: () => router.push('/services/industry'),
+      },
+      {
+        key: 'websites',
+        title: t('service1-desc', true),
+        src: '/assets/images/websites.jpg',
+        onClick: () => router.push('/services/websites'),
       },
     ]);
   }, [language]);

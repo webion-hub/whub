@@ -3,29 +3,26 @@ import {
   BiotechRounded,
   BubbleChartRounded,
   CallRounded,
-  EditRounded,
-  FormatAlignLeft,
-  FormatAlignLeftRounded,
-  PhoneIphoneRounded,
+  EditRounded, FormatAlignLeftRounded,
+  PhoneIphoneRounded
 } from '@mui/icons-material';
 import {
   Box,
   Button,
   CircularProgress,
   Stack,
-  Typography,
+  Typography
 } from '@mui/material';
 import {
-  Img,
   NextImg,
   Page,
   Section,
   Sections,
   useLanguage,
   useNextNavigator,
-  useOnScreen,
+  useOnScreen
 } from '@whub/wui';
-import { GetAQuoteSection } from 'apps/wsite/components/sections/GetAQuote';
+import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { interval, take } from 'rxjs';
 import { CardGroup } from '../../components/CardGroup';
@@ -43,6 +40,7 @@ function Statistic(props: StatisticProps) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
+    setValue(0)
     const sub = interval(10)
       .pipe(take(props.value - 1))
       .subscribe(() => {

@@ -22,6 +22,6 @@ export const lightPalette: Theme['palette'] = {
   },
   info: {
     main: '#999999',
-    contrastText: '#fff',
+    contrastText: '#444',
   },
 };

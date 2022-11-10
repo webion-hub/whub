@@ -14,7 +14,7 @@ declare module '@mui/material/Button' {
 
 const fontFamily = "'Inter', sans-serif;";
 
-const getTheme = (palette: Theme['palette'], mode: 'light' | 'dark') => {
+export const getTheme = (palette: Theme['palette'], mode: 'light' | 'dark') => {
   return createTheme({
     palette: palette,
     layoutMaxWidth: {

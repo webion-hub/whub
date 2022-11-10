@@ -25,7 +25,7 @@ export const darkPalette: Theme['palette'] = {
     secondary: 'rgba(255, 255, 255, 0.8)',
   },
   info: {
-    main: '#999999',
+    main: '#4444aa',
     contrastText: '#fff',
   },
 };
