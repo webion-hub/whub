@@ -138,14 +138,6 @@ export function HomeWithServices() {
           }}
         >
           <ButtonWithProgress
-            label={t('service1')}
-            Icon={DevicesRounded}
-            selected={page?.key === 'websites'}
-            onSelectEnd={() => handlePage('apps')}
-            onClick={() => handlePage('websites')}
-            duration={5000}
-          />
-          <ButtonWithProgress
             label={t('service2')}
             Icon={AppShortcutRounded}
             selected={page?.key === 'apps'}
@@ -159,6 +151,14 @@ export function HomeWithServices() {
             selected={page?.key === 'industry'}
             onSelectEnd={() => handlePage('websites')}
             onClick={() => handlePage('industry')}
+            duration={5000}
+          />
+          <ButtonWithProgress
+            label={t('service1')}
+            Icon={DevicesRounded}
+            selected={page?.key === 'websites'}
+            onSelectEnd={() => handlePage('apps')}
+            onClick={() => handlePage('websites')}
             duration={5000}
           />
         </Stack>

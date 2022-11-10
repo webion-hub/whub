@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 interface TitleSectionLabelProps {
   readonly label: string | ReactNode;
   readonly title: string | ReactNode;
-  readonly sx: SxProps<Theme>
+  readonly sx?: SxProps<Theme>
 }
 
 export function TitleSectionLabel(props: TitleSectionLabelProps) {
