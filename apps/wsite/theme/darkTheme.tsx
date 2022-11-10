@@ -3,8 +3,8 @@ import { Theme } from '@mui/system';
 export const darkPalette: Theme['palette'] = {
   mode: 'dark',
   background: {
-    default: '#020515',
-    paper: '#010104',
+    default: '#010104',
+    paper: '#020515',
   },
   secondaryBackground: {
     default: '#000000',
