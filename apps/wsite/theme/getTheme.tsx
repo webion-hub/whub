@@ -14,13 +14,13 @@ declare module '@mui/material/Button' {
 
 const fontFamily = "'Inter', sans-serif;";
 
-const getTheme = (palette: Theme['palette'], mode: 'light' | 'dark') => {
+export const getTheme = (palette: Theme['palette'], mode: 'light' | 'dark') => {
   return createTheme({
     palette: palette,
     layoutMaxWidth: {
-      appbar: 1600,
+      appbar: 1270,
       footer: 1270,
-      section: 1600,
+      section: 1270,
     },
     mixins: {
       toolbar: {

@@ -1,4 +1,4 @@
-import { Theme, ThemeProvider, useMediaQuery } from '@mui/material';
+import { Palette, Theme, ThemeProvider, useMediaQuery } from '@mui/material';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { ChildrenProp } from '../abstractions/props/ChildrenProps';
 
@@ -8,9 +8,7 @@ export interface IThemeContext {
 }
 
 export const ThemeContext = createContext<IThemeContext>({
-  setTheme: () => {
-    return;
-  },
+  setTheme: () => { return; },
   currentTheme: 'dark',
 });
 
@@ -26,6 +24,7 @@ export interface ThemeWrapperProps {
 export const ThemeWrapper = (props: ThemeWrapperProps) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const defaultTheme = prefersDarkMode ? 'dark' : 'light';
+
   const [theme, setTheme] = useState<ThemeKeys>(defaultTheme);
 
   useEffect(() => {

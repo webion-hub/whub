@@ -21,7 +21,6 @@ export default function Services() {
       sx={{
         marginTop: 5,
         marginInline: 'auto',
-        width: '80%',
       }}
     >
       <CardGroup label={t('services')} title={t('services-title')}>

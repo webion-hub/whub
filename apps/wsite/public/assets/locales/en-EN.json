@@ -143,7 +143,7 @@
   "mentorz": "Mentorz is a French startup that gives influencers the tools they need to have 1-1 consultations with their followers.",
   "massyve": "Top level quality music production online services",
 
-  "who-are-we": "chi siamo",
+  "who-are-we": "Who we are",
   "who-are-we-title": "Webion SRL",
   "who-are-we-description": "At Webion, we take the time to get to know our clients and their specific needs before we start building a custom solution. We believe that this personalized approach is the best way to create software that truly meets the needs of our clients.<br/><br/>As a result, we have a track record of delivering high-quality, user-friendly software that our clients love. If you're looking for a team that will work with you to create a custom solution, contact us today. We're confident that you won't be disappointed.We are located in via Panfilo Castaldi 3, in Modena.",
 
@@ -155,6 +155,7 @@
   "docker": "Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers.",
   "react": "React is a free and open-source front-end JavaScript library for building user interfaces based on UI components.",
   "net-core": ".NET Core is a new version of .NET Framework, which is a free, open-source, general-purpose development platform maintained by Microsoft.",
+  "next-js": "Next.js is an open-source web development framework created by Vercel enabling React-based web applications with server-side rendering and generating static websites.",
 
   "contact-us-title": "Contact us.",
   "contact-step-1-title": "Let's start with your name.",
@@ -202,5 +203,9 @@
 
   "message-sent": "Message sent!",
   "we-will-answer-in-48h": "We will reply to you within 48 hours.",
-  "go-to-home": "Go to home"
+  "go-to-home": "Go to home",
+
+  "cookies": "This site uses cookies to improve your experience.",
+  "decline": "Decline",
+  "accept": "Accept"
 }

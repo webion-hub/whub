@@ -75,19 +75,19 @@ function ServicesButton() {
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={navigate('/services/websites')} sx={listItemSx}>
           <ListItemIcon>
-            <DevicesRounded />
+            <DevicesRounded color='primary'/>
           </ListItemIcon>
           <ListItemText primary={t('service1')} secondary={t('learn-more')} />
         </MenuItem>
         <MenuItem onClick={navigate('/services/apps')} sx={listItemSx}>
           <ListItemIcon>
-            <AppShortcutRounded />
+            <AppShortcutRounded color='primary'/>
           </ListItemIcon>
           <ListItemText primary={t('service2')} secondary={t('learn-more')} />
         </MenuItem>
         <MenuItem onClick={navigate('/services/industry')} sx={listItemSx}>
           <ListItemIcon>
-            <FactoryRounded />
+            <FactoryRounded color='primary'/>
           </ListItemIcon>
           <ListItemText primary={t('service3')} secondary={t('learn-more')} />
         </MenuItem>

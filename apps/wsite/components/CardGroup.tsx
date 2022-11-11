@@ -10,8 +10,20 @@ export interface CardGroupProps {
 
 export function CardGroup(props: CardGroupProps) {
   return (
-    <Stack direction="column" margin={1}>
-      <TitleSectionLabel label={props.label} title={props.title} />
+    <Stack
+      direction="column"
+      sx={{
+        marginBlock: 1,
+        marginInline: 2
+      }}
+    >
+      <TitleSectionLabel
+        label={props.label}
+        title={props.title}
+        sx={{
+          marginLeft: 1
+        }}
+      />
       <Stack
         direction="row"
         flexWrap="wrap"

@@ -1,4 +1,4 @@
-import { Box, Paper, Stack, SxProps, Theme, Typography } from '@mui/material';
+import { Box, Paper, Stack, SxProps, Theme, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import { MaybeShow, NextImg, Transition, useOnScreen } from '@whub/wui';
 import { ReactNode, useRef } from 'react';
@@ -18,6 +18,9 @@ interface ImageAndDescriptionProps {
 }
 
 export function ImageAndDescription(props: ImageAndDescriptionProps) {
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
+
   const ref = useRef();
   const onScreen = useOnScreen(ref, {
     oneTime: true,
@@ -33,12 +36,17 @@ export function ImageAndDescription(props: ImageAndDescriptionProps) {
       direction={props.direction}
       flexWrap="wrap"
       justifyContent="space-evenly"
+      spacing={isMd ? 0 : 8}
       sx={{
-        width: '100%',
+        margin: 4,
         '& > *': {
-          width: '100%',
-          margin: 4,
-          maxWidth: 600,
+          marginBlock: {
+            xs: 4,
+            md: 0,
+          },
+          width: isMd
+            ? '100%'
+            : `calc(50% - ${theme.spacing(4)})`,
         },
       }}
     >

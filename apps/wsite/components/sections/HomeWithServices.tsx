@@ -40,12 +40,6 @@ export function HomeWithServices() {
   useEffect(() => {
     setPages([
       {
-        key: 'websites',
-        title: t('service1-desc', true),
-        src: '/assets/images/websites.jpg',
-        onClick: () => router.push('/services/websites'),
-      },
-      {
         key: 'apps',
         title: t('service2-desc', true),
         src: '/assets/images/apps.jpg',
@@ -56,6 +50,12 @@ export function HomeWithServices() {
         title: t('service3-desc', true),
         src: '/assets/images/industry.jpg',
         onClick: () => router.push('/services/industry'),
+      },
+      {
+        key: 'websites',
+        title: t('service1-desc', true),
+        src: '/assets/images/websites.jpg',
+        onClick: () => router.push('/services/websites'),
       },
     ]);
   }, [language]);
@@ -138,14 +138,6 @@ export function HomeWithServices() {
           }}
         >
           <ButtonWithProgress
-            label={t('service1')}
-            Icon={DevicesRounded}
-            selected={page?.key === 'websites'}
-            onSelectEnd={() => handlePage('apps')}
-            onClick={() => handlePage('websites')}
-            duration={5000}
-          />
-          <ButtonWithProgress
             label={t('service2')}
             Icon={AppShortcutRounded}
             selected={page?.key === 'apps'}
@@ -159,6 +151,14 @@ export function HomeWithServices() {
             selected={page?.key === 'industry'}
             onSelectEnd={() => handlePage('websites')}
             onClick={() => handlePage('industry')}
+            duration={5000}
+          />
+          <ButtonWithProgress
+            label={t('service1')}
+            Icon={DevicesRounded}
+            selected={page?.key === 'websites'}
+            onSelectEnd={() => handlePage('apps')}
+            onClick={() => handlePage('websites')}
             duration={5000}
           />
         </Stack>

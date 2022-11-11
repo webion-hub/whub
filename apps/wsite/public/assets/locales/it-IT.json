@@ -155,6 +155,7 @@
   "docker": "Docker è un insieme di prodotti platform as a service che utilizzano la virtualizzazione a livello di sistema operativo per fornire software in pacchetti chiamati container.",
   "react": "React è una libreria JavaScript front-end gratuita e open source per la creazione di interfacce utente basate sui componenti dell'interfaccia utente.",
   "net-core": ".NET Core è una nuova versione di .NET Framework, una piattaforma di sviluppo gratuita, open source e generica gestita da Microsoft.",
+  "next-js": "Next.js è un framework di sviluppo web open source creato da Vercel che consente di creare applicazioni web basate su React con rendering lato server e generazione di siti web statici.",
 
   "contact-us-title": "Contattaci.",
   "contact-step-1-title": "Cominciamo con il tuo nome.",
@@ -202,5 +203,9 @@
 
   "message-sent": "Messaggio inviato!",
   "we-will-answer-in-48h": "Ti risponderemo entro 48h.",
-  "go-to-home": "Vai alla home"
+  "go-to-home": "Vai alla home",
+
+  "cookies": "Questo sito utilizza i cookie per migliorare la tua esperienza.",
+  "decline": "Rifiuta",
+  "accept": "Accetta"
 }

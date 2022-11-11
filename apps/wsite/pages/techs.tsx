@@ -30,14 +30,14 @@ export default function Techs() {
                 <NextImg
                   auto
                   width="100%"
-                  alt="angular"
-                  src="/assets/images/technologies/angular.svg"
+                  alt="next-js"
+                  src="/assets/images/technologies/next-js.svg"
                   sx={{ padding: 1.5 }}
                 />
               }
               iconBackgroundColor="#fff"
-              title="Angular"
-              paragraph={t('angular')}
+              title="Next JS"
+              paragraph={t('next-js')}
             />
             <IconCard
               icon={
@@ -94,6 +94,20 @@ export default function Techs() {
               iconBackgroundColor="#fff"
               title="NET Core"
               paragraph={t('net-core')}
+            />
+            <IconCard
+              icon={
+                <NextImg
+                  auto
+                  width="100%"
+                  alt="angular"
+                  src="/assets/images/technologies/angular.svg"
+                  sx={{ padding: 1.5 }}
+                />
+              }
+              iconBackgroundColor="#fff"
+              title="Angular"
+              paragraph={t('angular')}
             />
           </CardGroup>
         </Section>
