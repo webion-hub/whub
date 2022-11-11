@@ -3,10 +3,10 @@ import { Box, SxProps, Theme } from '@mui/system';
 import Image from 'next/future/image';
 
 import {
-  AppShortcutRounded,
   DevicesRounded,
   FactoryRounded,
   KeyboardArrowDownRounded,
+  PhoneIphoneRounded,
   PublicRounded,
 } from '@mui/icons-material';
 import {
@@ -81,7 +81,7 @@ function ServicesButton() {
         </MenuItem>
         <MenuItem onClick={navigate('/services/apps')} sx={listItemSx}>
           <ListItemIcon>
-            <AppShortcutRounded color='primary'/>
+            <PhoneIphoneRounded color='primary'/>
           </ListItemIcon>
           <ListItemText primary={t('service2')} secondary={t('learn-more')} />
         </MenuItem>

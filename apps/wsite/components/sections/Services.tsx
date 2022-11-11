@@ -1,7 +1,7 @@
 import {
-  AppShortcutRounded,
   DevicesRounded,
   FactoryRounded,
+  PhoneIphoneRounded,
 } from '@mui/icons-material';
 import { Box } from '@mui/material';
 import { useLanguage, useNextNavigator } from '@whub/wui';
@@ -35,7 +35,7 @@ export default function Services() {
           title={t('service2-card-title')}
           paragraph={t('service2-card-desc')}
           buttonLabel={t('learn-more')}
-          icon={<AppShortcutRounded fontSize="large" />}
+          icon={<PhoneIphoneRounded fontSize="large" />}
           onClick={clickNavigate('/services/apps')}
         />
 

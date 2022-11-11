@@ -201,6 +201,16 @@
   "simm-solution-title": "La solution.",
   "simm-solution-description": "When we redesigned our website, it modernized and reflected the values of this company. The user experience improved significantly as well so that users are more likely to subscribe or purchase from them once they've visited the website!",
 
+  "kaire-study-title": "Industrial automation",
+  "kaire-study-description": "Kaire nasce nel 2015 dalla volontà e dalle competenze professionali di un gruppo di tecnici con esperienza ventennale nell’ambito delle automazioni e dei controlli di processo industriali. <br/><br/> All'inizio di quest'anno tra Kaire e Webion è nata una forte e duratura collaborazione per lo sviluppo di una serie di prodotti per l'industria 4.0.",
+
+  "kaire-problem-title": "Il problema",
+  "kaire-problem-description": "Il principale problema di Kaire era l'assenza di sviluppatori disponibili per sviluppare una suite di prodotti pensati per le automazioni industriali. <br/> Dopo essersi interfacciati con la nostra realtà, abbiamo iniziato offrendo consulenza e poco dopo è nata una forte e longeva collaborazione.",
+
+  "kaire-solution-title": "I prodotti sviluppati",
+  "kaire-solution-description": "Sono state sviluppate una serie di applicazioni Web per il monitoraggio di impianti industriali,  mediante l'utilizzo di due tecnologie principali Angluar per il front-end mentre .NET-Core per i servizi di monitoraggio e salvataggio dei dati sui PLC.",
+
+
   "message-sent": "Message sent!",
   "we-will-answer-in-48h": "We will reply to you within 48 hours.",
   "go-to-home": "Go to home",

@@ -10,12 +10,12 @@ import {
 } from '@whub/wui';
 
 import {
-  AppShortcutRounded,
   CloseRounded,
   ComputerRounded,
   DevicesRounded,
   FactoryRounded,
   GroupsRounded,
+  PhoneIphoneRounded,
   PublicRounded,
 } from '@mui/icons-material';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
@@ -107,7 +107,7 @@ export default function WebionSideBar() {
         />
         <SideBarItem
           text={t('service2')}
-          icon={<AppShortcutRounded />}
+          icon={<PhoneIphoneRounded />}
           onClick={clickNavigate('/services/apps')}
         />
         <SideBarItem

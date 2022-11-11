@@ -1,11 +1,10 @@
 import { Box, Paper, Stack, SxProps, Theme, Typography, useMediaQuery, useTheme } from '@mui/material';
-import Slide from '@mui/material/Slide';
 import { MaybeShow, NextImg, Transition, useOnScreen } from '@whub/wui';
 import { ReactNode, useRef } from 'react';
 import { TitleSectionLabel } from './TitleSectionLabel';
 
 interface ImageAndDescriptionProps {
-  readonly actionComponent: ReactNode;
+  readonly actionComponent?: ReactNode;
   readonly title: string | ReactNode;
   readonly label: string | ReactNode;
   readonly description: string | ReactNode;

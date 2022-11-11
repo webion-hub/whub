@@ -1,9 +1,9 @@
 import {
-  AppShortcutRounded,
   BusinessRounded,
   DevicesRounded,
   FactoryRounded,
   PersonRounded,
+  PhoneIphoneRounded,
   QuestionMarkRounded,
   StoreRounded,
 } from '@mui/icons-material';
@@ -220,7 +220,7 @@ export default function ContactUs() {
           />
           <CardOption
             key="app"
-            icon={<AppShortcutRounded fontSize="large" />}
+            icon={<PhoneIphoneRounded fontSize="large" />}
             title={t('app-card')}
             label={t('app-card-description')}
             selected={!!formValue?.services?.some((s) => s === 'app')}

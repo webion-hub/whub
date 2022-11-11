@@ -1,8 +1,7 @@
 import {
-  AppShortcutRounded,
   ArrowForwardRounded,
   DevicesRounded,
-  FactoryRounded,
+  FactoryRounded, PhoneIphoneRounded
 } from '@mui/icons-material';
 import {
   Box,
@@ -11,7 +10,7 @@ import {
   SvgIconTypeMap,
   Typography,
   useMediaQuery,
-  useTheme,
+  useTheme
 } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { Stack } from '@mui/system';
@@ -139,7 +138,7 @@ export function HomeWithServices() {
         >
           <ButtonWithProgress
             label={t('service2')}
-            Icon={AppShortcutRounded}
+            Icon={PhoneIphoneRounded}
             selected={page?.key === 'apps'}
             onSelectEnd={() => handlePage('industry')}
             onClick={() => handlePage('apps')}

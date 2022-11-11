@@ -1,8 +1,5 @@
-import {
-  EmojiObjectsRounded,
-  ReportProblemRounded
-} from '@mui/icons-material';
-import { Button, Typography } from '@mui/material';
+import { EmojiObjectsRounded, ReportProblemRounded } from '@mui/icons-material';
+import { Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import { Page, Section, Sections, useLanguage } from '@whub/wui';
 import { IconCard } from '../../components/IconCard';
@@ -18,25 +15,14 @@ export default function SimmCaseStudy() {
         <Section>
           <Stack direction="column" spacing={4} sx={{ width: '100%', marginTop: 4 }}>
             <Typography variant="h2" textAlign="center">
-              SIMM Imballaggi.
+              Kaire Automation
             </Typography>
             <ImageAndDescription
               direction="row"
               label={t('case-study')}
-              title={t('simm-study-title')}
-              description={t('simm-study-description', true)}
+              title={t('kaire-study-title')}
+              description={t('kaire-study-description', true)}
               src="/assets/images/projects/simm.png"
-              actionComponent={
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  href="https://shop.simmimballaggi.com/"
-                  target="_blank"
-                >
-                  {t('see-website')}
-                </Button>
-              }
             />
           </Stack>
         </Section>
@@ -52,13 +38,13 @@ export default function SimmCaseStudy() {
           >
             <IconCard
               icon={<ReportProblemRounded fontSize="large" />}
-              title={t('simm-problem-title')}
-              paragraph={t('simm-problem-description')}
+              title={t('kaire-problem-title')}
+              paragraph={t('kaire-problem-description', true)}
             />
             <IconCard
               icon={<EmojiObjectsRounded fontSize="large" />}
-              title={t('simm-solution-title')}
-              paragraph={t('simm-solution-description')}
+              title={t('kaire-solution-title')}
+              paragraph={t('kaire-solution-description', true)}
             />
           </Stack>
         </Section>
