@@ -55,7 +55,7 @@ export default function Projects() {
     <Page>
       <Sections>
         <Section>
-          <CardGroup label="Progetti" title="I nostri progetti recenti.">
+          <CardGroup label={t('projects')} title={t('our-most-recent-projects')}>
             <Project
               title="Kaire Automation"
               paragraph={t('kaire')}

@@ -201,8 +201,12 @@
   "simm-solution-title": "La soluzione",
   "simm-solution-description": "  Quando abbiamo riprogettato il loro sito web, si è modernizzato e ha iniziato a rispecchiare i valori di questa azienda. Anche l'esperienza dell'utente è migliorata in modo significativo, in modo che gli utenti siano più propensi ad acquistare da loro una volta che hanno visitato il sito Web!",
 
+  "collaboration-title": "Una collaborazione",
+
+  "kaire-title": "Kaire Automation",
   "kaire-study-title": "Automazioni industriali",
   "kaire-study-description": "Kaire nasce nel 2015 dalla volontà e dalle competenze professionali di un gruppo di tecnici con esperienza ventennale nell’ambito delle automazioni e dei controlli di processo industriali. <br/><br/> All'inizio di quest'anno tra Kaire e Webion è nata una forte e duratura collaborazione per lo sviluppo di una serie di prodotti per l'industria 4.0.",
+  "kaire-short-description": "Kaire è un'azienda di automazione industriale localizzata a Modena.",
 
   "kaire-problem-title": "Il problema",
   "kaire-problem-description": "Il principale problema di Kaire era l'assenza di sviluppatori disponibili per sviluppare una suite di prodotti pensati per le automazioni industriali. <br/> Dopo essersi interfacciati con la nostra realtà, abbiamo iniziato offrendo consulenza e poco dopo è nata una forte e longeva collaborazione.",
@@ -214,6 +218,9 @@
   "message-sent": "Messaggio inviato!",
   "we-will-answer-in-48h": "Ti risponderemo entro 48h.",
   "go-to-home": "Vai alla home",
+
+  "our-most-recent-projects": "I nostri progetti più recenti",
+  "projects": "Progetti",
 
   "cookies": "Questo sito utilizza i cookie per migliorare la tua esperienza.",
   "decline": "Rifiuta",
