@@ -1,7 +1,14 @@
 import { HelpRounded } from '@mui/icons-material';
 import { alpha, Link, Stack, useTheme } from '@mui/material';
 import { ChosenBy, Faq } from '@whub/page-sections';
-import { NextImg, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
+import {
+  NextImg,
+  Page,
+  Section,
+  Sections,
+  useLanguage,
+  useNextNavigator,
+} from '@whub/wui';
 import { useEffect } from 'react';
 import { netBackground } from '../components/backgrounds/netBackground';
 import { pcbBackground } from '../components/backgrounds/pcbBackground';
@@ -47,28 +54,28 @@ export default function Homepage() {
             <NextImg
               auto
               height="40px"
-              sizes='25vw'
+              sizes="25vw"
               alt="kaire"
               src="/assets/images/clients/kaire-logo.webp"
             />
             <NextImg
               auto
               height="40px"
-              sizes='25vw'
+              sizes="25vw"
               alt="bocconi"
               src="/assets/images/clients/bocconi-logo.png"
             />
             <NextImg
               auto
               height="40px"
-              sizes='25vw'
+              sizes="25vw"
               alt="simm"
               src="/assets/images/clients/simm-logo.png"
             />
             <NextImg
               auto
               height="30px"
-              sizes='25vw'
+              sizes="25vw"
               alt="mentorz"
               src="/assets/images/clients/mentorz-logo.png"
               sx={{ background: '#444' }}
@@ -115,7 +122,19 @@ export default function Homepage() {
               { question: t('faq-q1'), answer: t('faq-a1', true) },
               { question: t('faq-q2'), answer: t('faq-a2', true) },
               { question: t('faq-q3'), answer: t('faq-a3', true) },
-              { question: t('faq-q4'), answer: <>{t('faq-a4', true)}&nbsp; <Link href="/techs" onClick={clickNavigate('/techs')}> {t('here')} </Link>.</> },
+              {
+                question: t('faq-q4'),
+                answer: (
+                  <>
+                    {t('faq-a4', true)}&nbsp;{' '}
+                    <Link href="/techs" onClick={clickNavigate('/techs')}>
+                      {' '}
+                      {t('here')}{' '}
+                    </Link>
+                    .
+                  </>
+                ),
+              },
               { question: t('faq-q5'), answer: t('faq-a5', true) },
               { question: t('faq-q6'), answer: t('faq-a6', true) },
             ]}
@@ -126,7 +145,7 @@ export default function Homepage() {
               marginBottom: 8,
             }}
             questionBoxSx={{
-              marginTop: (theme) => theme.spacing(12, '!important')
+              marginTop: (theme) => theme.spacing(12, '!important'),
             }}
             icon={
               <Stack
@@ -135,7 +154,8 @@ export default function Homepage() {
                 sx={{
                   padding: 2,
                   borderRadius: '100%',
-                  background: (theme) => alpha(theme.palette.primary.light, 0.2),
+                  background: (theme) =>
+                    alpha(theme.palette.primary.light, 0.2),
                 }}
               >
                 <HelpRounded

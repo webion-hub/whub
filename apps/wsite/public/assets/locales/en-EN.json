@@ -160,6 +160,8 @@
   "react": "React is a free and open-source front-end JavaScript library for building user interfaces based on UI components.",
   "net-core": ".NET Core is a new version of .NET Framework, which is a free, open-source, general-purpose development platform maintained by Microsoft.",
   "next-js": "Next.js is an open-source web development framework created by Vercel enabling React-based web applications with server-side rendering and generating static websites.",
+  "sql": "Structured Query Language, abbreviated as SQL, is a domain-specific language used in programming and designed for managing data held in a relational database management system",
+  "mongo-db": "MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas",
 
   "contact-us-title": "Contact us.",
   "contact-step-1-title": "Let's start with your name.",

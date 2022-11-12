@@ -3,7 +3,6 @@ import { CardGroup } from '../components/CardGroup';
 import { IconCard } from '../components/IconCard';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
 
-
 export default function Techs() {
   const { t } = useLanguage();
 
@@ -109,6 +108,34 @@ export default function Techs() {
               iconBackgroundColor="#fff"
               title="Angular"
               paragraph={t('angular')}
+            />
+            <IconCard
+              icon={
+                <NextImg
+                  auto
+                  width="100%"
+                  alt="sql"
+                  src="/assets/images/technologies/sql.svg"
+                  sx={{ padding: 1.5 }}
+                />
+              }
+              iconBackgroundColor="#fff"
+              title="SQL"
+              paragraph={t('sql')}
+            />
+            <IconCard
+              icon={
+                <NextImg
+                  auto
+                  width="100%"
+                  alt="mongo db"
+                  src="/assets/images/technologies/mongo-db.svg"
+                  sx={{ padding: 1.5 }}
+                />
+              }
+              iconBackgroundColor="#fff"
+              title="Mongo DB"
+              paragraph={t('mongo-db')}
             />
           </CardGroup>
         </Section>
