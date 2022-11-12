@@ -67,24 +67,21 @@ export function IconCard(props: IconCardProps) {
 }
 
 export function WebionCard(props: BaseProps) {
-  const [show, setShow] = useState(false)
-  const [pos, setPos] = useState<Coords>({ x: 0, y: 0 })
-  const cardRef = useRef<HTMLDivElement>()
+  const [show, setShow] = useState(false);
+  const [pos, setPos] = useState<Coords>({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>();
 
   return (
     <Card
       ref={cardRef}
       onMouseLeave={() => setShow(false)}
       onMouseEnter={() => setShow(true)}
-      onMouseMove={e => {
-        const rect = cardRef.current.getBoundingClientRect()
-        const x = e.clientX - rect.x
-        const y = e.clientY - rect.y
+      onMouseMove={(e) => {
+        const rect = cardRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.x;
+        const y = e.clientY - rect.y;
 
-        setPos({x, y})
-      }}
-      style={{
-
+        setPos({ x, y });
       }}
       sx={{
         position: 'relative',
@@ -94,7 +91,7 @@ export function WebionCard(props: BaseProps) {
         '&:hover': {
           transform: 'translateY(-8px)',
           boxShadow: (theme) => theme.shadows[10],
-          border: 'none',
+          borderColor: 'transparent',
         },
         ...props.sx,
       }}
@@ -110,11 +107,12 @@ export function WebionCard(props: BaseProps) {
           height: 0,
           left: 0,
           top: 0,
-          boxShadow: theme => `0px 0px 1200px 60px ${
-            theme.palette.mode == 'dark'
-              ? alpha(theme.palette.secondary.main, 0.2)
-              : alpha(theme.palette.primary.main, 0.3)
-          }`,
+          boxShadow: (theme) =>
+            `0px 0px 1200px 60px ${
+              theme.palette.mode == 'dark'
+                ? alpha(theme.palette.secondary.main, 0.2)
+                : alpha(theme.palette.primary.main, 0.3)
+            }`,
         }}
       />
       {props.children}

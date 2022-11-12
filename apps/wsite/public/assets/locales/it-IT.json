@@ -146,6 +146,10 @@
   "who-are-we": "chi siamo",
   "who-are-we-title": "Webion SRL",
   "who-are-we-description": "In Webion, ci prendiamo il tempo per conoscere i nostri clienti e le loro esigenze specifiche prima di iniziare a creare una soluzione personalizzata. Crediamo che questo approccio personalizzato sia il modo migliore per creare un software che soddisfi veramente le esigenze dei nostri clienti.<br/><br/>Di conseguenza, abbiamo una comprovata esperienza nella fornitura di software di alta qualità e di facile utilizzo che i nostri clienti adorano. Se stai cercando un team che lavorerà con te per creare una soluzione personalizzata, contattaci. Siamo fiduciosi che non rimarrai deluso. Ci puoi trovare in via Panfilo Castaldi 3, a Modena.",
+  "the-team": "Il team",
+  "front-end-cofounder": "Co-fondatore & Sviluppatore Frontend",
+  "back-end-cofounder": "Co-fondatore & Sviluppatore Backend",
+  "back-end": "Sviluppatore Back-end",
 
   "technologies": "tecnologie",
   "technologies-title": "Le tecnologie che usiamo",
@@ -202,7 +206,7 @@
   "simm-solution-description": "  Quando abbiamo riprogettato il loro sito web, si è modernizzato e ha iniziato a rispecchiare i valori di questa azienda. Anche l'esperienza dell'utente è migliorata in modo significativo, in modo che gli utenti siano più propensi ad acquistare da loro una volta che hanno visitato il sito Web!",
 
   "kaire-study-title": "Automazioni industriali",
-  "kaire-study-description": "Kaire nasce nel 2015 dalla volontà e dalle competenze professionali di un gruppo di tecnici con esperienza ventennale nell’ambito delle automazioni e dei controlli di processo industriali. <br/><br/> All'inizio di quest'anno tra Kaire e Webion è nata una forte e duratura collaborazione per lo sviluppo di una serie di prodotti per l'industria 4.0.",
+  "kaire-study-description": "Kaire nasce nel 2015 dalla volontà e dalle competenze professionali di un gruppo di tecnici con esperienza ventennale nell'ambito delle automazioni e dei controlli di processo industriali. <br/><br/> All'inizio di quest'anno tra Kaire e Webion è nata una forte e duratura collaborazione per lo sviluppo di una serie di prodotti per l'industria 4.0.",
 
   "kaire-problem-title": "Il problema",
   "kaire-problem-description": "Il principale problema di Kaire era l'assenza di sviluppatori disponibili per sviluppare una suite di prodotti pensati per le automazioni industriali. <br/> Dopo essersi interfacciati con la nostra realtà, abbiamo iniziato offrendo consulenza e poco dopo è nata una forte e longeva collaborazione.",
@@ -210,6 +214,18 @@
   "kaire-solution-title": "I prodotti sviluppati",
   "kaire-solution-description": "Sono state sviluppate una serie di applicazioni Web per il monitoraggio di impianti industriali,  mediante l'utilizzo di due tecnologie principali Angluar per il front-end mentre .NET-Core per i servizi di monitoraggio e salvataggio dei dati sui PLC.",
 
+  "massyve-study-title": "Produttore musicale & sound designer",
+  "massyve-study-description": "Massyve è un produttore musicale professionista, sound designer con 15 anni di esperienza.  Nella sua carriera musicale ha lavorato con un'ampia varietà di artisti su molti generi musicali diversi. Ha prodotto per aziende come Tesla Motors e per Netflix Movies",
+
+  "massyve-problem-title": "Il problema",
+  "massyve-problem-description": "Massyve stava cercando di ottenere nuovi clienti attraverso campagne di annunci su Google ma non stava ottenendo risultati. Spendeva molto in pubblicità ma nessuno lo stava contattando, a parte alcuni falsi utenti. Aveva una landing page che non era ottimizzata né per la grafica, né per la lighthouse e soprattutto non per le conversioni.",
+
+  "massyve-solution-title": "La soluzione",
+  "massyve-solution-description": "Abbiamo studiato a fondo il suo problema e abbiamo progettato una nuova landing page che mostrasse meglio le sue buone qualità. Abbiamo incorporato alcuni elementi per migliorare le conversioni come: <ul> <li>una proposta di vendita unica</li> <li>più prova sociale</li> <li>alcuni vantaggi chiave</li> <li>migliore invito all'azione</li> </ul><br> Considerando il tempo e il budget limitati per la creazione della pagina di destinazione, abbiamo deciso di utilizzare il flusso web.<br> Dopo aver curato la landing page abbiamo studiato una campagna strategica di google ads e l'abbiamo gestita per un mese.<br>",
+
+  "massyve-result-title": "I risultati",
+  "massyve-result-description-1": "Questi erano i risultati che aveva con la pagina di destinazione e la campagna precedenti",
+  "massyve-result-description-2": "Questi sono invece i nostri risultati. Possiamo vedere che abbiamo quasi raddoppiato il tasso di conversione della pagina di destinazione, riducendo il costo per clic del 28,82% e il costo per la conversione del 57,97%. Allo stesso tempo abbiamo migliorato la percentuale di clic del 252,39%.<br> Questi sono solo i risultati del primo mese. Abbiamo inserito strumenti di analisi all'interno della pagina web in modo da poter continuare a monitorare i comportamenti degli utenti e continuare a migliorare la landing page e la campagna nel tempo.",
 
   "message-sent": "Messaggio inviato!",
   "we-will-answer-in-48h": "Ti risponderemo entro 48h.",

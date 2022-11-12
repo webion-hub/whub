@@ -146,6 +146,10 @@
   "who-are-we": "Who we are",
   "who-are-we-title": "Webion SRL",
   "who-are-we-description": "At Webion, we take the time to get to know our clients and their specific needs before we start building a custom solution. We believe that this personalized approach is the best way to create software that truly meets the needs of our clients.<br/><br/>As a result, we have a track record of delivering high-quality, user-friendly software that our clients love. If you're looking for a team that will work with you to create a custom solution, contact us today. We're confident that you won't be disappointed.We are located in via Panfilo Castaldi 3, in Modena.",
+  "the-team": "The team",
+  "front-end-cofounder": "Co-Founder & Frontend Developer",
+  "back-end-cofounder": "Co-Founder & Backend Developer",
+  "back-end": "Backend Developer",
 
   "technologies": "TECHNOLOGIES",
   "technologies-title": "The technologies used.",
@@ -202,14 +206,26 @@
   "simm-solution-description": "When we redesigned our website, it modernized and reflected the values of this company. The user experience improved significantly as well so that users are more likely to subscribe or purchase from them once they've visited the website!",
 
   "kaire-study-title": "Industrial automation",
-  "kaire-study-description": "Kaire nasce nel 2015 dalla volontà e dalle competenze professionali di un gruppo di tecnici con esperienza ventennale nell’ambito delle automazioni e dei controlli di processo industriali. <br/><br/> All'inizio di quest'anno tra Kaire e Webion è nata una forte e duratura collaborazione per lo sviluppo di una serie di prodotti per l'industria 4.0.",
+  "kaire-study-description": "Kaire nasce nel 2015 dalla volontà e dalle competenze professionali di un gruppo di tecnici con esperienza ventennale nell'ambito delle automazioni e dei controlli di processo industriali. <br/><br/> All'inizio di quest'anno tra Kaire e Webion è nata una forte e duratura collaborazione per lo sviluppo di una serie di prodotti per l'industria 4.0.",
 
-  "kaire-problem-title": "Il problema",
+  "kaire-problem-title": "The problem",
   "kaire-problem-description": "Il principale problema di Kaire era l'assenza di sviluppatori disponibili per sviluppare una suite di prodotti pensati per le automazioni industriali. <br/> Dopo essersi interfacciati con la nostra realtà, abbiamo iniziato offrendo consulenza e poco dopo è nata una forte e longeva collaborazione.",
 
-  "kaire-solution-title": "I prodotti sviluppati",
+  "kaire-solution-title": "The products developed",
   "kaire-solution-description": "Sono state sviluppate una serie di applicazioni Web per il monitoraggio di impianti industriali,  mediante l'utilizzo di due tecnologie principali Angluar per il front-end mentre .NET-Core per i servizi di monitoraggio e salvataggio dei dati sui PLC.",
 
+  "massyve-study-title": "Music Producer & Sound Designer",
+  "massyve-study-description": "Massyve is a professional music producer, sound designer with 15 years of experience. In his music career he have worked with a wide variety of artists on many different music genres. He produced for companies such as Tesla Motors and for Netflix Movies",
+
+  "massyve-problem-title": "The problem",
+  "massyve-problem-description": "Massyve was trying to get new clients through google ads campaigns but he was not getting results. He was spending a lot in advertising but nobody was contacting him, apart from some fake users. He had a landing page that was not optimized neither in terms of graphics, nor for the lighthouse and expecially not for the conversions.",
+
+  "massyve-solution-title": "The solution",
+  "massyve-solution-description": "We studied his problem deeply and we designed a new landing page that better showed his good qualities. We incorporated some elements for improving the conversions such as as: <ul> <li>an unique selling proposition</li> <li>more social proof</li> <li>some key benefits</li> <li>better call to actions</li> </ul> <br> Considering the restricted time and budget for building the landing page we decided to use webflow. <br> After we took care of the landing page we studied a strategic google ads campaign and we managed it for a month.",
+
+  "massyve-result-title": "The results",
+  "massyve-result-description-1": "These were the results he had with the previous landing page and campaign ",
+  "massyve-result-description-2": "These are instead our results. We can see that we almost doubled the conversion rate of the landing page, while decreasing the cost per click by 28.82% and the cost for conversion by 57.97%. At the same time we improved the click through rate by 252.39%.<br> These are just the results of the first month. We inserted analysis tools inside the web page so that we can keep monitoring the behaviours of the users and keep improving the landing page and the campaign through time.",
 
   "message-sent": "Message sent!",
   "we-will-answer-in-48h": "We will reply to you within 48 hours.",

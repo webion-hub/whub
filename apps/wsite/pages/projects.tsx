@@ -111,10 +111,12 @@ export default function Projects() {
               alt="massyve"
               onClick={() =>
                 window
-                  .open('https://massyve-music.webflow.io', '_blank')
+                  .open('https://massyvemusic.design/massyve-landing', '_blank')
                   ?.focus()
               }
               buttonLabel={t('see-website')}
+              onClickSecondary={clickNavigate('/studies/massyve')}
+              secondaryButtonLabel={t('learn-more')}
             />
           </CardGroup>
         </Section>
