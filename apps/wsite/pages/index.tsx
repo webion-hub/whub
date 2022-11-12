@@ -55,30 +55,57 @@ export default function Homepage() {
               auto
               height="40px"
               sizes="25vw"
-              alt="kaire"
-              src="/assets/images/clients/kaire-logo.webp"
+              alt="bocconi"
+              src="/assets/images/clients/bocconi.png"
             />
             <NextImg
               auto
               height="40px"
               sizes="25vw"
-              alt="bocconi"
-              src="/assets/images/clients/bocconi-logo.png"
+              alt="kaire"
+              src="/assets/images/clients/kaire.png"
             />
             <NextImg
               auto
               height="40px"
               sizes="25vw"
               alt="simm"
-              src="/assets/images/clients/simm-logo.png"
+              src="/assets/images/clients/simm.png"
             />
             <NextImg
               auto
-              height="30px"
+              height="40px"
+              sizes="25vw"
+              alt="LCI Agency"
+              src="/assets/images/clients/lci-agency.png"
+            />
+            <NextImg
+              auto
+              height="40px"
               sizes="25vw"
               alt="mentorz"
-              src="/assets/images/clients/mentorz-logo.png"
-              sx={{ background: '#444' }}
+              src="/assets/images/clients/mentorz.png"
+            />
+            <NextImg
+              auto
+              height="40px"
+              sizes="25vw"
+              alt="massyve"
+              src="/assets/images/clients/massyve.png"
+            />
+            <NextImg
+              auto
+              height="40px"
+              sizes="25vw"
+              alt="cody"
+              src="/assets/images/clients/cody.png"
+            />
+            <NextImg
+              auto
+              height="40px"
+              sizes="25vw"
+              alt="The Pink Palace"
+              src="/assets/images/clients/pink-palace.png"
             />
           </ChosenBy>
         </Section>

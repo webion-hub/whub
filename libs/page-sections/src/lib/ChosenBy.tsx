@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 
 interface ChosenByProps {
   readonly children: ReactNode;
-  readonly sx?: SxProps<Theme>,
+  readonly sx?: SxProps<Theme>;
   readonly blackAndWhite?: boolean;
   readonly hideDivider?: boolean;
 }
@@ -16,11 +16,23 @@ export function ChosenBy(props: ChosenByProps) {
         direction="column"
         alignItems="center"
         justifyContent="center"
-        spacing={2}
+        spacing={5}
         sx={{
-          maxWidth: 900,
+          maxWidth: '100%',
           width: '100%',
+          overflow: 'initial',
           ...props.sx,
+          '@keyframes infinite-slide': {
+            from: {
+              transform: 'translateX(100%)',
+            },
+            to: {
+              transform: 'translateX(-100%)',
+            },
+          },
+          animationName: 'infinite-slide',
+          animationIterationCount: 'infinite',
+          animationTimingFunction: 'linear',
         }}
       >
         <Stack
@@ -31,9 +43,7 @@ export function ChosenBy(props: ChosenByProps) {
           sx={{
             '& > *': {
               margin: 2,
-              filter: props.blackAndWhite
-                ? 'grayscale(100%)'
-                : 'none',
+              filter: props.blackAndWhite ? 'grayscale(100%)' : 'none',
             },
             position: 'relative',
             width: '100%',
@@ -43,9 +53,7 @@ export function ChosenBy(props: ChosenByProps) {
           {props.children}
         </Stack>
       </Stack>
-      <MaybeShow
-        show={!props.hideDivider}
-      >
+      <MaybeShow show={!props.hideDivider}>
         <Divider
           sx={{
             position: 'absolute',
@@ -54,7 +62,6 @@ export function ChosenBy(props: ChosenByProps) {
           }}
         />
       </MaybeShow>
-
     </>
   );
 }
