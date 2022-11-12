@@ -1,9 +1,8 @@
 import {
-  BubbleChartRounded,
   CallRounded,
   InsightsRounded,
   LibraryBooksRounded,
-  LinkRounded,
+  LinkRounded
 } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import {
@@ -11,12 +10,13 @@ import {
   Section,
   Sections,
   useLanguage,
-  useNextNavigator,
+  useNextNavigator
 } from '@whub/wui';
-import { GetAQuoteSection } from 'apps/wsite/components/sections/GetAQuote';
+import { CaseStudyLink } from '../../components/CaseStudyLink';
 import { CardGroup } from '../../components/CardGroup';
 import { IconCard } from '../../components/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
+import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 
 export default function Industry() {
   const { clickNavigate } = useNextNavigator();
@@ -68,6 +68,15 @@ export default function Industry() {
               paragraph={t('industry-features-3-description')}
             />
           </CardGroup>
+        </Section>
+        <Section>
+          <CaseStudyLink
+            title={t('collaboration-title')}
+            caseStudyTitle={t('kaire-title')}
+            caseStudyDescription={t('kaire-short-description')}
+            href="/studies/kaire"
+            src="/assets/images/kaire2.webp"
+          />
         </Section>
         <GetAQuoteSection />
       </Sections>

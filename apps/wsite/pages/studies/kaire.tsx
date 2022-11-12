@@ -6,7 +6,7 @@ import { IconCard } from '../../components/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 
-export default function SimmCaseStudy() {
+export default function KaireCaseStudy() {
   const { t } = useLanguage();
 
   return (
@@ -22,7 +22,7 @@ export default function SimmCaseStudy() {
               label={t('case-study')}
               title={t('kaire-study-title')}
               description={t('kaire-study-description', true)}
-              src="/assets/images/projects/simm.png"
+              src="/assets/images/kaire2.webp"
             />
           </Stack>
         </Section>

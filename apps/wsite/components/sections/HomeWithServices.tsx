@@ -91,7 +91,7 @@ export function HomeWithServices() {
           justifyContent="center"
           spacing={4}
           sx={{
-            minHeight: 800,
+            minHeight: { xs: 800, sm: 600, md: 500 },
             '& > *': {
               color: '#fff',
             },

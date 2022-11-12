@@ -28,6 +28,7 @@ import { interval, take } from 'rxjs';
 import { CardGroup } from '../../components/CardGroup';
 import { IconCard } from '../../components/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
+import { CaseStudyLink } from '../../components/CaseStudyLink';
 
 interface StatisticProps {
   readonly value: number;
@@ -181,43 +182,13 @@ export default function Websites() {
           </CardGroup>
         </Section>
         <Section>
-          <Stack direction="column" alignItems="center" sx={{ width: '80%' }}>
-            <Typography variant="h3">{t('recent-project-title')}</Typography>
-            <Stack
-              direction="row"
-              flexWrap="wrap"
-              justifyContent="space-evenly"
-              sx={{
-                width: '100%',
-                marginTop: 4,
-                '& > *': {
-                  padding: 1,
-                  width: '100%',
-                  maxWidth: 450,
-                },
-              }}
-            >
-              <NextImg
-                src="/assets/images/projects/simm.png"
-                alt="simm"
-                fill
-                sx={{ objectFit: 'contain', position: 'relative !important' }}
-              />
-              <Stack direction="column" spacing={2}>
-                <Typography variant="h4">{t('simm-title')}</Typography>
-                <Typography>{t('simm-short-description')}</Typography>
-                <Box>
-                  <Button
-                    variant="contained"
-                    href="/studies/simm"
-                    onClick={clickNavigate('/studies/simm')}
-                  >
-                    {t('learn-more')}
-                  </Button>
-                </Box>
-              </Stack>
-            </Stack>
-          </Stack>
+          <CaseStudyLink
+            title={t('recent-project-title')}
+            caseStudyTitle={t('simm-title')}
+            caseStudyDescription={t('simm-short-description')}
+            href="/studies/simm"
+            src="/assets/images/projects/simm.png"
+          />
         </Section>
         <GetAQuoteSection />
       </Sections>
