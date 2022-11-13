@@ -5,13 +5,13 @@ import { ImageAndDescription } from '../ImageAndDescription';
 
 export function WhoWeAre() {
   const { clickNavigate } = useNextNavigator();
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
 
   return (
     <ImageAndDescription
       label={t('who-we-are')}
       title={t('who-we-are-title')}
-      description={t('who-we-are-desc', true)}
+      description={tHtml('who-we-are-desc')}
       direction="row"
       src="/assets/images/computer.webp"
       alt="about-us"

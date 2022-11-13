@@ -5,13 +5,12 @@ import {
   FooterBottomLabel,
   FooterColumn,
   FooterContent,
-  FooterRow,
-  Img,
-  NextImg,
+  FooterRow, NextImg,
   useLanguage,
-  useNextNavigator,
+  useNextNavigator
 } from '@whub/wui';
 
+import { EmailRounded, Facebook, PhoneRounded, WhatsApp, YouTube } from '@mui/icons-material';
 import {
   Grid,
   IconButton,
@@ -21,11 +20,10 @@ import {
   Typography,
   TypographyProps,
   useMediaQuery,
-  useTheme,
+  useTheme
 } from '@mui/material';
-import { EmailRounded, Facebook, PhoneRounded, WhatsApp, YouTube } from '@mui/icons-material';
-import { homeCatergoryUrls } from '../category-routes.config';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { homeCatergoryUrls } from '../category-routes.config';
 
 const FooterLinkTitle = (props: TypographyProps) => (
   <Typography variant="h6" marginBottom={1} component="p">

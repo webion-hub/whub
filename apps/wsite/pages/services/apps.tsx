@@ -15,14 +15,14 @@ import {
   useLanguage,
   useNextNavigator,
 } from '@whub/wui';
-import { GetAQuoteSection } from 'apps/wsite/components/sections/GetAQuote';
+import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 import { CardGroup } from '../../components/CardGroup';
 import { IconCard } from '../../components/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 
 export default function Apps() {
   const { clickNavigate } = useNextNavigator();
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
 
   return (
     <Page>
@@ -32,7 +32,7 @@ export default function Apps() {
             direction="row"
             label={t('apps')}
             title={t('app-page-title')}
-            description={t('app-page-description', true)}
+            description={tHtml('app-page-description')}
             src="/assets/images/services/apps.jpg"
             alt="apps"
             actionComponent={

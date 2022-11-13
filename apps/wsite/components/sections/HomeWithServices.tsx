@@ -33,26 +33,26 @@ export function HomeWithServices() {
 
   const router = useRouter();
   const theme = useTheme();
-  const { t, language } = useLanguage();
+  const { t, tHtml, language } = useLanguage();
   const reduceTitle = useMediaQuery(theme.breakpoints.down(1000));
 
   useEffect(() => {
     setPages([
       {
         key: 'apps',
-        title: t('service2-desc', true),
+        title: tHtml('service2-desc'),
         src: '/assets/images/apps.jpg',
         onClick: () => router.push('/services/apps'),
       },
       {
         key: 'industry',
-        title: t('service3-desc', true),
+        title: tHtml('service3-desc'),
         src: '/assets/images/industry.jpg',
         onClick: () => router.push('/services/industry'),
       },
       {
         key: 'websites',
-        title: t('service1-desc', true),
+        title: tHtml('service1-desc'),
         src: '/assets/images/websites.jpg',
         onClick: () => router.push('/services/websites'),
       },

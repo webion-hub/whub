@@ -1,6 +1,6 @@
 import { EmojiObjectsRounded, ReportProblemRounded } from '@mui/icons-material';
 import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import { NextImg, Page, Section, Sections, useLanguage } from '@whub/wui';
 import { IconCard } from '../../components/IconCard';
@@ -8,7 +8,8 @@ import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 
 export default function MassyveCaseStudy() {
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
+  const theme = useTheme();
 
   return (
     <Page>
@@ -17,7 +18,11 @@ export default function MassyveCaseStudy() {
           <Stack
             direction="column"
             spacing={4}
-            sx={{ width: '100%', marginTop: 4 }}
+            sx={{
+              width: '100%',
+              marginTop: 4,
+              marginInline: 1,
+            }}
           >
             <Typography variant="h2" textAlign="center">
               Massyve
@@ -26,7 +31,7 @@ export default function MassyveCaseStudy() {
               direction="row"
               label={t('case-study')}
               title={t('massyve-study-title')}
-              description={t('massyve-study-description', true)}
+              description={tHtml('massyve-study-description')}
               src="/assets/images/projects/simm.png"
               actionComponent={
                 <Button
@@ -46,10 +51,15 @@ export default function MassyveCaseStudy() {
           <Stack spacing={2}>
             <Stack
               direction="row"
+              flexWrap="wrap"
               sx={{
                 '& > *': {
                   margin: 1,
-                  width: (theme) => `calc(50% - ${theme.spacing(2)})`,
+                  minWidth: 'auto !important',
+                  width: {
+                    xs: `calc(100% - ${theme.spacing(2)})`,
+                    md: `calc(50% - ${theme.spacing(2)})`,
+                  },
                 },
               }}
             >
@@ -61,7 +71,7 @@ export default function MassyveCaseStudy() {
               <IconCard
                 icon={<EmojiObjectsRounded fontSize="large" />}
                 title={t('massyve-solution-title')}
-                paragraph={t('massyve-solution-description', true)}
+                paragraph={tHtml('massyve-solution-description')}
               />
             </Stack>
             <IconCard

@@ -11,7 +11,7 @@ export function GetAQuote({
 }: {
   hideSecondaryBtn?: boolean;
 }) {
-  const { t } = useLanguage();
+  const { tHtml, t } = useLanguage();
   const { clickNavigate } = useNextNavigator();
 
   return (
@@ -26,7 +26,7 @@ export function GetAQuote({
       }}
     >
       <Typography variant="h4" textAlign="center" sx={{ color: '#fff' }}>
-        {t('quote-title', true)}
+        {tHtml('quote-title')}
       </Typography>
       <Typography variant="body1" textAlign="center" sx={{ color: '#fff' }}>
         {t('quote-desc')}

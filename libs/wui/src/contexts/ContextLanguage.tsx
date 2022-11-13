@@ -28,7 +28,8 @@ export interface ILanguageContext {
   readonly language?: LanguageBaseItem;
   readonly languages: LanguageBaseItem[];
   readonly setLanguage: (language: LanguagesCodes) => void;
-  readonly t: (key: string, shouldParse?: boolean) => string;
+  readonly t: (key: string) => string;
+  readonly tHtml: (key: string) => string | JSX.Element | JSX.Element[];
 }
 
 export const LanguageContext = createContext<ILanguageContext>({
@@ -37,6 +38,7 @@ export const LanguageContext = createContext<ILanguageContext>({
     return;
   },
   t: () => '',
+  tHtml: () => '',
 });
 
 export const LanguageWrapper = (props: LanguageWrapperProps) => {
@@ -47,13 +49,17 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
     router.push(asPath, asPath, { locale: language });
   };
 
-  const t = (key: string, shouldParse?: boolean) => {
+  const t = (key: string) => {
     if (!locale) return key;
 
     const lang = locale as LanguagesCodes;
     const translation = props.availableLanguages[lang]?.translation[key] ?? key;
 
-    return shouldParse ? parse(translation as string) : translation;
+    return translation;
+  };
+
+  const tHtml = (key: string) => {
+    return parse(t(key));
   };
 
   const getLanguages = (): LanguageBaseItem[] => {
@@ -81,7 +87,8 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
         languages: getLanguages(),
         language: getLanguage(),
         setLanguage: setLanguage,
-        t: t,
+        t,
+        tHtml,
       }}
     >
       {props.children}

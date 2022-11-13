@@ -18,7 +18,7 @@ export interface ImageCardProps {
   readonly img?: ReactNode;
   readonly sx?: SxProps<Theme>;
   readonly title: string;
-  readonly paragraph?: string;
+  readonly paragraph?: string | JSX.Element | JSX.Element[];
   readonly children?: ReactNode;
   readonly buttonLabel?: string;
   readonly secondaryButtonLabel?: string;
@@ -29,7 +29,7 @@ export interface ImageCardProps {
 export interface IconCardProps {
   readonly icon: ReactNode;
   readonly title: string;
-  readonly paragraph?: string;
+  readonly paragraph?: string | JSX.Element | JSX.Element[];
   readonly children?: ReactNode;
   readonly sx?: SxProps<Theme>;
   readonly buttonLabel?: string;
