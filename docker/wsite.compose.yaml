@@ -9,8 +9,6 @@ services:
       args:
         - target=wsite
 
-    ports:
-      - 80:80
     environment:
       - VIRTUAL_HOST=webion.it
     networks:

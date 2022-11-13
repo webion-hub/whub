@@ -27,7 +27,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY --from=build app/dist/apps/${target}/ .
-RUN npm i sharp --cache /tmp/node_cache
+RUN npm i --cache /tmp/node_cache
 
 
 FROM node:alpine AS run
@@ -37,6 +37,7 @@ ENV NODE_ENV=production
 
 COPY --from=build2 /app .
 
+RUN npm i sharp --cache /tmp/node_cache
 RUN rm -r .next/cache
 RUN rm -r /tmp
 
