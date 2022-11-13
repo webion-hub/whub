@@ -75,19 +75,19 @@ function ServicesButton() {
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={navigate('/services/websites')} sx={listItemSx}>
           <ListItemIcon>
-            <DevicesRounded color='primary'/>
+            <DevicesRounded color="primary" />
           </ListItemIcon>
           <ListItemText primary={t('service1')} secondary={t('learn-more')} />
         </MenuItem>
         <MenuItem onClick={navigate('/services/apps')} sx={listItemSx}>
           <ListItemIcon>
-            <PhoneIphoneRounded color='primary'/>
+            <PhoneIphoneRounded color="primary" />
           </ListItemIcon>
           <ListItemText primary={t('service2')} secondary={t('learn-more')} />
         </MenuItem>
         <MenuItem onClick={navigate('/services/industry')} sx={listItemSx}>
           <ListItemIcon>
-            <FactoryRounded color='primary'/>
+            <FactoryRounded color="primary" />
           </ListItemIcon>
           <ListItemText primary={t('service3')} secondary={t('learn-more')} />
         </MenuItem>
@@ -108,6 +108,7 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
       theme.palette.layout?.appbar ?? theme.palette.primary.main;
 
     const isHome = currentSection === 'home';
+    console.log(currentSection);
 
     return (
       <AppBar

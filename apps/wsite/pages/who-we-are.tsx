@@ -4,15 +4,18 @@ import {
   Avatar,
   Box,
   Button,
-  IconButton, Stack,
-  Typography
+  IconButton,
+  Stack,
+  SxProps,
+  Theme,
+  Typography,
 } from '@mui/material';
 import {
   Page,
   Section,
   Sections,
   useLanguage,
-  useNextNavigator
+  useNextNavigator,
 } from '@whub/wui';
 import { useEffect, useRef, useState } from 'react';
 import { ImageAndDescription } from '../components/ImageAndDescription';
@@ -21,6 +24,10 @@ import { GetAQuoteSection } from '../components/sections/GetAQuote';
 export default function WhoWeArePage() {
   const { t, tHtml } = useLanguage();
   const { clickNavigate } = useNextNavigator();
+  const membersOrder = [1, 2, 3]
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
   return (
     <Page>
@@ -89,6 +96,9 @@ export default function WhoWeArePage() {
               videoSrc="/assets/videos/budda.webm"
               linkedinHref="https://www.linkedin.com/in/matteo-budriesi-b50b51218/"
               githubHref="https://github.com/matteo2437"
+              sx={{
+                order: membersOrder[0],
+              }}
             />
             <Member
               name="Stefano Calabretti"
@@ -97,6 +107,9 @@ export default function WhoWeArePage() {
               videoSrc="/assets/videos/cala.webm"
               linkedinHref="https://www.linkedin.com/in/calabr/"
               githubHref="https://github.com/cala-br"
+              sx={{
+                order: membersOrder[1],
+              }}
             />
             <Member
               name="Alessandro Dodi"
@@ -105,6 +118,9 @@ export default function WhoWeArePage() {
               videoSrc="/assets/videos/alle.webm"
               linkedinHref="https://www.linkedin.com/in/alessandro-dodi/"
               githubHref="https://github.com/AlessandroDodi"
+              sx={{
+                order: membersOrder[2],
+              }}
             />
             <Member
               name="Davide Messori"
@@ -113,6 +129,9 @@ export default function WhoWeArePage() {
               videoSrc="/assets/videos/davido.webm"
               linkedinHref="https://www.linkedin.com/in/davide-messori-282781189/"
               githubHref="https://github.com/davidemesso"
+              sx={{
+                order: 4,
+              }}
             />
           </Stack>
         </Section>
@@ -129,6 +148,7 @@ interface MemberProps {
   readonly videoSrc: string;
   readonly linkedinHref: string;
   readonly githubHref: string;
+  readonly sx?: SxProps<Theme>;
 }
 
 function Member(props: MemberProps) {
@@ -152,6 +172,8 @@ function Member(props: MemberProps) {
         padding: 2,
         transition: '0.5s transform',
         borderRadius: 4,
+
+        ...props.sx,
       }}
     >
       <Box

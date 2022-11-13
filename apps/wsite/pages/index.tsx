@@ -1,5 +1,5 @@
 import { HelpRounded } from '@mui/icons-material';
-import { alpha, Link, Stack, useTheme } from '@mui/material';
+import { alpha, Link, Stack, Tooltip, useTheme } from '@mui/material';
 import { ChosenBy, Faq } from '@whub/page-sections';
 import {
   NextImg,
@@ -51,58 +51,63 @@ export default function Homepage() {
           sx={{ paddingBlock: 4 }}
         >
           <ChosenBy blackAndWhite>
+            <Tooltip title="Bocconi">
+              <NextImg
+                auto
+                height="28px"
+                sizes="25vw"
+                alt="bocconi"
+                src="/assets/images/clients/bocconi.png"
+                sx={{
+                  userDrag: 'none',
+                }}
+              />
+            </Tooltip>
             <NextImg
               auto
-              height="40px"
-              sizes="25vw"
-              alt="bocconi"
-              src="/assets/images/clients/bocconi.png"
-            />
-            <NextImg
-              auto
-              height="40px"
+              height="28px"
               sizes="25vw"
               alt="kaire"
               src="/assets/images/clients/kaire.png"
             />
             <NextImg
               auto
-              height="40px"
+              height="28px"
               sizes="25vw"
               alt="simm"
               src="/assets/images/clients/simm.png"
             />
             <NextImg
               auto
-              height="40px"
+              height="28px"
               sizes="25vw"
               alt="LCI Agency"
               src="/assets/images/clients/lci-agency.png"
             />
             <NextImg
               auto
-              height="40px"
+              height="28px"
               sizes="25vw"
               alt="mentorz"
               src="/assets/images/clients/mentorz.png"
             />
             <NextImg
               auto
-              height="40px"
+              height="28px"
               sizes="25vw"
               alt="massyve"
               src="/assets/images/clients/massyve.png"
             />
             <NextImg
               auto
-              height="40px"
+              height="28px"
               sizes="25vw"
               alt="cody"
               src="/assets/images/clients/cody.png"
             />
             <NextImg
               auto
-              height="40px"
+              height="28px"
               sizes="25vw"
               alt="The Pink Palace"
               src="/assets/images/clients/pink-palace.png"

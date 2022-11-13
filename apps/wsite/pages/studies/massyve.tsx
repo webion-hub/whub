@@ -33,7 +33,7 @@ export default function MassyveCaseStudy() {
               label={t('case-study')}
               title={t('massyve-study-title')}
               description={tHtml('massyve-study-description')}
-              src="/assets/images/projects/simm.png"
+              src="/assets/images/projects/massyve.webp"
               actionComponent={
                 <Button
                   variant="contained"
@@ -97,12 +97,13 @@ export default function MassyveCaseStudy() {
               {t('massyve-result-description-2')}
               {t('massyve-result-description-3')}
               <NextImg
-                auto
-                height="260px"
+                fill
                 alt="results before"
                 src="/assets/images/results-after.png"
                 sx={{
                   marginBlock: 3,
+                  objectFit: 'cover',
+                  position: 'relative !important',
                 }}
               />
             </IconCard>
