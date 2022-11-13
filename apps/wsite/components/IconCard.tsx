@@ -151,7 +151,11 @@ export function ImageCard(props: ImageCardProps) {
               {props.title}
             </Typography>
             <MaybeShow show={!!props.paragraph}>
-              <Typography variant="body1" color="text.secondary">
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                component="span"
+              >
                 {props.paragraph}
               </Typography>
             </MaybeShow>
