@@ -10,7 +10,7 @@ services:
         - target=wsite
 
     ports:
-      - 3000:80
+      - 80:80
     environment:
       - VIRTUAL_HOST=webion.it
     networks:

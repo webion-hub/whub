@@ -18,18 +18,28 @@ COPY . .
 RUN npx nx build ${target}
 
 
-FROM node AS runner
+
+FROM node AS build2
 
 ARG target
 
 WORKDIR /app
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
-RUN npm i -g @nrwl/next
+COPY --from=build app/dist/apps/${target}/ .
+RUN npm i sharp --cache /tmp/node_cache
 
-COPY --from=build /app/dist/apps/${target} ./
+
+FROM node:alpine AS run
+
+WORKDIR /app
+ENV NODE_ENV=production
+
+COPY --from=build2 /app .
+
+RUN rm -r .next/cache
+RUN rm -r /tmp
 
 EXPOSE 80
-
 ENV PORT 80
-CMD ["npx", "next", "start"]
+CMD ["npm", "start"]
