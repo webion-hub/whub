@@ -9,7 +9,7 @@ interface ImageAndDescriptionProps {
   readonly label: string | ReactNode;
   readonly description: string | ReactNode;
   readonly src?: string;
-  readonly alt?: string;
+  readonly alt: string;
   readonly removePaper?: boolean;
   readonly imageComponent?: ReactNode;
   readonly paperSx?: SxProps<Theme>;

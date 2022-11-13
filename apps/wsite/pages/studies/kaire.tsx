@@ -27,6 +27,7 @@ export default function KaireCaseStudy() {
               Kaire Automation
             </Typography>
             <ImageAndDescription
+              alt="kaire"
               direction="row"
               label={t('case-study')}
               title={t('kaire-study-title')}
