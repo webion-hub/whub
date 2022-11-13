@@ -1,8 +1,8 @@
 import { EmojiObjectsRounded, ReportProblemRounded } from '@mui/icons-material';
 import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
-import { Button, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import { Page, Section, Sections, useLanguage } from '@whub/wui';
+import { NextImg, Page, Section, Sections, useLanguage } from '@whub/wui';
 import { IconCard } from '../../components/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
@@ -67,8 +67,34 @@ export default function MassyveCaseStudy() {
             <IconCard
               icon={<AutoGraphRoundedIcon fontSize="large" />}
               title={t('massyve-result-title')}
-              paragraph={t('massyve-result-description-1')}
-            />
+            >
+              {t('massyve-result-description-1')}
+              <br />
+              <Box width="100%">
+                <NextImg
+                  fill
+                  alt="results before"
+                  src="/assets/images/results-before.png"
+                  sx={{
+                    marginBlock: 3,
+                    objectFit: 'cover',
+                    position: 'relative !important',
+                  }}
+                />
+              </Box>
+              <br />
+              {t('massyve-result-description-2')}
+              {t('massyve-result-description-3')}
+              <NextImg
+                auto
+                height="260px"
+                alt="results before"
+                src="/assets/images/results-after.png"
+                sx={{
+                  marginBlock: 3,
+                }}
+              />
+            </IconCard>
           </Stack>
         </Section>
         <GetAQuoteSection />

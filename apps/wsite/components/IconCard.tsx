@@ -18,7 +18,8 @@ export interface ImageCardProps {
   readonly img?: ReactNode;
   readonly sx?: SxProps<Theme>;
   readonly title: string;
-  readonly paragraph: string;
+  readonly paragraph?: string;
+  readonly children?: ReactNode;
   readonly buttonLabel?: string;
   readonly secondaryButtonLabel?: string;
   readonly onClick?: (e: any) => void;
@@ -28,7 +29,8 @@ export interface ImageCardProps {
 export interface IconCardProps {
   readonly icon: ReactNode;
   readonly title: string;
-  readonly paragraph: string;
+  readonly paragraph?: string;
+  readonly children?: ReactNode;
   readonly sx?: SxProps<Theme>;
   readonly buttonLabel?: string;
   readonly secondaryButtonLabel?: string;
@@ -148,9 +150,12 @@ export function ImageCard(props: ImageCardProps) {
             <Typography variant="h5" sx={{ marginBlock: 1 }}>
               {props.title}
             </Typography>
-            <Typography variant="body1" color="text.secondary">
-              {props.paragraph}
-            </Typography>
+            <MaybeShow show={!!props.paragraph}>
+              <Typography variant="body1" color="text.secondary">
+                {props.paragraph}
+              </Typography>
+            </MaybeShow>
+            {props.children}
           </CardContent>
           <MaybeShow show={!!props.onClick}>
             <CardActions sx={{ height: 52.5 }} />
