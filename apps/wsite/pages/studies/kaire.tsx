@@ -7,7 +7,7 @@ import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 
 export default function KaireCaseStudy() {
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
 
   return (
     <Page>
@@ -21,7 +21,7 @@ export default function KaireCaseStudy() {
               direction="row"
               label={t('case-study')}
               title={t('kaire-study-title')}
-              description={t('kaire-study-description', true)}
+              description={tHtml('kaire-study-description')}
               src="/assets/images/kaire2.webp"
             />
           </Stack>
@@ -39,12 +39,12 @@ export default function KaireCaseStudy() {
             <IconCard
               icon={<ReportProblemRounded fontSize="large" />}
               title={t('kaire-problem-title')}
-              paragraph={t('kaire-problem-description', true)}
+              paragraph={tHtml('kaire-problem-description')}
             />
             <IconCard
               icon={<EmojiObjectsRounded fontSize="large" />}
               title={t('kaire-solution-title')}
-              paragraph={t('kaire-solution-description', true)}
+              paragraph={tHtml('kaire-solution-description')}
             />
           </Stack>
         </Section>

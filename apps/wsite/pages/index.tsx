@@ -20,7 +20,7 @@ import { WhoWeAre } from '../components/sections/WhoWeAre';
 
 export default function Homepage() {
   const theme = useTheme();
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
   const { clickNavigate } = useNextNavigator();
 
   useEffect(() => {
@@ -146,14 +146,14 @@ export default function Homepage() {
               </>
             }
             questions={[
-              { question: t('faq-q1'), answer: t('faq-a1', true) },
-              { question: t('faq-q2'), answer: t('faq-a2', true) },
-              { question: t('faq-q3'), answer: t('faq-a3', true) },
+              { question: t('faq-q1'), answer: tHtml('faq-a1') },
+              { question: t('faq-q2'), answer: tHtml('faq-a2') },
+              { question: t('faq-q3'), answer: tHtml('faq-a3') },
               {
                 question: t('faq-q4'),
                 answer: (
                   <>
-                    {t('faq-a4', true)}&nbsp;{' '}
+                    {tHtml('faq-a4')}&nbsp;{' '}
                     <Link href="/techs" onClick={clickNavigate('/techs')}>
                       {' '}
                       {t('here')}{' '}
@@ -162,8 +162,8 @@ export default function Homepage() {
                   </>
                 ),
               },
-              { question: t('faq-q5'), answer: t('faq-a5', true) },
-              { question: t('faq-q6'), answer: t('faq-a6', true) },
+              { question: t('faq-q5'), answer: tHtml('faq-a5') },
+              { question: t('faq-q6'), answer: tHtml('faq-a6') },
             ]}
             title={t('faq')}
             sx={{

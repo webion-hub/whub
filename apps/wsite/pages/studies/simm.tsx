@@ -10,7 +10,7 @@ import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 
 export default function SimmCaseStudy() {
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
 
   return (
     <Page>
@@ -24,7 +24,7 @@ export default function SimmCaseStudy() {
               direction="row"
               label={t('case-study')}
               title={t('simm-study-title')}
-              description={t('simm-study-description', true)}
+              description={tHtml('simm-study-description')}
               src="/assets/images/projects/simm.png"
               actionComponent={
                 <Button

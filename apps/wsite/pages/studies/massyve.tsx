@@ -8,7 +8,7 @@ import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 
 export default function MassyveCaseStudy() {
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
 
   return (
     <Page>
@@ -26,7 +26,7 @@ export default function MassyveCaseStudy() {
               direction="row"
               label={t('case-study')}
               title={t('massyve-study-title')}
-              description={t('massyve-study-description', true)}
+              description={tHtml('massyve-study-description')}
               src="/assets/images/projects/simm.png"
               actionComponent={
                 <Button
@@ -61,7 +61,7 @@ export default function MassyveCaseStudy() {
               <IconCard
                 icon={<EmojiObjectsRounded fontSize="large" />}
                 title={t('massyve-solution-title')}
-                paragraph={t('massyve-solution-description', true)}
+                paragraph={tHtml('massyve-solution-description')}
               />
             </Stack>
             <IconCard

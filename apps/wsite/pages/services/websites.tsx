@@ -92,7 +92,7 @@ function Statistic(props: StatisticProps) {
 
 export default function Websites() {
   const { clickNavigate } = useNextNavigator();
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
 
   return (
     <Page>
@@ -104,7 +104,7 @@ export default function Websites() {
             title={t('website-page-title')}
             src="/assets/images/services/websites.jpg"
             alt="websites"
-            description={t('website-page-description', true)}
+            description={tHtml('website-page-description')}
             actionComponent={
               <Button
                 size="large"

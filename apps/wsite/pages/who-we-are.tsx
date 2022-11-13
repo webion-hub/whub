@@ -4,25 +4,22 @@ import {
   Avatar,
   Box,
   Button,
-  IconButton,
-  Paper,
-  Stack,
-  Typography,
+  IconButton, Stack,
+  Typography
 } from '@mui/material';
 import {
   Page,
   Section,
   Sections,
   useLanguage,
-  useNextNavigator,
+  useNextNavigator
 } from '@whub/wui';
-import { ColorUtils } from 'libs/wui/src/lib/ColorUtils';
 import { useEffect, useRef, useState } from 'react';
 import { ImageAndDescription } from '../components/ImageAndDescription';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
 
 export default function WhoWeArePage() {
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
   const { clickNavigate } = useNextNavigator();
 
   return (
@@ -54,7 +51,7 @@ export default function WhoWeArePage() {
                 style={{ border: 0 }}
               ></iframe>
             }
-            description={t('who-are-we-description', true)}
+            description={tHtml('who-are-we-description')}
           />
         </Section>
         <Section>
