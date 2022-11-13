@@ -29,6 +29,7 @@ export default function MassyveCaseStudy() {
             </Typography>
             <ImageAndDescription
               direction="row"
+              alt="massyve"
               label={t('case-study')}
               title={t('massyve-study-title')}
               description={tHtml('massyve-study-description')}

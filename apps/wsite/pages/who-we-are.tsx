@@ -29,6 +29,7 @@ export default function WhoWeArePage() {
           <ImageAndDescription
             label={t('who-are-we')}
             title={t('who-are-we-title')}
+            alt="who-we-are"
             direction="row-reverse"
             actionComponent={
               <Button

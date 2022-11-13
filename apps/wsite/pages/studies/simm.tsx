@@ -30,6 +30,7 @@ export default function SimmCaseStudy() {
               SIMM Imballaggi.
             </Typography>
             <ImageAndDescription
+              alt="simm"
               direction="row"
               label={t('case-study')}
               title={t('simm-study-title')}

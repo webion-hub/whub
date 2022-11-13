@@ -148,7 +148,11 @@ export function ImageCard(props: ImageCardProps) {
             <Typography variant="h5" sx={{ marginBlock: 1 }}>
               {props.title}
             </Typography>
-            <Typography variant="body1" color="text.secondary">
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              component="span"
+            >
               {props.paragraph}
             </Typography>
           </CardContent>
