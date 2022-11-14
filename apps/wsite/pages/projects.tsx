@@ -1,14 +1,10 @@
-import { Skeleton } from '@mui/material';
 import {
-  Img,
-  MaybeShow,
   NextImg,
   Page,
   Section,
   Sections,
   useLanguage,
-  useNextNavigator,
-  useProgressiveImage,
+  useNextNavigator
 } from '@whub/wui';
 import { CardGroup } from '../components/CardGroup';
 import { ImageCard, ImageCardProps } from '../components/IconCard';
@@ -21,27 +17,20 @@ interface ProjectProps extends ImageCardProps {
 
 function Project(props: ProjectProps) {
   const { src, ...others } = props;
-  const { srcLoaded, loading } = useProgressiveImage(src);
 
   return (
     <ImageCard
       {...others}
       img={
-        <MaybeShow
-          show={!loading}
-          alternativeChildren={
-            <Skeleton
-              variant="rectangular"
-              sx={{
-                width: '100%',
-                height: 'auto',
-                aspectRatio: '2.04',
-              }}
-            />
-          }
-        >
-          <NextImg src={props.src} alt={props.alt} auto width="100%" />
-        </MaybeShow>
+        <NextImg
+          src={props.src}
+          alt={props.alt}
+          auto
+          width="100%"
+          sx={{
+            borderRadius: theme => theme.shape.borderRadius
+          }}
+        />
       }
     />
   );

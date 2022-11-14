@@ -1,13 +1,12 @@
+import { SxProps, Theme } from '@mui/system';
 import React, { useState } from 'react';
-import { Box, SxProps, Theme } from '@mui/system';
-import Image from 'next/future/image';
 
 import {
   DevicesRounded,
   FactoryRounded,
   KeyboardArrowDownRounded,
   PhoneIphoneRounded,
-  PublicRounded,
+  PublicRounded
 } from '@mui/icons-material';
 import {
   Button,
@@ -15,7 +14,7 @@ import {
   ListItemText,
   Menu,
   MenuItem,
-  useTheme,
+  useTheme
 } from '@mui/material';
 import {
   AppBar,
@@ -28,7 +27,7 @@ import {
   SideBarButton,
   useLanguage,
   useLayout,
-  useNextNavigator,
+  useNextNavigator
 } from '@whub/wui';
 
 function ServicesButton() {

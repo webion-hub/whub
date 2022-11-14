@@ -37,7 +37,7 @@ export default function WhoWeArePage() {
             label={t('who-are-we')}
             title={t('who-are-we-title')}
             alt="who-we-are"
-            direction="row-reverse"
+            direction="row"
             actionComponent={
               <Button
                 size="large"

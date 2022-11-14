@@ -39,7 +39,7 @@ export default function MassyveCaseStudy() {
                   variant="contained"
                   color="primary"
                   size="large"
-                  href="https://shop.simmimballaggi.com/"
+                  href="https://massyvemusic.design/massyve-landing"
                   target="_blank"
                 >
                   {t('see-website')}
@@ -81,33 +81,37 @@ export default function MassyveCaseStudy() {
             >
               {t('massyve-result-description-1')}
               <br />
-              <Box width="100%">
+              <Box width="700px">
                 <NextImg
                   fill
                   alt="results before"
-                  src="/assets/images/results-before.png"
+                  src="/assets/images/massyve-results-before.png"
                   sx={{
                     marginBlock: 3,
                     objectFit: 'cover',
                     position: 'relative !important',
+                    borderRadius: 2,
                   }}
                 />
               </Box>
               <br />
-              {t('massyve-result-description-2')}
+              {tHtml('massyve-result-description-2')}
               <br />
               <br />
               {t('massyve-result-description-3')}
-              <NextImg
-                fill
-                alt="results before"
-                src="/assets/images/results-after.png"
-                sx={{
-                  marginBlock: 3,
-                  objectFit: 'cover',
-                  position: 'relative !important',
-                }}
-              />
+              <Box width="700px">
+                <NextImg
+                  fill
+                  alt="results after"
+                  src="/assets/images/massyve-results-after.png"
+                  sx={{
+                    marginBlock: 3,
+                    objectFit: 'cover',
+                    position: 'relative !important',
+                    borderRadius: 2,
+                  }}
+                />
+              </Box>
             </IconCard>
           </Stack>
         </Section>

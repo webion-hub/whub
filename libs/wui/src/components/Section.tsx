@@ -4,6 +4,7 @@ import { ChildrenProp } from '../abstractions/props/ChildrenProps';
 import { useOnScreen } from '../hooks/useOnScreen';
 import { useEffect, useRef } from 'react';
 import { useLayout } from './Layout';
+import { uniqueId } from 'lodash';
 
 const StyledSection = styled('section')(({ theme }) => ({
   paddingBlock: theme.spacing(8),
@@ -34,7 +35,7 @@ export function Section(props: SectionProps) {
   const sectionIn = useOnScreen(ref, {
     observeOptions: {
       rootMargin: '0px 0px -50% 0px',
-      threshold: 0.5,
+      threshold: 0,
     },
   });
   const { setSection } = useLayout();
@@ -51,13 +52,14 @@ export function Section(props: SectionProps) {
       ...props.backgroundSx,
     },
   };
+
   const backgroundSx = props.showBackground ? background : {};
 
   useEffect(() => {
     if (!sectionIn || props.ignoreSection) return;
 
-    setSection(props.id ?? '');
-  }, [sectionIn, props.id, props.ignoreSection]);
+    setSection(props.id ?? uniqueId());
+  }, [sectionIn]);
 
   return (
     <StyledSection

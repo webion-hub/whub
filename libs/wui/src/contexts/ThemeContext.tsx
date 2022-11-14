@@ -22,18 +22,27 @@ export interface ThemeWrapperProps {
 }
 
 export const ThemeWrapper = (props: ThemeWrapperProps) => {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const defaultTheme = prefersDarkMode ? 'dark' : 'light';
-
-  const [theme, setTheme] = useState<ThemeKeys>(defaultTheme);
+  const [theme, setTheme] = useState<ThemeKeys>('light');
 
   useEffect(() => {
     const localTheme = localStorage.getItem('theme');
+    const areNoSavedTheme = localTheme === 'null' || !localTheme
 
-    if (localTheme === 'null' || !localTheme) return;
-
-    updateTheme(localTheme as ThemeKeys);
+    const theme = areNoSavedTheme
+      ? getBrowserTheme()
+      : localTheme
+    updateTheme(theme as ThemeKeys);
   }, []);
+
+  const getBrowserTheme = () => {
+    const isDarkTheme = window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .matches
+
+    return isDarkTheme
+      ? 'dark'
+      : 'light'
+  }
 
   const updateTheme = (key: ThemeKeys) => {
     setTheme(key);

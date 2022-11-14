@@ -3,6 +3,10 @@ import { darkTheme } from './getTheme';
 const globalStyle = {
   body: {
     overflow: 'overlay',
+    overflowX: 'hidden',
+    // '@media not all and (min-resolution:.001dpcm)': {
+    //   overflow: '-webkit-paged-y',
+    // },
     transitionProperty: 'background-color',
     transitionDuration: '.4s',
   },
