@@ -1,6 +1,6 @@
 import { Divider, Stack, SxProps, Theme } from '@mui/material';
 import { MaybeShow } from '@whub/wui';
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
 
 interface ChosenByProps {
   readonly children: ReactNode;
@@ -10,6 +10,7 @@ interface ChosenByProps {
 }
 
 export function ChosenBy(props: ChosenByProps) {
+  const containerRef = useRef<HTMLDivElement>();
   return (
     <>
       <Stack
@@ -17,36 +18,36 @@ export function ChosenBy(props: ChosenByProps) {
         alignItems="center"
         justifyContent="center"
         spacing={5}
+        ref={containerRef}
         sx={{
-          maxWidth: '100%',
-          width: '100%',
-          overflow: 'initial',
-          ...props.sx,
+          width: 'auto',
+
           '@keyframes infinite-slide': {
             from: {
-              transform: 'translateX(100%)',
+              transform: 'translateX(0%)',
             },
             to: {
-              transform: 'translateX(-100%)',
+              transform: 'translate(-25%)',
             },
           },
-          animationName: 'infinite-slide',
-          animationIterationCount: 'infinite',
-          animationTimingFunction: 'linear',
+          animation: 'infinite-slide 10s linear infinite',
+          filter: (theme) =>
+            theme.palette.mode === 'dark' ? 'unset' : 'invert(1)',
+          ...props.sx,
         }}
       >
         <Stack
           direction="row"
           alignItems="center"
           justifyContent="space-evenly"
-          flexWrap="wrap"
+          flexWrap="nowrap"
           sx={{
             '& > *': {
-              margin: 2,
+              marginInline: 9,
+              marginBlock: 1.5,
               filter: props.blackAndWhite ? 'grayscale(100%)' : 'none',
             },
             position: 'relative',
-            width: '100%',
             paddingTop: { xs: 1, md: 0 },
           }}
         >

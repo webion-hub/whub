@@ -108,7 +108,6 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
       theme.palette.layout?.appbar ?? theme.palette.primary.main;
 
     const isHome = currentSection === 'home';
-    console.log(currentSection);
 
     return (
       <AppBar

@@ -3,6 +3,8 @@ import { darkTheme } from './getTheme';
 const globalStyle = {
   body: {
     overflow: 'overlay',
+    transitionProperty: 'background-color',
+    transitionDuration: '.4s',
   },
   '&::-webkit-scrollbar': {
     width: '4px',

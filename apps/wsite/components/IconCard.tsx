@@ -100,21 +100,21 @@ export function WebionCard(props: BaseProps) {
     >
       <Box
         sx={{
-          content: "''",
-          display: show ? 'block' : 'none',
           position: 'absolute',
           pointerEvents: 'none',
-          transform: `translate(${pos.x}px, ${pos.y}px)`,
-          width: 0,
-          height: 0,
+          width: 600,
+          aspectRatio: '1',
           left: 0,
           top: 0,
-          boxShadow: (theme) =>
-            `0px 0px 1200px 60px ${
-              theme.palette.mode == 'dark'
-                ? alpha(theme.palette.secondary.main, 0.2)
-                : alpha(theme.palette.primary.main, 0.3)
-            }`,
+          background: (theme) =>
+            `radial-gradient(circle, ${alpha(
+              theme.palette.secondary.main,
+              0.2
+            )} 0%, ${alpha(theme.palette.secondary.main, 0)} 50%)`,
+        }}
+        style={{
+          transform: `translate(-50%, -50%) translate(${pos.x}px, ${pos.y}px)`,
+          display: show ? 'block' : 'none',
         }}
       />
       {props.children}

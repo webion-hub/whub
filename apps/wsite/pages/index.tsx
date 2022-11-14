@@ -48,70 +48,21 @@ export default function Homepage() {
           id="chosen-by"
           ignoreSection
           maxWidth="100%"
-          sx={{ paddingBlock: 4 }}
+          sx={{
+            paddingBlock: 4,
+            overflow: 'hidden',
+            '::-webkit-scrollbar': {
+              display: 'none',
+            },
+            width: 'auto',
+            position: 'relative',
+          }}
         >
           <ChosenBy blackAndWhite>
-            <Tooltip title="Bocconi">
-              <NextImg
-                auto
-                height="28px"
-                sizes="25vw"
-                alt="bocconi"
-                src="/assets/images/clients/bocconi.png"
-                sx={{
-                  userDrag: 'none',
-                }}
-              />
-            </Tooltip>
-            <NextImg
-              auto
-              height="28px"
-              sizes="25vw"
-              alt="kaire"
-              src="/assets/images/clients/kaire.png"
-            />
-            <NextImg
-              auto
-              height="28px"
-              sizes="25vw"
-              alt="simm"
-              src="/assets/images/clients/simm.png"
-            />
-            <NextImg
-              auto
-              height="28px"
-              sizes="25vw"
-              alt="LCI Agency"
-              src="/assets/images/clients/lci-agency.png"
-            />
-            <NextImg
-              auto
-              height="28px"
-              sizes="25vw"
-              alt="mentorz"
-              src="/assets/images/clients/mentorz.png"
-            />
-            <NextImg
-              auto
-              height="28px"
-              sizes="25vw"
-              alt="massyve"
-              src="/assets/images/clients/massyve.png"
-            />
-            <NextImg
-              auto
-              height="28px"
-              sizes="25vw"
-              alt="cody"
-              src="/assets/images/clients/cody.png"
-            />
-            <NextImg
-              auto
-              height="28px"
-              sizes="25vw"
-              alt="The Pink Palace"
-              src="/assets/images/clients/pink-palace.png"
-            />
+            <ClientLogos />
+            <ClientLogos />
+            <ClientLogos />
+            <ClientLogos />
           </ChosenBy>
         </Section>
         <Section id="who-we-are">
@@ -202,5 +153,70 @@ export default function Homepage() {
         </Section>
       </Sections>
     </Page>
+  );
+}
+export function ClientLogos() {
+  return (
+    <>
+      <NextImg
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="bocconi"
+        src="/assets/images/clients/bocconi.png"
+        sx={{
+          userDrag: 'none',
+        }}
+      />
+      <NextImg
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="kaire"
+        src="/assets/images/clients/kaire.png"
+      />
+      <NextImg
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="simm"
+        src="/assets/images/clients/simm.png"
+      />
+      <NextImg
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="LCI Agency"
+        src="/assets/images/clients/lci-agency.png"
+      />
+      <NextImg
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="mentorz"
+        src="/assets/images/clients/mentorz.png"
+      />
+      <NextImg
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="massyve"
+        src="/assets/images/clients/massyve.png"
+      />
+      <NextImg
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="cody"
+        src="/assets/images/clients/cody.png"
+      />
+      <NextImg
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="The Pink Palace"
+        src="/assets/images/clients/pink-palace.png"
+      />
+    </>
   );
 }

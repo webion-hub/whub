@@ -54,7 +54,6 @@ export function Section(props: SectionProps) {
   const backgroundSx = props.showBackground ? background : {};
 
   useEffect(() => {
-    console.log(sectionIn);
     if (!sectionIn || props.ignoreSection) return;
 
     setSection(props.id ?? '');

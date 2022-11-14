@@ -95,6 +95,8 @@ export default function MassyveCaseStudy() {
               </Box>
               <br />
               {t('massyve-result-description-2')}
+              <br />
+              <br />
               {t('massyve-result-description-3')}
               <NextImg
                 fill
