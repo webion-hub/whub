@@ -22,7 +22,7 @@
   "service3": "Industry 4.0",
 
   "service1-desc": "Beautiful custom <span class='dim'>websites</span><br/>for your business.",
-  "service2-desc": "Optimized mobile <span class='dim'>apps</span>.",
+  "service2-desc": "Modern <span class='dim'> mobile apps</span>.",
   "service3-desc": "Software solution for <br/><span class='dim'>Industry 4.0</span>",
 
   "contact-us": "Contact us",
@@ -42,7 +42,7 @@
   "service3-card-title": "Industry 4.0",
 
   "service1-card-desc": "Design and creation of static and dynamic websites and creation of web applications (PWA), with management of both the frontend and the backend.",
-  "service2-card-desc": "Our offer includes the creation of mobile applications with cross-platform frameworks such as Flutter.",
+  "service2-card-desc": "Our offer includes the creation of mobile applications with cross-platform frameworks such as Flutter, or with native technologies (Kotlin and Swift).",
   "service3-card-desc": "Development of solutions for the collection, manipulation and monitoring of real-time and historicized data, mainly using C # and Angular.",
 
   "process": "Our Process",
@@ -57,7 +57,7 @@
   "process3-desc": "We start the development process, making sure to stay in touch with you, so as not go outside of what was agreed upon.",
   "process4-desc": "After a final response we deliver the finished product, remaining available for after-sales assistance.",
 
-  "quote-title": "<b>Get a free quote!</b>",
+  "quote-title": "<b>Discover how we can help!</b>",
   "quote-desc": "Get in touch and we will answer you in 24 hours. We will schedule a call to see how we can help.",
 
   "faq": "Frequently asked questions",
@@ -79,9 +79,9 @@
   "here": "here",
 
   "website": "Websites",
-  "website-page-title": "We create custom websites for your business.",
-  "website-page-description": "We understand that your website is an important reflection of your business. That's why we take the time to get to know you and your company before we start work on your project<br/><br/>We'll learn about your products or services, your target audience, and your goals for the site. With this information in hand, we'll be able to create a custom website that is both visually appealing and effective in meeting your needs.<br/><br/>In addition, our team of experienced designers will work with you throughout the process to ensure that the finished product is exactly what you had in mind.",
-  "why-website": "Why every business need a website.",
+  "website-page-title": "Custom websites",
+  "website-page-description": "We understand that your website is an important reflection of your business. That's why we take the time to get to know you and your company before we start work on your project<br/><br/>We'll learn about your products or services, your target audience, and your goals for the site. With this information in hand, we'll be able to create a custom website that is both visually appealing and effective in meeting your needs.",
+  "why-website": "Why every business need a great website.",
   "website-reason-1": "of users admit to making judgments about a company's credibility based on their website design",
   "website-reason-2": "of B2b customers search the web before making a purchase",
   "website-reason-3": "of website users' first impressions are related to the design",
@@ -101,11 +101,11 @@
   "website-feature-6-description": "Writing copy that sells can be a tough nut to crack. You want your words to be persuasive, but not pushy; Informative, but not boring. It's a delicate balance, and one that's hard to achieve without years of practice. We take care of that for you.",
   "recent-project-title": "Our most recent work.",
   "simm-title": "SIMM IMballaggi",
-  "simm-short-description": "Construction, customization and sale of packaging machines and materials",
+  "simm-short-description": "E-commerce development for a construction, customization and sale of packaging machines and materials company",
 
   "app": "App IOS and Android",
-  "app-page-title": "We create modern apps.",
-  "app-page-description": "At Webion, we are passionate about creating apps that are not only useful, but also easy and fun to use. We believe that great design is essential to delivering a great user experience, so we take care to craft each app with a high level of attention and detail.<br/><br/>In short, we go the extra mile to create apps that our users will love.",
+  "app-page-title": "Modern apps.",
+  "app-page-description": "At Webion, we are passionate about creating apps that are not only useful, but also easy and fun to use. We believe that great design is essential to delivering a great user experience, so we take care to craft each app with a high level of attention and detail.<br/><br/>In short, we go the extra mile to create apps that our users will love.<br><br> Based on your needs, we can create applications with cross-platform frameworks such as Flutter, or native technologies such as Kotlin and Swift",
   "app-features": "Features",
   "app-features-title": "Some of the features of our apps.",
   "app-features-1-title": "Modern design",
@@ -122,7 +122,7 @@
   "app-features-6-description": "Our team understands how important it is to be able to access your data from anywhere, at any time. That's why we create apps that have multi-device synchronization built-in.",
 
   "industry": "Industry 4.0",
-  "industry-page-title": "We create software solutions for Industry 4.0.",
+  "industry-page-title": "Software solutions for Industry 4.0.",
   "industry-page-description": "At Webion, we create software solutions that enable companies to take advantage of this new industrial landscape. Our products help businesses to collect and utilize data more effectively, making their operations more efficient and reducing their costs. In addition, our solutions help businesses to better understand their customers and develop new products and services that meet their needs. We are proud to be at the forefront of this new industrial revolution, helping our clients to thrive in this new era.",
 
   "solutions": "solutions",
@@ -149,7 +149,7 @@
   "the-team": "The team",
   "front-end-cofounder": "Co-Founder & Frontend Developer",
   "back-end-cofounder": "Co-Founder & Backend Developer",
-  "back-end": "Backend Developer",
+  "back-end": "Fullstack Developer",
 
   "technologies": "TECHNOLOGIES",
   "technologies-title": "The technologies used.",
@@ -198,7 +198,7 @@
   "send": "Send",
 
   "case-study": "Case study",
-  "simm-study-title": "Packaging machines and materials",
+  "simm-study-title": "Custom e-commerce",
   "simm-study-description": "Simm Imballaggi is a company specialized in the construction, customization and sale of packaging machines and materials.The treated products are selected on the basis of careful and continuous monitoring of the national and international market, with the aim of constantly improving quality and technology.The quality of the service is the result of the maximum commitment that all the staff place on a daily basis, in order to always offer the best product and the utmost professionalism.",
 
   "simm-problem-title": "The problem.",
@@ -211,7 +211,7 @@
 
   "kaire-title": "Kaire Automation",
   "kaire-study-title": "Industrial automation",
-  "kaire-study-description": "Kaire was born in 2015 from the will and professional skills of a group of technicians with twenty years of experience in the field of automation and industrial process controls. <br/> <br/> At the beginning of this year, a strong and lasting collaboration was born between Kaire and Webion for the development of a series of products for Industry 4.0.",
+  "kaire-study-description": "Kaire was born in 2015 from the will and professional skills of a group of technicians with twenty years of experience in the field of automation and industrial process controls. <br/> <br/> At the beginning of this year, a strong and lasting collaboration was born between Kaire and Webion for the <b>development of a series of products for Industry 4.0.</b>",
   "kaire-short-description": "Kaire is an industrial automation company located in Modena.",
 
   "kaire-problem-title": "The problem",
@@ -243,5 +243,6 @@
 
   "cookies": "This site uses cookies to improve your experience.",
   "decline": "Decline",
-  "accept": "Accept"
+  "accept": "Accept",
+  "policies": "Policies & licenses"
 }

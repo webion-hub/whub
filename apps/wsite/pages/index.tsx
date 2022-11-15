@@ -165,7 +165,8 @@ export function ClientLogos() {
         alt="bocconi"
         src="/assets/images/clients/bocconi.png"
         sx={{
-          userDrag: 'none',
+          userDrag: 'unset',
+          userSelect: 'none',
         }}
       />
       <NextImg
@@ -174,6 +175,10 @@ export function ClientLogos() {
         sizes="25vw"
         alt="kaire"
         src="/assets/images/clients/kaire.png"
+        sx={{
+          userDrag: 'unset',
+          userSelect: 'none',
+        }}
       />
       <NextImg
         auto
@@ -181,6 +186,10 @@ export function ClientLogos() {
         sizes="25vw"
         alt="simm"
         src="/assets/images/clients/simm.png"
+        sx={{
+          userDrag: 'unset',
+          userSelect: 'none',
+        }}
       />
       <NextImg
         auto
@@ -188,6 +197,10 @@ export function ClientLogos() {
         sizes="25vw"
         alt="LCI Agency"
         src="/assets/images/clients/lci-agency.png"
+        sx={{
+          userDrag: 'unset',
+          userSelect: 'none',
+        }}
       />
       <NextImg
         auto
@@ -195,6 +208,10 @@ export function ClientLogos() {
         sizes="25vw"
         alt="mentorz"
         src="/assets/images/clients/mentorz.png"
+        sx={{
+          userDrag: 'unset',
+          userSelect: 'none',
+        }}
       />
       <NextImg
         auto
@@ -202,6 +219,10 @@ export function ClientLogos() {
         sizes="25vw"
         alt="massyve"
         src="/assets/images/clients/massyve.png"
+        sx={{
+          userDrag: 'unset',
+          userSelect: 'none',
+        }}
       />
       <NextImg
         auto
@@ -209,6 +230,10 @@ export function ClientLogos() {
         sizes="25vw"
         alt="cody"
         src="/assets/images/clients/cody.png"
+        sx={{
+          userDrag: 'unset',
+          userSelect: 'none',
+        }}
       />
       <NextImg
         auto
@@ -216,6 +241,10 @@ export function ClientLogos() {
         sizes="25vw"
         alt="The Pink Palace"
         src="/assets/images/clients/pink-palace.png"
+        sx={{
+          userDrag: 'unset',
+          userSelect: 'none',
+        }}
       />
     </>
   );

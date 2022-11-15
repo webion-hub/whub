@@ -20,7 +20,7 @@ import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 
 export default function Industry() {
   const { clickNavigate } = useNextNavigator();
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
 
   return (
     <Page>
@@ -30,7 +30,7 @@ export default function Industry() {
             direction="row"
             label={t('industry')}
             title={t('industry-page-title')}
-            description={t('industry-page-description')}
+            description={tHtml('industry-page-description')}
             src="/assets/images/services/industry.jpg"
             alt="industry"
             actionComponent={

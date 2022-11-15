@@ -29,7 +29,7 @@ export function ChosenBy(props: ChosenByProps) {
               transform: 'translate(-25%)',
             },
           },
-          animation: 'infinite-slide 10s linear infinite',
+          animation: 'infinite-slide 16s linear infinite',
           animationDelay: '1s',
           filter: (theme) =>
             theme.palette.mode === 'dark' ? 'unset' : 'invert(1)',
