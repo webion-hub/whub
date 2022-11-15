@@ -31,7 +31,7 @@ import { darkTheme, lightTheme } from '../theme/getTheme';
 import { AppContext } from '@whub/apis-react';
 
 const contactUs = new ContactUsApi({
-  baseUrl: 'http://localhost:5181/contactus', //'https://webion.it/contactus',
+  baseUrl: 'https://api.webion.it/contactus',
   withCredentials: true,
 });
 
