@@ -1,5 +1,5 @@
 import { HelpRounded } from '@mui/icons-material';
-import { alpha, Link, Stack, Tooltip, useTheme } from '@mui/material';
+import { alpha, Link, Stack, useTheme } from '@mui/material';
 import { ChosenBy, Faq } from '@whub/page-sections';
 import {
   NextImg,

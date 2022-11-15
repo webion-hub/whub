@@ -6,7 +6,7 @@ import {
   FactoryRounded,
   KeyboardArrowDownRounded,
   PhoneIphoneRounded,
-  PublicRounded
+  PublicRounded,
 } from '@mui/icons-material';
 import {
   Button,
@@ -14,7 +14,7 @@ import {
   ListItemText,
   Menu,
   MenuItem,
-  useTheme
+  useTheme,
 } from '@mui/material';
 import {
   AppBar,
@@ -27,7 +27,7 @@ import {
   SideBarButton,
   useLanguage,
   useLayout,
-  useNextNavigator
+  useNextNavigator,
 } from '@whub/wui';
 
 function ServicesButton() {
@@ -72,7 +72,11 @@ function ServicesButton() {
         {t('navbar-button2')}
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={navigate('/services/websites')} sx={listItemSx}>
+        <MenuItem
+          onClick={navigate('/services/websites')}
+          sx={listItemSx}
+          selected={false}
+        >
           <ListItemIcon>
             <DevicesRounded color="primary" />
           </ListItemIcon>

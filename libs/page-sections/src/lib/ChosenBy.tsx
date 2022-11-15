@@ -21,7 +21,6 @@ export function ChosenBy(props: ChosenByProps) {
         ref={containerRef}
         sx={{
           width: 'auto',
-
           '@keyframes infinite-slide': {
             from: {
               transform: 'translateX(0%)',
@@ -31,8 +30,10 @@ export function ChosenBy(props: ChosenByProps) {
             },
           },
           animation: 'infinite-slide 10s linear infinite',
+          animationDelay: '1s',
           filter: (theme) =>
             theme.palette.mode === 'dark' ? 'unset' : 'invert(1)',
+
           ...props.sx,
         }}
       >
