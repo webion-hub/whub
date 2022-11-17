@@ -73,18 +73,39 @@ export function WebionCard(props: BaseProps) {
   const [pos, setPos] = useState<Coords>({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>();
 
+   const moveLight = (coords: Coords) => {
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = coords.x - rect.x;
+    const y = coords.y - rect.y;
+
+    setPos({ x, y });
+   } 
+
+  const mouseMoveLight = (e: any) => {
+    moveLight({
+      x: e.clientX,
+      y: e.clientY,
+    })
+  }
+
+  const touchMoveLight = (e: any) => {
+    const touch = e.touches[0] || e.changedTouches[0]
+
+    moveLight({
+      x: touch.clientX,
+      y: touch.clientY,
+    })
+  }
+
   return (
     <Card
       ref={cardRef}
+      onTouchStart={() => setShow(true)}
+      onTouchEnd={() => setShow(false)}
+      onTouchMove={touchMoveLight}
       onMouseLeave={() => setShow(false)}
       onMouseEnter={() => setShow(true)}
-      onMouseMove={(e) => {
-        const rect = cardRef.current.getBoundingClientRect();
-        const x = e.clientX - rect.x;
-        const y = e.clientY - rect.y;
-
-        setPos({ x, y });
-      }}
+      onMouseMove={mouseMoveLight}
       sx={{
         position: 'relative',
         minWidth: { xs: '100%', md: 350 },
