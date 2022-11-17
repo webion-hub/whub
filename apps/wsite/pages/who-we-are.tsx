@@ -191,12 +191,12 @@ function Member(props: MemberProps) {
           borderRadius: '100%',
           border: (theme) => `4px solid ${theme.palette.primary.main}`,
           overflow: 'hidden',
-          '&:hover > .WUI-member--video': {
-            opacity: '1 !important',
-          },
-          '&:hover > .WUI-member--avatar': {
-            opacity: 0,
-          },
+          // '&:hover > .WUI-member--video': {
+          //   opacity: '1 !important',
+          // },
+          // '&:hover > .WUI-member--avatar': {
+          //   opacity: 0,
+          // },
         }}
       >
         <Box

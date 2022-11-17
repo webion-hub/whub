@@ -100,7 +100,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
             }}
           >
             <CssBaseline />
-            <GlobalStyles styles={globalStyle} />
+            <GlobalStyles styles={globalStyle}></GlobalStyles>
             <CookiePopup
               usePixel
               name="webion"

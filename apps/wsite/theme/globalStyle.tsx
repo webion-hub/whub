@@ -3,7 +3,7 @@ import { darkTheme } from './getTheme';
 const globalStyle = {
   body: {
     overflow: 'overlay',
-    overflowX: 'hidden',
+    //overflowX: 'hidden',
     // '@media not all and (min-resolution:.001dpcm)': {
     //   overflow: '-webkit-paged-y',
     // },
