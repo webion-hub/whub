@@ -1,4 +1,3 @@
-import { ContactUsRequest } from "../requests/ContactUsRequest";
 import { Endpoint } from "@whub/apis-core";
 
 export class ContactUsEndpoint extends Endpoint {
@@ -6,7 +5,7 @@ export class ContactUsEndpoint extends Endpoint {
     return '';
   }
 
-  process(request: ContactUsRequest) {
+  process<T>(request: T) {
     return this.client.post<void>('', request);
   }
 }

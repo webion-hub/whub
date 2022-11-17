@@ -81,7 +81,7 @@ export default function MassyveCaseStudy() {
             >
               {t('massyve-result-description-1')}
               <br />
-              <Box width="700px">
+              <Box maxWidth={700} position="relative">
                 <NextImg
                   fill
                   alt="results before"
@@ -99,7 +99,7 @@ export default function MassyveCaseStudy() {
               <br />
               <br />
               {t('massyve-result-description-3')}
-              <Box width="700px">
+              <Box maxWidth={700} position="relative">
                 <NextImg
                   fill
                   alt="results after"

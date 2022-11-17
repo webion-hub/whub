@@ -6,7 +6,8 @@ import {
   LinkedIn,
   PhoneRounded,
 } from '@mui/icons-material';
-import { CssBaseline, GlobalStyles } from '@mui/material';
+import { CssBaseline } from '@mui/material';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { ContactUsApi } from '@whub/apis-contactus';
 import {
   CookiePopup,
@@ -31,7 +32,7 @@ import { darkTheme, lightTheme } from '../theme/getTheme';
 import { AppContext } from '@whub/apis-react';
 
 const contactUs = new ContactUsApi({
-  baseUrl: 'http://localhost:5181/contactus', //'https://webion.it/contactus',
+  baseUrl: 'https://api.webion.it/contactus',
   withCredentials: true,
 });
 
@@ -100,7 +101,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
             }}
           >
             <CssBaseline />
-            <GlobalStyles styles={globalStyle}></GlobalStyles>
+            <GlobalStyles styles={globalStyle as any} />
             <CookiePopup
               usePixel
               name="webion"

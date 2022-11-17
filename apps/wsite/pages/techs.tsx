@@ -5,7 +5,6 @@ import { GetAQuoteSection } from '../components/sections/GetAQuote';
 
 export default function Techs() {
   const { t } = useLanguage();
-
   return (
     <Page>
       <Sections>
