@@ -2,7 +2,7 @@ import { EmojiObjectsRounded, ReportProblemRounded } from '@mui/icons-material';
 import { Typography, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import { Page, Section, Sections, useLanguage } from '@whub/wui';
-import { IconCard } from '../../components/IconCard';
+import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 

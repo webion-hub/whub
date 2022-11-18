@@ -17,7 +17,7 @@ import {
 } from '@whub/wui';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 import { CardGroup } from '../../components/CardGroup';
-import { IconCard } from '../../components/IconCard';
+import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 
 export default function Apps() {

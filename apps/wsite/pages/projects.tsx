@@ -7,7 +7,7 @@ import {
   useNextNavigator
 } from '@whub/wui';
 import { CardGroup } from '../components/CardGroup';
-import { ImageCard, ImageCardProps } from '../components/IconCard';
+import { ImageCard, ImageCardProps } from '../components/cards/ImageCard';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
 
 interface ProjectProps extends ImageCardProps {

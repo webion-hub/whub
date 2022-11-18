@@ -8,7 +8,7 @@ import { useLanguage, useNextNavigator } from '@whub/wui';
 
 import { useRef } from 'react';
 import { CardGroup } from '../CardGroup';
-import { IconCard } from '../IconCard';
+import { IconCard } from '../cards/IconCard';
 
 export default function Services() {
   const ref = useRef();

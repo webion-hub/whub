@@ -14,7 +14,7 @@ import {
 } from '@whub/wui';
 import { CaseStudyLink } from '../../components/CaseStudyLink';
 import { CardGroup } from '../../components/CardGroup';
-import { IconCard } from '../../components/IconCard';
+import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 

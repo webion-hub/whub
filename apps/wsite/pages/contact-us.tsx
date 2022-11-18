@@ -1,64 +1,11 @@
-import {
-  BusinessRounded,
-  DevicesRounded,
-  FactoryRounded,
-  PersonRounded,
-  PhoneIphoneRounded,
-  QuestionMarkRounded,
-  StoreRounded,
-} from '@mui/icons-material';
+import { BusinessRounded, DevicesRounded, FactoryRounded, PersonRounded, PhoneIphoneRounded, QuestionMarkRounded, StoreRounded } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
-import {
-  Button,
-  CardActionArea,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useContactUs } from '@whub/apis-react';
-import {
-  MaybeShow,
-  Page,
-  PrivacyCheckBox,
-  Section,
-  Sections,
-  useLanguage,
-  useNextNavigator,
-  Validator,
-  Validators,
-} from '@whub/wui';
+import { MaybeShow, Page, PrivacyCheckBox, Section, Sections, useLanguage, useNextNavigator, Validator, Validators } from '@whub/wui';
 import _ from 'lodash';
 import { ReactNode, useState } from 'react';
-import { WebionCard } from '../components/IconCard';
-
-interface SelectableCardProps {
-  readonly selected: boolean;
-  readonly children: ReactNode;
-  readonly onSelect: () => void;
-}
-
-function SelectableCard(props: SelectableCardProps) {
-  return (
-    <WebionCard
-      sx={{
-        borderColor: (theme) =>
-          props.selected
-            ? theme.palette.primary.main + ' !important'
-            : undefined,
-      }}
-    >
-      <CardActionArea
-        onClick={props.onSelect}
-        sx={{
-          backgroundColor: (theme) =>
-            props.selected ? theme.palette.primary.main : 'inherit',
-        }}
-      >
-        {props.children}
-      </CardActionArea>
-    </WebionCard>
-  );
-}
+import { SelectableCard } from '../components/cards/SelectableCard';
 
 interface CardOptionProps {
   readonly selected: boolean;

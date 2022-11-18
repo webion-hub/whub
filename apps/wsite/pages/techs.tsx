@@ -1,6 +1,6 @@
 import { NextImg, Page, Section, Sections, useLanguage } from '@whub/wui';
 import { CardGroup } from '../components/CardGroup';
-import { IconCard } from '../components/IconCard';
+import { IconCard } from '../components/cards/IconCard';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
 
 export default function Techs() {

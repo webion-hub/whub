@@ -26,7 +26,7 @@ import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { interval, take } from 'rxjs';
 import { CardGroup } from '../../components/CardGroup';
-import { IconCard } from '../../components/IconCard';
+import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { CaseStudyLink } from '../../components/CaseStudyLink';
 
