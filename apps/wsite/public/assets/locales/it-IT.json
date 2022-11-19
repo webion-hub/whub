@@ -22,7 +22,7 @@
   "service3": "Industria 4.0",
 
   "service1-desc": "<span class='dim'>Siti web</span> personalizzati<br/>per la tua azienda.",
-  "service2-desc": "<span class='dim'>Applicazioni per smartphone</span><br/>avanzate.",
+  "service2-desc": "<span class='dim'>Applicazioni moderne</span><br/>per smartphone.",
   "service3-desc": "Soluzioni software per <br/><span class='dim'>Industria 4.0</span>",
 
   "contact-us": "Contattaci",
@@ -32,7 +32,7 @@
 
   "who-we-are": "Chi siamo",
   "who-we-are-title": "Azienda di sviluppo software personalizzato",
-  "who-we-are-desc": "Forniamo servizi di sviluppo software personalizzati. Realizziamo software personalizzati per privati, startup e piccole e medie imprese.<br /><br />Il nostro team ha la competenza e l&apos;esperienza per portare a termine il lavoro nel modo giusto, nei tempi e nel budget.",
+  "who-we-are-desc": "Forniamo servizi di sviluppo software personalizzato. Realizziamo software personalizzato per privati, startup e piccole e medie imprese.<br /><br />Il nostro team ha la competenza e l&apos;esperienza per portare a termine il lavoro nel modo giusto, nei tempi e nel budget.",
 
   "services": "Servizi",
   "services-title": "I nostri servizi.",
@@ -42,7 +42,7 @@
   "service3-card-title": "Industria 4.0",
 
   "service1-card-desc": "Progettazione e realizzazione di siti web statici e dinamici e realizzazione di applicazioni web (PWA), con gestione sia del frontend che del backend.",
-  "service2-card-desc": "Creazione di applicazioni mobili con framework multipiattaforma come Flutter.",
+  "service2-card-desc": "Creazione di applicazioni mobili con framework multipiattaforma come Flutter, o con tecnologie native (Kotlin e Swift).",
   "service3-card-desc": "Sviluppo di soluzioni per la raccolta, manipolazione e monitoraggio di dati in tempo reale e storicizzati, utilizzando principalmente C# e Angular.",
 
   "process": "Il nostro processo",
@@ -57,7 +57,7 @@
   "process3-desc": "Iniziamo il processo di sviluppo, assicurandoci di rimanere in contatto con te, per non andare al di fuori di quanto concordato.",
   "process4-desc": "Dopo una risposta finale consegniamo il prodotto finito, rimanendo a disposizione per l'assistenza post vendita.",
 
-  "quote-title": "<strong>Richiedi un preventivo gratuito!</strong>",
+  "quote-title": "<strong>Scopri come possiamo aiutarti!</strong>",
   "quote-desc": "Contattaci e ti risponderemo in 48 ore. Pianificheremo una chiamata per vedere come possiamo aiutarti.",
 
   "faq": "Domande frequenti",
@@ -72,42 +72,42 @@
   "faq-q5": "Quanto tempo ci vuole per creare un software personalizzato?",
   "faq-a5": "La quantità di tempo necessaria per creare un software personalizzato dipende da una varietà di fattori, <strong>dalle dimensioni e complessità del progetto</strong> alle risorse e all'esperienza del team di sviluppo. Nella maggior parte dei casi, i piccoli progetti possono essere completati nel giro di poche settimane, mentre lo sviluppo di applicazioni più grandi e complesse può richiedere diversi mesi o addirittura anni.<br><br>Non esiste una risposta univoca a questa domanda, poiché i tempi di sviluppo di ogni progetto varieranno in base ai suoi requisiti unici. Tuttavia, in generale, è importante prevedere almeno alcuni mesi di tempo di sviluppo quando si pianifica un progetto software personalizzato. Ciò contribuirà a garantire che il tuo progetto raggiunga la scadenza ed eviti ritardi imprevisti.",
   "faq-q6": "Che controllo hai sullo sviluppo del progetto?",
-  "faq-a6": "<strong>Sarai in grado di monitorare il processo</strong>attraverso chiamate e riunioni regolari, monitorare lo stato delle tue attività man mano che avanzano.",
+  "faq-a6": "<strong>Sarai in grado di monitorare il processo</strong> attraverso chiamate e riunioni regolari, monitorare lo stato delle tue attività man mano che avanzano.",
   "forget-anything": "Ci siamo persi la tua domanda?",
   "send-a-message": "Mandaci un messaggio",
-  "answer-in-48h": "e ti risponderemo in 48ore.",
+  "answer-in-48h": "e ti risponderemo in 48 ore.",
   "here": "qui",
 
   "website": "Siti web",
-  "website-page-title": "Realizziamo siti web personalizzati per la tua attività.",
-  "website-page-description": "Comprendiamo che il tuo sito web è molto più di un biglietto da visita per la tua attività. Ecco perché ci prendiamo il tempo per conoscere te e la tua azienda prima di iniziare a lavorare al tuo progetto.<br/><br/>Impareremo a conoscere i tuoi prodotti o servizi, il tuo pubblico di destinazione e i tuoi obiettivi per il sito. Con queste informazioni in mano, saremo in grado di creare un sito Web personalizzato che sia visivamente accattivante ed efficace nel soddisfare le tue esigenze.<br/><br/>‍Inoltre, il nostro team di designer esperti lavorerà con te durante tutto il processo per garantire che il prodotto finito sia esattamente quello che avevi in mente.",
-  "why-website": "Perché ogni azienda ha bisogno di un sito web.",
+  "website-page-title": "Siti web personalizzati",
+  "website-page-description": "Comprendiamo che il tuo sito web è molto più di un biglietto da visita per la tua attività. Ecco perché ci prendiamo il tempo per conoscere te e la tua azienda prima di iniziare a lavorare al tuo progetto.<br/><br/>Impareremo a conoscere i tuoi prodotti o servizi, il tuo pubblico di destinazione e i tuoi obiettivi per il sito. Con queste informazioni in mano, saremo in grado di creare un sito Web personalizzato che sia visivamente accattivante ed efficace nel soddisfare le tue esigenze.",
+  "why-website": "Perché ogni azienda ha bisogno di un buon sito web.",
   "website-reason-1": "degli utenti ammette di esprimere giudizi sulla credibilità di un'azienda in base al design del proprio sito web",
-  "website-reason-2": "dei clienti B2b effettua una ricerca sul web prima di effettuare un acquisto",
+  "website-reason-2": "dei clienti B2B effettua una ricerca sul web prima di effettuare un acquisto",
   "website-reason-3": "delle prime impressioni degli utenti del sito web sono legate al design",
-  "website-features": "caratteristiche",
-  "website-features-title": "Alcune delle caratteristiche dei nostri siti web.",
+  "website-features": "vantaggi",
+  "website-features-title": "Alcuni vantaggi dei nostri siti web.",
   "website-feature-1-title": "Design moderno",
   "website-feature-1-description": "Il nostro team di sviluppatori web e designer crea siti web non solo esteticamente gradevoli, ma anche user-friendly e facili da navigare. Comprendiamo che le prime impressioni sono importanti e i nostri siti Web lo riflettono.",
   "website-feature-2-title": "Personalizzazione",
   "website-feature-2-description": "Capiamo che ogni azienda è unica. Ecco perché offriamo servizi di progettazione di siti Web personalizzati per soddisfare le esigenze specifiche dei nostri clienti.",
   "website-feature-3-title": "Ottimizzato per smartphone",
-  "website-feature-3-description": "Nel mondo di oggi, sempre più persone utilizzano telefoni e tablet per accedere a Internet. Ecco perché i nostri siti Web sono reattivi e ottimizzati per i dispositivi mobili.",
+  "website-feature-3-description": "Nel mondo di oggi, sempre più persone utilizzano telefoni e tablet per accedere a Internet. Ecco perché i nostri siti Web sono responsive e ottimizzati per i dispositivi mobili.",
   "website-feature-4-title": "A/B testing",
-  "website-feature-4-description": "Il test A/B è una tecnica utilizzata per confrontare due versioni di una pagina Web per vedere quale funziona meglio. Eseguendo i test A/B sul tuo sito web, puoi perfezionare il tuo design, i contenuti e il tasso di conversione per assicurarti che il tuo sito faccia sempre progressi.",
+  "website-feature-4-description": "L'A/B testing è una tecnica utilizzata per confrontare due versioni di una pagina Web per vedere quale funziona meglio. Eseguendo A/B testing sul tuo sito web, possiamo perfezionare il tuo design, i contenuti e il tasso di conversione per assicurarti che il tuo sito faccia sempre progressi.",
   "website-feature-5-title": "SEO",
   "website-feature-5-description": "I nostri siti Web sono ottimizzati per i motori di ricerca, rendendo più facile per i clienti trovarti online. Oltre alla SEO, offriamo anche una varietà di altri servizi di marketing per aiutarti a promuovere la tua attività online.",
   "website-feature-6-title": "Copywriting",
-  "website-feature-6-description": "Scrivere una copia che vende può essere difficile da decifrare. Vuoi che le tue parole siano persuasive, ma non invadenti; Informativo, ma non noioso. È un equilibrio delicato, difficile da raggiungere senza anni di pratica. Ce ne occupiamo noi per te.",
+  "website-feature-6-description": "Scrivere del testo che vende può essere difficile. Vuoi che le tue parole siano persuasive, ma non invadenti; Informative, ma non noiose. È un equilibrio delicato, difficile da raggiungere senza anni di pratica. Per questo ce ne occupiamo noi per te.",
   "recent-project-title": "Un progetto recente",
   "simm-title": "SIMM IMballaggi",
-  "simm-short-description": "Costruzione, personalizzazione e vendita di macchine e materiali per imballaggio",
+  "simm-short-description": "Sviluppo e-commerce per azienda di costruzione, personalizzazione e vendita di macchine e materiali per imballaggio",
 
   "app": "App ios & Android",
-  "app-page-title": "Creiamo applicazioni moderne",
-  "app-page-description": "In Webion, creaiamo app che non sono solo utili, ma anche facili e divertenti da usare. Riteniamo che un ottimo design sia essenziale per offrire un'esperienza utente eccezionale, quindi ci prendiamo cura di realizzare ogni app con un alto livello di attenzione e dettaglio. In breve, facciamo il possibile per creare app che i tuoi utenti adoreranno.",
-  "app-features": "Funzionalità",
-  "app-features-title": "Alcune delle funzionalità delle nostre app.",
+  "app-page-title": "Applicazioni moderne",
+  "app-page-description": "In Webion, creaiamo app che non sono solo utili, ma anche facili e divertenti da usare. Riteniamo che un ottimo design sia essenziale per offrire un'esperienza utente eccezionale, quindi ci prendiamo cura di realizzare ogni app con un alto livello di attenzione e dettaglio. In breve, facciamo il possibile per creare app che i tuoi utenti adoreranno.<br><br> In base alle esigenze possiamo creare applicazioni con framework multipiattaforma come Flutter, o tecnologie native come Kotlin e Swift",
+  "app-features": "Vantaggi",
+  "app-features-title": "Alcuni vantaggi delle nostre app.",
   "app-features-1-title": "Design moderno",
   "app-features-1-description": "Crediamo che forma e funzionalità debbano andare di pari passo, motivo per cui il nostro team di esperti adotta un approccio olistico allo sviluppo di app.",
   "app-features-2-title": "Personalizzazione",
@@ -122,8 +122,8 @@
   "app-features-6-description": "Il nostro team comprende quanto sia importante poter accedere ai dati da qualsiasi luogo e in qualsiasi momento. Ecco perché creiamo app che sono multi-dispositivo.",
 
   "industry": "Industria 4.0",
-  "industry-page-title": "Creiamo soluzioni software per l'Industria 4.0.",
-  "industry-page-description": "In Webion creiamo soluzioni software che consentono alle aziende di trarre vantaggio da questo nuovo panorama industriale. I nostri prodotti aiutano le aziende a raccogliere e utilizzare i dati in modo più efficace, rendendo le loro operazioni più efficienti e riducendo i costi. Inoltre, le nostre soluzioni aiutano le aziende a comprendere meglio i propri clienti ed a sviluppare nuovi prodotti e servizi che soddisfino le loro esigenze. Siamo orgogliosi di essere in prima linea in questa nuova rivoluzione industriale, aiutando i nostri clienti a prosperare in questa nuova era.",
+  "industry-page-title": "Soluzioni software per l'Industria 4.0.",
+  "industry-page-description": "In Webion creiamo soluzioni software che consentono alle aziende di trarre vantaggio da questo nuovo panorama industriale. I nostri prodotti aiutano le aziende a <b>raccogliere e utilizzare i dati in modo più efficace</b>, rendendo le loro operazioni più efficienti e <b>riducendo i costi.</b><br><br> Inoltre, le nostre soluzioni aiutano le aziende a comprendere meglio i propri clienti ed a sviluppare nuovi prodotti e servizi che soddisfino le loro esigenze. Siamo orgogliosi di essere in prima linea in questa nuova rivoluzione industriale, aiutando i nostri clienti a prosperare in questa nuova era.",
 
   "solutions": "soluzioni",
   "industry-solutions-title": "Soluzioni tecnologiche per l'industria 4.0.",
@@ -149,7 +149,7 @@
   "the-team": "Il team",
   "front-end-cofounder": "Co-fondatore & Sviluppatore Frontend",
   "back-end-cofounder": "Co-fondatore & Sviluppatore Backend",
-  "back-end": "Sviluppatore Back-end",
+  "back-end": "Sviluppatore Full-stack",
 
   "technologies": "tecnologie",
   "technologies-title": "Le tecnologie che usiamo",
@@ -198,20 +198,20 @@
   "send": "Invia",
 
   "case-study": "Caso studio",
-  "simm-study-title": "Macchine e materiali per l'imballaggio",
+  "simm-study-title": "E-commerce personalizzato",
   "simm-study-description": "Simm Imballaggi è un'azienda specializzata nella costruzione, personalizzazione e vendita di macchine e materiali per il confezionamento. I prodotti trattati sono selezionati sulla base di un attento e continuo monitoraggio del mercato nazionale ed internazionale, con l'obiettivo di migliorare costantemente qualità e tecnologia.<br/><br/>La qualità del servizio è il risultato del massimo impegno che tutto il personale quotidianamente pone, al fine di offrire sempre il miglior prodotto e la massima professionalità.",
 
   "simm-problem-title": "Il problema",
   "simm-problem-description": "Il sito Web che avevano era obsoleto e non rifletteva i loro valori aziendali. Doveva cambiare per consentire loro non solo di acquisire nuovi clienti, ma anche di dare agli utenti un'idea di ciò che rende la loro attività così eccezionale!",
 
   "simm-solution-title": "La soluzione",
-  "simm-solution-description": "  Quando abbiamo riprogettato il loro sito web, si è modernizzato e ha iniziato a rispecchiare i valori di questa azienda. Anche l'esperienza dell'utente è migliorata in modo significativo, in modo che gli utenti siano più propensi ad acquistare da loro una volta che hanno visitato il sito Web!",
+  "simm-solution-description": "  Quando abbiamo riprogettato il loro sito web, si è modernizzato e ha iniziato a rispecchiare i valori di questa azienda. Anche l'esperienza dell'utente è migliorata in modo significativo, in questo modo gli utenti siano più propensi ad acquistare da loro una volta che hanno visitato il sito Web!",
 
   "collaboration-title": "Una collaborazione",
 
   "kaire-title": "Kaire Automation",
   "kaire-study-title": "Automazioni industriali",
-  "kaire-study-description": "Kaire nasce nel 2015 dalla volontà e dalle competenze professionali di un gruppo di tecnici con esperienza ventennale nell'ambito delle automazioni e dei controlli di processo industriali. <br/><br/> All'inizio di quest'anno tra Kaire e Webion è nata una forte e duratura collaborazione per lo sviluppo di una serie di prodotti per l'industria 4.0.",
+  "kaire-study-description": "Kaire nasce nel 2015 dalla volontà e dalle competenze professionali di un gruppo di tecnici con esperienza ventennale nell'ambito delle automazioni e dei controlli di processo industriali. <br/><br/> All'inizio di quest'anno tra Kaire e Webion è nata una forte e duratura collaborazione per <b>lo sviluppo di una serie di prodotti per l'industria 4.0.</b>",
   "kaire-short-description": "Kaire è un'azienda di automazione industriale localizzata a Modena.",
 
   "kaire-problem-title": "Il problema",
@@ -224,14 +224,15 @@
   "massyve-study-description": "Massyve è un produttore musicale professionista, sound designer con 15 anni di esperienza.  Nella sua carriera musicale ha lavorato con un'ampia varietà di artisti su molti generi musicali diversi. Ha prodotto per aziende come Tesla Motors e per Netflix Movies",
 
   "massyve-problem-title": "Il problema",
-  "massyve-problem-description": "Massyve stava cercando di ottenere nuovi clienti attraverso campagne di annunci su Google ma non stava ottenendo risultati. Spendeva molto in pubblicità ma nessuno lo stava contattando, a parte alcuni falsi utenti. Aveva una landing page che non era ottimizzata né per la grafica, né per la lighthouse e soprattutto non per le conversioni.",
+  "massyve-problem-description": "Massyve stava cercando di ottenere nuovi clienti attraverso campagne di annunci su Google ma non stava ottenendo risultati. Spendeva molto in pubblicità ma nessuno lo stava contattando, a parte alcuni falsi utenti. Aveva una landing page che non era ottimizzata né per la grafica, né per la lighthouse e soprattutto per le conversioni.",
 
   "massyve-solution-title": "La soluzione",
-  "massyve-solution-description": "Abbiamo studiato a fondo il suo problema e abbiamo progettato una nuova landing page che mostrasse meglio le sue buone qualità. Abbiamo incorporato alcuni elementi per migliorare le conversioni come: <ul> <li>una proposta di vendita unica</li> <li>più prova sociale</li> <li>alcuni vantaggi chiave</li> <li>migliore invito all'azione</li> </ul><br> Considerando il tempo e il budget limitati per la creazione della pagina di destinazione, abbiamo deciso di utilizzare il flusso web.<br> Dopo aver curato la landing page abbiamo studiato una campagna strategica di google ads e l'abbiamo gestita per un mese.<br>",
+  "massyve-solution-description": "Abbiamo studiato a fondo il suo problema e abbiamo progettato una nuova landing page che mostrasse meglio le sue buone qualità. Abbiamo incorporato alcuni elementi per migliorare le conversioni come: <ul> <li>una proposta di vendita unica</li> <li>una maggiore social proof</li> <li>alcuni vantaggi chiave</li> <li>migliore call to action</li> </ul><br> Considerando il tempo e il budget limitati per la creazione della landing page, abbiamo deciso di utilizzare Webflow.<br> Dopo aver curato la landing page abbiamo studiato una campagna strategica di google ads e l'abbiamo gestita per un mese.<br>",
 
   "massyve-result-title": "I risultati",
-  "massyve-result-description-1": "Questi erano i risultati che aveva con la pagina di destinazione e la campagna precedenti",
-  "massyve-result-description-2": "Questi sono invece i nostri risultati. Possiamo vedere che abbiamo quasi raddoppiato il tasso di conversione della pagina di destinazione, riducendo il costo per clic del 28,82% e il costo per la conversione del 57,97%. Allo stesso tempo abbiamo migliorato la percentuale di clic del 252,39%.<br> Questi sono solo i risultati del primo mese. Abbiamo inserito strumenti di analisi all'interno della pagina web in modo da poter continuare a monitorare i comportamenti degli utenti e continuare a migliorare la landing page e la campagna nel tempo.",
+  "massyve-result-description-1": "Questi erano i risultati che aveva con la landing page e la campagna precedente",
+  "massyve-result-description-2": "Questi sono invece i nostri risultati. Possiamo vedere che <b>abbiamo raddoppiato il tasso di conversione</b> della landing page, <b>diminuendo il costo per clic del 32,43% e il costo di conversione del 70,17%</b>. Allo stesso tempo, abbiamo <b>migliorato la percentuale di clic del 258,56%.</b>",
+  "massyve-result-description-3": "Questi sono solo i risultati del primo mese. Abbiamo inserito strumenti di analisi all'interno della pagina web in modo da poter continuare a monitorare i comportamenti degli utenti e continuare a migliorare la landing page e la campagna nel tempo.",
 
   "message-sent": "Messaggio inviato!",
   "we-will-answer-in-48h": "Ti risponderemo entro 48h.",
@@ -242,5 +243,6 @@
 
   "cookies": "Questo sito utilizza i cookie per migliorare la tua esperienza.",
   "decline": "Rifiuta",
-  "accept": "Accetta"
+  "accept": "Accetta",
+  "policies": "Politiche & licenze"
 }

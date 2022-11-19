@@ -259,21 +259,14 @@ export default function ContactUs() {
 
   const send = () => {
     setLoading(true);
+
     contactUsApi.contactUs
       .process({
         name: formValue.name ?? '',
-        surname: 'Webion',
         email: formValue.email ?? '',
-        message: `
-          Message: ${formValue.message}
-        `,
-        other: {
-          companyType: formValue.companyAge,
-          services: formValue.services?.reduce(
-            (prev, curr) => `${prev}, ${curr}`,
-            ''
-          ),
-        },
+        message: formValue.message,
+        companyType: formValue.companyAge,
+        services: formValue.services.join(','),
       })
       .then(() => navigate('/message-sent'))
       .finally(() => setLoading(false));

@@ -1,14 +1,5 @@
-import {
-  List,
-  PaperProps,
-  SwipeableDrawer,
-  SxProps,
-  Theme,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
-import { ChildrenProp } from '../../abstractions/props/ChildrenProps';
-import React, { ReactNode } from 'react';
+import { List, PaperProps, SwipeableDrawer, SxProps, Theme, useMediaQuery, useTheme } from '@mui/material';
+import React from 'react';
 import { useSidebar } from '../../hooks/useSideBar';
 
 export interface SideBarProps {

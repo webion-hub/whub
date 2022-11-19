@@ -2,7 +2,7 @@ import {
   CallRounded,
   InsightsRounded,
   LibraryBooksRounded,
-  LinkRounded
+  LinkRounded,
 } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import {
@@ -10,7 +10,7 @@ import {
   Section,
   Sections,
   useLanguage,
-  useNextNavigator
+  useNextNavigator,
 } from '@whub/wui';
 import { CaseStudyLink } from '../../components/CaseStudyLink';
 import { CardGroup } from '../../components/CardGroup';
@@ -20,7 +20,7 @@ import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 
 export default function Industry() {
   const { clickNavigate } = useNextNavigator();
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
 
   return (
     <Page>
@@ -30,7 +30,7 @@ export default function Industry() {
             direction="row"
             label={t('industry')}
             title={t('industry-page-title')}
-            description={t('industry-page-description')}
+            description={tHtml('industry-page-description')}
             src="/assets/images/services/industry.jpg"
             alt="industry"
             actionComponent={

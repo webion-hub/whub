@@ -1,6 +1,19 @@
-import { Box, LinearProgress, Stack, styled, SxProps, Theme } from '@mui/material';
+import {
+  Box,
+  LinearProgress,
+  Stack,
+  styled,
+  SxProps,
+  Theme,
+} from '@mui/material';
 import { Router } from 'next/router';
-import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { Utils } from '../lib/Utils';
 import { MaybeShow } from './conditional_components/MaybeShow';
 
@@ -8,23 +21,33 @@ interface LayoutContextProps {
   readonly setAppBarStatus: (status: boolean) => void;
   readonly setFooterStatus: (status: boolean) => void;
   readonly setSidebarStatus: (status: boolean) => void;
-  readonly setSection: (section: string) => void;
-  readonly currentSection: string;
+  readonly setSection: (section?: string) => void;
+  readonly currentSection?: string;
   readonly loading: boolean;
-  readonly setLoading: (status: boolean) => void
+  readonly setLoading: (status: boolean) => void;
 }
 
 const LayoutContext = createContext<LayoutContextProps>({
-  setAppBarStatus: () => { return },
-  setFooterStatus: () => { return },
-  setSidebarStatus: () => { return },
-  setSection: () => { return },
-  setLoading: () => { return },
+  setAppBarStatus: () => {
+    return;
+  },
+  setFooterStatus: () => {
+    return;
+  },
+  setSidebarStatus: () => {
+    return;
+  },
+  setSection: () => {
+    return;
+  },
+  setLoading: () => {
+    return;
+  },
   loading: false,
   currentSection: '',
 });
 
-const Main = styled('main')({})
+const Main = styled('main')({});
 
 export interface LayoutProps {
   readonly AppBarComponent?: ReactNode;
@@ -39,25 +62,25 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
     const [appBarState, setAppBarState] = useState(true);
     const [footerState, setFooterState] = useState(true);
     const [sideBarState, setSidebarState] = useState(true);
-    const [section, setSection] = useState('');
+    const [section, setSection] = useState<string>();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
       const handleRouteChange = () => {
-        setLoading(true)
-      }
+        setLoading(true);
+      };
 
       const handleRouteChangeComplete = () => {
-        setLoading(false)
-      }
+        setLoading(false);
+      };
 
-      Router.events.on('routeChangeStart', handleRouteChange)
-      Router.events.on('routeChangeComplete', handleRouteChangeComplete)
+      Router.events.on('routeChangeStart', handleRouteChange);
+      Router.events.on('routeChangeComplete', handleRouteChangeComplete);
       return () => {
-        Router.events.off('routeChangeStart', handleRouteChange)
-        Router.events.off('routeChangeComplete', handleRouteChangeComplete)
-      }
-    }, [])
+        Router.events.off('routeChangeStart', handleRouteChange);
+        Router.events.off('routeChangeComplete', handleRouteChangeComplete);
+      };
+    }, []);
 
     return (
       <LayoutContext.Provider
@@ -68,7 +91,7 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
           setSection: setSection,
           currentSection: section,
           loading,
-          setLoading
+          setLoading,
         }}
       >
         <Stack
@@ -83,7 +106,7 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
               sx={{
                 zIndex: 4000,
                 position: 'absolute',
-                width: '100%'
+                width: '100%',
               }}
             />
           </MaybeShow>
@@ -92,11 +115,12 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
           {appBarState && props.AppBarComponent}
           <Main
             sx={{
-              marginTop: theme => Utils.getWidth(theme.mixins.toolbar.height ?? 0),
+              marginTop: (theme) =>
+                Utils.getWidth(theme.mixins.toolbar.height ?? 0),
               display: 'flex',
               flex: '1 1',
-              "& > *": {
-                width: '100%'
+              '& > *': {
+                width: '100%',
               },
               ...props.sx,
             }}

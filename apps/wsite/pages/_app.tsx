@@ -6,7 +6,8 @@ import {
   LinkedIn,
   PhoneRounded,
 } from '@mui/icons-material';
-import { CssBaseline, GlobalStyles } from '@mui/material';
+import { CssBaseline } from '@mui/material';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { ContactUsApi } from '@whub/apis-contactus';
 import {
   CookiePopup,
@@ -31,13 +32,13 @@ import { darkTheme, lightTheme } from '../theme/getTheme';
 import { AppContext } from '@whub/apis-react';
 
 const contactUs = new ContactUsApi({
-  baseUrl: 'http://localhost:5181/contactus', //'https://webion.it/contactus',
+  baseUrl: 'https://api.webion.it/contactus',
   withCredentials: true,
 });
 
 AppContext.contactUs = {
   api: contactUs,
-}
+};
 
 function CustomApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -46,6 +47,40 @@ function CustomApp({ Component, pageProps }: AppProps) {
       .then((r) => r.init('592480175654211'));
   }, []);
 
+  // (function (m, e, t, r, i, k, a) {
+  //   m[i] =
+  //     m[i] ||
+  //     function () {
+  //       (m[i].a = m[i].a || []).push(arguments);
+  //     };
+  //   m[i].l = 1 * new Date();
+  //   for (var j = 0; j < document.scripts.length; j++) {
+  //     if (document.scripts[j].src === r) {
+  //       return;
+  //     }
+  //   }
+  //   (k = e.createElement(t)),
+  //     (a = e.getElementsByTagName(t)[0]),
+  //     (k.async = 1),
+  //     (k.src = r),
+  //     a.parentNode.insertBefore(k, a);
+  // })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+  // ym(90356482, 'init', {
+  //   clickmap: true,
+  //   trackLinks: true,
+  //   accurateTrackBounce: true,
+  //   webvisor: true,
+  // });
+  // <noscript>
+  //   <div>
+  //     <img
+  //       src="https://mc.yandex.ru/watch/90356482"
+  //       style="position:absolute; left:-9999px;"
+  //       alt=""
+  //     />
+  //   </div>
+  // </noscript>;
   return (
     <>
       <Head>
@@ -66,7 +101,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
             }}
           >
             <CssBaseline />
-            <GlobalStyles styles={globalStyle} />
+            <GlobalStyles styles={globalStyle as any} />
             <CookiePopup
               usePixel
               name="webion"

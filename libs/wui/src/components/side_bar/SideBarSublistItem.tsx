@@ -22,7 +22,9 @@ export const SideBarSublistItem = React.forwardRef<HTMLDivElement, SideBarSublis
       href={props.href}
       onClick={(e: any) => {
         props.onClick(e);
-        if (!props.stayOpenOnClick) setSideBarOpen(false);
+
+        if (!props.stayOpenOnClick)
+          setSideBarOpen(false);
       }}
     >
       <ListItemIcon>{props.icon}</ListItemIcon>

@@ -33,13 +33,13 @@ export default function MassyveCaseStudy() {
               label={t('case-study')}
               title={t('massyve-study-title')}
               description={tHtml('massyve-study-description')}
-              src="/assets/images/projects/simm.png"
+              src="/assets/images/projects/massyve.webp"
               actionComponent={
                 <Button
                   variant="contained"
                   color="primary"
                   size="large"
-                  href="https://shop.simmimballaggi.com/"
+                  href="https://massyvemusic.design/massyve-landing"
                   target="_blank"
                 >
                   {t('see-website')}
@@ -81,30 +81,37 @@ export default function MassyveCaseStudy() {
             >
               {t('massyve-result-description-1')}
               <br />
-              <Box width="100%">
+              <Box maxWidth={700} position="relative">
                 <NextImg
                   fill
                   alt="results before"
-                  src="/assets/images/results-before.png"
+                  src="/assets/images/massyve-results-before.png"
                   sx={{
                     marginBlock: 3,
                     objectFit: 'cover',
                     position: 'relative !important',
+                    borderRadius: 2,
                   }}
                 />
               </Box>
               <br />
-              {t('massyve-result-description-2')}
+              {tHtml('massyve-result-description-2')}
+              <br />
+              <br />
               {t('massyve-result-description-3')}
-              <NextImg
-                auto
-                height="260px"
-                alt="results before"
-                src="/assets/images/results-after.png"
-                sx={{
-                  marginBlock: 3,
-                }}
-              />
+              <Box maxWidth={700} position="relative">
+                <NextImg
+                  fill
+                  alt="results after"
+                  src="/assets/images/massyve-results-after.png"
+                  sx={{
+                    marginBlock: 3,
+                    objectFit: 'cover',
+                    position: 'relative !important',
+                    borderRadius: 2,
+                  }}
+                />
+              </Box>
             </IconCard>
           </Stack>
         </Section>

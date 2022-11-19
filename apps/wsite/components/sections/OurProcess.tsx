@@ -69,8 +69,7 @@ export default function OurProcess() {
   const onScreen = useOnScreen(ref, {
     oneTime: true,
     observeOptions: {
-      rootMargin: '0px 0px 0% 0px',
-      threshold: 0.5,
+      rootMargin: '-10% 0% -10% 0%',
     },
   });
 

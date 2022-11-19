@@ -34,27 +34,26 @@ export const LanguageDropdownButton = React.forwardRef<
         <props.icon />
       </IconButton>
       <Menu ref={ref} anchorEl={anchorEl} open={open} onClose={handleClose}>
-        {
-          _(languages)
-            .orderBy(lang => lang.code !== language?.code)
-            .map((lang) => {
-              return (
-                <MenuItem
-                  key={lang.code}
-                  selected={lang.code === language?.code }
-                  onClick={() => {
-                    setLanguage(lang.code);
-                    handleClose();
-                  }}
-                >
-                  <Typography variant="caption">
-                    {Language.getTranslation(lang.code)}
-                  </Typography>
-                </MenuItem>
-              )
-            })
-            .value()
-        }
+        {_(languages)
+          .orderBy((lang) => lang.code !== language?.code)
+          .map((lang) => {
+            return (
+              <MenuItem
+                key={lang.code}
+                selected={lang.code === language?.code}
+                disabled={lang.code === language?.code}
+                onClick={() => {
+                  setLanguage(lang.code);
+                  handleClose();
+                }}
+              >
+                <Typography variant="caption">
+                  {Language.getTranslation(lang.code)}
+                </Typography>
+              </MenuItem>
+            );
+          })
+          .value()}
       </Menu>
     </>
   );

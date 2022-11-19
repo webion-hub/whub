@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  website:
+    image: webion/website
+    container_name: website
+    build:
+      context: ..
+      dockerfile: docker/nx.next.dockerfile
+      args:
+        - target=wsite
+
+    environment:
+      - VIRTUAL_HOST=webion.it
+    networks:
+      - frontend
+  
+networks:
+  frontend:
+    name: frontend

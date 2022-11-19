@@ -1,34 +1,9 @@
 import { SxProps, Theme } from '@mui/system';
 import React, { useState } from 'react';
 
-import {
-  DevicesRounded,
-  FactoryRounded,
-  KeyboardArrowDownRounded,
-  PhoneIphoneRounded,
-  PublicRounded
-} from '@mui/icons-material';
-import {
-  Button,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  useTheme
-} from '@mui/material';
-import {
-  AppBar,
-  AppBarContent,
-  AppBarLogo,
-  AppBarSection,
-  BasicThemeButton,
-  LanguageDropdownButton,
-  NextImg,
-  SideBarButton,
-  useLanguage,
-  useLayout,
-  useNextNavigator
-} from '@whub/wui';
+import { DevicesRounded, FactoryRounded, KeyboardArrowDownRounded, PhoneIphoneRounded, PublicRounded } from '@mui/icons-material';
+import { Button, ListItemIcon, ListItemText, Menu, MenuItem, useTheme } from '@mui/material';
+import { AppBar, AppBarContent, AppBarLogo, AppBarSection, BasicThemeButton, LanguageDropdownButton, NextImg, SideBarButton, useLanguage, useLayout, useNextNavigator } from '@whub/wui';
 
 function ServicesButton() {
   const { t } = useLanguage();
@@ -72,21 +47,25 @@ function ServicesButton() {
         {t('navbar-button2')}
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={navigate('/services/websites')} sx={listItemSx}>
+        <MenuItem
+          onClick={navigate('/services/websites')}
+          sx={listItemSx}
+          selected={false}
+        >
           <ListItemIcon>
-            <DevicesRounded color='primary'/>
+            <DevicesRounded color="primary" />
           </ListItemIcon>
           <ListItemText primary={t('service1')} secondary={t('learn-more')} />
         </MenuItem>
         <MenuItem onClick={navigate('/services/apps')} sx={listItemSx}>
           <ListItemIcon>
-            <PhoneIphoneRounded color='primary'/>
+            <PhoneIphoneRounded color="primary" />
           </ListItemIcon>
           <ListItemText primary={t('service2')} secondary={t('learn-more')} />
         </MenuItem>
         <MenuItem onClick={navigate('/services/industry')} sx={listItemSx}>
           <ListItemIcon>
-            <FactoryRounded color='primary'/>
+            <FactoryRounded color="primary" />
           </ListItemIcon>
           <ListItemText primary={t('service3')} secondary={t('learn-more')} />
         </MenuItem>
@@ -95,9 +74,7 @@ function ServicesButton() {
   );
 }
 
-// eslint-disable-next-line react/display-name
-const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
-  (_, ref) => {
+const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
     const { t } = useLanguage();
     const theme = useTheme();
     const { clickNavigate } = useNextNavigator();
@@ -108,6 +85,9 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
 
     const isHome = currentSection === 'home';
 
+    if(currentSection === undefined)
+      return
+
     return (
       <AppBar
         sx={{
@@ -115,7 +95,8 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
           background: isHome ? 'transparent' : appbarColor,
           transition: `250ms background ease-in-out`,
           '& > *': {
-            color: (theme) => (isHome ? '#fff' : theme.palette.text.primary),
+            color: (theme) =>
+              isHome ? '#fff' : theme.palette.text.primary,
           },
           '::after': {
             content: '""',
@@ -141,7 +122,7 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
               buttonSx={{
                 '& > *': {
                   color: (theme) =>
-                    isHome ? '#fff' : theme.palette.text.primary,
+                    isHome ? '#fff !important' : theme.palette.text.primary,
                 },
               }}
             >
@@ -231,4 +212,5 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
   }
 );
 
+WebionAppbar.displayName = 'WebionAppbar'
 export default WebionAppbar;
