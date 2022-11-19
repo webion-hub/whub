@@ -1,7 +1,7 @@
 import { Link, ListItem, ListItemIcon, ListItemText, SxProps, Theme } from "@mui/material";
-import { useSidebar } from "../../hooks/useSideBar";
-import React from 'react'
+import React from 'react';
 import { ChildrenProp } from "../../abstractions/props/ChildrenProps";
+import { useLayout } from "../Layout";
 
 export interface SideBarSublistItemProps {
   text: string;
@@ -13,7 +13,7 @@ export interface SideBarSublistItemProps {
 }
 
 export const SideBarSublistItem = React.forwardRef<HTMLDivElement, SideBarSublistItemProps>((props, _ref) => {
-  const { setSideBarOpen } = useSidebar();
+  const { setSiebarStatus } = useLayout();
 
   return (
     <ListItem
@@ -24,7 +24,7 @@ export const SideBarSublistItem = React.forwardRef<HTMLDivElement, SideBarSublis
         props.onClick(e);
 
         if (!props.stayOpenOnClick)
-          setSideBarOpen(false);
+          setSiebarStatus(false);
       }}
     >
       <ListItemIcon>{props.icon}</ListItemIcon>

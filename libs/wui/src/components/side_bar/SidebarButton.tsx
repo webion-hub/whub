@@ -1,7 +1,7 @@
 import { MenuRounded } from '@mui/icons-material';
 import { IconButton, useMediaQuery, useTheme } from '@mui/material';
 import { ChildrenProp } from '../../abstractions/props/ChildrenProps';
-import { useSidebar } from '../../hooks/useSideBar';
+import { useLayout } from '../Layout';
 
 export interface SideBarButtonProps {
   readonly children?: ChildrenProp;
@@ -19,11 +19,11 @@ export interface SideBarButtonProps {
 export function SideBarButton(props: SideBarButtonProps) {
   const theme = useTheme();
   const isMobileView = useMediaQuery(theme.breakpoints.down('md'));
-  const { toggleSidebar } = useSidebar();
+  const { toggleSideBar } = useLayout();
 
   if (isMobileView)
     return (
-      <IconButton onClick={toggleSidebar} color={props.color}>
+      <IconButton onClick={toggleSideBar} color={props.color}>
         {props.children}
       </IconButton>
     );

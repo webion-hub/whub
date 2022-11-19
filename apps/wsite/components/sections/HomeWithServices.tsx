@@ -1,22 +1,10 @@
-import {
-  ArrowForwardRounded,
-  DevicesRounded,
-  FactoryRounded, PhoneIphoneRounded
-} from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  ButtonBase,
-  SvgIconTypeMap,
-  Typography,
-  useMediaQuery,
-  useTheme
-} from '@mui/material';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { ArrowForwardRounded, DevicesRounded, FactoryRounded, PhoneIphoneRounded } from '@mui/icons-material';
+import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import { NextImg, useLanguage } from '@whub/wui';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
+import { ButtonWithProgress } from '../ButtonWithProgress';
 
 interface HomeSlide<T> {
   readonly key: T;
@@ -203,86 +191,5 @@ export function HomeWithServices() {
         }
       </Box>
     </>
-  );
-}
-
-interface ButtonWithProgressProps {
-  readonly label: string;
-  readonly Icon: OverridableComponent<SvgIconTypeMap<unknown, 'svg'>>;
-  readonly onClick?: () => void;
-  readonly selected?: boolean;
-  readonly duration: number;
-  readonly onSelectEnd?: () => void;
-}
-
-function ButtonWithProgress(props: ButtonWithProgressProps) {
-  const [animate, setAnimate] = useState(false);
-
-  useEffect(() => {
-    if (!props.selected) {
-      setAnimate(false);
-      return;
-    }
-
-    setAnimate(true);
-    const timeout = setTimeout(() => {
-      props.onSelectEnd?.();
-    }, props.duration);
-
-    return () => clearTimeout(timeout);
-  }, [props.selected]);
-
-  const getDuration = () => {
-    return props.selected ? props.duration : 300;
-  };
-
-  return (
-    <ButtonBase
-      onClick={props.onClick}
-      sx={{
-        borderRadius: 4,
-        padding: 1.5,
-      }}
-    >
-      <Stack
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        spacing={1.5}
-      >
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
-          spacing={1}
-          sx={{
-            opacity: props.selected ? 1 : 0.7,
-            '& > *': { color: '#fff' },
-          }}
-        >
-          <props.Icon />
-          <Typography variant="body1">{props.label}</Typography>
-        </Stack>
-        <Box
-          sx={{
-            width: 220,
-            height: 4,
-            borderRadius: 2,
-            background: 'rgba(255,255,255,0.1)',
-            position: 'relative',
-            '&::after': {
-              content: "''",
-              borderRadius: 2,
-              position: 'absolute',
-              transition: `${getDuration()}ms width ease-in-out`,
-              width: animate ? '100%' : '0%',
-              height: '100%',
-              left: 0,
-              background: '#fff',
-            },
-          }}
-        ></Box>
-      </Stack>
-    </ButtonBase>
   );
 }

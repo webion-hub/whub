@@ -1,41 +1,16 @@
-import {
-  BasicThemeButton,
-  ChildrenProp,
-  Language,
-  SideBar,
-  SideBarItem,
-  useLanguage,
-  useNextNavigator,
-  useSidebar,
-} from '@whub/wui';
+import { BasicThemeButton, ChildrenProp, Language, SideBar, SideBarItem, useLanguage, useLayout, useNextNavigator } from '@whub/wui';
 
-import {
-  CloseRounded,
-  ComputerRounded,
-  DevicesRounded,
-  FactoryRounded,
-  GroupsRounded,
-  PhoneIphoneRounded,
-  PublicRounded,
-} from '@mui/icons-material';
+import { CloseRounded, ComputerRounded, DevicesRounded, FactoryRounded, GroupsRounded, PhoneIphoneRounded, PublicRounded } from '@mui/icons-material';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
 import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
-import {
-  Box,
-  Collapse,
-  IconButton,
-  List,
-  ListItemButton,
-  ListItemText,
-  useTheme,
-} from '@mui/material';
+import { Box, Collapse, IconButton, List, ListItemButton, ListItemText, useTheme } from '@mui/material';
 import { ReactNode, useState } from 'react';
 
 export default function WebionSideBar() {
   const { t } = useLanguage();
-  const { toggleSidebar } = useSidebar();
+  const { toggleSideBar } = useLayout();
   const { clickNavigate } = useNextNavigator();
 
   const buttons = [
@@ -88,7 +63,7 @@ export default function WebionSideBar() {
           marginRight: 1,
         }}
       >
-        <IconButton onClick={toggleSidebar}>
+        <IconButton onClick={toggleSideBar}>
           <CloseRounded />
         </IconButton>
       </Box>
@@ -140,8 +115,6 @@ interface SideBarCollapseItemProps {
 
 function SideBarCollapseItem(props: SideBarCollapseItemProps) {
   const [open, setOpen] = useState(false);
-  const { toggleSidebar } = useSidebar();
-  const theme = useTheme();
 
   return (
     <>
@@ -167,8 +140,7 @@ function SideBarCollapseItem(props: SideBarCollapseItemProps) {
 }
 
 function SideBarLanguageButton() {
-  const [open, setOpen] = useState(false);
-  const { toggleSidebar } = useSidebar();
+  const { toggleSideBar } = useLayout();
   const { languages, setLanguage } = useLanguage();
   const theme = useTheme();
   const { t } = useLanguage();
@@ -189,7 +161,7 @@ function SideBarLanguageButton() {
               secondaryTypographyProps={{ color: theme.palette.text.primary }}
               onClick={() => {
                 setLanguage(el.code);
-                toggleSidebar();
+                toggleSideBar();
               }}
             />
           </ListItemButton>

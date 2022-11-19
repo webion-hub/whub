@@ -7,8 +7,8 @@ import {
   Theme,
 } from '@mui/material';
 import { ChildrenProp } from '../../abstractions/props/ChildrenProps';
-import { useSidebar } from '../../hooks/useSideBar';
 import React from 'react';
+import { useLayout } from '../Layout';
 
 export interface SideBarItemProps {
   text: string;
@@ -19,9 +19,8 @@ export interface SideBarItemProps {
   stayOpenOnClick?: boolean;
 }
 
-export const SideBarItem = React.forwardRef<HTMLDivElement, SideBarItemProps>(
-  (props, _ref) => {
-    const { setSideBarOpen } = useSidebar();
+export const SideBarItem = React.forwardRef<HTMLDivElement, SideBarItemProps>((props, _ref) => {
+    const { setSiebarStatus } = useLayout();
 
     return (
       <ListItem
@@ -31,7 +30,9 @@ export const SideBarItem = React.forwardRef<HTMLDivElement, SideBarItemProps>(
         href={props.href}
         onClick={(e: any) => {
           props.onClick(e);
-          if (!props.stayOpenOnClick) setSideBarOpen(false);
+
+          if (!props.stayOpenOnClick)
+            setSiebarStatus(false);
         }}
       >
         <ListItemIcon>{props.icon}</ListItemIcon>

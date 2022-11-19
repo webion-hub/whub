@@ -1,6 +1,6 @@
 import { List, PaperProps, SwipeableDrawer, SxProps, Theme, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
-import { useSidebar } from '../../hooks/useSideBar';
+import { useLayout } from '../Layout';
 
 export interface SideBarProps {
   readonly children: any;
@@ -15,7 +15,7 @@ export const SideBar = React.forwardRef<HTMLDivElement, SideBarProps>(
     const theme = useTheme();
     const isMobileView = useMediaQuery(theme.breakpoints.down('md'));
 
-    const { isSideBarOpen, setSideBarOpen } = useSidebar();
+    const { isSidebarOpen, setSiebarStatus } = useLayout();
 
     if (isMobileView)
       return (
@@ -24,9 +24,9 @@ export const SideBar = React.forwardRef<HTMLDivElement, SideBarProps>(
           PaperProps={props.PaperSx}
           sx={props.sx}
           anchor="right"
-          open={isSideBarOpen}
-          onClose={(_) => setSideBarOpen(false)}
-          onOpen={(_) => setSideBarOpen(true)}
+          open={isSidebarOpen}
+          onClose={(_) => setSiebarStatus(false)}
+          onOpen={(_) => setSiebarStatus(true)}
         >
           <List sx={{ height: '100%' }}>{props.children}</List>
         </SwipeableDrawer>

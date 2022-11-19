@@ -1,48 +1,25 @@
-import {
-  Box,
-  LinearProgress,
-  Stack,
-  styled,
-  SxProps,
-  Theme,
-} from '@mui/material';
+import { Box, LinearProgress, Stack, styled, SxProps, Theme } from '@mui/material';
 import { Router } from 'next/router';
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { Utils } from '../lib/Utils';
 import { MaybeShow } from './conditional_components/MaybeShow';
 
 interface LayoutContextProps {
-  readonly setAppBarStatus: (status: boolean) => void;
-  readonly setFooterStatus: (status: boolean) => void;
-  readonly setSidebarStatus: (status: boolean) => void;
   readonly setSection: (section?: string) => void;
   readonly currentSection?: string;
   readonly loading: boolean;
   readonly setLoading: (status: boolean) => void;
+  readonly isSidebarOpen: boolean;
+  readonly toggleSideBar: () => void;
+  readonly setSiebarStatus: (status: boolean) => void;
 }
 
 const LayoutContext = createContext<LayoutContextProps>({
-  setAppBarStatus: () => {
-    return;
-  },
-  setFooterStatus: () => {
-    return;
-  },
-  setSidebarStatus: () => {
-    return;
-  },
-  setSection: () => {
-    return;
-  },
-  setLoading: () => {
-    return;
-  },
+  setSection: () => { return; },
+  setLoading: () => { return; },
+  toggleSideBar: () => { return; },
+  setSiebarStatus: () => { return; },
+  isSidebarOpen: false,
   loading: false,
   currentSection: '',
 });
@@ -59,9 +36,7 @@ export interface LayoutProps {
 
 export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
   (props, ref) => {
-    const [appBarState, setAppBarState] = useState(true);
-    const [footerState, setFooterState] = useState(true);
-    const [sideBarState, setSidebarState] = useState(true);
+    const [openSidebar, setOpenSidebar] = useState<boolean>(false);
     const [section, setSection] = useState<string>();
     const [loading, setLoading] = useState(false);
 
@@ -82,16 +57,20 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
       };
     }, []);
 
+    const toggleSidebar = () => {
+      setOpenSidebar(status => !status)
+    }
+
     return (
       <LayoutContext.Provider
         value={{
-          setAppBarStatus: setAppBarState,
-          setFooterStatus: setFooterState,
-          setSidebarStatus: setSidebarState,
           setSection: setSection,
           currentSection: section,
           loading,
           setLoading,
+          isSidebarOpen: openSidebar,
+          setSiebarStatus: setOpenSidebar,
+          toggleSideBar: toggleSidebar
         }}
       >
         <Stack
@@ -111,8 +90,8 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
             />
           </MaybeShow>
 
-          {sideBarState && props.SidebarComponent}
-          {appBarState && props.AppBarComponent}
+          {props.SidebarComponent}
+          {props.AppBarComponent}
           <Main
             sx={{
               marginTop: (theme) =>
@@ -127,7 +106,7 @@ export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
           >
             {props.children}
           </Main>
-          {footerState && props.FooterComponent}
+          {props.FooterComponent}
         </Stack>
       </LayoutContext.Provider>
     );
