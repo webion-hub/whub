@@ -47,7 +47,6 @@ export default function Homepage() {
         <Section
           id="chosen-by"
           ignoreSection
-          maxWidth="100%"
           sx={{
             paddingBlock: 4,
             overflow: 'hidden',
@@ -59,9 +58,6 @@ export default function Homepage() {
           }}
         >
           <ChosenBy blackAndWhite>
-            <ClientLogos />
-            <ClientLogos />
-            <ClientLogos />
             <ClientLogos />
           </ChosenBy>
         </Section>

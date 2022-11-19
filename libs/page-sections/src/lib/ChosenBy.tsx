@@ -1,4 +1,4 @@
-import { Divider, Stack, SxProps, Theme } from '@mui/material';
+import { alpha, Divider, Stack, SxProps, Theme } from '@mui/material';
 import { MaybeShow } from '@whub/wui';
 import { ReactNode, useRef } from 'react';
 
@@ -15,26 +15,27 @@ export function ChosenBy(props: ChosenByProps) {
     <>
       <Stack
         direction="column"
-        alignItems="center"
+        alignItems="flex-start"
         justifyContent="center"
         spacing={5}
         ref={containerRef}
         sx={{
-          width: 'auto',
-          '@keyframes infinite-slide': {
-            from: {
-              transform: 'translateX(0%)',
-            },
-            to: {
-              transform: 'translate(-25%)',
-            },
+          width: '100%',
+          position: 'relative',
+          '&::after': {
+            content: "''",
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            top: 0,
+            background: theme => `linear-gradient(90deg,
+              ${theme.palette.background.default} 0%,
+              ${alpha(theme.palette.background.default, 0)} 10%,
+              ${alpha(theme.palette.background.default, 0)} 90%,
+              ${theme.palette.background.default} 100%
+            )`,
           },
-          animation: 'infinite-slide 16s linear infinite',
-          animationDelay: '1s',
-          filter: (theme) =>
-            theme.palette.mode === 'dark' ? 'unset' : 'invert(1)',
-
-          ...props.sx,
+          ...props.sx
         }}
       >
         <Stack
@@ -43,15 +44,28 @@ export function ChosenBy(props: ChosenByProps) {
           justifyContent="space-evenly"
           flexWrap="nowrap"
           sx={{
+            '@keyframes infinite-slide': {
+              from: {
+                transform: 'translateX(0%)',
+              },
+              to: {
+                transform: 'translateX(-25%)',
+              },
+            },
+            animation: 'infinite-slide 24s linear infinite',
+            filter: (theme) => theme.palette.mode === 'dark' ? 'unset' : 'invert(1)',
+            position: 'relative',
+            paddingTop: { xs: 1, md: 0 },
             '& > *': {
               marginInline: 9,
               marginBlock: 1.5,
               filter: props.blackAndWhite ? 'grayscale(100%)' : 'none',
             },
-            position: 'relative',
-            paddingTop: { xs: 1, md: 0 },
           }}
         >
+          {props.children}
+          {props.children}
+          {props.children}
           {props.children}
         </Stack>
       </Stack>
