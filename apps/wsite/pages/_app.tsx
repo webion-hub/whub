@@ -18,6 +18,7 @@ import './styles.css';
 import { darkTheme, lightTheme } from '../theme/getTheme';
 import { AppContext } from '@whub/apis-react';
 import { YMInitializer } from 'react-yandex-metrika';
+import '../lib/Chrono';
 
 const contactUs = new ContactUsApi({
   baseUrl: 'https://api.webion.it/contactus',
