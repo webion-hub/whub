@@ -143,10 +143,7 @@ function ContactUsSmallForm() {
     setLoading(true);
 
     contactUsApi.contactUs
-      .process({
-        ...form.getValues(),
-        surname: 'Webion2437',
-      })
+      .process(form.getValues())
       .then(() => setSuccess(true))
       .finally(() => setLoading(false));
   };

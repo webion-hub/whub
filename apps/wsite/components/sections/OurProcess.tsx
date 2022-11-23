@@ -70,7 +70,6 @@ export default function OurProcess() {
     oneTime: true,
     observeOptions: {
       rootMargin: '0px 0px 0% 0px',
-      threshold: 0.5,
     },
   });
 
