@@ -77,5 +77,10 @@
       }
     }
   },
-  "defaultProject": "whub"
+  "defaultProject": "whub",
+  "pluginsConfig": {
+    "@nrwl/js": {
+      "analyzeSourceFiles": false
+    }
+  }
 }
