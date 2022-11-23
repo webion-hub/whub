@@ -121,4 +121,3 @@ export * from './components/inputs/ItemSelect';
 export * from './components/inputs/NumberInput';
 export * from './components/inputs/PrivacyCheckbox';
 export * from './components/inputs/TextEditor';
-export { default as TextEditor } from './components/inputs/TextEditor';
