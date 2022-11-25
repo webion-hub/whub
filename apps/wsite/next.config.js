@@ -1,6 +1,8 @@
 //@ts-check
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const { withNx } = require('@nrwl/next/plugins/with-nx');
 
 /**
@@ -18,6 +20,20 @@ const nextConfig = {
   },
   productionBrowserSourceMaps: true,
   output: 'standalone',
+  webpack: (config) => {
+    config.optimization?.minimizer?.push(
+      new TerserPlugin({
+        minify: TerserPlugin.swcMinify,
+        terserOptions: {},
+      })
+    );
+
+    config.plugins.push(
+      new LodashModuleReplacementPlugin
+    )
+
+    return config
+  }
 };
 
 module.exports = withNx(nextConfig);

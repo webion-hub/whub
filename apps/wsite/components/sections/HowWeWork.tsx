@@ -53,6 +53,8 @@ const HowWeWorkCard = React.forwardRef<HTMLDivElement, CardWithBadgeProps>(
   }
 );
 
+HowWeWorkCard.displayName = "HowWeWorkCard"
+
 export default function HowWeWork() {
   const { t } = useLanguage();
   const ref = useRef();

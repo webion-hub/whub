@@ -75,6 +75,7 @@ const RandomTextComp = React.forwardRef<
   );
 });
 
+RandomTextComp.displayName = "RandomTextComp"
 const RandomText = React.memo(RandomTextComp, () => false);
 
 export default RandomText;
