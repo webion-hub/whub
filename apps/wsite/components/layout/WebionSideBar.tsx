@@ -1,4 +1,4 @@
-import { BasicThemeButton, ChildrenProp, Language, SideBar, SideBarItem, useLanguage, useLayout, useNextNavigator } from '@whub/wui';
+import { BasicThemeButton, ChildrenProp, SideBar, SideBarItem, useLanguage, useLayout, useNextNavigator } from '@whub/wui';
 
 import { CloseRounded, ComputerRounded, DevicesRounded, FactoryRounded, GroupsRounded, PhoneIphoneRounded, PublicRounded } from '@mui/icons-material';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
@@ -156,7 +156,7 @@ function SideBarLanguageButton() {
         return (
           <ListItemButton sx={{ paddingLeft: 4 }} key={i}>
             <ListItemText
-              secondary={Language.getTranslation(el.code)}
+              secondary={el.langTranslation}
               key={i}
               secondaryTypographyProps={{ color: theme.palette.text.primary }}
               onClick={() => {

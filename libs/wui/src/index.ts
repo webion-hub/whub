@@ -43,7 +43,6 @@ export * from './lib/Form';
 export * from './lib/Props';
 export * from './lib/UUIDFactory';
 export * from './lib/Validators';
-export * from './lib/Language';
 export * from './lib/Utils';
 export * from './lib/MultipleFileController';
 

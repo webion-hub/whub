@@ -3,7 +3,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 import { IconButton, Typography } from '@mui/material';
-import { Language } from '../lib/Language';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { useLanguage } from '../contexts/ContextLanguage';
 import _ from 'lodash';
@@ -48,7 +47,7 @@ export const LanguageDropdownButton = React.forwardRef<
                 }}
               >
                 <Typography variant="caption">
-                  {Language.getTranslation(lang.code)}
+                  {lang.langTranslation}
                 </Typography>
               </MenuItem>
             );
