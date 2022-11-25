@@ -1,5 +1,5 @@
 import { styled, SxProps, Theme } from "@mui/material";
-import _ from "lodash";
+import cloneDeep from "lodash/cloneDeep";
 import { createContext, FormEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { FormInputs, FormValueInputs } from "../../abstractions/form/FormInputs";
 import { Form } from "../../lib/Form";
@@ -32,7 +32,7 @@ export const FormGroup = (props: FormGroupProps) => {
 
   const getPropsFormInputs = (): FormInputs => {
     const inputs = Object
-    .entries(_.cloneDeep(props.values ?? {}))
+    .entries(cloneDeep(props.values ?? {}))
     .map(v => [v[0], { value: v[1], validators: [] }])
 
     return Object.fromEntries(inputs)
