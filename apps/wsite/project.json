@@ -8,6 +8,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
+        "webpackConfig": "apps/wsite/webpack.config.js",
         "root": "apps/wsite",
         "outputPath": "dist/apps/wsite"
       },
