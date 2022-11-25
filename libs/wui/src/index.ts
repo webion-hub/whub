@@ -120,4 +120,4 @@ export * from './components/inputs/uploaders/ImageUploader';
 export * from './components/inputs/ItemSelect';
 export * from './components/inputs/NumberInput';
 export * from './components/inputs/PrivacyCheckbox';
-export * from './components/inputs/TextEditor';
+//export * from './components/inputs/TextEditor';
