@@ -4,7 +4,7 @@ import {
   List,
   Paper,
 } from '@mui/material';
-import _ from 'lodash';
+import isEqual from 'lodash/isEqual';
 import { HTMLAttributes, ReactNode, SyntheticEvent, useState } from 'react';
 import { MaybeShow } from '../conditional_components/MaybeShow';
 
@@ -45,7 +45,7 @@ export function ItemSelect<T>(props: ItemSelect<T>) {
   };
 
   const onRemove = (option: T) => {
-    const newItems = items.filter((i) => !_.isEqual(i, option));
+    const newItems = items.filter((i) => !isEqual(i, option));
     setItems(newItems);
     props.onChange?.(newItems);
   };

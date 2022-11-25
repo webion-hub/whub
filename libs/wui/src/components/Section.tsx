@@ -4,7 +4,7 @@ import { ChildrenProp } from '../abstractions/props/ChildrenProps';
 import { useOnScreen } from '../hooks/useOnScreen';
 import { useEffect, useRef } from 'react';
 import { useLayout } from './Layout';
-import { uniqueId } from 'lodash';
+import uniqueId from 'lodash/uniqueId';
 
 const StyledSection = styled('section')(({ theme }) => ({
   paddingBlock: theme.spacing(8),

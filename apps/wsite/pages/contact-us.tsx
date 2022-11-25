@@ -3,7 +3,7 @@ import { LoadingButton } from '@mui/lab';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useContactUs } from '@whub/apis-react';
 import { MaybeShow, Page, PrivacyCheckBox, Section, Sections, useLanguage, useNextNavigator, Validator, Validators } from '@whub/wui';
-import _ from 'lodash';
+import remove from 'lodash/remove';
 import { ReactNode, useState } from 'react';
 import { SelectableCard } from '../components/cards/SelectableCard';
 
@@ -89,7 +89,7 @@ export default function ContactUs() {
     const newServices = [...(formValue.services ?? [])];
 
     isAlreadyIn
-      ? _.remove(newServices, (s) => s === service)
+      ? remove(newServices, (s) => s === service)
       : newServices.push(service);
 
     handleChange('services', newServices);

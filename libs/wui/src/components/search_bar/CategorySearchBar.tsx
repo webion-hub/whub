@@ -10,7 +10,6 @@ import {
 
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { Dropdown } from '../Dropdown';
-import _ from 'lodash';
 import { useLanguage } from '../../contexts/ContextLanguage';
 
 export interface CategorySearchBarProps<T, G> {
