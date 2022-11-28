@@ -1,11 +1,4 @@
-import {
-  NextImg,
-  Page,
-  Section,
-  Sections,
-  useLanguage,
-  useNextNavigator
-} from '@whub/wui';
+import { NextImg, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
 import { CardGroup } from '../components/CardGroup';
 import { ImageCard, ImageCardProps } from '../components/cards/ImageCard';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';

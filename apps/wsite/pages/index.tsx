@@ -1,14 +1,7 @@
 import { HelpRounded } from '@mui/icons-material';
 import { alpha, Link, Stack, useTheme } from '@mui/material';
 import { ChosenBy, Faq } from '@whub/page-sections';
-import {
-  NextImg,
-  Page,
-  Section,
-  Sections,
-  useLanguage,
-  useNextNavigator,
-} from '@whub/wui';
+import { NextImg, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
 import { useEffect } from 'react';
 import { netBackground } from '../components/backgrounds/netBackground';
 import { pcbBackground } from '../components/backgrounds/pcbBackground';

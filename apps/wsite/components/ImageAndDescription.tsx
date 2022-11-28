@@ -1,13 +1,4 @@
-import {
-  Box,
-  Paper,
-  Stack,
-  SxProps,
-  Theme,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Box, Paper, Stack, SxProps, Theme, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { MaybeShow, NextImg, Transition, useOnScreen } from '@whub/wui';
 import { ReactNode, useRef } from 'react';
 import { TitleSectionLabel } from './TitleSectionLabel';

@@ -1,28 +1,6 @@
-import {
-  BarChartRounded,
-  BiotechRounded,
-  BubbleChartRounded,
-  CallRounded,
-  EditRounded,
-  FormatAlignLeftRounded,
-  PhoneIphoneRounded,
-} from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Stack,
-  Typography,
-} from '@mui/material';
-import {
-  NextImg,
-  Page,
-  Section,
-  Sections,
-  useLanguage,
-  useNextNavigator,
-  useOnScreen,
-} from '@whub/wui';
+import { BarChartRounded, BiotechRounded, BubbleChartRounded, CallRounded, EditRounded, FormatAlignLeftRounded, PhoneIphoneRounded } from '@mui/icons-material';
+import { Box, Button, CircularProgress, Stack, Typography } from '@mui/material';
+import { Page, Section, Sections, useLanguage, useNextNavigator, useOnScreen } from '@whub/wui';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { interval, take } from 'rxjs';
