@@ -11,6 +11,7 @@ import { debounceTime, interval } from 'rxjs';
 import { useOnScreen } from '../hooks/useOnScreen';
 import { useSubject } from '../hooks/useSubject';
 import { Utils } from '../lib/Utils';
+import { MaybeShow } from './conditional_components/MaybeShow';
 
 export interface SlideshowItem {
   readonly item: (selected: boolean) => ReactNode;
@@ -33,6 +34,7 @@ export interface SlideshowProps {
   readonly color?: string;
   readonly reduceFactor?: number;
   readonly autoScroll?: AutoScroll;
+  readonly hideControls?: boolean;
 }
 
 export function Slideshow(props: SlideshowProps) {
@@ -69,6 +71,7 @@ export function Slideshow(props: SlideshowProps) {
 
     (nodes[index + 1] as HTMLDivElement)?.scrollIntoView({
       block: 'nearest',
+      inline: 'center',
       behavior: 'smooth',
     });
   }, [index]);
@@ -144,7 +147,11 @@ export function Slideshow(props: SlideshowProps) {
   };
 
   return (
-    <Stack direction="column" alignItems="center">
+    <Stack
+      direction="column"
+      alignItems="center"
+      sx={{ width: '100%' }}
+    >
       <Box
         ref={ref}
         onScroll={onScroll}
@@ -199,34 +206,38 @@ export function Slideshow(props: SlideshowProps) {
         ))}
         {getSide()}
       </Box>
-      <Stack
-        direction="row"
-        sx={{
-          '& > *': {
-            color: props.color ?? 'rgba(255, 255, 255, 0.2) !important',
-          },
-        }}
+      <MaybeShow
+        show={!props.hideControls}
       >
-        <IconButton size="small" onClick={back}>
-          <ArrowLeftRounded />
-        </IconButton>
-        {props.items.map((_, i) => (
-          <IconButton
-            key={i}
-            sx={{
-              width: 34,
-              height: 34,
-            }}
-            onClick={() => setIndex(i)}
-            size="small"
-          >
-            {getIcon(i)}
+        <Stack
+          direction="row"
+          sx={{
+            '& > *': {
+              color: props.color ?? 'rgba(255, 255, 255, 0.2) !important',
+            },
+          }}
+        >
+          <IconButton size="small" onClick={back}>
+            <ArrowLeftRounded />
           </IconButton>
-        ))}
-        <IconButton size="small" onClick={next}>
-          <ArrowRightRounded />
-        </IconButton>
-      </Stack>
+          {props.items.map((_, i) => (
+            <IconButton
+              key={i}
+              sx={{
+                width: 34,
+                height: 34,
+              }}
+              onClick={() => setIndex(i)}
+              size="small"
+            >
+              {getIcon(i)}
+            </IconButton>
+          ))}
+          <IconButton size="small" onClick={next}>
+            <ArrowRightRounded />
+          </IconButton>
+        </Stack>
+      </MaybeShow>
     </Stack>
   );
 }

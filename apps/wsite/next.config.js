@@ -33,7 +33,7 @@ const nextConfig = {
     config.plugins.push(
       new LodashModuleReplacementPlugin(),
       new CompressionPlugin(),
-      new BundleAnalyzerPlugin(),
+      //new BundleAnalyzerPlugin(),
     )
 
     return config

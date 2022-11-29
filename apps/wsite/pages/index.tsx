@@ -11,6 +11,7 @@ import OurProcess from '../components/sections/OurProcess';
 import Services from '../components/sections/Services';
 import { WhoWeAre } from '../components/sections/WhoWeAre';
 
+
 export default function Homepage() {
   const theme = useTheme();
   const { t, tHtml } = useLanguage();
@@ -50,8 +51,8 @@ export default function Homepage() {
             position: 'relative',
           }}
         >
-          <ChosenBy blackAndWhite>
-            <ClientLogos />
+          <ChosenBy>
+            <ClientLogos/>
           </ChosenBy>
         </Section>
         <Section id="who-we-are">
@@ -144,96 +145,81 @@ export default function Homepage() {
     </Page>
   );
 }
+
 export function ClientLogos() {
   return (
     <>
       <NextImg
+        priority
         auto
         height="28px"
         sizes="25vw"
         alt="bocconi"
         src="/assets/images/clients/bocconi.png"
-        sx={{
-          userDrag: 'unset',
-          userSelect: 'none',
-        }}
       />
       <NextImg
+        priority
         auto
         height="28px"
         sizes="25vw"
         alt="kaire"
         src="/assets/images/clients/kaire.png"
-        sx={{
-          userDrag: 'unset',
-          userSelect: 'none',
-        }}
       />
       <NextImg
+        priority
         auto
         height="28px"
         sizes="25vw"
         alt="simm"
         src="/assets/images/clients/simm.png"
-        sx={{
-          userDrag: 'unset',
-          userSelect: 'none',
-        }}
       />
       <NextImg
+        priority
         auto
         height="28px"
         sizes="25vw"
         alt="LCI Agency"
         src="/assets/images/clients/lci-agency.png"
-        sx={{
-          userDrag: 'unset',
-          userSelect: 'none',
-        }}
       />
       <NextImg
+        priority
         auto
         height="28px"
         sizes="25vw"
         alt="mentorz"
         src="/assets/images/clients/mentorz.png"
-        sx={{
-          userDrag: 'unset',
-          userSelect: 'none',
-        }}
       />
       <NextImg
+        priority
         auto
         height="28px"
         sizes="25vw"
         alt="massyve"
         src="/assets/images/clients/massyve.png"
-        sx={{
-          userDrag: 'unset',
-          userSelect: 'none',
-        }}
       />
       <NextImg
+        priority
         auto
         height="28px"
         sizes="25vw"
         alt="cody"
         src="/assets/images/clients/cody.png"
-        sx={{
-          userDrag: 'unset',
-          userSelect: 'none',
-        }}
       />
       <NextImg
+        priority
         auto
         height="28px"
         sizes="25vw"
         alt="The Pink Palace"
         src="/assets/images/clients/pink-palace.png"
-        sx={{
-          userDrag: 'unset',
-          userSelect: 'none',
-        }}
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="The Pink Palace"
+        src="/assets/images/clients/elfo-avventure.png"
       />
     </>
   );

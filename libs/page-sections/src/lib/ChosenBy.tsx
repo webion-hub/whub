@@ -11,6 +11,7 @@ interface ChosenByProps {
 
 export function ChosenBy(props: ChosenByProps) {
   const containerRef = useRef<HTMLDivElement>();
+
   return (
     <>
       <Stack
@@ -46,27 +47,39 @@ export function ChosenBy(props: ChosenByProps) {
           sx={{
             '@keyframes infinite-slide': {
               from: {
-                transform: 'translateX(0%)',
+                transform: 'translateZ(0) translateX(0%)',
               },
               to: {
-                transform: 'translateX(-25%)',
+                transform: 'translateZ(0) translateX(-50%)',
               },
             },
             animation: 'infinite-slide 24s linear infinite',
             filter: (theme) => theme.palette.mode === 'dark' ? 'unset' : 'invert(1)',
             position: 'relative',
             paddingTop: { xs: 1, md: 0 },
-            '& > *': {
-              marginInline: 9,
-              marginBlock: 1.5,
-              filter: props.blackAndWhite ? 'grayscale(100%)' : 'none',
-            },
           }}
         >
-          {props.children}
-          {props.children}
-          {props.children}
-          {props.children}
+          {[...Array(2)].map((_, i) => (
+            <Stack
+              key={i}
+              direction="row"
+              alignItems="center"
+              justifyContent="space-evenly"
+              sx={{
+                '& > *': {
+                  marginInline: 9,
+                  marginBlock: 1.5,
+                  filter: props.blackAndWhite ? 'grayscale(100%)' : 'none',
+                  userDrag: 'unset',
+                  userSelect: 'none',
+                  width: '100% !important',
+                  display: 'block'
+                },
+              }}
+            >
+              {props.children}
+            </Stack>
+          ))}
         </Stack>
       </Stack>
       <MaybeShow show={!props.hideDivider}>
