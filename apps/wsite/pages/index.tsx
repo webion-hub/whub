@@ -1,7 +1,16 @@
 import { HelpRounded } from '@mui/icons-material';
 import { alpha, Link, Stack, useTheme } from '@mui/material';
 import { ChosenBy, Faq } from '@whub/page-sections';
-import { NextImg, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
+import {
+  NextImg,
+  Page,
+  Section,
+  Sections,
+  useLanguage,
+  useNextNavigator,
+} from '@whub/wui';
+import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
+import Head from 'next/head';
 import { useEffect } from 'react';
 import { netBackground } from '../components/backgrounds/netBackground';
 import { pcbBackground } from '../components/backgrounds/pcbBackground';
@@ -10,7 +19,6 @@ import { HomeWithServices } from '../components/sections/HomeWithServices';
 import OurProcess from '../components/sections/OurProcess';
 import Services from '../components/sections/Services';
 import { WhoWeAre } from '../components/sections/WhoWeAre';
-
 
 export default function Homepage() {
   const theme = useTheme();
@@ -25,6 +33,7 @@ export default function Homepage() {
 
   return (
     <Page sx={{ marginTop: 0, margin: 'Auto' }}>
+      <PageSettings pageTranslationName="home" />
       <Sections>
         <Section
           id="home"
@@ -52,7 +61,7 @@ export default function Homepage() {
           }}
         >
           <ChosenBy>
-            <ClientLogos/>
+            <ClientLogos />
           </ChosenBy>
         </Section>
         <Section id="who-we-are">

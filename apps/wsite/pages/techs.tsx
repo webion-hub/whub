@@ -1,4 +1,5 @@
 import { NextImg, Page, Section, Sections, useLanguage } from '@whub/wui';
+import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 import { CardGroup } from '../components/CardGroup';
 import { IconCard } from '../components/cards/IconCard';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
@@ -7,6 +8,7 @@ export default function Techs() {
   const { t } = useLanguage();
   return (
     <Page>
+      <PageSettings pageTranslationName="techs" />
       <Sections>
         <Section>
           <CardGroup label={t('technologies')} title={t('technologies-title')}>

@@ -244,5 +244,37 @@
   "cookies": "This site uses cookies to improve your experience.",
   "decline": "Decline",
   "accept": "Accept",
-  "policies": "Policies & licenses"
+  "policies": "Policies & licenses",
+
+  "home-meta-title": "Webion - Custom Software Development Company",
+  "home-meta-description": "We provide custom software development services. We create customized software for individuals, startups and small and medium-sized enterprises.",
+  "home-meta-keywords": "custom software, websites, custom websites, apps, custom software development company, software company, industry 4.0, industry 4.0 software, custom software solutions, android app development",
+
+  "website-meta-title": "Webion - Custom Website Development",
+  "website-meta-description": "Do you need a website created for your company? Get an expert dedicated developer from us. All the web solutions we create are fully customized for our clients.",
+  "website-meta-keywords": "Custom websites, Website, Next website, Website quote, Custom website",
+
+  "app-meta-title": "Webion - Custom App Development",
+  "app-meta-description": "Help your app stand out on the App Store/Play Store with Webion's custom app development service.",
+  "app-meta-keywords": "App development, Android applications, Kotlin development, Swift development",
+
+  "industry-meta-title": "Webion - Custom software for Industry 4.0",
+  "industry-meta-description": "Our software solutions help companies collect and use data more effectively, making their operations more efficient and reducing costs.",
+  "industry-meta-keywords": "Software development for industry 4.0, Industry 4.0, Data analysis software, Data logging software",
+
+  "project-meta-title": "Webion - Recent projects",
+  "project-meta-description": "Check out our success stories. See examples of our work",
+  "project-meta-keywords": "Software Projects, Software Development Projects, Website Projects, Custom Website Examples",
+
+  "about-meta-title": "Webion - About us",
+  "about-meta-description": "Webion is a custom software development company in Modena. We develop websites, e-commerce, modern apps and software for industry 4.0",
+  "about-meta-keywords": "Webion, History of Webion, Who is Webion, Who works at Webion, Webion Team, What is Webion",
+
+  "techs-meta-title": "Webion - The technologies we use",
+  "techs-meta-description": "The technologies that Webion uses for software development are: C#, Next JS, Flutter, Docker, React, Net Core, Angular, SQL, Mongo DB",
+  "techs-meta-keywords": "Technologies for software development, C# development, Next JS development, Flutter development, Docker development, React development, Net Core development, Angular development, SQL development, Mongo DB development",
+
+  "contact-meta-title": "Webion - Contact us",
+  "contact-meta-description": "Contact Webion and get assistance in less than 48 hours.",
+  "contact-meta-keywords": "Contact Webion, Webion Free Estimate, Website Development Estimate, Software Development Estimate"
 }

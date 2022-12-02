@@ -1,4 +1,12 @@
-import { NextImg, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
+import {
+  NextImg,
+  Page,
+  Section,
+  Sections,
+  useLanguage,
+  useNextNavigator,
+} from '@whub/wui';
+import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 import { CardGroup } from '../components/CardGroup';
 import { ImageCard, ImageCardProps } from '../components/cards/ImageCard';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
@@ -21,7 +29,7 @@ function Project(props: ProjectProps) {
           auto
           width="100%"
           sx={{
-            borderRadius: theme => theme.shape.borderRadius
+            borderRadius: (theme) => theme.shape.borderRadius,
           }}
         />
       }
@@ -35,9 +43,13 @@ export default function Projects() {
 
   return (
     <Page>
+      <PageSettings pageTranslationName="project" />
       <Sections>
         <Section>
-          <CardGroup label={t('projects')} title={t('our-most-recent-projects')}>
+          <CardGroup
+            label={t('projects')}
+            title={t('our-most-recent-projects')}
+          >
             <Project
               title="Kaire Automation"
               paragraph={t('kaire')}

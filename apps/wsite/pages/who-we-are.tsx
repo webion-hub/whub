@@ -1,6 +1,23 @@
 import { CallRounded, GitHub, LinkedIn } from '@mui/icons-material';
-import { alpha, Avatar, Box, Button, IconButton, Stack, SxProps, Theme, Typography } from '@mui/material';
-import { Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
+import {
+  alpha,
+  Avatar,
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  SxProps,
+  Theme,
+  Typography,
+} from '@mui/material';
+import {
+  Page,
+  Section,
+  Sections,
+  useLanguage,
+  useNextNavigator,
+} from '@whub/wui';
+import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 import { useEffect, useRef, useState } from 'react';
 import { ImageAndDescription } from '../components/ImageAndDescription';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
@@ -16,6 +33,7 @@ export default function WhoWeArePage() {
 
   return (
     <Page>
+      <PageSettings pageTranslationName="about" />
       <Sections>
         <Section>
           <ImageAndDescription

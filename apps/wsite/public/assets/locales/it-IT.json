@@ -31,8 +31,8 @@
   "language": "Lingua",
 
   "who-we-are": "Chi siamo",
-  "who-we-are-title": "Azienda di sviluppo software personalizzato",
-  "who-we-are-desc": "Forniamo servizi di sviluppo software personalizzato. Realizziamo software personalizzato per privati, startup e piccole e medie imprese.<br /><br />Il nostro team ha la competenza e l&apos;esperienza per portare a termine il lavoro nel modo giusto, nei tempi e nel budget.",
+  "who-we-are-title": "Webion",
+  "who-we-are-desc": "Webion è una azienda di sviluppo software personalizzato con sede a Modena. Realizziamo software personalizzato per privati, startup e piccole e medie imprese.<br /><br />Il nostro team ha la competenza e l&apos;esperienza per portare a termine il lavoro nel modo giusto, nei tempi e nel budget.",
 
   "services": "Servizi",
   "services-title": "I nostri servizi.",
@@ -145,7 +145,7 @@
 
   "who-are-we": "chi siamo",
   "who-are-we-title": "Webion SRL",
-  "who-are-we-description": "In Webion, ci prendiamo il tempo per conoscere i nostri clienti e le loro esigenze specifiche prima di iniziare a creare una soluzione personalizzata. Crediamo che questo approccio personalizzato sia il modo migliore per creare un software che soddisfi veramente le esigenze dei nostri clienti.<br/><br/>Di conseguenza, abbiamo una comprovata esperienza nella fornitura di software di alta qualità e di facile utilizzo che i nostri clienti adorano. Se stai cercando un team che lavorerà con te per creare una soluzione personalizzata, contattaci. Siamo fiduciosi che non rimarrai deluso. Ci puoi trovare in via Panfilo Castaldi 3, a Modena.",
+  "who-are-we-description": "Webion Srl nasce dalla volontà di tre ragazzi con la passione comune per l'informatica e le tecnologie, desideriosi di mettersi realmente in gioco. Identificata la scarsità di Software House in grado di sviluppare software completamente personalizzati, è stato deciso a febbraio 2022 di fondare Webion inserendosi a pieno nel settore IT. <br /><br /> Webion nei corso dei mesi ha lavorato a progetto ed ha offerto consulenza a diverse software house sparse per tutta l'Italia iniziando inoltre una forte e duratura collaborazione con Kaire, un'azienda di automazioni industriali di Modena.",
   "the-team": "Il team",
   "front-end-cofounder": "Co-fondatore & Sviluppatore Frontend",
   "back-end-cofounder": "Co-fondatore & Sviluppatore Backend",
@@ -244,5 +244,37 @@
   "cookies": "Questo sito utilizza i cookie per migliorare la tua esperienza.",
   "decline": "Rifiuta",
   "accept": "Accetta",
-  "policies": "Politiche & licenze"
+  "policies": "Politiche & licenze",
+
+  "home-meta-title": "Webion - Azienda di sviluppo software personalizzato",
+  "home-meta-description": "Forniamo servizi di sviluppo software personalizzati. Realizziamo software personalizzati per privati, startup e piccole e medie imprese.",
+  "home-meta-keywords": "software personalizzato, siti Web, siti Web personalizzati, app, società di sviluppo software personalizzato, società di software, industria 4.0, software per l'industria 4.0, soluzioni software personalizzate, sviluppo app Android",
+
+  "website-meta-title": "Webion - Siti web personalizzati",
+  "website-meta-description": "Hai bisogno di un sito web creato per la tua azienda? Ottieni uno sviluppatore dedicato esperto da noi. Tutte le soluzioni Web che creiamo sono completamente personalizzate per i nostri clienti.",
+  "website-meta-keywords": "Siti web personalizzati, Sito web, Sito in next, Preventivo sito web, Sito web custom",
+
+  "app-meta-title": "Webion - Sviluppo applicazioni personalizzate",
+  "app-meta-description": "Aiuta la tua app a distinguersi su App Store/Play Store con il servizio di sviluppo di app personalizzate di Webion.",
+  "app-meta-keywords": "Sviluppo app, Applicazioni android, Sviluppo in Kotlin, Sviluppo in Swift",
+
+  "industry-meta-title": "Webion - Sviliuppo software per Industria 4.0",
+  "industry-meta-description": "Le nostre soluzioni software aiutano le aziende a raccogliere e utilizzare i dati in modo più efficace, rendendo le loro operazioni più efficienti e riducendo i costi.",
+  "industry-meta-keywords": "Sviluppo software per industria 4.0, Industria 4.0, Software analisi dati, Software Storicizzazione dati",
+
+  "project-meta-title": "Webion - Progetti recenti",
+  "project-meta-description": "Dai un'occhiata alle nostre storie di successo. Guarda esempi del nostro lavoro",
+  "project-meta-keywords": "Progetti software, Progetti di sviluppo software, Progetti siti web, Esempi siti web personalizzati",
+
+  "about-meta-title": "Webion - Chi siamo",
+  "about-meta-description": "Webion è una azienda di sviluppo software personalizzato a Modena. Sviluppiamo siti web, e-commerce, app moderne e software per l'industria 4.0",
+  "about-meta-keywords": "Webion, Storia di Webion, Chi è Webion, Chi lavora a Webion, Webion Team",
+
+  "techs-meta-title": "Webion - Le tecnologie che usiamo",
+  "techs-meta-description": "Le tecnologie che Webion utilizza per lo sviluppo di software sono: C#, Next JS, Flutter, Docker, React, Net Core, Angular, SQL, Mongo DB",
+  "techs-meta-keywords": "Tecnologie per sviluppo software, sviluppo C#, sviluppo Next JS, sviluppo Flutter, sviluppo Docker, sviluppo React, sviluppo Net Core, sviluppo Angular, sviluppo SQL, sviluppo Mongo DB",
+
+  "contact-meta-title": "Webion - Contattaci",
+  "contact-meta-description": "Contatta Webion ed ottieni assistenza in meno di 48 ore.",
+  "contact-meta-keywords": "Contatta Webion, Preventivo gratuito Webion, Preventivo sviluppo sito, Preventivo sviluppo software"
 }

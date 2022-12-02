@@ -19,6 +19,7 @@ import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 import { CardGroup } from '../../components/CardGroup';
 import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
+import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 
 export default function Apps() {
   const { clickNavigate } = useNextNavigator();
@@ -26,6 +27,7 @@ export default function Apps() {
 
   return (
     <Page>
+      <PageSettings pageTranslationName='app' />
       <Sections>
         <Section>
           <ImageAndDescription

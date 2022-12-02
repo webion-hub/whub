@@ -48,7 +48,8 @@ export * from './lib/MultipleFileController';
 
 //Components
 export * from './components/Layout';
-export * from './components/Page';
+export * from './components/page_components/Page';
+export * from './components/page_components/PageSettings';
 
 export * from './components/app_bar/AppBar';
 export * from './components/app_bar/AppBarContent';

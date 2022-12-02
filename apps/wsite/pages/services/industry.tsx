@@ -17,6 +17,7 @@ import { CardGroup } from '../../components/CardGroup';
 import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
+import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 
 export default function Industry() {
   const { clickNavigate } = useNextNavigator();
@@ -24,6 +25,7 @@ export default function Industry() {
 
   return (
     <Page>
+      <PageSettings pageTranslationName='industry' />
       <Sections>
         <Section>
           <ImageAndDescription
