@@ -72,6 +72,11 @@ export default function BocconiCaseStudy() {
                 sx={{
                   '& > *': {
                     marginInline: 3,
+                    marginBlock: 3,
+                    position: 'relative !important',
+                    borderRadius: 2,
+                    maxHeight: '600px',
+                    height: '100%',
                   },
                 }}
               >
@@ -83,12 +88,6 @@ export default function BocconiCaseStudy() {
                     (max-width: 700px) 100vw,
                     600px
                   "
-                  sx={{
-                    marginBlock: 3,
-                    position: 'relative !important',
-                    borderRadius: 2,
-                    maxHeight: '600px',
-                  }}
                 />
                 <NextImg
                   auto
@@ -98,12 +97,6 @@ export default function BocconiCaseStudy() {
                     (max-width: 700px) 100vw,
                     600px
                   "
-                  sx={{
-                    marginBlock: 3,
-                    position: 'relative !important',
-                    borderRadius: 2,
-                    maxHeight: '600px',
-                  }}
                 />
                 <NextImg
                   auto
@@ -113,12 +106,6 @@ export default function BocconiCaseStudy() {
                     (max-width: 700px) 100vw,
                     600px
                   "
-                  sx={{
-                    marginBlock: 3,
-                    position: 'relative !important',
-                    borderRadius: 2,
-                    maxHeight: '600px',
-                  }}
                 />
               </Stack>
             </IconCard>

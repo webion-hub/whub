@@ -138,6 +138,7 @@
   "see-website": "See website",
 
   "kaire": "Kaire automation is a company specialized in the construction and supervision of industrial plants.",
+  "bocconi": "Radio Bocconi consists of a cross-platform mobile app created in Flutter for the Bocconi radio podcast.",
   "simm": "SIMM Imballaggi is a company focused on the construction, customization and sale of packaging machines and materials.",
   "yoga": "Yoga holidays is a website for trips to Corfu. Their vacation packages include yoga courses",
   "mentorz": "Mentorz is a French startup that gives influencers the tools they need to have 1-1 consultations with their followers.",
@@ -233,6 +234,15 @@
   "massyve-result-description-1": "These were the results he had with the previous landing page and campaign ",
   "massyve-result-description-2": "These are instead our results. We can see that <b>we doubled the conversion rate</b> of the landing page, while <b>decreasing the cost per click by 32.43% and the cost for conversion by 70.17%</b>. At the same time we <b>improved the click through rate by 258.56%.</b>",
   "massyve-result-description-3": "These are just the results of the first month. We inserted analysis tools inside the web page so that we can keep monitoring the behaviours of the users and keep improving the landing page and the campaign through time.",
+
+  "bocconi-title": "Bocconi Radio",
+  "bocconi-study-title": "Smartphone app",
+  "bocconi-study-description": "Radio Bocconi is the web radio of the Bocconi University of the same name. It was founded in 2008 on the initiative of a group of university students and has established itself over the years as an integral part of a network entirely managed by students: the Student Media Center (together with web TV - BocconiTV, and the newspaper - Tra i Leoni).",
+
+  "download-app": "Download the app",
+
+  "bocconi-description-title": "Project description",
+  "bocconi-description-description": "Radio Bocconi consists of a cross-platform mobile app created in Flutter for the Bocconi radio podcast. The app is made up of 3 pages: <ul><li>Home page to listen to Bocconi radio</li><li>Blog page to see the list of Bocconi blog articles</li><li>Page article to see the single blog article</li></ul><br/>There is also the social and information section of the app.<br/><br/> The app allows you to view content in light mode or dark mode.",
 
   "message-sent": "Message sent!",
   "we-will-answer-in-48h": "We will reply to you within 48 hours.",
