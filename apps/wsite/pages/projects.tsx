@@ -61,6 +61,23 @@ export default function Projects() {
               buttonLabel={t('see-website')}
             />
             <Project
+              title="Radio Bocconi"
+              paragraph={t('bocconi')}
+              src="/assets/images/projects/bocconi.png"
+              alt="bocconi"
+              onClick={() =>
+                window
+                  .open(
+                    'https://play.google.com/store/apps/details?id=com.devpier.bocconi_radio',
+                    '_blank'
+                  )
+                  ?.focus()
+              }
+              buttonLabel={t('download-app')}
+              onClickSecondary={clickNavigate('/studies/bocconi')}
+              secondaryButtonLabel={t('learn-more')}
+            />
+            <Project
               title="Simm Imballaggi"
               paragraph={t('simm')}
               src="/assets/images/projects/simm.png"

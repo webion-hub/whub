@@ -138,6 +138,7 @@
   "see-website": "Vedi sito web",
 
   "kaire": "Kaire automation è un'azienda specializzata nella realizzazione e supervisione di impianti industriali.",
+  "bocconi": "Radio Bocconi, consiste in un app mobile multipiattaforma realizzata in Flutter per il podcast della radio della Bocconi.",
   "simm": "SIMM Imballaggi è un'azienda focalizzata nella costruzione, personalizzazione e vendita di macchine e materiali per il confezionamento.",
   "yoga": "Yoga holidays è un sito web per viaggi a Corfù. I loro pacchetti vacanza includono corsi di yoga.",
   "mentorz": "Mentorz è una startup francese che offre agli influencer gli strumenti di cui hanno bisogno per avere consultazioni 1-1 con i loro follower.",
@@ -233,6 +234,15 @@
   "massyve-result-description-1": "Questi erano i risultati che aveva con la landing page e la campagna precedente",
   "massyve-result-description-2": "Questi sono invece i nostri risultati. Possiamo vedere che <b>abbiamo raddoppiato il tasso di conversione</b> della landing page, <b>diminuendo il costo per clic del 32,43% e il costo di conversione del 70,17%</b>. Allo stesso tempo, abbiamo <b>migliorato la percentuale di clic del 258,56%.</b>",
   "massyve-result-description-3": "Questi sono solo i risultati del primo mese. Abbiamo inserito strumenti di analisi all'interno della pagina web in modo da poter continuare a monitorare i comportamenti degli utenti e continuare a migliorare la landing page e la campagna nel tempo.",
+
+  "bocconi-title": "Bocconi Radio",
+  "bocconi-study-title": "Applicazione per smartphone",
+  "bocconi-study-description": "Radio Bocconi è la web radio dell'omonima Università Bocconi. Nasce nel 2008 su iniziativa di un gruppo di studenti dell'ateneo e si afferma negli anni come parte integrante di un network interamente gestito da studenti: lo Student Media Center (assieme alla web TV - BocconiTV, e al giornale - Tra i Leoni).",
+
+  "download-app": "Scarica l'app",
+
+  "bocconi-description-title": "Descrizione progetto",
+  "bocconi-description-description": "Radio Bocconi, consiste in un app mobile multipiattaforma realizzata in Flutter per il podcast della radio della Bocconi. L'app è composta da 3 pagine: <ul><li>Pagina home per ascoltare la radio della Bocconi</li><li>Pagina blog per vedere la lista degli articoli del blog della Bocconi</li><li>Pagina articolo per vedere il singolo articolo di blog</li></ul><br/>È inoltre presente la sezione social e di informazioni dell'app.<br/><br/> L'app permette di visualizzare i contenuti in light mode o in dark mode. ",
 
   "message-sent": "Messaggio inviato!",
   "we-will-answer-in-48h": "Ti risponderemo entro 48h.",
