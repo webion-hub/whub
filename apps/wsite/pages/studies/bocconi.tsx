@@ -2,6 +2,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import { NextImg, Page, Section, Sections, useLanguage } from '@whub/wui';
+import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
@@ -12,6 +13,7 @@ export default function BocconiCaseStudy() {
 
   return (
     <Page>
+      <PageSettings pageTranslationName="bocconi" />
       <Sections>
         <Section>
           <Stack
@@ -32,7 +34,7 @@ export default function BocconiCaseStudy() {
               label={t('case-study')}
               title={t('bocconi-study-title')}
               description={tHtml('bocconi-study-description')}
-              src="/assets/images/projects/bocconi.png"
+              src="/assets/images/projects/bocconi/bocconi.png"
               actionComponent={
                 <Button
                   variant="contained"

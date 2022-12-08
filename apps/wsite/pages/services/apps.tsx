@@ -20,6 +20,7 @@ import { CardGroup } from '../../components/CardGroup';
 import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
+import { CaseStudyLink } from 'apps/wsite/components/CaseStudyLink';
 
 export default function Apps() {
   const { clickNavigate } = useNextNavigator();
@@ -27,7 +28,7 @@ export default function Apps() {
 
   return (
     <Page>
-      <PageSettings pageTranslationName='app' />
+      <PageSettings pageTranslationName="app" />
       <Sections>
         <Section>
           <ImageAndDescription
@@ -84,6 +85,15 @@ export default function Apps() {
               paragraph={t('app-features-6-description')}
             />
           </CardGroup>
+        </Section>
+        <Section>
+          <CaseStudyLink
+            title={t('example')}
+            caseStudyTitle={t('bocconi-title')}
+            caseStudyDescription={t('bocconi')}
+            href="/studies/bocconi"
+            src="/assets/images/projects/bocconi/bocconi.png"
+          />
         </Section>
         <GetAQuoteSection />
       </Sections>

@@ -1,11 +1,35 @@
-import { BasicThemeButton, ChildrenProp, SideBar, SideBarItem, useLanguage, useLayout, useNextNavigator } from '@whub/wui';
+import {
+  BasicThemeButton,
+  ChildrenProp,
+  SideBar,
+  SideBarItem,
+  useLanguage,
+  useLayout,
+  useNextNavigator,
+} from '@whub/wui';
 
-import { CloseRounded, ComputerRounded, DevicesRounded, FactoryRounded, GroupsRounded, PhoneIphoneRounded, PublicRounded } from '@mui/icons-material';
+import {
+  CloseRounded,
+  ComputerRounded,
+  DevicesRounded,
+  FactoryRounded,
+  GroupsRounded,
+  PhoneIphoneRounded,
+  PublicRounded,
+} from '@mui/icons-material';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
 import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
-import { Box, Collapse, IconButton, List, ListItemButton, ListItemText, useTheme } from '@mui/material';
+import {
+  Box,
+  Collapse,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemText,
+  useTheme,
+} from '@mui/material';
 import { ReactNode, useState } from 'react';
 
 export default function WebionSideBar() {
@@ -25,15 +49,16 @@ export default function WebionSideBar() {
       href: '/projects',
     },
     {
-      text: t('navbar-button4'),
-      icon: GroupsRounded,
-      href: '/who-we-are',
-    },
-    {
       text: t('navbar-button5'),
       icon: ComputerRounded,
       href: '/techs',
     },
+    {
+      text: t('navbar-button4'),
+      icon: GroupsRounded,
+      href: '/who-we-are',
+    },
+
     {
       text: t('contact-us'),
       icon: LocalPhoneRoundedIcon,

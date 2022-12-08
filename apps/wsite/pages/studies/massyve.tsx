@@ -3,6 +3,7 @@ import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import { NextImg, Page, Section, Sections, useLanguage } from '@whub/wui';
+import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
@@ -13,6 +14,7 @@ export default function MassyveCaseStudy() {
 
   return (
     <Page>
+      <PageSettings pageTranslationName="massyve" />
       <Sections>
         <Section>
           <Stack

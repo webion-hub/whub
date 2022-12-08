@@ -99,7 +99,7 @@
   "website-feature-5-description": "Our websites are optimized for search engines, making it easier for customers to find you online. In addition to SEO, we also offer a variety of other marketing services to help you promote your business online.",
   "website-feature-6-title": "Copywriting",
   "website-feature-6-description": "Writing copy that sells can be a tough nut to crack. You want your words to be persuasive, but not pushy; Informative, but not boring. It's a delicate balance, and one that's hard to achieve without years of practice. We take care of that for you.",
-  "recent-project-title": "Our most recent work.",
+  "example": "An example",
   "simm-title": "SIMM Imballaggi",
   "simm-short-description": "E-commerce development for a construction, customization and sale of packaging machines and materials company",
 
@@ -286,5 +286,21 @@
 
   "contact-meta-title": "Webion - Contact us",
   "contact-meta-description": "Contact Webion and get assistance in less than 48 hours.",
-  "contact-meta-keywords": "Contact Webion, Webion Free Estimate, Website Development Estimate, Software Development Estimate"
+  "contact-meta-keywords": "Contact Webion, Webion Free Estimate, Website Development Estimate, Software Development Estimate",
+
+  "bocconi-meta-title": "Webion - Bocconi Radio",
+  "bocconi-meta-description": "Radio Bocconi consists of a cross-platform mobile app created in Flutter for the Bocconi radio podcast.",
+  "bocconi-meta-keywords": "Bocconi Radio, Bocconi Podcast, Flutter app, Multi-platform app project, Bocconi radio podcast, Flutter app example",
+
+  "kaire-meta-title": "Webion - Kaire Automation",
+  "kaire-meta-description": "Collaboration for the development of a series of products for industry 4.0 with the Kaire Automation company",
+  "kaire-meta-keywords": "Kaire Automation, Industry 4.0, Collaboration with industry, Software development for industrial plants,",
+
+  "massyve-meta-title": "Webion - Massyve",
+  "massyve-meta-description": "Landing page development and management of google and facebook ads for Massyve Music",
+  "massyve-meta-keywords": "Google ads, Facebook ads, Webflow site, example Webflow site, landing page",
+
+  "simm-meta-title": "Webion - Simm Imballaggi",
+  "simm-meta-description": "Custom e-commerce development in Next.js and C# for Simm Imballaggi",
+  "simm-meta-keywords": "E-commerce development, e-commerce example, custom e-commerce, e-commerce in next.js, Simm packaging"
 }

@@ -1,9 +1,34 @@
 import { SxProps, Theme } from '@mui/system';
 import React, { useState } from 'react';
 
-import { DevicesRounded, FactoryRounded, KeyboardArrowDownRounded, PhoneIphoneRounded, PublicRounded } from '@mui/icons-material';
-import { Button, ListItemIcon, ListItemText, Menu, MenuItem, useTheme } from '@mui/material';
-import { AppBar, AppBarContent, AppBarLogo, AppBarSection, BasicThemeButton, LanguageDropdownButton, NextImg, SideBarButton, useLanguage, useLayout, useNextNavigator } from '@whub/wui';
+import {
+  DevicesRounded,
+  FactoryRounded,
+  KeyboardArrowDownRounded,
+  PhoneIphoneRounded,
+  PublicRounded,
+} from '@mui/icons-material';
+import {
+  Button,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  useTheme,
+} from '@mui/material';
+import {
+  AppBar,
+  AppBarContent,
+  AppBarLogo,
+  AppBarSection,
+  BasicThemeButton,
+  LanguageDropdownButton,
+  NextImg,
+  SideBarButton,
+  useLanguage,
+  useLayout,
+  useNextNavigator,
+} from '@whub/wui';
 
 function ServicesButton() {
   const { t } = useLanguage();
@@ -74,7 +99,8 @@ function ServicesButton() {
   );
 }
 
-const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_, ref) => {
+const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
+  (_, ref) => {
     const { t } = useLanguage();
     const theme = useTheme();
     const { clickNavigate } = useNextNavigator();
@@ -85,8 +111,7 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
 
     const isHome = currentSection === 'home';
 
-    if(currentSection === undefined)
-      return
+    if (currentSection === undefined) return;
 
     return (
       <AppBar
@@ -95,8 +120,7 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
           background: isHome ? 'transparent' : appbarColor,
           transition: `250ms background ease-in-out`,
           '& > *': {
-            color: (theme) =>
-              isHome ? '#fff' : theme.palette.text.primary,
+            color: (theme) => (isHome ? '#fff' : theme.palette.text.primary),
           },
           '::after': {
             content: '""',
@@ -148,13 +172,13 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
               },
             }}
           >
-            <Button
+            {/* <Button
               color="inherit"
               href="/#home"
               onClick={clickNavigate('/#home')}
             >
               {t('navbar-button1')}
-            </Button>
+            </Button> */}
             <ServicesButton />
             <Button
               color="inherit"
@@ -165,17 +189,17 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
             </Button>
             <Button
               color="inherit"
-              href="/who-we-are"
-              onClick={clickNavigate('/who-we-are')}
-            >
-              {t('navbar-button4')}
-            </Button>
-            <Button
-              color="inherit"
               href="/techs"
               onClick={clickNavigate('/techs')}
             >
               {t('navbar-button5')}
+            </Button>
+            <Button
+              color="inherit"
+              href="/who-we-are"
+              onClick={clickNavigate('/who-we-are')}
+            >
+              {t('navbar-button4')}
             </Button>
             <LanguageDropdownButton icon={PublicRounded} />
             <BasicThemeButton />
@@ -212,5 +236,5 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>((_,
   }
 );
 
-WebionAppbar.displayName = 'WebionAppbar'
+WebionAppbar.displayName = 'WebionAppbar';
 export default WebionAppbar;

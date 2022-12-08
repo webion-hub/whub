@@ -2,6 +2,7 @@ import { EmojiObjectsRounded, ReportProblemRounded } from '@mui/icons-material';
 import { Button, Typography, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import { Page, Section, Sections, useLanguage } from '@whub/wui';
+import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
@@ -12,6 +13,7 @@ export default function SimmCaseStudy() {
 
   return (
     <Page>
+      <PageSettings pageTranslationName="simm" />
       <Sections>
         <Section>
           <Stack
@@ -20,7 +22,7 @@ export default function SimmCaseStudy() {
             sx={{
               width: '100%',
               marginTop: 4,
-              marginInline: 1
+              marginInline: 1,
             }}
           >
             <Typography variant="h2" textAlign="center">
@@ -57,7 +59,7 @@ export default function SimmCaseStudy() {
                 minWidth: 'auto !important',
                 width: {
                   xs: `calc(100% - ${theme.spacing(2)})`,
-                  md: `calc(50% - ${theme.spacing(2)})`
+                  md: `calc(50% - ${theme.spacing(2)})`,
                 },
               },
             }}

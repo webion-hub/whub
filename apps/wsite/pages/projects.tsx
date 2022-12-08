@@ -63,7 +63,7 @@ export default function Projects() {
             <Project
               title="Radio Bocconi"
               paragraph={t('bocconi')}
-              src="/assets/images/projects/bocconi.png"
+              src="/assets/images/projects/bocconi/bocconi.png"
               alt="bocconi"
               onClick={() =>
                 window
