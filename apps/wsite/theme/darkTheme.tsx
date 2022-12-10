@@ -28,4 +28,8 @@ export const darkPalette: Theme['palette'] = {
     main: '#4444aa',
     contrastText: '#fff',
   },
+  custom: {
+    light: 'rgb(226 231 250)',
+    dark: '#757575',
+  },
 };

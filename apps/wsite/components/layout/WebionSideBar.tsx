@@ -10,6 +10,7 @@ import {
 
 import {
   CloseRounded,
+  CollectionsBookmarkRounded,
   ComputerRounded,
   DevicesRounded,
   FactoryRounded,
@@ -52,6 +53,11 @@ export default function WebionSideBar() {
       text: t('navbar-button5'),
       icon: ComputerRounded,
       href: '/techs',
+    },
+    {
+      text: t('navbar-button6'),
+      icon: CollectionsBookmarkRounded,
+      href: '/blog',
     },
     {
       text: t('navbar-button4'),
