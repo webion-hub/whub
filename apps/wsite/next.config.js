@@ -3,7 +3,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const CompressionPlugin = require("compression-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { withNx } = require('@nrwl/next/plugins/with-nx');
 
@@ -32,7 +31,6 @@ const nextConfig = {
 
     config.plugins.push(
       new LodashModuleReplacementPlugin(),
-      new CompressionPlugin(),
       //new BundleAnalyzerPlugin(),
     )
 
