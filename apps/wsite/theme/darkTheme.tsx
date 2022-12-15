@@ -1,5 +1,15 @@
 import { Theme } from '@mui/system';
 
+declare module '@mui/material/styles/createPalette' {
+  interface Palette {
+    readonly custom?: Palette['background'];
+  }
+
+  interface PaletteOptions {
+    readonly custom?: PaletteOptions['background'];
+  }
+}
+
 export const darkPalette: Theme['palette'] = {
   mode: 'dark',
   background: {
@@ -29,7 +39,7 @@ export const darkPalette: Theme['palette'] = {
     contrastText: '#fff',
   },
   custom: {
-    light: 'rgb(226 231 250)',
-    dark: '#757575',
+    default: 'rgb(226 231 250)',
+    paper: '#757575',
   },
 };
