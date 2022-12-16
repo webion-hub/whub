@@ -55,22 +55,15 @@ export default function Blog() {
             alignItems="center"
             sx={{ paddingTop: 10 }}
           >
-            {/* <Box>
-              <Chip label="The webion blog" variant="filled" color="primary" />
-            </Box> */}
-            <Typography
-              variant="h2"
-              component="h1"
-              // sx={{
-              //   background:
-              //     '-webkit-linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,23,116,1) 100%)',
-              //   '-webkit-background-clip': 'text',
-              //   '-webkit-text-fill-color': 'transparent',
-              // }}
-            >
+            <Typography variant="h2" component="h1">
               The Webion blog
             </Typography>
-            <Typography variant="h5" component="h2">
+            <Typography
+              variant="h5"
+              component="h2"
+              color="info.contrastText"
+              sx={{ maxWidth: 650, textAlign: 'center', marginBottom: 20 }}
+            >
               Exploring the Intersection of Computer Science, Business, Design,
               and Technology
             </Typography>
@@ -81,6 +74,9 @@ export default function Blog() {
                 alignContent="center"
                 spacing={4}
                 flexWrap="wrap"
+                sx={{
+                  marginTop: 5,
+                }}
               >
                 <CheckboxButton text="Business"></CheckboxButton>
                 <CheckboxButton text="Coding"></CheckboxButton>
@@ -113,7 +109,9 @@ export default function Blog() {
                   marginBlock: 3,
                 }}
               >
-                <Typography variant="body2">Showing 20 of 20</Typography>
+                <Typography variant="body2" color="info.contrastText">
+                  Showing 20 of 20
+                </Typography>
                 <Box>
                   <Button
                     color="inherit"

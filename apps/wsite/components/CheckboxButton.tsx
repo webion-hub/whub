@@ -1,33 +1,34 @@
-import { Button, Checkbox, FormControlLabel } from '@mui/material';
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  ToggleButton,
+} from '@mui/material';
+import { useState } from 'react';
 
 export default function CheckboxButton(props) {
+  const [selected, setSelected] = useState(false);
   return (
-    // <FormControlLabel
-    //   sx={{
-    //     '* > svg, * > input': {
-    //       display: 'none',
-    //       width: 0,
-    //       height: 0,
-    //       visibility: 'hidden',
-    //     },
-    //     paddingInline: 3,
-    //     backgroundColor: 'yellow',
-    //   }}
-    //   control={<Checkbox />}
-    //   label="Business"
-    // ></FormControlLabel>
-    <Button
-      variant="outlined"
+    <ToggleButton
       sx={{
         borderRadius: 3,
         fontSize: 18,
         paddingInline: 4,
         paddingBlock: 1,
-        // borderColor: (theme) => theme.palette.custom.light,
-        // color: (theme) => theme.palette.custom.dark,
+        textTransform: 'capitalize',
+        '&.Mui-selected, &.Mui-selected:hover': {
+          backgroundColor: (theme) =>
+            theme.palette.mode == 'light' ? 'rgb(21 52 178)' : 'rgb(21 52 178)',
+          color: (theme) => (theme.palette.mode == 'light' ? '#fff' : '#fff'),
+        },
       }}
+      selected={selected}
+      onChange={() => {
+        setSelected(!selected);
+      }}
+      value={props.text}
     >
       {props.text}
-    </Button>
+    </ToggleButton>
   );
 }

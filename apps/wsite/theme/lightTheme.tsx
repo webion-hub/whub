@@ -27,7 +27,7 @@ export const lightPalette: Theme['palette'] = {
     contrastText: '#444',
   },
   custom: {
-    light: 'rgb(226 231 250)',
-    dark: '#757575',
+    default: 'rgb(226 231 250)',
+    paper: '#757575',
   },
 };

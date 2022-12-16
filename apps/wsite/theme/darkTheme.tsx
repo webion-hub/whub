@@ -36,7 +36,7 @@ export const darkPalette: Theme['palette'] = {
   },
   info: {
     main: '#4444aa',
-    contrastText: '#fff',
+    contrastText: 'rgba(255, 255, 255, 0.7)',
   },
   custom: {
     default: 'rgb(226 231 250)',
