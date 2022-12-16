@@ -1,27 +1,27 @@
-import { DarkModeRounded, LightModeRounded } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-import { useThemeChanger } from "../contexts/ThemeContext";
+import { DarkModeRounded, LightModeRounded } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import { useThemeChanger } from '../contexts/ThemeContext';
 
 export function BasicThemeButton() {
-  const { currentTheme, setTheme } = useThemeChanger()
+  const { currentTheme, setTheme } = useThemeChanger();
 
   const toggleTheme = () => {
-    setTheme(
-      currentTheme === 'dark'
-        ? 'light'
-        : 'dark'
-    )
-  }
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  };
 
   return (
-    <IconButton
-      onClick={toggleTheme}
-    >
-      {
-        currentTheme === 'dark'
-          ? <LightModeRounded/>
-          : <DarkModeRounded/>
-      }
+    <IconButton onClick={toggleTheme}>
+      {currentTheme === 'dark' ? (
+        <LightModeRounded
+          id="light mode button"
+          aria-label="light mode button"
+        />
+      ) : (
+        <DarkModeRounded
+          id="light mode button"
+          aria-label="light mode button"
+        />
+      )}
     </IconButton>
-  )
+  );
 }

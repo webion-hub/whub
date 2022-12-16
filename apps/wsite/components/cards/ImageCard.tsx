@@ -1,4 +1,14 @@
-import { Box, Button, CardActionArea, CardActions, CardContent, Stack, SxProps, Theme, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  Stack,
+  SxProps,
+  Theme,
+  Typography,
+} from '@mui/material';
 import { MaybeShow } from '@whub/wui';
 import { ReactNode } from 'react';
 import { WebionCard } from './WebionCard';
@@ -40,7 +50,7 @@ export function ImageCard(props: ImageCardProps) {
         <>
           <CardContent sx={{ width: '100%' }}>
             {props.img}
-            <Typography variant="h5" sx={{ marginBlock: 1 }}>
+            <Typography variant="h5" component="h4" sx={{ marginBlock: 1 }}>
               {props.title}
             </Typography>
             <MaybeShow show={!!props.paragraph}>

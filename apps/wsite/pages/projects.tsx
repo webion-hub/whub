@@ -87,7 +87,7 @@ export default function Projects() {
                   .open('https://shop.simmimballaggi.com', '_blank')
                   ?.focus()
               }
-              onClickSecondary={clickNavigate('/studies/simm')}
+              onClickSecondary={clickNavigate('/studies/simm-imballaggi')}
               buttonLabel={t('see-website')}
               secondaryButtonLabel={t('learn-more')}
             />

@@ -22,7 +22,7 @@ function Process(props: ProcessProps) {
         component="span"
         sx={{
           zIndex: -1,
-          color: (theme) => alpha(theme.palette.text.secondary, 0.3),
+          color: (theme) => alpha(theme.palette.text.secondary, 0.5),
           transitionProperty: 'transform',
           transitionDelay: `${props.delay}ms`,
           transitionDuration: `${stepTime}ms`,
