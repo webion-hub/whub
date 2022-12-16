@@ -6,17 +6,20 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 
-export default function CheckboxButton(props) {
+export default function CategoryButton(props) {
   const [selected, setSelected] = useState(false);
   return (
     <ToggleButton
+      aria-label={props.category}
       sx={{
         borderRadius: 3,
         fontSize: 18,
+        flexGrow: 1,
         paddingInline: 4,
+        marginBlock: 3,
         paddingBlock: 1,
         textTransform: 'capitalize',
-        '&.Mui-selected, &.Mui-selected:hover': {
+        '&.Mui-selected, &.M,ui-selected:hover': {
           backgroundColor: (theme) =>
             theme.palette.mode == 'light' ? 'rgb(21 52 178)' : 'rgb(21 52 178)',
           color: (theme) => (theme.palette.mode == 'light' ? '#fff' : '#fff'),

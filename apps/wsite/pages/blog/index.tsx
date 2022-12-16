@@ -1,14 +1,7 @@
-import {
-  CheckBox,
-  DevicesRounded,
-  KeyboardArrowDownRounded,
-} from '@mui/icons-material';
+import { KeyboardArrowDownRounded } from '@mui/icons-material';
+import SearchIcon from '@mui/icons-material/Search';
 import {
   Button,
-  Checkbox,
-  Chip,
-  Divider,
-  FormControlLabel,
   FormGroup,
   IconButton,
   InputBase,
@@ -17,25 +10,38 @@ import {
   Menu,
   MenuItem,
   Paper,
-  TextField,
   Typography,
 } from '@mui/material';
 import { Box, Stack, SxProps, Theme } from '@mui/system';
-import { Page, Section, Sections, useLanguage } from '@whub/wui';
+import { MaybeShow, Page, Section, Sections, useLanguage } from '@whub/wui';
 import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
-import CheckboxButton from '../components/CheckboxButton';
-import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
-import BlogArticleCard from '../components/cards/BlogArticleCard';
+import useSWR from 'swr';
+import BlogArticleCard, {
+  BlogArticle,
+} from '../../components/cards/BlogArticleCard';
+import CategoryButton from '../../components/CategoryButton';
+
+const jsonFetcher = (path: string) =>
+  fetch(path).then((response) => response.json());
 
 export default function Blog() {
+  const { data, error, isValidating } = useSWR<BlogArticle[]>(
+    'pages/api/articles',
+    jsonFetcher
+  );
+
+  const { t } = useLanguage();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const listItemSx: SxProps<Theme> = {
     paddingLeft: (theme) => theme.spacing(0, '!important'),
     paddingRight: (theme) => theme.spacing(4, '!important'),
     marginBlock: 1,
   };
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -43,19 +49,22 @@ export default function Blog() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const { t } = useLanguage();
+  const categories = ['Business', 'Coding', 'Design', 'Other'];
+
   return (
     <Page>
       <PageSettings pageTranslationName="blog" />
       <Sections>
-        <Section sx={{ paddingBottom: 0 }}>
+        <Section sx={{ paddingBottom: 0, maxWidth: 1200, paddingInline: 10 }}>
           <Stack
             direction="column"
             spacing={4}
             alignItems="center"
+            maxWidth={1000}
+            width={1000}
             sx={{ paddingTop: 10 }}
           >
-            <Typography variant="h2" component="h1">
+            <Typography variant="h2" component="h1" textAlign="center">
               The Webion blog
             </Typography>
             <Typography
@@ -69,26 +78,29 @@ export default function Blog() {
             </Typography>
             <FormGroup>
               <Stack
-                direction="row"
+                direction={{ sm: 'column', md: 'row' }}
                 alignItems="center"
                 alignContent="center"
+                justifyContent="center"
                 spacing={4}
+                maxWidth="100%"
+                width={1000}
                 flexWrap="wrap"
                 sx={{
                   marginTop: 5,
                 }}
               >
-                <CheckboxButton text="Business"></CheckboxButton>
-                <CheckboxButton text="Coding"></CheckboxButton>
-                <CheckboxButton text="Design"></CheckboxButton>
-                <CheckboxButton text="Other"></CheckboxButton>
+                {categories.map((category, k) => (
+                  <CategoryButton key={k} text={category} />
+                ))}
                 <Paper
                   component="form"
                   sx={{
                     p: '2px 4px',
                     display: 'flex',
+                    flexGrow: 1,
                     alignItems: 'center',
-                    width: 400,
+                    minxWidth: 300,
                   }}
                 >
                   <IconButton sx={{ p: '10px' }} aria-label="menu">
@@ -151,57 +163,22 @@ export default function Blog() {
           </Stack>
         </Section>
         <Section sx={{ paddingTop: 0 }}>
-          <Stack direction="column" alignItems="center" spacing={4.5}>
-            <BlogArticleCard
-              date="13 Agosto 2022"
-              category="Business"
-              title="E sticazzi. Una guida completa sullo sticazzi"
-              timeToRead="5 min"
-              firstSentence="Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi "
-              image="/assets/images/blog/abstract.jpg"
-              alt="abstract"
-              link="http://localhost:4200/blog/seven-reasons-to-outsource"
-            />
-            <BlogArticleCard
-              date="13 Agosto 2022"
-              category="Business"
-              title="E sticazzi. Una guida completa sullo sticazzi"
-              timeToRead="5 min"
-              firstSentence="Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi "
-              image="/assets/images/blog/abstract.jpg"
-              alt="abstract"
-              link="http://localhost:4200/blog/seven-reasons-to-outsource"
-            />
-            <BlogArticleCard
-              date="13 Agosto 2022"
-              category="Business"
-              title="E sticazzi. Una guida completa sullo sticazzi"
-              timeToRead="5 min"
-              firstSentence="Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi "
-              image="/assets/images/blog/abstract.jpg"
-              alt="abstract"
-              link="http://localhost:4200/blog/seven-reasons-to-outsource"
-            />
-            <BlogArticleCard
-              date="13 Agosto 2022"
-              category="Business"
-              title="E sticazzi. Una guida completa sullo sticazzi"
-              timeToRead="5 min"
-              firstSentence="Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi "
-              image="/assets/images/blog/abstract.jpg"
-              alt="abstract"
-              link="http://localhost:4200/blog/seven-reasons-to-outsource"
-            />
-            <BlogArticleCard
-              date="13 Agosto 2022"
-              category="Business"
-              title="E sticazzi. Una guida completa sullo sticazzi"
-              timeToRead="5 min"
-              firstSentence="Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi Lorem ipsum e sticazzi "
-              image="/assets/images/blog/abstract.jpg"
-              alt="abstract"
-              link="http://localhost:4200/blog/seven-reasons-to-outsource"
-            />
+          <Stack
+            direction="column"
+            alignItems="center"
+            spacing={4.5}
+            sx={{
+              '& > *': {
+                width: 'clamp(300px, 95%, 1000px)',
+              },
+              margin: 2,
+            }}
+          >
+            <MaybeShow show={!isValidating && !error}>
+              {(data ?? []).map((article, i) => {
+                return <BlogArticleCard key={i} article={article} />;
+              })}
+            </MaybeShow>
           </Stack>
         </Section>
       </Sections>

@@ -3,28 +3,35 @@ import { Box, Stack } from '@mui/system';
 import { NextImg, useNextNavigator } from '@whub/wui';
 import { WebionCard } from './WebionCard';
 
-export interface BlogArticleProps {
-  readonly date: string;
-  readonly category: string;
+export interface BlogArticle {
+  readonly id: number;
+  readonly name: string;
   readonly title: string;
-  readonly timeToRead: string;
-  readonly firstSentence: string;
+  readonly category: string;
+  readonly readingTime: number;
+  readonly date: string;
   readonly image: string;
-  readonly alt: string;
-  readonly link: string;
+  readonly article: string;
+}
+
+interface BlogArticleProps {
+  readonly article: BlogArticle;
 }
 
 export default function BlogArticleCard(props: BlogArticleProps) {
   const { clickNavigate } = useNextNavigator();
 
   return (
-    <WebionCard
-      sx={{
-        width: 'clamp(300px, 1024px, 100%)',
-      }}
-    >
-      <CardActionArea onClick={clickNavigate(props.link)}>
-        <Stack direction="row" justifyContent="space-between">
+    <WebionCard>
+      <CardActionArea
+        onClick={clickNavigate(
+          `/blog/${props.article.id}/${props.article.name}`
+        )}
+      >
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          justifyContent="space-between"
+        >
           <Stack direction="column" sx={{ padding: 4 }}>
             <Typography variant="body1">{props.date}</Typography>
             <Stack
@@ -62,14 +69,15 @@ export default function BlogArticleCard(props: BlogArticleProps) {
           <Box
             sx={{
               position: 'relative',
-              maxWidth: 380,
+              maxWidth: { xs: 'auto', sm: 380 },
+              height: { xs: 250, sm: 'auto' },
               width: '100%',
               borderRadius: 4,
             }}
           >
             <NextImg
-              src={props.image}
-              alt={props.alt}
+              src={props.article.image}
+              alt={props.article.name}
               fill
               sizes="
                 (max-width: 700px) 100,
