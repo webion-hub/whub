@@ -7,7 +7,6 @@ import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
-
 export default function MassyveCaseStudy() {
   const { t, tHtml } = useLanguage();
   const theme = useTheme();
@@ -35,7 +34,7 @@ export default function MassyveCaseStudy() {
               label={t('case-study')}
               title={t('massyve-study-title')}
               description={tHtml('massyve-study-description')}
-              src="/assets/images/projects/massyve.webp"
+              src="/assets/images/projects/massyve/massyve.webp"
               actionComponent={
                 <Button
                   variant="contained"
@@ -87,7 +86,7 @@ export default function MassyveCaseStudy() {
                 <NextImg
                   fill
                   alt="results before"
-                  src="/assets/images/massyve-results-before.png"
+                  src="/assets/images/projects/massyve/massyve-results-before.png"
                   sx={{
                     marginBlock: 3,
                     objectFit: 'cover',
@@ -105,7 +104,7 @@ export default function MassyveCaseStudy() {
                 <NextImg
                   fill
                   alt="results after"
-                  src="/assets/images/massyve-results-after.png"
+                  src="/assets/images/projects/massyve/massyve-results-after.png"
                   sx={{
                     marginBlock: 3,
                     objectFit: 'cover',

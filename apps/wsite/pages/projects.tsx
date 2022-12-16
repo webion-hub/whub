@@ -118,7 +118,7 @@ export default function Projects() {
             <Project
               title="Massyve"
               paragraph={t('massyve')}
-              src="/assets/images/projects/massyve.webp"
+              src="/assets/images/projects/massyve/massyve.webp"
               alt="massyve"
               onClick={() =>
                 window
