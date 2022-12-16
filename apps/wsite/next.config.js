@@ -10,6 +10,9 @@ const { withNx } = require('@nrwl/next/plugins/with-nx');
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
+  experimental: {
+    nextScriptWorkers: true
+  },
   i18n: {
     locales: ['it', 'en'],
     defaultLocale: 'it',
