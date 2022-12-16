@@ -54,7 +54,9 @@ function Process(props: ProcessProps) {
           transform: props.in ? 'translateY(0px)' : 'translateY(-32px)',
         }}
       >
-        <Typography variant="h5">{props.title}</Typography>
+        <Typography variant="h5" component="h3">
+          {props.title}
+        </Typography>
         <Typography variant="body1" color="text.secondary" textAlign="center">
           {props.description}
         </Typography>
