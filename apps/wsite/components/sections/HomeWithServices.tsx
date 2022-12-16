@@ -1,5 +1,16 @@
-import { ArrowForwardRounded, DevicesRounded, FactoryRounded, PhoneIphoneRounded } from '@mui/icons-material';
-import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
+import {
+  ArrowForwardRounded,
+  DevicesRounded,
+  FactoryRounded,
+  PhoneIphoneRounded,
+} from '@mui/icons-material';
+import {
+  Box,
+  Button,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import { Stack } from '@mui/system';
 import { NextImg, useLanguage } from '@whub/wui';
 import { useRouter } from 'next/router';
@@ -58,8 +69,8 @@ export function HomeWithServices() {
     setPage(newPage);
   };
 
-  const zoomAnimationName = `grow-img-${page?.key ?? ''}`
-  const zoomAnimationKeyframes = `@keyframes ${zoomAnimationName}`
+  const zoomAnimationName = `grow-img-${page?.key ?? ''}`;
+  const zoomAnimationKeyframes = `@keyframes ${zoomAnimationName}`;
 
   return (
     <>
@@ -88,6 +99,7 @@ export function HomeWithServices() {
           <Typography
             key={page?.key}
             variant={reduceTitle ? 'h3' : 'h2'}
+            component="h1"
             textAlign="center"
             sx={{
               animation: `show-title 250ms ease-in-out`,
@@ -160,35 +172,33 @@ export function HomeWithServices() {
           overflow: 'hidden',
         }}
       >
-        {
-          pages.map(p => (
-            <NextImg
-              key={p.key}
-              quality={100}
-              src={p?.src}
-              alt="slide-show-img"
-              fill
-              sizes="100vw"
-              priority
-              sx={{
-                display: p.key === page?.key ? 'block' : 'none',
-                objectFit: 'cover',
-                objectPosition: 'center center',
-                transform: 'scale(0)',
-                [zoomAnimationKeyframes]: {
-                  '0%': {
-                    transform: `scale(1)`,
-                  },
-                  '100%': {
-                    opacity: 1,
-                    transform: `scale(1.2)`,
-                  },
+        {pages.map((p) => (
+          <NextImg
+            key={p.key}
+            quality={100}
+            src={p?.src}
+            alt="slide-show-img"
+            fill
+            sizes="100vw"
+            priority
+            sx={{
+              display: p.key === page?.key ? 'block' : 'none',
+              objectFit: 'cover',
+              objectPosition: 'center center',
+              transform: 'scale(0)',
+              [zoomAnimationKeyframes]: {
+                '0%': {
+                  transform: `scale(1)`,
                 },
-                animation: `${zoomAnimationName} 15000ms ease-in-out forwards`,
-              }}
-            />
-          ))
-        }
+                '100%': {
+                  opacity: 1,
+                  transform: `scale(1.2)`,
+                },
+              },
+              animation: `${zoomAnimationName} 15000ms ease-in-out forwards`,
+            }}
+          />
+        ))}
       </Box>
     </>
   );
