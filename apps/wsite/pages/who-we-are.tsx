@@ -96,6 +96,7 @@ export default function WhoWeArePage() {
               name="Matteo Budriesi"
               memberRole={t('front-end-cofounder')}
               src="/assets/images/members/budda.png"
+              alt="budda"
               videoSrc="/assets/videos/budda.webm"
               linkedinHref="https://www.linkedin.com/in/matteo-budriesi-b50b51218/"
               githubHref="https://github.com/matteo2437"
@@ -107,6 +108,7 @@ export default function WhoWeArePage() {
               name="Stefano Calabretti"
               memberRole={t('back-end-cofounder')}
               src="/assets/images/members/cala.png"
+              alt="cala"
               videoSrc="/assets/videos/cala.webm"
               linkedinHref="https://www.linkedin.com/in/calabr/"
               githubHref="https://github.com/cala-br"
@@ -118,6 +120,7 @@ export default function WhoWeArePage() {
               name="Alessandro Dodi"
               memberRole={t('front-end-cofounder')}
               src="/assets/images/members/alle.png"
+              alt="alle"
               videoSrc="/assets/videos/alle.webm"
               linkedinHref="https://www.linkedin.com/in/alessandro-dodi/"
               githubHref="https://github.com/AlessandroDodi"
@@ -131,6 +134,7 @@ export default function WhoWeArePage() {
               src="/assets/images/members/davido.png"
               videoSrc="/assets/videos/davido.webm"
               linkedinHref="https://www.linkedin.com/in/davide-messori-282781189/"
+              alt="davido"
               githubHref="https://github.com/davidemesso"
               sx={{
                 order: 4,
@@ -148,6 +152,7 @@ interface MemberProps {
   readonly name: string;
   readonly memberRole: string;
   readonly src: string;
+  readonly alt: string;
   readonly videoSrc: string;
   readonly linkedinHref: string;
   readonly githubHref: string;
@@ -230,6 +235,7 @@ function Member(props: MemberProps) {
         <Avatar
           className="WUI-member--avatar"
           src={props.src}
+          alt={props.alt}
           sx={{
             transition: '0.5s opacity',
             opacity: 1,
@@ -251,10 +257,18 @@ function Member(props: MemberProps) {
         </Typography>
       </Stack>
       <Stack direction="row" alignItems="center" justifyContent="center">
-        <IconButton href={props.linkedinHref} target="_blank">
+        <IconButton
+          href={props.linkedinHref}
+          target="_blank"
+          aria-label="See linkedin progile"
+        >
           <LinkedIn />
         </IconButton>
-        <IconButton href={props.githubHref} target="_blank">
+        <IconButton
+          href={props.githubHref}
+          target="_blank"
+          aria-label="See github progile"
+        >
           <GitHub />
         </IconButton>
       </Stack>

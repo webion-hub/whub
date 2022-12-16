@@ -1,8 +1,26 @@
-import { BusinessRounded, DevicesRounded, FactoryRounded, PersonRounded, PhoneIphoneRounded, QuestionMarkRounded, StoreRounded } from '@mui/icons-material';
+import {
+  BusinessRounded,
+  DevicesRounded,
+  FactoryRounded,
+  PersonRounded,
+  PhoneIphoneRounded,
+  QuestionMarkRounded,
+  StoreRounded,
+} from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useContactUs } from '@whub/apis-react';
-import { MaybeShow, Page, PrivacyCheckBox, Section, Sections, useLanguage, useNextNavigator, Validator, Validators } from '@whub/wui';
+import {
+  MaybeShow,
+  Page,
+  PrivacyCheckBox,
+  Section,
+  Sections,
+  useLanguage,
+  useNextNavigator,
+  Validator,
+  Validators,
+} from '@whub/wui';
 import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 import remove from 'lodash/remove';
 import { ReactNode, useState } from 'react';
@@ -293,7 +311,9 @@ export default function ContactUs() {
                 width: '100%',
               }}
             >
-              <Typography variant="h4">{steps[step].title}</Typography>
+              <Typography variant="h4" component="h3">
+                {steps[step].title}
+              </Typography>
               <Typography>{steps[step].description}</Typography>
               {steps[step].content}
               <Stack direction="row" justifyContent="flex-end" spacing={2}>
