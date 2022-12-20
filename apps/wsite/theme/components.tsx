@@ -17,7 +17,6 @@ export const getComponents = (
       root: {
         padding: 8,
         transition: '0.5s box-shadow',
-
         "&.Mui-expanded": {
           boxShadow: shadows[10]
         }
