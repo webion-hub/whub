@@ -61,7 +61,7 @@ export default function Blog() {
             spacing={4}
             alignItems="center"
             maxWidth={1000}
-            width={1000}
+            width="100%"
             sx={{ paddingTop: 10 }}
           >
             <Typography variant="h2" component="h1" textAlign="center">
@@ -78,13 +78,13 @@ export default function Blog() {
             </Typography>
             <FormGroup>
               <Stack
-                direction={{ sm: 'column', md: 'row' }}
+                direction="row"
                 alignItems="center"
                 alignContent="center"
                 justifyContent="center"
-                spacing={4}
-                maxWidth="100%"
-                width={1000}
+                columnGap={4}
+                rowGap={2}
+                maxWidth="1000px"
                 flexWrap="wrap"
                 sx={{
                   marginTop: 5,
@@ -93,26 +93,27 @@ export default function Blog() {
                 {categories.map((category, k) => (
                   <CategoryButton key={k} text={category} />
                 ))}
-                <Paper
-                  component="form"
-                  sx={{
-                    p: '2px 4px',
-                    display: 'flex',
-                    flexGrow: 1,
-                    alignItems: 'center',
-                    minxWidth: 300,
-                  }}
-                >
-                  <IconButton sx={{ p: '10px' }} aria-label="menu">
-                    <SearchIcon />
-                  </IconButton>
-                  <InputBase
-                    sx={{ ml: 1, flex: 1 }}
-                    placeholder="Search Articles"
-                    inputProps={{ 'aria-label': 'search an article' }}
-                  />
-                </Paper>
               </Stack>
+              <Paper
+                component="form"
+                sx={{
+                  p: '2px 4px',
+                  display: 'flex',
+                  marginTop: 2,
+                  flexGrow: 1,
+                  alignItems: 'center',
+                  minxWidth: 300,
+                }}
+              >
+                <IconButton sx={{ p: '10px' }} aria-label="menu">
+                  <SearchIcon />
+                </IconButton>
+                <InputBase
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Search Articles"
+                  inputProps={{ 'aria-label': 'search an article' }}
+                />
+              </Paper>
               <Stack
                 direction="row"
                 justifyContent="space-between"

@@ -10,13 +10,13 @@ export default function CategoryButton(props) {
   const [selected, setSelected] = useState(false);
   return (
     <ToggleButton
+      size="medium"
       aria-label={props.category}
       sx={{
         borderRadius: 3,
-        fontSize: 18,
         flexGrow: 1,
+        flexBasis: 250,
         paddingInline: 4,
-        marginBlock: 3,
         paddingBlock: 1,
         textTransform: 'capitalize',
         '&.Mui-selected, &.M,ui-selected:hover': {
