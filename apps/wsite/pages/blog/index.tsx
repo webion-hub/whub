@@ -10,29 +10,61 @@ import {
   Menu,
   MenuItem,
   Paper,
-  Typography,
+  Typography
 } from '@mui/material';
 import { Box, Stack, SxProps, Theme } from '@mui/system';
-import { MaybeShow, Page, Section, Sections, useLanguage } from '@whub/wui';
+import { Page, Section, Sections, useLanguage } from '@whub/wui';
 import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 import { useState } from 'react';
-import useSWR from 'swr';
 import BlogArticleCard, {
-  BlogArticle,
+  BlogArticle
 } from '../../components/cards/BlogArticleCard';
 import CategoryButton from '../../components/CategoryButton';
 
-const jsonFetcher = (path: string) =>
-  fetch(path).then((response) => response.json());
+export const articles: BlogArticle[] = [
+  {
+    id: 1,
+    name: 'nome',
+    title: "Lorem Ipsum",
+    category: "Business",
+    readingTime: 5,
+    date: "21 Mag 2021",
+    image: "/assets/images/websites.jpg",
+    article: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum feugiat aliquam. Vivamus id arcu vitae tellus ultricies tincidunt. Phasellus varius condimentum sapien in dignissim. In dapibus in leo sed pellentesque. Mauris sit amet mattis risus. Vestibulum lacinia rhoncus justo. Cras congue tortor fringilla pellentesque malesuada. Maecenas nec neque risus. Proin porta sed augue quis condimentum. Vestibulum ullamcorper odio vitae ex facilisis cursus. Donec augue felis, ultricies sed ullamcorper et, fermentum eget velit. Sed vel orci quis diam hendrerit fermentum non tincidunt libero. Aliquam justo quam, rutrum ut pretium ac, rhoncus sed dolor. Etiam non est ut arcu condimentum elementum eu non nibh. Nulla a risus sed libero iaculis dictum.<br/><br/> In ultrices tortor eu massa dictum, a vulputate tellus rhoncus. Vestibulum nec erat gravida massa pellentesque dapibus. Proin tempus mauris tortor, in posuere nunc lobortis vitae. Donec sodales augue nec magna auctor aliquet. Phasellus sed justo turpis. Fusce at augue sed quam luctus dapibus sit amet sit amet arcu. Quisque imperdiet, dolor vel aliquet consectetur, dolor ex lacinia sem, vel convallis ligula mi eu neque. Sed in tellus elit. Sed euismod massa sit amet nunc auctor, vel faucibus sem consequat. Vivamus rhoncus sed nisi sit amet eleifend. Etiam id tellus non felis ultricies facilisis nec vel ante. Fusce fringilla diam nibh, quis condimentum est vehicula eget. Aenean malesuada tortor vitae mi aliquam, sit amet efficitur erat vehicula. Aenean pellentesque turpis quis tortor congue vestibulum. Vestibulum euismod luctus elementum. Aliquam tempor tincidunt magna ac lacinia.<br/><br/> Cras dolor velit, auctor eu ante sed, blandit posuere tortor. Vivamus risus libero, pharetra vitae ullamcorper id, pharetra in arcu. Nunc tempor, est pretium hendrerit dignissim, lectus mi consequat tellus, ac pulvinar ligula odio tristique magna. Vivamus lacus arcu, convallis at arcu et, faucibus ultrices risus. Nulla vehicula, nunc eget gravida dictum, nulla dui porta diam, non feugiat arcu neque cursus mauris. Ut magna metus, dictum non feugiat ut, pellentesque sit amet leo. Vestibulum sodales libero in ultrices semper. Quisque blandit nisl ut suscipit elementum. Mauris varius quam aliquet, dapibus nibh non, pellentesque ipsum. Quisque vulputate gravida convallis. Aenean nec feugiat ante. Maecenas scelerisque nisi est, vel vestibulum elit mollis eget. Mauris ut sapien a neque faucibus efficitur vitae dapibus ipsum. Ut tristique ex lectus, sit amet placerat libero varius id. Maecenas dictum dui a mi accumsan, eu finibus nisi luctus. Mauris faucibus suscipit lorem, et pharetra sem semper et.<br/><br/>"
+  },
+  {
+    id: 2,
+    name: 'nome',
+    title: "Lorem Ipsum",
+    category: "Business",
+    readingTime: 5,
+    date: "21 Mag 2021",
+    image: "/assets/images/websites.jpg",
+    article: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum feugiat aliquam. Vivamus id arcu vitae tellus ultricies tincidunt. Phasellus varius condimentum sapien in dignissim. In dapibus in leo sed pellentesque. Mauris sit amet mattis risus. Vestibulum lacinia rhoncus justo. Cras congue tortor fringilla pellentesque malesuada. Maecenas nec neque risus. Proin porta sed augue quis condimentum. Vestibulum ullamcorper odio vitae ex facilisis cursus. Donec augue felis, ultricies sed ullamcorper et, fermentum eget velit. Sed vel orci quis diam hendrerit fermentum non tincidunt libero. Aliquam justo quam, rutrum ut pretium ac, rhoncus sed dolor. Etiam non est ut arcu condimentum elementum eu non nibh. Nulla a risus sed libero iaculis dictum.<br/><br/> In ultrices tortor eu massa dictum, a vulputate tellus rhoncus. Vestibulum nec erat gravida massa pellentesque dapibus. Proin tempus mauris tortor, in posuere nunc lobortis vitae. Donec sodales augue nec magna auctor aliquet. Phasellus sed justo turpis. Fusce at augue sed quam luctus dapibus sit amet sit amet arcu. Quisque imperdiet, dolor vel aliquet consectetur, dolor ex lacinia sem, vel convallis ligula mi eu neque. Sed in tellus elit. Sed euismod massa sit amet nunc auctor, vel faucibus sem consequat. Vivamus rhoncus sed nisi sit amet eleifend. Etiam id tellus non felis ultricies facilisis nec vel ante. Fusce fringilla diam nibh, quis condimentum est vehicula eget. Aenean malesuada tortor vitae mi aliquam, sit amet efficitur erat vehicula. Aenean pellentesque turpis quis tortor congue vestibulum. Vestibulum euismod luctus elementum. Aliquam tempor tincidunt magna ac lacinia.<br/><br/> Cras dolor velit, auctor eu ante sed, blandit posuere tortor. Vivamus risus libero, pharetra vitae ullamcorper id, pharetra in arcu. Nunc tempor, est pretium hendrerit dignissim, lectus mi consequat tellus, ac pulvinar ligula odio tristique magna. Vivamus lacus arcu, convallis at arcu et, faucibus ultrices risus. Nulla vehicula, nunc eget gravida dictum, nulla dui porta diam, non feugiat arcu neque cursus mauris. Ut magna metus, dictum non feugiat ut, pellentesque sit amet leo. Vestibulum sodales libero in ultrices semper. Quisque blandit nisl ut suscipit elementum. Mauris varius quam aliquet, dapibus nibh non, pellentesque ipsum. Quisque vulputate gravida convallis. Aenean nec feugiat ante. Maecenas scelerisque nisi est, vel vestibulum elit mollis eget. Mauris ut sapien a neque faucibus efficitur vitae dapibus ipsum. Ut tristique ex lectus, sit amet placerat libero varius id. Maecenas dictum dui a mi accumsan, eu finibus nisi luctus. Mauris faucibus suscipit lorem, et pharetra sem semper et.<br/><br/>"
+  },
+  {
+    id: 3,
+    name: 'nome',
+    title: "Lorem Ipsum",
+    category: "Business",
+    readingTime: 5,
+    date: "21 Mag 2021",
+    image: "/assets/images/websites.jpg",
+    article: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum feugiat aliquam. Vivamus id arcu vitae tellus ultricies tincidunt. Phasellus varius condimentum sapien in dignissim. In dapibus in leo sed pellentesque. Mauris sit amet mattis risus. Vestibulum lacinia rhoncus justo. Cras congue tortor fringilla pellentesque malesuada. Maecenas nec neque risus. Proin porta sed augue quis condimentum. Vestibulum ullamcorper odio vitae ex facilisis cursus. Donec augue felis, ultricies sed ullamcorper et, fermentum eget velit. Sed vel orci quis diam hendrerit fermentum non tincidunt libero. Aliquam justo quam, rutrum ut pretium ac, rhoncus sed dolor. Etiam non est ut arcu condimentum elementum eu non nibh. Nulla a risus sed libero iaculis dictum.<br/><br/> In ultrices tortor eu massa dictum, a vulputate tellus rhoncus. Vestibulum nec erat gravida massa pellentesque dapibus. Proin tempus mauris tortor, in posuere nunc lobortis vitae. Donec sodales augue nec magna auctor aliquet. Phasellus sed justo turpis. Fusce at augue sed quam luctus dapibus sit amet sit amet arcu. Quisque imperdiet, dolor vel aliquet consectetur, dolor ex lacinia sem, vel convallis ligula mi eu neque. Sed in tellus elit. Sed euismod massa sit amet nunc auctor, vel faucibus sem consequat. Vivamus rhoncus sed nisi sit amet eleifend. Etiam id tellus non felis ultricies facilisis nec vel ante. Fusce fringilla diam nibh, quis condimentum est vehicula eget. Aenean malesuada tortor vitae mi aliquam, sit amet efficitur erat vehicula. Aenean pellentesque turpis quis tortor congue vestibulum. Vestibulum euismod luctus elementum. Aliquam tempor tincidunt magna ac lacinia.<br/><br/> Cras dolor velit, auctor eu ante sed, blandit posuere tortor. Vivamus risus libero, pharetra vitae ullamcorper id, pharetra in arcu. Nunc tempor, est pretium hendrerit dignissim, lectus mi consequat tellus, ac pulvinar ligula odio tristique magna. Vivamus lacus arcu, convallis at arcu et, faucibus ultrices risus. Nulla vehicula, nunc eget gravida dictum, nulla dui porta diam, non feugiat arcu neque cursus mauris. Ut magna metus, dictum non feugiat ut, pellentesque sit amet leo. Vestibulum sodales libero in ultrices semper. Quisque blandit nisl ut suscipit elementum. Mauris varius quam aliquet, dapibus nibh non, pellentesque ipsum. Quisque vulputate gravida convallis. Aenean nec feugiat ante. Maecenas scelerisque nisi est, vel vestibulum elit mollis eget. Mauris ut sapien a neque faucibus efficitur vitae dapibus ipsum. Ut tristique ex lectus, sit amet placerat libero varius id. Maecenas dictum dui a mi accumsan, eu finibus nisi luctus. Mauris faucibus suscipit lorem, et pharetra sem semper et.<br/><br/>"
+  },
+  {
+    id: 4,
+    name: 'nome',
+    title: "Lorem Ipsum",
+    category: "Business",
+    readingTime: 5,
+    date: "21 Mag 2021",
+    image: "/assets/images/websites.jpg",
+    article: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum feugiat aliquam. Vivamus id arcu vitae tellus ultricies tincidunt. Phasellus varius condimentum sapien in dignissim. In dapibus in leo sed pellentesque. Mauris sit amet mattis risus. Vestibulum lacinia rhoncus justo. Cras congue tortor fringilla pellentesque malesuada. Maecenas nec neque risus. Proin porta sed augue quis condimentum. Vestibulum ullamcorper odio vitae ex facilisis cursus. Donec augue felis, ultricies sed ullamcorper et, fermentum eget velit. Sed vel orci quis diam hendrerit fermentum non tincidunt libero. Aliquam justo quam, rutrum ut pretium ac, rhoncus sed dolor. Etiam non est ut arcu condimentum elementum eu non nibh. Nulla a risus sed libero iaculis dictum.<br/><br/> In ultrices tortor eu massa dictum, a vulputate tellus rhoncus. Vestibulum nec erat gravida massa pellentesque dapibus. Proin tempus mauris tortor, in posuere nunc lobortis vitae. Donec sodales augue nec magna auctor aliquet. Phasellus sed justo turpis. Fusce at augue sed quam luctus dapibus sit amet sit amet arcu. Quisque imperdiet, dolor vel aliquet consectetur, dolor ex lacinia sem, vel convallis ligula mi eu neque. Sed in tellus elit. Sed euismod massa sit amet nunc auctor, vel faucibus sem consequat. Vivamus rhoncus sed nisi sit amet eleifend. Etiam id tellus non felis ultricies facilisis nec vel ante. Fusce fringilla diam nibh, quis condimentum est vehicula eget. Aenean malesuada tortor vitae mi aliquam, sit amet efficitur erat vehicula. Aenean pellentesque turpis quis tortor congue vestibulum. Vestibulum euismod luctus elementum. Aliquam tempor tincidunt magna ac lacinia.<br/><br/> Cras dolor velit, auctor eu ante sed, blandit posuere tortor. Vivamus risus libero, pharetra vitae ullamcorper id, pharetra in arcu. Nunc tempor, est pretium hendrerit dignissim, lectus mi consequat tellus, ac pulvinar ligula odio tristique magna. Vivamus lacus arcu, convallis at arcu et, faucibus ultrices risus. Nulla vehicula, nunc eget gravida dictum, nulla dui porta diam, non feugiat arcu neque cursus mauris. Ut magna metus, dictum non feugiat ut, pellentesque sit amet leo. Vestibulum sodales libero in ultrices semper. Quisque blandit nisl ut suscipit elementum. Mauris varius quam aliquet, dapibus nibh non, pellentesque ipsum. Quisque vulputate gravida convallis. Aenean nec feugiat ante. Maecenas scelerisque nisi est, vel vestibulum elit mollis eget. Mauris ut sapien a neque faucibus efficitur vitae dapibus ipsum. Ut tristique ex lectus, sit amet placerat libero varius id. Maecenas dictum dui a mi accumsan, eu finibus nisi luctus. Mauris faucibus suscipit lorem, et pharetra sem semper et.<br/><br/>"
+  }
+]
 
 export default function Blog() {
-  const { data, error, isValidating } = useSWR<BlogArticle[]>(
-    'pages/api/articles',
-    jsonFetcher
-  );
-
-  const { t } = useLanguage();
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -168,17 +200,16 @@ export default function Blog() {
             alignItems="center"
             spacing={4.5}
             sx={{
+              width: '100%',
+              margin: 2,
               '& > *': {
                 width: 'clamp(300px, 95%, 1000px)',
               },
-              margin: 2,
             }}
           >
-            <MaybeShow show={!isValidating && !error}>
-              {(data ?? []).map((article, i) => {
-                return <BlogArticleCard key={i} article={article} />;
-              })}
-            </MaybeShow>
+            {articles.map((article, i) => {
+              return <BlogArticleCard key={i} article={article} />;
+            })}
           </Stack>
         </Section>
       </Sections>

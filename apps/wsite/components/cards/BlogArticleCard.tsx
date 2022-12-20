@@ -32,8 +32,14 @@ export default function BlogArticleCard(props: BlogArticleProps) {
           direction={{ xs: 'column', sm: 'row' }}
           justifyContent="space-between"
         >
-          <Stack direction="column" sx={{ padding: 4 }}>
-            <Typography variant="body1">{props.date}</Typography>
+          <Stack
+            direction="column"
+            sx={{
+              padding: 4,
+              width: '100%',
+            }}
+          >
+            <Typography variant="body1">{props.article.date}</Typography>
             <Stack
               direction="row"
               alignContent="center"
@@ -42,10 +48,10 @@ export default function BlogArticleCard(props: BlogArticleProps) {
               sx={{ marginTop: 4 }}
             >
               <Box>
-                <Chip label={props.category} />
+                <Chip label={props.article.category} />
               </Box>
               <Typography sx={{ fontStyle: 'oblique' }}>
-                {props.timeToRead}
+                {/*props.article.timeToRead*/}
               </Typography>
             </Stack>
             <Typography
@@ -55,15 +61,19 @@ export default function BlogArticleCard(props: BlogArticleProps) {
                 marginTop: 2,
               }}
             >
-              {props.title}
+              {props.article.title}
             </Typography>
             <Typography
               variant="body1"
               sx={{
                 marginTop: 2,
+                display: '-webkit-box',
+                WebkitLineClamp: '3',
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
               }}
             >
-              {props.firstSentence}
+              {props.article.article}
             </Typography>
           </Stack>
           <Box
