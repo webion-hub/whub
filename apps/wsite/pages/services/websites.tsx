@@ -29,7 +29,7 @@ import { CardGroup } from '../../components/CardGroup';
 import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { CaseStudyLink } from '../../components/CaseStudyLink';
-import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
+import { PageSettings } from '@whub/wui';
 
 interface StatisticProps {
   readonly value: number;

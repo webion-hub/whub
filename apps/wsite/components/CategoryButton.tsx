@@ -1,34 +1,27 @@
-import {
-  Button,
-  Checkbox,
-  FormControlLabel,
-  ToggleButton,
-} from '@mui/material';
-import { useState } from 'react';
+import { ToggleButton } from '@mui/material';
 
-export default function CategoryButton(props) {
-  const [selected, setSelected] = useState(false);
+interface CategoryButtonProps {
+  readonly text: string;
+  readonly category: string;
+  readonly selected: boolean;
+  readonly onChange: () => void;
+}
+
+export default function CategoryButton(props: CategoryButtonProps) {
   return (
     <ToggleButton
       size="medium"
       aria-label={props.category}
       sx={{
-        borderRadius: 3,
-        flexGrow: 1,
-        flexBasis: 250,
-        paddingInline: 4,
-        paddingBlock: 1,
         textTransform: 'capitalize',
-        '&.Mui-selected, &.M,ui-selected:hover': {
+        '&.Mui-selected, &.Mui-selected:hover': {
           backgroundColor: (theme) =>
             theme.palette.mode == 'light' ? 'rgb(21 52 178)' : 'rgb(21 52 178)',
           color: (theme) => (theme.palette.mode == 'light' ? '#fff' : '#fff'),
         },
       }}
-      selected={selected}
-      onChange={() => {
-        setSelected(!selected);
-      }}
+      selected={props.selected}
+      onChange={props.onChange}
       value={props.text}
     >
       {props.text}

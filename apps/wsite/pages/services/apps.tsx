@@ -19,7 +19,7 @@ import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 import { CardGroup } from '../../components/CardGroup';
 import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
-import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
+import { PageSettings } from '@whub/wui';
 import { CaseStudyLink } from 'apps/wsite/components/CaseStudyLink';
 
 export default function Apps() {

@@ -23,11 +23,7 @@ export default function BlogArticleCard(props: BlogArticleProps) {
 
   return (
     <WebionCard>
-      <CardActionArea
-        onClick={clickNavigate(
-          `/blog/${props.article.id}/${props.article.name}`
-        )}
-      >
+      <CardActionArea onClick={clickNavigate(`/blog/${props.article.name}`)}>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           justifyContent="space-between"
@@ -79,6 +75,7 @@ export default function BlogArticleCard(props: BlogArticleProps) {
           <Box
             sx={{
               position: 'relative',
+              order: { xs: -1, sm: 0 },
               maxWidth: { xs: 'auto', sm: 380 },
               height: { xs: 250, sm: 'auto' },
               width: '100%',

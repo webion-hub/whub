@@ -1,9 +1,11 @@
 import { Stack, Typography } from '@mui/material';
 import { NextImg, Section, Sections } from '@whub/wui';
 
+export type Categories = 'business' | 'coding' | 'design' | 'other';
+
 export interface BlogArticleProps {
   readonly date: string;
-  readonly category: string;
+  readonly category: Categories;
   readonly title: string;
   readonly timeToRead: string;
   readonly firstSentence: string;

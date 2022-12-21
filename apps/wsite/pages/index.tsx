@@ -9,7 +9,7 @@ import {
   useLanguage,
   useNextNavigator,
 } from '@whub/wui';
-import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
+import { PageSettings } from '@whub/wui';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { netBackground } from '../components/backgrounds/netBackground';

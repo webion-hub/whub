@@ -6,7 +6,7 @@ import {
   useLanguage,
   useNextNavigator,
 } from '@whub/wui';
-import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
+import { PageSettings } from '@whub/wui';
 import { CardGroup } from '../components/CardGroup';
 import { ImageCard, ImageCardProps } from '../components/cards/ImageCard';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';

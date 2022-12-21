@@ -303,5 +303,24 @@
 
   "simm-meta-title": "Webion - Simm Imballaggi",
   "simm-meta-description": "Custom e-commerce development in Next.js and C# for Simm Imballaggi",
-  "simm-meta-keywords": "E-commerce development, e-commerce example, custom e-commerce, e-commerce in next.js, Simm packaging"
+  "simm-meta-keywords": "E-commerce development, e-commerce example, custom e-commerce, e-commerce in next.js, Simm packaging",
+
+  "blog-meta-title": "Webion - Blog",
+  "blog-meta-description": "Webion blog: Exploring the Intersection of Computer Science, Business, Design, and Technology",
+  "blog-meta-keywords": "Blog, Webion Blog, IT Blog, Technology Blog, Design Blog",
+
+  "blog-title": "Webion blog",
+  "blog-description": "Exploring the Intersection of Computer Science, Business, Design, and Technology",
+  "blog-category-1": "Business",
+  "blog-category-2": "Coding",
+  "blog-category-3": "Design",
+  "blog-category-4": "Other",
+  "search-article": "Search article",
+  "showing-1": "Showing",
+  "showing-2": "of",
+  "order-by": "Order by",
+  "most-recent": "Most recent",
+  "alphabetic": "From A to Z",
+  "reverse-alphabetic": "From Z to A",
+  "reading-time": "Reading time"
 }

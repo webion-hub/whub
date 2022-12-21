@@ -17,7 +17,7 @@ import {
   useLanguage,
   useNextNavigator,
 } from '@whub/wui';
-import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
+import { PageSettings } from '@whub/wui';
 import { useEffect, useRef, useState } from 'react';
 import { ImageAndDescription } from '../components/ImageAndDescription';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';

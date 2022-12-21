@@ -1,9 +1,27 @@
-import { BusinessRounded, DevicesRounded, FactoryRounded, PersonRounded, PhoneIphoneRounded, QuestionMarkRounded, StoreRounded } from '@mui/icons-material';
+import {
+  BusinessRounded,
+  DevicesRounded,
+  FactoryRounded,
+  PersonRounded,
+  PhoneIphoneRounded,
+  QuestionMarkRounded,
+  StoreRounded,
+} from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useContactUs } from '@whub/apis-react';
-import { MaybeShow, Page, PrivacyCheckBox, Section, Sections, useLanguage, useNextNavigator, Validator, Validators } from '@whub/wui';
-import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
+import {
+  MaybeShow,
+  Page,
+  PrivacyCheckBox,
+  Section,
+  Sections,
+  useLanguage,
+  useNextNavigator,
+  Validator,
+  Validators,
+} from '@whub/wui';
+import { PageSettings } from '@whub/wui';
 import remove from 'lodash/remove';
 import { ReactNode, useState } from 'react';
 import { SelectableCard } from '../components/cards/SelectableCard';

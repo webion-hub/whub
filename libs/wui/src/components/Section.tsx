@@ -9,6 +9,7 @@ import uniqueId from 'lodash/uniqueId';
 const StyledSection = styled('section')(({ theme }) => ({
   paddingBlock: theme.spacing(8),
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   position: 'relative',
@@ -55,8 +56,7 @@ export function Section(props: SectionProps) {
   const backgroundSx = props.showBackground ? background : {};
 
   useEffect(() => {
-    if (!sectionIn || props.ignoreSection)
-      return;
+    if (!sectionIn || props.ignoreSection) return;
 
     setSection(props.id ?? uniqueId());
   }, [sectionIn]);
