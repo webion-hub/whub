@@ -1,4 +1,4 @@
-import { Business, KeyboardArrowDownRounded } from '@mui/icons-material';
+import { KeyboardArrowDownRounded } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import {
   Button,

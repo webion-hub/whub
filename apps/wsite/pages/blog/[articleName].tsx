@@ -7,8 +7,8 @@ import { articles } from './articles';
 import parse from 'html-react-parser';
 import Head from 'next/head';
 
-import Quote from 'apps/wsite/components/blog/Quote';
-import CodeSnippet from 'apps/wsite/components/blog/code-snippet/CodeSnippet';
+import Quote from '../../components/blog/Quote';
+import CodeSnippet from '../../components/blog/CodeSnippet';
 
 export async function getStaticPaths() {
   return {

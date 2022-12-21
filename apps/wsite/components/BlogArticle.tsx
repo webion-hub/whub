@@ -12,7 +12,7 @@ export interface BlogArticleProps {
   readonly image: string;
   readonly alt: string;
 }
-export default function BlogArticle(props) {
+export default function BlogArticle(props: BlogArticleProps) {
   return (
     <Sections>
       <Section sx={{ paddingBottom: 0 }}>
