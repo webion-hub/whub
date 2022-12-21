@@ -2,6 +2,7 @@ import { KeyboardArrowDownRounded } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import {
   Button,
+  Chip,
   FormGroup,
   IconButton,
   InputBase,
@@ -15,9 +16,12 @@ import {
 } from '@mui/material';
 import { Box, Stack, SxProps, Theme } from '@mui/system';
 import { Page, PageSettings, Section, Sections, useLanguage } from '@whub/wui';
+import _ from 'lodash';
 import { useState } from 'react';
-import { Categories } from '../../components/BlogArticle';
-import BlogArticleCard from '../../components/cards/BlogArticleCard';
+import BlogArticleCard, {
+  BlogArticle,
+  Categories,
+} from '../../components/cards/BlogArticleCard';
 import CategoryButton from '../../components/CategoryButton';
 import { articles } from './articles';
 
@@ -26,12 +30,15 @@ type SelectedCategories = {
 };
 
 export default function Blog() {
+  // const orderByValues = ['most-recent', 'alphabetic', 'reverse-alphabetic', 'reading-time']
+
   const [categories, setCategories] = useState<SelectedCategories>({
     business: false,
     coding: false,
     design: false,
     other: false,
   });
+
   const [searchValue, setSearchValue] = useState('');
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -65,14 +72,36 @@ export default function Blog() {
     }));
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
   // const categories = ['Business', 'Coding', 'Design', 'Other'];
+
+  const filterArticle = (art: BlogArticle) => {
+    const areAllCategoriesUnselected = Object.values(categories).every(
+      (el) => !el
+    );
+    const isCategorySelected = categories[art.category];
+    const isTitleSameAsSearched = art.title
+      .toLowerCase()
+      .includes(searchValue.toLowerCase());
+    const isSearchEmpty = art.title.toLowerCase() === '';
+
+    return (
+      (areAllCategoriesUnselected || isCategorySelected) &&
+      (isTitleSameAsSearched || isSearchEmpty)
+    );
+  };
+  const filteredArticles = _(articles)
+    .filter(filterArticle)
+    .sortBy((art1) => {
+      return !art1.id;
+    })
+    .value();
 
   return (
     <Page>
@@ -90,16 +119,24 @@ export default function Blog() {
             alignItems="center"
             maxWidth={1000}
             width="100%"
-            sx={{ paddingTop: 10, maxWidth: 1000 }}
+            sx={{ paddingTop: 8, maxWidth: 1000 }}
           >
-            <Typography variant="h2" component="h1" textAlign="center">
+            {/* <Typography variant="h2" component="h1" textAlign="center">
               {t('blog-title')}
-            </Typography>
+            </Typography> */}
+            {/* <Chip
+              sx={{
+                textTransform: 'capitalize',
+              }}
+              size="medium"
+              color="primary"
+              label={t('blog-title')}
+            /> */}
             <Typography
-              variant="h5"
-              component="h2"
-              color="info.contrastText"
-              sx={{ maxWidth: 650, textAlign: 'center', marginBottom: 20 }}
+              variant="h3"
+              component="h1"
+              color="text"
+              sx={{ maxWidth: '100%', textAlign: 'center', marginBottom: 6 }}
             >
               {t('blog-description')}
             </Typography>
@@ -112,20 +149,26 @@ export default function Blog() {
               <Box
                 sx={{
                   display: 'flex',
-                  justifyContent: 'flex-end',
+                  justifyContent: 'space-between',
                   padding: 1,
                 }}
               >
+                <Typography variant="body2" color="text.secondary">
+                  {t('showing-1')} {filteredArticles.length} {t('showing-2')}{' '}
+                  {articles.length}
+                </Typography>
                 <Link
                   component="button"
                   variant="body2"
-                  color="text.secondary"
+                  color="text.primary"
                   onClick={() => clearAll()}
                   sx={{
+                    textTransform: 'inherit',
                     textDecoration: 'none',
+                    fontWeight: 400,
                   }}
                 >
-                  Clear
+                  {t('clear')}
                 </Link>
               </Box>
               <Box
@@ -151,13 +194,13 @@ export default function Blog() {
                 >
                   <CategoryButton
                     category="business"
-                    text={t('blog-category-1')}
+                    text={t('business')}
                     selected={categories['business']}
                     onChange={() => toggleCategory('business')}
                   />
                   <CategoryButton
                     category="coding"
-                    text={t('blog-category-2')}
+                    text={t('coding')}
                     selected={categories['coding']}
                     onChange={() => toggleCategory('coding')}
                   />
@@ -173,13 +216,13 @@ export default function Blog() {
                 >
                   <CategoryButton
                     category="design"
-                    text={t('blog-category-3')}
+                    text={t('design')}
                     selected={categories['design']}
                     onChange={() => toggleCategory('design')}
                   />
                   <CategoryButton
                     category="other"
-                    text={t('blog-category-4')}
+                    text={t('other')}
                     selected={categories['other']}
                     onChange={() => toggleCategory('other')}
                   />
@@ -209,17 +252,14 @@ export default function Blog() {
               </Paper>
               <Stack
                 direction="row"
-                justifyContent="space-between"
+                justifyContent="flex-end"
                 alignItems="center"
                 sx={{
-                  marginBlock: 3,
+                  marginBlock: 2,
                 }}
               >
-                <Typography variant="body2" color="info.contrastText">
-                  {t('showing-1')} 20 {t('showing-2')} 20
-                </Typography>
                 <Box>
-                  <Button
+                  {/* <Button
                     color="inherit"
                     size="large"
                     onClick={handleClick}
@@ -233,7 +273,7 @@ export default function Blog() {
                     }}
                   >
                     {t('order-by')}
-                  </Button>
+                  </Button> */}
                   <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                     <MenuItem sx={listItemSx} selected={false}>
                       <ListItemIcon></ListItemIcon>
@@ -270,7 +310,7 @@ export default function Blog() {
               },
             }}
           >
-            {articles.map((article, i) => {
+            {filteredArticles.map((article, i) => {
               return <BlogArticleCard key={i} article={article} />;
             })}
           </Stack>

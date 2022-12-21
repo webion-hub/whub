@@ -1,8 +1,5 @@
 import { Paper, useTheme } from '@mui/material';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-// import { docco, dracula } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-// import { dark } from 'react-syntax-highlighter/dist/esm/styles/hljs/atelier-dune-dark';
-// import { light } from 'react-syntax-highlighter/dist/esm/styles/hljs/atelier-dune-light';
 import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
 import dracula from 'react-syntax-highlighter/dist/esm/styles/hljs/dracula';
 

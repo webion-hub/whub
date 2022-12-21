@@ -1,17 +1,22 @@
 import { CardActionArea, Chip, Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
-import { NextImg, useNextNavigator } from '@whub/wui';
+import { NextImg, useLanguage, useNextNavigator } from '@whub/wui';
 import { WebionCard } from './WebionCard';
+import parse from 'html-react-parser';
+
+export type Categories = 'business' | 'coding' | 'design' | 'other';
 
 export interface BlogArticle {
   readonly id: number;
   readonly name: string;
   readonly title: string;
-  readonly category: string;
+  readonly titleEn: string;
+  readonly category: Categories;
   readonly readingTime: number;
   readonly date: string;
   readonly image: string;
   readonly article: string;
+  readonly articleEn: string;
 }
 
 interface BlogArticleProps {
@@ -20,7 +25,7 @@ interface BlogArticleProps {
 
 export default function BlogArticleCard(props: BlogArticleProps) {
   const { clickNavigate } = useNextNavigator();
-
+  const { t, language } = useLanguage();
   return (
     <WebionCard>
       <CardActionArea onClick={clickNavigate(`/blog/${props.article.name}`)}>
@@ -35,7 +40,9 @@ export default function BlogArticleCard(props: BlogArticleProps) {
               width: '100%',
             }}
           >
-            <Typography variant="body1">{props.article.date}</Typography>
+            <Typography variant="body2" color="text.secondary">
+              {props.article.date}
+            </Typography>
             <Stack
               direction="row"
               alignContent="center"
@@ -44,7 +51,12 @@ export default function BlogArticleCard(props: BlogArticleProps) {
               sx={{ marginTop: 4 }}
             >
               <Box>
-                <Chip label={props.article.category} />
+                <Chip
+                  sx={{
+                    textTransform: 'capitalize',
+                  }}
+                  label={t(props.article.category)}
+                />
               </Box>
               <Typography sx={{ fontStyle: 'oblique' }}>
                 {/*props.article.timeToRead*/}
@@ -57,7 +69,9 @@ export default function BlogArticleCard(props: BlogArticleProps) {
                 marginTop: 2,
               }}
             >
-              {props.article.title}
+              {language.code == 'it'
+                ? props.article.title
+                : props.article.titleEn}
             </Typography>
             <Typography
               variant="body1"
@@ -69,7 +83,9 @@ export default function BlogArticleCard(props: BlogArticleProps) {
                 overflow: 'hidden',
               }}
             >
-              {props.article.article}
+              {language.code == 'it'
+                ? parse(props.article.article)
+                : parse(props.article.articleEn)}
             </Typography>
           </Stack>
           <Box

@@ -1,6 +1,13 @@
 import { Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { MaybeShow, NextImg, Page, Section, Sections } from '@whub/wui';
+import {
+  MaybeShow,
+  NextImg,
+  Page,
+  Section,
+  Sections,
+  useLanguage,
+} from '@whub/wui';
 import { useEffect } from 'react';
 import { BlogArticle } from '../../components/cards/BlogArticleCard';
 import { articles } from './articles';
@@ -9,6 +16,7 @@ import Head from 'next/head';
 
 import Quote from '../../components/blog/Quote';
 import CodeSnippet from '../../components/blog/CodeSnippet';
+import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 
 export async function getStaticPaths() {
   return {
@@ -38,6 +46,7 @@ interface AritcleProps {
 }
 
 export default function Article(props: AritcleProps) {
+  const { t, tHtml, language } = useLanguage();
   useEffect(() => {
     console.log(props);
   }, [props]);
@@ -72,9 +81,12 @@ export default function Article(props: AritcleProps) {
               sx={{
                 textAlign: 'center',
                 marginTop: 6,
+                maxWidth: '900px',
               }}
             >
-              {props.article.title}
+              {language.code == 'it'
+                ? props.article.title
+                : props.article.titleEn}
             </Typography>
             <Stack
               direction="row"
@@ -91,7 +103,7 @@ export default function Article(props: AritcleProps) {
                 color="secondary"
                 sx={{ fontWeight: 'bold' }}
               >
-                {props.article.category}
+                {t(props.article.category)}
               </Typography>
             </Stack>
             <Box
@@ -120,9 +132,13 @@ export default function Article(props: AritcleProps) {
                 marginTop: 4,
               }}
             >
-              {parse(props.article.article ?? '')}
+              {parse(
+                language.code == 'it'
+                  ? props.article.article
+                  : props.article.articleEn ?? ''
+              )}
             </Box>
-            <Box
+            {/* <Box
               sx={{
                 maxWidth: 900,
                 marginTop: 4,
@@ -130,9 +146,10 @@ export default function Article(props: AritcleProps) {
             >
               <CodeSnippet text="function ciao(){test}" language="javascript" />
               <Quote text="Controlling accidental complexity is the essence of computer programming" />
-            </Box>
+            </Box> */}
           </Section>
         </MaybeShow>
+        <GetAQuoteSection />
       </Sections>
     </Page>
   );
