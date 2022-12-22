@@ -164,6 +164,22 @@ export function ClientLogos() {
         height="28px"
         sizes="25vw"
         alt="bocconi"
+        src="/assets/images/clients/gianos.png"
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="simm"
+        src="/assets/images/clients/simm.png"
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="bocconi"
         src="/assets/images/clients/bocconi.png"
       />
       <NextImg
@@ -173,14 +189,6 @@ export function ClientLogos() {
         sizes="25vw"
         alt="kaire"
         src="/assets/images/clients/kaire.png"
-      />
-      <NextImg
-        priority
-        auto
-        height="28px"
-        sizes="25vw"
-        alt="simm"
-        src="/assets/images/clients/simm.png"
       />
       <NextImg
         priority
@@ -205,14 +213,6 @@ export function ClientLogos() {
         sizes="25vw"
         alt="massyve"
         src="/assets/images/clients/massyve.png"
-      />
-      <NextImg
-        priority
-        auto
-        height="28px"
-        sizes="25vw"
-        alt="cody"
-        src="/assets/images/clients/cody.png"
       />
       <NextImg
         priority

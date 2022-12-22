@@ -136,7 +136,15 @@ export default function Blog() {
               variant="h3"
               component="h1"
               color="text"
-              sx={{ maxWidth: '100%', textAlign: 'center', marginBottom: 6 }}
+              sx={{
+                maxWidth: '100%',
+                textAlign: 'center',
+                marginBottom: 6,
+                // background:
+                //   'linear-gradient(to right, #ffffffd9 20%, #8d98f3db 100%)',
+                // WebkitBackgroundClip: 'text',
+                // WebkitTextFillColor: 'transparent',
+              }}
             >
               {t('blog-description')}
             </Typography>
