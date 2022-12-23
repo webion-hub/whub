@@ -3,14 +3,12 @@ import { Page, Section, Sections, useLanguage } from '@whub/wui';
 import { useEffect } from 'react';
 import { BlogArticle } from '../../components/cards/BlogArticleCard';
 import { articles } from './articles';
-import parse from 'html-react-parser';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
-import ImageWithDescription from '../../components/blog/ImageWithDescription';
 import DateAndCategory from '../../components/blog/DateAndCategory';
 import Cover from '../../components/blog/Cover';
 import HeadMeta from '../../components/blog/HeadMeta';
 import Title from '../../components/blog/Title';
-
+import ArticleContent from './ArticleContent';
 export async function getStaticPaths() {
   return {
     paths: [],
@@ -68,20 +66,12 @@ export default function Article(props: AritcleProps) {
             category={props.article.category}
           />
           <Cover src={props.article.image} />
-          <Box
-            sx={{
-              marginTop: 4,
-            }}
-          >
-            {parse(
+          <ArticleContent
+            content={
               language.code == 'it'
                 ? props.article.article
                 : props.article.articleEn ?? ''
-            )}
-          </Box>
-          <ImageWithDescription
-            src={props.article.image}
-            description={props.article.title}
+            }
           />
         </Section>
 

@@ -72,14 +72,9 @@ export default function Blog() {
     }));
   };
 
-  // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-  // const categories = ['Business', 'Coding', 'Design', 'Other'];
 
   const filterArticle = (art: BlogArticle) => {
     const areAllCategoriesUnselected = Object.values(categories).every(
