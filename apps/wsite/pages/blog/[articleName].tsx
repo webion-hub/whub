@@ -1,22 +1,15 @@
-import { Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import {
-  MaybeShow,
-  NextImg,
-  Page,
-  Section,
-  Sections,
-  useLanguage,
-} from '@whub/wui';
+import { Page, Section, Sections, useLanguage } from '@whub/wui';
 import { useEffect } from 'react';
 import { BlogArticle } from '../../components/cards/BlogArticleCard';
 import { articles } from './articles';
 import parse from 'html-react-parser';
-import Head from 'next/head';
-
-import Quote from '../../components/blog/Quote';
-import CodeSnippet from '../../components/blog/CodeSnippet';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
+import ImageWithDescription from '../../components/blog/ImageWithDescription';
+import DateAndCategory from '../../components/blog/DateAndCategory';
+import Cover from '../../components/blog/Cover';
+import HeadMeta from '../../components/blog/HeadMeta';
+import Title from '../../components/blog/Title';
 
 export async function getStaticPaths() {
   return {
@@ -53,102 +46,45 @@ export default function Article(props: AritcleProps) {
   if (!props.article) return null;
   return (
     <Page>
-      <Head>
-        <title>Webion - {props.article.title}</title>
-        <meta content={props.article.title} name="description" />
-        <meta content={props.article.title} property="og:title" />
-        <meta content={props.article.title} property="og:description" />
-        <meta content={props.article.title} property="twitter:title" />
-        <meta content={props.article.title} property="twitter:description" />
-        <meta property="og:type" content="website" />
-        <meta content="summary_large_image" name="twitter:card" />
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta name="keywords" content={props.article.title} />
-      </Head>
+      <HeadMeta title={props.article.title} />
       <Sections>
-        <MaybeShow
-          show={!!props.article}
-          alternativeChildren={<>Errore articolo non trovato</>}
+        <Section
+          sx={{
+            paddingInline: 2,
+            maxWidth: 900,
+            '& >  *': {
+              maxWidth: '100%',
+              marginBlock: 2,
+            },
+          }}
         >
-          <Section
+          <Title>
+            {language.code == 'it'
+              ? props.article.title
+              : props.article.titleEn}
+          </Title>
+          <DateAndCategory
+            date={props.article.date}
+            category={props.article.category}
+          />
+          <Cover src={props.article.image} />
+          <Box
             sx={{
-              paddingInline: 2,
+              marginTop: 4,
             }}
           >
-            <Typography
-              variant="h3"
-              component="h1"
-              sx={{
-                textAlign: 'center',
-                marginTop: 6,
-                maxWidth: '900px',
-              }}
-            >
-              {language.code == 'it'
-                ? props.article.title
-                : props.article.titleEn}
-            </Typography>
-            <Stack
-              direction="row"
-              gap={4}
-              sx={{
-                marginTop: 4,
-              }}
-            >
-              <Typography variant="body1" color="secondary">
-                {props.article.date}
-              </Typography>
-              <Typography
-                variant="body1"
-                color="secondary"
-                sx={{ fontWeight: 'bold' }}
-              >
-                {t(props.article.category)}
-              </Typography>
-            </Stack>
-            <Box
-              sx={{
-                marginTop: 5,
-                maxWidth: '100%',
-                width: '900px',
-                borderRadius: (theme) => theme.shape.borderRadius,
-                overflow: 'hidden',
-                height: '400px',
-              }}
-            >
-              <NextImg
-                src={props.article.image}
-                alt={props.article.image}
-                fill
-                sx={{
-                  objectFit: 'cover',
-                  position: 'relative !important',
-                }}
-              />
-            </Box>
-            <Box
-              sx={{
-                maxWidth: 900,
-                marginTop: 4,
-              }}
-            >
-              {parse(
-                language.code == 'it'
-                  ? props.article.article
-                  : props.article.articleEn ?? ''
-              )}
-            </Box>
-            {/* <Box
-              sx={{
-                maxWidth: 900,
-                marginTop: 4,
-              }}
-            >
-              <CodeSnippet text="function ciao(){test}" language="javascript" />
-              <Quote text="Controlling accidental complexity is the essence of computer programming" />
-            </Box> */}
-          </Section>
-        </MaybeShow>
+            {parse(
+              language.code == 'it'
+                ? props.article.article
+                : props.article.articleEn ?? ''
+            )}
+          </Box>
+          <ImageWithDescription
+            src={props.article.image}
+            description={props.article.title}
+          />
+        </Section>
+
         <GetAQuoteSection />
       </Sections>
     </Page>

@@ -43,7 +43,7 @@ export default function Blog() {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const { t } = useLanguage();
+  const { t, tHtml, language } = useLanguage();
 
   const listItemSx: SxProps<Theme> = {
     paddingLeft: (theme) => theme.spacing(0, '!important'),
@@ -86,14 +86,19 @@ export default function Blog() {
       (el) => !el
     );
     const isCategorySelected = categories[art.category];
-    const isTitleSameAsSearched = art.title
+    const title = language.code == 'it' ? art.title : art.titleEn;
+    const content = language.code == 'it' ? art.article : art.articleEn;
+    const isTitleSameAsSearched = title
+      .toLowerCase()
+      .includes(searchValue.toLowerCase());
+    const isConentSamAsSearched = content
       .toLowerCase()
       .includes(searchValue.toLowerCase());
     const isSearchEmpty = art.title.toLowerCase() === '';
 
     return (
       (areAllCategoriesUnselected || isCategorySelected) &&
-      (isTitleSameAsSearched || isSearchEmpty)
+      (isTitleSameAsSearched || isSearchEmpty || isConentSamAsSearched)
     );
   };
   const filteredArticles = _(articles)
@@ -121,17 +126,6 @@ export default function Blog() {
             width="100%"
             sx={{ paddingTop: 8, maxWidth: 1000 }}
           >
-            {/* <Typography variant="h2" component="h1" textAlign="center">
-              {t('blog-title')}
-            </Typography> */}
-            {/* <Chip
-              sx={{
-                textTransform: 'capitalize',
-              }}
-              size="medium"
-              color="primary"
-              label={t('blog-title')}
-            /> */}
             <Typography
               variant="h3"
               component="h1"
@@ -140,10 +134,6 @@ export default function Blog() {
                 maxWidth: '100%',
                 textAlign: 'center',
                 marginBottom: 6,
-                // background:
-                //   'linear-gradient(to right, #ffffffd9 20%, #8d98f3db 100%)',
-                // WebkitBackgroundClip: 'text',
-                // WebkitTextFillColor: 'transparent',
               }}
             >
               {t('blog-description')}
@@ -244,7 +234,7 @@ export default function Blog() {
                   marginTop: 2,
                   flexGrow: 1,
                   alignItems: 'center',
-                  minxWidth: 300,
+                  minWidth: 300,
                 }}
               >
                 <IconButton sx={{ p: '10px' }} aria-label="menu">
@@ -267,21 +257,6 @@ export default function Blog() {
                 }}
               >
                 <Box>
-                  {/* <Button
-                    color="inherit"
-                    size="large"
-                    onClick={handleClick}
-                    endIcon={<KeyboardArrowDownRounded />}
-                    sx={{
-                      textTransform: 'initial',
-                      '& .MuiButton-endIcon': {
-                        transition: '0.25s transform',
-                        transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-                      },
-                    }}
-                  >
-                    {t('order-by')}
-                  </Button> */}
                   <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                     <MenuItem sx={listItemSx} selected={false}>
                       <ListItemIcon></ListItemIcon>
@@ -314,7 +289,7 @@ export default function Blog() {
               width: '100%',
               margin: 2,
               '& > *': {
-                width: 'clamp(300px, 95%, 1000px)',
+                width: 'clamp(300px, 100%, 1000px)',
               },
             }}
           >
