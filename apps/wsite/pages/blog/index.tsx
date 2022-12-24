@@ -1,8 +1,6 @@
 import { KeyboardArrowDownRounded } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import {
-  Button,
-  Chip,
   FormGroup,
   IconButton,
   InputBase,
@@ -181,7 +179,7 @@ export default function Blog() {
                     display: 'grid',
                     flexGrow: 1,
                     maxWidth: '100%',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
                     gridGap: 8,
                   }}
                 >
@@ -203,7 +201,7 @@ export default function Blog() {
                     display: 'grid',
                     flexGrow: 1,
                     maxWidth: '100%',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
                     gridGap: 8,
                   }}
                 >
@@ -220,29 +218,39 @@ export default function Blog() {
                     onChange={() => toggleCategory('other')}
                   />
                 </Box>
+                <Box
+                  sx={{
+                    display: 'grid',
+                    flexGrow: 1,
+                    maxWidth: '100%',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                    gridGap: 8,
+                  }}
+                >
+                  <Paper
+                    component="form"
+                    sx={{
+                      p: '2px 4px',
+                      display: 'flex',
+                      flexGrow: 1,
+                      alignItems: 'center',
+                      minWidth: 150,
+                    }}
+                  >
+                    <IconButton sx={{ p: '10px' }} aria-label="menu">
+                      <SearchIcon />
+                    </IconButton>
+                    <InputBase
+                      sx={{ ml: 1, flex: 1 }}
+                      placeholder={t('search-article')}
+                      inputProps={{ 'aria-label': t('search-article') }}
+                      value={searchValue}
+                      onChange={(e) => setSearchValue(e.target.value)}
+                    />
+                  </Paper>
+                </Box>
               </Box>
-              <Paper
-                component="form"
-                sx={{
-                  p: '2px 4px',
-                  display: 'flex',
-                  marginTop: 2,
-                  flexGrow: 1,
-                  alignItems: 'center',
-                  minWidth: 300,
-                }}
-              >
-                <IconButton sx={{ p: '10px' }} aria-label="menu">
-                  <SearchIcon />
-                </IconButton>
-                <InputBase
-                  sx={{ ml: 1, flex: 1 }}
-                  placeholder={t('search-article')}
-                  inputProps={{ 'aria-label': t('search-article') }}
-                  value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
-                />
-              </Paper>
+
               <Stack
                 direction="row"
                 justifyContent="flex-end"
@@ -284,7 +292,7 @@ export default function Blog() {
               width: '100%',
               margin: 2,
               '& > *': {
-                width: 'clamp(300px, 100%, 1000px)',
+                width: 'clamp(200px, 100%, 1000px)',
               },
             }}
           >

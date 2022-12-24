@@ -58,8 +58,8 @@ export default function BlogArticleCard(props: BlogArticleProps) {
                   label={t(props.article.category)}
                 />
               </Box>
-              <Typography sx={{ fontStyle: 'oblique' }}>
-                {/*props.article.timeToRead*/}
+              <Typography color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                {props.article.readingTime} min
               </Typography>
             </Stack>
             <Typography
