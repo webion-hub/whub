@@ -64,7 +64,7 @@ export default function BlogArticleCard(props: BlogArticleProps) {
             </Stack>
             <Typography
               variant="h4"
-              component="h3"
+              component="h2"
               sx={{
                 marginTop: 2,
               }}

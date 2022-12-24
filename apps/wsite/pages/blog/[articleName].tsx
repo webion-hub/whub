@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { BlogArticle } from '../../components/cards/BlogArticleCard';
 import { articles } from './articles';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
-import DateAndCategory from '../../components/blog/DateAndCategory';
+import DateCategoryTime from '../../components/blog/DateCategoryTime';
 import Cover from '../../components/blog/Cover';
 import HeadMeta from '../../components/blog/HeadMeta';
 import Title from '../../components/blog/Title';
@@ -61,9 +61,10 @@ export default function Article(props: AritcleProps) {
               ? props.article.title
               : props.article.titleEn}
           </Title>
-          <DateAndCategory
+          <DateCategoryTime
             date={props.article.date}
             category={props.article.category}
+            readingTime={props.article.readingTime}
           />
           <Cover src={props.article.image} />
           <ArticleContent
