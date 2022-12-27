@@ -161,7 +161,7 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
           <AppBarSection
             alignment="end"
             hideOnMobile
-            spacing={3}
+            spacing={2}
             sx={{
               '& > *': {
                 width: 'max-content',
