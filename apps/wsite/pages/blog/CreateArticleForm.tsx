@@ -1,4 +1,5 @@
 import {
+  Button,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -8,14 +9,41 @@ import {
 import { useState } from 'react';
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
-import { blogCategories } from '../../components/cards/BlogArticleCard';
+import {
+  BlogArticle,
+  blogCategories,
+  Categories,
+} from '../../components/cards/BlogArticleCard';
 import { useLanguage } from '@whub/wui';
-
+interface ICreateArticle {
+  title: string;
+  cover: string;
+  category: Categories;
+  content: string;
+}
 export default function CreateArticleForm(props) {
-  const [category, setCategory] = useState('business');
+  // const [category, setCategory] = useState('business');
   const { t } = useLanguage();
-  const handleCategoryChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as string);
+  // const handleCategoryChange = (event: SelectChangeEvent) => {
+  //   setCategory(event.target.value as string);
+  // };
+  const form = React.useRef<ICreateArticle>({
+    title: '',
+    cover: '',
+    category: 'business',
+    content: '',
+  });
+  const update = (key, value) => {
+    form.current[key] = value;
+  };
+
+  const handleChange = (key) => (e) => {
+    update(key, e.target.value);
+  };
+  const submitHandler = (event) => {
+    event.preventDefault();
+    console.log(form.current);
+    props.onAddArticle(form.current);
   };
   return (
     <form>
@@ -33,14 +61,24 @@ export default function CreateArticleForm(props) {
           Create article
         </Typography>
 
-        <TextField id="title" label="title" variant="outlined" />
-        <TextField id="cover" label="cover" variant="outlined" />
+        <TextField
+          id="title"
+          label="title"
+          variant="outlined"
+          onChange={handleChange('title')}
+        />
+        <TextField
+          id="cover"
+          label="cover"
+          variant="outlined"
+          onChange={handleChange('cover')}
+        />
         <Select
           labelId="Category"
           id="category"
-          value={category}
+          value={blogCategories[0]}
           label="category"
-          onChange={handleCategoryChange}
+          onChange={handleChange('category')}
         >
           {blogCategories.map((c, i) => (
             <MenuItem key={i} value={c}>
@@ -48,6 +86,20 @@ export default function CreateArticleForm(props) {
             </MenuItem>
           ))}
         </Select>
+        <TextField
+          id="content"
+          label="content"
+          variant="outlined"
+          onChange={handleChange('content')}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          size="large"
+          onClick={submitHandler}
+        >
+          Submit
+        </Button>
       </Stack>
     </form>
   );
