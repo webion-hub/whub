@@ -4,7 +4,13 @@ import { NextImg, useLanguage, useNextNavigator } from '@whub/wui';
 import { WebionCard } from './WebionCard';
 import parse from 'html-react-parser';
 
-export type Categories = 'business' | 'coding' | 'design' | 'other';
+export const blogCategories = [
+  'business',
+  'coding',
+  'design',
+  'other',
+] as const;
+export type Categories = typeof blogCategories[number];
 
 export interface BlogArticle {
   readonly id: number;

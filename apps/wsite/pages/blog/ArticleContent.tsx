@@ -1,7 +1,7 @@
 import { MDXProvider } from '@mdx-js/react';
 import { Block } from '@mui/icons-material';
-import ImageWithDescription from 'apps/wsite/components/blog/ImageWithDescription';
-import Title from 'apps/wsite/components/blog/Title';
+import ImageWithDescription from '../../components/blog/ImageWithDescription';
+import Title from '../../components/blog/Title';
 import { Component } from 'react';
 import parse from 'html-react-parser';
 import { Typography } from '@mui/material';
@@ -30,9 +30,11 @@ export default function ArticleContent(props: ArticleContentProps) {
         img: {
           width: '100%',
           borderRadius: (theme) => theme.shape.borderRadius,
+          fontSize: '1.25rem !important',
         },
         '& > *': {
           maxWidth: '100%',
+          fontSize: '1.25rem !important',
         },
       }}
     >
