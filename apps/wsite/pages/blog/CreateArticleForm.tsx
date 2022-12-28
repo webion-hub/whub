@@ -15,6 +15,8 @@ import {
   Categories,
 } from '../../components/cards/BlogArticleCard';
 import { useLanguage } from '@whub/wui';
+import { Label } from '@mui/icons-material';
+import { Box } from '@mui/system';
 interface ICreateArticle {
   title: string;
   cover: string;
@@ -73,19 +75,21 @@ export default function CreateArticleForm(props) {
           variant="outlined"
           onChange={handleChange('cover')}
         />
-        <Select
-          labelId="Category"
-          id="category"
-          value={blogCategories[0]}
-          label="category"
-          onChange={handleChange('category')}
-        >
-          {blogCategories.map((c, i) => (
-            <MenuItem key={i} value={c}>
-              {t(c)}
-            </MenuItem>
-          ))}
-        </Select>
+        <Stack gap={1}>
+          <Typography>Category</Typography>
+          <Select
+            labelId="Category"
+            id="category"
+            value={blogCategories[0]}
+            onChange={handleChange('category')}
+          >
+            {blogCategories.map((c, i) => (
+              <MenuItem key={i} value={c}>
+                {t(c)}
+              </MenuItem>
+            ))}
+          </Select>
+        </Stack>
         <TextField
           id="content"
           label="content"
