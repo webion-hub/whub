@@ -13,7 +13,7 @@ export default function Cover(props: CoverProps) {
         width: '100%',
         borderRadius: (theme) => theme.shape.borderRadius,
         overflow: 'hidden',
-        height: '400px',
+        aspectRatio: '3/1',
       }}
     >
       <NextImg

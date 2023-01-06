@@ -1,110 +1,139 @@
-import {
-  Button,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { useState } from 'react';
-import * as React from 'react';
+import { Box, Button, styled, TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
+import { Dropdown, MaybeShow, SquareAddImage, SquareImageContainer } from '@whub/wui';
+import * as React from 'react';
 import {
-  BlogArticle,
   blogCategories,
-  Categories,
+  Categories
 } from '../../components/cards/BlogArticleCard';
-import { useLanguage } from '@whub/wui';
-import { Label } from '@mui/icons-material';
-import { Box } from '@mui/system';
-interface ICreateArticle {
+
+const StyledForm = styled('form')(({ theme }) => ({
+  width: '100%',
+}))
+
+export interface ICreateArticle {
   title: string;
   cover: string;
   category: Categories;
   content: string;
 }
-export default function CreateArticleForm(props) {
-  // const [category, setCategory] = useState('business');
-  const { t } = useLanguage();
-  // const handleCategoryChange = (event: SelectChangeEvent) => {
-  //   setCategory(event.target.value as string);
-  // };
-  const form = React.useRef<ICreateArticle>({
+
+interface CreateArticleFormProps {
+  readonly onAddArticle?: (article: ICreateArticle) => void,
+  readonly onChange?: (article: ICreateArticle) => void,
+}
+
+export default function CreateArticleForm(props: CreateArticleFormProps) {
+  const [form, setForm] = React.useState<ICreateArticle>({
     title: '',
     cover: '',
     category: 'business',
     content: '',
   });
-  const update = (key, value) => {
-    form.current[key] = value;
+
+  React.useEffect(() => {
+    props.onChange?.(form)
+  }, [form, props])
+
+  const update = <T extends keyof ICreateArticle,>(key: T, value: ICreateArticle[T]) => {
+    setForm(form => ({
+      ...form,
+      [key]: value
+    }))
   };
 
-  const handleChange = (key) => (e) => {
+  const handleChange =
+    <T extends keyof ICreateArticle,>(key: T) =>
+    <G extends { target: { value: ICreateArticle[T] } },>(e: G) =>
+  {
     update(key, e.target.value);
   };
+
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(form.current);
-    props.onAddArticle(form.current);
+    props.onAddArticle?.(form);
   };
+
   return (
-    <form>
+    <StyledForm>
       <Stack
         direction="column"
-        gap={3}
+        spacing={3}
         alignContent="center"
-        width={500}
         sx={{
           margin: 'auto',
-          marginBlock: 10,
+          marginBlock: 2,
         }}
       >
-        <Typography variant="h3" component="h1" textAlign="center">
-          Create article
-        </Typography>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ maxWidth: 500 }}
+        >
+          <Box>
+            <MaybeShow
+              show={form.cover === ''}
+              alternativeChildren={
+                <SquareImageContainer
+                  aspectRatio={3}
+                  src={form.cover}
+                  onDelete={() => handleChange('cover')({ target: { value: '' } })}
+                />
+              }
+            >
+              <SquareAddImage
+                aspectRatio={3}
+                onAddImage={value => handleChange('cover')({ target: { value } })}
+              />
+            </MaybeShow>
+          </Box>
+          <Stack
+            direction="column"
+            justifyContent="space-between"
+            sx={{ width: '100%' }}
+          >
+            <TextField
+              fullWidth
+              label="Title"
+              variant="outlined"
+              size='small'
+              value={form.title}
+              onChange={handleChange('title')}
+            />
+            <Dropdown
+              fullWidth
+              elements={(blogCategories as unknown) as string[]}
+              value={form.category}
+              getOptionLabel={e => e}
+              getValue={e => e}
+              label="Category"
+              size='small'
+              onValueChange={value => handleChange('category')({ target: { value: value as Categories } })}
+            />
+          </Stack>
+        </Stack>
 
         <TextField
-          id="title"
-          label="title"
-          variant="outlined"
-          onChange={handleChange('title')}
-        />
-        <TextField
-          id="cover"
-          label="cover"
-          variant="outlined"
-          onChange={handleChange('cover')}
-        />
-        <Stack gap={1}>
-          <Typography>Category</Typography>
-          <Select
-            labelId="Category"
-            id="category"
-            value={blogCategories[0]}
-            onChange={handleChange('category')}
-          >
-            {blogCategories.map((c, i) => (
-              <MenuItem key={i} value={c}>
-                {t(c)}
-              </MenuItem>
-            ))}
-          </Select>
-        </Stack>
-        <TextField
           id="content"
-          label="content"
+          label="Content"
           variant="outlined"
+          size='small'
+          fullWidth
+          multiline
+          rows={20}
           onChange={handleChange('content')}
         />
-        <Button
-          type="submit"
-          variant="contained"
-          size="large"
-          onClick={submitHandler}
-        >
-          Submit
-        </Button>
+        <Box>
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            onClick={submitHandler}
+          >
+            Submit
+          </Button>
+        </Box>
       </Stack>
-    </form>
+    </StyledForm>
   );
 }

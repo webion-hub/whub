@@ -1,14 +1,11 @@
-import { Box } from '@mui/system';
-import { Page, Section, Sections, useLanguage } from '@whub/wui';
-import { useEffect } from 'react';
-import { BlogArticle } from '../../components/cards/BlogArticleCard';
-import { articles } from './articles';
-import { GetAQuoteSection } from '../../components/sections/GetAQuote';
-import DateCategoryTime from '../../components/blog/DateCategoryTime';
-import Cover from '../../components/blog/Cover';
+import { Page, Section, Sections } from '@whub/wui';
 import HeadMeta from '../../components/blog/HeadMeta';
-import Title from '../../components/blog/Title';
-import ArticleContent from './ArticleContent';
+import { BlogArticle } from '../../components/cards/BlogArticleCard';
+import { GetAQuoteSection } from '../../components/sections/GetAQuote';
+import { Article } from './Article';
+import { articles } from './articles';
+
+
 export async function getStaticPaths() {
   return {
     paths: [],
@@ -36,12 +33,10 @@ interface AritcleProps {
   readonly article: BlogArticle;
 }
 
-export default function Article(props: AritcleProps) {
-  const { t, tHtml, language } = useLanguage();
-  useEffect(() => {
-    console.log(props);
-  }, [props]);
-  if (!props.article) return null;
+export default function ArticlePage(props: AritcleProps) {
+  if (!props.article)
+    return null;
+
   return (
     <Page>
       <HeadMeta title={props.article.title} />
@@ -56,23 +51,8 @@ export default function Article(props: AritcleProps) {
             },
           }}
         >
-          <Title>
-            {language.code == 'it'
-              ? props.article.title
-              : props.article.titleEn}
-          </Title>
-          <DateCategoryTime
-            date={props.article.date}
-            category={props.article.category}
-            readingTime={props.article.readingTime}
-          />
-          <Cover src={props.article.image} />
-          <ArticleContent
-            content={
-              language.code == 'it'
-                ? props.article.article
-                : props.article.articleEn ?? ''
-            }
+          <Article
+            {...props.article}
           />
         </Section>
 
