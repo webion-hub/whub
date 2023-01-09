@@ -1,6 +1,6 @@
 import { CloseRounded, PreviewRounded } from '@mui/icons-material';
-import { Box, Button, Divider, Typography } from '@mui/material';
-import { MaybeShow, Page, Section, Sections, useNextNavigator } from '@whub/wui';
+import { Box, Button, Typography } from '@mui/material';
+import { MaybeShow, Page, Section, Sections } from '@whub/wui';
 import { useRef, useState } from 'react';
 import { Article } from './Article';
 import CreateArticleForm, { ICreateArticle } from './CreateArticleForm';
