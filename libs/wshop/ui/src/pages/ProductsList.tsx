@@ -1,10 +1,9 @@
 import { ChevronLeftRounded, ChevronRightRounded } from "@mui/icons-material"
-import { Box, IconButton, LinearProgress, Stack, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { IconButton, Stack, Typography } from "@mui/material"
 import { useShop } from "@whub/apis-react"
 import { Product } from "@whub/wshop-api"
-import { FullScreenLoading, MaybeShow, useLayout } from "@whub/wui"
-import { ReactNode, useEffect, useRef, useState } from "react"
-import { ProductCategory } from "../components/outputs/ProductCategoryOutput"
+import { useLayout } from "@whub/wui"
+import { useEffect, useRef, useState } from "react"
 import { ProductCard } from "../components/ProductCard"
 
 interface ProductListProps {

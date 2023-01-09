@@ -1,13 +1,20 @@
 import { CloseRounded, PreviewRounded } from '@mui/icons-material';
 import { Box, Button, Typography } from '@mui/material';
-import { MaybeShow, Page, Section, Sections } from '@whub/wui';
+import { useBlog } from '@whub/apis-react';
+import { FullScreenLoading, MaybeShow, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
 import { useRef, useState } from 'react';
 import { Article } from './Article';
 import CreateArticleForm, { ICreateArticle } from './CreateArticleForm';
 
-export default function ReacteArticle() {
+export default function CreateArticle() {
+  const { navigate } = useNextNavigator()
+  const { language } = useLanguage()
+  const blogApi = useBlog().api
+
+  const [loading, setLoading] = useState(false)
+
   const article = useRef<ICreateArticle>({
-    category: 'business',
+    category: 'Business',
     content: '',
     cover: '',
     title: ''
@@ -16,19 +23,19 @@ export default function ReacteArticle() {
   const [showPreview, setShowPreview] = useState(false)
 
   const onAddArticleHandler = (articleData: ICreateArticle) => {
-    /*fetch(
-      'https://webionblog-default-rtdb.europe-west1.firebasedatabase.app/articles.json',
-      {
-        method: 'POST',
-        body: JSON.stringify(articleData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    ).then(() => {
-      navigate('/blog');
-    });*/
+    if(!language)
+      return
+
+    setLoading(true)
+    blogApi.articles
+      .create({
+        language: language.code,
+        ...articleData
+      })
+      .then(res => navigate(`/blog/${res.data.webId}`))
+      .finally(() => setLoading(false))
   };
+
   return (
     <Page>
       <Sections>
@@ -38,6 +45,7 @@ export default function ReacteArticle() {
             paddingInline: 2
           }}
         >
+          <FullScreenLoading loading={loading}/>
           <Typography
             sx={{ marginTop: 4 }}
             variant="h3"

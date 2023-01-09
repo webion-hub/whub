@@ -1,20 +1,16 @@
 import { Box, Button, styled, TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
+import { blogCategories, BlogCategories } from '@whub/apis/blog';
 import { Dropdown, MaybeShow, SquareAddImage, SquareImageContainer } from '@whub/wui';
-import * as React from 'react';
-import {
-  blogCategories,
-  Categories
-} from '../../components/cards/BlogArticleCard';
+import { useEffect, useState } from 'react';
 
 const StyledForm = styled('form')(({ theme }) => ({
   width: '100%',
 }))
-
 export interface ICreateArticle {
   title: string;
   cover: string;
-  category: Categories;
+  category: BlogCategories;
   content: string;
 }
 
@@ -24,14 +20,14 @@ interface CreateArticleFormProps {
 }
 
 export default function CreateArticleForm(props: CreateArticleFormProps) {
-  const [form, setForm] = React.useState<ICreateArticle>({
+  const [form, setForm] = useState<ICreateArticle>({
     title: '',
     cover: '',
-    category: 'business',
+    category: 'Business',
     content: '',
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     props.onChange?.(form)
   }, [form, props])
 
@@ -55,10 +51,12 @@ export default function CreateArticleForm(props: CreateArticleFormProps) {
   };
 
   return (
-    <StyledForm>
+    <StyledForm
+      onSubmit={submitHandler}
+    >
       <Stack
         direction="column"
-        spacing={3}
+        spacing={2}
         alignContent="center"
         sx={{
           margin: 'auto',
@@ -68,7 +66,7 @@ export default function CreateArticleForm(props: CreateArticleFormProps) {
         <Stack
           direction="row"
           spacing={2}
-          sx={{ maxWidth: 500 }}
+          sx={{ width: '100%' }}
         >
           <Box>
             <MaybeShow
@@ -93,6 +91,7 @@ export default function CreateArticleForm(props: CreateArticleFormProps) {
             sx={{ width: '100%' }}
           >
             <TextField
+              required
               fullWidth
               label="Title"
               variant="outlined"
@@ -108,12 +107,13 @@ export default function CreateArticleForm(props: CreateArticleFormProps) {
               getValue={e => e}
               label="Category"
               size='small'
-              onValueChange={value => handleChange('category')({ target: { value: value as Categories } })}
+              onValueChange={value => handleChange('category')({ target: { value: value as BlogCategories } })}
             />
           </Stack>
         </Stack>
 
         <TextField
+          required
           id="content"
           label="Content"
           variant="outlined"
@@ -128,7 +128,6 @@ export default function CreateArticleForm(props: CreateArticleFormProps) {
             type="submit"
             variant="contained"
             size="large"
-            onClick={submitHandler}
           >
             Submit
           </Button>

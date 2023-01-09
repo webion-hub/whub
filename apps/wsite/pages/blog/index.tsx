@@ -9,38 +9,47 @@ import {
   Menu,
   MenuItem,
   Paper,
-  Typography,
+  Typography
 } from '@mui/material';
 import { Box, Stack, SxProps, Theme } from '@mui/system';
+import { AppContext } from '@whub/apis-react';
+import { BlogCategories } from '@whub/apis/blog';
 import { Page, PageSettings, Section, Sections, useLanguage } from '@whub/wui';
-import _ from 'lodash';
-import { useState } from 'react';
-import BlogArticleCard, {
-  BlogArticle,
-  Categories,
-} from '../../components/cards/BlogArticleCard';
+import { useEffect, useState } from 'react';
+import BlogArticleCard from '../../components/cards/BlogArticleCard';
 import CategoryButton from '../../components/CategoryButton';
-import { articles } from './articles';
 
 type SelectedCategories = {
-  readonly [key in Categories]: boolean;
+  readonly [key in BlogCategories]: boolean;
 };
 
-export default function Blog() {
-  // const orderByValues = ['most-recent', 'alphabetic', 'reverse-alphabetic', 'reading-time']
+export async function getServerSideProps({ locale }) {
+  const endpoint = AppContext.blogApi.articles.forLanguage(locale);
+  const res = await endpoint.list();
 
+  return {
+    props: {
+      fallback: {
+        [endpoint.url]: res.data,
+      },
+    },
+  };
+}
+
+
+export default function Blog({ fallback }) {
   const [categories, setCategories] = useState<SelectedCategories>({
-    business: false,
-    coding: false,
-    design: false,
-    other: false,
+    Business: false,
+    Coding: false,
+    Design: false,
+    Other: false,
   });
 
   const [searchValue, setSearchValue] = useState('');
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const { t, tHtml, language } = useLanguage();
+  const { t } = useLanguage();
 
   const listItemSx: SxProps<Theme> = {
     paddingLeft: (theme) => theme.spacing(0, '!important'),
@@ -73,33 +82,9 @@ export default function Blog() {
     setAnchorEl(null);
   };
 
-  const filterArticle = (art: BlogArticle) => {
-    const areAllCategoriesUnselected = Object.values(categories).every(
-      (el) => !el
-    );
-    const isCategorySelected = categories[art.category];
-    const title = language.code == 'it' ? art.title : art.titleEn;
-    const content = language.code == 'it' ? art.article : art.articleEn;
-    const isTitleSameAsSearched = title
-      .toLowerCase()
-      .includes(searchValue.toLowerCase());
-    const isConentSamAsSearched = content
-      .toLowerCase()
-      .includes(searchValue.toLowerCase());
-    const isSearchEmpty = art.title.toLowerCase() === '';
+  return <div>ciao</div>
 
-    return (
-      (areAllCategoriesUnselected || isCategorySelected) &&
-      (isTitleSameAsSearched || isSearchEmpty || isConentSamAsSearched)
-    );
-  };
-  const filteredArticles = _(articles)
-    .filter(filterArticle)
-    .sortBy((art1) => {
-      return !art1.id;
-    })
-    .value();
-
+  /*
   return (
     <Page>
       <PageSettings pageTranslationName="blog" />
@@ -186,13 +171,13 @@ export default function Blog() {
                     category="business"
                     text={t('business')}
                     selected={categories['business']}
-                    onChange={() => toggleCategory('business')}
+                    onChange={() => toggleCategory('Business')}
                   />
                   <CategoryButton
                     category="coding"
                     text={t('coding')}
                     selected={categories['coding']}
-                    onChange={() => toggleCategory('coding')}
+                    onChange={() => toggleCategory('Coding')}
                   />
                 </Box>
                 <Box
@@ -208,13 +193,13 @@ export default function Blog() {
                     category="design"
                     text={t('design')}
                     selected={categories['design']}
-                    onChange={() => toggleCategory('design')}
+                    onChange={() => toggleCategory('Design')}
                   />
                   <CategoryButton
                     category="other"
                     text={t('other')}
                     selected={categories['other']}
-                    onChange={() => toggleCategory('other')}
+                    onChange={() => toggleCategory('Other')}
                   />
                 </Box>
                 <Box
@@ -302,5 +287,5 @@ export default function Blog() {
         </Section>
       </Sections>
     </Page>
-  );
+  );*/
 }

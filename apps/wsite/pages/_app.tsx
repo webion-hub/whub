@@ -18,15 +18,25 @@ import './styles.css';
 import { darkTheme, lightTheme } from '../theme/getTheme';
 import { AppContext } from '@whub/apis-react';
 import { YMInitializer } from 'react-yandex-metrika';
+import { BlogApi } from '@whub/apis/blog';
 
 const contactUs = new ContactUsApi({
   baseUrl: 'https://api.webion.it/contactus',
   withCredentials: true,
 });
 
+const blog = new BlogApi({
+  baseUrl: 'https://w0/webion/blog/api',
+  withCredentials: true,
+});
+
 AppContext.contactUs = {
   api: contactUs,
 };
+
+AppContext.blog = {
+  api: blog
+}
 
 function CustomApp({ Component, pageProps }: AppProps) {
 

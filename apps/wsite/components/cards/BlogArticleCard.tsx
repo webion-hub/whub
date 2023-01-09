@@ -3,27 +3,7 @@ import { Box, Stack } from '@mui/system';
 import { NextImg, useLanguage, useNextNavigator } from '@whub/wui';
 import { WebionCard } from './WebionCard';
 import parse from 'html-react-parser';
-
-export const blogCategories = [
-  'business',
-  'coding',
-  'design',
-  'other',
-] as const;
-export type Categories = typeof blogCategories[number];
-
-export interface BlogArticle {
-  readonly id: number;
-  readonly name: string;
-  readonly title: string;
-  readonly titleEn: string;
-  readonly category: Categories;
-  readonly readingTime: number;
-  readonly date: string;
-  readonly image: string;
-  readonly article: string;
-  readonly articleEn: string;
-}
+import { BlogArticle } from '@whub/apis/blog';
 
 interface BlogArticleProps {
   readonly article: BlogArticle;
@@ -34,7 +14,7 @@ export default function BlogArticleCard(props: BlogArticleProps) {
   const { t, language } = useLanguage();
   return (
     <WebionCard>
-      <CardActionArea onClick={clickNavigate(`/blog/${props.article.name}`)}>
+      <CardActionArea onClick={clickNavigate(`/blog/${props.article.title}`)}>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           justifyContent="space-between"
@@ -47,7 +27,7 @@ export default function BlogArticleCard(props: BlogArticleProps) {
             }}
           >
             <Typography variant="body2" color="text.secondary">
-              {props.article.date}
+              {props.article.publishDate}
             </Typography>
             <Stack
               direction="row"
@@ -75,9 +55,7 @@ export default function BlogArticleCard(props: BlogArticleProps) {
                 marginTop: 2,
               }}
             >
-              {language.code == 'it'
-                ? props.article.title
-                : props.article.titleEn}
+              {props.article.title}
             </Typography>
             <Typography
               variant="body1"
@@ -89,9 +67,7 @@ export default function BlogArticleCard(props: BlogArticleProps) {
                 overflow: 'hidden',
               }}
             >
-              {language.code == 'it'
-                ? parse(props.article.article)
-                : parse(props.article.articleEn)}
+              {props.article.content}
             </Typography>
           </Stack>
           <Box
@@ -105,8 +81,8 @@ export default function BlogArticleCard(props: BlogArticleProps) {
             }}
           >
             <NextImg
-              src={props.article.image}
-              alt={props.article.name}
+              src={props.article.cover}
+              alt={props.article.title}
               fill
               sizes="
                 (max-width: 700px) 100,
