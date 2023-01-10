@@ -45,7 +45,7 @@ export function Question(props: QuestionProps) {
   );
 }
 
-interface IQuestion {
+export interface IQuestion {
   readonly question: ReactNode;
   readonly answer: ReactNode;
 }

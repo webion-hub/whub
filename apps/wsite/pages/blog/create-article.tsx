@@ -2,9 +2,9 @@ import { CloseRounded, PreviewRounded } from '@mui/icons-material';
 import { Box, Button, Typography } from '@mui/material';
 import { useBlog } from '@whub/apis-react';
 import { FullScreenLoading, MaybeShow, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
+import { Article } from '../../components/blog/Article';
+import CreateArticleForm, { ICreateArticle } from '../../components/blog/CreateArticleForm';
 import { useRef, useState } from 'react';
-import { Article } from './Article';
-import CreateArticleForm, { ICreateArticle } from './CreateArticleForm';
 
 export default function CreateArticle() {
   const { navigate } = useNextNavigator()

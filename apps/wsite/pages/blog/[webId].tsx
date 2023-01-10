@@ -2,12 +2,12 @@ import { ArrowBackRounded } from '@mui/icons-material';
 import { Button, Divider, List, ListItem, ListItemButton, ListItemText, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { AppContext } from '@whub/apis-react';
 import { BlogArticle } from '@whub/apis/blog';
-import { MaybeShow, NextImg, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
+import { MaybeShow, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
+import { Article } from '../../components/blog/Article';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { fromEvent } from 'rxjs';
 import HeadMeta from '../../components/blog/HeadMeta';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';
-import { Article } from './Article';
 
 export async function getServerSideProps({ locale, params }) {
   const endpoint = AppContext.blogApi.articles.forLanguage(locale).withId(params.webId);

@@ -78,7 +78,30 @@ export default function Industry() {
             src="/assets/images/kaire2.webp"
           />
         </Section>
-        <FaqSection/>
+        <FaqSection
+          questions={[
+            {
+              question: t('industry-faq-q1'),
+              answer: tHtml('industry-faq-a1'),
+            },
+            {
+              question: t('industry-faq-q2'),
+              answer: tHtml('industry-faq-a2'),
+            },
+            {
+              question: t('industry-faq-q3'),
+              answer: tHtml('industry-faq-a3'),
+            },
+            {
+              question: t('industry-faq-q4'),
+              answer: tHtml('industry-faq-a4'),
+            },
+            {
+              question: t('industry-faq-q5'),
+              answer: tHtml('industry-faq-a5'),
+            },
+          ]}
+        />
         <GetAQuoteSection />
       </Sections>
     </Page>

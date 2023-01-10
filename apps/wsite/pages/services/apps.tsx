@@ -93,7 +93,34 @@ export default function Apps() {
             src="/assets/images/projects/bocconi/bocconi.png"
           />
         </Section>
-        <FaqSection/>
+        <FaqSection
+          questions={[
+            {
+              question: t('app-faq-q1'),
+              answer: tHtml('app-faq-a1'),
+            },
+            {
+              question: t('app-faq-q2'),
+              answer: tHtml('app-faq-a2'),
+            },
+            {
+              question: t('app-faq-q3'),
+              answer: tHtml('app-faq-a3'),
+            },
+            {
+              question: t('app-faq-q4'),
+              answer: tHtml('app-faq-a4'),
+            },
+            {
+              question: t('app-faq-q5'),
+              answer: tHtml('app-faq-a5'),
+            },
+            {
+              question: t('app-faq-q6'),
+              answer: tHtml('app-faq-a6'),
+            },
+          ]}
+        />
         <GetAQuoteSection />
       </Sections>
     </Page>

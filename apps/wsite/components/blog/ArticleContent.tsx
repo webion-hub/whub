@@ -1,7 +1,7 @@
 import { styled } from '@mui/material';
 import { Box } from '@mui/system';
 import ReactMarkdown from 'react-markdown';
-import CodeSnippet from '../../components/blog/CodeSnippet';
+import CodeSnippet from './CodeSnippet';
 interface ArticleContentProps {
   readonly content: string;
 }

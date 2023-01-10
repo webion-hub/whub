@@ -1,10 +1,14 @@
 import { HelpRounded } from '@mui/icons-material';
 import { alpha, Link, Stack, useTheme } from '@mui/material';
-import { Faq } from '@whub/page-sections';
+import { Faq, IQuestion } from '@whub/page-sections';
 import { Section, useLanguage, useNextNavigator } from '@whub/wui';
 import { netBackground } from '../backgrounds/netBackground';
 
-export function FaqSection() {
+interface FaqSectionProps {
+  readonly questions: IQuestion[]
+}
+
+export function FaqSection(props: FaqSectionProps) {
   const theme = useTheme();
   const { clickNavigate } = useNextNavigator();
   const { t, tHtml } = useLanguage();
@@ -35,32 +39,7 @@ export function FaqSection() {
             &nbsp;{t('answer-in-48h')}
           </>
         }
-        questions={[
-          {
-            question: t('website-faq-q1'),
-            answer: tHtml('website-faq-a1'),
-          },
-          {
-            question: t('website-faq-q2'),
-            answer: tHtml('website-faq-a2'),
-          },
-          {
-            question: t('website-faq-q3'),
-            answer: tHtml('website-faq-a3'),
-          },
-          {
-            question: t('website-faq-q4'),
-            answer: tHtml('website-faq-a4'),
-          },
-          {
-            question: t('website-faq-q5'),
-            answer: tHtml('website-faq-a5'),
-          },
-          {
-            question: t('website-faq-q6'),
-            answer: tHtml('website-faq-a6'),
-          },
-        ]}
+        questions={props.questions}
         title={t('faq')}
         sx={{
           marginInline: 2,
