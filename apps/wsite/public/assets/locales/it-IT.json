@@ -280,6 +280,8 @@
   "bocconi-description-description": "Radio Bocconi, consiste in un app mobile multipiattaforma realizzata in Flutter per il podcast della radio della Bocconi. L'app è composta da 3 pagine: <ul><li>Pagina home per ascoltare la radio della Bocconi</li><li>Pagina blog per vedere la lista degli articoli del blog della Bocconi</li><li>Pagina articolo per vedere il singolo articolo di blog</li></ul><br/>È inoltre presente la sezione social e di informazioni dell'app.<br/><br/> L'app permette di visualizzare i contenuti in light mode o in dark mode. ",
 
   "message-sent": "Messaggio inviato!",
+  "message-error": "Errore invio messaggio!",
+  "message-error-subtitle": "C'è stato un errore con l'invio del messaggio riprova più tardi o scrivi un email a",
   "we-will-answer-in-48h": "Ti risponderemo entro 48h.",
   "go-to-home": "Vai alla home",
 

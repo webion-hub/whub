@@ -280,6 +280,8 @@
   "bocconi-description-description": "Radio Bocconi consists of a cross-platform mobile app created in Flutter for the Bocconi radio podcast. The app is made up of 3 pages: <ul><li>Home page to listen to Bocconi radio</li><li>Blog page to see the list of Bocconi blog articles</li><li>Page article to see the single blog article</li></ul><br/>There is also the social and information section of the app.<br/><br/> The app allows you to view content in light mode or dark mode.",
 
   "message-sent": "Message sent!",
+  "message-error": "Error sending message!",
+  "message-error-subtitle": "There was an error sending the message, try again later or write an email to",
   "we-will-answer-in-48h": "We will reply to you within 48 hours.",
   "go-to-home": "Go to home",
 

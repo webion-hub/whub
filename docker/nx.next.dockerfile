@@ -16,6 +16,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 RUN npx nx build ${target}
+RUN npx nx postbuild ${target}
 
 
 

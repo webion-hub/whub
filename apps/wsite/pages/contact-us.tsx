@@ -287,7 +287,8 @@ export default function ContactUs() {
         companyType: formValue.companyAge,
         services: formValue.services.join(','),
       })
-      .then(() => navigate('/message-sent'))
+      .then(() => navigate('/message/sent'))
+      .catch(() => navigate('/message/error'))
       .finally(() => setLoading(false));
   };
 

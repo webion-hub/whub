@@ -111,8 +111,6 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
 
     const isHome = currentSection === 'home';
 
-    if (currentSection === undefined) return;
-
     return (
       <AppBar
         sx={{
