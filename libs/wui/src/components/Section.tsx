@@ -1,4 +1,4 @@
-import { Theme, SxProps } from '@mui/system';
+import { Theme, SxProps } from '@mui/material';
 import { styled } from '@mui/material';
 import { ChildrenProp } from '../abstractions/props/ChildrenProps';
 import { useOnScreen } from '../hooks/useOnScreen';
@@ -48,7 +48,7 @@ export function Section(props: SectionProps) {
       height: '100%',
       zIndex: 0,
       background: (theme) =>
-        props.background ?? theme.palette['secondaryBackground'].default,
+        props.background ?? theme.palette['secondaryBackground']?.default,
       ...props.backgroundSx,
     },
   };

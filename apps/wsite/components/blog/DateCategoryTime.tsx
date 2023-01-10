@@ -2,16 +2,22 @@ import { Chip, Stack, Typography } from '@mui/material';
 import { useLanguage } from '@whub/wui';
 
 interface DateAndCategoryProps {
-  readonly date: string;
-  readonly category: string;
-  readonly readingTime: number;
+  readonly date?: string;
+  readonly category?: string;
+  readonly readingTime?: number;
 }
+
 export default function DateCategoryTime(props: DateAndCategoryProps) {
   const { t } = useLanguage();
+
+  const date = props.date
+  ? new Date(props.date)
+  : new Date()
+
   return (
     <Stack
       direction="row"
-      alignContent="center"
+      justifyContent="center"
       alignItems="center"
       gap={4}
       sx={{
@@ -19,14 +25,14 @@ export default function DateCategoryTime(props: DateAndCategoryProps) {
       }}
     >
       <Typography variant="body1" color="text.secondary">
-        {props.date}
+        {date.toLocaleDateString()}
       </Typography>
       <Typography
         variant="body1"
         color="text.secondary"
         sx={{ fontWeight: 'light', fontStyle: 'italic' }}
       >
-        {props.readingTime} min
+        {props.readingTime ?? '??'} min
       </Typography>
       <Chip
         sx={{

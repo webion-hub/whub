@@ -1,13 +1,10 @@
-import Markdown from 'markdown-to-jsx';
+import { styled } from '@mui/material';
 import { Box } from '@mui/system';
-// const newP = (props) => <p style="color: red" {...props} />;
+import ReactMarkdown from 'react-markdown';
+import CodeSnippet from '../../components/blog/CodeSnippet';
 interface ArticleContentProps {
   readonly content: string;
 }
-// const MDXComponents = {
-//   h1: Title,
-//   h2: Title,
-// };
 
 export default function ArticleContent(props: ArticleContentProps) {
   return (
@@ -20,13 +17,41 @@ export default function ArticleContent(props: ArticleContentProps) {
         },
         '& > *': {
           maxWidth: '100%',
-          fontSize: '1.25rem !important',
         },
       }}
     >
-      <Markdown>
+      <ReactMarkdown
+        components={{
+          h1: (props) => (
+            <ArticleHyperlink
+              className='Wui-section--hyperlink'
+              id={encodeURI(props.children as string)}
+            >
+              {props.children}
+            </ArticleHyperlink>
+          ),
+          code: (props) => (
+            <CodeSnippet
+              language={props.lang}
+              text={props.children as string}
+            />
+          )
+        }}
+      >
         {props.content}
-      </Markdown>
+      </ReactMarkdown>
     </Box>
   );
 }
+
+
+
+const ArticleHyperlink = styled('h1')(({ theme }) => ({
+  "&::before": {
+    display: 'block',
+    content: '""',
+    visibility: 'hidden',
+    height: theme.mixins.toolbar.height + 'px',
+    marginTop: -theme.mixins.toolbar.height + 'px'
+  }
+}))

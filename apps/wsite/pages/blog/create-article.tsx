@@ -88,8 +88,8 @@ export default function CreateArticle() {
           >
             <Article
               category={article.current.category}
-              article={article.current.content}
-              image={article.current.cover}
+              content={article.current.content}
+              cover={article.current.cover}
               title={article.current.title}
             />
           </MaybeShow>

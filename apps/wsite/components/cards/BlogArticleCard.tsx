@@ -1,9 +1,10 @@
 import { CardActionArea, Chip, Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
-import { NextImg, useLanguage, useNextNavigator } from '@whub/wui';
+import { MaybeShow, NextImg, useLanguage, useNextNavigator } from '@whub/wui';
 import { WebionCard } from './WebionCard';
 import parse from 'html-react-parser';
 import { BlogArticle } from '@whub/apis/blog';
+import Markdown from 'markdown-to-jsx';
 
 interface BlogArticleProps {
   readonly article: BlogArticle;
@@ -11,13 +12,22 @@ interface BlogArticleProps {
 
 export default function BlogArticleCard(props: BlogArticleProps) {
   const { clickNavigate } = useNextNavigator();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
+
   return (
-    <WebionCard>
-      <CardActionArea onClick={clickNavigate(`/blog/${props.article.title}`)}>
+    <WebionCard
+      sx={{
+        height: 290
+      }}
+    >
+      <CardActionArea
+        onClick={clickNavigate(`/blog/${props.article.webId}`)}
+        sx={{ height: '100%' }}
+      >
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           justifyContent="space-between"
+          sx={{ height: '100%' }}
         >
           <Stack
             direction="column"
@@ -27,7 +37,7 @@ export default function BlogArticleCard(props: BlogArticleProps) {
             }}
           >
             <Typography variant="body2" color="text.secondary">
-              {props.article.publishDate}
+              {new Date(props.article.publishDate).toLocaleDateString()}
             </Typography>
             <Stack
               direction="row"
@@ -57,43 +67,47 @@ export default function BlogArticleCard(props: BlogArticleProps) {
             >
               {props.article.title}
             </Typography>
-            <Typography
-              variant="body1"
+            <Box
               sx={{
                 marginTop: 2,
                 display: '-webkit-box',
-                WebkitLineClamp: '3',
+                WebkitLineClamp: '2',
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
               }}
             >
-              {props.article.content}
-            </Typography>
+              <Markdown>
+                {props.article.content}
+              </Markdown>
+            </Box>
           </Stack>
-          <Box
-            sx={{
-              position: 'relative',
-              order: { xs: -1, sm: 0 },
-              maxWidth: { xs: 'auto', sm: 380 },
-              height: { xs: 250, sm: 'auto' },
-              width: '100%',
-              borderRadius: 4,
-            }}
-          >
-            <NextImg
-              src={props.article.cover}
-              alt={props.article.title}
-              fill
-              sizes="
-                (max-width: 700px) 100,
-                (max-width: 1327px) 50vw,
-                600px
-              "
+          <MaybeShow show={props.article.cover !== ''}>
+            <Box
               sx={{
-                objectFit: 'cover !important',
+                position: 'relative',
+                order: { xs: -1, sm: 0 },
+                maxWidth: { xs: 'auto', sm: 380 },
+                height: { xs: 250, sm: 'auto' },
+                width: '100%',
+                borderRadius: 4,
               }}
-            />
-          </Box>
+            >
+              <NextImg
+                src={props.article.cover}
+                alt={props.article.title}
+                fill
+                priority
+                sizes="
+                  (max-width: 700px) 100,
+                  (max-width: 1327px) 50vw,
+                  600px
+                "
+                sx={{
+                  objectFit: 'cover !important',
+                }}
+              />
+            </Box>
+          </MaybeShow>
         </Stack>
       </CardActionArea>
     </WebionCard>

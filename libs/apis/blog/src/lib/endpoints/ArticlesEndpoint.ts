@@ -2,12 +2,15 @@ import { Endpoint } from "@whub/apis-core";
 import { BlogArticle } from "../model/BlogArticle";
 import { ArticleEndpoint } from "./ArticleEndpoint";
 import { AxiosInstance } from "axios";
+import { ArticleSearchRequest } from "../requests/ArticleSearchRequest";
 
 export class ArticlesEndpoint extends Endpoint {
   constructor(
     client: AxiosInstance,
     private readonly language: string,
-  ) { super(client); }
+  ) {
+    super(client);
+  }
 
   get url() {
     return `/articles/${this.language}`;
@@ -17,8 +20,10 @@ export class ArticlesEndpoint extends Endpoint {
     return new ArticleEndpoint(this.client, this.language, webId);
   }
 
-  async list() {
+  async filter(request?: ArticleSearchRequest) {
     return this.client
-      .get<BlogArticle[]>(this.url)
+      .get<BlogArticle[]>(this.url, {
+        params: request,
+      })
   }
 }
