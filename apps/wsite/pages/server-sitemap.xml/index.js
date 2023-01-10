@@ -4,15 +4,14 @@ import { getServerSideSitemap } from "next-sitemap";
 export async function getServerSideProps(ctx) {
   const request = await AppContext
     .blogApi
-    .articles
-    .forLanguage('en')
-    .filter();
+    .sitemap
+    .load();
 
   const newsSitemaps = request
     .data
     .map((item) => ({
-      loc: `${process.env.NEXT_PUBLIC_DOMAIN_URL}blog/${item.webId.toString()}`,
       lastmod: new Date().toISOString(),
+      loc: `${process.env.NEXT_PUBLIC_DOMAIN_URL}${item.language}/blog/${item.webId.toString()}`,
     }));
 
   const fields = [...newsSitemaps];

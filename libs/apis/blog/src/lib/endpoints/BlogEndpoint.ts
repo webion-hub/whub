@@ -1,8 +1,8 @@
 import { Endpoint } from "@whub/apis-core";
-import { CreateArticleRequest } from "../requests/CreateArticleRequest";
-import { ArticlesEndpoint } from "./ArticlesEndpoint";
 import { AxiosResponse } from "axios";
+import { CreateArticleRequest } from "../requests/CreateArticleRequest";
 import { CreateArticleResponse } from "../response/CreateArticleResponse";
+import { ArticlesEndpoint } from "./ArticlesEndpoint";
 
 export class BlogEndpoint extends Endpoint {
   get url() {

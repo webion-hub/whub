@@ -18,8 +18,6 @@ COPY . .
 RUN npx nx build ${target}
 RUN npx nx postbuild ${target}
 
-
-
 FROM node AS build2
 
 ARG target
