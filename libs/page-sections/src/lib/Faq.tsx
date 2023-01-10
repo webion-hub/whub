@@ -31,10 +31,14 @@ export function Question(props: QuestionProps) {
         <AccordionSummary expandIcon={<ExpandMoreRounded />}>
           <Typography component="h3">{props.title}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography variant="body1" color="text.secondary">
-            {props.children}
-          </Typography>
+        <AccordionDetails
+          sx={{
+            "& > *": {
+              color: theme => theme.palette.text.secondary
+            }
+          }}
+        >
+          {props.children}
         </AccordionDetails>
       </Accordion>
     </Box>

@@ -2,7 +2,6 @@ import { CardActionArea, Chip, Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
 import { MaybeShow, NextImg, useLanguage, useNextNavigator } from '@whub/wui';
 import { WebionCard } from './WebionCard';
-import parse from 'html-react-parser';
 import { BlogArticle } from '@whub/apis/blog';
 import Markdown from 'markdown-to-jsx';
 

@@ -2,34 +2,27 @@ import {
   BubbleChartRounded,
   CallRounded,
   DevicesOtherRounded,
-  EditRounded,
-  HelpRounded,
-  MobileFriendlyRounded,
+  EditRounded, MobileFriendlyRounded,
   SecurityRounded,
-  StoreRounded,
+  StoreRounded
 } from '@mui/icons-material';
-import { alpha, Button, Link, Stack } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 import {
-  Page,
-  Section,
+  Page, PageSettings, Section,
   Sections,
   useLanguage,
-  useNextNavigator,
+  useNextNavigator
 } from '@whub/wui';
-import { GetAQuoteSection } from '../../components/sections/GetAQuote';
+import { FaqSection } from '../../components/sections/FaqSection';
 import { CardGroup } from '../../components/CardGroup';
 import { IconCard } from '../../components/cards/IconCard';
-import { ImageAndDescription } from '../../components/ImageAndDescription';
-import { PageSettings } from '@whub/wui';
 import { CaseStudyLink } from '../../components/CaseStudyLink';
-import { netBackground } from '../../components/backgrounds/netBackground';
-import { useTheme } from '@mui/material';
-import { Faq } from '@whub/page-sections';
+import { ImageAndDescription } from '../../components/ImageAndDescription';
+import { GetAQuoteSection } from '../../components/sections/GetAQuote';
 
 export default function Apps() {
   const { clickNavigate } = useNextNavigator();
   const { t, tHtml } = useLanguage();
-  const theme = useTheme();
 
   return (
     <Page>
@@ -100,87 +93,7 @@ export default function Apps() {
             src="/assets/images/projects/bocconi/bocconi.png"
           />
         </Section>
-        <Section
-          id="faq"
-          showBackground
-          sx={{
-            paddingTop: 0,
-            paddingInline: 2,
-          }}
-          background={netBackground(theme)}
-          backgroundSx={{
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'top',
-            opacity: theme.palette.mode === 'dark' ? 0.15 : 0.05,
-          }}
-        >
-          <Faq
-            bottomLabel={
-              <>
-                {t('forget-anything')}&nbsp;
-                <Link href="/contact-us" onClick={clickNavigate('/contact-us')}>
-                  {t('send-a-message')}
-                </Link>
-                &nbsp;{t('answer-in-48h')}
-              </>
-            }
-            questions={[
-              {
-                question: t('app-faq-q1'),
-                answer: tHtml('app-faq-a1'),
-              },
-              {
-                question: t('app-faq-q2'),
-                answer: tHtml('app-faq-a2'),
-              },
-              {
-                question: t('app-faq-q3'),
-                answer: tHtml('app-faq-a3'),
-              },
-              {
-                question: t('app-faq-q4'),
-                answer: tHtml('app-faq-a4'),
-              },
-              {
-                question: t('app-faq-q5'),
-                answer: tHtml('app-faq-a5'),
-              },
-              {
-                question: t('app-faq-q6'),
-                answer: tHtml('app-faq-a6'),
-              },
-            ]}
-            title={t('faq')}
-            sx={{
-              marginInline: 2,
-              marginTop: 10,
-              marginBottom: 8,
-            }}
-            questionBoxSx={{
-              marginTop: (theme) => theme.spacing(12, '!important'),
-            }}
-            icon={
-              <Stack
-                alignItems="center"
-                justifyContent="center"
-                sx={{
-                  padding: 2,
-                  borderRadius: '100%',
-                  background: (theme) =>
-                    alpha(theme.palette.primary.light, 0.2),
-                }}
-              >
-                <HelpRounded
-                  fontSize="large"
-                  sx={{
-                    color: (theme) => theme.palette.primary.light,
-                  }}
-                />
-              </Stack>
-            }
-          />
-        </Section>
+        <FaqSection/>
         <GetAQuoteSection />
       </Sections>
     </Page>

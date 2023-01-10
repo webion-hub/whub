@@ -1,19 +1,13 @@
-import { HelpRounded } from '@mui/icons-material';
-import { alpha, Link, Stack, useTheme } from '@mui/material';
-import { ChosenBy, Faq } from '@whub/page-sections';
+import { useTheme } from '@mui/material';
+import { ChosenBy } from '@whub/page-sections';
 import {
   NextImg,
-  Page,
-  Section,
-  Sections,
-  useLanguage,
-  useNextNavigator,
+  Page, PageSettings, Section,
+  Sections
 } from '@whub/wui';
-import { PageSettings } from '@whub/wui';
-import Head from 'next/head';
 import { useEffect } from 'react';
-import { netBackground } from '../components/backgrounds/netBackground';
 import { pcbBackground } from '../components/backgrounds/pcbBackground';
+import { FaqSection } from '../components/sections/FaqSection';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
 import { HomeWithServices } from '../components/sections/HomeWithServices';
 import OurProcess from '../components/sections/OurProcess';
@@ -22,8 +16,6 @@ import { WhoWeAre } from '../components/sections/WhoWeAre';
 
 export default function Homepage() {
   const theme = useTheme();
-  const { t, tHtml } = useLanguage();
-  const { clickNavigate } = useNextNavigator();
 
   useEffect(() => {
     import('react-facebook-pixel')
@@ -79,77 +71,7 @@ export default function Homepage() {
           <OurProcess />
         </Section>
         <GetAQuoteSection />
-        <Section
-          id="faq"
-          showBackground
-          background={netBackground(theme)}
-          backgroundSx={{
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'top',
-            opacity: theme.palette.mode === 'dark' ? 0.15 : 0.05,
-          }}
-        >
-          <Faq
-            bottomLabel={
-              <>
-                {t('forget-anything')}&nbsp;
-                <Link href="/contact-us" onClick={clickNavigate('/contact-us')}>
-                  {t('send-a-message')}
-                </Link>
-                &nbsp;{t('answer-in-48h')}
-              </>
-            }
-            questions={[
-              { question: t('faq-q1'), answer: tHtml('faq-a1') },
-              { question: t('faq-q2'), answer: tHtml('faq-a2') },
-              { question: t('faq-q3'), answer: tHtml('faq-a3') },
-              {
-                question: t('faq-q4'),
-                answer: (
-                  <>
-                    {tHtml('faq-a4')}&nbsp;{' '}
-                    <Link href="/techs" onClick={clickNavigate('/techs')}>
-                      {' '}
-                      {t('here')}{' '}
-                    </Link>
-                    .
-                  </>
-                ),
-              },
-              { question: t('faq-q5'), answer: tHtml('faq-a5') },
-              { question: t('faq-q6'), answer: tHtml('faq-a6') },
-            ]}
-            title={t('faq')}
-            sx={{
-              marginInline: 2,
-              marginTop: 10,
-              marginBottom: 8,
-            }}
-            questionBoxSx={{
-              marginTop: (theme) => theme.spacing(12, '!important'),
-            }}
-            icon={
-              <Stack
-                alignItems="center"
-                justifyContent="center"
-                sx={{
-                  padding: 2,
-                  borderRadius: '100%',
-                  background: (theme) =>
-                    alpha(theme.palette.primary.light, 0.2),
-                }}
-              >
-                <HelpRounded
-                  fontSize="large"
-                  sx={{
-                    color: (theme) => theme.palette.primary.light,
-                  }}
-                />
-              </Stack>
-            }
-          />
-        </Section>
+        <FaqSection/>
       </Sections>
     </Page>
   );
