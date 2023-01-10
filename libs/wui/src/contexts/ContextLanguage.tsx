@@ -2,16 +2,17 @@ import { FlagComponent } from 'country-flag-icons/react/3x2';
 import { useRouter } from 'next/router';
 import { createContext, useContext } from 'react';
 import { ChildrenProp } from '../abstractions/props/ChildrenProps';
-import { LanguagesCodes } from '../lib/Languages';
 import parse from 'html-react-parser';
 
 interface LanguageBaseItem {
   readonly flag?: FlagComponent;
-  readonly code: LanguagesCodes;
+  readonly code: string;
+  readonly langTranslation: string;
 }
 
 export interface LanguageItem {
   readonly flag?: FlagComponent;
+  readonly langTranslation: string;
   readonly translation?: any;
 }
 
@@ -20,15 +21,16 @@ interface LanguageWrapperProps {
   readonly availableLanguages: AvailableLanguages;
 }
 
-type AvailableLanguages = {
-  readonly [key in LanguagesCodes]?: LanguageItem;
+interface AvailableLanguages {
+  readonly [key: string]: LanguageItem;
 };
 
 export interface ILanguageContext {
   readonly language?: LanguageBaseItem;
   readonly languages: LanguageBaseItem[];
-  readonly setLanguage: (language: LanguagesCodes) => void;
-  readonly t: (key: string, shouldParse?: boolean) => string;
+  readonly setLanguage: (language: string) => void;
+  readonly t: (key: string) => string;
+  readonly tHtml: (key: string) => string | JSX.Element | JSX.Element[];
 }
 
 export const LanguageContext = createContext<ILanguageContext>({
@@ -37,41 +39,48 @@ export const LanguageContext = createContext<ILanguageContext>({
     return;
   },
   t: () => '',
+  tHtml: () => '',
 });
 
 export const LanguageWrapper = (props: LanguageWrapperProps) => {
   const router = useRouter();
   const { locale, asPath } = router;
 
-  const setLanguage = (language: LanguagesCodes) => {
+  const setLanguage = (language: string) => {
     router.push(asPath, asPath, { locale: language });
   };
 
-  const t = (key: string, shouldParse?: boolean) => {
+  const t = (key: string) => {
     if (!locale) return key;
 
-    const lang = locale as LanguagesCodes;
+    const lang = locale as string;
     const translation = props.availableLanguages[lang]?.translation[key] ?? key;
 
-    return shouldParse ? parse(translation as string) : translation;
+    return translation;
+  };
+
+  const tHtml = (key: string) => {
+    return parse(t(key));
   };
 
   const getLanguages = (): LanguageBaseItem[] => {
     const entries = Object.entries(props.availableLanguages);
 
     return entries.map((e) => ({
-      code: e[0] as LanguagesCodes,
+      code: e[0] as string,
       flag: e[1].flag,
+      langTranslation: e[1].langTranslation
     }));
   };
 
   const getLanguage = (): LanguageBaseItem => {
-    const code = locale as LanguagesCodes;
+    const code = locale as string;
     const lang = props.availableLanguages[code];
 
     return {
       code: code,
       flag: lang?.flag,
+      langTranslation: lang.langTranslation
     };
   };
 
@@ -81,7 +90,8 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
         languages: getLanguages(),
         language: getLanguage(),
         setLanguage: setLanguage,
-        t: t,
+        t,
+        tHtml,
       }}
     >
       {props.children}

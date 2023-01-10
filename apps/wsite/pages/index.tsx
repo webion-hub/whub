@@ -1,7 +1,16 @@
 import { HelpRounded } from '@mui/icons-material';
 import { alpha, Link, Stack, useTheme } from '@mui/material';
 import { ChosenBy, Faq } from '@whub/page-sections';
-import { NextImg, Page, Section, Sections, useLanguage, useNextNavigator } from '@whub/wui';
+import {
+  NextImg,
+  Page,
+  Section,
+  Sections,
+  useLanguage,
+  useNextNavigator,
+} from '@whub/wui';
+import { PageSettings } from '@whub/wui';
+import Head from 'next/head';
 import { useEffect } from 'react';
 import { netBackground } from '../components/backgrounds/netBackground';
 import { pcbBackground } from '../components/backgrounds/pcbBackground';
@@ -13,7 +22,7 @@ import { WhoWeAre } from '../components/sections/WhoWeAre';
 
 export default function Homepage() {
   const theme = useTheme();
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
   const { clickNavigate } = useNextNavigator();
 
   useEffect(() => {
@@ -24,6 +33,7 @@ export default function Homepage() {
 
   return (
     <Page sx={{ marginTop: 0, margin: 'Auto' }}>
+      <PageSettings pageTranslationName="home" />
       <Sections>
         <Section
           id="home"
@@ -40,39 +50,18 @@ export default function Homepage() {
         <Section
           id="chosen-by"
           ignoreSection
-          maxWidth="100%"
-          sx={{ paddingBlock: 4 }}
+          sx={{
+            paddingBlock: 4,
+            overflow: 'hidden',
+            '::-webkit-scrollbar': {
+              display: 'none',
+            },
+            width: 'auto',
+            position: 'relative',
+          }}
         >
-          <ChosenBy blackAndWhite>
-            <NextImg
-              auto
-              height="40px"
-              sizes='25vw'
-              alt="kaire"
-              src="/assets/images/clients/kaire-logo.webp"
-            />
-            <NextImg
-              auto
-              height="40px"
-              sizes='25vw'
-              alt="bocconi"
-              src="/assets/images/clients/bocconi-logo.png"
-            />
-            <NextImg
-              auto
-              height="40px"
-              sizes='25vw'
-              alt="simm"
-              src="/assets/images/clients/simm-logo.png"
-            />
-            <NextImg
-              auto
-              height="30px"
-              sizes='25vw'
-              alt="mentorz"
-              src="/assets/images/clients/mentorz-logo.png"
-              sx={{ background: '#444' }}
-            />
+          <ChosenBy>
+            <ClientLogos />
           </ChosenBy>
         </Section>
         <Section id="who-we-are">
@@ -82,7 +71,7 @@ export default function Homepage() {
           id="services"
           showBackground
           background={pcbBackground(theme)}
-          backgroundSx={{ opacity: 0.4 }}
+          backgroundSx={{ opacity: theme.palette.mode === 'dark' ? 1 : 0.4 }}
         >
           <Services />
         </Section>
@@ -98,7 +87,7 @@ export default function Homepage() {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'top',
-            opacity: 0.05,
+            opacity: theme.palette.mode === 'dark' ? 0.15 : 0.05,
           }}
         >
           <Faq
@@ -112,12 +101,24 @@ export default function Homepage() {
               </>
             }
             questions={[
-              { question: t('faq-q1'), answer: t('faq-a1', true) },
-              { question: t('faq-q2'), answer: t('faq-a2', true) },
-              { question: t('faq-q3'), answer: t('faq-a3', true) },
-              { question: t('faq-q4'), answer: <>{t('faq-a4', true)}&nbsp; <Link href="/techs" onClick={clickNavigate('/techs')}> {t('here')} </Link>.</> },
-              { question: t('faq-q5'), answer: t('faq-a5', true) },
-              { question: t('faq-q6'), answer: t('faq-a6', true) },
+              { question: t('faq-q1'), answer: tHtml('faq-a1') },
+              { question: t('faq-q2'), answer: tHtml('faq-a2') },
+              { question: t('faq-q3'), answer: tHtml('faq-a3') },
+              {
+                question: t('faq-q4'),
+                answer: (
+                  <>
+                    {tHtml('faq-a4')}&nbsp;{' '}
+                    <Link href="/techs" onClick={clickNavigate('/techs')}>
+                      {' '}
+                      {t('here')}{' '}
+                    </Link>
+                    .
+                  </>
+                ),
+              },
+              { question: t('faq-q5'), answer: tHtml('faq-a5') },
+              { question: t('faq-q6'), answer: tHtml('faq-a6') },
             ]}
             title={t('faq')}
             sx={{
@@ -126,7 +127,7 @@ export default function Homepage() {
               marginBottom: 8,
             }}
             questionBoxSx={{
-              marginTop: (theme) => theme.spacing(12, '!important')
+              marginTop: (theme) => theme.spacing(12, '!important'),
             }}
             icon={
               <Stack
@@ -135,7 +136,8 @@ export default function Homepage() {
                 sx={{
                   padding: 2,
                   borderRadius: '100%',
-                  background: (theme) => alpha(theme.palette.primary.light, 0.2),
+                  background: (theme) =>
+                    alpha(theme.palette.primary.light, 0.2),
                 }}
               >
                 <HelpRounded
@@ -150,5 +152,84 @@ export default function Homepage() {
         </Section>
       </Sections>
     </Page>
+  );
+}
+
+export function ClientLogos() {
+  return (
+    <>
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="bocconi"
+        src="/assets/images/clients/gianos.png"
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="simm"
+        src="/assets/images/clients/simm.png"
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="bocconi"
+        src="/assets/images/clients/bocconi.png"
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="kaire"
+        src="/assets/images/clients/kaire.png"
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="LCI Agency"
+        src="/assets/images/clients/lci-agency.png"
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="mentorz"
+        src="/assets/images/clients/mentorz.png"
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="massyve"
+        src="/assets/images/clients/massyve.png"
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="The Pink Palace"
+        src="/assets/images/clients/pink-palace.png"
+      />
+      <NextImg
+        priority
+        auto
+        height="28px"
+        sizes="25vw"
+        alt="The Pink Palace"
+        src="/assets/images/clients/elfo-avventure.png"
+      />
+    </>
   );
 }

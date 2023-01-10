@@ -1,16 +1,15 @@
 import { Box, Paper, Stack, SxProps, Theme, Typography, useMediaQuery, useTheme } from '@mui/material';
-import Slide from '@mui/material/Slide';
 import { MaybeShow, NextImg, Transition, useOnScreen } from '@whub/wui';
 import { ReactNode, useRef } from 'react';
 import { TitleSectionLabel } from './TitleSectionLabel';
 
 interface ImageAndDescriptionProps {
-  readonly actionComponent: ReactNode;
+  readonly actionComponent?: ReactNode;
   readonly title: string | ReactNode;
   readonly label: string | ReactNode;
   readonly description: string | ReactNode;
   readonly src?: string;
-  readonly alt?: string;
+  readonly alt: string;
   readonly removePaper?: boolean;
   readonly imageComponent?: ReactNode;
   readonly paperSx?: SxProps<Theme>;
@@ -25,8 +24,7 @@ export function ImageAndDescription(props: ImageAndDescriptionProps) {
   const onScreen = useOnScreen(ref, {
     oneTime: true,
     observeOptions: {
-      rootMargin: '0px 0px 0% 0px',
-      threshold: 0.5,
+      rootMargin: '-10% 0% -10% 0%',
     },
   });
 
@@ -44,9 +42,7 @@ export function ImageAndDescription(props: ImageAndDescriptionProps) {
             xs: 4,
             md: 0,
           },
-          width: isMd
-            ? '100%'
-            : `calc(50% - ${theme.spacing(4)})`,
+          width: isMd ? '100%' : `calc(50% - ${theme.spacing(4)})`,
         },
       }}
     >
@@ -68,11 +64,11 @@ export function ImageAndDescription(props: ImageAndDescriptionProps) {
               src={props.src}
               alt={props.alt}
               fill
-              sizes='
+              sizes="
                 (max-width: 700px) 100vw,
                 (max-width: 1327px) 50vw,
                 600px
-              '
+              "
               sx={{
                 objectFit: 'cover',
                 position: 'relative !important',

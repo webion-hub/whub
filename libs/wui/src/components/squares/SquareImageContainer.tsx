@@ -11,6 +11,7 @@ export function SquareImageContainer(props: SquareImageContainerProps) {
   const { sx, src, ...others } = props
   const { loading, srcLoaded } = useProgressiveImage(src)
 
+
   return (
     <SquareContainer
       {...others}

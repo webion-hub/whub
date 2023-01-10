@@ -1,5 +1,15 @@
 import { CallRounded, GitHub, LinkedIn } from '@mui/icons-material';
-import { alpha, Avatar, Box, Button, IconButton, Paper, Stack, Typography } from '@mui/material';
+import {
+  alpha,
+  Avatar,
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  SxProps,
+  Theme,
+  Typography,
+} from '@mui/material';
 import {
   Page,
   Section,
@@ -7,23 +17,30 @@ import {
   useLanguage,
   useNextNavigator,
 } from '@whub/wui';
-import { ColorUtils } from 'libs/wui/src/lib/ColorUtils';
+import { PageSettings } from '@whub/wui';
 import { useEffect, useRef, useState } from 'react';
 import { ImageAndDescription } from '../components/ImageAndDescription';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
 
+const membersOrder = [1, 2, 3]
+  .map((value) => ({ value, sort: Math.random() }))
+  .sort((a, b) => a.sort - b.sort)
+  .map(({ value }) => value);
+
 export default function WhoWeArePage() {
-  const { t } = useLanguage();
+  const { t, tHtml } = useLanguage();
   const { clickNavigate } = useNextNavigator();
 
   return (
     <Page>
+      <PageSettings pageTranslationName="about" />
       <Sections>
         <Section>
           <ImageAndDescription
             label={t('who-are-we')}
             title={t('who-are-we-title')}
-            direction="row-reverse"
+            alt="who-we-are"
+            direction="row"
             actionComponent={
               <Button
                 size="large"
@@ -45,7 +62,7 @@ export default function WhoWeArePage() {
                 style={{ border: 0 }}
               ></iframe>
             }
-            description={t('who-are-we-description', true)}
+            description={tHtml('who-are-we-description')}
           />
         </Section>
         <Section>
@@ -59,52 +76,69 @@ export default function WhoWeArePage() {
               marginBottom: 10,
               position: 'relative',
               '&::before': {
-                content: "'Il team'",
+                content: `"${t('the-team')}"`,
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                fontSize: 'clamp(0px, 30vw, 550px)',
+                fontSize: 'clamp(0px, 20vw, 500px)',
                 fontWeight: 'bolder',
-                color: theme => theme.palette.mode === 'light'
-                  ? alpha('#000', 0.1)
-                  : alpha('#fff', 0.08),
-                whiteSpace: 'nowrap'
+                color: (theme) =>
+                  theme.palette.mode === 'light'
+                    ? alpha('#000', 0.1)
+                    : alpha('#fff', 0.08),
+                whiteSpace: 'nowrap',
               },
               '& > *': { margin: 2 },
             }}
           >
             <Member
               name="Matteo Budriesi"
-              memberRole="Co-Founder & Frontend Developer"
+              memberRole={t('front-end-cofounder')}
               src="/assets/images/members/budda.png"
+              alt="budda"
               videoSrc="/assets/videos/budda.webm"
-              linkedinHref='https://www.linkedin.com/in/matteo-budriesi-b50b51218/'
-              githubHref='https://github.com/matteo2437'
+              linkedinHref="https://www.linkedin.com/in/matteo-budriesi-b50b51218/"
+              githubHref="https://github.com/matteo2437"
+              sx={{
+                order: membersOrder[0],
+              }}
             />
             <Member
               name="Stefano Calabretti"
-              memberRole="Co-Founder & Backend Developer"
+              memberRole={t('back-end-cofounder')}
               src="/assets/images/members/cala.png"
+              alt="cala"
               videoSrc="/assets/videos/cala.webm"
-              linkedinHref='https://www.linkedin.com/in/calabr/'
-              githubHref='https://github.com/cala-br'
+              linkedinHref="https://www.linkedin.com/in/calabr/"
+              githubHref="https://github.com/cala-br"
+              sx={{
+                order: membersOrder[1],
+              }}
             />
             <Member
               name="Alessandro Dodi"
-              memberRole="Co-Founder & Frontend Developer"
+              memberRole={t('front-end-cofounder')}
               src="/assets/images/members/alle.png"
+              alt="alle"
               videoSrc="/assets/videos/alle.webm"
-              linkedinHref='https://www.linkedin.com/in/alessandro-dodi/'
-              githubHref='https://github.com/AlessandroDodi'
+              linkedinHref="https://www.linkedin.com/in/alessandro-dodi/"
+              githubHref="https://github.com/AlessandroDodi"
+              sx={{
+                order: membersOrder[2],
+              }}
             />
             <Member
               name="Davide Messori"
-              memberRole="Backend Developer"
+              memberRole={t('back-end')}
               src="/assets/images/members/davido.png"
               videoSrc="/assets/videos/davido.webm"
-              linkedinHref='https://www.linkedin.com/in/davide-messori-282781189/'
-              githubHref='https://github.com/davidemesso'
+              linkedinHref="https://www.linkedin.com/in/davide-messori-282781189/"
+              alt="davido"
+              githubHref="https://github.com/davidemesso"
+              sx={{
+                order: 4,
+              }}
             />
           </Stack>
         </Section>
@@ -118,22 +152,22 @@ interface MemberProps {
   readonly name: string;
   readonly memberRole: string;
   readonly src: string;
+  readonly alt: string;
   readonly videoSrc: string;
   readonly linkedinHref: string;
   readonly githubHref: string;
+  readonly sx?: SxProps<Theme>;
 }
 
 function Member(props: MemberProps) {
-  const [hover, setHover] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>()
+  const [hover, setHover] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>();
 
   useEffect(() => {
     videoRef.current.currentTime = 0;
 
-    hover
-      ? videoRef.current.play()
-      : videoRef.current.pause()
-  }, [hover])
+    hover ? videoRef.current.play() : videoRef.current.pause();
+  }, [hover]);
 
   return (
     <Stack
@@ -146,9 +180,10 @@ function Member(props: MemberProps) {
         padding: 2,
         transition: '0.5s transform',
         borderRadius: 4,
+
+        ...props.sx,
       }}
     >
-
       <Box
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -159,21 +194,21 @@ function Member(props: MemberProps) {
           width: 175,
           height: 175,
           position: 'relative',
-          boxShadow: theme => theme.shadows[10],
-          background: theme => theme.palette.primary.main,
+          boxShadow: (theme) => theme.shadows[10],
+          background: (theme) => theme.palette.primary.main,
           borderRadius: '100%',
-          border: theme => `4px solid ${theme.palette.primary.main}`,
+          border: (theme) => `4px solid ${theme.palette.primary.main}`,
           overflow: 'hidden',
-          "&:hover > .WUI-member--video": {
-            opacity: '1 !important'
-          },
-          "&:hover > .WUI-member--avatar": {
-            opacity: 0
-          }
+          // '&:hover > .WUI-member--video': {
+          //   opacity: '1 !important',
+          // },
+          // '&:hover > .WUI-member--avatar': {
+          //   opacity: 0,
+          // },
         }}
       >
         <Box
-          className='WUI-member--video'
+          className="WUI-member--video"
           sx={{
             transition: '0.5s opacity',
             opacity: 0,
@@ -190,30 +225,27 @@ function Member(props: MemberProps) {
             style={{
               height: '100%',
               width: '100%',
-              transform: 'translateY(16px) scale(1.5)'
+              transform: 'translateY(16px) scale(1.5)',
             }}
           >
-            <source src={props.videoSrc} type="video/webm"/>
+            <source src={props.videoSrc} type="video/webm" />
           </video>
         </Box>
 
         <Avatar
           className="WUI-member--avatar"
           src={props.src}
+          alt={props.alt}
           sx={{
             transition: '0.5s opacity',
             opacity: 1,
             width: '100%',
-            height: '100%'
+            height: '100%',
           }}
         />
       </Box>
 
-      <Stack
-        direction="column"
-        alignItems="center"
-        sx={{ zIndex: 1 }}
-      >
+      <Stack direction="column" alignItems="center" sx={{ zIndex: 1 }}>
         <Typography textAlign="center">{props.name}</Typography>
         <Typography
           variant="body2"
@@ -224,22 +256,20 @@ function Member(props: MemberProps) {
           {props.memberRole}
         </Typography>
       </Stack>
-      <Stack
-        direction="row"
-        alignItems="center"
-        justifyContent="center"
-      >
+      <Stack direction="row" alignItems="center" justifyContent="center">
         <IconButton
           href={props.linkedinHref}
           target="_blank"
+          aria-label="See linkedin progile"
         >
-          <LinkedIn/>
+          <LinkedIn />
         </IconButton>
         <IconButton
           href={props.githubHref}
           target="_blank"
+          aria-label="See github progile"
         >
-          <GitHub/>
+          <GitHub />
         </IconButton>
       </Stack>
     </Stack>

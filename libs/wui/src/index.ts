@@ -21,7 +21,6 @@ export * from './abstractions/FileProps';
 //Hooks
 export * from './hooks/useForm';
 export * from './hooks/useOnScreen';
-export * from './hooks/useSideBar';
 export * from './hooks/useWaves';
 export * from './hooks/useScroll';
 export * from './hooks/useBackgroundWaves';
@@ -44,13 +43,13 @@ export * from './lib/Form';
 export * from './lib/Props';
 export * from './lib/UUIDFactory';
 export * from './lib/Validators';
-export * from './lib/Language';
 export * from './lib/Utils';
 export * from './lib/MultipleFileController';
 
 //Components
 export * from './components/Layout';
-export * from './components/Page';
+export * from './components/page_components/Page';
+export * from './components/page_components/PageSettings';
 
 export * from './components/app_bar/AppBar';
 export * from './components/app_bar/AppBarContent';

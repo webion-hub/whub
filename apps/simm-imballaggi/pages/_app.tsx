@@ -19,17 +19,17 @@ import es from '../public/assets/locales/es-ES.json';
 import it from '../public/assets/locales/it-IT.json';
 
 const auth = new SimpleAuthApi({
-  baseUrl: 'https://api.simm.webion.it', //'http://localhost:5181'
+  baseURL: 'https://api.simm.webion.it', //'http://localhost:5181'
   withCredentials: true,
 });
 
 const shop = new WShopApi({
-  baseUrl: 'https://api.simm.webion.it', //'http://localhost:5181'
+  baseURL: 'https://api.simm.webion.it', //'http://localhost:5181'
   withCredentials: true,
 });
 
 const contactUs = new ContactUsApi({
-  baseUrl: 'https://api.simm.webion.it/contactus',
+  baseURL: 'https://api.simm.webion.it/contactus',
   withCredentials: true,
 });
 

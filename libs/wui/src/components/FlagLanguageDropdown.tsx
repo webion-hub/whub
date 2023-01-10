@@ -5,7 +5,6 @@ import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-import { Language } from '../lib/Language';
 import { LanguageItem, useLanguage } from '../contexts/ContextLanguage';
 
 export const FlagLanguageDropdown = React.forwardRef<
@@ -56,7 +55,7 @@ export const FlagLanguageDropdown = React.forwardRef<
                   marginLeft: 1,
                 }}
               >
-                {Language.getTranslation(lang.code)}
+                {lang.langTranslation}
               </Typography>
             </MenuItem>
           );

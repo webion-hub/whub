@@ -13,32 +13,35 @@ import PrivacyPolicy from '../components/policies-sections/PrivacyPolicy';
 
 import { ExpandMoreRounded } from '@mui/icons-material';
 
-import { ChildrenProp, useLanguage } from '@whub/wui';
+import { ChildrenProp, Page, Section, useLanguage } from '@whub/wui';
 
 export default function PoliciesLicenses() {
   const { t } = useLanguage();
 
   return (
-    <Box
-      sx={{
-        padding: 4,
-        paddingTop: 20,
-        minHeight: '68vh',
-      }}
-    >
-      <Typography variant="h3" sx={{ marginBlock: 4 }}>
-        {t('policies')}
-      </Typography>
-      <SimpleAccordion title="Privacy Policy" sx={{ marginBottom: 2 }}>
-        <PrivacyPolicy />
-      </SimpleAccordion>
-      <SimpleAccordion title="Cookie Policy" sx={{ marginBlock: 2 }}>
-        <CookiePolicy />
-      </SimpleAccordion>
-      <SimpleAccordion title={t('licenses')} sx={{ marginBlock: 2 }}>
-        <Licenses />
-      </SimpleAccordion>
-    </Box>
+    <Page>
+      <Section>
+        <Box
+          sx={{
+            padding: 4,
+            minHeight: '68vh',
+          }}
+        >
+          <Typography variant="h3" sx={{ marginBlock: 4 }}>
+            {t('policies')}
+          </Typography>
+          <SimpleAccordion title="Privacy Policy" sx={{ marginBottom: 2 }}>
+            <PrivacyPolicy />
+          </SimpleAccordion>
+          <SimpleAccordion title="Cookie Policy" sx={{ marginBlock: 2 }}>
+            <CookiePolicy />
+          </SimpleAccordion>
+          <SimpleAccordion title={t('licenses')} sx={{ marginBlock: 2 }}>
+            <Licenses />
+          </SimpleAccordion>
+        </Box>
+      </Section>
+    </Page>
   );
 }
 

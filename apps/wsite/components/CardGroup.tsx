@@ -14,14 +14,14 @@ export function CardGroup(props: CardGroupProps) {
       direction="column"
       sx={{
         marginBlock: 1,
-        marginInline: 2
+        marginInline: 2,
       }}
     >
       <TitleSectionLabel
         label={props.label}
         title={props.title}
         sx={{
-          marginLeft: 1
+          marginLeft: 1,
         }}
       />
       <Stack

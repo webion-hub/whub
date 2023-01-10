@@ -100,3 +100,5 @@ export function TextEditor(props: TextEditorProps) {
     </Stack>
   );
 }
+
+export default TextEditor

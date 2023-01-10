@@ -1,17 +1,14 @@
-import { Skeleton } from '@mui/material';
 import {
-  Img,
-  MaybeShow,
   NextImg,
   Page,
   Section,
   Sections,
   useLanguage,
   useNextNavigator,
-  useProgressiveImage,
 } from '@whub/wui';
+import { PageSettings } from '@whub/wui';
 import { CardGroup } from '../components/CardGroup';
-import { ImageCard, ImageCardProps } from '../components/IconCard';
+import { ImageCard, ImageCardProps } from '../components/cards/ImageCard';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';
 
 interface ProjectProps extends ImageCardProps {
@@ -21,27 +18,20 @@ interface ProjectProps extends ImageCardProps {
 
 function Project(props: ProjectProps) {
   const { src, ...others } = props;
-  const { srcLoaded, loading } = useProgressiveImage(src);
 
   return (
     <ImageCard
       {...others}
       img={
-        <MaybeShow
-          show={!loading}
-          alternativeChildren={
-            <Skeleton
-              variant="rectangular"
-              sx={{
-                width: '100%',
-                height: 'auto',
-                aspectRatio: '2.04',
-              }}
-            />
-          }
-        >
-          <NextImg src={props.src} alt={props.alt} auto width="100%" />
-        </MaybeShow>
+        <NextImg
+          src={props.src}
+          alt={props.alt}
+          auto
+          width="100%"
+          sx={{
+            borderRadius: (theme) => theme.shape.borderRadius,
+          }}
+        />
       }
     />
   );
@@ -53,9 +43,13 @@ export default function Projects() {
 
   return (
     <Page>
+      <PageSettings pageTranslationName="project" />
       <Sections>
         <Section>
-          <CardGroup label="Progetti" title="I nostri progetti recenti.">
+          <CardGroup
+            label={t('projects')}
+            title={t('our-most-recent-projects')}
+          >
             <Project
               title="Kaire Automation"
               paragraph={t('kaire')}
@@ -67,6 +61,23 @@ export default function Projects() {
               buttonLabel={t('see-website')}
             />
             <Project
+              title="Radio Bocconi"
+              paragraph={t('bocconi')}
+              src="/assets/images/projects/bocconi/bocconi.png"
+              alt="bocconi"
+              onClick={() =>
+                window
+                  .open(
+                    'https://play.google.com/store/apps/details?id=com.devpier.bocconi_radio',
+                    '_blank'
+                  )
+                  ?.focus()
+              }
+              buttonLabel={t('download-app')}
+              onClickSecondary={clickNavigate('/studies/bocconi')}
+              secondaryButtonLabel={t('learn-more')}
+            />
+            <Project
               title="Simm Imballaggi"
               paragraph={t('simm')}
               src="/assets/images/projects/simm.png"
@@ -76,7 +87,7 @@ export default function Projects() {
                   .open('https://shop.simmimballaggi.com', '_blank')
                   ?.focus()
               }
-              onClickSecondary={clickNavigate('/studies/simm')}
+              onClickSecondary={clickNavigate('/studies/simm-imballaggi')}
               buttonLabel={t('see-website')}
               secondaryButtonLabel={t('learn-more')}
             />
@@ -107,14 +118,16 @@ export default function Projects() {
             <Project
               title="Massyve"
               paragraph={t('massyve')}
-              src="/assets/images/projects/massyve.webp"
+              src="/assets/images/projects/massyve/massyve.webp"
               alt="massyve"
               onClick={() =>
                 window
-                  .open('https://massyve-music.webflow.io', '_blank')
+                  .open('https://massyvemusic.design/massyve-landing', '_blank')
                   ?.focus()
               }
               buttonLabel={t('see-website')}
+              onClickSecondary={clickNavigate('/studies/massyve')}
+              secondaryButtonLabel={t('learn-more')}
             />
           </CardGroup>
         </Section>

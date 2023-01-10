@@ -5,10 +5,10 @@ export interface DropdownProps<T> extends SelectProps {
   readonly getOptionLabel: (option: T) => string,
   readonly getValue: (option: T) => string,
   readonly elements: T[],
-  readonly focused: boolean,
+  readonly focused?: boolean,
   readonly value?: T,
   readonly selectSx?: SxProps<Theme>,
-  readonly onValueChange: (value: T) => void
+  readonly onValueChange?: (value: T) => void
 }
 
 export function Dropdown<T>(props: DropdownProps<T>) {

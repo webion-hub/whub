@@ -1,12 +1,11 @@
+import { SxProps, Theme } from '@mui/system';
 import React, { useState } from 'react';
-import { Box, SxProps, Theme } from '@mui/system';
-import Image from 'next/future/image';
 
 import {
-  AppShortcutRounded,
   DevicesRounded,
   FactoryRounded,
   KeyboardArrowDownRounded,
+  PhoneIphoneRounded,
   PublicRounded,
 } from '@mui/icons-material';
 import {
@@ -73,21 +72,25 @@ function ServicesButton() {
         {t('navbar-button2')}
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={navigate('/services/websites')} sx={listItemSx}>
+        <MenuItem
+          onClick={navigate('/services/websites')}
+          sx={listItemSx}
+          selected={false}
+        >
           <ListItemIcon>
-            <DevicesRounded color='primary'/>
+            <DevicesRounded color="primary" />
           </ListItemIcon>
           <ListItemText primary={t('service1')} secondary={t('learn-more')} />
         </MenuItem>
         <MenuItem onClick={navigate('/services/apps')} sx={listItemSx}>
           <ListItemIcon>
-            <AppShortcutRounded color='primary'/>
+            <PhoneIphoneRounded color="primary" />
           </ListItemIcon>
           <ListItemText primary={t('service2')} secondary={t('learn-more')} />
         </MenuItem>
         <MenuItem onClick={navigate('/services/industry')} sx={listItemSx}>
           <ListItemIcon>
-            <FactoryRounded color='primary'/>
+            <FactoryRounded color="primary" />
           </ListItemIcon>
           <ListItemText primary={t('service3')} secondary={t('learn-more')} />
         </MenuItem>
@@ -96,7 +99,6 @@ function ServicesButton() {
   );
 }
 
-// eslint-disable-next-line react/display-name
 const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
   (_, ref) => {
     const { t } = useLanguage();
@@ -108,6 +110,8 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
       theme.palette.layout?.appbar ?? theme.palette.primary.main;
 
     const isHome = currentSection === 'home';
+
+    if (currentSection === undefined) return;
 
     return (
       <AppBar
@@ -142,7 +146,7 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
               buttonSx={{
                 '& > *': {
                   color: (theme) =>
-                    isHome ? '#fff' : theme.palette.text.primary,
+                    isHome ? '#fff !important' : theme.palette.text.primary,
                 },
               }}
             >
@@ -157,7 +161,7 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
           <AppBarSection
             alignment="end"
             hideOnMobile
-            spacing={3}
+            spacing={2}
             sx={{
               '& > *': {
                 width: 'max-content',
@@ -168,13 +172,13 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
               },
             }}
           >
-            <Button
+            {/* <Button
               color="inherit"
               href="/#home"
               onClick={clickNavigate('/#home')}
             >
               {t('navbar-button1')}
-            </Button>
+            </Button> */}
             <ServicesButton />
             <Button
               color="inherit"
@@ -185,17 +189,24 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
             </Button>
             <Button
               color="inherit"
-              href="/who-we-are"
-              onClick={clickNavigate('/who-we-are')}
-            >
-              {t('navbar-button4')}
-            </Button>
-            <Button
-              color="inherit"
               href="/techs"
               onClick={clickNavigate('/techs')}
             >
               {t('navbar-button5')}
+            </Button>
+            <Button
+              color="inherit"
+              href="/blog"
+              onClick={clickNavigate('/blog')}
+            >
+              {t('navbar-button6')}
+            </Button>
+            <Button
+              color="inherit"
+              href="/who-we-are"
+              onClick={clickNavigate('/who-we-are')}
+            >
+              {t('navbar-button4')}
             </Button>
             <LanguageDropdownButton icon={PublicRounded} />
             <BasicThemeButton />
@@ -232,4 +243,5 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
   }
 );
 
+WebionAppbar.displayName = 'WebionAppbar';
 export default WebionAppbar;

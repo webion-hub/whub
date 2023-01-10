@@ -22,7 +22,7 @@ function Process(props: ProcessProps) {
         component="span"
         sx={{
           zIndex: -1,
-          color: (theme) => alpha(theme.palette.text.secondary, 0.3),
+          color: (theme) => alpha(theme.palette.text.secondary, 0.5),
           transitionProperty: 'transform',
           transitionDelay: `${props.delay}ms`,
           transitionDuration: `${stepTime}ms`,
@@ -54,7 +54,9 @@ function Process(props: ProcessProps) {
           transform: props.in ? 'translateY(0px)' : 'translateY(-32px)',
         }}
       >
-        <Typography variant="h5">{props.title}</Typography>
+        <Typography variant="h5" component="h3">
+          {props.title}
+        </Typography>
         <Typography variant="body1" color="text.secondary" textAlign="center">
           {props.description}
         </Typography>
@@ -69,7 +71,7 @@ export default function OurProcess() {
   const onScreen = useOnScreen(ref, {
     oneTime: true,
     observeOptions: {
-      rootMargin: '0px 0px 0% 0px',
+      rootMargin: '-10% 0% -10% 0%',
     },
   });
 

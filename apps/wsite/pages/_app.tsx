@@ -1,24 +1,11 @@
-import {
-  EmailRounded,
-  Facebook,
-  GitHub,
-  Instagram,
-  LinkedIn,
-  PhoneRounded,
-} from '@mui/icons-material';
-import { CssBaseline, GlobalStyles } from '@mui/material';
+import { EmailRounded, Facebook, GitHub, Instagram, LinkedIn, PhoneRounded } from '@mui/icons-material';
+import { CssBaseline } from '@mui/material';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { ContactUsApi } from '@whub/apis-contactus';
-import {
-  CookiePopup,
-  LanguageWrapper,
-  Layout,
-  SpeedDial,
-  ThemeWrapper,
-} from '@whub/wui';
+import { CookiePopup, LanguageWrapper, Layout, MaybeShow, SpeedDial, ThemeWrapper } from '@whub/wui';
 import { GB, IT } from 'country-flag-icons/react/3x2';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useEffect } from 'react';
 import en from '../public/assets/locales/en-EN.json';
 import it from '../public/assets/locales/it-IT.json';
 import WebionAppbar from '../components/layout/WebionAppBar';
@@ -29,25 +16,60 @@ import globalStyle from '../theme/globalStyle';
 import './styles.css';
 import { darkTheme, lightTheme } from '../theme/getTheme';
 import { AppContext } from '@whub/apis-react';
+import Script from 'next/script';
+import { useEffect, useState } from 'react';
+import { BlogApi } from '@whub/apis/blog';
+import { Agent } from 'https';
 
 const contactUs = new ContactUsApi({
-  baseUrl: 'https://api.webion.it/contactus',
+  baseURL: 'https://api.webion.it/contactus',
   withCredentials: true,
+});
+
+const blog = new BlogApi({
+  baseURL: 'https://w0/webion/blog/api',
+  withCredentials: true,
+  httpsAgent: new Agent({
+    rejectUnauthorized: false,
+  }),
 });
 
 AppContext.contactUs = {
   api: contactUs,
+};
+
+AppContext.blog = {
+  api: blog
 }
 
 function CustomApp({ Component, pageProps }: AppProps) {
+  const [ready, setReady] = useState(false)
+
   useEffect(() => {
-    import('react-facebook-pixel')
-      .then((m) => m.default)
-      .then((r) => r.init('592480175654211'));
+    setReady(true)
   }, []);
 
   return (
     <>
+      <Script strategy='worker' src="scripts/pixel.js"/>
+      <MaybeShow show={ready}>
+        <Script id="yandex" >
+          {`
+            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+            ym(90356482, "init", {
+              clickmap:true,
+              trackLinks:true,
+              accurateTrackBounce:true,
+              webvisor:true
+            });
+          `}
+        </Script>
+      </MaybeShow>
       <Head>
         <link rel="shortcut icon" href="assets/favicon.ico" />
         <title>Webion</title>
@@ -55,8 +77,8 @@ function CustomApp({ Component, pageProps }: AppProps) {
       <main className="app">
         <LanguageWrapper
           availableLanguages={{
-            it: { flag: IT, translation: it },
-            en: { flag: GB, translation: en },
+            it: { flag: IT, translation: it, langTranslation: 'Italiano' },
+            en: { flag: GB, translation: en, langTranslation: 'English' },
           }}
         >
           <ThemeWrapper
@@ -66,7 +88,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
             }}
           >
             <CssBaseline />
-            <GlobalStyles styles={globalStyle} />
+            <GlobalStyles styles={globalStyle as any} />
             <CookiePopup
               usePixel
               name="webion"

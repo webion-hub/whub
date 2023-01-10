@@ -1,24 +1,19 @@
 import {
-  AppShortcutRounded,
   BusinessRounded,
   DevicesRounded,
   FactoryRounded,
   PersonRounded,
+  PhoneIphoneRounded,
   QuestionMarkRounded,
   StoreRounded,
 } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
-import {
-  Button,
-  CardActionArea,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useContactUs } from '@whub/apis-react';
 import {
   MaybeShow,
   Page,
+  PageSettings,
   PrivacyCheckBox,
   Section,
   Sections,
@@ -27,38 +22,9 @@ import {
   Validator,
   Validators,
 } from '@whub/wui';
-import _ from 'lodash';
+import remove from 'lodash/remove';
 import { ReactNode, useState } from 'react';
-import { WebionCard } from '../components/IconCard';
-
-interface SelectableCardProps {
-  readonly selected: boolean;
-  readonly children: ReactNode;
-  readonly onSelect: () => void;
-}
-
-function SelectableCard(props: SelectableCardProps) {
-  return (
-    <WebionCard
-      sx={{
-        borderColor: (theme) =>
-          props.selected
-            ? theme.palette.primary.main + ' !important'
-            : undefined,
-      }}
-    >
-      <CardActionArea
-        onClick={props.onSelect}
-        sx={{
-          backgroundColor: (theme) =>
-            props.selected ? theme.palette.primary.main : 'inherit',
-        }}
-      >
-        {props.children}
-      </CardActionArea>
-    </WebionCard>
-  );
-}
+import { SelectableCard } from '../components/cards/SelectableCard';
 
 interface CardOptionProps {
   readonly selected: boolean;
@@ -142,7 +108,7 @@ export default function ContactUs() {
     const newServices = [...(formValue.services ?? [])];
 
     isAlreadyIn
-      ? _.remove(newServices, (s) => s === service)
+      ? remove(newServices, (s) => s === service)
       : newServices.push(service);
 
     handleChange('services', newServices);
@@ -220,7 +186,7 @@ export default function ContactUs() {
           />
           <CardOption
             key="app"
-            icon={<AppShortcutRounded fontSize="large" />}
+            icon={<PhoneIphoneRounded fontSize="large" />}
             title={t('app-card')}
             label={t('app-card-description')}
             selected={!!formValue?.services?.some((s) => s === 'app')}
@@ -312,6 +278,7 @@ export default function ContactUs() {
 
   const send = () => {
     setLoading(true);
+
     contactUsApi.contactUs
       .process({
         name: formValue.name ?? '',
@@ -326,6 +293,7 @@ export default function ContactUs() {
 
   return (
     <Page>
+      <PageSettings pageTranslationName="about" />
       <Sections>
         <Section>
           <Stack
@@ -343,7 +311,9 @@ export default function ContactUs() {
                 width: '100%',
               }}
             >
-              <Typography variant="h4">{steps[step].title}</Typography>
+              <Typography variant="h4" component="h3">
+                {steps[step].title}
+              </Typography>
               <Typography>{steps[step].description}</Typography>
               {steps[step].content}
               <Stack direction="row" justifyContent="flex-end" spacing={2}>

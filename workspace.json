@@ -2,10 +2,13 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "apis-blog": "libs/apis/blog",
     "apis-contactus": "libs/apis/contactus",
     "apis-core": "libs/apis/core",
     "apis-react": "libs/apis/react",
     "apis-simple-auth": "libs/apis/simple-auth",
+    "elfo": "apps/elfo",
+    "elfo-e2e": "apps/elfo-e2e",
     "page-sections": "libs/page-sections",
     "simm-imballaggi": "apps/simm-imballaggi",
     "simm-imballaggi-e2e": "apps/simm-imballaggi-e2e",

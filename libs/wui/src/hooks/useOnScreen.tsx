@@ -11,17 +11,17 @@ export function useOnScreen(ref: React.RefObject<any>, options?: Options) {
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
-      if (options?.oneTime && isIntersectingRef.current) return;
+      if (options?.oneTime && isIntersectingRef.current)
+         return;
 
       isIntersectingRef.current = entry.isIntersecting;
       setIntersecting(entry.isIntersecting);
     }, options?.observeOptions);
 
     observer.observe(ref.current);
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+
+    return () =>  observer.disconnect();
+  }, [options, ref]);
 
   return isIntersecting;
 }

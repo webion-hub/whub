@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import uniqueId from 'lodash/uniqueId';
 import { ChangeEvent } from 'react';
 import { BehaviorSubject } from 'rxjs';
 import {
@@ -19,7 +19,7 @@ export class Form {
   constructor(setter: React.Dispatch<FormInputs>, inputs: FormInputs) {
     this.setter = setter;
     this.inputs = inputs;
-    this.id = _.uniqueId();
+    this.id = uniqueId();
     this.newInputSubject = new BehaviorSubject<string>('');
   }
 

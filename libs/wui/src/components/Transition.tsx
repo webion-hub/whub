@@ -30,7 +30,7 @@ export function Transition(props: TransitionProps) {
     <Box
       sx={{
         ...getTransition(),
-        transitionProperty: 'transform opacity',
+        transitionProperty: 'transform, opacity',
         transitionDelay: `${props.delay ?? 0}ms`,
         transitionDuration: `${props.duration}ms`,
         transitionTimingFunction: 'ease-in-out',
