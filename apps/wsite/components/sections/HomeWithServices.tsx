@@ -99,6 +99,7 @@ export function HomeWithServices() {
           <Typography
             key={page?.key}
             variant={reduceTitle ? 'h3' : 'h2'}
+            component="h1"
             textAlign="center"
             sx={{
               animation: `show-title 250ms ease-in-out`,

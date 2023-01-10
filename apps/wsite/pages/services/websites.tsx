@@ -68,6 +68,9 @@ function Statistic(props: StatisticProps) {
     >
       <Box position="relative">
         <CircularProgress
+          role="progressbar"
+          id="progressbar"
+          title="progressbar"
           variant="determinate"
           value={value}
           size={200}
@@ -194,7 +197,7 @@ export default function Websites() {
             title={t('example')}
             caseStudyTitle={t('simm-title')}
             caseStudyDescription={t('simm-short-description')}
-            href="/studies/simm"
+            href="/studies/simm-imballaggi"
             src="/assets/images/projects/simm.png"
           />
         </Section>

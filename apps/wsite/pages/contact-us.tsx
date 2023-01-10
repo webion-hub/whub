@@ -13,6 +13,7 @@ import { useContactUs } from '@whub/apis-react';
 import {
   MaybeShow,
   Page,
+  PageSettings,
   PrivacyCheckBox,
   Section,
   Sections,
@@ -21,7 +22,6 @@ import {
   Validator,
   Validators,
 } from '@whub/wui';
-import { PageSettings } from '@whub/wui';
 import remove from 'lodash/remove';
 import { ReactNode, useState } from 'react';
 import { SelectableCard } from '../components/cards/SelectableCard';
@@ -311,7 +311,9 @@ export default function ContactUs() {
                 width: '100%',
               }}
             >
-              <Typography variant="h4">{steps[step].title}</Typography>
+              <Typography variant="h4" component="h3">
+                {steps[step].title}
+              </Typography>
               <Typography>{steps[step].description}</Typography>
               {steps[step].content}
               <Stack direction="row" justifyContent="flex-end" spacing={2}>
