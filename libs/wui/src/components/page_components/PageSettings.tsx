@@ -7,7 +7,7 @@ interface PageSettingsProps {
   readonly children?: ReactNode;
 }
 
-export default function PageSettings(props: PageSettingsProps) {
+export function PageSettings(props: PageSettingsProps) {
   const { children, pageTranslationName } = props;
 
   const { t } = useLanguage();

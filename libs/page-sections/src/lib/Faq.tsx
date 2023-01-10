@@ -2,13 +2,14 @@ import { ExpandMoreRounded } from '@mui/icons-material';
 import {
   Accordion,
   AccordionDetails,
-  AccordionSummary, Stack,
+  AccordionSummary,
+  Stack,
   Theme,
   Typography,
   useMediaQuery,
   useTheme,
   SxProps,
-  Box
+  Box,
 } from '@mui/material';
 import { MaybeShow } from '@whub/wui';
 import { ReactNode, useState } from 'react';
@@ -16,19 +17,19 @@ import { ReactNode, useState } from 'react';
 interface QuestionProps {
   readonly title: ReactNode;
   readonly expanded: boolean;
-  readonly onChange: (event: React.SyntheticEvent, newExpanded: boolean) => void;
+  readonly onChange: (
+    event: React.SyntheticEvent,
+    newExpanded: boolean
+  ) => void;
   readonly children: ReactNode;
 }
 
 export function Question(props: QuestionProps) {
   return (
     <Box>
-      <Accordion
-        expanded={props.expanded}
-        onChange={props.onChange}
-      >
+      <Accordion expanded={props.expanded} onChange={props.onChange}>
         <AccordionSummary expandIcon={<ExpandMoreRounded />}>
-          <Typography>{props.title}</Typography>
+          <Typography component="h3">{props.title}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography variant="body1" color="text.secondary">
@@ -45,33 +46,33 @@ interface IQuestion {
   readonly answer: ReactNode;
 }
 
-type PanelKey = number | string
+type PanelKey = number | string;
 
 type QuestionRenderComponent = (
-    qustion: IQuestion,
-    index: number,
-    onChange: (panel: PanelKey, expanded: boolean) => void,
-    panel: PanelKey
-  ) => ReactNode
+  qustion: IQuestion,
+  index: number,
+  onChange: (panel: PanelKey, expanded: boolean) => void,
+  panel: PanelKey
+) => ReactNode;
 
 export interface FaqProps {
   readonly title: string;
   readonly bottomLabel?: ReactNode;
   readonly icon?: ReactNode;
-  readonly questions: IQuestion[]
-  readonly renderComponent?: QuestionRenderComponent,
-  readonly sx?: SxProps<Theme>,
-  readonly questionBoxSx?: SxProps<Theme>,
+  readonly questions: IQuestion[];
+  readonly renderComponent?: QuestionRenderComponent;
+  readonly sx?: SxProps<Theme>;
+  readonly questionBoxSx?: SxProps<Theme>;
 }
 
 export function Faq(props: FaqProps) {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
-  const [expanded, setExpanded] = useState<PanelKey>('')
+  const [expanded, setExpanded] = useState<PanelKey>('');
 
   const handleChange = (panel: PanelKey, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : '');
-    };
+    setExpanded(newExpanded ? panel : '');
+  };
 
   return (
     <Stack
@@ -87,7 +88,7 @@ export function Faq(props: FaqProps) {
       {props.icon}
       <Typography
         variant={isMd ? 'h2' : 'h3'}
-        component="span"
+        component="h2"
         textAlign="center"
       >
         {props.title}
@@ -98,32 +99,31 @@ export function Faq(props: FaqProps) {
         sx={{
           marginTop: (theme) => theme.spacing(8, '!important'),
           width: '100%',
-          ...props.questionBoxSx
+          ...props.questionBoxSx,
         }}
       >
-        {
-          props
-            .questions
-            .map((q, i) => (
-              <MaybeShow
-                key={i}
-                show={!props.renderComponent}
-                alternativeChildren={props.renderComponent?.(q, i, handleChange, expanded)}
-              >
-                <Question
-                  onChange={(_, newExpanded) => handleChange(i, newExpanded)}
-                  expanded={expanded === i}
-                  title={q.question}
-                >
-                  {q.answer}
-                </Question>
-              </MaybeShow>
-            ))
-        }
+        {props.questions.map((q, i) => (
+          <MaybeShow
+            key={i}
+            show={!props.renderComponent}
+            alternativeChildren={props.renderComponent?.(
+              q,
+              i,
+              handleChange,
+              expanded
+            )}
+          >
+            <Question
+              onChange={(_, newExpanded) => handleChange(i, newExpanded)}
+              expanded={expanded === i}
+              title={q.question}
+            >
+              {q.answer}
+            </Question>
+          </MaybeShow>
+        ))}
       </Stack>
-      <Typography variant="body1">
-        {props.bottomLabel}
-      </Typography>
+      <Typography variant="body1">{props.bottomLabel}</Typography>
     </Stack>
   );
 }

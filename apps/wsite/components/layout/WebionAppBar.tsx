@@ -161,7 +161,7 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
           <AppBarSection
             alignment="end"
             hideOnMobile
-            spacing={3}
+            spacing={2}
             sx={{
               '& > *': {
                 width: 'max-content',
@@ -193,6 +193,13 @@ const WebionAppbar = React.forwardRef<HTMLDivElement, Record<string, never>>(
               onClick={clickNavigate('/techs')}
             >
               {t('navbar-button5')}
+            </Button>
+            <Button
+              color="inherit"
+              href="/blog"
+              onClick={clickNavigate('/blog')}
+            >
+              {t('navbar-button6')}
             </Button>
             <Button
               color="inherit"

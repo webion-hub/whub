@@ -2,7 +2,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import { NextImg, Page, Section, Sections, useLanguage } from '@whub/wui';
-import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
+import { PageSettings } from '@whub/wui';
 import { IconCard } from '../../components/cards/IconCard';
 import { ImageAndDescription } from '../../components/ImageAndDescription';
 import { GetAQuoteSection } from '../../components/sections/GetAQuote';

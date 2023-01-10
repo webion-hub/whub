@@ -13,6 +13,7 @@ import { useContactUs } from '@whub/apis-react';
 import {
   MaybeShow,
   Page,
+  PageSettings,
   PrivacyCheckBox,
   Section,
   Sections,
@@ -21,7 +22,6 @@ import {
   Validator,
   Validators,
 } from '@whub/wui';
-import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
 import remove from 'lodash/remove';
 import { ReactNode, useState } from 'react';
 import { SelectableCard } from '../components/cards/SelectableCard';

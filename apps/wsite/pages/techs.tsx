@@ -1,5 +1,5 @@
 import { NextImg, Page, Section, Sections, useLanguage } from '@whub/wui';
-import PageSettings from 'libs/wui/src/components/page_components/PageSettings';
+import { PageSettings } from '@whub/wui';
 import { CardGroup } from '../components/CardGroup';
 import { IconCard } from '../components/cards/IconCard';
 import { GetAQuoteSection } from '../components/sections/GetAQuote';

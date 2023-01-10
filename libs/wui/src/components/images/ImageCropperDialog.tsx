@@ -8,6 +8,7 @@ import { DialogBase } from '../../abstractions/dialogs/DialogBase';
 import { DialogTitleCross } from '../dialogs/DialogTitleCross';
 
 export interface ImageCropperDialogProps extends DialogBase {
+  readonly aspectRatio?: number,
   readonly image: string,
   readonly onCrop: (cropData: string) => void,
 }
@@ -76,7 +77,7 @@ export function ImageCropperDialog(props: ImageCropperDialogProps) {
             style={{ maxHeight: 400, width: "100%" }}
             zoomTo={0}
             initialAspectRatio={1}
-            aspectRatio={1}
+            aspectRatio={props.aspectRatio ?? 1}
             src={img}
             viewMode={1}
             minCropBoxHeight={64}

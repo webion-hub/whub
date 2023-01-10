@@ -8,6 +8,7 @@ export interface SquareContainerProps {
   readonly children?: ChildrenProp,
   readonly onDelete?: () => void,
   readonly size?: number,
+  readonly aspectRatio?: number,
 }
 
 export function SquareContainer(props: SquareContainerProps) {
@@ -15,8 +16,10 @@ export function SquareContainer(props: SquareContainerProps) {
     <Paper
       sx={{
         ...props.sx,
-        width: props.size,
         height: props.size,
+        width:
+          (props.size ?? 1) *
+          (props.aspectRatio ?? 1),
       }}
     >
       {props.children}
@@ -56,5 +59,6 @@ export function SquareContainer(props: SquareContainerProps) {
 }
 
 SquareContainer.defaultProps = {
-  size: 96
+  size: 96,
+  aspectRatio: 1,
 }

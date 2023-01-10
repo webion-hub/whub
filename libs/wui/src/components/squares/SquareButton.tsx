@@ -7,6 +7,7 @@ export interface SquareButtonProps {
   readonly children?: ReactNode,
   readonly label?: string,
   readonly size?: number,
+  readonly aspectRatio?: number,
   readonly stackSx?: SxProps<Theme>,
   readonly onClick?: () => void,
   readonly onDelete?: () => void,
@@ -18,6 +19,7 @@ export function SquareButton(props: SquareButtonProps) {
     <SquareContainer
       onDelete={props.onDelete}
       size={props.size}
+      aspectRatio={props.aspectRatio}
     >
       <ButtonBase
         component='label'
@@ -25,6 +27,7 @@ export function SquareButton(props: SquareButtonProps) {
         sx={{
           width: '100%',
           height: '100%',
+          borderRadius: theme => theme.shape.borderRadius,
           ...props.stackSx
         }}
       >

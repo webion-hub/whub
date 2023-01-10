@@ -1,4 +1,4 @@
-import { Theme, SxProps } from '@mui/system';
+import { Theme, SxProps } from '@mui/material';
 import { styled } from '@mui/material';
 import { ChildrenProp } from '../abstractions/props/ChildrenProps';
 import { useOnScreen } from '../hooks/useOnScreen';
@@ -9,6 +9,7 @@ import uniqueId from 'lodash/uniqueId';
 const StyledSection = styled('section')(({ theme }) => ({
   paddingBlock: theme.spacing(8),
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   position: 'relative',
@@ -47,7 +48,7 @@ export function Section(props: SectionProps) {
       height: '100%',
       zIndex: 0,
       background: (theme) =>
-        props.background ?? theme.palette['secondaryBackground'].default,
+        props.background ?? theme.palette['secondaryBackground']?.default,
       ...props.backgroundSx,
     },
   };
@@ -55,8 +56,7 @@ export function Section(props: SectionProps) {
   const backgroundSx = props.showBackground ? background : {};
 
   useEffect(() => {
-    if (!sectionIn || props.ignoreSection)
-      return;
+    if (!sectionIn || props.ignoreSection) return;
 
     setSection(props.id ?? uniqueId());
   }, [sectionIn]);

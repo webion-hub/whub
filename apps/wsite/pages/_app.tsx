@@ -18,15 +18,29 @@ import { darkTheme, lightTheme } from '../theme/getTheme';
 import { AppContext } from '@whub/apis-react';
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
+import { BlogApi } from '@whub/apis/blog';
+import { Agent } from 'https';
 
 const contactUs = new ContactUsApi({
-  baseUrl: 'https://api.webion.it/contactus',
+  baseURL: 'https://api.webion.it/contactus',
   withCredentials: true,
+});
+
+const blog = new BlogApi({
+  baseURL: 'https://w0/webion/blog/api',
+  withCredentials: true,
+  httpsAgent: new Agent({
+    rejectUnauthorized: false,
+  }),
 });
 
 AppContext.contactUs = {
   api: contactUs,
 };
+
+AppContext.blog = {
+  api: blog
+}
 
 function CustomApp({ Component, pageProps }: AppProps) {
   const [ready, setReady] = useState(false)

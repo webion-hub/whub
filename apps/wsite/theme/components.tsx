@@ -18,7 +18,6 @@ export const getComponents = (
       root: {
         padding: 8,
         transition: '0.5s box-shadow',
-
         "&.Mui-expanded": {
           boxShadow: defaultTheme.shadows[10]
         }
@@ -62,9 +61,7 @@ export const getComponents = (
       root: {
         backgroundImage: 'none',
         borderRadius: 16,
-        border: mode === 'dark'
-            ? '1px solid #10172d'
-            : '1px solid #e2e7fa',
+        border: mode === 'dark' ? '1px solid #10172d' : '1px solid #e2e7fa',
       },
     },
   },
@@ -111,6 +108,13 @@ export const getComponents = (
     styleOverrides: {
       root: {
         fontSize: '18px !important',
+      },
+    },
+  },
+  MuiToggleButton: {
+    styleOverrides: {
+      root: {
+        borderRadius: 16,
       },
     },
   },

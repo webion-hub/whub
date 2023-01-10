@@ -10,6 +10,14 @@ const { withNx } = require('@nrwl/next/plugins/with-nx');
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+  },
   experimental: {
     nextScriptWorkers: true
   },
@@ -35,10 +43,10 @@ const nextConfig = {
     config.plugins.push(
       new LodashModuleReplacementPlugin(),
       //new BundleAnalyzerPlugin(),
-    )
+    );
 
-    return config
-  }
+    return config;
+  },
 };
 
 module.exports = withNx(nextConfig);

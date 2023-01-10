@@ -7,7 +7,8 @@ import { ImageUploader } from "../inputs/uploaders/ImageUploader";
 import { SquareButton } from "./SquareButton";
 
 export interface SquareAddImageProps {
-  readonly onAddImage: (cropData: string) => void
+  readonly onAddImage: (cropData: string) => void,
+  readonly aspectRatio?: number
 }
 
 export function SquareAddImage(props: SquareAddImageProps) {
@@ -47,11 +48,13 @@ export function SquareAddImage(props: SquareAddImageProps) {
     <SquareButton
       label="Aggiungi foto"
       icon={AddAPhotoRounded}
+      aspectRatio={props.aspectRatio}
     >
       <ImageUploader
         onChange={onChange}
       />
       <ImageCropperDialog
+        aspectRatio={props.aspectRatio}
         open={openCrop}
         image={image}
         onClose={() => setOpenCrop(false)}
