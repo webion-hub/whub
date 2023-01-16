@@ -1,24 +1,29 @@
 import { alpha, Box, Card } from '@mui/material';
-import { BaseProps, Coords } from '@whub/wui';
-import { useRef, useState } from 'react';
+import { BaseProps, Coords } from '@wui/core';
+import { MouseEvent, useRef, useState } from 'react';
 
 export function WebionCard(props: BaseProps) {
   const [show, setShow] = useState(false);
   const [pos, setPos] = useState<Coords>({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>();
 
+  const handleMouseMove = (e: MouseEvent) => {
+    if(!cardRef.current)
+    return
+
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.x;
+    const y = e.clientY - rect.y;
+
+    setPos({ x, y });
+  }
+
   return (
     <Card
-      ref={cardRef}
+      ref={cardRef as any}
       onMouseLeave={() => setShow(false)}
       onMouseEnter={() => setShow(true)}
-      onMouseMove={(e) => {
-        const rect = cardRef.current.getBoundingClientRect();
-        const x = e.clientX - rect.x;
-        const y = e.clientY - rect.y;
-
-        setPos({ x, y });
-      }}
+      onMouseMove={handleMouseMove}
       sx={{
         position: 'relative',
         minWidth: { xs: '100%', md: 350 },

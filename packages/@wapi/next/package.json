@@ -1,0 +1,25 @@
+{
+  "name": "@wapi/next",
+  "version": "0.0.0",
+  "main": "./index.tsx",
+  "types": "./index.tsx",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint *.ts*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "next": "13.0.0",
+    "react": "^18.2.0",
+    "eslint": "^7.32.0",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.5.2",
+    "@types/jest": "^29.2.5",
+    "@wui/components": "workspace:*",
+    "@wui/core": "workspace:*",
+    "@wapi/simple-auth": "workspace:*",
+    "@wapi/blog": "workspace:*",
+    "@wapi/contactus": "workspace:*"
+  }
+}

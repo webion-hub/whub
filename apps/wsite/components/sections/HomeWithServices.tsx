@@ -1,21 +1,12 @@
-import {
-  ArrowForwardRounded,
-  DevicesRounded,
-  FactoryRounded,
-  PhoneIphoneRounded,
-} from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { ArrowForwardRounded, DevicesRounded, FactoryRounded, PhoneIphoneRounded } from '@mui/icons-material';
+import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
-import { NextImg, useLanguage } from '@whub/wui';
+import { ButtonWithProgress, NextImg } from '@wui/components';
+import { ISection } from '@wui/core';
+import Section from '@wui/layout/Section';
+import { useLanguage } from '@wui/wrappers';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
-import { ButtonWithProgress } from '../ButtonWithProgress';
 
 interface HomeSlide<T> {
   readonly key: T;
@@ -26,7 +17,7 @@ interface HomeSlide<T> {
 
 type Slides = 'websites' | 'apps' | 'industry';
 
-export function HomeWithServices() {
+export function HomeWithServices(props: ISection) {
   const [pages, setPages] = useState<HomeSlide<Slides>[]>([]);
   const [page, setPage] = useState<HomeSlide<Slides>>();
 
@@ -73,7 +64,16 @@ export function HomeWithServices() {
   const zoomAnimationKeyframes = `@keyframes ${zoomAnimationName}`;
 
   return (
-    <>
+    <Section
+      id={props.id}
+      maxWidth="100vw"
+      sx={{
+        width: '100%',
+        zIndex: 2,
+        margin: 'auto',
+        padding: 0,
+      }}
+    >
       <Stack
         direction="column"
         alignItems="center"
@@ -172,7 +172,9 @@ export function HomeWithServices() {
           overflow: 'hidden',
         }}
       >
-        {pages.map((p) => (
+        {pages.map((p) => {
+          console.log(p.key === page?.key)
+          return (
           <NextImg
             key={p.key}
             quality={100}
@@ -198,8 +200,8 @@ export function HomeWithServices() {
               animation: `${zoomAnimationName} 15000ms ease-in-out forwards`,
             }}
           />
-        ))}
+        )})}
       </Box>
-    </>
+    </Section>
   );
 }

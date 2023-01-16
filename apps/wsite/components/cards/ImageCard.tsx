@@ -9,7 +9,7 @@ import {
   Theme,
   Typography,
 } from '@mui/material';
-import { MaybeShow } from '@whub/wui';
+import { MaybeShow } from '@wui/components';
 import { ReactNode } from 'react';
 import { WebionCard } from './WebionCard';
 

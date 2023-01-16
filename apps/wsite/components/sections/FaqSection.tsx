@@ -1,21 +1,24 @@
 import { HelpRounded } from '@mui/icons-material';
 import { alpha, Link, Stack, useTheme } from '@mui/material';
-import { Faq, IQuestion } from '@whub/page-sections';
-import { Section, useLanguage, useNextNavigator } from '@whub/wui';
-import { netBackground } from '../backgrounds/netBackground';
+import { useNextNavigator } from '@wui/core';
+import Section from '@wui/layout/Section';
+import { ISection } from '@wui/sections/abstractions/ISection';
+import { Faq, IQuestion } from '@wui/sections/Faq';
+import { useLanguage } from '@wui/wrappers';
+import { netBackground } from '../../backgrounds/netBackground';
 
-interface FaqSectionProps {
+interface FaqSectionProps extends ISection {
   readonly questions: IQuestion[]
 }
 
 export function FaqSection(props: FaqSectionProps) {
   const theme = useTheme();
   const { clickNavigate } = useNextNavigator();
-  const { t, tHtml } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <Section
-      id="faq"
+      id={props.id}
       showBackground
       sx={{
         paddingTop: 0,

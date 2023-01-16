@@ -1,48 +1,61 @@
 import { DevicesRounded, FactoryRounded, PhoneIphoneRounded } from '@mui/icons-material';
-import { Box } from '@mui/material';
-import { useLanguage, useNextNavigator } from '@whub/wui';
+import { Box, useTheme } from '@mui/material';
+import { useNextNavigator } from '@wui/core';
+import Section from '@wui/layout/Section';
+import { ISection } from '@wui/sections/abstractions/ISection';
+
+import { useLanguage } from '@wui/wrappers';
 
 import { useRef } from 'react';
-import { CardGroup } from '../CardGroup';
+import { pcbBackground } from '../../backgrounds/pcbBackground';
+import { CardGroup } from '../cards/CardGroup';
 import { IconCard } from '../cards/IconCard';
 
-export default function Services() {
+export default function Services(props: ISection) {
   const ref = useRef();
+  const theme = useTheme()
   const { clickNavigate } = useNextNavigator();
   const { t } = useLanguage();
 
   return (
-    <Box
-      ref={ref}
-      sx={{
-        marginTop: 5,
-        marginInline: 'auto',
-      }}
+    <Section
+      id={props.id}
+      showBackground
+      background={pcbBackground(theme)}
+      backgroundSx={{ opacity: theme.palette.mode === 'dark' ? 1 : 0.4 }}
     >
-      <CardGroup label={t('services')} title={t('services-title')}>
-        <IconCard
-          title={t('service1-card-title')}
-          paragraph={t('service1-card-desc')}
-          buttonLabel={t('learn-more')}
-          icon={<DevicesRounded fontSize="large" />}
-          onClick={clickNavigate('/services/websites')}
-        />
-        <IconCard
-          title={t('service2-card-title')}
-          paragraph={t('service2-card-desc')}
-          buttonLabel={t('learn-more')}
-          icon={<PhoneIphoneRounded fontSize="large" />}
-          onClick={clickNavigate('/services/apps')}
-        />
+      <Box
+        ref={ref}
+        sx={{
+          marginTop: 5,
+          marginInline: 'auto',
+        }}
+      >
+        <CardGroup label={t('services')} title={t('services-title')}>
+          <IconCard
+            title={t('service1-card-title')}
+            paragraph={t('service1-card-desc')}
+            buttonLabel={t('learn-more')}
+            icon={<DevicesRounded fontSize="large" />}
+            onClick={clickNavigate('/services/websites')}
+          />
+          <IconCard
+            title={t('service2-card-title')}
+            paragraph={t('service2-card-desc')}
+            buttonLabel={t('learn-more')}
+            icon={<PhoneIphoneRounded fontSize="large" />}
+            onClick={clickNavigate('/services/apps')}
+          />
 
-        <IconCard
-          title={t('service3-card-title')}
-          paragraph={t('service3-card-desc')}
-          buttonLabel={t('learn-more')}
-          icon={<FactoryRounded fontSize="large" />}
-          onClick={clickNavigate('/services/industry')}
-        />
-      </CardGroup>
-    </Box>
+          <IconCard
+            title={t('service3-card-title')}
+            paragraph={t('service3-card-desc')}
+            buttonLabel={t('learn-more')}
+            icon={<FactoryRounded fontSize="large" />}
+            onClick={clickNavigate('/services/industry')}
+          />
+        </CardGroup>
+      </Box>
+    </Section>
   );
 }

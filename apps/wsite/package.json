@@ -1,17 +1,36 @@
 {
   "name": "wsite",
-  "version": "0.0.1",
-  "sideEffects": false,
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3007",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
-    "@nrwl/workspace": "14.7.11",
-    "typescript": "~4.8.2"
+    "next": "13.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "@wui/core": "workspace:*",
+    "@wui/components": "workspace:*",
+    "@wui/wrappers": "workspace:*",
+    "@wui/layout": "workspace:*",
+    "@wui/extensions": "workspace:*",
+    "@wui/sections": "workspace:*",
+    "@wapi/blog": "workspace:*",
+    "@wapi/contactus": "workspace:*",
+    "@wapi/next": "workspace:*"
   },
   "devDependencies": {
-    "@nrwl/workspace": "14.7.11",
-    "prettier": "^2.6.2",
-    "typescript": "~4.8.2"
-  },
-  "scripts": {
-    "start": "next start"
+    "@babel/core": "^7.0.0",
+    "eslint-config-custom": "workspace:*",
+    "eslint": "7.32.0",
+    "tsconfig": "workspace:*",
+    "@types/node": "^17.0.12",
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "typescript": "^4.5.3",
+    "country-flag-icons": "^1.5.5"
   }
 }

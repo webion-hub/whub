@@ -11,8 +11,6 @@ export const lightPalette: Theme['palette'] = {
   },
   primary: {
     main: '#1f4bff',
-    // light: 'rgb(226 231 250)',
-    // dark: '#757575',
   },
   secondary: {
     main: '#9face2',
@@ -25,9 +23,5 @@ export const lightPalette: Theme['palette'] = {
   info: {
     main: '#999999',
     contrastText: '#444',
-  },
-  custom: {
-    default: 'rgb(226 231 250)',
-    paper: '#757575',
   },
 };

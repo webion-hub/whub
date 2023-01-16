@@ -1,92 +1,83 @@
 import { AccountTreeRounded, CallRounded } from '@mui/icons-material';
-import { Button, Stack, SxProps, Theme, Typography, useTheme } from '@mui/material';
-import {
-  MaybeShow,
-  Section,
-  useLanguage, useNextNavigator
-} from '@whub/wui';
+import { Button, Typography } from '@mui/material';
+import { Stack, SxProps, Theme, useTheme } from '@mui/system';
+import { MaybeShow } from '@wui/components';
+import { useNextNavigator } from '@wui/core';
+import Section from '@wui/layout/Section';
+import { ISection } from '@wui/sections/abstractions/ISection';
 
-export function GetAQuote({
-  hideSecondaryBtn,
-}: {
-  hideSecondaryBtn?: boolean;
-}) {
+import { useLanguage } from '@wui/wrappers';
+
+
+interface GetAQuoteProps extends ISection {
+  readonly hideSecondaryBtn?: boolean;
+  readonly sx?: SxProps<Theme>;
+}
+
+export function GetAQuote(props: GetAQuoteProps) {
+  const theme = useTheme();
   const { tHtml, t } = useLanguage();
   const { clickNavigate } = useNextNavigator();
 
   return (
-    <Stack
-      direction="column"
-      alignItems="center"
-      spacing={1}
-      sx={{
-        maxWidth: 650,
-        marginBlock: 4,
-        marginInline: 2,
-      }}
-    >
-      <Typography variant="h4" textAlign="center" sx={{ color: '#fff' }}>
-        {tHtml('quote-title')}
-      </Typography>
-      <Typography variant="body1" textAlign="center" sx={{ color: '#fff' }}>
-        {t('quote-desc')}
-      </Typography>
-      <Stack
-        direction="row"
-        justifyContent="center"
-        flexWrap="wrap"
-        sx={{
-          marginTop: (theme) => theme.spacing(8, '!important'),
-          '& > *': {
-            margin: theme => theme.spacing(1, "!important"),
-          },
-        }}
-      >
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          startIcon={<CallRounded />}
-          href="/contact-us"
-          onClick={clickNavigate('/contact-us')}
-        >
-          {t('contact-us')}
-        </Button>
-        <MaybeShow show={!hideSecondaryBtn}>
-          <Button
-            size="large"
-            startIcon={<AccountTreeRounded />}
-            href="/projects"
-            color="secondary"
-            variant="outlined"
-            onClick={clickNavigate('/projects')}
-          >
-            {t('see-projects')}
-          </Button>
-        </MaybeShow>
-      </Stack>
-    </Stack>
-  );
-}
-
-export function GetAQuoteSection({
-  hideSecondaryBtn,
-  sx,
-}: {
-  hideSecondaryBtn?: boolean,
-  sx?: SxProps<Theme>,
-}) {
-  const theme = useTheme();
-
-  return (
     <Section
-      id="quote"
+      id={props.id}
       ignoreSection
       showBackground
       background={theme.palette.primary.dark}
-      sx={sx}
+      sx={props.sx}
     >
-      <GetAQuote hideSecondaryBtn={hideSecondaryBtn} />
+      <Stack
+        direction="column"
+        alignItems="center"
+        spacing={1}
+        sx={{
+          maxWidth: 650,
+          marginBlock: 4,
+          marginInline: 2,
+        }}
+      >
+        <Typography variant="h4" textAlign="center" sx={{ color: '#fff' }}>
+          {tHtml('quote-title')}
+        </Typography>
+        <Typography variant="body1" textAlign="center" sx={{ color: '#fff' }}>
+          {t('quote-desc')}
+        </Typography>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          flexWrap="wrap"
+          sx={{
+            marginTop: (theme) => theme.spacing(8, '!important'),
+            '& > *': {
+              margin: theme => theme.spacing(1, "!important"),
+            },
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            startIcon={<CallRounded />}
+            href="/contact-us"
+            onClick={clickNavigate('/contact-us')}
+          >
+            {t('contact-us')}
+          </Button>
+          <MaybeShow show={!props.hideSecondaryBtn}>
+            <Button
+              size="large"
+              startIcon={<AccountTreeRounded />}
+              href="/projects"
+              color="secondary"
+              variant="outlined"
+              onClick={clickNavigate('/projects')}
+            >
+              {t('see-projects')}
+            </Button>
+          </MaybeShow>
+        </Stack>
+      </Stack>
     </Section>
   );
 }
