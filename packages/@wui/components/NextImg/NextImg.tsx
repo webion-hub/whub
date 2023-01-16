@@ -4,23 +4,28 @@ import Image, { ImageProps } from 'next/image';
 
 const NextImgSx = styled(Image)({});
 
+interface AutoSizeProps {
+  readonly width?: string; 
+  readonly height?: string; 
+}
+
 interface NextImgProps extends ImageProps {
   readonly sx?: SxProps<Theme>;
-  readonly auto?: boolean;
+  readonly auto?: AutoSizeProps;
 }
 
 export function NextImg(props: NextImgProps) {
   const { auto, sx, ...others } = props;
 
   if (auto) {
-    const { height, width, ...imgProps } = others;
+    const { ...imgProps } = others;
 
-    const widthStyle = width 
-      ? `${width}px` 
+    const widthStyle = auto.width 
+      ? `${auto.width}` 
       : 'auto';
 
-    const heightStyle = height 
-      ? `${height}px` 
+    const heightStyle = auto.height 
+      ? `${auto.height}px` 
       : 'auto';
 
     return (

@@ -5,7 +5,7 @@ import { MouseEvent, useRef, useState } from 'react';
 export function WebionCard(props: BaseProps) {
   const [show, setShow] = useState(false);
   const [pos, setPos] = useState<Coords>({ x: 0, y: 0 });
-  const cardRef = useRef<HTMLDivElement>();
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: MouseEvent) => {
     if(!cardRef.current)
@@ -20,7 +20,7 @@ export function WebionCard(props: BaseProps) {
 
   return (
     <Card
-      ref={cardRef as any}
+      ref={cardRef}
       onMouseLeave={() => setShow(false)}
       onMouseEnter={() => setShow(true)}
       onMouseMove={handleMouseMove}
