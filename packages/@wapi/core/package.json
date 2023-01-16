@@ -13,6 +13,7 @@
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2",
     "axios": "^1.2.2",
-    "qs": "^6.11.0"
+    "qs": "^6.11.0",
+    "@types/qs": "^6.9.7"
   }
 }

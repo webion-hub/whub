@@ -1,6 +1,7 @@
 import { Endpoint } from "@wapi/core";
 import { LoginRequest } from "../requests/LoginRequest";
 import { AccountInfo } from "../model/AccountInfo";
+import { AxiosResponse } from 'axios'
 
 export class AccountEndpoint extends Endpoint {
   get url(): string {
@@ -8,19 +9,19 @@ export class AccountEndpoint extends Endpoint {
   }
 
 
-  info() {
+  info(): Promise<AxiosResponse<AccountInfo>> {
     return this.client.get<AccountInfo>(this.at('info'));
   }
 
-  isLoggedIn() {
+  isLoggedIn(): Promise<AxiosResponse<boolean>> {
     return this.client.get<boolean>(this.at('is_logged_in'));
   }
 
-  login(request: LoginRequest) {
+  login(request: LoginRequest): Promise<AxiosResponse> {
     return this.client.post(this.at('login'), request);
   }
 
-  logout() {
+  logout(): Promise<AxiosResponse> {
     return this.client.post(this.at('logout'));
   }
 }

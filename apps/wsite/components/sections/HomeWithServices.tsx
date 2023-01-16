@@ -2,8 +2,8 @@ import { ArrowForwardRounded, DevicesRounded, FactoryRounded, PhoneIphoneRounded
 import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import { ButtonWithProgress, NextImg } from '@wui/components';
-import { ISection } from '@wui/core';
 import Section from '@wui/layout/Section';
+import { ISection } from '@wui/sections/abstractions/ISection';
 import { useLanguage } from '@wui/wrappers';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
