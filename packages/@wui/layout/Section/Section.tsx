@@ -1,4 +1,4 @@
-import { Theme, SxProps } from '@mui/system';
+import { Theme, SxProps } from '@mui/material';
 import { styled } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import uniqueId from 'lodash/uniqueId';
@@ -8,6 +8,7 @@ import { useLayout } from '../Layout/Layout';
 const StyledSection = styled('section')(({ theme }) => ({
   paddingBlock: theme.spacing(8),
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   position: 'relative',
@@ -46,7 +47,7 @@ export function Section(props: SectionProps) {
       height: '100%',
       zIndex: 0,
       background: (theme) =>
-        props.background ?? theme.palette['secondaryBackground'].default,
+        props.background ?? theme.palette['secondaryBackground']?.default,
       ...props.backgroundSx,
     },
   };

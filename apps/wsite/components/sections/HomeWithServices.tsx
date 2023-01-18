@@ -172,9 +172,7 @@ export function HomeWithServices(props: ISection) {
           overflow: 'hidden',
         }}
       >
-        {pages.map((p) => {
-          console.log(p.key === page?.key)
-          return (
+        {pages.map((p) => (
           <NextImg
             key={p.key}
             quality={100}
@@ -200,7 +198,7 @@ export function HomeWithServices(props: ISection) {
               animation: `${zoomAnimationName} 15000ms ease-in-out forwards`,
             }}
           />
-        )})}
+        ))}
       </Box>
     </Section>
   );

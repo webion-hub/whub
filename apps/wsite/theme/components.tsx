@@ -114,4 +114,11 @@ export const getComponents = (
       },
     },
   },
+  MuiToggleButton: {
+    styleOverrides: {
+      root: {
+        borderRadius: 16,
+      },
+    },
+  },
 });

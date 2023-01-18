@@ -20,6 +20,7 @@
     "js-cookie": "^3.0.1",
     "@wui/core": "workspace:*",
     "@wui/extensions": "workspace:*",
-    "@wui/wrappers": "workspace:*"
+    "@wui/wrappers": "workspace:*",
+    "@wui/form": "workspace:*"
   }
 }

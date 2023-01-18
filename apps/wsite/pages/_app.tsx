@@ -23,6 +23,11 @@ import BlogApi from "@wapi/blog";
 import ContactUsApi from "@wapi/contactus";
 import AppContext from "@wapi/next";
 
+
+//SPOSTARE IN ImageCropperDialog
+import "cropperjs/dist/cropper.css";
+
+
 const contactUs = new ContactUsApi({
   baseURL: 'https://api.webion.it/contactus',
   withCredentials: true,
@@ -54,7 +59,7 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script strategy='worker' src="scripts/pixel.js"/>
-      <MaybeShow show={ready}>
+      <MaybeShow show={ready && false}>
         <Script id="yandex" >
           {`
             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

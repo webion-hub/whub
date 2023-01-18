@@ -56,6 +56,13 @@ export function WebionAppbar() {
           </Button>
           <Button
             color="inherit"
+            href="/blog"
+            onClick={clickNavigate('/blog')}
+          >
+            {t('navbar-button6')}
+          </Button>
+          <Button
+            color="inherit"
             href="/who-we-are"
             onClick={clickNavigate('/who-we-are')}
           >

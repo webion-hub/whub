@@ -1,6 +1,6 @@
 import { BlogArticle } from "../model/BlogArticle";
 import { ArticleEndpoint } from "./ArticleEndpoint";
-import { AxiosInstance } from "axios";
+import axios, { AxiosInstance, CancelToken, CancelTokenSource } from "axios";
 import { ArticleSearchRequest } from "../requests/ArticleSearchRequest";
 import { Endpoint } from "@wapi/core";
 
@@ -20,9 +20,11 @@ export class ArticlesEndpoint extends Endpoint {
     return new ArticleEndpoint(this.client, this.language, webId);
   }
 
-  async filter(request?: ArticleSearchRequest) {
+  async filter(request?: ArticleSearchRequest, cancelToken?: CancelToken) {
+
     return this.client
       .get<BlogArticle[]>(this.url, {
+        cancelToken: cancelToken,
         params: request,
       })
   }
