@@ -9,8 +9,6 @@ module.exports = {
     '/message/sent'
   ],
   changefreq: 'daily',
-  sourceDir: 'dist/apps/wsite/.next',
-  outDir: 'dist/apps/wsite/public',
   robotsTxtOptions: {
     policies: [
       {

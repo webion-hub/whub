@@ -6,7 +6,7 @@ module.exports = {
   },
   experimental: {
     nextScriptWorkers: true,
-    transpilePackages: ["ui"],
+    transpilePackages: ["@wui", "@wapi"],
   },
   images: {
     remotePatterns: [

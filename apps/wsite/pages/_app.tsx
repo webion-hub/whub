@@ -25,6 +25,7 @@ import AppContext from "@wapi/next";
 
 
 //SPOSTARE IN ImageCropperDialog
+//TOGLIERE L'IMPORT DI CROPPER JS DA PACKAGEJSON
 import "cropperjs/dist/cropper.css";
 
 

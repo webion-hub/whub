@@ -5,7 +5,6 @@ import DialogTitleCross from '@wui/components/DialogTitleCross';
 
 import Cropper from "react-cropper";
 
-
 export interface ImageCropperDialogProps extends DialogBase {
   readonly aspectRatio?: number,
   readonly image: string,
