@@ -1,7 +1,7 @@
 import PublicRounded from '@mui/icons-material/PublicRounded';
 import { ListItemButton, ListItemText, useTheme } from '@mui/material';
 import { useLayout } from '@wui/layout';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { SideBarCollapseItem } from './SideBarCollapseItem';
 
 export function SideBarLanguageButton() {

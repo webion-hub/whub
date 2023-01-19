@@ -1,7 +1,7 @@
 import SearchRounded from "@mui/icons-material/SearchRounded";
 import { Box, FormGroup, IconButton, InputBase, LinearProgress, Link, Paper, Typography } from "@mui/material";
 import { BlogArticle, BlogCategories } from "@wapi/blog";
-import { useLanguage } from "@wui/wrappers";
+import useLanguage from "@wui/wrappers/useLanguage";
 import { ChangeEvent, useEffect, useState } from "react";
 import BlogCategoryButton from "./BlogCategoryButton";
 

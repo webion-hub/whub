@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { Paragraph } from '@wui/components';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import React, { useEffect } from 'react';
 
 export default function Licenses() {

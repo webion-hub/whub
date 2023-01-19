@@ -1,4 +1,4 @@
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject"
 import { Validator } from "./Validator";
 
 export interface FormInput {

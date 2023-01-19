@@ -18,6 +18,9 @@ module.exports = withBundleAnalyzer({
     "@wapi/next"
   ],
   modularizeImports: {
+    '@wui/wrappers': {
+      transform: '@wui/wrappers/{{member}}',
+    },
     '@wui/squares': {
       transform: '@wui/squares/{{member}}',
     },

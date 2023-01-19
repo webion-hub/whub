@@ -7,12 +7,12 @@ import { useNextNavigator } from '@wui/core';
 import { useLayout } from '@wui/layout';
 import { AppBarContent, AppBarSection } from '@wui/layout/AppBar';
 import { SideBarButton } from '@wui/layout/Sidebar';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { AppBarContainer } from './AppBarContainer';
 import { AppBarLogo } from './AppBarLogo';
 import { ServicesButton } from './ServicesButton';
 
-export function WebionAppbar() {
+export default function WebionAppbar() {
   const { t } = useLanguage();
   const theme = useTheme();
   const { clickNavigate } = useNextNavigator();

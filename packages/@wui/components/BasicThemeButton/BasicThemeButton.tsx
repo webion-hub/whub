@@ -1,7 +1,7 @@
 import LightModeRounded from '@mui/icons-material/LightModeRounded';
 import DarkModeRounded from '@mui/icons-material/DarkModeRounded';
 import { IconButton } from '@mui/material';
-import { useThemeChanger } from '@wui/wrappers/Theme/Theme';
+import useThemeChanger from '@wui/wrappers/useThemeChanger';
 
 export function BasicThemeButton() {
   const { currentTheme, setTheme } = useThemeChanger();

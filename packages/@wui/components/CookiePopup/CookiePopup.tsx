@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { useLanguage } from '@wui/wrappers/Language';
+import useLanguage from '@wui/wrappers/useLanguage';
 
 export interface CookiePopupProps {
   readonly name: string;

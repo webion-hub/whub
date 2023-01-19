@@ -9,10 +9,12 @@ import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { ImageAndDescription } from '../../components/blocks/ImageAndDescription';
 import { IconCard } from '../../components/cards/IconCard';
-import { GetAQuote } from '../../components/sections/GetAQuote';
+import dynamic from 'next/dynamic';
+
+const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 
 export default function MassyveCaseStudy() {
   const { t, tHtml } = useLanguage();

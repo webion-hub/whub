@@ -1,7 +1,6 @@
 import { FlagComponent } from 'country-flag-icons/react/3x2';
-import { createContext, ReactNode, useContext } from 'react';
-import { useRouter } from 'next/router'
-import parse from 'html-react-parser';
+import { useRouter } from 'next/router';
+import { createContext, ReactNode } from 'react';
 
 interface LanguageBaseItem {
   readonly flag?: FlagComponent;
@@ -57,7 +56,9 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
   };
 
   const tHtml = (key: string) => {
-    return parse(t(key));
+    return (
+      <span dangerouslySetInnerHTML={{ __html: t(key) }}/>
+    )
   };
 
   const getLanguages = (): LanguageBaseItem[] => {
@@ -95,5 +96,3 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
     </LanguageContext.Provider>
   );
 };
-
-export const useLanguage = () => useContext(LanguageContext);

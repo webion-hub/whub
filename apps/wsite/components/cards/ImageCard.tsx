@@ -1,15 +1,12 @@
-import {
-  Box,
-  Button,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  Stack,
-  SxProps,
-  Theme,
-  Typography,
-} from '@mui/material';
-import { MaybeShow } from '@wui/components';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { SxProps, Theme } from '@mui/material';
+import MaybeShow from '@wui/components/MaybeShow';
 import { ReactNode } from 'react';
 import { WebionCard } from './WebionCard';
 

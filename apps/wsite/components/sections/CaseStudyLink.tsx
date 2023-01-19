@@ -3,7 +3,7 @@ import { NextImg } from "@wui/components";
 import { useNextNavigator } from "@wui/core";
 import Section from "@wui/layout/Section";
 import { ISection } from "@wui/sections";
-import { useLanguage } from "@wui/wrappers";
+import useLanguage from "@wui/wrappers/useLanguage";
 
 export interface CaseStudyLinkProps extends ISection {
   readonly title: string;

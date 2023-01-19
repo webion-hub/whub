@@ -16,7 +16,7 @@ import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import remove from 'lodash/remove';
 import { ReactNode, useState } from 'react';
 import { SelectableCard } from '../components/cards/SelectableCard';

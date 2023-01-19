@@ -1,6 +1,7 @@
-import { alpha, Stack, SxProps, Theme } from '@mui/material';
+import { alpha, SxProps, Theme } from '@mui/material';
 import { ReactNode } from 'react';
 import { ImageCard } from './ImageCard';
+import Stack from '@mui/material/Stack';
 
 export interface IconCardProps {
   readonly icon: ReactNode;

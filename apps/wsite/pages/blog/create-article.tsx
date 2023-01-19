@@ -5,7 +5,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { Article } from '../../components/blog/Article';
 import { useRef, useState } from 'react';
 import { useBlog } from '@wapi/next';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { useNextNavigator } from '@wui/core';
 import CreateArticleForm, { ICreateArticle } from '../../components/blog/CreateArticleForm';
 import Page from '@wui/layout/Page';

@@ -5,14 +5,14 @@ import { useNextNavigator } from '@wui/core';
 import Section from '@wui/layout/Section';
 import { ISection } from '@wui/sections/abstractions/ISection';
 import { Faq, IQuestion } from '@wui/sections/Faq';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { netBackground } from '../../backgrounds/netBackground';
 
 interface FaqSectionProps extends ISection {
   readonly questions: IQuestion[]
 }
 
-export function FaqSection(props: FaqSectionProps) {
+export default function FaqSection(props: FaqSectionProps) {
   const theme = useTheme();
   const { clickNavigate } = useNextNavigator();
   const { t } = useLanguage();

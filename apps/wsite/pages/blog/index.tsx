@@ -6,7 +6,7 @@ import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { memo, useRef } from 'react';

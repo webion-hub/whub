@@ -1,7 +1,7 @@
 import { Checkbox, FormControlLabel, Link, Typography } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { InputBaseProps } from '@wui/form';
-import { useLanguage } from '@wui/wrappers/Language';
+import useLanguage from '@wui/wrappers/useLanguage';
 import React from 'react';
 
 

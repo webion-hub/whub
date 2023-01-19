@@ -403,7 +403,6 @@ importers:
       country-flag-icons: ^1.5.5
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
-      html-react-parser: ^3.0.7
       next: ^13.1.2
       react: ^18.2.0
       tsconfig: workspace:*
@@ -414,7 +413,6 @@ importers:
       country-flag-icons: 1.5.5
       eslint: 7.32.0
       eslint-config-custom: link:../../eslint-config-custom
-      html-react-parser: 3.0.7_react@18.2.0
       next: 13.1.2_react@18.2.0
       react: 18.2.0
       tsconfig: link:../../tsconfig
@@ -2797,18 +2795,6 @@ packages:
     dependencies:
       domhandler: 5.0.3
       htmlparser2: 8.0.1
-    dev: true
-
-  /html-react-parser/3.0.7_react@18.2.0:
-    resolution: {integrity: sha512-4Nzpp1Lsd6ngOJR8T+Vc4u+Z77OddOgKL3KvwbtA0/U0Yv8v5JF+yewQxIudrdOWGYuO0Borc0vQ2y53pzBAwA==}
-    peerDependencies:
-      react: 0.14 || 15 || 16 || 17 || 18
-    dependencies:
-      domhandler: 5.0.3
-      html-dom-parser: 3.1.2
-      react: 18.2.0
-      react-property: 2.0.0
-      style-to-js: 1.1.2
     dev: true
 
   /htmlparser2/8.0.1:

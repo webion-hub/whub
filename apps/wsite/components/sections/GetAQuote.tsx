@@ -8,7 +8,7 @@ import { useNextNavigator } from '@wui/core';
 import Section from '@wui/layout/Section';
 import { ISection } from '@wui/sections/abstractions/ISection';
 
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 
 
 interface GetAQuoteProps extends ISection {
@@ -16,7 +16,7 @@ interface GetAQuoteProps extends ISection {
   readonly sx?: SxProps<Theme>;
 }
 
-export function GetAQuote(props: GetAQuoteProps) {
+export default function GetAQuote(props: GetAQuoteProps) {
   const theme = useTheme();
   const { tHtml, t } = useLanguage();
   const { clickNavigate } = useNextNavigator();

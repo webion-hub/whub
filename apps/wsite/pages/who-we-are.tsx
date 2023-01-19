@@ -8,11 +8,13 @@ import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
+import dynamic from 'next/dynamic';
 
 import { useEffect, useRef, useState } from 'react';
 import { ImageAndDescription } from '../components/blocks/ImageAndDescription';
-import { GetAQuote } from '../components/sections/GetAQuote';
+
+const GetAQuote = dynamic(() => import("../components/sections/GetAQuote"), { ssr: true })
 
 const membersOrder = [1, 2, 3]
   .map((value) => ({ value, sort: Math.random() }))

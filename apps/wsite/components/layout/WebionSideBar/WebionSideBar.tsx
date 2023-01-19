@@ -14,7 +14,7 @@ import { BasicThemeButton } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import { useLayout } from '@wui/layout';
 import { SideBar, SideBarItem } from '@wui/layout/Sidebar';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { SideBarCollapseItem } from './SideBarCollapseItem';
 import { SideBarLanguageButton } from './SideBarLanguageButton';
 

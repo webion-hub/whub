@@ -1,14 +1,14 @@
 import CallRounded from '@mui/icons-material/CallRounded';
 
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 import { useNextNavigator } from '@wui/core';
 import Section from '@wui/layout/Section';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { ISection } from '@wui/sections/abstractions/ISection';
 
 import { ImageAndDescription } from '../blocks/ImageAndDescription';
 
-export function WhoWeAre(props: ISection) {
+export default function WhoWeAre(props: ISection) {
   const { clickNavigate } = useNextNavigator();
   const { t, tHtml } = useLanguage();
 

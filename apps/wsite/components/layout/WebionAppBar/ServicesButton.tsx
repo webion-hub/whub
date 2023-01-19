@@ -5,7 +5,7 @@ import PhoneIphoneRounded from "@mui/icons-material/PhoneIphoneRounded";
 import { Button, ListItemIcon, ListItemText, Menu, MenuItem, Theme } from "@mui/material";
 import { SxProps } from "@mui/system";
 import { useNextNavigator } from "@wui/core";
-import { useLanguage } from "@wui/wrappers";
+import useLanguage from "@wui/wrappers/useLanguage";
 import { useState } from "react";
 
 export function ServicesButton() {

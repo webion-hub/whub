@@ -3,7 +3,7 @@ import { Box, Stack } from '@mui/system';
 import { BlogArticle } from '@wapi/blog';
 import { MaybeShow, NextImg } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import ReactMarkdown from 'react-markdown';
 import { WebionCard } from '../cards/WebionCard';
 

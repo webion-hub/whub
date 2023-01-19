@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { IconButton, Typography } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import orderBy from 'lodash/orderBy';
-import { useLanguage } from '@wui/wrappers/Language';
+import useLanguage from '@wui/wrappers/useLanguage';
 
 export interface LanguageDropdownButtonProps {
   readonly icon: OverridableComponent<any>;

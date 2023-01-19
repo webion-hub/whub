@@ -1,1 +1,3 @@
-export * from './Language'
+import { LanguageWrapper } from './Language'
+
+export default LanguageWrapper;

@@ -2,12 +2,13 @@ import DevicesRounded from '@mui/icons-material/DevicesRounded';
 import FactoryRounded from '@mui/icons-material/FactoryRounded';
 import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
 
-import { Box, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material';
 import { useNextNavigator } from '@wui/core';
 import Section from '@wui/layout/Section';
 import { ISection } from '@wui/sections/abstractions/ISection';
 
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 
 import { useRef } from 'react';
 import { pcbBackground } from '../../backgrounds/pcbBackground';
