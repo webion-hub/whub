@@ -26,7 +26,7 @@ export function GetAQuote(props: GetAQuoteProps) {
       id={props.id}
       ignoreSection
       showBackground
-      background={theme.palette.primary.dark}
+      background={theme.palette.primary?.dark}
       sx={props.sx}
     >
       <Stack
