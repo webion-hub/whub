@@ -63,7 +63,7 @@ export default function Blog({ fallback }: any) {
 }
 
 
-const AricleList = memo(({ articles }: { articles: BlogArticle[] }) => {
+const ArticleList = memo(({ articles }: { articles: BlogArticle[] }) => {
   return (
     <Stack
       direction="column"
@@ -83,6 +83,8 @@ const AricleList = memo(({ articles }: { articles: BlogArticle[] }) => {
     </Stack>
   )
 })
+
+ArticleList.displayName = 'ArticleList'
 
 function BlogArticleList() {
   const { locale } = useRouter()
@@ -133,7 +135,7 @@ function BlogArticleList() {
         />
       </Section>
       <Section sx={{ paddingTop: 0 }}>
-        <AricleList 
+        <ArticleList 
           articles={articles}
         />
       </Section>

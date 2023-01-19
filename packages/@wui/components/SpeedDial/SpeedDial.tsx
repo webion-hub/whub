@@ -1,5 +1,9 @@
-import { CloseRounded, PhoneRounded } from "@mui/icons-material";
-import { SpeedDial as MuiSpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
+import CloseRounded from "@mui/icons-material/CloseRounded";
+import PhoneRounded from "@mui/icons-material/PhoneRounded";
+
+import MuiSpeedDial from "@mui/material/SpeedDial";
+import SpeedDialAction from "@mui/material/SpeedDialAction";
+import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 
 export interface ISpeedDialAction {

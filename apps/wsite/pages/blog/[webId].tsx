@@ -1,4 +1,5 @@
-import { ArrowBackRounded } from '@mui/icons-material';
+import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
+
 import { Button, Divider, List, ListItem, ListItemButton, ListItemText, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { BlogArticle } from '@wapi/blog';
 import AppContext from '@wapi/next';

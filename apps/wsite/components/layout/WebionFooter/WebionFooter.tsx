@@ -1,4 +1,4 @@
-import { CallRounded } from '@mui/icons-material';
+import CallRounded from '@mui/icons-material/CallRounded';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';

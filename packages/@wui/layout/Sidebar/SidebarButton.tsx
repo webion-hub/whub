@@ -1,4 +1,4 @@
-import { MenuRounded } from '@mui/icons-material';
+import MenuRounded from '@mui/icons-material/MenuRounded';
 import { IconButton, useMediaQuery, useTheme } from '@mui/material';
 import { ChildrenProp } from '@wui/core';
 import { useLayout } from '../Layout/Layout';

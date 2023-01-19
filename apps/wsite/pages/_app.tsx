@@ -1,9 +1,18 @@
-import { EmailRounded, Facebook, GitHub, Instagram, LinkedIn, PhoneRounded } from "@mui/icons-material";
-import { CssBaseline, GlobalStyles } from "@mui/material";
-import { CookiePopup, MaybeShow, SpeedDial } from "@wui/components"
-import { Layout } from "@wui/layout";
-import { LanguageWrapper, ThemeWrapper } from "@wui/wrappers";
-import { GB, IT } from "country-flag-icons/react/3x2";
+import EmailRounded from '@mui/icons-material/EmailRounded';
+import Facebook from '@mui/icons-material/Facebook';
+import GitHub from '@mui/icons-material/GitHub';
+import Instagram from '@mui/icons-material/Instagram';
+import LinkedIn from '@mui/icons-material/LinkedIn';
+import PhoneRounded from '@mui/icons-material/PhoneRounded';
+
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import CookiePopup from "@wui/components/CookiePopup"
+import MaybeShow from "@wui/components/MaybeShow"
+import SpeedDial from "@wui/components/SpeedDial"
+import Layout from "@wui/layout/Layout";
+import { LanguageWrapper } from "@wui/wrappers/Language";
+import { ThemeWrapper } from "@wui/wrappers/Theme";
 import { AppProps } from "next/app"
 import Head from "next/head";
 import Script from "next/script"
@@ -13,8 +22,6 @@ import WebionFooter from "../components/layout/WebionFooter/WebionFooter";
 import WebionSideBar from "../components/layout/WebionSideBar/WebionSideBar";
 import { WebionRepository } from "../lib/WebionRepositiory";
 
-import en from '../public/assets/locales/en-EN.json';
-import it from '../public/assets/locales/it-IT.json';
 import { darkTheme, lightTheme } from "../theme/getTheme";
 import globalStyle from "../theme/globalStyle";
 import { Agent } from "https";
@@ -30,11 +37,13 @@ import "cropperjs/dist/cropper.css";
 
 
 const contactUs = new ContactUsApi({
+  headers: { } as any,
   baseURL: 'https://api.webion.it/contactus',
   withCredentials: true,
 });
 
 const blog = new BlogApi({
+  headers: { } as any,
   baseURL: 'https://w0/webion/blog/api',
   withCredentials: true,
   httpsAgent: new Agent({
@@ -60,7 +69,7 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script strategy='worker' src="scripts/pixel.js"/>
-      <MaybeShow show={ready && false}>
+      <MaybeShow show={ready}>
         <Script id="yandex" >
           {`
             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -85,8 +94,8 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
       </Head>
       <LanguageWrapper
         availableLanguages={{
-          it: { flag: IT, translation: it, langTranslation: 'Italiano' },
-          en: { flag: GB, translation: en, langTranslation: 'English' },
+          it: {  langTranslation: 'Italiano' },
+          en: {  langTranslation: 'English' },
         }}
       >
         <ThemeWrapper

@@ -1,4 +1,6 @@
-import { AccountTreeRounded, CallRounded } from '@mui/icons-material';
+import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
+import CallRounded from '@mui/icons-material/CallRounded';
+
 import { Button, Typography } from '@mui/material';
 import { Stack, SxProps, Theme, useTheme } from '@mui/system';
 import { MaybeShow } from '@wui/components';

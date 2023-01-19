@@ -1,4 +1,5 @@
-import { HelpRounded } from '@mui/icons-material';
+import HelpRounded from '@mui/icons-material/HelpRounded';
+
 import { alpha, Link, Stack, useTheme } from '@mui/material';
 import { useNextNavigator } from '@wui/core';
 import Section from '@wui/layout/Section';

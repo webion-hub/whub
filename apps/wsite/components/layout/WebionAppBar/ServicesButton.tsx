@@ -1,4 +1,7 @@
-import { DevicesRounded, FactoryRounded, KeyboardArrowDownRounded, PhoneIphoneRounded } from "@mui/icons-material";
+import DevicesRounded from "@mui/icons-material/DevicesRounded";
+import FactoryRounded from "@mui/icons-material/FactoryRounded";
+import KeyboardArrowDownRounded from "@mui/icons-material/KeyboardArrowDownRounded";
+import PhoneIphoneRounded from "@mui/icons-material/PhoneIphoneRounded";
 import { Button, ListItemIcon, ListItemText, Menu, MenuItem, Theme } from "@mui/material";
 import { SxProps } from "@mui/system";
 import { useNextNavigator } from "@wui/core";

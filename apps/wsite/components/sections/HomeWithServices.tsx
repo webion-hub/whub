@@ -1,4 +1,8 @@
-import { ArrowForwardRounded, DevicesRounded, FactoryRounded, PhoneIphoneRounded } from '@mui/icons-material';
+import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
+import DevicesRounded from '@mui/icons-material/DevicesRounded';
+import FactoryRounded from '@mui/icons-material/FactoryRounded';
+import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
+
 import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import { ButtonWithProgress, NextImg } from '@wui/components';

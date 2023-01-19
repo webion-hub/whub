@@ -1,4 +1,6 @@
-import { EmojiObjectsRounded, ReportProblemRounded } from '@mui/icons-material';
+import EmojiObjectsRounded from '@mui/icons-material/EmojiObjectsRounded';
+import ReportProblemRounded from '@mui/icons-material/ReportProblemRounded';
+
 import { Button, Typography, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import Page from '@wui/layout/Page';

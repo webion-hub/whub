@@ -1,4 +1,4 @@
-import { CloseRounded } from "@mui/icons-material";
+import CloseRounded from "@mui/icons-material/CloseRounded";
 import { Box, DialogTitle, DialogTitleProps, IconButton } from "@mui/material";
 import { DialogOnClose } from "@wui/core";
 

@@ -1,4 +1,6 @@
-import { EmojiObjectsRounded, ReportProblemRounded } from '@mui/icons-material';
+import EmojiObjectsRounded from '@mui/icons-material/EmojiObjectsRounded';
+import ReportProblemRounded from '@mui/icons-material/ReportProblemRounded';
+
 import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';

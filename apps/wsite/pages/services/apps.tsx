@@ -1,11 +1,11 @@
-import {
-  BubbleChartRounded,
-  CallRounded,
-  DevicesOtherRounded,
-  EditRounded, MobileFriendlyRounded,
-  SecurityRounded,
-  StoreRounded
-} from '@mui/icons-material';
+import BubbleChartRounded from '@mui/icons-material/BubbleChartRounded';
+import CallRounded from '@mui/icons-material/CallRounded';
+import DevicesOtherRounded from '@mui/icons-material/DevicesOtherRounded';
+import EditRounded from '@mui/icons-material/EditRounded';
+import MobileFriendlyRounded from '@mui/icons-material/MobileFriendlyRounded';
+import SecurityRounded from '@mui/icons-material/SecurityRounded';
+import StoreRounded from '@mui/icons-material/StoreRounded';
+
 import { Button } from '@mui/material';
 import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';

@@ -1,5 +1,6 @@
-import { PublicRounded } from '@mui/icons-material';
-import { Button, useTheme } from '@mui/material';
+import PublicRounded from '@mui/icons-material/PublicRounded';
+import Button from '@mui/material/Button';
+import { useTheme } from '@mui/material';
 import BasicThemeButton from '@wui/components/BasicThemeButton';
 import LanguageDropdownButton from '@wui/components/LanguageDropdownButton';
 import { useNextNavigator } from '@wui/core';

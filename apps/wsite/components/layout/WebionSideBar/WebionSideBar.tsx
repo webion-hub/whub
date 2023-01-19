@@ -1,8 +1,14 @@
-import { CloseRounded, ComputerRounded, DevicesRounded, FactoryRounded, GroupsRounded, PhoneIphoneRounded } from '@mui/icons-material';
+import CloseRounded from '@mui/icons-material/CloseRounded';
+import ComputerRounded from '@mui/icons-material/ComputerRounded';
+import DevicesRounded from '@mui/icons-material/DevicesRounded';
+import FactoryRounded from '@mui/icons-material/FactoryRounded';
+import GroupsRounded from '@mui/icons-material/GroupsRounded';
+import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
 import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
+
 import { Box, IconButton } from '@mui/material';
 import { BasicThemeButton } from '@wui/components';
 import { useNextNavigator } from '@wui/core';

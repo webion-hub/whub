@@ -1,4 +1,5 @@
-import { CallRounded } from '@mui/icons-material';
+import CallRounded from '@mui/icons-material/CallRounded';
+
 import { Button } from '@mui/material';
 import { useNextNavigator } from '@wui/core';
 import Section from '@wui/layout/Section';

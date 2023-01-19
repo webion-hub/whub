@@ -8,7 +8,8 @@ import {
   Theme,
 } from '@mui/material';
 
-import { ExpandMoreRounded } from '@mui/icons-material';
+import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
+
 import { useLanguage } from '@wui/wrappers';
 import Page from '@wui/layout/Page';
 import Section from '@wui/layout/Section';

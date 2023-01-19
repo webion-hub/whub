@@ -1,11 +1,11 @@
-import {
-  BarChartRounded,
-  BiotechRounded,
-  BubbleChartRounded,
-  CallRounded,
-  EditRounded,
-  FormatAlignLeftRounded, PhoneIphoneRounded
-} from '@mui/icons-material';
+import BarChartRounded from '@mui/icons-material/BarChartRounded';
+import BiotechRounded from '@mui/icons-material/BiotechRounded';
+import BubbleChartRounded from '@mui/icons-material/BubbleChartRounded';
+import CallRounded from '@mui/icons-material/CallRounded';
+import EditRounded from '@mui/icons-material/EditRounded';
+import FormatAlignLeftRounded from '@mui/icons-material/FormatAlignLeftRounded';
+import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
+
 import {
   Box,
   Button,

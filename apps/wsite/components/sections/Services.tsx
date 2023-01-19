@@ -1,4 +1,7 @@
-import { DevicesRounded, FactoryRounded, PhoneIphoneRounded } from '@mui/icons-material';
+import DevicesRounded from '@mui/icons-material/DevicesRounded';
+import FactoryRounded from '@mui/icons-material/FactoryRounded';
+import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
+
 import { Box, useTheme } from '@mui/material';
 import { useNextNavigator } from '@wui/core';
 import Section from '@wui/layout/Section';

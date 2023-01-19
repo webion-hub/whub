@@ -1,4 +1,4 @@
-import { SearchRounded } from "@mui/icons-material";
+import SearchRounded from "@mui/icons-material/SearchRounded";
 import { Box, FormGroup, IconButton, InputBase, LinearProgress, Link, Paper, Typography } from "@mui/material";
 import { BlogArticle, BlogCategories } from "@wapi/blog";
 import { useLanguage } from "@wui/wrappers";

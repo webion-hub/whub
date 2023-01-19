@@ -1,4 +1,4 @@
-import { ExpandMoreRounded } from "@mui/icons-material";
+import ExpandMoreRounded from "@mui/icons-material/ExpandMoreRounded";
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import { ReactNode } from "react";
 

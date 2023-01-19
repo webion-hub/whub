@@ -1,4 +1,7 @@
-import { CallRounded, GitHub, LinkedIn } from '@mui/icons-material';
+import CallRounded from '@mui/icons-material/CallRounded';
+import GitHub from '@mui/icons-material/GitHub';
+import LinkedIn from '@mui/icons-material/LinkedIn';
+
 import { alpha, Avatar, Box, Button, IconButton, Stack, SxProps, Theme, Typography } from '@mui/material';
 import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';

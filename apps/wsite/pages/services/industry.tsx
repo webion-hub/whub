@@ -1,8 +1,8 @@
-import {
-  CallRounded, InsightsRounded,
-  LibraryBooksRounded,
-  LinkRounded
-} from '@mui/icons-material';
+import CallRounded from '@mui/icons-material/CallRounded';
+import InsightsRounded from '@mui/icons-material/InsightsRounded';
+import LibraryBooksRounded from '@mui/icons-material/LibraryBooksRounded';
+import LinkRounded from '@mui/icons-material/LinkRounded';
+
 import { Button } from '@mui/material';
 import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';

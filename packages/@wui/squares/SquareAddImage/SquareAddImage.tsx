@@ -1,4 +1,4 @@
-import { AddAPhotoRounded } from "@mui/icons-material";
+import AddAPhotoRounded from "@mui/icons-material/AddAPhotoRounded";
 import { InputEvent } from "@wui/core";
 import ImageUploader from "@wui/components/ImageUploader";
 import ImageCropperDialog from "@wui/cropper";

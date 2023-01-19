@@ -1,4 +1,11 @@
-import { BusinessRounded, DevicesRounded, FactoryRounded, PersonRounded, PhoneIphoneRounded, QuestionMarkRounded, StoreRounded } from '@mui/icons-material';
+import BusinessRounded from '@mui/icons-material/BusinessRounded';
+import DevicesRounded from '@mui/icons-material/DevicesRounded';
+import FactoryRounded from '@mui/icons-material/FactoryRounded';
+import PersonRounded from '@mui/icons-material/PersonRounded';
+import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
+import QuestionMarkRounded from '@mui/icons-material/QuestionMarkRounded';
+import StoreRounded from '@mui/icons-material/StoreRounded';
+
 import { LoadingButton } from '@mui/lab';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useContactUs } from '@wapi/next';
