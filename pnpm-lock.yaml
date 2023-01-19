@@ -63,7 +63,6 @@ importers:
       '@wui/sections': workspace:*
       '@wui/squares': workspace:*
       '@wui/wrappers': workspace:*
-      country-flag-icons: ^1.5.5
       cropperjs: ^1.5.13
       eslint: 7.32.0
       eslint-config-custom: workspace:*
@@ -86,7 +85,6 @@ importers:
       '@wui/sections': link:../../packages/@wui/sections
       '@wui/squares': link:../../packages/@wui/squares
       '@wui/wrappers': link:../../packages/@wui/wrappers
-      country-flag-icons: 1.5.5
       cropperjs: 1.5.13
       next: 13.1.2_672uxklweod7ene3nqtsh262ca
       react: 18.2.0
@@ -1805,6 +1803,7 @@ packages:
 
   /country-flag-icons/1.5.5:
     resolution: {integrity: sha512-k4WXZ/WvWOSiYXRG1n8EYHNr1m/IX0GffKqAidaet5DrJsDOmJ8Q/8JvvONhZNnKYg24s4lvsm+9og1HcuIU/g==}
+    dev: true
 
   /cropperjs/1.5.13:
     resolution: {integrity: sha512-by7jKAo73y5/Do0K6sxdTKHgndY0NMjG2bEdgeJxycbcmHuCiMXqw8sxy5C5Y5WTOTcDGmbT7Sr5CgKOXR06OA==}

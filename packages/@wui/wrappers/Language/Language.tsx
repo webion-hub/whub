@@ -51,7 +51,7 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
     if (!locale) return key;
 
     const lang = locale as string;
-    const translation = props.availableLanguages[lang]?.translation[key] ?? key;
+    const translation = props.availableLanguages[lang]?.translation?.[key] ?? key;
 
     return translation;
   };

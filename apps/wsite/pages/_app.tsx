@@ -5,6 +5,9 @@ import Instagram from '@mui/icons-material/Instagram';
 import LinkedIn from '@mui/icons-material/LinkedIn';
 import PhoneRounded from '@mui/icons-material/PhoneRounded';
 
+import en from '../public/assets/locales/en-EN.json';
+import it from '../public/assets/locales/it-IT.json';
+
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import CookiePopup from "@wui/components/CookiePopup"
@@ -94,8 +97,8 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
       </Head>
       <LanguageWrapper
         availableLanguages={{
-          it: {  langTranslation: 'Italiano' },
-          en: {  langTranslation: 'English' },
+          it: { translation: it, langTranslation: 'Italiano' },
+          en: { translation: en, langTranslation: 'English' },
         }}
       >
         <ThemeWrapper
