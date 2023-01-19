@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --port 4200",
     "build": "next build && next-sitemap --config ./next-sitemap.config.js",
+    "analyze_build": "ANALYZE=true next build && next-sitemap --config ./next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint"
   },
@@ -14,7 +15,6 @@
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.4",
     "react-syntax-highlighter": "^15.5.0",
-    "country-flag-icons": "^1.5.5",
     "cropperjs": "^1.5.13",
     "@wui/core": "workspace:*",
     "@wui/components": "workspace:*",
