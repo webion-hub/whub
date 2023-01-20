@@ -196,6 +196,7 @@ export default function HomeWithServices(props: ISection) {
               src={page?.src ?? ''}
               alt="slide-show-img"
               fill
+              quality={100}
               sizes="100vw"
               sx={{
                 display: key === pageKey ? 'block' : 'none',
