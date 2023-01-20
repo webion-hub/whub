@@ -8,8 +8,9 @@ import {
   Theme,
 } from '@mui/material';
 
-import { ExpandMoreRounded } from '@mui/icons-material';
-import { useLanguage } from '@wui/wrappers';
+import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
+
+import useLanguage from '@wui/wrappers/useLanguage';
 import Page from '@wui/layout/Page';
 import Section from '@wui/layout/Section';
 import PrivacyPolicy from '../components/sections/policies-sections/PrivacyPolicy';

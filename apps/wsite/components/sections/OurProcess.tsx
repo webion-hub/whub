@@ -1,8 +1,10 @@
-import { Box, Stack, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import { useOnScreen } from "@wui/core";
 import Section from "@wui/layout/Section";
 import { ISection } from "@wui/sections";
-import { useLanguage } from "@wui/wrappers";
+import useLanguage from "@wui/wrappers/useLanguage";
 import { useRef } from "react";
 import { Step } from "../cards/Step";
 

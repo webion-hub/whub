@@ -1,4 +1,6 @@
-import { alpha, Box, Card } from '@mui/material';
+import { alpha } from '@mui/material';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
 import { BaseProps, Coords } from '@wui/core';
 import { MouseEvent, useRef, useState } from 'react';
 

@@ -1,9 +1,14 @@
-import { Alert, Link, Slide, Stack, Typography } from '@mui/material';
-import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import Link from '@mui/material/Link';
+import Slide from '@mui/material/Slide';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import Button from '@mui/material/Button';
+
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { useLanguage } from '@wui/wrappers/Language';
+import useLanguage from '@wui/wrappers/useLanguage';
 
 export interface CookiePopupProps {
   readonly name: string;

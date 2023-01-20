@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import { ReactNode } from 'react';
 import { TitleSectionLabel } from '../blocks/TitleSectionLabel';
 

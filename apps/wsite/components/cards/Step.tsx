@@ -1,4 +1,7 @@
-import { alpha, Box, Stack, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/materiaL/Stack';
+import Typography from '@mui/material/Typography';
+import { alpha } from '@mui/material';
 
 interface StepProps {
   readonly step: string;

@@ -1,7 +1,7 @@
 import { NextImg } from "@wui/components";
 import { ChosenBy, ISection } from "@wui/sections";
 
-export function WebionChosenBy(props: ISection) {
+export default function WebionChosenBy(props: ISection) {
   return (
     <ChosenBy id={props.id}>
       <NextImg

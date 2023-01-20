@@ -25,7 +25,7 @@ export function NextImg(props: NextImgProps) {
       : 'auto';
 
     const heightStyle = auto.height 
-      ? `${auto.height}px` 
+      ? `${auto.height}` 
       : 'auto';
 
     return (

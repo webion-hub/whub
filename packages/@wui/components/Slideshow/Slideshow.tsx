@@ -1,9 +1,8 @@
-import {
-  ArrowLeftRounded,
-  ArrowRightRounded,
-  RadioButtonCheckedRounded,
-  RadioButtonUncheckedRounded
-} from '@mui/icons-material';
+import ArrowLeftRounded from "@mui/icons-material/ArrowLeftRounded";
+import ArrowRightRounded from "@mui/icons-material/ArrowRightRounded";
+import RadioButtonCheckedRounded from "@mui/icons-material/RadioButtonCheckedRounded";
+import RadioButtonUncheckedRounded from "@mui/icons-material/RadioButtonUncheckedRounded";
+
 import { Box, IconButton, Stack } from '@mui/material';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { debounceTime, interval } from 'rxjs';

@@ -4,8 +4,8 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { IconButton, Typography } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
-import _ from 'lodash';
-import { useLanguage } from '@wui/wrappers/Language';
+import orderBy from 'lodash/orderBy';
+import useLanguage from '@wui/wrappers/useLanguage';
 
 export interface LanguageDropdownButtonProps {
   readonly icon: OverridableComponent<any>;
@@ -33,8 +33,8 @@ export const LanguageDropdownButton = React.forwardRef<
         <props.icon />
       </IconButton>
       <Menu ref={ref} anchorEl={anchorEl} open={open} onClose={handleClose}>
-        {_(languages)
-          .orderBy((lang) => lang.code !== language?.code)
+        {
+          orderBy(languages, (lang) => lang.code !== language?.code)
           .map((lang) => {
             return (
               <MenuItem
@@ -52,7 +52,7 @@ export const LanguageDropdownButton = React.forwardRef<
               </MenuItem>
             );
           })
-          .value()}
+        }
       </Menu>
     </>
   );

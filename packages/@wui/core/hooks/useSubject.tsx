@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { BehaviorSubject } from "rxjs"
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject"
 
 export const useSubject = <T,>(initialValue: T) => {
   return useRef(new BehaviorSubject<T>(initialValue)).current

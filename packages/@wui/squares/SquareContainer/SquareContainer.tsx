@@ -1,4 +1,4 @@
-import { CloseRounded } from "@mui/icons-material"
+import CloseRounded from "@mui/icons-material/CloseRounded"
 import { Badge, IconButton, Paper, SxProps } from "@mui/material"
 import { Theme } from "@mui/system"
 import { ChildrenProp } from "@wui/core"

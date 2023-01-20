@@ -1,16 +1,14 @@
-import { FlagComponent } from 'country-flag-icons/react/3x2';
-import { createContext, ReactNode, useContext } from 'react';
-import { useRouter } from 'next/router'
-import parse from 'html-react-parser';
+import { useRouter } from 'next/router';
+import { createContext, ReactNode } from 'react';
 
 interface LanguageBaseItem {
-  readonly flag?: FlagComponent;
+  readonly flag?: ReactNode;
   readonly code: string;
   readonly langTranslation: string;
 }
 
 export interface LanguageItem {
-  readonly flag?: FlagComponent;
+  readonly flag?: ReactNode;
   readonly langTranslation: string;
   readonly translation?: any;
 }
@@ -51,13 +49,15 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
     if (!locale) return key;
 
     const lang = locale as string;
-    const translation = props.availableLanguages[lang]?.translation[key] ?? key;
+    const translation = props.availableLanguages[lang]?.translation?.[key] ?? key;
 
     return translation;
   };
 
   const tHtml = (key: string) => {
-    return parse(t(key));
+    return (
+      <span dangerouslySetInnerHTML={{ __html: t(key) }}/>
+    )
   };
 
   const getLanguages = (): LanguageBaseItem[] => {
@@ -95,5 +95,3 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
     </LanguageContext.Provider>
   );
 };
-
-export const useLanguage = () => useContext(LanguageContext);

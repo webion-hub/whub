@@ -1,17 +1,18 @@
-import { PublicRounded } from '@mui/icons-material';
-import { Button, useTheme } from '@mui/material';
+import PublicRounded from '@mui/icons-material/PublicRounded';
+import Button from '@mui/material/Button';
+import { useTheme } from '@mui/material';
 import BasicThemeButton from '@wui/components/BasicThemeButton';
 import LanguageDropdownButton from '@wui/components/LanguageDropdownButton';
 import { useNextNavigator } from '@wui/core';
 import { useLayout } from '@wui/layout';
 import { AppBarContent, AppBarSection } from '@wui/layout/AppBar';
 import { SideBarButton } from '@wui/layout/Sidebar';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { AppBarContainer } from './AppBarContainer';
 import { AppBarLogo } from './AppBarLogo';
 import { ServicesButton } from './ServicesButton';
 
-export function WebionAppbar() {
+export default function WebionAppbar() {
   const { t } = useLanguage();
   const theme = useTheme();
   const { clickNavigate } = useNextNavigator();

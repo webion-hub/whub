@@ -1,4 +1,4 @@
-import { AttachFileRounded } from "@mui/icons-material";
+import AttachFileRounded from "@mui/icons-material/AttachFileRounded";
 import AttachmentUploader from "@wui/components/AttachmentUploader";
 import { InputEvent } from "@wui/core";
 import SquareButton from "../SquareButton";

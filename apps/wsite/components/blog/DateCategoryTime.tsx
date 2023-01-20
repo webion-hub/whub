@@ -1,5 +1,5 @@
 import { Chip, Stack, Typography } from '@mui/material';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 
 interface DateAndCategoryProps {
   readonly date?: string;

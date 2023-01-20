@@ -1,4 +1,6 @@
-import { LoginRounded, LogoutRounded, PersonRounded } from "@mui/icons-material";
+import PersonRounded from "@mui/icons-material/PersonRounded";
+import LogoutRounded from "@mui/icons-material/LogoutRounded";
+import LoginRounded from "@mui/icons-material/LoginRounded";
 import { LoadingButton } from "@mui/lab";
 import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import { useNextNavigator } from "@wui/core";

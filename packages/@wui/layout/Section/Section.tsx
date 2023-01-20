@@ -1,7 +1,6 @@
 import { Theme, SxProps } from '@mui/material';
 import { styled } from '@mui/material';
 import { useEffect, useRef } from 'react';
-import uniqueId from 'lodash/uniqueId';
 import { ChildrenProp, useOnScreen } from '@wui/core';
 import { useLayout } from '../Layout/Layout';
 
@@ -58,7 +57,7 @@ export function Section(props: SectionProps) {
     if (!sectionIn || props.ignoreSection)
       return;
 
-    setSection(props.id ?? uniqueId());
+    setSection(props.id ?? crypto.randomUUID());
   }, [sectionIn]);
 
   return (

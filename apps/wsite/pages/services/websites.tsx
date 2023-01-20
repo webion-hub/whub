@@ -1,33 +1,34 @@
-import {
-  BarChartRounded,
-  BiotechRounded,
-  BubbleChartRounded,
-  CallRounded,
-  EditRounded,
-  FormatAlignLeftRounded, PhoneIphoneRounded
-} from '@mui/icons-material';
+import BarChartRounded from '@mui/icons-material/BarChartRounded';
+import BiotechRounded from '@mui/icons-material/BiotechRounded';
+import BubbleChartRounded from '@mui/icons-material/BubbleChartRounded';
+import CallRounded from '@mui/icons-material/CallRounded';
+import EditRounded from '@mui/icons-material/EditRounded';
+import FormatAlignLeftRounded from '@mui/icons-material/FormatAlignLeftRounded';
+import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
+
 import {
   Box,
   Button,
   CircularProgress, Stack,
-  Typography, useTheme
+  Typography
 } from '@mui/material';
 import { useNextNavigator, useOnScreen } from '@wui/core';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import { interval, take } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { interval } from 'rxjs';
 import { ImageAndDescription } from '../../components/blocks/ImageAndDescription';
 import { CardGroup } from '../../components/cards/CardGroup';
 import { IconCard } from '../../components/cards/IconCard';
 import { CaseStudyLink } from '../../components/sections/CaseStudyLink';
-import { FaqSection } from '../../components/sections/FaqSection';
-import { GetAQuote } from '../../components/sections/GetAQuote';
+import dynamic from 'next/dynamic';
 
-
+const FaqSection = dynamic(() => import("../../components/sections/FaqSection"), { ssr: true })
+const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 interface StatisticProps {
   readonly value: number;
   readonly description: string | ReactNode;

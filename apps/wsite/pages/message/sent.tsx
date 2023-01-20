@@ -3,7 +3,7 @@ import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 
 export default function MessageSent() {
   const { t } = useLanguage();

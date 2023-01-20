@@ -1,4 +1,11 @@
-import { BusinessRounded, DevicesRounded, FactoryRounded, PersonRounded, PhoneIphoneRounded, QuestionMarkRounded, StoreRounded } from '@mui/icons-material';
+import BusinessRounded from '@mui/icons-material/BusinessRounded';
+import DevicesRounded from '@mui/icons-material/DevicesRounded';
+import FactoryRounded from '@mui/icons-material/FactoryRounded';
+import PersonRounded from '@mui/icons-material/PersonRounded';
+import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
+import QuestionMarkRounded from '@mui/icons-material/QuestionMarkRounded';
+import StoreRounded from '@mui/icons-material/StoreRounded';
+
 import { LoadingButton } from '@mui/lab';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useContactUs } from '@wapi/next';
@@ -9,7 +16,7 @@ import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import remove from 'lodash/remove';
 import { ReactNode, useState } from 'react';
 import { SelectableCard } from '../components/cards/SelectableCard';

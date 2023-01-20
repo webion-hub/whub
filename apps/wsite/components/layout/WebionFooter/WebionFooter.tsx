@@ -1,4 +1,4 @@
-import { CallRounded } from '@mui/icons-material';
+import CallRounded from '@mui/icons-material/CallRounded';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -7,7 +7,7 @@ import { Button, IconButton, Link, Stack, Typography } from '@mui/material';
 import { NextImg } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import { Footer, FooterBottomLabel, FooterContent } from '@wui/layout/Footer';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { WebionRepository } from '../../../lib/WebionRepositiory';
 import { FooterLink } from './FooterLink';
 import { LinksFooterColumn } from './LinksFooterColumn';

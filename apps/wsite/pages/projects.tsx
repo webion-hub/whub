@@ -5,10 +5,11 @@ import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
+import dynamic from 'next/dynamic';
 import { CardGroup } from '../components/cards/CardGroup';
 import { ImageCard, ImageCardProps } from '../components/cards/ImageCard';
-import { GetAQuote } from '../components/sections/GetAQuote';
+const GetAQuote = dynamic(() => import("../components/sections/GetAQuote"), { ssr: true })
 
 interface ProjectProps extends ImageCardProps {
   readonly src: string;

@@ -1,4 +1,6 @@
-import { AccountTreeRounded, CallRounded } from '@mui/icons-material';
+import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
+import CallRounded from '@mui/icons-material/CallRounded';
+
 import { Button, Typography } from '@mui/material';
 import { Stack, SxProps, Theme, useTheme } from '@mui/system';
 import { MaybeShow } from '@wui/components';
@@ -6,7 +8,7 @@ import { useNextNavigator } from '@wui/core';
 import Section from '@wui/layout/Section';
 import { ISection } from '@wui/sections/abstractions/ISection';
 
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 
 
 interface GetAQuoteProps extends ISection {
@@ -14,7 +16,7 @@ interface GetAQuoteProps extends ISection {
   readonly sx?: SxProps<Theme>;
 }
 
-export function GetAQuote(props: GetAQuoteProps) {
+export default function GetAQuote(props: GetAQuoteProps) {
   const theme = useTheme();
   const { tHtml, t } = useLanguage();
   const { clickNavigate } = useNextNavigator();
@@ -24,7 +26,7 @@ export function GetAQuote(props: GetAQuoteProps) {
       id={props.id}
       ignoreSection
       showBackground
-      background={theme.palette.primary.dark}
+      background={theme.palette.primary?.dark}
       sx={props.sx}
     >
       <Stack

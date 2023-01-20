@@ -1,15 +1,20 @@
-import { CallRounded, GitHub, LinkedIn } from '@mui/icons-material';
+import CallRounded from '@mui/icons-material/CallRounded';
+import GitHub from '@mui/icons-material/GitHub';
+import LinkedIn from '@mui/icons-material/LinkedIn';
+
 import { alpha, Avatar, Box, Button, IconButton, Stack, SxProps, Theme, Typography } from '@mui/material';
 import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
+import dynamic from 'next/dynamic';
 
 import { useEffect, useRef, useState } from 'react';
 import { ImageAndDescription } from '../components/blocks/ImageAndDescription';
-import { GetAQuote } from '../components/sections/GetAQuote';
+
+const GetAQuote = dynamic(() => import("../components/sections/GetAQuote"), { ssr: true })
 
 const membersOrder = [1, 2, 3]
   .map((value) => ({ value, sort: Math.random() }))

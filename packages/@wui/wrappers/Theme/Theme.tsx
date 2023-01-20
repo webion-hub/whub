@@ -1,5 +1,5 @@
 import { Theme, ThemeProvider } from '@mui/material';
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 
 export interface IThemeContext {
   readonly setTheme: (key: ThemeKeys) => void;
@@ -62,4 +62,3 @@ export const ThemeWrapper = (props: ThemeWrapperProps) => {
   );
 };
 
-export const useThemeChanger = () => useContext(ThemeContext);

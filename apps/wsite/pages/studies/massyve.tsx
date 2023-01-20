@@ -1,4 +1,6 @@
-import { EmojiObjectsRounded, ReportProblemRounded } from '@mui/icons-material';
+import EmojiObjectsRounded from '@mui/icons-material/EmojiObjectsRounded';
+import ReportProblemRounded from '@mui/icons-material/ReportProblemRounded';
+
 import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
@@ -7,10 +9,12 @@ import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { ImageAndDescription } from '../../components/blocks/ImageAndDescription';
 import { IconCard } from '../../components/cards/IconCard';
-import { GetAQuote } from '../../components/sections/GetAQuote';
+import dynamic from 'next/dynamic';
+
+const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 
 export default function MassyveCaseStudy() {
   const { t, tHtml } = useLanguage();

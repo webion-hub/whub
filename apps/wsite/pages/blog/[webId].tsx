@@ -1,4 +1,5 @@
-import { ArrowBackRounded } from '@mui/icons-material';
+import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
+
 import { Button, Divider, List, ListItem, ListItemButton, ListItemText, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { BlogArticle } from '@wapi/blog';
 import AppContext from '@wapi/next';
@@ -7,12 +8,14 @@ import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
+import dynamic from 'next/dynamic';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { fromEvent } from 'rxjs';
 import { Article } from '../../components/blog/Article';
 import HeadMeta from '../../components/others/HeadMeta';
-import { GetAQuote } from '../../components/sections/GetAQuote';
+
+const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 
 export async function getServerSideProps({ locale, params }: any) {
   const endpoint = AppContext.blogApi.articles.forLanguage(locale).withId(params.webId);

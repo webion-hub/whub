@@ -1,10 +1,18 @@
-import { ArrowForwardRounded, DevicesRounded, FactoryRounded, PhoneIphoneRounded } from '@mui/icons-material';
-import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { Stack } from '@mui/system';
-import { ButtonWithProgress, NextImg } from '@wui/components';
+import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
+import DevicesRounded from '@mui/icons-material/DevicesRounded';
+import FactoryRounded from '@mui/icons-material/FactoryRounded';
+import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
+
+import { useMediaQuery, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import ButtonWithProgress from '@wui/components/ButtonWithProgress';
+import NextImg from '@wui/components/NextImg';
 import Section from '@wui/layout/Section';
 import { ISection } from '@wui/sections/abstractions/ISection';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
 
@@ -17,7 +25,7 @@ interface HomeSlide<T> {
 
 type Slides = 'websites' | 'apps' | 'industry';
 
-export function HomeWithServices(props: ISection) {
+export default function HomeWithServices(props: ISection) {
   const [pages, setPages] = useState<HomeSlide<Slides>[]>([]);
   const [page, setPage] = useState<HomeSlide<Slides>>();
 

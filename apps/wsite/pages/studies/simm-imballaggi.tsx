@@ -1,14 +1,18 @@
-import { EmojiObjectsRounded, ReportProblemRounded } from '@mui/icons-material';
+import EmojiObjectsRounded from '@mui/icons-material/EmojiObjectsRounded';
+import ReportProblemRounded from '@mui/icons-material/ReportProblemRounded';
+
 import { Button, Typography, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
-import { useLanguage } from '@wui/wrappers';
+import useLanguage from '@wui/wrappers/useLanguage';
+import dynamic from 'next/dynamic';
 import { ImageAndDescription } from '../../components/blocks/ImageAndDescription';
 import { IconCard } from '../../components/cards/IconCard';
-import { GetAQuote } from '../../components/sections/GetAQuote';
+
+const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 
 export default function SimmCaseStudy() {
   const { t, tHtml } = useLanguage();
