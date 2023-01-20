@@ -1,9 +1,8 @@
+import { blogFactory } from "@wapi-ui/blog";
 import { getServerSideSitemap } from "next-sitemap";
-import AppContext from "@wapi/next";
 
-export async function getServerSideProps(ctx) {
-  const request = await AppContext
-    .blogApi
+export async function getServerSideProps(ctx: any) {
+  const request = await blogFactory()
     .sitemap
     .load();
 

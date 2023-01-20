@@ -26,7 +26,8 @@
     "@wui/form": "workspace:*",
     "@wapi/blog": "workspace:*",
     "@wapi/contactus": "workspace:*",
-    "@wapi/next": "workspace:*"
+    "@wapi-ui/blog": "workspace:*",
+    "@wapi-ui/contactus": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

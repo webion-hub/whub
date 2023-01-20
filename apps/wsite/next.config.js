@@ -15,7 +15,8 @@ module.exports = withBundleAnalyzer({
     "@wui/form",
     "@wapi/blog",
     "@wapi/contactus",
-    "@wapi/next"
+    "@wapi-ui/blog",
+    "@wapi-ui/contactus",
   ],
   modularizeImports: {
     '@wui/wrappers': {

@@ -1,8 +1,8 @@
 import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 
 import { Button, Divider, List, ListItem, ListItemButton, ListItemText, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { blogFactory } from '@wapi-ui/blog';
 import { BlogArticle } from '@wapi/blog';
-import AppContext from '@wapi/next';
 import { MaybeShow } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';
@@ -18,7 +18,7 @@ import HeadMeta from '../../components/others/HeadMeta';
 const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 
 export async function getServerSideProps({ locale, params }: any) {
-  const endpoint = AppContext.blogApi.articles.forLanguage(locale).withId(params.webId);
+  const endpoint = blogFactory().articles.forLanguage(locale).withId(params.webId);
 
   try {
     const res = await endpoint.load();

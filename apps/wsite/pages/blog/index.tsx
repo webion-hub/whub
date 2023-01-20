@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { Stack } from '@mui/system';
+import { blogFactory } from '@wapi-ui/blog';
 import { BlogArticle } from '@wapi/blog';
-import AppContext from '@wapi/next';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
@@ -15,7 +15,7 @@ import { ArticleFilters, ArticlesFilterBox } from '../../components/blog/Article
 import BlogArticleCard from '../../components/blog/BlogArticleCard';
 
 export async function getServerSideProps({ locale }: any) {
-  const endpoint = AppContext.blogApi.articles.forLanguage(locale);
+  const endpoint = blogFactory().articles.forLanguage(locale);
   const res = await endpoint.filter();
 
   return {
@@ -94,7 +94,7 @@ function BlogArticleList() {
     searchValue: ''
   })
 
-  const endpoint = AppContext.blogApi.articles.forLanguage(locale ?? 'it')
+  const endpoint = blogFactory().articles.forLanguage(locale ?? 'it')
 
   const { data, isValidating, mutate } = useSWR(endpoint.url, async () => {
     const res = await endpoint

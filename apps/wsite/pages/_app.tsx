@@ -13,10 +13,10 @@ import { AppProps } from "next/app";
 import { darkTheme, lightTheme } from "../theme/getTheme";
 import globalStyle from "../theme/globalStyle";
 
-import BlogApi from "@wapi/blog";
-import ContactUsApi from "@wapi/contactus";
-import AppContext from "@wapi/next";
 import dynamic from 'next/dynamic';
+
+import BlogContext from '@wapi-ui/blog/BlogContext/BlogContext';
+import ContactUsContext from '@wapi-ui/contactus/ContactUsContext/ContactUsContext';
 
 //SPOSTARE IN ImageCropperDialog
 //TOGLIERE L'IMPORT DI CROPPER JS DA PACKAGEJSON
@@ -30,25 +30,16 @@ const WebionFooter = dynamic(() => import("../components/layout/WebionFooter/Web
 const CssBaseline = dynamic(() => import("@mui/material/CssBaseline"), { ssr: true })
 const GlobalStyles = dynamic(() => import("@mui/material/GlobalStyles"), { ssr: true })
 
-const contactUs = new ContactUsApi({
-  headers: { } as any,
-  baseURL: 'https://api.webion.it/contactus',
-  withCredentials: true,
-});
-
-const blog = new BlogApi({
+BlogContext.api = {
   headers: { } as any,
   baseURL: 'https://w0/webion/blog/api',
   withCredentials: true,
+}
 
-});
-
-AppContext.contactUs = {
-  api: contactUs,
-};
-
-AppContext.blog = {
-  api: blog
+ContactUsContext.api = {
+  headers: { } as any,
+  baseURL: 'https://api.webion.it/contactus',
+  withCredentials: true,
 }
 
 export default function RootLayout({ Component, pageProps }: AppProps) {

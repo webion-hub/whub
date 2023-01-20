@@ -8,7 +8,7 @@ import StoreRounded from '@mui/icons-material/StoreRounded';
 
 import { LoadingButton } from '@mui/lab';
 import { Button, Stack, TextField, Typography } from '@mui/material';
-import { useContactUs } from '@wapi/next';
+import { useContactUs } from '@wapi-ui/contactus';
 import { MaybeShow, PrivacyCheckbox } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import { Validator, Validators } from '@wui/form';
@@ -76,7 +76,7 @@ interface Step {
 export default function ContactUs() {
   const { navigate } = useNextNavigator();
   const { t } = useLanguage();
-  const contactUsApi = useContactUs().api;
+  const contactUsApi = useContactUs();
 
   const [loading, setLoading] = useState<boolean>(false);
 

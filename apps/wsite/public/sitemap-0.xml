@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://webion.it</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/blog</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/contact-us</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/policies-licenses</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/projects</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/server-sitemap.xml</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/services/apps</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/services/industry</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/services/websites</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/studies/bocconi</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/studies/kaire</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/studies/massyve</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/studies/simm-imballaggi</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/techs</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://webion.it/who-we-are</loc><lastmod>2023-01-20T15:09:05.077Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/blog</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/contact-us</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/policies-licenses</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/projects</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/server-sitemap.xml</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/services/apps</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/services/industry</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/services/websites</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/studies/bocconi</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/studies/kaire</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/studies/massyve</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/studies/simm-imballaggi</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/techs</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://webion.it/who-we-are</loc><lastmod>2023-01-20T16:36:01.505Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
