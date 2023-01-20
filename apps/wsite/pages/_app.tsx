@@ -14,6 +14,7 @@ import { darkTheme, lightTheme } from "../theme/getTheme";
 import globalStyle from "../theme/globalStyle";
 
 import dynamic from 'next/dynamic';
+import { Analytics } from '@vercel/analytics/react';
 
 import BlogContext from '@wapi-ui/blog/BlogContext/BlogContext';
 import ContactUsContext from '@wapi-ui/contactus/ContactUsContext/ContactUsContext';
@@ -48,6 +49,7 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
     <>
       <Script strategy='worker' src="scripts/pixel.js"/>
       <Script strategy='worker' src="scripts/hotjar.js"/>
+      <Analytics/>
       <Head>
         <link rel="shortcut icon" href="assets/favicon.ico" />
         <title>Webion</title>

@@ -20,32 +20,33 @@ export interface ThemeWrapperProps {
   readonly children: ReactNode;
 }
 
-const getTheme = () => {
-  const localTheme = localStorage.getItem('theme');
-  const areNoSavedTheme = localTheme === 'null' || !localTheme
-
-  return areNoSavedTheme
-    ? getBrowserTheme()
-    : localTheme as ThemeKeys
-}
-
-const getBrowserTheme = () => {
-  const isDarkTheme = window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .matches
-
-  return isDarkTheme
-    ? 'dark'
-    : 'light'
-}
 
 export const ThemeWrapper = (props: ThemeWrapperProps) => {
-  const [theme, setTheme] = useState<ThemeKeys>(getTheme());
+  const getTheme = () => {
+    const localTheme = localStorage.getItem('theme');
+    const areNoSavedTheme = localTheme === 'null' || !localTheme
+  
+    return areNoSavedTheme
+      ? getBrowserTheme()
+      : localTheme as ThemeKeys
+  }
+  
+  const getBrowserTheme = () => {
+    const isDarkTheme = window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .matches
+  
+    return isDarkTheme
+      ? 'dark'
+      : 'light'
+  }
 
   const updateTheme = (key: ThemeKeys) => {
     setTheme(key);
     localStorage.setItem('theme', key);
   };
+
+  const [theme, setTheme] = useState<ThemeKeys>(getTheme());
 
   return (
     <ThemeContext.Provider
