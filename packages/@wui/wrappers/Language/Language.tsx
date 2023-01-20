@@ -1,15 +1,14 @@
-import { FlagComponent } from 'country-flag-icons/react/3x2';
 import { useRouter } from 'next/router';
 import { createContext, ReactNode } from 'react';
 
 interface LanguageBaseItem {
-  readonly flag?: FlagComponent;
+  readonly flag?: ReactNode;
   readonly code: string;
   readonly langTranslation: string;
 }
 
 export interface LanguageItem {
-  readonly flag?: FlagComponent;
+  readonly flag?: ReactNode;
   readonly langTranslation: string;
   readonly translation?: any;
 }
