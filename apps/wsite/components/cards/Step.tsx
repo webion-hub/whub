@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import Stack from '@mui/materiaL/Stack';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material';
 
