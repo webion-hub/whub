@@ -5,8 +5,6 @@ const globalStyle: Interpolation<Theme> = {
   body: {
     overflow: 'overlay',
     overflowX: 'hidden',
-    transitionProperty: 'background-color',
-    transitionDuration: '.4s',
   },
   '&::-webkit-scrollbar': {
     width: '4px',
