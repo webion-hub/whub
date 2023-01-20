@@ -3,11 +3,11 @@ import PageSettings from '@wui/layout/PageSettings';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import dynamic from 'next/dynamic';
+import HomeWithServices from '../components/sections/HomeWithServices';
 import OurProcess from '../components/sections/OurProcess';
 import Services from '../components/sections/Services';
 import WhoWeAre from '../components/sections/WhoWeAre';
 
-const HomeWithServices = dynamic(() => import("../components/sections/HomeWithServices"), { ssr: true })
 const WebionChosenBy = dynamic(() => import("../components/sections/WebionChosenBy"), { ssr: true })
 const GetAQuote = dynamic(() => import("../components/sections/GetAQuote"), { ssr: true })
 const FaqSection = dynamic(() => import("../components/sections/FaqSection"), { ssr: true })

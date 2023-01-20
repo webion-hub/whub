@@ -7,6 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import MaybeShow from '@wui/components/MaybeShow';
 import NextImg from '@wui/components/NextImg';
 import Transition from '@wui/components/Transition';
+import { useOnScreen } from '@wui/core';
 import { ReactNode, useRef } from 'react';
 import { TitleSectionLabel } from './TitleSectionLabel';
 
@@ -28,7 +29,12 @@ export function ImageAndDescription(props: ImageAndDescriptionProps) {
   const isMd = useMediaQuery(theme.breakpoints.down('md'));
 
   const ref = useRef();
-
+  const onScreen = useOnScreen(ref, {
+    oneTime: true,
+    observeOptions: {
+      rootMargin: '-10% 0% -10% 0%',
+    },
+  });
 
   return (
     <Stack
@@ -48,7 +54,7 @@ export function ImageAndDescription(props: ImageAndDescriptionProps) {
         },
       }}
     >
-      <Transition in={false} type="grow" duration={400}>
+      <Transition in={onScreen} type="grow" duration={400}>
         <Paper
           sx={{
             overflow: 'hidden',
@@ -80,7 +86,7 @@ export function ImageAndDescription(props: ImageAndDescriptionProps) {
         </Paper>
       </Transition>
 
-      <Transition in={false} type="grow" duration={400} delay={200}>
+      <Transition in={onScreen} type="grow" duration={400} delay={200}>
         <Stack direction="column" spacing={3}>
           <TitleSectionLabel label={props.label} title={props.title} />
           <Typography color="text.secondary" variant="body1">

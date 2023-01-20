@@ -6,15 +6,15 @@ import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
 import { useMediaQuery, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import ButtonWithProgress from '@wui/components/ButtonWithProgress';
 import NextImg from '@wui/components/NextImg';
 import Section from '@wui/layout/Section';
 import { ISection } from '@wui/sections/abstractions/ISection';
 import useLanguage from '@wui/wrappers/useLanguage';
 import { useRouter } from 'next/router';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 interface HomeSlide<T> {
   readonly key: T;
@@ -26,50 +26,57 @@ interface HomeSlide<T> {
 type Slides = 'websites' | 'apps' | 'industry';
 
 export default function HomeWithServices(props: ISection) {
-  const [pages, setPages] = useState<HomeSlide<Slides>[]>([]);
-  const [page, setPage] = useState<HomeSlide<Slides>>();
+  const { t, tHtml } = useLanguage();
+  
+  const pages: HomeSlide<Slides>[] = [
+    {
+      key: 'apps',
+      title: tHtml('service2-desc'),
+      src: '/assets/images/apps.jpg',
+      onClick: () => router.push('/services/apps'),
+    },
+    {
+      key: 'industry',
+      title: tHtml('service3-desc'),
+      src: '/assets/images/industry.jpg',
+      onClick: () => router.push('/services/industry'),
+    },
+    {
+      key: 'websites',
+      title: tHtml('service1-desc'),
+      src: '/assets/images/websites.jpg',
+      onClick: () => router.push('/services/websites'),
+    },
+  ]
+
+  const [pageKey, setPageKey] = useState<Slides>('apps');
+  const [pageLoaded, setPageLoaded] = useState<Slides[]>([pageKey]);
 
   const router = useRouter();
   const theme = useTheme();
-  const { t, tHtml, language } = useLanguage();
   const reduceTitle = useMediaQuery(theme.breakpoints.down(1000));
 
-  useEffect(() => {
-    setPages([
-      {
-        key: 'apps',
-        title: tHtml('service2-desc'),
-        src: '/assets/images/apps.jpg',
-        onClick: () => router.push('/services/apps'),
-      },
-      {
-        key: 'industry',
-        title: tHtml('service3-desc'),
-        src: '/assets/images/industry.jpg',
-        onClick: () => router.push('/services/industry'),
-      },
-      {
-        key: 'websites',
-        title: tHtml('service1-desc'),
-        src: '/assets/images/websites.jpg',
-        onClick: () => router.push('/services/websites'),
-      },
-    ]);
-  }, [language]);
-
-  useEffect(() => {
-    setPage(pages[0]);
-  }, [pages]);
+  const getPage = (key: Slides) => {
+    return pages.find(p => p.key === pageKey)
+  }
 
   const handlePage = (key: Slides) => {
-    const newPage = pages.find((p) => p.key === key);
-    if (!newPage) return;
+    setPageKey(key);
 
-    setPage(newPage);
+    const alreadyLoaded = pageLoaded.some(p => p === key)
+    if(alreadyLoaded)
+      return
+    
+    setPageLoaded([
+      ...pageLoaded,
+      key
+    ])
   };
 
-  const zoomAnimationName = `grow-img-${page?.key ?? ''}`;
+  const zoomAnimationName = `grow-img-${pageKey}`;
   const zoomAnimationKeyframes = `@keyframes ${zoomAnimationName}`;
+
+  const page = getPage(pageKey)
 
   return (
     <Section
@@ -105,7 +112,7 @@ export default function HomeWithServices(props: ISection) {
           }}
         >
           <Typography
-            key={page?.key}
+            key={pageKey}
             variant={reduceTitle ? 'h3' : 'h2'}
             component="h1"
             textAlign="center"
@@ -147,7 +154,7 @@ export default function HomeWithServices(props: ISection) {
           <ButtonWithProgress
             label={t('service2')}
             Icon={PhoneIphoneRounded}
-            selected={page?.key === 'apps'}
+            selected={pageKey === 'apps'}
             onSelectEnd={() => handlePage('industry')}
             onClick={() => handlePage('apps')}
             duration={5000}
@@ -155,7 +162,7 @@ export default function HomeWithServices(props: ISection) {
           <ButtonWithProgress
             label={t('service3')}
             Icon={FactoryRounded}
-            selected={page?.key === 'industry'}
+            selected={pageKey === 'industry'}
             onSelectEnd={() => handlePage('websites')}
             onClick={() => handlePage('industry')}
             duration={5000}
@@ -163,7 +170,7 @@ export default function HomeWithServices(props: ISection) {
           <ButtonWithProgress
             label={t('service1')}
             Icon={DevicesRounded}
-            selected={page?.key === 'websites'}
+            selected={pageKey === 'websites'}
             onSelectEnd={() => handlePage('apps')}
             onClick={() => handlePage('websites')}
             duration={5000}
@@ -180,33 +187,35 @@ export default function HomeWithServices(props: ISection) {
           overflow: 'hidden',
         }}
       >
-        {pages.map((p) => (
-          <NextImg
-            key={p.key}
-            quality={100}
-            src={p?.src}
-            alt="slide-show-img"
-            fill
-            sizes="100vw"
-            priority
-            sx={{
-              display: p.key === page?.key ? 'block' : 'none',
-              objectFit: 'cover',
-              objectPosition: 'center center',
-              transform: 'scale(0)',
-              [zoomAnimationKeyframes]: {
-                '0%': {
-                  transform: `scale(1)`,
+        {pageLoaded.map((key, i) => {
+          const page = getPage(key)
+
+          return (
+            <NextImg
+              key={key}
+              src={page?.src ?? ''}
+              alt="slide-show-img"
+              fill
+              sizes="100vw"
+              sx={{
+                display: key === pageKey ? 'block' : 'none',
+                objectFit: 'cover',
+                objectPosition: 'center center',
+                transform: 'scale(0)',
+                [zoomAnimationKeyframes]: {
+                  '0%': {
+                    transform: `scale(1)`,
+                  },
+                  '100%': {
+                    opacity: 1,
+                    transform: `scale(1.2)`,
+                  },
                 },
-                '100%': {
-                  opacity: 1,
-                  transform: `scale(1.2)`,
-                },
-              },
-              animation: `${zoomAnimationName} 15000ms ease-in-out forwards`,
-            }}
-          />
-        ))}
+                animation: `${zoomAnimationName} 15000ms ease-in-out forwards`,
+              }}
+            />
+          )
+        })}
       </Box>
     </Section>
   );

@@ -22,6 +22,7 @@ import ContactUsContext from '@wapi-ui/contactus/ContactUsContext/ContactUsConte
 //TOGLIERE L'IMPORT DI CROPPER JS DA PACKAGEJSON
 import "cropperjs/dist/cropper.css";
 
+
 const CookiePopup = dynamic(() => import("@wui/components/CookiePopup"), { ssr: true })
 const WebionSpeedDial = dynamic(() => import("../components/others/WebionSpeedDial"), { ssr: true })
 const WebionAppBar = dynamic(() => import("../components/layout/WebionAppBar/WebionAppBar"), { ssr: true })

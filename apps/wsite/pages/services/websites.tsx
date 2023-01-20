@@ -6,12 +6,7 @@ import EditRounded from '@mui/icons-material/EditRounded';
 import FormatAlignLeftRounded from '@mui/icons-material/FormatAlignLeftRounded';
 import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
 
-import {
-  Box,
-  Button,
-  CircularProgress, Stack,
-  Typography
-} from '@mui/material';
+import { Box, Button, CircularProgress, Stack, Typography } from '@mui/material';
 import { useNextNavigator, useOnScreen } from '@wui/core';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
