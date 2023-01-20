@@ -6,7 +6,8 @@
     "apps/*",
     "packages/*",
     "packages/@wui/*",
-    "packages/@wapi/*"
+    "packages/@wapi/*",
+    "packages/@wapi-ui/*"
   ],
   "scripts": {
     "build": "turbo run build",

@@ -3,3 +3,4 @@ packages:
   - "packages/*"
   - "packages/@wui/*"
   - "packages/@wapi/*"
+  - "packages/@wapi-ui/*"

@@ -1,5 +1,5 @@
 {
-  "name": "@wapi/next",
+  "name": "@wapi-ui/blog",
   "version": "0.0.0",
   "main": "./index.tsx",
   "types": "./index.tsx",
@@ -16,10 +16,6 @@
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2",
     "@types/jest": "^29.2.5",
-    "@wui/components": "workspace:*",
-    "@wui/core": "workspace:*",
-    "@wapi/simple-auth": "workspace:*",
-    "@wapi/blog": "workspace:*",
-    "@wapi/contactus": "workspace:*"
+    "@wapi/blog": "workspace:*"
   }
 }
