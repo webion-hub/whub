@@ -1,11 +1,9 @@
 import { Theme } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
-import { getComponents } from './components';
 import '@wui/extensions/theme';
 
 import * as _ from '@mui/material/styles/createPalette';
-import { darkPalette } from './darkTheme';
-import { lightPalette } from './lightTheme';
+import { getComponents } from '../themes/components';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
@@ -46,6 +44,3 @@ export const getTheme = (palette: Theme['palette'], mode: 'light' | 'dark') => {
     components: getComponents(fontFamily, mode),
   });
 };
-
-export const darkTheme = getTheme(darkPalette, 'dark');
-export const lightTheme = getTheme(lightPalette, 'light');

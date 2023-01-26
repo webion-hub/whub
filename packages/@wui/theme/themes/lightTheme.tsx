@@ -1,6 +1,7 @@
 import { Theme } from '@mui/system';
+import { getTheme } from '../utils/getTheme';
 
-export const lightPalette: Theme['palette'] = {
+const lightPalette: Theme['palette'] = {
   mode: 'light',
   background: {
     default: '#fff',
@@ -25,3 +26,5 @@ export const lightPalette: Theme['palette'] = {
     contrastText: '#444',
   },
 };
+
+export const lightTheme = getTheme(lightPalette, 'light');

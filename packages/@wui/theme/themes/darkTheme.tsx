@@ -1,4 +1,5 @@
 import { Theme } from '@mui/system';
+import { getTheme } from '../utils/getTheme';
 
 export const darkPalette: Theme['palette'] = {
   mode: 'dark',
@@ -29,3 +30,5 @@ export const darkPalette: Theme['palette'] = {
     contrastText: '#fff',
   },
 };
+
+export const darkTheme = getTheme(darkPalette, 'dark');

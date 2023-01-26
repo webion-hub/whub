@@ -1,5 +1,5 @@
 import { Interpolation, Theme } from '@mui/material';
-import { darkTheme } from './getTheme';
+import { darkTheme } from './darkTheme';
 
 const globalStyle: Interpolation<Theme> = {
   body: {
