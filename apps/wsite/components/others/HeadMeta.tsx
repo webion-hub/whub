@@ -7,7 +7,6 @@ interface HeadMetaProps {
 export default function HeadMeta(props: HeadMetaProps) {
   return (
     <Head>
-      <link rel="shortcut icon" href="assets/favicon.ico" />
       <meta content={props.title} name="description" />
       <meta content={props.title} property="og:title" />
       <meta content={props.title} property="og:description" />
