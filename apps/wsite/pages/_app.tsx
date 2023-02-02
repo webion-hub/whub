@@ -48,7 +48,7 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script strategy='worker' src="scripts/pixel.js"/>
-      <Script strategy='worker' src="scripts/hotjar.js"/>
+      <Script src="scripts/hotjar.js"/>
       <Analytics/>
       <Head>
         <link rel="shortcut icon" href="assets/favicon.ico" />
