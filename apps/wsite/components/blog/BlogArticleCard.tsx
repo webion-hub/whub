@@ -82,7 +82,6 @@ export default function BlogArticleCard(props: BlogArticleProps) {
               </ReactMarkdown>
             </Box>
           </Stack>
-          <MaybeShow show={props.article.cover !== ''}>
             <Box
               sx={{
                 position: 'relative',
@@ -93,22 +92,23 @@ export default function BlogArticleCard(props: BlogArticleProps) {
                 borderRadius: 4,
               }}
             >
-              <NextImg
-                src={props.article.cover}
-                alt={props.article.title}
-                fill
-                priority
-                sizes="
-                  (max-width: 700px) 100,
-                  (max-width: 1327px) 50vw,
-                  600px
-                "
-                sx={{
-                  objectFit: 'cover !important',
-                }}
-              />
+              <MaybeShow show={props.article.cover !== '' && !!props.article.cover}>
+                <NextImg
+                  src={props.article.cover}
+                  alt={props.article.title}
+                  fill
+                  priority
+                  sizes="
+                    (max-width: 700px) 100,
+                    (max-width: 1327px) 50vw,
+                    600px
+                  "
+                  sx={{
+                    objectFit: 'cover !important',
+                  }}
+                />
+              </MaybeShow>
             </Box>
-          </MaybeShow>
         </Stack>
       </CardActionArea>
     </WebionCard>

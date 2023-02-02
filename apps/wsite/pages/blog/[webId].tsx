@@ -9,13 +9,12 @@ import Page from '@wui/layout/Page';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
-import dynamic from 'next/dynamic';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { fromEvent } from 'rxjs';
 import { Article } from '../../components/blog/Article';
 import HeadMeta from '../../components/others/HeadMeta';
+import GetAQuote from '../../components/sections/GetAQuote';
 
-const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 
 export async function getServerSideProps({ locale, params }: any) {
   const endpoint = blogFactory().articles.forLanguage(locale).withId(params.webId);
@@ -143,7 +142,7 @@ function ArticleSidebar() {
         sx={{ justifyContent: 'flex-start' }}
         onClick={clickNavigate('blog')}
       >
-        Torna agli articoli
+        {t('back-to-articles')}
       </Button>
       <Typography
         variant="h6"
@@ -151,30 +150,38 @@ function ArticleSidebar() {
         {t('sections')}
       </Typography>
       <Divider/>
-      <List>
-        {
-          sections.map((s, i) => {
-            const uri = encodeURI(s)
-            return (
-              <ListItem
-                key={i}
-                disablePadding
-              >
-                <ListItemButton
-                  href={`#${uri}`}
-                  selected={uri === currentSection}
-                  sx={{
-                    borderRadius: 2
-                  }}
-                >
-                  <ListItemText secondary={`${i + 1}. ${s}`}/>
-                </ListItemButton>
-              </ListItem>
-            )
-          })
+      <MaybeShow
+        show={sections.length !== 0}
+        alternativeChildren={
+          <Typography variant='caption' color="text.secondary">
+            {t('no-sections')}
+          </Typography>
         }
-
-      </List>
+      >
+        <List>
+          {
+            sections.map((s, i) => {
+              const uri = encodeURI(s)
+              return (
+                <ListItem
+                  key={i}
+                  disablePadding
+                >
+                  <ListItemButton
+                    href={`#${uri}`}
+                    selected={uri === currentSection}
+                    sx={{
+                      borderRadius: 2
+                    }}
+                  >
+                    <ListItemText secondary={`${i + 1}. ${s}`}/>
+                  </ListItemButton>
+                </ListItem>
+              )
+            })
+          }
+        </List>
+      </MaybeShow>
     </Stack>
   )
 }

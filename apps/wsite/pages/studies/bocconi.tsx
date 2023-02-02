@@ -1,5 +1,5 @@
 import DescriptionIcon from '@mui/icons-material/Description';
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import { Stack } from '@mui/system';
 import { NextImg } from '@wui/components';
 import Page from '@wui/layout/Page';
@@ -8,8 +8,8 @@ import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import dynamic from 'next/dynamic';
-import { ImageAndDescription } from '../../components/blocks/ImageAndDescription';
 import { IconCard } from '../../components/cards/IconCard';
+import { CaseStudyTopSection } from '../../components/sections/CaseStudyTopSection';
 
 const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 
@@ -20,36 +20,26 @@ export default function BocconiCaseStudy() {
     <Page>
       <PageSettings pageTranslationName="bocconi" />
       <Sections>
-        <Section>
-          <Stack
-            direction="column"
-            spacing={4}
-            sx={{ margin: 4 }}
-          >
-            <Typography variant="h2" textAlign="center">
-              Bocconi Radio
-            </Typography>
-            <ImageAndDescription
-              alt="simm"
-              direction="row"
-              label={t('case-study')}
-              title={t('bocconi-study-title')}
-              description={tHtml('bocconi-study-description')}
-              src="/assets/images/projects/bocconi/bocconi.png"
-              actionComponent={
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  href="https://play.google.com/store/apps/details?id=com.devpier.bocconi_radio"
-                  target="_blank"
-                >
-                  {t('download-app')}
-                </Button>
-              }
-            />
-          </Stack>
-        </Section>
+        <CaseStudyTopSection
+          mainTitle='Bocconi Radio'
+          alt="simm"
+          direction="row"
+          label={t('case-study')}
+          title={t('bocconi-study-title')}
+          description={tHtml('bocconi-study-description')}
+          src="/assets/images/projects/bocconi/bocconi.png"
+          actionComponent={
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              href="https://play.google.com/store/apps/details?id=com.devpier.bocconi_radio"
+              target="_blank"
+            >
+              {t('download-app')}
+            </Button>
+          }
+        />
         <Section>
           <Stack
             direction="row"

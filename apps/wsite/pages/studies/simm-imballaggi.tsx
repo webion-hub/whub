@@ -1,7 +1,7 @@
 import EmojiObjectsRounded from '@mui/icons-material/EmojiObjectsRounded';
 import ReportProblemRounded from '@mui/icons-material/ReportProblemRounded';
 
-import { Button, Typography, useTheme } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
@@ -9,8 +9,8 @@ import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import dynamic from 'next/dynamic';
-import { ImageAndDescription } from '../../components/blocks/ImageAndDescription';
 import { IconCard } from '../../components/cards/IconCard';
+import { CaseStudyTopSection } from '../../components/sections/CaseStudyTopSection';
 
 const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 
@@ -22,36 +22,26 @@ export default function SimmCaseStudy() {
     <Page>
       <PageSettings pageTranslationName="simm" />
       <Sections>
-        <Section>
-          <Stack
-            direction="column"
-            spacing={4}
-            sx={{ margin: 4 }}
-          >
-            <Typography variant="h2" textAlign="center">
-              SIMM Imballaggi.
-            </Typography>
-            <ImageAndDescription
-              alt="simm"
-              direction="row"
-              label={t('case-study')}
-              title={t('simm-study-title')}
-              description={tHtml('simm-study-description')}
-              src="/assets/images/projects/simm.png"
-              actionComponent={
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  href="https://shop.simmimballaggi.com/"
-                  target="_blank"
-                >
-                  {t('see-website')}
-                </Button>
-              }
-            />
-          </Stack>
-        </Section>
+        <CaseStudyTopSection
+          mainTitle='SIMM Imballaggi'
+          alt="simm"
+          direction="row"
+          label={t('case-study')}
+          title={t('simm-study-title')}
+          description={tHtml('simm-study-description')}
+          src="/assets/images/projects/simm.png"
+          actionComponent={
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              href="https://shop.simmimballaggi.com/"
+              target="_blank"
+            >
+              {t('see-website')}
+            </Button>
+          }
+        />
         <Section>
           <Stack
             direction="row"

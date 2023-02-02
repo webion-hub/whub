@@ -1,7 +1,7 @@
 import EmojiObjectsRounded from '@mui/icons-material/EmojiObjectsRounded';
 import ReportProblemRounded from '@mui/icons-material/ReportProblemRounded';
 
-import { Typography, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
@@ -9,8 +9,8 @@ import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import dynamic from 'next/dynamic';
-import { ImageAndDescription } from '../../components/blocks/ImageAndDescription';
 import { IconCard } from '../../components/cards/IconCard';
+import { CaseStudyTopSection } from '../../components/sections/CaseStudyTopSection';
 
 
 const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
@@ -23,25 +23,15 @@ export default function KaireCaseStudy() {
     <Page>
       <PageSettings pageTranslationName="kaire" />
       <Sections>
-        <Section>
-          <Stack
-            direction="column"
-            spacing={4}
-            sx={{ margin: 4 }}
-          >
-            <Typography variant="h2" textAlign="center">
-              Kaire Automation
-            </Typography>
-            <ImageAndDescription
-              alt="kaire"
-              direction="row"
-              label={t('case-study')}
-              title={t('kaire-study-title')}
-              description={tHtml('kaire-study-description')}
-              src="/assets/images/kaire2.webp"
-            />
-          </Stack>
-        </Section>
+        <CaseStudyTopSection
+          mainTitle='Kaire Automation'
+          alt="kaire"
+          direction="row"
+          label={t('case-study')}
+          title={t('kaire-study-title')}
+          description={tHtml('kaire-study-description')}
+          src="/assets/images/kaire2.webp"
+        />
         <Section>
           <Stack
             direction="row"

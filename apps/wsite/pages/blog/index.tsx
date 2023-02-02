@@ -2,6 +2,7 @@ import { Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import { blogFactory } from '@wapi-ui/blog';
 import { BlogArticle } from '@wapi/blog';
+import { useDidUpdateEffect } from '@wui/core';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
@@ -9,7 +10,7 @@ import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { memo, useRef } from 'react';
+import { DependencyList, EffectCallback, memo, useEffect, useRef, useState } from 'react';
 import useSWR, { SWRConfig } from 'swr';
 import { ArticleFilters, ArticlesFilterBox } from '../../components/blog/ArticlesFilterBox';
 import BlogArticleCard from '../../components/blog/BlogArticleCard';
@@ -70,8 +71,7 @@ const ArticleList = memo(({ articles }: { articles: BlogArticle[] }) => {
       alignItems="center"
       spacing={2}
       sx={{
-        width: '100%',
-        margin: 2,
+        margin: 1,
         '& > *': {
           width: 'clamp(200px, 100%, 1000px)',
         },
@@ -87,6 +87,7 @@ const ArticleList = memo(({ articles }: { articles: BlogArticle[] }) => {
 ArticleList.displayName = 'ArticleList'
 
 function BlogArticleList() {
+  const [loading, setLoading] = useState(false)
   const { locale } = useRouter()
   const cancelToken = useRef(axios.CancelToken.source())
   const filters = useRef<ArticleFilters>({
@@ -96,7 +97,7 @@ function BlogArticleList() {
 
   const endpoint = blogFactory().articles.forLanguage(locale ?? 'it')
 
-  const { data, isValidating, mutate } = useSWR(endpoint.url, async () => {
+  const { data, mutate } = useSWR(endpoint.url, async () => {
     const res = await endpoint
       .filter({
         categories: filters.current.categories as any[],
@@ -106,15 +107,21 @@ function BlogArticleList() {
     return res.data
   })
 
-  const loading = isValidating
+  useDidUpdateEffect(() => {
+    fetchArticles(filters.current)
+  }, [locale])
+
   const articles = data ?? []
 
-  const fetchArticles = (f: ArticleFilters) => {
+  const fetchArticles = async (f: ArticleFilters) => {
     filters.current = f
 
     cancelToken.current.cancel()
     cancelToken.current = axios.CancelToken.source()
-    mutate()
+
+    setLoading(true)
+    await mutate()
+    setLoading(false)
   }
 
   return (
@@ -142,3 +149,4 @@ function BlogArticleList() {
     </>
   )
 }
+
