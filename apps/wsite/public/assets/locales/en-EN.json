@@ -360,5 +360,7 @@
   "alphabetic": "From A to Z",
   "reverse-alphabetic": "From Z to A",
   "reading-time": "Reading time",
-  "sections": "Sections"
+  "sections": "Sections",
+  "back-to-articles": "Back to articles",
+  "no-sections": "No sections"
 }

@@ -11,7 +11,7 @@ import { useOnScreen } from '@wui/core';
 import { ReactNode, useRef } from 'react';
 import { TitleSectionLabel } from './TitleSectionLabel';
 
-interface ImageAndDescriptionProps {
+export interface ImageAndDescriptionProps {
   readonly actionComponent?: ReactNode;
   readonly title: string | ReactNode;
   readonly label: string | ReactNode;

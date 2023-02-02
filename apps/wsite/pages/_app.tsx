@@ -34,7 +34,7 @@ const GlobalStyles = dynamic(() => import("@mui/material/GlobalStyles"), { ssr: 
 
 BlogContext.api = {
   headers: { } as any,
-  baseURL: 'https://w0/webion/blog/api',
+  baseURL: 'https://blog.api.webion.it/',
   withCredentials: true,
 }
 

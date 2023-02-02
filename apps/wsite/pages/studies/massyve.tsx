@@ -13,6 +13,7 @@ import useLanguage from '@wui/wrappers/useLanguage';
 import { ImageAndDescription } from '../../components/blocks/ImageAndDescription';
 import { IconCard } from '../../components/cards/IconCard';
 import dynamic from 'next/dynamic';
+import { CaseStudyTopSection } from '../../components/sections/CaseStudyTopSection';
 
 const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 
@@ -24,36 +25,26 @@ export default function MassyveCaseStudy() {
     <Page>
       <PageSettings pageTranslationName="massyve" />
       <Sections>
-        <Section>
-          <Stack
-            direction="column"
-            spacing={4}
-            sx={{ margin: 4 }}
-          >
-            <Typography variant="h2" textAlign="center">
-              Massyve
-            </Typography>
-            <ImageAndDescription
-              direction="row"
-              alt="massyve"
-              label={t('case-study')}
-              title={t('massyve-study-title')}
-              description={tHtml('massyve-study-description')}
-              src="/assets/images/projects/massyve/massyve.webp"
-              actionComponent={
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  href="https://massyvemusic.design/massyve-landing"
-                  target="_blank"
-                >
-                  {t('see-website')}
-                </Button>
-              }
-            />
-          </Stack>
-        </Section>
+        <CaseStudyTopSection
+          mainTitle='Massyve'
+          direction="row"
+          alt="massyve"
+          label={t('case-study')}
+          title={t('massyve-study-title')}
+          description={tHtml('massyve-study-description')}
+          src="/assets/images/projects/massyve/massyve.webp"
+          actionComponent={
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              href="https://massyvemusic.design/massyve-landing"
+              target="_blank"
+            >
+              {t('see-website')}
+            </Button>
+          }
+        />
         <Section>
           <Stack spacing={2}>
             <Stack
@@ -84,6 +75,10 @@ export default function MassyveCaseStudy() {
             <IconCard
               icon={<AutoGraphRoundedIcon fontSize="large" />}
               title={t('massyve-result-title')}
+              sx={{
+                margin: theme => theme.spacing(1, '!important'),
+                minWidth: 'auto !important'
+              }}
             >
               {t('massyve-result-description-1')}
               <br />
