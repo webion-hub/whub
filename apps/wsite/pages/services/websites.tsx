@@ -1,26 +1,25 @@
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import BiotechRounded from '@mui/icons-material/BiotechRounded';
 import BubbleChartRounded from '@mui/icons-material/BubbleChartRounded';
-import CallRounded from '@mui/icons-material/CallRounded';
 import EditRounded from '@mui/icons-material/EditRounded';
 import FormatAlignLeftRounded from '@mui/icons-material/FormatAlignLeftRounded';
 import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
 
-import { Box, Button, CircularProgress, Stack, Typography } from '@mui/material';
-import { useNextNavigator, useOnScreen } from '@wui/core';
+import { Box, CircularProgress, Stack, Typography } from '@mui/material';
+import { useOnScreen } from '@wui/core';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
+import dynamic from 'next/dynamic';
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import { take } from 'rxjs/operators';
 import { interval } from 'rxjs';
-import { ImageAndDescription } from '../../components/blocks/ImageAndDescription';
+import { take } from 'rxjs/operators';
 import { CardGroup } from '../../components/cards/CardGroup';
 import { IconCard } from '../../components/cards/IconCard';
 import { CaseStudyLink } from '../../components/sections/CaseStudyLink';
-import dynamic from 'next/dynamic';
+import { ImageAndDescriptionSection } from '../../components/sections/ImageAndDescriptionSection';
 
 const FaqSection = dynamic(() => import("../../components/sections/FaqSection"), { ssr: true })
 const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
@@ -88,35 +87,19 @@ function Statistic(props: StatisticProps) {
 }
 
 export default function Websites() {
-  const { clickNavigate } = useNextNavigator();
   const { t, tHtml } = useLanguage();
 
   return (
     <Page>
       <PageSettings pageTranslationName="website" />
       <Sections>
-        <Section>
-          <ImageAndDescription
-            direction="row"
-            label={t('website')}
-            title={t('website-page-title')}
-            src="/assets/images/services/websites.jpg"
-            alt="websites"
-            description={tHtml('website-page-description')}
-            actionComponent={
-              <Button
-                size="large"
-                variant="contained"
-                color="primary"
-                startIcon={<CallRounded />}
-                href="/contact-us"
-                onClick={clickNavigate('/contact-us')}
-              >
-                {t('contact-us')}
-              </Button>
-            }
-          />
-        </Section>
+        <ImageAndDescriptionSection
+          label={t('website')}
+          title={t('website-page-title')}
+          src="/assets/images/services/websites.jpg"
+          alt="websites"
+          description={tHtml('website-page-description')}
+        />
         <Section>
           <Stack direction="column" spacing={8}>
             <Typography

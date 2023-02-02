@@ -27,11 +27,7 @@ export default function KaireCaseStudy() {
           <Stack
             direction="column"
             spacing={4}
-            sx={{
-              width: '100%',
-              marginTop: 4,
-              marginInline: 1,
-            }}
+            sx={{ margin: 4 }}
           >
             <Typography variant="h2" textAlign="center">
               Kaire Automation

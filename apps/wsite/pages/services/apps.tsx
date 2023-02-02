@@ -1,57 +1,38 @@
 import BubbleChartRounded from '@mui/icons-material/BubbleChartRounded';
-import CallRounded from '@mui/icons-material/CallRounded';
 import DevicesOtherRounded from '@mui/icons-material/DevicesOtherRounded';
 import EditRounded from '@mui/icons-material/EditRounded';
 import MobileFriendlyRounded from '@mui/icons-material/MobileFriendlyRounded';
 import SecurityRounded from '@mui/icons-material/SecurityRounded';
 import StoreRounded from '@mui/icons-material/StoreRounded';
 
-import { Button } from '@mui/material';
-import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import dynamic from 'next/dynamic';
-import { ImageAndDescription } from '../../components/blocks/ImageAndDescription';
 import { CardGroup } from '../../components/cards/CardGroup';
 import { IconCard } from '../../components/cards/IconCard';
 import { CaseStudyLink } from '../../components/sections/CaseStudyLink';
+import { ImageAndDescriptionSection } from '../../components/sections/ImageAndDescriptionSection';
 
 const FaqSection = dynamic(() => import("../../components/sections/FaqSection"), { ssr: true })
 const GetAQuote = dynamic(() => import("../../components/sections/GetAQuote"), { ssr: true })
 
 export default function Apps() {
-  const { clickNavigate } = useNextNavigator();
   const { t, tHtml } = useLanguage();
 
   return (
     <Page>
       <PageSettings pageTranslationName="app" />
       <Sections>
-        <Section>
-          <ImageAndDescription
-            direction="row"
-            label={t('apps')}
-            title={t('app-page-title')}
-            description={tHtml('app-page-description')}
-            src="/assets/images/services/apps.jpg"
-            alt="apps"
-            actionComponent={
-              <Button
-                size="large"
-                variant="contained"
-                color="primary"
-                startIcon={<CallRounded />}
-                href="/contact-us"
-                onClick={clickNavigate('/contact-us')}
-              >
-                {t('contact-us')}
-              </Button>
-            }
-          />
-        </Section>
+        <ImageAndDescriptionSection
+          label={t('apps')}
+          title={t('app-page-title')}
+          description={tHtml('app-page-description')}
+          src="/assets/images/services/apps.jpg"
+          alt="apps"
+        />
         <Section>
           <CardGroup label={t('app-features')} title={t('app-features-title')}>
             <IconCard
