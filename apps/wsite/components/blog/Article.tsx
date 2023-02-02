@@ -20,7 +20,7 @@ export function Article(props: Partial<BlogArticle>) {
         category={props.category}
         readingTime={props.readingTime}
       />
-      <MaybeShow show={props.cover !== ''}>
+      <MaybeShow show={!!props.cover && props.cover !== ''}>
         <Cover src={props.cover ?? ''} />
       </MaybeShow>
       <ArticleContent
