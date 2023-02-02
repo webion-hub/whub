@@ -1,4 +1,5 @@
 import { Components, createTheme, Theme } from '@mui/material';
+import { getBorderColor } from '../utils/getBorderColor';
 
 const defaultTheme = createTheme();
 
@@ -62,9 +63,7 @@ export const getComponents = (
       root: {
         backgroundImage: 'none',
         borderRadius: 16,
-        border: mode === 'dark'
-            ? '1px solid #10172d'
-            : '1px solid #e2e7fa',
+        border: `1px solid ${getBorderColor(mode)}`,
       },
     },
   },

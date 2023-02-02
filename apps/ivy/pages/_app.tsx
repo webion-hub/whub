@@ -17,16 +17,26 @@ import { Analytics } from '@vercel/analytics/react';
 import "cropperjs/dist/cropper.css";
 import { darkTheme, lightTheme } from '@wui/themes';
 import globalStyle from '@wui/themes/themes/globalStyle';
+import IvyAppBar from '../components/layout/IvyAppBar';
+import { ComponentType } from 'react';
+import IvyLayout from '../components/layout/IvyLayout';
 
 const CssBaseline = dynamic(() => import("@mui/material/CssBaseline"), { ssr: true })
 const GlobalStyles = dynamic(() => import("@mui/material/GlobalStyles"), { ssr: true })
 
-export default function RootLayout({ Component, pageProps }: AppProps) {
+type ComponentWithPageLayout = AppProps & {
+  Component: AppProps['Component'] & {
+    Layout?: ComponentType
+  }
+}
+
+export default function RootLayout({ Component, pageProps }: ComponentWithPageLayout) {
+  const Layout = Component.Layout || IvyLayout
+
   return (
     <>
       <Script strategy='worker' src="scripts/pixel.js"/>
       <Script strategy='worker' src="scripts/hotjar.js"/>
-      <Analytics/>
       <Head>
         <link rel="shortcut icon" href="assets/favicon.ico" />
         <title>Webion</title>
@@ -45,9 +55,7 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
           <CssBaseline />
           <GlobalStyles styles={globalStyle as any} />
 
-          <Layout
-            sx={{ marginTop: 0 }}
-          >
+          <Layout>
             <Component {...pageProps} />
           </Layout>
         </ThemeWrapper>

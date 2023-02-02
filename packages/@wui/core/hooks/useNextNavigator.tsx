@@ -13,8 +13,16 @@ export const useNextNavigator = () => {
     router.push(url);
   };
 
+  const getClickNavigate = (url: string, eventName?: string) => {
+    return {
+      [eventName ?? 'onClick']: clickNavigate(url),
+      href: url     
+    }
+  }
+
   return {
     navigate,
     clickNavigate,
+    getClickNavigate
   };
 };

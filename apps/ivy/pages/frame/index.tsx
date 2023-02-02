@@ -1,6 +1,6 @@
-import IvyLayoutWithSidebar from "../components/layout/IvyLayoutWithSidebar"
+import IvyLayoutWithSidebar from "../../components/layout/IvyLayoutWithSidebar"
 
-export default function Homepage() {
+export default function Frame() {
   return (
     <div>
       ciao
@@ -31,3 +31,5 @@ export default function Homepage() {
     </div>
   )
 }
+
+Frame.Layout = IvyLayoutWithSidebar

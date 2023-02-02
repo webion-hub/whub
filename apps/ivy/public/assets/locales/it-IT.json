@@ -1,3 +1,7 @@
 {
-  
+  "ivy": "Ivy",
+  "settings": "Impostazioni",
+  "frame": "Frame",
+  "profile": "Profilo",
+  "logout": "Esci"
 }
