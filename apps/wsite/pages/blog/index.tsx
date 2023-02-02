@@ -129,7 +129,7 @@ function BlogArticleList() {
       <Section
         sx={{
           padding: 1,
-          position: { xs: 'relative', md: 'sticky'},
+          position: { xs: 'relative', sm: 'sticky'},
           zIndex: 2,
           background: theme => theme.palette.background.default,
           top: theme => theme.mixins.toolbar.height,
