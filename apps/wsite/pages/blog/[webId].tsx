@@ -16,8 +16,13 @@ import HeadMeta from '../../components/others/HeadMeta';
 import GetAQuote from '../../components/sections/GetAQuote';
 
 
-export async function getServerSideProps({ locale, params }: any) {
+export async function getServerSideProps({ locale, params, res }: any) {
   const endpoint = blogFactory().articles.forLanguage(locale).withId(params.webId);
+
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
 
   try {
     const res = await endpoint.load();
