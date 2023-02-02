@@ -13,6 +13,7 @@ export function PageSettings(props: PageSettingsProps) {
 
   return (
     <Head>
+      <link rel="shortcut icon" href="assets/favicon.ico" />
       <title>{t(`${pageTranslationName}-meta-title`)}</title>
       <meta
         content={t(`${pageTranslationName}-meta-description`)}
