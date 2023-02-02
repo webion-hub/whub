@@ -145,7 +145,7 @@ function ArticleSidebar() {
       <Button
         startIcon={<ArrowBackRounded/>}
         sx={{ justifyContent: 'flex-start' }}
-        onClick={clickNavigate('blog')}
+        onClick={clickNavigate('/blog')}
       >
         {t('back-to-articles')}
       </Button>
