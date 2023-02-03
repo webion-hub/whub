@@ -120,5 +120,5 @@ export const getComponents = (
         borderRadius: 16,
       },
     },
-  },
+  }
 });

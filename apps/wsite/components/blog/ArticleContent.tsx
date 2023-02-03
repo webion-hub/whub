@@ -27,7 +27,7 @@ export default function ArticleContent(props: ArticleContentProps) {
 
         const isSmallArticle = howMuchThePageIsOutWhenTheArticleIsFullyReaded < 0 
         const articlePos = isSmallArticle
-          ? fromTop > 0 ? 1 : 0
+          ? 0
           : fromTop / howMuchThePageIsOutWhenTheArticleIsFullyReaded
 
         setPos(articlePos)
