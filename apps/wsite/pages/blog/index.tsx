@@ -15,14 +15,19 @@ import useSWR, { SWRConfig } from 'swr';
 import { ArticleFilters, ArticlesFilterBox } from '../../components/blog/ArticlesFilterBox';
 import BlogArticleCard from '../../components/blog/BlogArticleCard';
 
-export async function getServerSideProps({ locale }: any) {
+export async function getServerSideProps({ locale, res }: any) {
   const endpoint = blogFactory().articles.forLanguage(locale);
-  const res = await endpoint.filter();
+  const result = await endpoint.filter();
+
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
 
   return {
     props: {
       fallback: {
-        [endpoint.url]: res.data,
+        [endpoint.url]: result.data,
       },
     },
   };

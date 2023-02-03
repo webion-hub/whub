@@ -28,6 +28,11 @@ const getArticle = (lang: string, id: number) => {
 export async function getServerSideProps({ locale, params, res }: any) {
   const endpoint = getArticle(locale, params.webId);
 
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
   try {
     const res = await endpoint.load();
     return {
