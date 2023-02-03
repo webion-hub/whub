@@ -37,6 +37,7 @@ export function Section(props: SectionProps) {
     },
   });
   const { setSection } = useLayout();
+  const id = props.id ?? crypto.randomUUID()
 
   const background: SxProps<Theme> = {
     '&::after': {
@@ -57,12 +58,12 @@ export function Section(props: SectionProps) {
     if (!sectionIn || props.ignoreSection)
       return;
 
-    setSection(props.id ?? crypto.randomUUID());
+    setSection(id);
   }, [sectionIn]);
 
   return (
     <StyledSection
-      id={props.id}
+      id={id}
       ref={ref}
       sx={{
         maxWidth: (theme) => props.maxWidth ?? theme.layoutMaxWidth?.section,

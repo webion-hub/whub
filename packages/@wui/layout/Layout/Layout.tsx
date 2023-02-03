@@ -86,7 +86,7 @@ export function Layout(props: LayoutProps) {
           <LinearProgress
             sx={{
               zIndex: 4000,
-              position: 'absolute',
+              position: 'fixed',
               width: '100%',
             }}
           />

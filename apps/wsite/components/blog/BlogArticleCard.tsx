@@ -15,12 +15,10 @@ export default function BlogArticleCard(props: BlogArticleProps) {
   const { clickNavigate } = useNextNavigator();
   const { t } = useLanguage();
 
+  const thereIsACover = props.article.cover !== '' && !!props.article.cover
+
   return (
-    <WebionCard
-      sx={{
-        height: 290
-      }}
-    >
+    <WebionCard sx={{ height: { xs: 'auto', md: 300 } }}>
       <CardActionArea
         onClick={clickNavigate(`/blog/${props.article.webId}`)}
         sx={{ height: '100%' }}
@@ -86,13 +84,17 @@ export default function BlogArticleCard(props: BlogArticleProps) {
               sx={{
                 position: 'relative',
                 order: { xs: -1, sm: 0 },
-                maxWidth: { xs: 'auto', sm: 380 },
-                height: { xs: 250, sm: 'auto' },
+                maxWidth: { xs: '100%', sm: 380 },
+                height: { xs: 150, sm: 'auto' },
                 width: '100%',
                 borderRadius: 4,
+                display: { 
+                  xs: thereIsACover ? 'block' : 'none', 
+                  sm: 'block' 
+                }
               }}
             >
-              <MaybeShow show={props.article.cover !== '' && !!props.article.cover}>
+              <MaybeShow show={thereIsACover}>
                 <NextImg
                   src={props.article.cover}
                   alt={props.article.title}

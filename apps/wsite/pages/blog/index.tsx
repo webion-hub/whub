@@ -137,7 +137,7 @@ function BlogArticleList() {
           position: { xs: 'relative', sm: 'sticky'},
           zIndex: 2,
           background: theme => theme.palette.background.default,
-          top: theme => theme.mixins.toolbar.height,
+          top: theme => ({ xs: 'inherit', sm: theme.mixins.toolbar.height }),
         }}
       >
         <ArticlesFilterBox
@@ -146,7 +146,7 @@ function BlogArticleList() {
           onFiltersChange={fetchArticles}
         />
       </Section>
-      <Section sx={{ paddingTop: 0 }}>
+      <Section sx={{ paddingTop: 1.25 }}>
         <ArticleList 
           articles={articles}
         />
