@@ -38,7 +38,7 @@ export async function getStaticPaths() {
       locale: a.language.toLowerCase() 
     }))
 
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 export async function getStaticProps({ locale, params }: any) {
