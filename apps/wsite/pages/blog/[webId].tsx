@@ -9,27 +9,32 @@ import Page from '@wui/layout/Page';
 import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
+import { useRouter } from 'next/router';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { fromEvent } from 'rxjs';
+import useSWR, { SWRConfig } from 'swr';
 import { Article } from '../../components/blog/Article';
 import HeadMeta from '../../components/others/HeadMeta';
 import GetAQuote from '../../components/sections/GetAQuote';
 
 
-export async function getServerSideProps({ locale, params, res }: any) {
-  const endpoint = blogFactory().articles.forLanguage(locale).withId(params.webId);
+const getArticle = (lang: string, id: number) => {
+  return blogFactory()
+    .articles
+    .forLanguage(lang)
+    .withId(id);
+}
 
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
+export async function getServerSideProps({ locale, params, res }: any) {
+  const endpoint = getArticle(locale, params.webId);
 
   try {
     const res = await endpoint.load();
     return {
       props: {
+        webId: params.webId,
         fallback: {
-          article: res.data,
+          [endpoint.url]: res.data,
         },
       },
     };
@@ -45,19 +50,16 @@ export async function getServerSideProps({ locale, params, res }: any) {
 }
 
 
-export default function ArticlePage({ fallback }: any) {
+export default function ArticlePage({ fallback, webId }: any) {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
 
-  const article: BlogArticle | undefined = fallback?.article
-
-  if (!article) {
+  if (!webId) {
     return null;
   }
 
   return (
     <Page>
-      <HeadMeta title={article.title} />
       <Sections>
         <Section
           sx={{
@@ -78,13 +80,32 @@ export default function ArticlePage({ fallback }: any) {
             <MaybeShow show={isMd}>
               <ArticleSidebar/>
             </MaybeShow>
-            <Article {...article}/>
+            <SWRConfig value={{ fallback, revalidateIfStale: false }}>
+              <ArticleWrapper webId={webId}/>
+            </SWRConfig>
           </Stack>
         </Section>
         <GetAQuote />
       </Sections>
     </Page>
   );
+}
+
+function ArticleWrapper({ webId }: { webId: number }) {
+  const { locale } = useRouter()
+  const endpoint = getArticle(locale ?? '', webId)
+  
+  const { data } = useSWR(endpoint.url, async () => {
+    const res = await endpoint.load()
+    return res.data
+  })
+
+  return (
+    <>
+      <HeadMeta title={data?.title ?? ''} />
+      <Article {...data}/>
+    </>
+  )
 }
 
 
