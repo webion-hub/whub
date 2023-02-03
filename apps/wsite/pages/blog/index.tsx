@@ -10,7 +10,7 @@ import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { DependencyList, EffectCallback, memo, useEffect, useRef, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import useSWR, { SWRConfig } from 'swr';
 import { ArticleFilters, ArticlesFilterBox } from '../../components/blog/ArticlesFilterBox';
 import BlogArticleCard from '../../components/blog/BlogArticleCard';
@@ -55,7 +55,7 @@ export default function Blog({ fallback }: any) {
             {t('blog-description')}
           </Typography>
         </Section>
-        <SWRConfig value={{ fallback, revalidateIfStale: false }}>
+        <SWRConfig value={{ fallback }}>
           <BlogArticleList/>
         </SWRConfig>
       </Sections>

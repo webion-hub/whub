@@ -80,7 +80,7 @@ export default function ArticlePage({ fallback, webId }: any) {
             <MaybeShow show={isMd}>
               <ArticleSidebar/>
             </MaybeShow>
-            <SWRConfig value={{ fallback, revalidateIfStale: false }}>
+            <SWRConfig value={{ fallback }}>
               <ArticleWrapper webId={webId}/>
             </SWRConfig>
           </Stack>
