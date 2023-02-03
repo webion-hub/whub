@@ -6,10 +6,7 @@ export default function ArticleTitle({ title }: { title: string }) {
     <Typography
       variant="h3"
       component="h1"
-      sx={{
-        textAlign: 'center',
-        marginTop: 8,
-      }}
+      sx={{ textAlign: 'center', marginTop: 4 }}
     >
       {title}
     </Typography>

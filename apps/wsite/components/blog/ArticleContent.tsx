@@ -1,14 +1,40 @@
-import { styled } from '@mui/material';
+import { styled, useTheme } from '@mui/material';
 import { Box } from '@mui/system';
+import { useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { from, fromEvent } from 'rxjs';
+import { useArticlePos } from '../../pages/blog/[webId]';
 import CodeSnippet from './CodeSnippet';
 interface ArticleContentProps {
   readonly content: string;
 }
 
 export default function ArticleContent(props: ArticleContentProps) {
+  const articleContainerRef = useRef<HTMLDivElement>()
+  const theme = useTheme()
+  const { setPos } = useArticlePos()
+
+  useEffect(() => {
+    const sub = fromEvent(window, 'scroll')
+      .subscribe(() => {
+        const appbarHeight = Number(theme.mixins.toolbar.height)
+
+        const rect = articleContainerRef.current?.getBoundingClientRect()
+        const fromTop = rect?.top ?? 0 + appbarHeight;
+        const height = rect?.height ?? 0
+        const availablePageSpace = window.innerHeight - appbarHeight
+        const howMuchThePageIsOutWhenTheArticleIsFullyReaded = height - availablePageSpace
+
+        const articlePos = -fromTop / howMuchThePageIsOutWhenTheArticleIsFullyReaded
+        setPos(articlePos)
+      }) 
+
+    return () => sub.unsubscribe()
+  }, [articleContainerRef.current])
+
   return (
     <Box
+      ref={articleContainerRef}
       sx={{
         img: {
           width: '100%',

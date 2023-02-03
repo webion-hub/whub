@@ -15,15 +15,10 @@ import useSWR, { SWRConfig } from 'swr';
 import { ArticleFilters, ArticlesFilterBox } from '../../components/blog/ArticlesFilterBox';
 import BlogArticleCard from '../../components/blog/BlogArticleCard';
 
-export async function getServerSideProps({ locale, res }: any) {
+export async function getStaticProps({ locale }: any) {
   const endpoint = blogFactory().articles.forLanguage(locale);
   const result = await endpoint.filter();
-
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
-
+  
   return {
     props: {
       fallback: {

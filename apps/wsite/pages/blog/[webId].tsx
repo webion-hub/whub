@@ -1,6 +1,6 @@
 import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 
-import { Button, Divider, List, ListItem, ListItemButton, ListItemText, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Button, CircularProgress, Divider, List, ListItem, ListItemButton, ListItemText, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { blogFactory } from '@wapi-ui/blog';
 import { BlogArticle } from '@wapi/blog';
 import { MaybeShow } from '@wui/components';
@@ -10,12 +10,13 @@ import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import { useRouter } from 'next/router';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { fromEvent } from 'rxjs';
 import useSWR, { SWRConfig } from 'swr';
 import { Article } from '../../components/blog/Article';
 import HeadMeta from '../../components/others/HeadMeta';
 import GetAQuote from '../../components/sections/GetAQuote';
+import { create } from 'zustand'
 
 
 const getArticle = (lang: string, id: number) => {
@@ -25,13 +26,23 @@ const getArticle = (lang: string, id: number) => {
     .withId(id);
 }
 
-export async function getServerSideProps({ locale, params, res }: any) {
-  const endpoint = getArticle(locale, params.webId);
+export async function getStaticPaths() {
+  const request = await blogFactory()
+    .sitemap
+    .load();
 
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
+  const paths = request
+    .data
+    .map(a => ({ 
+      params: { webId: a.webId }, 
+      locale: a.language.toLowerCase() 
+    }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ locale, params }: any) {
+  const endpoint = getArticle(locale, params.webId);
 
   try {
     const res = await endpoint.load();
@@ -54,10 +65,26 @@ export async function getServerSideProps({ locale, params, res }: any) {
   }
 }
 
+interface ArticlePos {
+  pos: number,
+  setPos: (pos: number) => void
+} 
+
+export const useArticlePos = create<ArticlePos>((set) => ({
+  pos: 0,
+  setPos: (pos: number) => set(() => {
+    const inTopRange = pos >= 1 ? 1 : pos
+    const inRange = inTopRange <= 0 ? 0 : inTopRange
+    
+    return { pos: inRange }
+  }),
+})) 
 
 export default function ArticlePage({ fallback, webId }: any) {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
+  const { clickNavigate } = useNextNavigator()
+  const { t } = useLanguage()
 
   if (!webId) {
     return null;
@@ -67,10 +94,21 @@ export default function ArticlePage({ fallback, webId }: any) {
     <Page>
       <Sections>
         <Section
-          sx={{
-            paddingInline: 2,
-          }}
+          sx={{ paddingInline: 2 }}
         >
+          <MaybeShow show={!isMd}>
+            <Button
+              variant='outlined'
+              startIcon={<ArrowBackRounded/>}
+              onClick={clickNavigate('/blog')}
+              sx={{ 
+                justifyContent: 'flex-start', 
+                marginTop: 4 
+              }}
+            >
+              {t('back-to-articles')}
+            </Button>
+          </MaybeShow>
           <Stack
             direction="row"
             spacing={2}
@@ -116,6 +154,7 @@ function ArticleWrapper({ webId }: { webId: number }) {
 
 function ArticleSidebar() {
   const { clickNavigate } = useNextNavigator()
+  const { pos } = useArticlePos()
 
   const [sections, setSections] = useState([] as string[])
   const [currentSection, setCurrentSection] = useState('')
@@ -168,13 +207,22 @@ function ArticleSidebar() {
         width: 400,
       }}
     >
-      <Button
-        startIcon={<ArrowBackRounded/>}
-        sx={{ justifyContent: 'flex-start' }}
-        onClick={clickNavigate('/blog')}
+      <Stack
+        direction="row"
+        justifyContent="space-between"
       >
-        {t('back-to-articles')}
-      </Button>
+        <Button
+          startIcon={<ArrowBackRounded/>}
+          sx={{ justifyContent: 'flex-start' }}
+          onClick={clickNavigate('/blog')}
+        >
+          {t('back-to-articles')}
+        </Button>
+        <CircularProgress
+          variant="determinate"
+          value={pos * 100}
+        />
+      </Stack>
       <Typography
         variant="h6"
       >
