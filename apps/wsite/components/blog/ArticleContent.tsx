@@ -20,12 +20,16 @@ export default function ArticleContent(props: ArticleContentProps) {
         const appbarHeight = Number(theme.mixins.toolbar.height)
 
         const rect = articleContainerRef.current?.getBoundingClientRect()
-        const fromTop = rect?.top ?? 0 + appbarHeight;
+        const fromTop = -((rect?.top ?? 0) - appbarHeight);
         const height = rect?.height ?? 0
         const availablePageSpace = window.innerHeight - appbarHeight
         const howMuchThePageIsOutWhenTheArticleIsFullyReaded = height - availablePageSpace
 
-        const articlePos = -fromTop / howMuchThePageIsOutWhenTheArticleIsFullyReaded
+        const isSmallArticle = howMuchThePageIsOutWhenTheArticleIsFullyReaded < 0 
+        const articlePos = isSmallArticle
+          ? fromTop > 0 ? 1 : 0
+          : fromTop / howMuchThePageIsOutWhenTheArticleIsFullyReaded
+
         setPos(articlePos)
       }) 
 

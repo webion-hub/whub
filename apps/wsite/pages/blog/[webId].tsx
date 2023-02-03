@@ -2,7 +2,6 @@ import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 
 import { Button, CircularProgress, Divider, List, ListItem, ListItemButton, ListItemText, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { blogFactory } from '@wapi-ui/blog';
-import { BlogArticle } from '@wapi/blog';
 import { MaybeShow } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';
@@ -10,13 +9,13 @@ import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import { useRouter } from 'next/router';
-import { createContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { fromEvent } from 'rxjs';
 import useSWR, { SWRConfig } from 'swr';
+import { create } from 'zustand';
 import { Article } from '../../components/blog/Article';
 import HeadMeta from '../../components/others/HeadMeta';
 import GetAQuote from '../../components/sections/GetAQuote';
-import { create } from 'zustand'
 
 
 const getArticle = (lang: string, id: number) => {
@@ -221,6 +220,11 @@ function ArticleSidebar() {
         <CircularProgress
           variant="determinate"
           value={pos * 100}
+          sx={{ 
+            '.MuiCircularProgress-circle': {
+              transition: 'none !important'
+            } 
+          }}
         />
       </Stack>
       <Typography
