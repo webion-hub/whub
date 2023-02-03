@@ -47,7 +47,7 @@ export async function getServerSideProps({ locale, params, res }: any) {
   catch {
     return {
       redirect: {
-        destination: '/blog',
+        destination: `/${locale}/blog`,
         permanent: false,
       }
     };
