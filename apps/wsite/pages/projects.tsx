@@ -91,13 +91,13 @@ export default function Projects() {
               secondaryButtonLabel={t('learn-more')}
             />
             <Project
-              title="Yoga Corfu Holidays"
-              paragraph={t('yoga')}
-              src="/assets/images/projects/yoga.webp"
-              alt="yoga-corfu-holidays"
+              title="Ciao Hearing"
+              paragraph={t('ciaohearing')}
+              src="/assets/images/projects/ciaohearing.png"
+              alt="ciao-hearing"
               onClick={() =>
                 window
-                  .open('https://www.yogacorfuholidays.com', '_blank')
+                  .open('https://ciaohearing.it/', '_blank')
                   ?.focus()
               }
               buttonLabel={t('see-website')}

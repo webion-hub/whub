@@ -1,5 +1,5 @@
-import { Typography } from '@mui/material';
-import { Stack } from '@mui/system';
+import { Typography, useMediaQuery } from '@mui/material';
+import { Stack, useTheme } from '@mui/system';
 import { blogFactory } from '@wapi-ui/blog';
 import { BlogArticle } from '@wapi/blog';
 import { useDidUpdateEffect } from '@wui/core';
@@ -30,26 +30,24 @@ export async function getStaticProps({ locale }: any) {
 
 export default function Blog({ fallback }: any) {
   const { t } = useLanguage();
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Page>
       <PageSettings pageTranslationName="blog" />
       <Sections>
         <Section
-          sx={{
-            paddingInline: 2,
-            paddingBottom: 1,
-          }}
+          sx={{ paddingInline: 2 }}
         >
           <Typography
-            variant="h3"
+            variant={isMd ? "h4" : "h3"}
             component="h1"
             color="text"
             sx={{
-              paddingTop: 8,
+              marginTop: 4,
               maxWidth: '100%',
               textAlign: 'center',
-              marginBottom: 8,
             }}
           >
             {t('blog-description')}
