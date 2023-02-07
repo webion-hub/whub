@@ -18,7 +18,7 @@ export default function BlogArticleCard(props: BlogArticleProps) {
   const thereIsACover = props.article.cover !== '' && !!props.article.cover
 
   return (
-    <WebionCard sx={{ height: { xs: 'auto', md: 300 } }}>
+    <WebionCard sx={{ height: { xs: 'auto', sm: 300 } }}>
       <CardActionArea
         onClick={clickNavigate(`/blog/${props.article.webId}`)}
         sx={{ height: '100%' }}
@@ -30,49 +30,65 @@ export default function BlogArticleCard(props: BlogArticleProps) {
         >
           <Stack
             direction="column"
+            justifyContent="space-between"
             sx={{
               padding: 4,
               width: '100%',
+              "&::after": {
+                content: "''",
+                position: 'absolute',
+                width: '100%',
+                pointerEvents: 'none',
+                bottom: theme => theme.spacing(4),
+                height: theme => theme.spacing(2),
+                background: theme => ` linear-gradient(transparent, ${theme.palette.background.paper})` 
+              }
             }}
           >
-            <Typography variant="body2" color="text.secondary">
-              {new Date(props.article.publishDate).toLocaleDateString()}
-            </Typography>
-            <Stack
-              direction="row"
-              alignContent="center"
-              alignItems="center"
-              spacing={3}
-              sx={{ marginTop: 4 }}
-            >
-              <Box>
-                <Chip
-                  sx={{
-                    textTransform: 'capitalize',
-                  }}
-                  label={t(props.article.category)}
-                />
-              </Box>
-              <Typography color="text.secondary" sx={{ fontStyle: 'italic' }}>
-                {props.article.readingTime} min
+            <Stack direction="column">
+              <Typography variant="body2" color="text.secondary">
+                {new Date(props.article.publishDate).toLocaleDateString()}
+              </Typography>
+              <Stack
+                direction="row"
+                alignContent="center"
+                alignItems="center"
+                spacing={3}
+                sx={{ marginTop: 4 }}
+              >
+                <Box>
+                  <Chip
+                    sx={{
+                      textTransform: 'capitalize',
+                    }}
+                    label={t(props.article.category)}
+                  />
+                </Box>
+                <Typography color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                  {props.article.readingTime} min
+                </Typography>
+              </Stack>
+              <Typography
+                variant="h4"
+                component="h2"
+                sx={{
+                  marginTop: 2,
+                }}
+              >
+                {props.article.title}
               </Typography>
             </Stack>
-            <Typography
-              variant="h4"
-              component="h2"
-              sx={{
-                marginTop: 2,
-              }}
-            >
-              {props.article.title}
-            </Typography>
+
             <Box
               sx={{
                 marginTop: 2,
                 display: '-webkit-box',
-                WebkitLineClamp: '2',
+                WebkitLineClamp: '3',
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
+                "& > *": {
+                  display: 'inline'
+                }
               }}
             >
               <ReactMarkdown>
