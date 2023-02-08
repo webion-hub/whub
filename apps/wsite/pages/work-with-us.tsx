@@ -107,6 +107,10 @@ interface JobCardProps {
 function JobCard(props: JobCardProps) {
   const [open, setOpen] = useState(false)
 
+  const openEmail = () => {
+    WebionRepository.openEmail({ subject: `Candidatura - ${props.title}` })
+  }
+
   return (
     <>
       <ClickableCard
@@ -152,7 +156,7 @@ function JobCard(props: JobCardProps) {
               Manda la tua candidatura a&nbsp;
               <Link
                 href='#'
-                onClick={WebionRepository.openEmail}
+                onClick={openEmail}
               >
                 {WebionRepository.EMAIL}
               </Link>
@@ -171,7 +175,7 @@ function JobCard(props: JobCardProps) {
           </Button>
           <Button 
             variant='contained'
-            onClick={WebionRepository.openEmail} 
+            onClick={openEmail} 
             autoFocus
           >
             Candidati

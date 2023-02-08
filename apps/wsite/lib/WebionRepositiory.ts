@@ -17,7 +17,15 @@ export class WebionRepository {
   static readonly LINKEDIN = 'https://www.linkedin.com/company/79045044/admin/';
   static readonly GITHUB = 'https://github.com/webion-hub';
 
-  static openEmail = () => this.sethref(this.HREF_EMAIL);
+  static openEmail = (opt?: { subject?: string }) => {
+    return this.sethref(
+      this.HREF_EMAIL, 
+      opt?.subject 
+        ? `?subject=${opt.subject}` 
+        : ''
+    );
+  }
+    
   static openPhone = () => this.sethref(this.HREF_PHONE);
   static openPec = () => this.sethref(this.HREF_PEC);
   static openFacebook = () => this.open(this.FACEBOOK);
@@ -27,8 +35,8 @@ export class WebionRepository {
   static openGithub = () => this.open(this.GITHUB);
   static openAddress = () => this.open(this.MAPS_ADDRESS);
 
-  private static sethref(url: string) {
-    window.location.href = url;
+  private static sethref(url: string, params: string = "") {
+    window.location.href = url + params;
   }
 
   private static open(url: string) {
