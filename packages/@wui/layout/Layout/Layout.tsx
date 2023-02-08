@@ -59,17 +59,17 @@ export function Layout(props: LayoutProps) {
     };
   }, []);
 
-  const toggleSidebar = () => {
+  const toggleSideBar = () => {
     setOpenSidebar(status => !status)
   }
 
   return (
     <LayoutContext.Provider
       value={{
-        setSection: setSection,
+        setSection,
         setLoading,
+        toggleSideBar,
         setSiebarStatus: setOpenSidebar,
-        toggleSideBar: toggleSidebar,
         currentSection: section,
         loading,
         isSidebarOpen: openSidebar

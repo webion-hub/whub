@@ -31,13 +31,12 @@ export interface SectionProps {
 
 export function Section(props: SectionProps) {
   const ref = useRef<any>();
+  const { setSection } = useLayout();
   const sectionIn = useOnScreen(ref, {
     observeOptions: {
-      rootMargin: '-50% 0% -50% 0%',
+      rootMargin: '-0% 0% -50% 0%',
     },
   });
-  const { setSection } = useLayout();
-  const id = props.id ?? crypto.randomUUID()
 
   const background: SxProps<Theme> = {
     '&::after': {
@@ -58,12 +57,12 @@ export function Section(props: SectionProps) {
     if (!sectionIn || props.ignoreSection)
       return;
 
-    setSection(id);
+    setSection(props.id);
   }, [sectionIn]);
 
   return (
     <StyledSection
-      id={id}
+      id={props.id}
       ref={ref}
       sx={{
         maxWidth: (theme) => props.maxWidth ?? theme.layoutMaxWidth?.section,

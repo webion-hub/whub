@@ -19,8 +19,6 @@ export function AppBarSection(props: AppBarSectionProps) {
     .entries(props.isVisible ?? {})
     .map(v => [v[0], v[1] ? 'flex' : 'none']) 
 
-  console.log(Object.fromEntries(visibility))
-
   return (
     <Stack
       direction="row"
