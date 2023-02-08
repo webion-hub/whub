@@ -1,23 +1,25 @@
 import { Stack, SxProps, Theme, useMediaQuery, useTheme } from '@mui/material';
+import { Breakpoint } from '@mui/system';
 import React from 'react';
 
+type Visibility = {
+  [fixedBreakpoint in Breakpoint]?: boolean;
+}
 export interface AppBarSectionProps {
   readonly children: any;
-  readonly hideOnMobile?: boolean;
+  readonly isVisible?: Visibility;
   readonly spacing?: number;
   readonly fullWidth?: boolean;
   readonly sx?: SxProps<Theme>;
   readonly alignment: 'start' | 'end' | 'center' | '';
 }
 
-export const AppBarSection = React.forwardRef<
-  HTMLDivElement,
-  AppBarSectionProps
->((props, ref) => {
-  const theme = useTheme();
-  const isMobileView = useMediaQuery(theme.breakpoints.down('md'));
+export function AppBarSection(props: AppBarSectionProps) {
+  const visibility = Object
+    .entries(props.isVisible ?? {})
+    .map(v => [v[0], v[1] ? 'flex' : 'none']) 
 
-  if (isMobileView && props.hideOnMobile) return null;
+  console.log(Object.fromEntries(visibility))
 
   return (
     <Stack
@@ -25,17 +27,17 @@ export const AppBarSection = React.forwardRef<
       spacing={props.spacing}
       sx={{
         width: props.fullWidth ? '100%' : 'auto',
+        display: Object.fromEntries(visibility), 
         ...props.sx,
       }}
     >
       {props.children}
     </Stack>
   );
-});
+};
 
 AppBarSection.displayName = 'AppBarSection'
 
 AppBarSection.defaultProps = {
   alignment: '',
-  hideOnMobile: false,
 };

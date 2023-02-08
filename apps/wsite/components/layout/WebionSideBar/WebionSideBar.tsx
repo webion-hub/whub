@@ -17,7 +17,7 @@ import { SideBar, SideBarItem } from '@wui/layout/Sidebar';
 import useLanguage from '@wui/wrappers/useLanguage';
 import { SideBarCollapseItem } from './SideBarCollapseItem';
 import { SideBarLanguageButton } from './SideBarLanguageButton';
-import { BookRounded } from '@mui/icons-material';
+import { BookRounded, WorkRounded } from '@mui/icons-material';
 
 export default function WebionSideBar() {
   const { t } = useLanguage();
@@ -46,9 +46,14 @@ export default function WebionSideBar() {
       href: '/who-we-are',
     },
     {
-      text: t('blog'),
+      text: t('navbar-button6'),
       icon: BookRounded,
       href: '/blog',
+    },
+    {
+      text: t('navbar-button7'),
+      icon: WorkRounded,
+      href: '/work-with-us',
     },
     {
       text: t('contact-us'),

@@ -5,6 +5,7 @@
   "navbar-button4": "Chi siamo",
   "navbar-button5": "Tecnologie",
   "navbar-button6": "Blog",
+  "navbar-button7": "Lavora con noi",
 
   "footer-title1": "Contatti",
   "footer-title2": "Home",
@@ -340,6 +341,13 @@
   "simm-meta-title": "Webion - Simm Imballaggi",
   "simm-meta-description": "Sviluppo e-commerce custom in Next.js e C# per Simm Imballaggi",
   "simm-meta-keywords": "Sviluppo e-commerce, esempio di ecommerce, ecommerce personalizzato, ecommerce in next.js, Simm imballaggi",
+
+  "work-meta-title": "Webion - Lavora con noi",
+  "work-meta-description": "Unisciti al team e inizia a lavorare con noi.",
+  "work-meta-keywords": "C#, Next JS, Flutter, Docker, React, Net Core, Angular, SQL, Mongo DB",
+
+  "work-with-us": "Unisciti al team",
+  "work-with-us-title": "Lavora con noi",
 
   "blog-meta-title": "Webion - Blog",
   "blog-meta-description": "Webion blog: Esplorando l'intersezione tra informatica, impresa, design e tecnologia",

@@ -28,7 +28,7 @@ export default function WebionAppbar() {
         </AppBarSection>
         <AppBarSection
           alignment="end"
-          hideOnMobile
+          isVisible={{ xs: false, lg: true }}
           spacing={3}
           sx={{
             '& > *': {
@@ -69,6 +69,13 @@ export default function WebionAppbar() {
           >
             {t('navbar-button4')}
           </Button>
+          <Button
+            color="inherit"
+            href="/work-with-us"
+            onClick={clickNavigate('/work-with-us')}
+          >
+            {t('navbar-button7')}
+          </Button>
           <LanguageDropdownButton icon={PublicRounded} />
           <BasicThemeButton />
           <Button
@@ -80,7 +87,10 @@ export default function WebionAppbar() {
             {t('contact-us')}
           </Button>
         </AppBarSection>
-        <AppBarSection alignment="end">
+        <AppBarSection
+          alignment="end"
+          isVisible={{ xs: true, lg: false }}
+        >
           <SideBarButton color="inherit">
             <svg
               width="24"
