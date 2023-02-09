@@ -257,7 +257,7 @@ function ArticleSidebar() {
                       borderRadius: 2
                     }}
                   >
-                    <ListItemText secondary={`${i + 1}. ${s}`}/>
+                    <ListItemText secondary={s}/>
                   </ListItemButton>
                 </ListItem>
               )

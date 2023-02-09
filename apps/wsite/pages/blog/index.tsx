@@ -11,22 +11,9 @@ import useLanguage from '@wui/wrappers/useLanguage';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { memo, useRef, useState } from 'react';
-import useSWR, { SWRConfig } from 'swr';
+import useSWR from 'swr';
 import { ArticleFilters, ArticlesFilterBox } from '../../components/blog/ArticlesFilterBox';
 import BlogArticleCard from '../../components/blog/BlogArticleCard';
-
-export async function getServerSideProps({ locale }: any) {
-  const endpoint = blogFactory().articles.forLanguage(locale);
-  const result = await endpoint.filter();
-  
-  return {
-    props: {
-      fallback: {
-        [endpoint.url]: result.data,
-      },
-    },
-  };
-}
 
 export default function Blog({ fallback }: any) {
   const { t } = useLanguage();
@@ -53,9 +40,7 @@ export default function Blog({ fallback }: any) {
             {t('blog-description')}
           </Typography>
         </Section>
-        <SWRConfig value={{ fallback }}>
-          <BlogArticleList/>
-        </SWRConfig>
+        <BlogArticleList/>
       </Sections>
     </Page>
   );
@@ -96,12 +81,14 @@ function BlogArticleList() {
   const endpoint = blogFactory().articles.forLanguage(locale ?? 'it')
 
   const { data, mutate } = useSWR(endpoint.url, async () => {
+    setLoading(true)
     const res = await endpoint
       .filter({
         categories: filters.current.categories as any[],
         query: filters.current.searchValue
       }, cancelToken.current.token)
 
+    setLoading(false)
     return res.data
   })
 
@@ -117,9 +104,7 @@ function BlogArticleList() {
     cancelToken.current.cancel()
     cancelToken.current = axios.CancelToken.source()
 
-    setLoading(true)
     await mutate()
-    setLoading(false)
   }
 
   return (
