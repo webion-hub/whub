@@ -30,7 +30,6 @@ export default function ArticleContent(props: ArticleContentProps) {
           ? 0
           : fromTop / howMuchThePageIsOutWhenTheArticleIsFullyReaded
 
-        console.log(articlePos)
         setPos(articlePos)
       }) 
 

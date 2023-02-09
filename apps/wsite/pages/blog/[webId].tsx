@@ -182,7 +182,7 @@ function ArticleSidebar() {
       .subscribe(updateCurrentSection)
 
     return () => sub.unsubscribe()
-  }, [])
+  }, [articleRef.current])
 
   const setScrollBehavior = (type: 'smooth' | 'auto') => {
     document.documentElement.style.scrollBehavior = type
@@ -190,12 +190,14 @@ function ArticleSidebar() {
 
   const updateCurrentSection = () => {
     if(!articleRef.current)
-      return
-
+    return
+    
     const elements = Array.from(articleRef.current)
-    const current = elements.find(e => e.getBoundingClientRect().top > 0)
+    const current = elements.find(e => {
+      return e.getBoundingClientRect().top > 0})
     setCurrentSection(current?.id ?? '')
   }
+
 
   return (
     <Stack
@@ -253,9 +255,7 @@ function ArticleSidebar() {
                   <ListItemButton
                     href={`#${uri}`}
                     selected={uri === currentSection}
-                    sx={{
-                      borderRadius: 2
-                    }}
+                    sx={{ borderRadius: 2 }}
                   >
                     <ListItemText secondary={s}/>
                   </ListItemButton>
