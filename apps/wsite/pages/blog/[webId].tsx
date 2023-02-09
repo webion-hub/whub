@@ -158,7 +158,6 @@ function ArticleSidebar() {
   const [sections, setSections] = useState([] as string[])
   const [currentSection, setCurrentSection] = useState('')
 
-  const articleRef = useRef<NodeListOf<Element>>()
   const { t } = useLanguage()
 
   useLayoutEffect(() => {
@@ -170,9 +169,7 @@ function ArticleSidebar() {
     if(!document)
       return
 
-    articleRef.current = document.querySelectorAll('.Wui-section--hyperlink')
-
-    const elements = Array.from(articleRef.current)
+    const elements = Array.from(getSections())
     const sectionsList = elements.map((e) => e.innerHTML)
 
     setSections(sectionsList)
@@ -189,15 +186,15 @@ function ArticleSidebar() {
   }
 
   const updateCurrentSection = () => {
-    if(!articleRef.current)
-    return
-    
-    const elements = Array.from(articleRef.current)
+    const elements = Array.from(getSections())
     const current = elements.find(e => {
       return e.getBoundingClientRect().top > 0})
     setCurrentSection(current?.id ?? '')
   }
 
+  const getSections = () => {
+    return document.querySelectorAll('.Wui-section--hyperlink')
+  }
 
   return (
     <Stack
