@@ -182,7 +182,7 @@ function ArticleSidebar() {
       .subscribe(updateCurrentSection)
 
     return () => sub.unsubscribe()
-  }, [articleRef.current])
+  }, [])
 
   const setScrollBehavior = (type: 'smooth' | 'auto') => {
     document.documentElement.style.scrollBehavior = type
