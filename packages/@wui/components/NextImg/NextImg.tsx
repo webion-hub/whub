@@ -57,12 +57,12 @@ export function NextImg(props: NextImgProps) {
           onLoad={() => setLoading(false)}
           fill
           sx={{
-            ...(sx as any),
             visibility: loading ? 'hidden' : 'visible',
             position: loading ? 'absolute' : 'relative !important',
             objectFit: 'contain',
             width: `${widthStyle} !important`,
             height: `${heightStyle} !important`,
+            ...(sx as any),
           }}
         />
       </>
@@ -75,9 +75,9 @@ export function NextImg(props: NextImgProps) {
       <NextImgSx
         onLoad={() => setLoading(false)}
         sx={{
-          ...sx,
           position: loading ? 'absolute' : 'unset',
-          visibility: loading ? 'hidden' : 'visible'
+          visibility: loading ? 'hidden' : 'visible',
+          ...sx,
         }} 
         {...others} 
       />
