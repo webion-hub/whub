@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/octocat/my-other-repo.git"
+    "url": "https://github.com/webion-hub/whub.git"
   },
   "scripts": {
     "lint": "eslint *.ts*"
