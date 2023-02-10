@@ -26,7 +26,7 @@ function Project(props: ProjectProps) {
         <NextImg
           src={props.src}
           alt={props.alt}
-          auto={{ width: '100%' }}
+          auto={{ height: '170px' }}
           sx={{
             borderRadius: (theme) => theme.shape.borderRadius,
           }}
