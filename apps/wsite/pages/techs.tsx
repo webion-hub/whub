@@ -138,6 +138,7 @@ function TechImg(props: TechImgProps) {
       {...props}
       skeletonVariant="circular"
       auto={{ width: '100%' }}
+      skeletonSx={{ height: '100% !important' }}
       sizes="100vw"
       sx={{ padding: 1.5 }}
     />
