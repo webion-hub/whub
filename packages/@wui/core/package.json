@@ -4,6 +4,9 @@
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@wui/core"
+  },
   "scripts": {
     "lint": "eslint *.ts*"
   },
