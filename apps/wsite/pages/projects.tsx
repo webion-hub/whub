@@ -1,4 +1,5 @@
 
+import { Box } from '@mui/material';
 import { NextImg } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';
@@ -23,14 +24,19 @@ function Project(props: ProjectProps) {
     <ImageCard
       {...others}
       img={
-        <NextImg
-          src={props.src}
-          alt={props.alt}
-          auto={{ height: '170px' }}
-          sx={{
-            borderRadius: (theme) => theme.shape.borderRadius,
-          }}
-        />
+        <Box 
+          height={170}
+          position="relative"  
+        >
+          <NextImg
+            src={props.src}
+            alt={props.alt}
+            fill
+            sx={{
+              borderRadius: (theme) => theme.shape.borderRadius,
+            }}
+          />
+        </Box>
       }
     />
   );
