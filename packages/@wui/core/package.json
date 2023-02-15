@@ -1,6 +1,7 @@
 {
   "name": "@wui/core",
   "version": "0.0.0",
+  "private": false,
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
