@@ -18,6 +18,8 @@ jobs:
 
 
       - run: pnpm install --frozen-lockfile
+      - run: pnpm config set @webion:registry https://npm.pkg.github.com
+
       - run: pnpm publish packages/@wui/core/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GHPKG_TOKEN }}

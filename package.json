@@ -2,9 +2,6 @@
   "name": "whub",
   "version": "0.0.0",
   "private": true,
-  "publishConfig": {
-    "webion:registry": "https://npm.pkg.github.com"
-  },
   "workspaces": [
     "apps/*",
     "packages/*",
