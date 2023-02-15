@@ -16,7 +16,6 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm config set registry https://npm.pkg.github.com --prefix packages/@wui/core/
       - run: pnpm publish packages/@wui/core/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
