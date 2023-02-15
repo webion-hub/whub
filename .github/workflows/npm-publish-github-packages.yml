@@ -13,13 +13,11 @@ jobs:
       - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: 'https://registry.npmjs.org/'
           scope: 'webion-hub'
 
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm config set @webion:registry https://npm.pkg.github.com
-
       - run: pnpm publish packages/@wui/core/
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GHPKG_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
