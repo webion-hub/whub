@@ -1,4 +1,4 @@
-name: Publish package to GitHub Packages
+name: Publish package to Npm Packages
 on:
   push:
       
@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           registry-url: 'https://registry.npmjs.org/'
-          scope: 'webion-hub'
+          scope: 'webion'
 
 
       - run: pnpm install --frozen-lockfile
