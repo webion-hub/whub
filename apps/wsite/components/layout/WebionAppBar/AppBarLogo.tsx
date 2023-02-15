@@ -22,6 +22,7 @@ export function AppBarLogo() {
       }}
     >
       <NextImg
+        skeletonVariant="circular"
         src="/assets/images/webion-logo.png"
         width={42}
         height={42}

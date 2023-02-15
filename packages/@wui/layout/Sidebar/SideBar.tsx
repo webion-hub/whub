@@ -13,7 +13,7 @@ export interface SideBarProps {
 export const SideBar = React.forwardRef<HTMLDivElement, SideBarProps>(
   (props, ref) => {
     const theme = useTheme();
-    const isMobileView = useMediaQuery(theme.breakpoints.down('md'));
+    const isMobileView = useMediaQuery(theme.breakpoints.down('lg'));
 
     const { isSidebarOpen, setSiebarStatus } = useLayout();
 

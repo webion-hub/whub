@@ -25,6 +25,7 @@ export function CaseStudyLink(props: CaseStudyLinkProps) {
           direction="row"
           flexWrap="wrap"
           justifyContent="space-evenly"
+          alignItems="stretch"
           sx={{
             width: '100%',
             marginTop: 4,
@@ -37,8 +38,9 @@ export function CaseStudyLink(props: CaseStudyLinkProps) {
         >
           <NextImg
             src={props.src}
-            alt="simm"
+            alt={props.caseStudyTitle}
             fill
+            skeletonSx={{ height: 'unset !important' }}
             sx={{
               objectFit: 'contain',
               position: 'relative !important',

@@ -1,6 +1,7 @@
-import { Box, styled } from '@mui/material';
+import { Box, Skeleton, SkeletonProps, styled } from '@mui/material';
 import { SxProps, Theme } from '@mui/material';
 import Image, { ImageProps } from 'next/image';
+import { useState } from 'react';
 
 const NextImgSx = styled(Image)({});
 
@@ -11,37 +12,75 @@ interface AutoSizeProps {
 
 interface NextImgProps extends ImageProps {
   readonly sx?: SxProps<Theme>;
+  readonly skeletonVariant?: SkeletonProps['variant'],
+  readonly skeletonSx?: SkeletonProps['sx'],
   readonly auto?: AutoSizeProps;
 }
 
 export function NextImg(props: NextImgProps) {
+  const [loading, setLoading] = useState(true)
   const { auto, sx, ...others } = props;
+
+  const autoWidth = auto?.width ?? 'auto' 
+  const autoHeight = auto?.height ?? 'auto' 
+
+  const widthStyle = auto 
+    ? autoWidth 
+    : others.width
+  
+  const heightStyle = auto 
+    ? autoHeight 
+    : others.height
+  
+  const skeleton = (
+    <Skeleton
+      variant={props.skeletonVariant ?? 'rectangular'}
+      width={widthStyle ?? '100%'}
+      height={heightStyle ?? '100%'}
+      animation="wave"
+      sx={{
+        ...sx,
+        ...(props.skeletonSx as any),
+        display: loading ? 'block' : 'none'
+      }}
+    />
+  )
 
   if (auto) {
     const { ...imgProps } = others;
 
-    const widthStyle = auto.width 
-      ? `${auto.width}` 
-      : 'auto';
-
-    const heightStyle = auto.height 
-      ? `${auto.height}` 
-      : 'auto';
-
     return (
-      <NextImgSx
-        {...imgProps}
-        fill
-        sx={{
-          ...(sx as any),
-          objectFit: 'contain',
-          width: `${widthStyle} !important`,
-          height: `${heightStyle} !important`,
-          position: 'relative !important',
-        }}
-      ></NextImgSx>
+      <>
+        {skeleton}
+        <NextImgSx
+          {...imgProps}
+          onLoad={() => setLoading(false)}
+          fill
+          sx={{
+            visibility: loading ? 'hidden' : 'visible',
+            position: loading ? 'absolute' : 'relative !important',
+            objectFit: 'contain',
+            width: `${widthStyle} !important`,
+            height: `${heightStyle} !important`,
+            ...(sx as any),
+          }}
+        />
+      </>
     );
   }
 
-  return <NextImgSx sx={sx} {...others} />;
+  return (
+    <>
+      {skeleton}
+      <NextImgSx
+        onLoad={() => setLoading(false)}
+        sx={{
+          position: loading ? 'absolute' : 'unset',
+          visibility: loading ? 'hidden' : 'visible',
+          ...sx,
+        }} 
+        {...others} 
+      />
+    </>
+  );
 }

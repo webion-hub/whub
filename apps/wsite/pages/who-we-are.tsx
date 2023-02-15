@@ -3,6 +3,7 @@ import GitHub from '@mui/icons-material/GitHub';
 import LinkedIn from '@mui/icons-material/LinkedIn';
 
 import { alpha, Avatar, Box, Button, IconButton, Stack, SxProps, Theme, Typography } from '@mui/material';
+import { NextImg } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
@@ -231,15 +232,19 @@ function Member(props: MemberProps) {
 
         <Avatar
           className="WUI-member--avatar"
-          src={props.src}
-          alt={props.alt}
           sx={{
             transition: '0.5s opacity',
             opacity: 1,
             width: '100%',
             height: '100%',
           }}
-        />
+        >
+          <NextImg
+            fill
+            src={props.src}
+            alt={props.alt}
+          />
+        </Avatar>
       </Box>
 
       <Stack direction="column" alignItems="center" sx={{ zIndex: 1 }}>
