@@ -1,5 +1,5 @@
 {
-  "name": "@wui/core",
+  "name": "@webion/core",
   "version": "1.0.0",
   "private": false,
   "main": "./index.tsx",
