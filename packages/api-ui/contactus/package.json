@@ -4,6 +4,10 @@
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webion-hub/whub.git"
+  },
   "scripts": {
     "lint": "eslint *.ts*"
   },
