@@ -3,13 +3,13 @@ import GitHub from '@mui/icons-material/GitHub';
 import LinkedIn from '@mui/icons-material/LinkedIn';
 
 import { alpha, Avatar, Box, Button, IconButton, Stack, SxProps, Theme, Typography } from '@mui/material';
-import { NextImg } from '@wui/components';
-import { useNextNavigator } from '@wui/core';
-import Page from '@wui/layout/Page';
-import PageSettings from '@wui/layout/PageSettings';
-import Section from '@wui/layout/Section';
-import Sections from '@wui/layout/Sections';
-import useLanguage from '@wui/wrappers/useLanguage';
+import { NextImg } from '@webion/ui-components';
+import { useNextNavigator } from '@webion/ui-core';
+import Page from '@webion/ui-layout/Page';
+import PageSettings from '@webion/ui-layout/PageSettings';
+import Section from '@webion/ui-layout/Section';
+import Sections from '@webion/ui-layout/Sections';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 import dynamic from 'next/dynamic';
 
 import { useEffect, useRef, useState } from 'react';

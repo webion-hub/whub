@@ -1,5 +1,5 @@
 import { Link } from '@mui/material';
-import { Paragraph } from '@wui/components';
+import { Paragraph } from '@webion/ui-components';
 import React from 'react';
 
 export default function PrivacyPolicy() {

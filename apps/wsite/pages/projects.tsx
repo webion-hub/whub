@@ -1,12 +1,12 @@
 
 import { Box } from '@mui/material';
-import { NextImg } from '@wui/components';
-import { useNextNavigator } from '@wui/core';
-import Page from '@wui/layout/Page';
-import PageSettings from '@wui/layout/PageSettings';
-import Section from '@wui/layout/Section';
-import Sections from '@wui/layout/Sections';
-import useLanguage from '@wui/wrappers/useLanguage';
+import { NextImg } from '@webion/ui-components';
+import { useNextNavigator } from '@webion/ui-core';
+import Page from '@webion/ui-layout/Page';
+import PageSettings from '@webion/ui-layout/PageSettings';
+import Section from '@webion/ui-layout/Section';
+import Sections from '@webion/ui-layout/Sections';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 import dynamic from 'next/dynamic';
 import { CardGroup } from '../components/cards/CardGroup';
 import { ImageCard, ImageCardProps } from '../components/cards/ImageCard';

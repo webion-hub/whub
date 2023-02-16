@@ -3,12 +3,12 @@ import CallRounded from '@mui/icons-material/CallRounded';
 
 import { Button, Typography } from '@mui/material';
 import { Stack, SxProps, Theme, useTheme } from '@mui/system';
-import { MaybeShow } from '@wui/components';
-import { useNextNavigator } from '@wui/core';
-import Section from '@wui/layout/Section';
-import { ISection } from '@wui/sections/abstractions/ISection';
+import { MaybeShow } from '@webion/ui-components';
+import { useNextNavigator } from '@webion/ui-core';
+import Section from '@webion/ui-layout/Section';
+import { ISection } from '@webion/ui-sections/abstractions/ISection';
 
-import useLanguage from '@wui/wrappers/useLanguage';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 
 
 interface GetAQuoteProps extends ISection {

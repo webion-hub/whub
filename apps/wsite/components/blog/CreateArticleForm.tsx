@@ -1,8 +1,8 @@
 import { Box, Button, styled, TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
-import { blogCategories, BlogCategories } from '@wapi/blog';
-import { Dropdown, MaybeShow } from '@wui/components';
-import { SquareAddImage, SquareImageContainer } from '@wui/squares';
+import { blogCategories, BlogCategories } from '@webion/api-blog';
+import { Dropdown, MaybeShow } from '@webion/ui-components';
+import { SquareAddImage, SquareImageContainer } from '@webion/ui-squares';
 import { useEffect, useState } from 'react';
 
 const StyledForm = styled('form')(({ theme }) => ({

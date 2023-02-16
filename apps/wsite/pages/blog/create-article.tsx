@@ -4,14 +4,14 @@ import PreviewRounded from '@mui/icons-material/PreviewRounded';
 import { Box, Button, Typography } from '@mui/material';
 import { Article } from '../../components/blog/Article';
 import { useRef, useState } from 'react';
-import useLanguage from '@wui/wrappers/useLanguage';
-import { useNextNavigator } from '@wui/core';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
+import { useNextNavigator } from '@webion/ui-core';
 import CreateArticleForm, { ICreateArticle } from '../../components/blog/CreateArticleForm';
-import Page from '@wui/layout/Page';
-import Sections from '@wui/layout/Sections';
-import Section from '@wui/layout/Section';
-import { FullScreenLoading, MaybeShow } from '@wui/components';
-import { useBlog } from '@wapi-ui/blog';
+import Page from '@webion/ui-layout/Page';
+import Sections from '@webion/ui-layout/Sections';
+import Section from '@webion/ui-layout/Section';
+import { FullScreenLoading, MaybeShow } from '@webion/ui-components';
+import { useBlog } from '@webion/api-ui-blog';
 
 export default function CreateArticle() {
   const { navigate } = useNextNavigator()

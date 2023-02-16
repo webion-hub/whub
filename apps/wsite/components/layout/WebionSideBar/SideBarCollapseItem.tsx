@@ -1,6 +1,6 @@
 import { Collapse, List } from "@mui/material";
-import { ChildrenProp } from "@wui/core";
-import { SideBarItem } from "@wui/layout/Sidebar";
+import { ChildrenProp } from "@webion/ui-core";
+import { SideBarItem } from "@webion/ui-layout/Sidebar";
 import { ReactNode, useState } from "react";
 
 interface SideBarCollapseItemProps {

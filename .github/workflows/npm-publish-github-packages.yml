@@ -17,6 +17,21 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm publish packages/@wui/core/ --access public
+      - run: pnpm publish packages/@webion/ui-components/ --access public
+      - run: pnpm publish packages/@webion/ui-core/ --access public
+      - run: pnpm publish packages/@webion/ui-cropper/ --access public
+      - run: pnpm publish packages/@webion/ui-extensions/ --access public
+      - run: pnpm publish packages/@webion/ui-form/ --access public
+      - run: pnpm publish packages/@webion/ui-layout/ --access public
+      - run: pnpm publish packages/@webion/ui-sections/ --access public
+      - run: pnpm publish packages/@webion/ui-squares/ --access public
+      - run: pnpm publish packages/@webion/ui-wrappers/ --access public
+
+      - run: pnpm publish packages/@webion/api-blog/ --access public
+      - run: pnpm publish packages/@webion/api-contactus/ --access public
+      - run: pnpm publish packages/@webion/api-core/ --access public
+
+      - run: pnpm publish packages/@webion/api-ui-blog/ --access public
+      - run: pnpm publish packages/@webion/api-ui-contactus/ --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

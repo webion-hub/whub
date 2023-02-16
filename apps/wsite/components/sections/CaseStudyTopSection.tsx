@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import Section from "@wui/layout/Section";
+import Section from "@webion/ui-layout/Section";
 import { ImageAndDescription, ImageAndDescriptionProps } from "../blocks/ImageAndDescription";
 
 interface CaseStudyTopSectionProps extends ImageAndDescriptionProps {

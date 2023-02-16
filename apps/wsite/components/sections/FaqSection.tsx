@@ -1,11 +1,11 @@
 import HelpRounded from '@mui/icons-material/HelpRounded';
 
 import { alpha, Link, Stack, useTheme } from '@mui/material';
-import { useNextNavigator } from '@wui/core';
-import Section from '@wui/layout/Section';
-import { ISection } from '@wui/sections/abstractions/ISection';
-import { Faq, IQuestion } from '@wui/sections/Faq';
-import useLanguage from '@wui/wrappers/useLanguage';
+import { useNextNavigator } from '@webion/ui-core';
+import Section from '@webion/ui-layout/Section';
+import { ISection } from '@webion/ui-sections/abstractions/ISection';
+import { Faq, IQuestion } from '@webion/ui-sections/Faq';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 import { netBackground } from '../../backgrounds/netBackground';
 
 interface FaqSectionProps extends ISection {

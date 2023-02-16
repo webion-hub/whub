@@ -4,10 +4,10 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import MaybeShow from '@wui/components/MaybeShow';
-import NextImg from '@wui/components/NextImg';
-import Transition from '@wui/components/Transition';
-import { useOnScreen } from '@wui/core';
+import MaybeShow from '@webion/ui-components/MaybeShow';
+import NextImg from '@webion/ui-components/NextImg';
+import Transition from '@webion/ui-components/Transition';
+import { useOnScreen } from '@webion/ui-core';
 import { ReactNode, useRef } from 'react';
 import { TitleSectionLabel } from './TitleSectionLabel';
 

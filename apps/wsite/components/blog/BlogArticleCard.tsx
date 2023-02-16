@@ -1,9 +1,9 @@
 import { CardActionArea, Chip, Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
-import { BlogArticle } from '@wapi/blog';
-import { MaybeShow, NextImg } from '@wui/components';
-import { useNextNavigator } from '@wui/core';
-import useLanguage from '@wui/wrappers/useLanguage';
+import { BlogArticle } from '@webion/api-blog';
+import { MaybeShow, NextImg } from '@webion/ui-components';
+import { useNextNavigator } from '@webion/ui-core';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 import ReactMarkdown from 'react-markdown';
 import { WebionCard } from '../cards/WebionCard';
 

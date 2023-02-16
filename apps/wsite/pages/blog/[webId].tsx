@@ -1,13 +1,13 @@
 import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 
 import { Button, CircularProgress, Divider, List, ListItem, ListItemButton, ListItemText, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { blogFactory } from '@wapi-ui/blog';
-import { MaybeShow } from '@wui/components';
-import { useNextNavigator } from '@wui/core';
-import Page from '@wui/layout/Page';
-import Section from '@wui/layout/Section';
-import Sections from '@wui/layout/Sections';
-import useLanguage from '@wui/wrappers/useLanguage';
+import { blogFactory } from '@webion/api-ui-blog';
+import { MaybeShow } from '@webion/ui-components';
+import { useNextNavigator } from '@webion/ui-core';
+import Page from '@webion/ui-layout/Page';
+import Section from '@webion/ui-layout/Section';
+import Sections from '@webion/ui-layout/Sections';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 import { useRouter } from 'next/router';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { fromEvent } from 'rxjs';

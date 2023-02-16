@@ -4,8 +4,8 @@ import KeyboardArrowDownRounded from "@mui/icons-material/KeyboardArrowDownRound
 import PhoneIphoneRounded from "@mui/icons-material/PhoneIphoneRounded";
 import { Button, ListItemIcon, ListItemText, Menu, MenuItem, Theme } from "@mui/material";
 import { SxProps } from "@mui/system";
-import { useNextNavigator } from "@wui/core";
-import useLanguage from "@wui/wrappers/useLanguage";
+import { useNextNavigator } from "@webion/ui-core";
+import useLanguage from "@webion/ui-wrappers/useLanguage";
 import { useState } from "react";
 
 export function ServicesButton() {

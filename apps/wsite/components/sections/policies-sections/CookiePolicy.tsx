@@ -1,5 +1,5 @@
 import { Link } from '@mui/material';
-import { Paragraph } from '@wui/components';
+import { Paragraph } from '@webion/ui-components';
 import React from 'react';
 import { WebionRepository } from '../../../lib/WebionRepositiory';
 

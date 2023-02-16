@@ -1,5 +1,5 @@
 import { Box } from '@mui/system';
-import { NextImg } from '@wui/components';
+import { NextImg } from '@webion/ui-components';
 
 interface CoverProps {
   readonly src: string;

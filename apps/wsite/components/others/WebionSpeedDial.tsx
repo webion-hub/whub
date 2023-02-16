@@ -6,7 +6,7 @@ import LinkedIn from '@mui/icons-material/LinkedIn';
 import PhoneRounded from '@mui/icons-material/PhoneRounded';
 
 
-import SpeedDial from "@wui/components/SpeedDial";
+import SpeedDial from "@webion/ui-components/SpeedDial";
 import { WebionRepository } from "../../lib/WebionRepositiory";
 
 

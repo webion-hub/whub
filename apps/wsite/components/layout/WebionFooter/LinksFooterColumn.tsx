@@ -1,5 +1,5 @@
-import { ChildrenProps } from '@wui/core';
-import { FooterColumn } from '@wui/layout/Footer';
+import { ChildrenProps } from '@webion/ui-core';
+import { FooterColumn } from '@webion/ui-layout/Footer';
 
 export const LinksFooterColumn = (props: ChildrenProps) => {
   return (

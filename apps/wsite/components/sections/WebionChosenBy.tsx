@@ -1,5 +1,5 @@
-import { NextImg } from "@wui/components";
-import { ChosenBy, ISection } from "@wui/sections";
+import { NextImg } from "@webion/ui-components";
+import { ChosenBy, ISection } from "@webion/ui-sections";
 
 export default function WebionChosenBy(props: ISection) {
   return (

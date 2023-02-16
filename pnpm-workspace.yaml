@@ -1,6 +1,6 @@
 packages:
   - "apps/*"
   - "packages/*"
-  - "packages/@wui/*"
-  - "packages/@wapi/*"
-  - "packages/@wapi-ui/*"
+  - "packages/ui/*"
+  - "packages/api/*"
+  - "packages/api-ui/*"

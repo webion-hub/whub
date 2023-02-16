@@ -10,11 +10,11 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 
 import { Box, IconButton } from '@mui/material';
-import { BasicThemeButton } from '@wui/components';
-import { useNextNavigator } from '@wui/core';
-import { useLayout } from '@wui/layout';
-import { SideBar, SideBarItem } from '@wui/layout/Sidebar';
-import useLanguage from '@wui/wrappers/useLanguage';
+import { BasicThemeButton } from '@webion/ui-components';
+import { useNextNavigator } from '@webion/ui-core';
+import { useLayout } from '@webion/ui-layout';
+import { SideBar, SideBarItem } from '@webion/ui-layout/Sidebar';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 import { SideBarCollapseItem } from './SideBarCollapseItem';
 import { SideBarLanguageButton } from './SideBarLanguageButton';
 import { BookRounded, WorkRounded } from '@mui/icons-material';

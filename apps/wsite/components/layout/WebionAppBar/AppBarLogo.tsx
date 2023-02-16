@@ -1,7 +1,7 @@
-import { NextImg } from "@wui/components";
-import { useNextNavigator } from "@wui/core";
-import { useLayout } from "@wui/layout";
-import { AppBarLogo as WuiAppBarLogo } from "@wui/layout/AppBar";
+import { NextImg } from "@webion/ui-components";
+import { useNextNavigator } from "@webion/ui-core";
+import { useLayout } from "@webion/ui-layout";
+import { AppBarLogo as WuiAppBarLogo } from "@webion/ui-layout/AppBar";
 
 export function AppBarLogo() {
   const { currentSection } = useLayout();

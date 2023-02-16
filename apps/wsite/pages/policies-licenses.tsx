@@ -10,13 +10,13 @@ import {
 
 import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
 
-import useLanguage from '@wui/wrappers/useLanguage';
-import Page from '@wui/layout/Page';
-import Section from '@wui/layout/Section';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
+import Page from '@webion/ui-layout/Page';
+import Section from '@webion/ui-layout/Section';
 import PrivacyPolicy from '../components/sections/policies-sections/PrivacyPolicy';
 import CookiePolicy from '../components/sections/policies-sections/CookiePolicy';
 import Licenses from '../components/sections/policies-sections/Licenses';
-import { ChildrenProp } from '@wui/core';
+import { ChildrenProp } from '@webion/ui-core';
 
 
 export default function PoliciesLicenses() {

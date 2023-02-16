@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
-import { Paragraph } from '@wui/components';
-import useLanguage from '@wui/wrappers/useLanguage';
+import { Paragraph } from '@webion/ui-components';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 import React, { useEffect } from 'react';
 
 export default function Licenses() {

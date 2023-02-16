@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography';
-import MaybeShow from '@wui/components/MaybeShow';
+import MaybeShow from '@webion/ui-components/MaybeShow';
 import { ReactNode } from 'react';
 import { ClickableCard, ClickableCardProps } from './ClickableCard';
 

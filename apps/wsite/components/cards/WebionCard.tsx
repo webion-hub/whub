@@ -1,7 +1,7 @@
 import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import { BaseProps, Coords } from '@wui/core';
+import { BaseProps, Coords } from '@webion/ui-core';
 import { MouseEvent, useRef, useState } from 'react';
 
 export function WebionCard(props: BaseProps) {

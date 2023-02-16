@@ -1,4 +1,4 @@
-import { blogFactory } from "@wapi-ui/blog";
+import { blogFactory } from "@webion/api-ui-blog";
 import { getServerSideSitemap } from "next-sitemap";
 
 export async function getServerSideProps(ctx: any) {

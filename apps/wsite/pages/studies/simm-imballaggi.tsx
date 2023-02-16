@@ -3,11 +3,11 @@ import ReportProblemRounded from '@mui/icons-material/ReportProblemRounded';
 
 import { Button, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
-import Page from '@wui/layout/Page';
-import PageSettings from '@wui/layout/PageSettings';
-import Section from '@wui/layout/Section';
-import Sections from '@wui/layout/Sections';
-import useLanguage from '@wui/wrappers/useLanguage';
+import Page from '@webion/ui-layout/Page';
+import PageSettings from '@webion/ui-layout/PageSettings';
+import Section from '@webion/ui-layout/Section';
+import Sections from '@webion/ui-layout/Sections';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 import dynamic from 'next/dynamic';
 import { IconCard } from '../../components/cards/IconCard';
 import { CaseStudyTopSection } from '../../components/sections/CaseStudyTopSection';

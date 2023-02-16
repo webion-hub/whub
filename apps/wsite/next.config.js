@@ -5,28 +5,28 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   transpilePackages: [
-    "@wui/core",
-    "@wui/components",
-    "@wui/squares",
-    "@wui/wrappers",
-    "@wui/layout",
-    "@wui/extensions",
-    "@wui/sections",
-    "@wui/form",
-    "@wapi/blog",
-    "@wapi/contactus",
-    "@wapi-ui/blog",
-    "@wapi-ui/contactus",
+    "@webion/ui-core",
+    "@webion/ui-components",
+    "@webion/ui-squares",
+    "@webion/ui-wrappers",
+    "@webion/ui-layout",
+    "@webion/ui-extensions",
+    "@webion/ui-sections",
+    "@webion/ui-form",
+    "@webion/api-blog",
+    "@webion/api-contactus",
+    "@webion/api-ui-blog",
+    "@webion/api-ui-contactus",
   ],
   modularizeImports: {
-    '@wui/wrappers': {
-      transform: '@wui/wrappers/{{member}}',
+    '@webion/ui-wrappers': {
+      transform: '@webion/ui-wrappers/{{member}}',
     },
-    '@wui/squares': {
-      transform: '@wui/squares/{{member}}',
+    '@webion/ui-squares': {
+      transform: '@webion/ui-squares/{{member}}',
     },
-    '@wui/components': {
-      transform: '@wui/components/{{member}}',
+    '@webion/ui-components': {
+      transform: '@webion/ui-components/{{member}}',
     },
     '@mui/icons-material': {
       transform: '@mui/icons-material/{{member}}',

@@ -4,10 +4,10 @@ import it from '../public/assets/locales/it-IT.json';
 
 import Head from "next/head";
 import Script from "next/script";
-import Layout from "@wui/layout/Layout";
+import Layout from "@webion/ui-layout/Layout";
 
-import LanguageWrapper from "@wui/wrappers/Language";
-import ThemeWrapper from "@wui/wrappers/Theme";
+import LanguageWrapper from "@webion/ui-wrappers/Language";
+import ThemeWrapper from "@webion/ui-wrappers/Theme";
 import { AppProps } from "next/app";
 
 import { darkTheme, lightTheme } from "../theme/getTheme";
@@ -16,15 +16,15 @@ import globalStyle from "../theme/globalStyle";
 import dynamic from 'next/dynamic';
 import { Analytics } from '@vercel/analytics/react';
 
-import BlogContext from '@wapi-ui/blog/BlogContext/BlogContext';
-import ContactUsContext from '@wapi-ui/contactus/ContactUsContext/ContactUsContext';
+import BlogContext from '@webion/api-ui-blog/BlogContext/BlogContext';
+import ContactUsContext from '@webion/api-ui-contactus/ContactUsContext/ContactUsContext';
 
 //SPOSTARE IN ImageCropperDialog
 //TOGLIERE L'IMPORT DI CROPPER JS DA PACKAGEJSON
 import "cropperjs/dist/cropper.css";
 
 
-const CookiePopup = dynamic(() => import("@wui/components/CookiePopup"), { ssr: true })
+const CookiePopup = dynamic(() => import("@webion/ui-components/CookiePopup"), { ssr: true })
 const WebionSpeedDial = dynamic(() => import("../components/others/WebionSpeedDial"), { ssr: true })
 const WebionAppBar = dynamic(() => import("../components/layout/WebionAppBar/WebionAppBar"), { ssr: true })
 const WebionSideBar = dynamic(() => import("../components/layout/WebionSideBar/WebionSideBar"))

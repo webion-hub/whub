@@ -1,10 +1,10 @@
 import CallRounded from '@mui/icons-material/CallRounded';
 
 import Button from '@mui/material/Button';
-import { useNextNavigator } from '@wui/core';
-import Section from '@wui/layout/Section';
-import useLanguage from '@wui/wrappers/useLanguage';
-import { ISection } from '@wui/sections/abstractions/ISection';
+import { useNextNavigator } from '@webion/ui-core';
+import Section from '@webion/ui-layout/Section';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
+import { ISection } from '@webion/ui-sections/abstractions/ISection';
 
 import { ImageAndDescription } from '../blocks/ImageAndDescription';
 

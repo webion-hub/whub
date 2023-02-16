@@ -1,8 +1,8 @@
 import { CallRounded } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import { useNextNavigator } from "@wui/core";
-import Section from "@wui/layout/Section";
-import { useLanguage } from "@wui/wrappers";
+import { useNextNavigator } from "@webion/ui-core";
+import Section from "@webion/ui-layout/Section";
+import { useLanguage } from "@webion/ui-wrappers";
 import { ReactNode } from "react";
 import { ImageAndDescription } from "../blocks/ImageAndDescription";
 

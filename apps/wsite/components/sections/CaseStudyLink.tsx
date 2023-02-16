@@ -1,9 +1,9 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
-import { NextImg } from "@wui/components";
-import { useNextNavigator } from "@wui/core";
-import Section from "@wui/layout/Section";
-import { ISection } from "@wui/sections";
-import useLanguage from "@wui/wrappers/useLanguage";
+import { NextImg } from "@webion/ui-components";
+import { useNextNavigator } from "@webion/ui-core";
+import Section from "@webion/ui-layout/Section";
+import { ISection } from "@webion/ui-sections";
+import useLanguage from "@webion/ui-wrappers/useLanguage";
 
 export interface CaseStudyLinkProps extends ISection {
   readonly title: string;

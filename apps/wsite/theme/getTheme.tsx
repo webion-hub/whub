@@ -1,7 +1,7 @@
 import { Theme } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
 import { getComponents } from './components';
-import '@wui/extensions/theme';
+import '@webion/ui-extensions/theme';
 
 import * as _ from '@mui/material/styles/createPalette';
 import { darkPalette } from './darkTheme';

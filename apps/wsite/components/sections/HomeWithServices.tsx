@@ -8,11 +8,11 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import ButtonWithProgress from '@wui/components/ButtonWithProgress';
-import NextImg from '@wui/components/NextImg';
-import Section from '@wui/layout/Section';
-import { ISection } from '@wui/sections/abstractions/ISection';
-import useLanguage from '@wui/wrappers/useLanguage';
+import ButtonWithProgress from '@webion/ui-components/ButtonWithProgress';
+import NextImg from '@webion/ui-components/NextImg';
+import Section from '@webion/ui-layout/Section';
+import { ISection } from '@webion/ui-sections/abstractions/ISection';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 import { useRouter } from 'next/router';
 import { ReactNode, useState } from 'react';
 

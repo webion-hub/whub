@@ -4,11 +4,11 @@ import PhoneIphoneRounded from '@mui/icons-material/PhoneIphoneRounded';
 
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material';
-import { useNextNavigator } from '@wui/core';
-import Section from '@wui/layout/Section';
-import { ISection } from '@wui/sections/abstractions/ISection';
+import { useNextNavigator } from '@webion/ui-core';
+import Section from '@webion/ui-layout/Section';
+import { ISection } from '@webion/ui-sections/abstractions/ISection';
 
-import useLanguage from '@wui/wrappers/useLanguage';
+import useLanguage from '@webion/ui-wrappers/useLanguage';
 
 import { useRef } from 'react';
 import { pcbBackground } from '../../backgrounds/pcbBackground';

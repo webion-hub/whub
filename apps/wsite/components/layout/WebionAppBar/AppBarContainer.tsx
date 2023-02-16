@@ -1,7 +1,7 @@
 import { useTheme } from "@mui/material";
-import { ChildrenProps } from "@wui/core";
-import { useLayout } from "@wui/layout";
-import { AppBar } from "@wui/layout/AppBar";
+import { ChildrenProps } from "@webion/ui-core";
+import { useLayout } from "@webion/ui-layout";
+import { AppBar } from "@webion/ui-layout/AppBar";
 
 export function AppBarContainer(props: ChildrenProps) {
   const { currentSection } = useLayout();

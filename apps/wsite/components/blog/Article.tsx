@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
-import { BlogArticle } from "@wapi/blog";
-import { MaybeShow } from "@wui/components";
+import { BlogArticle } from "@webion/api-blog";
+import { MaybeShow } from "@webion/ui-components";
 import ArticleContent from "./ArticleContent";
 import ArticleTitle from "./ArticleTitle";
 import Cover from "./Cover";

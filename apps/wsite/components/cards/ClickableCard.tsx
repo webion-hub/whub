@@ -5,7 +5,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
-import MaybeShow from '@wui/components/MaybeShow';
+import MaybeShow from '@webion/ui-components/MaybeShow';
 import { ReactNode } from 'react';
 import { WebionCard } from './WebionCard';
 

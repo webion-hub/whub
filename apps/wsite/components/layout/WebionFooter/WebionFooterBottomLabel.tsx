@@ -1,5 +1,5 @@
 import { Link, Typography } from "@mui/material";
-import { FooterBottomLabel } from "@wui/layout/Footer";
+import { FooterBottomLabel } from "@webion/ui-layout/Footer";
 import { WebionRepository } from "../../../lib/WebionRepositiory";
 
 export function WebionFooterBottomLabel() {

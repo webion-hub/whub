@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { ChildrenProps } from '@wui/core';
+import { ChildrenProps } from '@webion/ui-core';
 
 export default function ArticleTitle({ title }: { title: string }) {
   return (
