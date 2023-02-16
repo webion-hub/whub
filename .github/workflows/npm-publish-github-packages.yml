@@ -17,7 +17,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm config set access public
-      - run: pnpm publish packages/@wui/core/
+      - run: pnpm publish packages/@wui/core/ --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
