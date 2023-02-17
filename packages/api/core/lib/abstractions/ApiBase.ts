@@ -4,7 +4,7 @@ import * as qs from 'qs'
 export abstract class ApiBase {
   protected readonly client: AxiosInstance;
 
-  constructor(config: AxiosRequestConfig) {
+  constructor(config: () => AxiosRequestConfig) {
     this.client = axios.create({
       ...config,
       //validateStatus: () => true,
