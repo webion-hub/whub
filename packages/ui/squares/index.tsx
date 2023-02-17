@@ -1,6 +1,0 @@
-export * from './SquareButton/SquareButton'
-export * from './SquareContainer/SquareContainer'
-export * from './SquareImageContainer/SquareImageContainer'
-export * from './SquaresGrid/SquaresGrid'
-export * from './SquareAddAttachment/SquareAddAttachment'
-export * from './SquareAddImage/SquareAddImage'
