@@ -12,7 +12,7 @@ interface AutoSizeProps {
 
 interface NextImgProps extends ImageProps {
   readonly sx?: SxProps<Theme>;
-  readonly skeletonVariant?: SkeletonProps['variant'],
+  readonly skeletonvariant?: SkeletonProps['variant'],
   readonly skeletonSx?: SkeletonProps['sx'],
   readonly auto?: AutoSizeProps;
 }
@@ -34,7 +34,7 @@ export function NextImg(props: NextImgProps) {
   
   const skeleton = (
     <Skeleton
-      variant={props.skeletonVariant ?? 'rectangular'}
+      variant={props.skeletonvariant ?? 'rectangular'}
       width={widthStyle ?? '100%'}
       height={heightStyle ?? '100%'}
       animation="wave"
