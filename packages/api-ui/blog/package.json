@@ -1,6 +1,6 @@
 {
   "name": "@webion/api-ui-blog",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "license": "MIT",
@@ -19,11 +19,11 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.2.5",
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.0.17",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "@types/jest": "^29.2.5"
   }
 }
