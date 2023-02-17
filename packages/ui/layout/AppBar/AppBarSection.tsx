@@ -1,6 +1,5 @@
-import { Stack, SxProps, Theme, useMediaQuery, useTheme } from '@mui/material';
+import { Stack, SxProps, Theme } from '@mui/material';
 import { Breakpoint } from '@mui/system';
-import React from 'react';
 
 type Visibility = {
   [fixedBreakpoint in Breakpoint]?: boolean;
@@ -19,13 +18,15 @@ export function AppBarSection(props: AppBarSectionProps) {
     .entries(props.isVisible ?? {})
     .map(v => [v[0], v[1] ? 'flex' : 'none']) 
 
+  const displayStyle = Object.fromEntries(visibility) as any;
+
   return (
     <Stack
       direction="row"
       spacing={props.spacing}
       sx={{
         width: props.fullWidth ? '100%' : 'auto',
-        display: Object.fromEntries(visibility), 
+        display: displayStyle, 
         ...props.sx,
       }}
     >

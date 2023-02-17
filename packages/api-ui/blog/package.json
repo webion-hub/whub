@@ -1,25 +1,29 @@
 {
   "name": "@webion/api-ui-blog",
-  "version": "1.0.0",
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "version": "1.0.1",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/webion-hub/whub.git"
   },
   "scripts": {
+    "build": "tsup index.ts --format cjs --dts",
+    "dev": "npm run build -- --watch",
     "lint": "eslint *.ts*"
   },
-  "devDependencies": {
-    "@types/react": "^18.0.17",
+  "dependencies": {
+    "@webion/api-blog": "workspace:*",
     "next": "^13.1.2",
-    "react": "^18.2.0",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.5",
+    "@types/react": "^18.0.28",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",
-    "typescript": "^4.5.2",
-    "@types/jest": "^29.2.5",
-    "@webion/api-blog": "workspace:*"
+    "typescript": "^4.5.2"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@webion/api-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
@@ -11,12 +11,14 @@
   "scripts": {
     "lint": "eslint *.ts*"
   },
+  "dependencies": {
+    "qs": "^6.11.0"
+  },
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2",
-    "qs": "^6.11.0",
     "@types/qs": "^6.9.7"
   }
 }

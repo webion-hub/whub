@@ -1,28 +1,33 @@
 {
   "name": "@webion/ui-squares",
-  "version": "1.0.0",
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "version": "1.0.1",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/webion-hub/whub.git"
   },
   "scripts": {
+    "build": "tsup index.ts --format cjs --dts",
+    "dev": "npm run build -- --watch",
     "lint": "eslint *.ts*"
   },
-  "devDependencies": {
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "workspace:*",
+  "dependencies": {
     "next": "^13.1.2",
     "react": "^18.2.0",
+    "react-dom": "18.2.0",
     "react-image-file-resizer": "^0.4.8",
-    "tsconfig": "workspace:*",
-    "typescript": "^4.5.2",
     "@webion/ui-core": "workspace:*",
     "@webion/ui-cropper": "workspace:*",
     "@webion/ui-components": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "eslint": "^7.32.0",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.5.2"
   }
 }
