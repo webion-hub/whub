@@ -3,4 +3,3 @@ packages:
   - "packages/*"
   - "packages/ui/*"
   - "packages/api/*"
-  - "packages/api-ui/*"

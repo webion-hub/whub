@@ -30,9 +30,7 @@
     "@webion/ui-sections": "workspace:*",
     "@webion/ui-form": "workspace:*",
     "@webion/api-blog": "workspace:*",
-    "@webion/api-contactus": "workspace:*",
-    "@webion/api-ui-blog": "workspace:*",
-    "@webion/api-ui-contactus": "workspace:*"
+    "@webion/api-contactus": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

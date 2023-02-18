@@ -6,8 +6,7 @@
     "apps/*",
     "packages/*",
     "packages/ui/*",
-    "packages/api/*",
-    "packages/api-ui/*"
+    "packages/api/*"
   ],
   "scripts": {
     "build": "turbo run build",

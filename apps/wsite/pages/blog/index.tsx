@@ -1,6 +1,5 @@
 import { Typography, useMediaQuery } from '@mui/material';
 import { Stack, useTheme } from '@mui/system';
-import { blogFactory } from '@webion/api-ui-blog';
 import { BlogArticle } from '@webion/api-blog';
 import { useDidUpdateEffect } from '@webion/ui-core';
 import Page from '@webion/ui-layout/Page';
@@ -14,6 +13,7 @@ import { memo, useRef, useState } from 'react';
 import useSWR from 'swr';
 import { ArticleFilters, ArticlesFilterBox } from '../../components/blog/ArticlesFilterBox';
 import BlogArticleCard from '../../components/blog/BlogArticleCard';
+import ApiFactory from '../../lib/ApiFactory';
 
 export default function Blog({ fallback }: any) {
   const { t } = useLanguage();
@@ -78,7 +78,7 @@ function BlogArticleList() {
     searchValue: ''
   })
 
-  const endpoint = blogFactory().articles.forLanguage(locale ?? 'it')
+  const endpoint = ApiFactory.blog.articles.forLanguage(locale ?? 'it')
 
   const { data, mutate } = useSWR(endpoint.url, async () => {
     setLoading(true)

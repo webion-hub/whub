@@ -1,8 +1,9 @@
-import { blogFactory } from "@webion/api-ui-blog";
+import ApiFactory from '../../lib/ApiFactory';
 import { getServerSideSitemap } from "next-sitemap";
 
 export async function getServerSideProps(ctx: any) {
-  const request = await blogFactory()
+  const request = await ApiFactory
+    .blog
     .sitemap
     .load();
 

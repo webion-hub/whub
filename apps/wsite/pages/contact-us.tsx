@@ -8,7 +8,6 @@ import StoreRounded from '@mui/icons-material/StoreRounded';
 
 import { LoadingButton } from '@mui/lab';
 import { Button, Stack, TextField, Typography } from '@mui/material';
-import { useContactUs } from '@webion/api-ui-contactus';
 import { MaybeShow, PrivacyCheckbox } from '@webion/ui-components';
 import { useNextNavigator } from '@webion/ui-core';
 import { Validator, Validators } from '@webion/ui-form';
@@ -20,6 +19,7 @@ import useLanguage from '@webion/ui-wrappers/useLanguage';
 import remove from 'lodash/remove';
 import { ReactNode, useState } from 'react';
 import { SelectableCard } from '../components/cards/SelectableCard';
+import ApiFactory from '../lib/ApiFactory';
 
 interface CardOptionProps {
   readonly selected: boolean;
@@ -76,7 +76,7 @@ interface Step {
 export default function ContactUs() {
   const { navigate } = useNextNavigator();
   const { t } = useLanguage();
-  const contactUsApi = useContactUs();
+  const contactUsApi = ApiFactory.contactUs;
 
   const [loading, setLoading] = useState<boolean>(false);
 

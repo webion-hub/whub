@@ -11,12 +11,12 @@ import Page from '@webion/ui-layout/Page';
 import Sections from '@webion/ui-layout/Sections';
 import Section from '@webion/ui-layout/Section';
 import { FullScreenLoading, MaybeShow } from '@webion/ui-components';
-import { useBlog } from '@webion/api-ui-blog';
+import ApiFactory from '../../lib/ApiFactory';
 
 export default function CreateArticle() {
   const { navigate } = useNextNavigator()
   const { language } = useLanguage()
-  const blogApi = useBlog()
+  const blogApi = ApiFactory.blog
 
   const [loading, setLoading] = useState(false)
 

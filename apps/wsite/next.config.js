@@ -15,8 +15,6 @@ module.exports = withBundleAnalyzer({
     "@webion/ui-form",
     "@webion/api-blog",
     "@webion/api-contactus",
-    "@webion/api-ui-blog",
-    "@webion/api-ui-contactus",
   ],
   modularizeImports: {
     '@webion/ui-wrappers': {

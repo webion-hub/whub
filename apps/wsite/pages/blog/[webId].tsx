@@ -1,7 +1,6 @@
 import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 
 import { Button, CircularProgress, Divider, List, ListItem, ListItemButton, ListItemText, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { blogFactory } from '@webion/api-ui-blog';
 import { MaybeShow } from '@webion/ui-components';
 import { useNextNavigator } from '@webion/ui-core';
 import Page from '@webion/ui-layout/Page';
@@ -16,17 +15,18 @@ import { create } from 'zustand';
 import { Article } from '../../components/blog/Article';
 import HeadMeta from '../../components/others/HeadMeta';
 import GetAQuote from '../../components/sections/GetAQuote';
+import ApiFactory from '../../lib/ApiFactory';
 
 
 const getArticle = (lang: string, id: number) => {
-  return blogFactory()
+  return ApiFactory.blog
     .articles
     .forLanguage(lang)
     .withId(id);
 }
 
 export async function getStaticPaths() {
-  const request = await blogFactory()
+  const request = await ApiFactory.blog
     .sitemap
     .load();
 

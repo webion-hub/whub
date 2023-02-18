@@ -16,9 +16,6 @@ import globalStyle from "../theme/globalStyle";
 import dynamic from 'next/dynamic';
 import { Analytics } from '@vercel/analytics/react';
 
-import BlogContext from '@webion/api-ui-blog/BlogContext/BlogContext';
-import ContactUsContext from '@webion/api-ui-contactus/ContactUsContext/ContactUsContext';
-
 //SPOSTARE IN ImageCropperDialog
 //TOGLIERE L'IMPORT DI CROPPER JS DA PACKAGEJSON
 import "cropperjs/dist/cropper.css";
@@ -31,18 +28,6 @@ const WebionSideBar = dynamic(() => import("../components/layout/WebionSideBar/W
 const WebionFooter = dynamic(() => import("../components/layout/WebionFooter/WebionFooter"), { ssr: true })
 const CssBaseline = dynamic(() => import("@mui/material/CssBaseline"), { ssr: true })
 const GlobalStyles = dynamic(() => import("@mui/material/GlobalStyles"), { ssr: true })
-
-BlogContext.api = {
-  headers: { } as any,
-  baseURL: 'https://blog.api.webion.it/',
-  withCredentials: true,
-}
-
-ContactUsContext.api = {
-  headers: { } as any,
-  baseURL: 'https://api.webion.it/contactus',
-  withCredentials: true,
-}
 
 export default function RootLayout({ Component, pageProps }: AppProps) {
   return (
