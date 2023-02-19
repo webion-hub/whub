@@ -243,11 +243,11 @@ export default function ContactUs() {
             value={formValue?.email ?? ''}
             onChange={(e) => handleChange('email', e.target.value)}
           />
-          {/*<PrivacyCheckbox
+          <PrivacyCheckbox
             privacyUrl="/policies-licenses"
             value={formValue?.privacy}
             onChange={(e) => handleChange('privacy', e.target.value)}
-      />*/}
+          />
         </>
       ),
     },
