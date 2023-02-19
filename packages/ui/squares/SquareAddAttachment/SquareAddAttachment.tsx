@@ -1,5 +1,5 @@
 import AttachFileRounded from "@mui/icons-material/AttachFileRounded";
-import AttachmentUploader from "@webion/ui-components/AttachmentUploader";
+import AttachmentUploader from "@webion/ui-uploaders/AttachmentUploader";
 import { InputEvent } from "@webion/ui-core";
 import SquareButton from "../SquareButton";
 

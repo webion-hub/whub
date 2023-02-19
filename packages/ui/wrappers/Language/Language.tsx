@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { createContext, ReactNode } from 'react';
+import { Context, createContext, ReactNode } from 'react';
 
 interface LanguageBaseItem {
   readonly flag?: ReactNode;
@@ -30,7 +30,7 @@ export interface ILanguageContext {
   readonly tHtml: (key: string) => string | JSX.Element | JSX.Element[];
 }
 
-export const LanguageContext = createContext<ILanguageContext>({
+export const LanguageContext: Context<ILanguageContext> = createContext<ILanguageContext>({
   languages: [] as LanguageBaseItem[],
   setLanguage: () => { return; },
   t: () => '',

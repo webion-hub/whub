@@ -1,3 +1,4 @@
+import '@webion/ui-extensions/theme'
 import { AppBar as MuiAppBar } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import { BaseProps } from "@webion/ui-core";

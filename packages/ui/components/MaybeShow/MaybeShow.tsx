@@ -11,7 +11,7 @@ export interface MaybeShowProps extends MaybeShopBaseProps {
   readonly show: boolean;
 }
 
-export const MaybeShow = (props: MaybeShowProps) => {
+export function MaybeShow(props: MaybeShowProps): ReactElement {
   if (props.show) return props.children as ReactElement;
 
   return props.alternativeChildren as ReactElement;

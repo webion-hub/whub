@@ -9,7 +9,7 @@
     "url": "https://github.com/webion-hub/whub.git"
   },
   "scripts": {
-    "build": "tsup index.ts --format cjs --dts",
+    "build": "tsup $(find . -name 'index.ts*' -not -path */node_modules/*) --format cjs --dts",
     "dev": "npm run build -- --watch",
     "lint": "eslint *.ts*"
   },

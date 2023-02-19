@@ -1,5 +1,5 @@
 {
-  "name": "@webion/ui-layout",
+  "name": "@webion/ui-uploaders",
   "version": "1.0.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -17,14 +17,13 @@
     "next": "^13.1.2",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
-    "@webion/ui-components": "workspace:*",
-    "@webion/ui-extensions": "workspace:*",
-    "@webion/ui-wrappers": "workspace:*",
+    "js-cookie": "^3.0.1",
     "@webion/ui-core": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/js-cookie": "^3.0.2",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",

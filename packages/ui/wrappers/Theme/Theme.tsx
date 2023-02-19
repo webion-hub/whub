@@ -1,12 +1,12 @@
 import { Theme, ThemeProvider } from '@mui/material';
-import { createContext, ReactNode, useEffect, useState } from 'react';
+import { Context, createContext, ReactNode, useEffect, useState } from 'react';
 
 export interface IThemeContext {
   readonly setTheme: (key: ThemeKeys) => void;
   readonly currentTheme: ThemeKeys;
 }
 
-export const ThemeContext = createContext<IThemeContext>({
+export const ThemeContext: Context<IThemeContext> = createContext<IThemeContext>({
   setTheme: () => { return; },
   currentTheme: 'dark',
 });

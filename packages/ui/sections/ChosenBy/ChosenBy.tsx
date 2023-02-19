@@ -2,7 +2,7 @@ import { alpha, Divider, Stack, SxProps, Theme } from '@mui/material';
 import { MaybeShow } from '@webion/ui-components';
 import Section from '@webion/ui-layout/Section';
 import { ReactNode, useRef } from 'react';
-import ISection from '../abstractions';
+import { ISection } from '../abstractions';
 
 interface ChosenByProps extends ISection {
   readonly children: ReactNode;

@@ -1,5 +1,5 @@
-import BlogApi from '@webion/api-blog';
-import ContactUsApi from '@webion/api-contactus';
+import { BlogApi } from '@webion/api-blog/index';
+import { ContactUsApi } from '@webion/api-contactus/index';
 
 export default class ApiFactory {
   static blog = new BlogApi({

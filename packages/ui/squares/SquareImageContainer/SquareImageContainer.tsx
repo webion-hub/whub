@@ -1,6 +1,5 @@
 import { Skeleton } from "@mui/material"
 import { useProgressiveImage } from "@webion/ui-core"
-import MaybeShow from "@webion/ui-components/MaybeShow"
 import SquareContainer from "../SquareContainer"
 import { SquareContainerProps } from "../SquareContainer/SquareContainer"
 
@@ -24,17 +23,17 @@ export function SquareImageContainer(props: SquareImageContainerProps) {
         backgroundSize: 'cover',
       }}
     >
-      <MaybeShow
-        show={loading}
-      >
-        <Skeleton
-          variant="rectangular"
-          sx={{
-            height: '100%',
-            width: '100%',
-          }}
-        />
-      </MaybeShow>
+      {
+        loading
+          ? <Skeleton
+              variant="rectangular"
+              sx={{
+                height: '100%',
+                width: '100%',
+              }}
+            />
+          : <></>
+      }
     </SquareContainer>
   )
 }

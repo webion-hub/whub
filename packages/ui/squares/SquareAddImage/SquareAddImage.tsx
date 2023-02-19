@@ -1,6 +1,6 @@
 import AddAPhotoRounded from "@mui/icons-material/AddAPhotoRounded";
 import { InputEvent } from "@webion/ui-core";
-import ImageUploader from "@webion/ui-components/ImageUploader";
+import ImageUploader from "@webion/ui-uploaders/ImageUploader";
 import ImageCropperDialog from "@webion/ui-cropper";
 import { useState } from "react";
 import SquareButton from "../SquareButton";
@@ -53,13 +53,7 @@ export function SquareAddImage(props: SquareAddImageProps) {
       <ImageUploader
         onChange={onChange}
       />
-      <ImageCropperDialog
-        aspectRatio={props.aspectRatio}
-        open={openCrop}
-        image={image}
-        onClose={() => setOpenCrop(false)}
-        onCrop={(cropData) => props.onAddImage(cropData)}
-      />
+  
     </SquareButton>
   )
 }
