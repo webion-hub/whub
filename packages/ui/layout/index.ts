@@ -1,3 +1,3 @@
-import '@webion/ui-extensions/theme'
+import '@webion/ui-extensions'
 
 export * from './Layout/Layout'
