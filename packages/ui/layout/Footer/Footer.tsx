@@ -1,4 +1,4 @@
-import '@webion/ui-extensions'
+import '@webion/ui-extensions/theme'
 import { Stack, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
 import { ChildrenProps } from "@webion/ui-core";
