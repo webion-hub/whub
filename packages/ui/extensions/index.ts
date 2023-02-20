@@ -38,3 +38,6 @@ declare module '@mui/material/styles' {
     readonly layoutMaxWidth?: Partial<TypeLayoutMaxWidth>;
   }
 }
+
+
+export const a = {}

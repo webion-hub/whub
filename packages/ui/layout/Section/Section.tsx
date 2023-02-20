@@ -1,4 +1,4 @@
-import '@webion/ui-extensions'
+import * as __ from '@webion/ui-extensions';
 import { Theme, SxProps } from '@mui/material';
 import { styled } from '@mui/material';
 import { useEffect, useRef } from 'react';

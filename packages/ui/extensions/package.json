@@ -1,13 +1,16 @@
 {
   "name": "@webion/ui-extensions",
-  "version": "1.0.9",
-  "main": "./index.d.ts",
+  "version": "1.0.10",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/webion-hub/whub.git"
   },
   "scripts": {
+    "build": "tsup $(find . -name 'index.ts*' -not -path */node_modules/*) --format cjs --dts",
+    "dev": "npm run build -- --watch",
     "lint": "eslint *.ts*"
   },
   "dependencies": {
