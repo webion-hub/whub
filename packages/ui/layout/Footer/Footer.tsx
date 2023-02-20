@@ -1,7 +1,7 @@
-import '@webion/ui-extensions'
 import { Stack, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
 import { ChildrenProps } from "@webion/ui-core";
+import '@webion/ui-extensions'
 
 const StyledFooter = styled('footer')({})
 
