@@ -21,12 +21,9 @@ export default function Techs() {
           <CardGroup label={t('technologies')} title={t('technologies-title')}>
             <IconCard
               icon={
-                <NextImg
-                  auto={{ width: '100%' }}
-                  sizes="100vw"
+                <TechImg
                   alt="c-sharp"
                   src="/assets/images/technologies/c-sharp.svg"
-                  sx={{ padding: 1.5 }}
                 />
               }
               iconBackgroundColor="#fff"
@@ -35,12 +32,9 @@ export default function Techs() {
             />
             <IconCard
               icon={
-                <NextImg
-                  auto={{ width: '100%' }}
-                  sizes="100vw"
+                <TechImg
                   alt="next-js"
                   src="/assets/images/technologies/next-js.svg"
-                  sx={{ padding: 1.5 }}
                 />
               }
               iconBackgroundColor="#fff"
@@ -49,12 +43,9 @@ export default function Techs() {
             />
             <IconCard
               icon={
-                <NextImg
-                  auto={{ width: '100%' }}
-                  sizes="100vw"
+                <TechImg
                   alt="flutter"
                   src="/assets/images/technologies/flutter.svg"
-                  sx={{ padding: 1.5 }}
                 />
               }
               iconBackgroundColor="#fff"
@@ -63,12 +54,9 @@ export default function Techs() {
             />
             <IconCard
               icon={
-                <NextImg
-                  auto={{ width: '100%' }}
-                  sizes="100vw"
+                <TechImg
                   alt="docker"
                   src="/assets/images/technologies/docker.svg"
-                  sx={{ padding: 1.5 }}
                 />
               }
               iconBackgroundColor="#fff"
@@ -77,12 +65,9 @@ export default function Techs() {
             />
             <IconCard
               icon={
-                <NextImg
-                  auto={{ width: '100%' }}
-                  sizes="100vw"
+                <TechImg
                   alt="react"
                   src="/assets/images/technologies/react.svg"
-                  sx={{ padding: 1.5 }}
                 />
               }
               iconBackgroundColor="#fff"
@@ -91,12 +76,9 @@ export default function Techs() {
             />
             <IconCard
               icon={
-                <NextImg
-                  auto={{ width: '100%' }}
-                  sizes="100vw"
+                <TechImg
                   alt="net-core"
                   src="/assets/images/technologies/net-core.svg"
-                  sx={{ padding: 1.5 }}
                 />
               }
               iconBackgroundColor="#fff"
@@ -105,12 +87,9 @@ export default function Techs() {
             />
             <IconCard
               icon={
-                <NextImg
-                  auto={{ width: '100%' }}
-                  sizes="100vw"
+                <TechImg
                   alt="angular"
                   src="/assets/images/technologies/angular.svg"
-                  sx={{ padding: 1.5 }}
                 />
               }
               iconBackgroundColor="#fff"
@@ -119,12 +98,9 @@ export default function Techs() {
             />
             <IconCard
               icon={
-                <NextImg
-                  auto={{ width: '100%' }}
-                  sizes="100vw"
+                <TechImg
                   alt="sql"
                   src="/assets/images/technologies/sql.svg"
-                  sx={{ padding: 1.5 }}
                 />
               }
               iconBackgroundColor="#fff"
@@ -133,12 +109,9 @@ export default function Techs() {
             />
             <IconCard
               icon={
-                <NextImg
-                  auto={{ width: '100%' }}
-                  sizes="100vw"
+                <TechImg
                   alt="mongo db"
                   src="/assets/images/technologies/mongo-db.svg"
-                  sx={{ padding: 1.5 }}
                 />
               }
               iconBackgroundColor="#fff"
@@ -151,4 +124,22 @@ export default function Techs() {
       </Sections>
     </Page>
   );
+}
+
+
+interface TechImgProps {
+  readonly alt: string,
+  readonly src: string,
+}
+
+function TechImg(props: TechImgProps) {
+  return (
+    <NextImg
+      {...props}
+      skeletonvariant="circular"
+      auto={{ width: '100%' }}
+      sizes="100vw"
+      sx={{ padding: 1.5 }}
+    />
+  )
 }

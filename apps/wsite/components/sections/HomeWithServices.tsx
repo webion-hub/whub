@@ -56,7 +56,7 @@ export default function HomeWithServices(props: ISection) {
   const theme = useTheme();
   const reduceTitle = useMediaQuery(theme.breakpoints.down(1000));
 
-  const getPage = (key: Slides) => {
+  const getPage = () => {
     return pages.find(p => p.key === pageKey)
   }
 
@@ -76,7 +76,7 @@ export default function HomeWithServices(props: ISection) {
   const zoomAnimationName = `grow-img-${pageKey}`;
   const zoomAnimationKeyframes = `@keyframes ${zoomAnimationName}`;
 
-  const page = getPage(pageKey)
+  const page = getPage()
 
   return (
     <Section
@@ -187,19 +187,18 @@ export default function HomeWithServices(props: ISection) {
           overflow: 'hidden',
         }}
       >
-        {pageLoaded.map((key, i) => {
-          const page = getPage(key)
-
+        {pages.map((p, i) => {
           return (
             <NextImg
-              key={key}
+              priority={i === 0}
+              key={p.key}
               src={page?.src ?? ''}
               alt="slide-show-img"
               fill
               quality={100}
               sizes="100vw"
               sx={{
-                display: key === pageKey ? 'block' : 'none',
+                display: p.key === pageKey ? 'block' : 'none',
                 objectFit: 'cover',
                 objectPosition: 'center center',
                 transform: 'scale(0)',

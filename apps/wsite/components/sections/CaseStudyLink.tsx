@@ -37,7 +37,7 @@ export function CaseStudyLink(props: CaseStudyLinkProps) {
         >
           <NextImg
             src={props.src}
-            alt="simm"
+            alt={props.caseStudyTitle}
             fill
             sx={{
               objectFit: 'contain',
