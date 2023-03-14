@@ -20,6 +20,11 @@ export default function Cover(props: CoverProps) {
         src={props.src}
         alt={props.src}
         fill
+        priority
+        sizes='
+          (max-width: 900px) 100vw,
+          1000px
+        '
         sx={{
           objectFit: 'cover',
           position: 'relative !important',
