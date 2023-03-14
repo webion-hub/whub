@@ -4,6 +4,20 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
+  transpilePackages: [
+    "@wui/core",
+    "@wui/components",
+    "@wui/squares",
+    "@wui/wrappers",
+    "@wui/layout",
+    "@wui/extensions",
+    "@wui/sections",
+    "@wui/form",
+    "@wapi/blog",
+    "@wapi/contactus",
+    "@wapi-ui/blog",
+    "@wapi-ui/contactus",
+  ],
   modularizeImports: {
     '@wui/wrappers': {
       transform: '@wui/wrappers/{{member}}',
