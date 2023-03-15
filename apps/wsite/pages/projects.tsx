@@ -29,7 +29,7 @@ function Project(props: ProjectProps) {
           auto={{ height: '170px', width: '100%' }}
           sx={{
             objectFit: 'cover',
-            borderRadius: (theme) => theme.shape.borderRadius,
+            borderRadius: (theme) => theme.shape.borderRadius/2,
           }}
         />
       }
