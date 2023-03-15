@@ -15,7 +15,7 @@ import useSWR from 'swr';
 import { ArticleFilters, ArticlesFilterBox } from '../../components/blog/ArticlesFilterBox';
 import BlogArticleCard from '../../components/blog/BlogArticleCard';
 
-export default function Blog({ fallback }: any) {
+export default function Blog() {
   const { t } = useLanguage();
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.down('md'));

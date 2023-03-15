@@ -212,7 +212,10 @@ function ArticleSidebar() {
       >
         <Button
           startIcon={<ArrowBackRounded/>}
-          sx={{ justifyContent: 'flex-start' }}
+          sx={{ 
+            justifyContent: 'flex-start',
+            color: theme => theme.palette.mode === 'dark' ? '#fff' : 'auto'
+          }}
           onClick={clickNavigate('/blog')}
         >
           {t('back-to-articles')}
