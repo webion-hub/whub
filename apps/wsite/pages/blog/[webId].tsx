@@ -46,7 +46,7 @@ export async function getStaticProps({ locale, params }: any) {
   try {
     const res = await endpoint.load();
     return {
-      revalidate: 1,
+      revalidate: 10,
       props: {
         webId: params.webId,
         fallback: {
