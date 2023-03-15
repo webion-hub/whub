@@ -37,7 +37,7 @@ export async function getStaticPaths() {
       locale: a.language.toLowerCase() 
     }))
 
-  return { paths, fallback: true }
+  return { paths, fallback: 'blocking' }
 }
 
 export async function getStaticProps({ locale, params }: any) {
@@ -85,9 +85,8 @@ export default function ArticlePage({ fallback, webId }: any) {
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
   const { clickNavigate } = useNextNavigator()
   const { t } = useLanguage()
-  const router = useRouter()
 
-  if (!webId || router.isFallback) {
+  if (!webId) {
     return null;
   }
 
