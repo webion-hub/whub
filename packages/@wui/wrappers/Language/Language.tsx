@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useEffect } from 'react';
 
 interface LanguageBaseItem {
   readonly flag?: ReactNode;
@@ -41,8 +41,19 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
   const router = useRouter();
   const { locale, asPath } = router;
 
+  useEffect(() => {
+    const storageLang = window.localStorage.getItem('language')
+    const isOnRightRoute = storageLang === locale
+
+    if(isOnRightRoute || !storageLang)
+      return
+
+    router.push(asPath, asPath, { locale: storageLang });
+  }, [])
+
   const setLanguage = (language: string) => {
     router.push(asPath, asPath, { locale: language });
+    window.localStorage.setItem('language', language)
   };
 
   const t = (key: string) => {
