@@ -11,7 +11,6 @@ import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import dynamic from 'next/dynamic';
 
-import { useEffect, useRef, useState } from 'react';
 import { ImageAndDescription } from '../components/blocks/ImageAndDescription';
 
 const GetAQuote = dynamic(() => import("../components/sections/GetAQuote"), { ssr: true })
@@ -60,8 +59,17 @@ export default function WhoWeArePage() {
           />
         </Section>
         <Section>
+          <Typography
+            variant='h2'
+            sx={{ 
+              paddingBottom: 5,
+              display: { xs: 'block', md: 'none' }
+            }}
+          >
+            {t('the-team')}
+          </Typography>
           <Stack
-            direction="row"
+            direction="column"
             justifyContent="space-evenly"
             flexWrap="wrap"
             sx={{
@@ -70,7 +78,7 @@ export default function WhoWeArePage() {
               marginBottom: 10,
               position: 'relative',
               '&::before': {
-                content: `"${t('the-team')}"`,
+                content: { xs: '""', md: `"${t('the-team')}"` },
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
@@ -86,54 +94,80 @@ export default function WhoWeArePage() {
               '& > *': { margin: 2 },
             }}
           >
-            <Member
-              name="Matteo Budriesi"
-              memberRole={t('front-end-cofounder')}
-              src="/assets/images/members/budda.png"
-              alt="budda"
-              videoSrc="/assets/videos/budda.webm"
-              linkedinHref="https://www.linkedin.com/in/matteo-budriesi-b50b51218/"
-              githubHref="https://github.com/matteo2437"
-              sx={{
-                order: membersOrder[0],
-              }}
-            />
-            <Member
-              name="Stefano Calabretti"
-              memberRole={t('back-end-cofounder')}
-              src="/assets/images/members/cala.png"
-              alt="cala"
-              videoSrc="/assets/videos/cala.webm"
-              linkedinHref="https://www.linkedin.com/in/calabr/"
-              githubHref="https://github.com/cala-br"
-              sx={{
-                order: membersOrder[1],
-              }}
-            />
-            <Member
-              name="Alessandro Dodi"
-              memberRole={t('front-end-cofounder')}
-              src="/assets/images/members/alle.png"
-              alt="alle"
-              videoSrc="/assets/videos/alle.webm"
-              linkedinHref="https://www.linkedin.com/in/alessandro-dodi/"
-              githubHref="https://github.com/AlessandroDodi"
-              sx={{
-                order: membersOrder[2],
-              }}
-            />
-            <Member
-              name="Davide Messori"
-              memberRole={t('back-end')}
-              src="/assets/images/members/davido.png"
-              videoSrc="/assets/videos/davido.webm"
-              linkedinHref="https://www.linkedin.com/in/davide-messori-282781189/"
-              alt="davido"
-              githubHref="https://github.com/davidemesso"
-              sx={{
-                order: 4,
-              }}
-            />
+            <Stack
+              direction="row"
+              justifyContent="space-evenly"
+              flexWrap="wrap"
+            >
+              <Member
+                name="Matteo Budriesi"
+                memberRole={t('front-end-cofounder')}
+                src="/assets/images/members/budda.jpg"
+                alt="budda"
+                linkedinHref="https://www.linkedin.com/in/matteo-budriesi-b50b51218/"
+                githubHref="https://github.com/matteo2437"
+                sx={{
+                  order: membersOrder[0],
+                }}
+              />
+              <Member
+                name="Stefano Calabretti"
+                memberRole={t('back-end-cofounder')}
+                src="/assets/images/members/cala.jpg"
+                alt="cala"
+                linkedinHref="https://www.linkedin.com/in/calabr/"
+                githubHref="https://github.com/cala-br"
+                sx={{
+                  order: membersOrder[1],
+                }}
+              />
+              <Member
+                name="Alessandro Dodi"
+                memberRole={t('front-end-cofounder')}
+                src="/assets/images/members/alle.jpg"
+                alt="alle"
+                linkedinHref="https://www.linkedin.com/in/alessandro-dodi/"
+                githubHref="https://github.com/AlessandroDodi"
+                sx={{
+                  order: membersOrder[2],
+                }}
+              />
+            </Stack>
+            <Stack
+              direction="row"
+              justifyContent="space-evenly"
+              flexWrap="wrap"
+            >
+              <Member
+                name="Mirco Raviola"
+                memberRole={t('sales-manager')}
+                src="/assets/images/members/mirco.png"
+                alt="mirco"
+              />
+              <Member
+                name="Davide Messori"
+                memberRole={t('back-end')}
+                src="/assets/images/members/davido.jpeg"
+                linkedinHref="https://www.linkedin.com/in/davide-messori-282781189/"
+                alt="davido"
+                githubHref="https://github.com/davidemesso"
+              />
+              <Member
+                name="Lamine Abdi"
+                memberRole={t('back-end')}
+                src="/assets/images/members/lamine.jpeg"
+                linkedinHref="https://www.linkedin.com/in/lamineabdi/"
+                githubHref="https://github.com/iAmLam094"
+                alt="Lamine"
+              />
+              <Member
+                name="Matteo Milanesi"
+                memberRole={t('designer')}
+                src="/assets/images/members/milanesi.jpeg"
+                linkedinHref="https://www.linkedin.com/in/matteo-milanesi-b59734164/"
+                alt="matteo milanesi"
+              />
+            </Stack>
           </Stack>
         </Section>
         <GetAQuote sx={{ zIndex: 0 }} />
@@ -147,24 +181,12 @@ interface MemberProps {
   readonly memberRole: string;
   readonly src: string;
   readonly alt: string;
-  readonly videoSrc: string;
-  readonly linkedinHref: string;
-  readonly githubHref: string;
+  readonly linkedinHref?: string;
+  readonly githubHref?: string;
   readonly sx?: SxProps<Theme>;
 }
 
 function Member(props: MemberProps) {
-  const [hover, setHover] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if(!videoRef.current)
-      return
-
-    videoRef.current.currentTime = 0;
-
-    hover ? videoRef.current.play() : videoRef.current.pause();
-  }, [hover]);
 
   return (
     <Stack
@@ -177,15 +199,10 @@ function Member(props: MemberProps) {
         padding: 2,
         transition: '0.5s transform',
         borderRadius: 4,
-
         ...props.sx,
       }}
     >
       <Box
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        onTouchStart={() => setHover(true)}
-        onTouchEnd={() => setHover(false)}
         sx={{
           zIndex: 1,
           width: 175,
@@ -194,41 +211,10 @@ function Member(props: MemberProps) {
           boxShadow: (theme) => theme.shadows[10],
           background: (theme) => theme.palette.primary.main,
           borderRadius: '100%',
-          border: (theme) => `4px solid ${theme.palette.primary.main}`,
+          border: (theme) => `6px solid ${theme.palette.primary.main}`,
           overflow: 'hidden',
-          // '&:hover > .WUI-member--video': {
-          //   opacity: '1 !important',
-          // },
-          // '&:hover > .WUI-member--avatar': {
-          //   opacity: 0,
-          // },
         }}
       >
-        <Box
-          className="WUI-member--video"
-          sx={{
-            transition: '0.5s opacity',
-            opacity: 0,
-            position: 'absolute',
-            background: '#000',
-            width: '100%',
-            height: '100%',
-          }}
-        >
-          <video
-            ref={videoRef}
-            loop
-            muted
-            style={{
-              height: '100%',
-              width: '100%',
-              transform: 'translateY(16px) scale(1.5)',
-            }}
-          >
-            <source src={props.videoSrc} type="video/webm" />
-          </video>
-        </Box>
-
         <Avatar
           className="WUI-member--avatar"
           src={props.src}
@@ -254,20 +240,26 @@ function Member(props: MemberProps) {
         </Typography>
       </Stack>
       <Stack direction="row" alignItems="center" justifyContent="center">
-        <IconButton
-          href={props.linkedinHref}
-          target="_blank"
-          aria-label="See linkedin progile"
-        >
-          <LinkedIn />
-        </IconButton>
-        <IconButton
-          href={props.githubHref}
-          target="_blank"
-          aria-label="See github progile"
-        >
-          <GitHub />
-        </IconButton>
+        {
+          props.linkedinHref && 
+            <IconButton
+              href={props.linkedinHref}
+              target="_blank"
+              aria-label="See linkedin progile"
+            >
+              <LinkedIn />
+            </IconButton>
+        }
+        {
+          props.githubHref &&
+            <IconButton
+              href={props.githubHref}
+              target="_blank"
+              aria-label="See github progile"
+            >
+              <GitHub />
+            </IconButton>
+        }
       </Stack>
     </Stack>
   );

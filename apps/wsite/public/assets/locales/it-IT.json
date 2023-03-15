@@ -186,7 +186,9 @@
   "the-team": "Il team",
   "front-end-cofounder": "Co-fondatore & Sviluppatore Frontend",
   "back-end-cofounder": "Co-fondatore & Sviluppatore Backend",
-  "back-end": "Sviluppatore Full-stack",
+  "back-end": "Sviluppatore Backend",
+  "designer": "Ui/Ux Designer",
+  "sales-manager": "Sales Manager",
 
   "technologies": "tecnologie",
   "technologies-title": "Le tecnologie che usiamo",
