@@ -147,12 +147,12 @@ export default function WhoWeArePage() {
               justifyContent="space-evenly"
               flexWrap="wrap"
             >
-              <Member
+              {/*<Member
                 name="Mirco Raviola"
                 memberRole={t('sales-manager')}
                 src="/assets/images/members/mirco.png"
                 alt="mirco"
-              />
+              />*/}
               <Member
                 name="Davide Messori"
                 memberRole={t('back-end')}
