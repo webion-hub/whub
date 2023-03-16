@@ -82,6 +82,9 @@ export function ChosenBy(props: ChosenByProps) {
               alignItems="center"
               justifyContent="space-evenly"
               sx={{
+                order: props.invert 
+                  ? 2 - i - 1 
+                  : i,
                 '& > *': {
                   marginInline: 9,
                   marginBlock: 1.5,
