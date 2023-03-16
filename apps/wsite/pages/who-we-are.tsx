@@ -59,6 +59,16 @@ export default function WhoWeArePage() {
           />
         </Section>
         <Section>
+          <ImageAndDescription
+            label={t('our-mission')}
+            title={t('our-mission-title')}
+            direction="row-reverse"
+            src="/assets/images/group.jpg"
+            alt="group"
+            description={tHtml('our-mission-description')}
+          />
+        </Section>
+        <Section>
           <Typography
             variant='h2'
             sx={{ 
@@ -75,7 +85,6 @@ export default function WhoWeArePage() {
             sx={{
               width: '100%',
               maxWidth: 1200,
-              marginBottom: 10,
               position: 'relative',
               '&::before': {
                 content: { xs: '""', md: `"${t('the-team')}"` },

@@ -9,6 +9,7 @@ interface ChosenByProps extends ISection {
   readonly sx?: SxProps<Theme>;
   readonly blackAndWhite?: boolean;
   readonly hideDivider?: boolean;
+  readonly invert?: boolean;
 }
 
 export function ChosenBy(props: ChosenByProps) {
@@ -68,6 +69,7 @@ export function ChosenBy(props: ChosenByProps) {
               },
             },
             animation: 'infinite-slide 24s linear infinite',
+            animationDirection: props.invert ? 'reverse' : 'normal',
             filter: (theme) => theme.palette.mode === 'dark' ? 'unset' : 'invert(1)',
             position: 'relative',
             paddingTop: { xs: 1, md: 0 },

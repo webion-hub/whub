@@ -37,13 +37,14 @@ export default function WorkWithUs() {
               direction="column"
               flexWrap="wrap"
               justifyContent="center"
+              spacing={2}
               sx={{
                 width: '100%',
                 marginTop: 4,
               }}
             >
               <JobCard
-                title='Sviluppatore back-end'
+                title='Sviluppatore backend'
                 date='08/02/2023'
                 description={
                   <>
@@ -74,6 +75,47 @@ export default function WorkWithUs() {
                     </ul>
                     <br/>
                     <b>Offerta Junior Backend Developer</b>
+                    <ul>
+                      <li>contratto di assunzione a tempo determinato full-time (con prospettiva a tempo indeterminato nei mesi successivi);</li>
+                      <li>pranzo in mensa/ristoranti convenzionati per i giorni in presenza;</li>
+                      <li>smart working fino ad un 50% delle ore settimanali;</li>
+                      <li>postazione in ufficio dotata di Mac Mini / MacBook Air;</li>
+                      <li>utilizzo dell'area cucina con frigorifero, forno a microonde e piastra;</li>
+                      <li>snack e bibite gratuite;</li>
+                    </ul>
+                    <br/>
+                    Siamo interessati ad una collaborazione duratura, verrà inoltre fatta formazione interna.
+                    <br/>
+                    <i>Il presente annuncio è rivolto ad entrambi i sessi, ai sensi delle leggi 903/77 e 125/91, e a persone di tutte le età e tutte le nazionalità, ai sensi dei decreti legislativi 215/03 e 216/03.</i>
+                  </>
+                }
+              />
+              <JobCard
+                title='Sviluppatore frontend'
+                date='16/03/2023'
+                description={
+                  <>
+                    <b>Webion Srl</b> è una software house con sede a Modena in forte crescita nel panorama dello sviluppo software in Italia.
+                    <br/>
+                    Innovazione, strategia, qualità e formazione sono pilastri fondamentali della nostra società.
+                    <br/>
+                    L'azienda al raggiungimento di determinati obiettivi comuni offrirà al proprio personale viaggi con l'ottica di fare team building.
+                    <br/>
+                    <br/>
+                    <b>Conoscenze richieste</b>
+                    <ul>
+                      <li>React</li>
+                      <li>Angular</li>
+                    </ul>
+                    <br/>
+                    <b>Conoscenze gradite ma non essenziali</b>
+                    <ul>
+                      <li>NextJs</li>
+                      <li>Flutter</li>
+                      <li>React Native</li>
+                    </ul>
+                    <br/>
+                    <b>Offerta Junior Frontend Developer</b>
                     <ul>
                       <li>contratto di assunzione a tempo determinato full-time (con prospettiva a tempo indeterminato nei mesi successivi);</li>
                       <li>pranzo in mensa/ristoranti convenzionati per i giorni in presenza;</li>
