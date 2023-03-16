@@ -4,7 +4,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 import MaybeShow from '@wui/components/MaybeShow';
 import { Utils } from '@wui/core';
-import { Router } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 interface LayoutContextProps {
@@ -41,6 +41,7 @@ export function Layout(props: LayoutProps) {
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
   const [section, setSection] = useState<string>();
   const [loading, setLoading] = useState(false);
+  const router = useRouter()
 
   const handleRouteChange = () => {
     setLoading(true);
@@ -51,13 +52,15 @@ export function Layout(props: LayoutProps) {
   };
 
   useEffect(() => {
-    Router.events.on('routeChangeStart', handleRouteChange);
-    Router.events.on('routeChangeComplete', handleRouteChangeComplete);
+    router.events.on('routeChangeStart', handleRouteChange);
+    router.events.on('routeChangeComplete', handleRouteChangeComplete);
+    router.events.on('routeChangeError', handleRouteChangeComplete);
     return () => {
-      Router.events.off('routeChangeStart', handleRouteChange);
-      Router.events.off('routeChangeComplete', handleRouteChangeComplete);
+      router.events.off('routeChangeStart', handleRouteChange);
+      router.events.off('routeChangeComplete', handleRouteChangeComplete);
+      router.events.on('routeChangeError', handleRouteChangeComplete);
     };
-  }, []);
+  }, [router]);
 
   const toggleSideBar = () => {
     setOpenSidebar(status => !status)

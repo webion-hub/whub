@@ -8,7 +8,9 @@ import OurProcess from '../components/sections/OurProcess';
 import Services from '../components/sections/Services';
 import WhoWeAre from '../components/sections/WhoWeAre';
 
-const WebionChosenBy = dynamic(() => import("../components/sections/WebionChosenBy"), { ssr: true })
+const WebionChosenBy1 = dynamic(() => import("../components/sections/WebionChosenBy1"), { ssr: true })
+const WebionChosenBy2 = dynamic(() => import("../components/sections/WebionChosenBy2"), { ssr: true })
+
 const GetAQuote = dynamic(() => import("../components/sections/GetAQuote"), { ssr: true })
 const FaqSection = dynamic(() => import("../components/sections/FaqSection"), { ssr: true })
 
@@ -20,7 +22,8 @@ export default function Homepage() {
       <PageSettings pageTranslationName="home" />
       <Sections>
         <HomeWithServices id="home"/>
-        <WebionChosenBy id="chosen-by"/>
+        <WebionChosenBy1 id="chosen-by"/>
+        <WebionChosenBy2 id="chosen-by"/>
         <WhoWeAre id="who-we-are"/>
         <Services id="services"/>
         <OurProcess id="how-we-work"/>

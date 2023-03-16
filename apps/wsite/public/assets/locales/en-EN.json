@@ -186,8 +186,10 @@
   "the-team": "The team",
   "front-end-cofounder": "Co-Founder & Frontend Developer",
   "back-end-cofounder": "Co-Founder & Backend Developer",
-  "back-end": "Fullstack Developer",
-
+  "back-end": "Backend Developer",
+  "designer": "Ui/Ux Designer",
+  "sales-manager": "Sales Manager",
+  
   "technologies": "TECHNOLOGIES",
   "technologies-title": "The technologies used.",
   "c#": "C# is a modern, object-oriented, and type-safe programming language. C# enables developers to build many types of secure and robust applications that run in .NET.",
@@ -371,5 +373,10 @@
   "reading-time": "Reading time",
   "sections": "Sections",
   "back-to-articles": "Back to articles",
-  "no-sections": "No sections"
+  "no-sections": "No sections",
+  "parva-domus": "Landing page development using NextJs.",
+
+  "our-mission": "Mission",
+  "our-mission-title": "Our mission",
+  "our-mission-description": "Our mission is to develop innovative apps to help people improve their daily lives, while supporting companies to grow digitally and achieve their business goals.<br/><br/> We believe apps can be a powerful tool to improve people's lives, and we are committed to developing innovative solutions that can make a difference. Our apps are designed to be user-friendly and to address the specific needs of our customers, both personally and business-wise."
 }

@@ -29,7 +29,7 @@ function Project(props: ProjectProps) {
           auto={{ height: '170px', width: '100%' }}
           sx={{
             objectFit: 'cover',
-            borderRadius: (theme) => theme.shape.borderRadius,
+            borderRadius: (theme) => theme.shape.borderRadius/2,
           }}
         />
       }
@@ -103,7 +103,7 @@ export default function Projects() {
               }
               buttonLabel={t('see-website')}
             />
-            <Project
+            {/*<Project
               title="Mentorz"
               paragraph={t('mentorz')}
               src="/assets/images/projects/mentorz.png"
@@ -114,7 +114,7 @@ export default function Projects() {
                   ?.focus()
               }
               buttonLabel={t('see-website')}
-            />
+            />*/}
             <Project
               title="Massyve"
               paragraph={t('massyve')}
@@ -128,6 +128,18 @@ export default function Projects() {
               buttonLabel={t('see-website')}
               onClickSecondary={clickNavigate('/studies/massyve')}
               secondaryButtonLabel={t('learn-more')}
+            />
+            <Project
+              title="Parva Domus"
+              paragraph={t('parva-domus')}
+              src="/assets/images/projects/parva-domus.png"
+              alt="massyve"
+              onClick={() =>
+                window
+                  .open('https://immobiliareparvadomus.com/', '_blank')
+                  ?.focus()
+              }
+              buttonLabel={t('see-website')}
             />
           </CardGroup>
         </Section>

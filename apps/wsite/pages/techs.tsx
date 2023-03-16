@@ -137,7 +137,7 @@ function TechImg(props: TechImgProps) {
     <NextImg
       {...props}
       skeletonvariant="circular"
-      auto={{ width: '100%' }}
+      auto={{ width: '100%', height: '100%' }}
       sizes="100vw"
       sx={{ padding: 1.5 }}
     />

@@ -37,7 +37,7 @@ export async function getStaticPaths() {
       locale: a.language.toLowerCase() 
     }))
 
-  return { paths, fallback: true }
+  return { paths, fallback: 'blocking' }
 }
 
 export async function getStaticProps({ locale, params }: any) {
@@ -46,6 +46,7 @@ export async function getStaticProps({ locale, params }: any) {
   try {
     const res = await endpoint.load();
     return {
+      revalidate: 10,
       props: {
         webId: params.webId,
         fallback: {
@@ -211,7 +212,10 @@ function ArticleSidebar() {
       >
         <Button
           startIcon={<ArrowBackRounded/>}
-          sx={{ justifyContent: 'flex-start' }}
+          sx={{ 
+            justifyContent: 'flex-start',
+            color: theme => theme.palette.mode === 'dark' ? '#fff' : 'auto'
+          }}
           onClick={clickNavigate('/blog')}
         >
           {t('back-to-articles')}

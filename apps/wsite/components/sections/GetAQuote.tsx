@@ -1,7 +1,7 @@
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import CallRounded from '@mui/icons-material/CallRounded';
 
-import { Button, Typography } from '@mui/material';
+import { Button, Paper, Typography } from '@mui/material';
 import { Stack, SxProps, Theme, useTheme } from '@mui/system';
 import { MaybeShow } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
@@ -49,7 +49,9 @@ export default function GetAQuote(props: GetAQuoteProps) {
           direction="row"
           justifyContent="center"
           flexWrap="wrap"
+          component={Paper}
           sx={{
+            borderRadius: 999,
             marginTop: (theme) => theme.spacing(8, '!important'),
             '& > *': {
               margin: theme => theme.spacing(1, "!important"),
