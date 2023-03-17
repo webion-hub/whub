@@ -9,6 +9,7 @@ export function Footer() {
     <Box
       sx={{ 
         width: '100%',
+        paddingInline: 4,
         background: theme => theme.palette.primary.main
       }}
     >
@@ -19,7 +20,7 @@ export function Footer() {
         }}
       >
         <Stack
-          direction="row"
+          direction={{ xs: "column", sm: "row"}}
           justifyContent="space-between"
           sx={{ width: '100%' }}
         >
@@ -57,7 +58,8 @@ export function Footer() {
 
           <Stack
             direction="column"
-            alignItems="flex-end"
+            alignItems={{xs: "flex-start", sm: "flex-end"}}
+            sx={{ paddingTop: { xs: 4, sm: 0 } }}
           >
             <Link
               href="https://www.webion.it"

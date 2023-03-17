@@ -37,7 +37,7 @@ export function RevenueSection() {
             text="Metodi di guadagno"
           />
           <Stack
-            direction="row"
+            direction={{ xs: "column", md: "row" }}
             spacing={2}
           >
             <SelectableCardForFeature

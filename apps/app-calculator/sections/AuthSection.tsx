@@ -54,6 +54,7 @@ export function AuthSection() {
           />
           <Stack
             direction="column"
+            sx={{ "& > *": { marginTop: 2 } }}
           >
             <FormControlLabel 
               control={<Checkbox onChange={handleLogin}/>}

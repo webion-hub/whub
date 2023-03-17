@@ -38,7 +38,7 @@ export function PlatformSection() {
             text="Piattaforma"
           />
           <Stack
-            direction="row"
+            direction={{ xs: "column", md: "row" }}
             spacing={2}
           >
             <SelectableCardForFeature

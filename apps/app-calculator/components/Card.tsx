@@ -5,7 +5,7 @@ export const Card = (props: ChildrenProps ) =>
   <WebionCard
     sx={{
       width: '100%',
-      padding: 8
+      padding: { xs: 3, sm: 8 }
     }}
   >
     {props.children}

@@ -71,6 +71,7 @@ export function AddOnsSection() {
           />
           <Stack
             direction="column"
+            sx={{ "& > *": { marginTop: 2 } }}
           >
             <FormControlLabel 
               control={<Checkbox onChange={() => toggle('webapp')}/>}
