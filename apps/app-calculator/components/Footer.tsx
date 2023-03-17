@@ -1,5 +1,6 @@
 import { Box, Button, Link, Stack, Typography } from "@mui/material";
 import NextImg from "@wui/components/NextImg";
+import BasicThemeButton from "@wui/components/BasicThemeButton";
 import { pageMaxWidth } from "../pages/_app";
 import { Section } from "./Section";
 
@@ -22,23 +23,37 @@ export function Footer() {
           justifyContent="space-between"
           sx={{ width: '100%' }}
         >
-
-          <Button
-            target="_blank"
-            href="https://www.webion.it/"
-            sx={{
-              padding: 0.5,
-              borderRadius: 1,
-              width: 'fit-content',
-            }}
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={2}
           >
-            <NextImg
-              auto={{ height: '32px' }}
-              alt="Webion-logo"
-              src="/assets/images/logo.png"
-              sx={{ objectFit: 'cover' }}
-            />
-          </Button>
+            <Box
+              sx={{
+                "& > *": {
+                  color: '#fff !important'
+                }
+              }}
+            >
+              <BasicThemeButton/>
+            </Box>
+            <Button
+              target="_blank"
+              href="https://www.webion.it/"
+              sx={{
+                padding: 0.5,
+                borderRadius: 1,
+                width: 'fit-content',
+              }}
+            >
+              <NextImg
+                auto={{ height: '32px' }}
+                alt="Webion-logo"
+                src="/assets/images/logo.png"
+                sx={{ objectFit: 'cover' }}
+              />
+            </Button>
+          </Stack>
 
           <Stack
             direction="column"

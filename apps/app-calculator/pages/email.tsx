@@ -31,6 +31,7 @@ export default function EmailPage() {
     >
       <Section sx={{ alignItems: 'flex-start' }}>
         <Button
+          color="inherit"
           variant="outlined"
           startIcon={<ArrowBackRoundedIcon/>}
           onClick={clickNavigate('/')}
