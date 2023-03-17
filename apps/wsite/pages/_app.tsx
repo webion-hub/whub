@@ -10,8 +10,7 @@ import LanguageWrapper from "@wui/wrappers/Language";
 import ThemeWrapper from "@wui/wrappers/Theme";
 import { AppProps } from "next/app";
 
-import { darkTheme, lightTheme } from "../theme/getTheme";
-import globalStyle from "../theme/globalStyle";
+import { darkTheme, lightTheme, globalStyle } from "@wui/theme";
 
 import dynamic from 'next/dynamic';
 import { Analytics } from '@vercel/analytics/react';

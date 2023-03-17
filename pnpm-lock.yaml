@@ -55,36 +55,50 @@ importers:
       '@types/node': ^17.0.12
       '@types/react': ^18.0.22
       '@types/react-dom': ^18.0.7
+      '@types/react-syntax-highlighter': ^15.5.6
       '@wui/components': workspace:*
       '@wui/core': workspace:*
       '@wui/extensions': workspace:*
       '@wui/layout': workspace:*
+      '@wui/theme': workspace:*
       '@wui/wrappers': workspace:*
+      cropperjs: ^1.5.13
       eslint: 7.32.0
       eslint-config-custom: workspace:*
+      google-auth-library: ^8.7.0
       next: ^13.1.2
       react: 18.2.0
       react-dom: 18.2.0
+      react-markdown: ^8.0.4
+      react-syntax-highlighter: ^15.5.0
       tsconfig: workspace:*
-      typescript: 4.9.5
+      typescript: ^4.5.3
+      zustand: ^4.3.2
     dependencies:
       '@wui/components': link:../../packages/@wui/components
       '@wui/core': link:../../packages/@wui/core
       '@wui/extensions': link:../../packages/@wui/extensions
       '@wui/layout': link:../../packages/@wui/layout
+      '@wui/theme': link:../../packages/@wui/theme
       '@wui/wrappers': link:../../packages/@wui/wrappers
+      cropperjs: 1.5.13
+      google-auth-library: 8.7.0
       next: 13.1.2_672uxklweod7ene3nqtsh262ca
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      typescript: 4.9.5
+      react-markdown: 8.0.4_pmekkgnqduwlme35zpnqhenc34
+      react-syntax-highlighter: 15.5.0_react@18.2.0
+      zustand: 4.3.2_react@18.2.0
     devDependencies:
       '@babel/core': 7.20.5
       '@types/node': 17.0.45
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.11
+      '@types/react-syntax-highlighter': 15.5.6
       eslint: 7.32.0
       eslint-config-custom: link:../../packages/eslint-config-custom
       tsconfig: link:../../packages/tsconfig
+      typescript: 4.9.5
 
   apps/wsite:
     specifiers:
@@ -104,6 +118,7 @@ importers:
       '@wui/layout': workspace:*
       '@wui/sections': workspace:*
       '@wui/squares': workspace:*
+      '@wui/theme': workspace:*
       '@wui/wrappers': workspace:*
       cropperjs: ^1.5.13
       eslint: 7.32.0
@@ -128,6 +143,7 @@ importers:
       '@wui/layout': link:../../packages/@wui/layout
       '@wui/sections': link:../../packages/@wui/sections
       '@wui/squares': link:../../packages/@wui/squares
+      '@wui/theme': link:../../packages/@wui/theme
       '@wui/wrappers': link:../../packages/@wui/wrappers
       cropperjs: 1.5.13
       google-auth-library: 8.7.0
@@ -438,6 +454,28 @@ importers:
       react-image-file-resizer: 0.4.8
       tsconfig: link:../../tsconfig
       typescript: 4.9.3
+
+  packages/@wui/theme:
+    specifiers:
+      '@types/react': ^18.0.17
+      '@types/react-dom': ^18.0.6
+      '@wui/extensions': workspace:*
+      eslint: ^7.32.0
+      eslint-config-custom: workspace:*
+      next: ^13.1.2
+      react: ^18.2.0
+      tsconfig: workspace:*
+      typescript: ^4.5.2
+    devDependencies:
+      '@types/react': 18.0.28
+      '@types/react-dom': 18.0.11
+      '@wui/extensions': link:../extensions
+      eslint: 7.32.0
+      eslint-config-custom: link:../../eslint-config-custom
+      next: 13.1.2_react@18.2.0
+      react: 18.2.0
+      tsconfig: link:../../tsconfig
+      typescript: 4.9.5
 
   packages/@wui/wrappers:
     specifiers:
@@ -3974,6 +4012,33 @@ packages:
       - supports-color
     dev: false
 
+  /react-markdown/8.0.4_pmekkgnqduwlme35zpnqhenc34:
+    resolution: {integrity: sha512-2oxHa6oDxc1apg/Gnc1Goh06t3B617xeywqI/92wmDV9FELI6ayRkwge7w7DoEqM0gRpZGTNU6xQG+YpJISnVg==}
+    peerDependencies:
+      '@types/react': '>=16'
+      react: '>=16'
+    dependencies:
+      '@types/hast': 2.3.4
+      '@types/prop-types': 15.7.5
+      '@types/react': 18.0.28
+      '@types/unist': 2.0.6
+      comma-separated-tokens: 2.0.3
+      hast-util-whitespace: 2.0.1
+      prop-types: 15.8.1
+      property-information: 6.2.0
+      react: 18.2.0
+      react-is: 18.2.0
+      remark-parse: 10.0.1
+      remark-rehype: 10.1.0
+      space-separated-tokens: 2.0.2
+      style-to-object: 0.3.0
+      unified: 10.1.2
+      unist-util-visit: 4.1.1
+      vfile: 5.3.6
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /react-syntax-highlighter/15.5.0_react@18.2.0:
     resolution: {integrity: sha512-+zq2myprEnQmH5yw6Gqc8lD55QHnpKaU8TOcFeC/Lg/MQSs8UknEA0JC4nTZGFAXC2J2Hyj/ijJ7NlabyPi2gg==}
     peerDependencies:
@@ -4502,7 +4567,7 @@ packages:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: false
+    dev: true
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
@@ -4585,6 +4650,14 @@ packages:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dev: false
+
+  /use-sync-external-store/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /uvu/0.5.6:
@@ -4710,4 +4783,20 @@ packages:
         optional: true
     dependencies:
       use-sync-external-store: 1.2.0
+    dev: false
+
+  /zustand/4.3.2_react@18.2.0:
+    resolution: {integrity: sha512-rd4haDmlwMTVWVqwvgy00ny8rtti/klRoZjFbL/MAcDnmD5qSw/RZc+Vddstdv90M5Lv6RPgWvm1Hivyn0QgJw==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false

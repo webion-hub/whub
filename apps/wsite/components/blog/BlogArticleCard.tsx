@@ -1,11 +1,10 @@
 import { CardActionArea, Chip, Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
 import { BlogArticle } from '@wapi/blog';
-import { MaybeShow, NextImg } from '@wui/components';
+import { MaybeShow, NextImg, WebionCard } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import useLanguage from '@wui/wrappers/useLanguage';
 import ReactMarkdown from 'react-markdown';
-import { WebionCard } from '../cards/WebionCard';
 
 interface BlogArticleProps {
   readonly article: BlogArticle;
