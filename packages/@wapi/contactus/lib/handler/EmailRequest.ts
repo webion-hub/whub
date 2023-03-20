@@ -10,10 +10,10 @@ export interface MailRequest {
   readonly bcc: EmailAddress[]
 }
 
-export type EmailCustomer<T> = T & {
+export type EmailCustomer<T> = {
   readonly email: string,
   readonly name: string,
-}
+} & T
 
 export interface SendEmailRequest<T = {}> {
   readonly mailRequest: MailRequest,

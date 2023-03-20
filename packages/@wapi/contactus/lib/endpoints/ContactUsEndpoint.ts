@@ -5,14 +5,14 @@ export interface EmailRequest<T> {
   readonly name: string,
   readonly email: string,
   readonly msg: string,
-  readonly data: T
+  readonly data?: T
 }
 export class ContactUsEndpoint extends Endpoint {
   get url() {
     return '';
   }
 
-  process<T>(request: EmailRequest<T>): Promise<AxiosResponse<void>> {
+  process<T = {}>(request: EmailRequest<T>): Promise<AxiosResponse<void>> {
     return this.client.post<void>('', request);
   }
 }

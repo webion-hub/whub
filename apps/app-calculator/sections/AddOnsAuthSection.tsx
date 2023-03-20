@@ -56,7 +56,7 @@ usePreview.setState({
 
 
 export function AddOnsSection() {
-  const { toggle, isChecked, set, ...state } = usePreview()
+  const { toggle, isChecked } = usePreview()
 
   return (
     <Section id="add-ons">
