@@ -1,7 +1,7 @@
 import { Interpolation, Theme } from '@mui/material';
 import { darkTheme } from './getTheme';
 
-const globalStyle: Interpolation<Theme> = {
+export const globalStyle: Interpolation<Theme> = {
   body: {
     overflow: 'overlay',
     overflowX: 'hidden',
@@ -16,4 +16,3 @@ const globalStyle: Interpolation<Theme> = {
   },
 };
 
-export default globalStyle;

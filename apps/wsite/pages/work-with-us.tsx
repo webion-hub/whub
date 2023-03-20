@@ -1,5 +1,6 @@
 import OpenInNewRounded from '@mui/icons-material/OpenInNewRounded';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Link, Stack, Typography } from '@mui/material';
+import { ClickableCard } from '@wui/components';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
 import Section from '@wui/layout/Section';
@@ -7,7 +8,6 @@ import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import { ReactNode, useState } from 'react';
 import { TitleSectionLabel } from '../components/blocks/TitleSectionLabel';
-import { ClickableCard } from '../components/cards/ClickableCard';
 import { WebionRepository } from '../lib/WebionRepositiory';
 
 

@@ -9,7 +9,7 @@ import StoreRounded from '@mui/icons-material/StoreRounded';
 import { LoadingButton } from '@mui/lab';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useContactUs } from '@wapi-ui/contactus';
-import { MaybeShow, PrivacyCheckbox } from '@wui/components';
+import { MaybeShow, PrivacyCheckbox, SelectableCard } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import { Validator, Validators } from '@wui/form';
 import Page from '@wui/layout/Page';
@@ -19,7 +19,6 @@ import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import remove from 'lodash/remove';
 import { ReactNode, useState } from 'react';
-import { SelectableCard } from '../components/cards/SelectableCard';
 
 interface CardOptionProps {
   readonly selected: boolean;

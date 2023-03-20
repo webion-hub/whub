@@ -21,6 +21,7 @@
     "@wui/components": "workspace:*",
     "@wui/squares": "workspace:*",
     "@wui/wrappers": "workspace:*",
+    "@wui/theme": "workspace:*",
     "@wui/layout": "workspace:*",
     "@wui/extensions": "workspace:*",
     "@wui/sections": "workspace:*",

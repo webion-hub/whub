@@ -5,9 +5,9 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
-import MaybeShow from '@wui/components/MaybeShow';
 import { ReactNode } from 'react';
-import { WebionCard } from './WebionCard';
+import MaybeShow from '../MaybeShow';
+import WebionCard from '../WebionCard';
 
 export interface ClickableCardProps {
   readonly sx?: SxProps<Theme>;

@@ -1,5 +1,5 @@
 import { Theme } from '@mui/system';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { getComponents } from './components';
 import '@wui/extensions/theme';
 
@@ -16,7 +16,7 @@ declare module '@mui/material/Button' {
 const fontFamily = "'Inter', sans-serif;";
 
 export const getTheme = (palette: Theme['palette'], mode: 'light' | 'dark') => {
-  return createTheme({
+  const theme = createTheme({
     palette: palette,
     layoutMaxWidth: {
       appbar: 1270,
@@ -45,6 +45,8 @@ export const getTheme = (palette: Theme['palette'], mode: 'light' | 'dark') => {
     },
     components: getComponents(fontFamily, mode),
   });
+
+  return responsiveFontSizes(theme)
 };
 
 export const darkTheme = getTheme(darkPalette, 'dark');

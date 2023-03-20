@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
+import { ClickableCard, ClickableCardProps } from '@wui/components';
 import MaybeShow from '@wui/components/MaybeShow';
 import { ReactNode } from 'react';
-import { ClickableCard, ClickableCardProps } from './ClickableCard';
 
 export interface ImageCardProps extends ClickableCardProps {
   readonly img?: ReactNode;
