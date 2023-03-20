@@ -12,7 +12,7 @@ interface MailRequest {
   readonly bcc: EmailAddress[]
 }
 
-interface EmailCustomer {
+type EmailCustomer = {
   readonly email: string,
   readonly name: string,
 }
@@ -31,6 +31,7 @@ export default async function handler(req: any, res: any) {
     name,
     email,
     msg,
+    data,
   } = req.body
 
   const body: SendEmailRequest = {
@@ -39,7 +40,8 @@ export default async function handler(req: any, res: any) {
     subjectTemplate: process.env.SUBJECT_TEMPLATE ?? '',
     customer: {
       email: email,
-      name: name
+      name: name,
+      ...data
     },
     message: msg,
     mailRequest: {
