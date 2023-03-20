@@ -2,28 +2,28 @@ import axios from "axios";
 import { JWT } from 'google-auth-library';
 
 interface EmailAddress {
-  readonly Address: string,
-  readonly Name: string
+  readonly address: string,
+  readonly name: string
 }
 interface MailRequest {
-  readonly From: EmailAddress,
-  readonly To: EmailAddress[],
-  readonly Cc: EmailAddress[],
-  readonly Bcc: EmailAddress[]
+  readonly from: EmailAddress,
+  readonly to: EmailAddress[],
+  readonly cc: EmailAddress[],
+  readonly bcc: EmailAddress[]
 }
 
 interface EmailCustomer {
-  readonly Email: string,
-  readonly Name: string,
+  readonly email: string,
+  readonly name: string,
 }
 
 interface SendEmailRequest {
-  readonly MailRequest: MailRequest,
-  readonly ApiKey: string,
-  readonly Message: string,
-  readonly Customer: EmailCustomer,
-  readonly BodyTemplate: string,
-  readonly SubjectTemplate: string
+  readonly mailRequest: MailRequest,
+  readonly apiKey: string,
+  readonly message: string,
+  readonly customer: EmailCustomer,
+  readonly bodyTemplate: string,
+  readonly subjectTemplate: string
 }
 
 export default async function handler(req: any, res: any) {
@@ -34,28 +34,28 @@ export default async function handler(req: any, res: any) {
   } = req.body
 
   const body: SendEmailRequest = {
-    ApiKey: process.env.API_KEY ?? '',
-    BodyTemplate: process.env.BODY_TEMPLATE ?? '',
-    SubjectTemplate: process.env.SUBJECT_TEMPLATE ?? '',
-    Customer: {
-      Email: email,
-      Name: name
+    apiKey: process.env.API_KEY ?? '',
+    bodyTemplate: process.env.BODY_TEMPLATE ?? '',
+    subjectTemplate: process.env.SUBJECT_TEMPLATE ?? '',
+    customer: {
+      email: email,
+      name: name
     },
-    Message: msg,
-    MailRequest: {
-      From: {
-        Address: email,
-        Name: process.env.NAME ?? ''
+    message: msg,
+    mailRequest: {
+      from: {
+        address: email,
+        name: process.env.NAME ?? ''
       },
-      To: [{
-        Address: process.env.ADDRESS ?? '',
-        Name: name,
+      to: [{
+        address: process.env.ADDRESS ?? '',
+        name: name,
       }],
-      Cc: [{
-        Address: 'matteo.budriesi@webion.it',
-        Name: 'matteo',
+      cc: [{
+        address: 'matteo.budriesi@webion.it',
+        name: 'matteo',
       }],
-      Bcc: []
+      bcc: []
     }
   }
 
