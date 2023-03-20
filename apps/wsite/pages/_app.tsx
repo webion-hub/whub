@@ -40,7 +40,7 @@ BlogContext.api = {
 
 ContactUsContext.api = {
   headers: { } as any,
-  baseURL: 'https://api.webion.it/contactus',
+  baseURL: 'api/contact-us',
   withCredentials: true,
 }
 
