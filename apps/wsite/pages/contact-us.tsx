@@ -278,7 +278,7 @@ export default function ContactUs() {
       .process({
         name: formValue.name ?? '',
         email: formValue.email ?? '',
-        message: formValue.message,
+        msg: formValue.message,
         companyType: formValue.companyAge,
         services: formValue.services.join(','),
       })
