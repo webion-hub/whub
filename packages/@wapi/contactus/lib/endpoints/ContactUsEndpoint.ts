@@ -1,7 +1,7 @@
 import { Endpoint } from "@wapi/core";
 import { AxiosResponse } from 'axios'
 
-interface EmailRequest<T> {
+export interface EmailRequest<T> {
   readonly name: string,
   readonly email: string,
   readonly msg: string,
