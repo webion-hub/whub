@@ -10,7 +10,7 @@ export async function getServerSideProps(ctx: any) {
     .data
     .map((item) => ({
       lastmod: new Date().toISOString(),
-      loc: `${process.env.NEXT_PUBLIC_DOMAIN_URL}${item.language}/blog/${item.webId.toString()}`,
+      loc: `${process.env.NEXT_PUBLIC_DOMAIN_URL}${item.language.toLowerCase()}/blog/${item.webId.toString()}`,
     }));
 
   const fields = [...newsSitemaps];
