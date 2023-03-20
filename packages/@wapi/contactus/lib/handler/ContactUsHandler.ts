@@ -39,6 +39,7 @@ export class ContactUsHandler {
     const customer = {
       email: reqBody.email,
       name: reqBody.name,
+      ...reqBody.data
     } as EmailCustomer<T>
 
     return {
