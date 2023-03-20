@@ -19,6 +19,7 @@ importers:
       eslint-config-custom: workspace:0.0.0
       eslint-config-next: ^13.1.2
       lodash: ^4.17.21
+      net: ^1.0.2
       next-sitemap: ^3.1.45
       prettier: latest
       rxjs: ^7.8.0
@@ -37,6 +38,7 @@ importers:
       axios: 1.2.3
       eslint-config-next: 13.1.2
       lodash: 4.17.21
+      net: 1.0.2
       next-sitemap: 3.1.45
       rxjs: 7.8.0
       swr: 2.0.1
@@ -46,7 +48,7 @@ importers:
       '@types/lodash': 4.14.191
       '@types/node': 17.0.45
       eslint-config-custom: link:packages/eslint-config-custom
-      prettier: 2.8.4
+      prettier: 2.8.5
       turbo: 1.8.3
 
   apps/app-calculator:
@@ -3620,6 +3622,10 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
+  /net/1.0.2:
+    resolution: {integrity: sha512-kbhcj2SVVR4caaVnGLJKmlk2+f+oLkjqdKeQlmUtz6nGzOpbcobwVIeSURNgraV/v3tlmGIX82OcPCl0K6RbHQ==}
+    dev: false
+
   /next-sitemap/3.1.45:
     resolution: {integrity: sha512-8vyvWC8KT8RIEUL9Vfiae9yGuIIiJ1IpepzbFtwZx43BaKsoi/Zk9OlmPKuQouVY726xwN7uLZPtgl2l2U+9Ug==}
     engines: {node: '>=14.18'}
@@ -3889,8 +3895,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  /prettier/2.8.4:
-    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
+  /prettier/2.8.5:
+    resolution: {integrity: sha512-3gzuxrHbKUePRBB4ZeU08VNkUcqEHaUaouNt0m7LGP4Hti/NuB07C7PPTM/LkWqXoJYJn2McEo5+kxPNrtQkLQ==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true

@@ -277,9 +277,11 @@ export default function ContactUs() {
       .process({
         name: formValue.name ?? '',
         email: formValue.email ?? '',
-        message: formValue.message,
-        companyType: formValue.companyAge,
-        services: formValue.services.join(','),
+        msg: formValue.message ?? '',
+        data: {
+          companyType: formValue.companyAge,
+          services: formValue.services.join(','),
+        }
       })
       .then(() => navigate('/message/sent'))
       .catch(() => navigate('/message/error'))
