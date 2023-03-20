@@ -21,6 +21,7 @@ import ContactUsContext from '@wapi-ui/contactus/ContactUsContext/ContactUsConte
 //SPOSTARE IN ImageCropperDialog
 //TOGLIERE L'IMPORT DI CROPPER JS DA PACKAGEJSON
 import "cropperjs/dist/cropper.css";
+import { CookieWrapper } from '@wui/wrappers';
 
 
 const CookiePopup = dynamic(() => import("@wui/components/CookiePopup"), { ssr: true })
@@ -45,10 +46,14 @@ ContactUsContext.api = {
 
 export default function RootLayout({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Script strategy='worker' src="scripts/pixel.js"/>
-      <Script src="scripts/hotjar.js"/>
-      <Analytics/>
+    <CookieWrapper 
+      name="webion"
+      scriptsComponents={<>
+        <Script strategy='worker' src="scripts/pixel.js"/>
+        <Script src="scripts/hotjar.js"/>
+      </>}
+    >
+
       <Head>
         <link rel="shortcut icon" href="assets/favicon.ico" />
         <title>Webion</title>
@@ -68,11 +73,7 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
           <CssBaseline />
           <GlobalStyles styles={globalStyle as any} />
           
-          <CookiePopup
-            usePixel
-            name="webion"
-            privacyUrl="/policies-licenses"
-          />
+          <CookiePopup privacyUrl="/policies-licenses"/>
           <Layout
             AppBarComponent={<WebionAppBar />}
             FooterComponent={<WebionFooter />}
@@ -84,6 +85,6 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
           <WebionSpeedDial/>
         </ThemeWrapper>
       </LanguageWrapper>
-    </>
+    </CookieWrapper>
   )
 }

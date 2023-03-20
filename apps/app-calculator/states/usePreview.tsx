@@ -2,7 +2,7 @@ import { create } from "zustand"
 
 
 
-const features = [
+export const features = [
   'platform', 
   'design', 
   'login', 
@@ -48,8 +48,8 @@ type FeaturesState = FeaturesMap & {
 }
 
 export const usePreview = create<FeaturesState>((set, get) => ({ 
-  set: (key, feature) => set(() => ({ [key]: feature })),
   toggle: (key) => set((state) => ({ [key]: { ...state[key], ignore: !state[key]?.ignore } })),
+  set: (key, feature) => set(() => ({ [key]: feature })),
   setChecked: (key, status) => set((state) => ({ [key]: { ...state[key], ignore: !status } })),
   isChecked: (key) => !get()?.[key]?.ignore,
   getSummary: () => {

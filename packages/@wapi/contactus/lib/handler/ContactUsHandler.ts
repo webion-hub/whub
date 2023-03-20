@@ -1,6 +1,6 @@
 import axios from "axios"
 import { EmailRequest } from "../endpoints/ContactUsEndpoint"
-import { SendEmailRequest } from "./EmailRequest"
+import { EmailCustomer, SendEmailRequest } from "./EmailRequest"
 
 interface ContactUsHandlerConfig {
   readonly JWT: any,
@@ -36,15 +36,16 @@ export class ContactUsHandler {
   }
 
   private getEmailBody = <T = {}>(reqBody: EmailRequest<T>): SendEmailRequest<T> => {
+    const customer = {
+      email: reqBody.email,
+      name: reqBody.name,
+    } as EmailCustomer<T>
+
     return {
       apiKey: this.config.apiKey,
       bodyTemplate: this.config.bodyTemplate,
       subjectTemplate: this.config.subjectTemplate,
-      customer: {
-        email: reqBody.email,
-        name: reqBody.name,
-        ...reqBody.data
-      },
+      customer: customer,
       message: reqBody.msg,
       mailRequest: {
         from: {

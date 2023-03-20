@@ -12,12 +12,14 @@ importers:
       '@mui/material': ^5.11.5
       '@mui/system': ^5.11.5
       '@next/bundle-analyzer': ^13.1.2
+      '@types/js-cookie': ^3.0.2
       '@types/lodash': ^4.14.191
       '@types/node': ^17.0.45
       '@vercel/analytics': ^0.1.8
       axios: ^1.2.3
       eslint-config-custom: workspace:0.0.0
       eslint-config-next: ^13.1.2
+      js-cookie: ^3.0.1
       lodash: ^4.17.21
       net: ^1.0.2
       next-sitemap: ^3.1.45
@@ -37,6 +39,7 @@ importers:
       '@vercel/analytics': 0.1.8
       axios: 1.2.3
       eslint-config-next: 13.1.2
+      js-cookie: 3.0.1
       lodash: 4.17.21
       net: 1.0.2
       next-sitemap: 3.1.45
@@ -45,6 +48,7 @@ importers:
       zustand: 4.3.2
     devDependencies:
       '@builder.io/partytown': 0.7.4
+      '@types/js-cookie': 3.0.2
       '@types/lodash': 4.14.191
       '@types/node': 17.0.45
       eslint-config-custom: link:packages/eslint-config-custom
@@ -58,6 +62,8 @@ importers:
       '@types/react': ^18.0.22
       '@types/react-dom': ^18.0.7
       '@types/react-syntax-highlighter': ^15.5.6
+      '@wapi-ui/contactus': workspace:*
+      '@wapi/contactus': workspace:*
       '@wui/components': workspace:*
       '@wui/core': workspace:*
       '@wui/extensions': workspace:*
@@ -77,6 +83,8 @@ importers:
       typescript: ^4.5.3
       zustand: ^4.3.2
     dependencies:
+      '@wapi-ui/contactus': link:../../packages/@wapi-ui/contactus
+      '@wapi/contactus': link:../../packages/@wapi/contactus
       '@wui/components': link:../../packages/@wui/components
       '@wui/core': link:../../packages/@wui/core
       '@wui/extensions': link:../../packages/@wui/extensions
@@ -255,7 +263,6 @@ importers:
 
   packages/@wui/components:
     specifiers:
-      '@types/js-cookie': ^3.0.2
       '@types/react': ^18.0.17
       '@types/react-dom': ^18.0.6
       '@wui/core': workspace:*
@@ -264,13 +271,11 @@ importers:
       '@wui/wrappers': workspace:*
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
-      js-cookie: ^3.0.1
       next: ^13.1.2
       react: ^18.2.0
       tsconfig: workspace:*
       typescript: ^4.5.2
     devDependencies:
-      '@types/js-cookie': 3.0.2
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
       '@wui/core': link:../core
@@ -279,7 +284,6 @@ importers:
       '@wui/wrappers': link:../wrappers
       eslint: 7.32.0
       eslint-config-custom: link:../../eslint-config-custom
-      js-cookie: 3.0.1
       next: 13.1.2_react@18.2.0
       react: 18.2.0
       tsconfig: link:../../tsconfig
@@ -403,7 +407,6 @@ importers:
 
   packages/@wui/sections:
     specifiers:
-      '@types/js-cookie': ^3.0.2
       '@types/react': ^18.0.17
       '@types/react-dom': ^18.0.6
       '@wui/components': workspace:*
@@ -416,7 +419,6 @@ importers:
       tsconfig: workspace:*
       typescript: ^4.5.2
     devDependencies:
-      '@types/js-cookie': 3.0.2
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
       '@wui/components': link:../components
@@ -3213,7 +3215,7 @@ packages:
   /js-cookie/3.0.1:
     resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
     engines: {node: '>=12'}
-    dev: true
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}

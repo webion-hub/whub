@@ -9,7 +9,9 @@ module.exports = withBundleAnalyzer({
     "@wui/components",
     "@wui/wrappers",
     "@wui/layout",
-    "@wui/extensions"
+    "@wui/extensions",
+    "@wapi/contactus",
+    "@wapi-ui/contactus",
   ],
   modularizeImports: {
     '@wui/wrappers': {
@@ -26,7 +28,7 @@ module.exports = withBundleAnalyzer({
     },
   },
   i18n: {
-    locales: ['it', 'en'],
+    locales: ['it'],
     defaultLocale: 'it',
   },
   experimental: {
