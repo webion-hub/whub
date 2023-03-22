@@ -25,14 +25,16 @@ export default function BlogArticleCard(props: BlogArticleProps) {
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           justifyContent="space-between"
-          sx={{ height: '100%' }}
+          sx={{ 
+            height: '100%',
+          }}
         >
           <Stack
             direction="column"
             justifyContent="space-between"
             sx={{
               padding: 4,
-              width: '100%',
+              width: { xs: '100%', sm: '60%' },
               "&::after": {
                 content: "''",
                 position: 'absolute',
@@ -77,55 +79,38 @@ export default function BlogArticleCard(props: BlogArticleProps) {
                 {props.article.title}
               </Typography>
             </Stack>
-
-            <Box
-              sx={{
-                marginTop: 2,
-                display: '-webkit-box',
-                WebkitLineClamp: '3',
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden',
-                "& > *": {
-                  display: 'inline'
-                }
-              }}
-            >
-              <ReactMarkdown>
-                {props.article.content}
-              </ReactMarkdown>
-            </Box>
           </Stack>
-            <Box
-              sx={{
-                position: 'relative',
-                order: { xs: -1, sm: 0 },
-                maxWidth: { xs: '100%', sm: 380 },
-                height: { xs: 150, sm: 'auto' },
-                width: '100%',
-                borderRadius: 4,
-                display: { 
-                  xs: thereIsACover ? 'block' : 'none', 
-                  sm: 'block' 
-                }
-              }}
-            >
-              <MaybeShow show={thereIsACover}>
-                <NextImg
-                  src={props.article.cover}
-                  alt={props.article.title}
-                  fill
-                  priority
-                  sizes="
-                    (max-width: 700px) 100,
-                    (max-width: 1327px) 50vw,
-                    600px
-                  "
-                  sx={{
-                    objectFit: 'cover !important',
-                  }}
-                />
-              </MaybeShow>
-            </Box>
+          <Box
+            sx={{
+              position: 'relative',
+              order: { xs: -1, sm: 0 },
+              maxWidth: { xs: '100%', sm: 380 },
+              width: { xs: '100%', sm: '40%' },
+              height: { xs: 150, sm: 'auto' },
+              borderRadius: 4,
+              display: { 
+                xs: thereIsACover ? 'block' : 'none', 
+                sm: 'block' 
+              }
+            }}
+          >
+            <MaybeShow show={thereIsACover}>
+              <NextImg
+                src={props.article.cover}
+                alt={props.article.title}
+                fill
+                priority
+                sizes="
+                  (max-width: 700px) 100,
+                  (max-width: 1327px) 50vw,
+                  600px
+                "
+                sx={{
+                  objectFit: 'cover !important',
+                }}
+              />
+            </MaybeShow>
+          </Box>
         </Stack>
       </CardActionArea>
     </WebionCard>

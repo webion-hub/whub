@@ -17,8 +17,6 @@ export default function ArticleContent(props: ArticleContentProps) {
   const markdown = useMemo(
     () => (
       <ReactMarkdown
-        disallowedElements={['p']}
-        unwrapDisallowed
         components={{
           h1: (props) => (
             <ArticleHyperlink
@@ -28,6 +26,7 @@ export default function ArticleContent(props: ArticleContentProps) {
               {props.children}
             </ArticleHyperlink>
           ),
+          p: (props) => <span style={{ opacity: 0.8 }}>{props.children}</span>,
           code: (props) => (
             <CodeSnippet
               language={props.lang}
