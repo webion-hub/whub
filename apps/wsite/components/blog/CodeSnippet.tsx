@@ -35,6 +35,7 @@ export default function CodeSnippet(props: CodeSnippetProps) {
       sx={{
         display: 'inline-flex',
         width: 'min-content',
+        maxWidth: '100%',
         margin: 'auto',
         marginBlock: 2,
         overflow: 'hidden',
