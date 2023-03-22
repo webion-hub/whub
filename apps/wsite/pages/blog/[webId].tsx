@@ -9,7 +9,7 @@ import Section from '@wui/layout/Section';
 import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import { useRouter } from 'next/router';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { fromEvent } from 'rxjs';
 import useSWR, { SWRConfig } from 'swr';
 import { create } from 'zustand';
@@ -42,8 +42,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ locale, params }: any) {
   const endpoint = getArticle(locale, params.webId);
+  const request = await blogFactory()
+    .sitemap
+    .load();
 
-  try {
+  const urlExist = request.data.some(d => d.webId === params.webId)
+  
+  const loadPage = async () => {
     const res = await endpoint.load();
     return {
       revalidate: 10,
@@ -53,16 +58,21 @@ export async function getStaticProps({ locale, params }: any) {
           [endpoint.url]: res.data,
         },
       },
-    };
+    }
   }
-  catch {
-    return {
-      redirect: {
-        destination: `/${locale}/blog`,
-        permanent: false,
-      }
-    };
-  }
+
+  const redirect = () => ({
+    redirect: {
+      destination: `/${locale}/blog`,
+      permanent: false,
+    }
+  })
+
+  const action =  urlExist
+    ? loadPage
+    : redirect
+
+  return await action()
 }
 
 interface ArticlePos {
