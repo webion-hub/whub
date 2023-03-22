@@ -1,8 +1,9 @@
-import { Paper, useTheme } from '@mui/material';
+import { alpha, Box, IconButton, Paper, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import docco from 'react-syntax-highlighter/dist/cjs/styles/hljs/docco';
 import dracula from 'react-syntax-highlighter/dist/cjs/styles/hljs/dracula';
+import CopyAllRoundedIcon from '@mui/icons-material/CopyAllRounded';
 
 interface CodeSnippetProps {
   readonly language?: string;
@@ -17,6 +18,10 @@ export default function CodeSnippet(props: CodeSnippetProps) {
     setMounted(true)
   }, [])
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(props.text);
+  }
+
   if(!mounted)
     return (
       <code>
@@ -25,17 +30,21 @@ export default function CodeSnippet(props: CodeSnippetProps) {
     )
 
   return (
-    <Paper
-      component='span'
+    <Box
+      component="span"
       sx={{
-        display: 'block',
-        maxWidth: '100%',
+        display: 'inline-flex',
+        width: 'min-content',
         margin: 'auto',
+        marginBlock: 2,
         overflow: 'hidden',
+        borderRadius: 1,
+        background: theme => alpha(theme.palette.secondary.light, 0.1),
         "& > pre": {
           margin: 0,
-          fontSize: '80%',
-          padding: theme => theme.spacing(2, '!important')
+          fontSize: '1rem',
+          background: 'none !important',
+          padding: theme => theme.spacing(1, '!important')
         }
       }}
     >
@@ -50,6 +59,11 @@ export default function CodeSnippet(props: CodeSnippetProps) {
       >
         {props.text}
       </SyntaxHighlighter>
-    </Paper>
+      <Box sx={{ margin: '2px' }}>
+        <IconButton onClick={copyToClipboard}>
+          <CopyAllRoundedIcon fontSize='small'/>
+        </IconButton>
+      </Box>
+    </Box>
   );
 }
