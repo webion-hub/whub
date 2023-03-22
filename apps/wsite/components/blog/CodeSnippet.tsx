@@ -1,9 +1,9 @@
-import { alpha, Box, IconButton, Paper, useTheme } from '@mui/material';
+import CopyAllRoundedIcon from '@mui/icons-material/CopyAllRounded';
+import { alpha, Box, IconButton, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import docco from 'react-syntax-highlighter/dist/cjs/styles/hljs/docco';
 import dracula from 'react-syntax-highlighter/dist/cjs/styles/hljs/dracula';
-import CopyAllRoundedIcon from '@mui/icons-material/CopyAllRounded';
 
 interface CodeSnippetProps {
   readonly language?: string;

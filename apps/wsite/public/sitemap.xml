@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap><loc>https://webion.it/sitemap-0.xml</loc></sitemap>
-<sitemap><loc>https://webion.it/sitemap.xml</loc></sitemap>
-<sitemap><loc>https://webion.it/server-sitemap.xml</loc></sitemap>
+<sitemap><loc>undefined/sitemap-0.xml</loc></sitemap>
+<sitemap><loc>undefinedsitemap.xml</loc></sitemap>
+<sitemap><loc>undefinedserver-sitemap.xml</loc></sitemap>
 </sitemapindex>

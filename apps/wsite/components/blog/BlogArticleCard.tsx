@@ -4,7 +4,6 @@ import { BlogArticle } from '@wapi/blog';
 import { MaybeShow, NextImg, WebionCard } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import useLanguage from '@wui/wrappers/useLanguage';
-import ReactMarkdown from 'react-markdown';
 
 interface BlogArticleProps {
   readonly article: BlogArticle;
