@@ -1,8 +1,8 @@
-import { styled, useTheme } from '@mui/material';
+import { styled, Typography, useTheme } from '@mui/material';
 import { Box } from '@mui/system';
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { from, fromEvent } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { useArticlePos } from '../../pages/blog/[webId]';
 import CodeSnippet from './CodeSnippet';
 interface ArticleContentProps {
@@ -13,6 +13,34 @@ export default function ArticleContent(props: ArticleContentProps) {
   const articleContainerRef = useRef<HTMLDivElement>()
   const theme = useTheme()
   const { setPos } = useArticlePos()
+
+  const markdown = useMemo(
+    () => (
+      <ReactMarkdown
+        disallowedElements={['p']}
+        unwrapDisallowed
+        components={{
+          h1: (props) => (
+            <ArticleHyperlink
+              className='Wui-section--hyperlink'
+              id={encodeURI(props.children as string)}
+            >
+              {props.children}
+            </ArticleHyperlink>
+          ),
+          code: (props) => (
+            <CodeSnippet
+              language={props.lang}
+              text={props.children as string}
+            />
+          ),
+        }}
+      >
+        {props.content}
+      </ReactMarkdown>
+    ),
+    [props.content]
+  )
 
   useEffect(() => {
     const sub = fromEvent(window, 'scroll')
@@ -50,31 +78,10 @@ export default function ArticleContent(props: ArticleContentProps) {
         },
       }}
     >
-      <ReactMarkdown
-        components={{
-          h1: (props) => (
-            <ArticleHyperlink
-              className='Wui-section--hyperlink'
-              id={encodeURI(props.children as string)}
-            >
-              {props.children}
-            </ArticleHyperlink>
-          ),
-          code: (props) => (
-            <CodeSnippet
-              language={props.lang}
-              text={props.children as string}
-            />
-          )
-        }}
-      >
-        {props.content}
-      </ReactMarkdown>
+      {markdown}
     </Box>
   );
 }
-
-
 
 const ArticleHyperlink = styled('h1')(({ theme }) => ({
   "&::before": {

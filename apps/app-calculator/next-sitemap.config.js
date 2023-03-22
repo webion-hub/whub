@@ -4,7 +4,8 @@ module.exports = {
   siteUrl: siteUrl,
   generateRobotsTxt: true,
   exclude: [
-    '/email'
+    '/message/error',
+    '/message/sent'
   ],
   changefreq: 'daily',
   robotsTxtOptions: {
