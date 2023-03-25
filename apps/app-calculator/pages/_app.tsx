@@ -41,6 +41,10 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
         <title>
           Calcolatore costo App
         </title>
+        <meta
+          content="Rivela il costo di sviluppo della tua app ideale con il nostro calcolatore online innovativo e gratuito. Ottieni preventivi dettagliati e su misura per iOS, Android o entrambi, con facilità e velocità!"
+          name="description"
+        />
       </Head>
       <LanguageWrapper
         availableLanguages={{
