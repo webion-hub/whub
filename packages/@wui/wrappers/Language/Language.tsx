@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 import { createContext, ReactNode, useEffect } from 'react';
+import { useSubject } from '@wui/core/hooks/useSubject';
+import { BehaviorSubject, filter, Observable, skip } from 'rxjs';
 
 interface LanguageBaseItem {
   readonly flag?: ReactNode;
@@ -22,37 +24,81 @@ interface AvailableLanguages {
   readonly [key: string]: LanguageItem;
 };
 
+interface LanguageChangeEvent {
+  preventRouteNavigation: boolean,
+  lang: string,
+  redirectRoute: string 
+}
+
 export interface ILanguageContext {
   readonly language?: LanguageBaseItem;
+  readonly getStorageLanguage: () => LanguageBaseItem;
   readonly languages: LanguageBaseItem[];
   readonly setLanguage: (language: string) => void;
   readonly t: (key: string) => string;
   readonly tHtml: (key: string) => string | JSX.Element | JSX.Element[];
+  readonly languageChange: Observable<LanguageChangeEvent>;
 }
 
 export const LanguageContext = createContext<ILanguageContext>({
   languages: [] as LanguageBaseItem[],
   setLanguage: () => { return; },
+  getStorageLanguage: () => { return {} as LanguageBaseItem; },
   t: () => '',
   tHtml: () => '',
+  languageChange: new BehaviorSubject<LanguageChangeEvent>({ 
+    preventRouteNavigation: false, 
+    lang: '', 
+    redirectRoute: ''
+  })
 });
 
 export const LanguageWrapper = (props: LanguageWrapperProps) => {
   const router = useRouter();
   const { locale, asPath } = router;
 
-  useEffect(() => {
-    const storageLang = window.localStorage.getItem('language')
-    const isOnRightRoute = storageLang === locale
+  const languageChange = useSubject<LanguageChangeEvent>({
+    preventRouteNavigation: false,
+    lang: '',
+    redirectRoute: asPath
+  });
 
-    if(isOnRightRoute || !storageLang)
+  const routeNavigator = useSubject<LanguageChangeEvent>({
+    preventRouteNavigation: false,
+    lang: '',
+    redirectRoute: asPath
+  });
+  
+  const getStorageLanguage = () => window?.localStorage?.getItem('language') ?? ''
+
+  useEffect(() => {
+    const storageLanguage = getStorageLanguage()
+    const isOnRightRoute = storageLanguage === locale
+
+    if(isOnRightRoute || !storageLanguage)
       return
 
-    router.push(asPath, asPath, { locale: storageLang });
+    setLanguage(storageLanguage)
+  }, [])
+
+  useEffect(() => {
+    const sub = routeNavigator
+      .pipe(filter(e => !e.preventRouteNavigation))
+      .subscribe((e) => router.push(e.redirectRoute, e.redirectRoute, { locale: e.lang }))
+
+    return () => sub.unsubscribe()
   }, [])
 
   const setLanguage = (language: string) => {
-    router.push(asPath, asPath, { locale: language });
+    const e: LanguageChangeEvent = {
+      preventRouteNavigation: false,
+      lang: language,
+      redirectRoute: asPath,
+    }
+
+    languageChange.next(e)
+    routeNavigator.next(e)
+
     window.localStorage.setItem('language', language)
   };
 
@@ -81,8 +127,7 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
     }));
   };
 
-  const getLanguage = (): LanguageBaseItem => {
-    const code = locale as string;
+  const getLanguage = (code: string): LanguageBaseItem => {
     const lang = props.availableLanguages[code];
 
     return {
@@ -95,8 +140,10 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
   return (
     <LanguageContext.Provider
       value={{
+        languageChange: languageChange.pipe(skip(1)),
         languages: getLanguages(),
-        language: getLanguage(),
+        language: getLanguage(locale as string),
+        getStorageLanguage: () => getLanguage(getStorageLanguage()),
         setLanguage: setLanguage,
         t,
         tHtml,
