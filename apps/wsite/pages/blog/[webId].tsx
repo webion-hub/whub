@@ -10,7 +10,7 @@ import Sections from '@wui/layout/Sections';
 import useLanguage from '@wui/wrappers/useLanguage';
 import { useRouter } from 'next/router';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { fromEvent } from 'rxjs';
+import { fromEvent, take } from 'rxjs';
 import useSWR, { SWRConfig } from 'swr';
 import { create } from 'zustand';
 import { Article } from '../../components/blog/Article';
@@ -46,7 +46,19 @@ export async function getStaticProps({ locale, params }: any) {
     .sitemap
     .load();
 
-  const urlExist = request.data.some(d => d.webId === params.webId)
+  const urlExist = request
+    .data
+    .some(d => 
+        d.webId === params.webId && 
+        d.language.toLowerCase() === locale
+      )
+  
+  const redirect = () => ({
+    redirect: {
+      destination: `/${locale}/blog`,
+      permanent: false,
+    }
+  })
   
   const loadPage = async () => {
     const res = await endpoint.load();
@@ -54,19 +66,13 @@ export async function getStaticProps({ locale, params }: any) {
       revalidate: 10,
       props: {
         webId: params.webId,
+        articleLanguage: res.data.language.toLowerCase(),
         fallback: {
           [endpoint.url]: res.data,
         },
       },
     }
   }
-
-  const redirect = () => ({
-    redirect: {
-      destination: `/${locale}/blog`,
-      permanent: false,
-    }
-  })
 
   const action =  urlExist
     ? loadPage
@@ -90,11 +96,34 @@ export const useArticlePos = create<ArticlePos>((set) => ({
   }),
 })) 
 
-export default function ArticlePage({ fallback, webId }: any) {
+export default function ArticlePage({ fallback, webId, articleLanguage }: any) {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
-  const { clickNavigate } = useNextNavigator()
-  const { t } = useLanguage()
+  const { clickNavigate, navigate } = useNextNavigator()
+  const { getStorageLanguage, t, setLanguage, languageChange } = useLanguage()
+
+
+  useEffect(() => {
+    const language  = getStorageLanguage()
+    const areSameLanguage = language?.code === articleLanguage 
+
+    if(areSameLanguage)
+      return
+
+    setLanguage(articleLanguage)
+    const sub = languageChange
+      .pipe(take(1))
+      .subscribe(e => {
+        const areSameLanguage = e.lang === articleLanguage;
+
+        e.preventRouteNavigation = areSameLanguage;
+        
+        if(!areSameLanguage)
+          e.redirectRoute = '/blog'
+      })
+
+    return () => sub.unsubscribe()
+  }, [articleLanguage])
 
   if (!webId) {
     return null;

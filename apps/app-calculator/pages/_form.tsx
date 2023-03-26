@@ -50,7 +50,7 @@ export default function FormPage() {
               variant="contained"
               size="large"
               endIcon={<RocketRoundedIcon/>}
-              href="#design"
+              href="#platform"
             >
               Inizia
             </Button>
