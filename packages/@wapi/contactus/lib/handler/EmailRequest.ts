@@ -5,6 +5,7 @@ export interface EmailAddress {
 
 export interface MailRequest {
   readonly from: EmailAddress,
+  readonly attachments: any[],
   readonly to: EmailAddress[],
   readonly cc: EmailAddress[],
   readonly bcc: EmailAddress[]

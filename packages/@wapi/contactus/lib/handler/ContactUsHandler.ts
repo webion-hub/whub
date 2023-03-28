@@ -19,11 +19,18 @@ export class ContactUsHandler {
   constructor(private config: ContactUsHandlerConfig) {}
 
   sendEmail = async <T = {}>(res: any, reqBody: EmailRequest<T>) => {
-    const body = this.getEmailBody(reqBody)
 
     try {
       const contactUsApi = await this.getContactUsApi();
+      const pdf = await contactUsApi.post(
+        'https://europe-west1-contact-us-377410.cloudfunctions.net/pdf-function', 
+        JSON.stringify(`<div>ciao</div>`)
+      )
+
+      console.log(pdf.data)
+      const body = this.getEmailBody(reqBody, pdf.data)
       const response = await contactUsApi.post('', body);
+
       res
         .status(response.status)
         .end()
@@ -35,13 +42,24 @@ export class ContactUsHandler {
     }
   }
 
-  private getEmailBody = <T = {}>(reqBody: EmailRequest<T>): SendEmailRequest<T> => {
+  private getEmailBody = <T = {}>(reqBody: EmailRequest<T>, pdf: any): SendEmailRequest<T> => {
     const customer = {
       email: reqBody.email,
       name: reqBody.name,
       ...reqBody.data
     } as EmailCustomer<T>
+    function strEncodeUTF16(str: string) {
+      var buf = new ArrayBuffer(str.length*2);
+      var bufView = new Uint16Array(buf);
+      for (var i=0, strLen=str.length; i < strLen; i++) {
+        bufView[i] = str.charCodeAt(i);
+      }
+      return bufView;
+    }
+    let utf8Encode = new TextEncoder();
 
+    const arr = JSON.stringify([...utf8Encode.encode(pdf) as any]);//JSON.stringify(strEncodeUTF16(pdf));
+    console.log(arr)
     return {
       apiKey: this.config.apiKey,
       bodyTemplate: this.config.bodyTemplate,
@@ -49,6 +67,10 @@ export class ContactUsHandler {
       customer: customer,
       message: reqBody.msg,
       mailRequest: {
+        attachments: [{
+          filename: 'test.pdf',
+          content: arr,
+        }],
         from: {
           address: reqBody.email,
           name: this.config.name
