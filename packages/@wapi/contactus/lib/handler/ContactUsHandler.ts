@@ -24,9 +24,8 @@ export class ContactUsHandler {
       const contactUsApi = await this.getContactUsApi();
       const pdf = await contactUsApi.post(
         'https://europe-west1-contact-us-377410.cloudfunctions.net/pdf-function', 
-        JSON.stringify(`<div>ciao</div>`)
+        JSON.stringify("<html><head><title>titolone</title></head><body><h1> ciaone </h1><p>roba</p></body></html>")
       )
-
       console.log(pdf.data)
       const body = this.getEmailBody(reqBody, pdf.data)
       const response = await contactUsApi.post('', body);
@@ -56,9 +55,8 @@ export class ContactUsHandler {
       }
       return bufView;
     }
-    let utf8Encode = new TextEncoder();
 
-    const arr = JSON.stringify([...utf8Encode.encode(pdf) as any]);//JSON.stringify(strEncodeUTF16(pdf));
+    const arr = JSON.stringify(pdf);
     console.log(arr)
     return {
       apiKey: this.config.apiKey,
