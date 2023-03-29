@@ -7,9 +7,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: undefined
+Host: https://www.webion.it/
 
 # Sitemaps
-Sitemap: undefined/sitemap.xml
-Sitemap: undefinedsitemap.xml
-Sitemap: undefinedserver-sitemap.xml
+Sitemap: https://www.webion.it/sitemap.xml
+Sitemap: https://www.webion.it/server-sitemap.xml
