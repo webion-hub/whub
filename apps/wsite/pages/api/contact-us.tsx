@@ -7,7 +7,7 @@ const contactUsHandler = new ContactUsHandler({
   apiKey: process.env.API_KEY ?? '',
   bodyTemplate: process.env.BODY_TEMPLATE ?? '',
   subjectTemplate: process.env.SUBJECT_TEMPLATE ?? '',
-  contactUsBaseUrl: process.env.CONTACT_US_BASE_URL ?? '',
+  baseUrl: process.env.CONTACT_US_BASE_URL ?? '',
   jwtEmail: process.env.JWT_EMAIL ?? '',
   jwtKey: process.env.JWT_KEY ?? '',
   name: process.env.NAME ?? '',

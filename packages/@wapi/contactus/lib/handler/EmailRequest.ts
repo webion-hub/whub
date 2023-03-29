@@ -1,11 +1,17 @@
+
 export interface EmailAddress {
   readonly address: string,
   readonly name: string
 }
 
+export interface Attachment {
+  readonly filename: string,
+  readonly content: string
+}
+
 export interface MailRequest {
   readonly from: EmailAddress,
-  readonly attachments: any[],
+  readonly attachments: Attachment[],
   readonly to: EmailAddress[],
   readonly cc: EmailAddress[],
   readonly bcc: EmailAddress[]

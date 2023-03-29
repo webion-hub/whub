@@ -53,7 +53,7 @@ importers:
       '@types/node': 17.0.45
       eslint-config-custom: link:packages/eslint-config-custom
       prettier: 2.8.7
-      turbo: 1.8.5
+      turbo: 1.8.7
 
   apps/app-calculator:
     specifiers:
@@ -64,6 +64,7 @@ importers:
       '@types/react-syntax-highlighter': ^15.5.6
       '@wapi-ui/contactus': workspace:*
       '@wapi/contactus': workspace:*
+      '@wapi/pdf': workspace:*
       '@wui/components': workspace:*
       '@wui/core': workspace:*
       '@wui/extensions': workspace:*
@@ -85,6 +86,7 @@ importers:
     dependencies:
       '@wapi-ui/contactus': link:../../packages/@wapi-ui/contactus
       '@wapi/contactus': link:../../packages/@wapi/contactus
+      '@wapi/pdf': link:../../packages/@wapi/pdf
       '@wui/components': link:../../packages/@wui/components
       '@wui/core': link:../../packages/@wui/core
       '@wui/extensions': link:../../packages/@wui/extensions
@@ -260,6 +262,20 @@ importers:
       qs: 6.11.0
       tsconfig: link:../../tsconfig
       typescript: 4.9.3
+
+  packages/@wapi/pdf:
+    specifiers:
+      '@wapi/core': workspace:*
+      eslint: ^7.32.0
+      eslint-config-custom: workspace:*
+      tsconfig: workspace:*
+      typescript: ^4.5.2
+    devDependencies:
+      '@wapi/core': link:../core
+      eslint: 7.32.0
+      eslint-config-custom: link:../../eslint-config-custom
+      tsconfig: link:../../tsconfig
+      typescript: 4.9.5
 
   packages/@wui/components:
     specifiers:
@@ -515,7 +531,7 @@ importers:
       eslint: 7.32.0
       eslint-config-next: 13.0.0_77fvizpdb3y4icyeo2mf4eo7em
       eslint-config-prettier: 8.5.0_eslint@7.32.0
-      eslint-config-turbo: 0.0.10_eslint@7.32.0
+      eslint-config-turbo: 1.8.7_eslint@7.32.0
       eslint-plugin-react: 7.31.8_eslint@7.32.0
     devDependencies:
       typescript: 4.9.3
@@ -2212,13 +2228,13 @@ packages:
       eslint: 7.32.0
     dev: false
 
-  /eslint-config-turbo/0.0.10_eslint@7.32.0:
-    resolution: {integrity: sha512-o4ULFZYM1OihSd63eDGEuy9rt6tW4ma6xnW9grnr44BoJwKaGQko2aka9kfqQs0vtmwD1++Os3ThPHETmzkFzA==}
+  /eslint-config-turbo/1.8.7_eslint@7.32.0:
+    resolution: {integrity: sha512-kqK63y8e/cV2DJMbC5tPyfJgV+LxQxfik19qC+wtuiicb+3yRdjTbv+M5z+UCPHpCVWi33x9FxuOXn83jAlOkw==}
     peerDependencies:
       eslint: '>6.6.0'
     dependencies:
       eslint: 7.32.0
-      eslint-plugin-turbo: 0.0.10_eslint@7.32.0
+      eslint-plugin-turbo: 1.8.7_eslint@7.32.0
     dev: false
 
   /eslint-import-resolver-node/0.3.6:
@@ -2491,8 +2507,8 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: false
 
-  /eslint-plugin-turbo/0.0.10_eslint@7.32.0:
-    resolution: {integrity: sha512-T7QRwF4rjBQCJD9AHLHn9ShtHCHNkfIZW5Oio92WtQYhoU5jZCU3ynU+ONFXLuvoUx4dJ19WergIyHL+DwL2+g==}
+  /eslint-plugin-turbo/1.8.7_eslint@7.32.0:
+    resolution: {integrity: sha512-6pkvcU+aynbC7gtSiV8rUAVtxWQsn74HdOt6STBWGLBw1fZy4O6hkU77Xi6gh8gtdvTrYMEP+nBl8ZV0erRZbg==}
     peerDependencies:
       eslint: '>6.6.0'
     dependencies:
@@ -4497,65 +4513,65 @@ packages:
       typescript: 4.9.3
     dev: false
 
-  /turbo-darwin-64/1.8.5:
-    resolution: {integrity: sha512-CAYh56bzeHfnh7jTm03r29bh8p5a/EjQo1Id5yLUH7hS7msTau/+YpxJWPodLbN0UQsUYivUqHQkglJ+eMJ7xA==}
+  /turbo-darwin-64/1.8.7:
+    resolution: {integrity: sha512-QOa7SI1sv8IH9biO4qThmyz0w2WNlQMJ8CmJ9NmyujlqQYdcP3r2JJY6GlJkUk2PdX9YV3mBVrOePicBy3gcjA==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-darwin-arm64/1.8.5:
-    resolution: {integrity: sha512-R3jCPOv+lu3dcvMhj8b/Defv6dyUwX6W+tbX7d6YUCA46Plf/bGCQ8+MSbxmr/4E1GyGOVFsn1wRfiYk0us/Dg==}
+  /turbo-darwin-arm64/1.8.7:
+    resolution: {integrity: sha512-q2pvkuZBoP1iljSZC+vtIObkgFZeo9kDdOJvj+bloLIEkkksBWNGvgabVWBAzJyNnoUHCQVxKPIstEhfmzW3eA==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-64/1.8.5:
-    resolution: {integrity: sha512-YRc/KNRZeUVvth11UO4SDQZR2IqGgl9MSsbzqoHuFz4B4Q5QXH7onHogv9aXWE/BZBBbcrSBTlwBSG0Gg+J8hg==}
+  /turbo-linux-64/1.8.7:
+    resolution: {integrity: sha512-xlNS6cFCLDcQeuHFINn+p4Z5H880v3/KSdYKiuIpxAwijhLq5ZTTpGQegNiOXrct3cotKUI7lWgDPn6Y2G/A8Q==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-arm64/1.8.5:
-    resolution: {integrity: sha512-8exVZb7XBl/V3gHSweuUyG2D9IzfWqwLvlXoeLWlVYSj61Ajgdv+WU7lvUmx+H2s+sSKqmIFmewA5Lw6YY37sg==}
+  /turbo-linux-arm64/1.8.7:
+    resolution: {integrity: sha512-lmQ09jHGOyMqmA66a/Hcm6Ox9ZqVFIIFFZHEiO1L4dRtl2PNCzzgp+DoNP1VEvVOgRTxy71MU5Z3APOLjmC05A==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-64/1.8.5:
-    resolution: {integrity: sha512-fA8PU5ZNoFnQkapG06WiEqfsVQ5wbIPkIqTwUsd/M2Lp+KgxE79SQbuEI+2vQ9SmwM5qoMi515IPjgvXAJXgCw==}
+  /turbo-windows-64/1.8.7:
+    resolution: {integrity: sha512-XcHNYAzCWESpqULDU0USXidfOXmkoLzYzTrUWhmXUdTNL4pcUysFn+CHKbiYU8nSBFcZacJnHQ/kEjduqRoJ9g==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-arm64/1.8.5:
-    resolution: {integrity: sha512-SW/NvIdhckLsAWjU/iqBbCB0S8kXupKscUK3kEW1DZIr3MYcP/yIuaE/IdPuqcoF3VP0I3TLD4VTYCCKAo3tKA==}
+  /turbo-windows-arm64/1.8.7:
+    resolution: {integrity: sha512-Ly1mksTC94lrK3/MxKKBmyf4roVYoeo43Rj+kv9qtx20+2Fzf3Iclw8H5/eGucnOOoxeinfdz4tjzhAHdNRwfA==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo/1.8.5:
-    resolution: {integrity: sha512-UBnH2wIFb5g6OQCk8f34Ud15ZXV4xEMmugeDJTU5Ur2LpVRsNEny0isSCYdb3Iu3howoNyyXmtpaxWsAwNYkkg==}
+  /turbo/1.8.7:
+    resolution: {integrity: sha512-0EtA4OfLSPpcErAQBKArDueQ/EoYPiPlRAWidHV8l030aVFY3B05dDd3CcfTM41IFSSgqk9n4R8DgesC8fVrDA==}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      turbo-darwin-64: 1.8.5
-      turbo-darwin-arm64: 1.8.5
-      turbo-linux-64: 1.8.5
-      turbo-linux-arm64: 1.8.5
-      turbo-windows-64: 1.8.5
-      turbo-windows-arm64: 1.8.5
+      turbo-darwin-64: 1.8.7
+      turbo-darwin-arm64: 1.8.7
+      turbo-linux-64: 1.8.7
+      turbo-linux-arm64: 1.8.7
+      turbo-windows-64: 1.8.7
+      turbo-windows-arm64: 1.8.7
     dev: true
 
   /type-check/0.4.0:
