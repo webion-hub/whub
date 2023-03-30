@@ -1,10 +1,9 @@
 import { Box, Button, Link, Stack, Typography } from "@mui/material";
 import NextImg from "@wui/components/NextImg";
 import BasicThemeButton from "@wui/components/BasicThemeButton";
-import { pageMaxWidth } from "../pages/_app";
-import { Section } from "./Section";
+import Section from "@wui/layout/Section";
 
-export function Footer() {
+export function BaseFooter() {
   return (
     <Box
       sx={{ 
@@ -15,8 +14,8 @@ export function Footer() {
     >
       <Section 
         sx={{ 
+          paddingBottom: 0,
           paddingBlock: theme => theme.spacing(5, '!important'),
-          maxWidth: pageMaxWidth
         }}
       >
         <Stack

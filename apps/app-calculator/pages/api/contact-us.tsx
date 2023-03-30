@@ -17,7 +17,7 @@ const contactUsHandler = new ContactUsHandler({
 
 const pdfHandler = new PdfHandler({
   JWT: JWT,
-  baseUrl: 'https://europe-west1-contact-us-377410.cloudfunctions.net/pdf-function',
+  baseUrl: process.env.PDF_BASE_URL ?? '',
   jwtEmail: process.env.JWT_EMAIL ?? '',
   jwtKey: process.env.JWT_KEY ?? '',
   targetAudience: process.env.TARGET_AUDIENCE ?? '',

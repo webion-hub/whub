@@ -1,5 +1,5 @@
 {
-  "name": "app-calculator",
+  "name": "html-converter",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,16 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.4.6",
+    "@wapi-ui/contactus": "workspace:*",
+    "@wapi/contactus": "workspace:*",
+    "@wapi/pdf": "workspace:*",
     "@wui/components": "workspace:*",
     "@wui/core": "workspace:*",
     "@wui/extensions": "workspace:*",
     "@wui/layout": "workspace:*",
+    "@wui/sections": "workspace:*",
     "@wui/theme": "workspace:*",
     "@wui/wrappers": "workspace:*",
-    "@wui/sections": "workspace:*",
-    "@wapi/contactus": "workspace:*",
-    "@wapi-ui/contactus": "workspace:*",
-    "@wapi/pdf": "workspace:*",
     "cropperjs": "^1.5.13",
     "google-auth-library": "^8.7.0",
     "next": "^13.1.2",
