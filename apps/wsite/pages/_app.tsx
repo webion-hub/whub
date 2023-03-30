@@ -50,7 +50,17 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
       name="webion"
       scriptsComponents={<>
         <Script strategy='worker' src="scripts/pixel.js"/>
-        <Script src="scripts/hotjar.js"/>
+        <Script strategy="lazyOnload" src="scripts/hotjar.js"/>
+        <Script strategy="lazyOnload" src="https://www.googletagmanager.com/gtag/js?id=G-1MN32P60E7"/>
+        <Script strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', 'G-1MN32P60E7');
+          `}
+        </Script>
       </>}
     >
 
