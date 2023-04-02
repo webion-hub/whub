@@ -69,8 +69,11 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
     redirectRoute: asPath
   });
   
-  const getStorageLanguage = () => window?.localStorage?.getItem('language') ?? ''
-
+  const getStorageLanguage = () => 
+    window?.localStorage?.getItem('language') 
+    ?? locale
+    ?? 'it'
+    
   useEffect(() => {
     const storageLanguage = getStorageLanguage()
     const isOnRightRoute = storageLanguage === locale
