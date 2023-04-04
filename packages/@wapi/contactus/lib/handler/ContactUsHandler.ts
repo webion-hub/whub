@@ -1,13 +1,9 @@
+import { ApiHandler, ApiHandlerConfig } from "@wapi/core";
 import axios from "axios"
 import { EmailRequest } from "../endpoints/ContactUsEndpoint"
-import { EmailCustomer, SendEmailRequest } from "./EmailRequest"
+import { Attachment, EmailCustomer, SendEmailRequest } from "./EmailRequest"
 
-interface ContactUsHandlerConfig {
-  readonly JWT: any,
-  readonly jwtEmail: string,
-  readonly jwtKey: string,
-  readonly targetAudience: string,
-  readonly contactUsBaseUrl: string,
+interface ContactUsHandlerConfig extends ApiHandlerConfig {
   readonly apiKey: string,
   readonly bodyTemplate: string,
   readonly subjectTemplate: string,
@@ -15,15 +11,24 @@ interface ContactUsHandlerConfig {
   readonly address: string,
 }
 
-export class ContactUsHandler {
-  constructor(private config: ContactUsHandlerConfig) {}
+export class ContactUsHandler extends ApiHandler {
+  constructor(private config: ContactUsHandlerConfig) {
+    super(config)
+  }
 
-  sendEmail = async <T = {}>(res: any, reqBody: EmailRequest<T>) => {
+  sendEmail = async <T = {}>(reqBody: EmailRequest<T>) => {
     const body = this.getEmailBody(reqBody)
 
+    const contactUsApi = await this.getApi();
+    const response = await contactUsApi.post('', body);
+
+    return response
+  }
+
+  getHandler = async <T = {}>(res: any, reqBody: EmailRequest<T>) => {
     try {
-      const contactUsApi = await this.getContactUsApi();
-      const response = await contactUsApi.post('', body);
+      const response = await this.sendEmail(reqBody);
+
       res
         .status(response.status)
         .end()
@@ -42,6 +47,11 @@ export class ContactUsHandler {
       ...reqBody.data
     } as EmailCustomer<T>
 
+    const preparedAttachments = reqBody
+      .attachments
+      ?.map(a => ({ ...a, content: JSON.stringify(a.content) }))
+      ?? []
+
     return {
       apiKey: this.config.apiKey,
       bodyTemplate: this.config.bodyTemplate,
@@ -49,6 +59,7 @@ export class ContactUsHandler {
       customer: customer,
       message: reqBody.msg,
       mailRequest: {
+        attachments: preparedAttachments,
         from: {
           address: reqBody.email,
           name: this.config.name
@@ -64,20 +75,5 @@ export class ContactUsHandler {
         bcc: []
       }
     }
-  }
-
-  private getContactUsApi = async () => {
-    const jwt = new this.config.JWT({
-      email: this.config.jwtEmail,
-      key: this.config.jwtKey
-    })
-  
-    const token = await jwt.fetchIdToken(this.config.targetAudience ?? '')
-    return axios.create({
-        baseURL: this.config.contactUsBaseUrl,
-        headers: {
-          Authorization: `Bearer ${token}` 
-        }
-      })
   }
 }

@@ -8,41 +8,31 @@ import { AppProps } from "next/app";
 
 import { darkTheme, globalStyle, lightTheme } from "@wui/theme";
 
-import dynamic from 'next/dynamic';
 import Page from "@wui/layout/Page";
-import BaseFooter from "@wui/sections/BaseFooter";
 import Sections from "@wui/layout/Sections";
-import { Appbar } from "../components/Appbar";
-import { LanguageWrapper } from "@wui/wrappers/Language/Language";
+import BaseFooter from "@wui/sections/BaseFooter";
 import { CookieWrapper } from '@wui/wrappers/Cookie/CookieWrapper';
-
-import ContactUsContext from '@wapi-ui/contactus/ContactUsContext/ContactUsContext';
-
-ContactUsContext.api = {
-  headers: { } as any,
-  baseURL: 'api/contact-us',
-  withCredentials: true,
-}
+import { LanguageWrapper } from "@wui/wrappers/Language/Language";
+import dynamic from 'next/dynamic';
 
 const CookiePopup = dynamic(() => import("@wui/components/CookiePopup"), { ssr: true })
 const CssBaseline = dynamic(() => import("@mui/material/CssBaseline"), { ssr: true })
 const GlobalStyles = dynamic(() => import("@mui/material/GlobalStyles"), { ssr: true })
 
-
-export const pageMaxWidth = 1000
+export const pageMaxWidth = 1500
 
 export default function RootLayout({ Component, pageProps }: AppProps) {
   return (
     <CookieWrapper
-      name="webion-app-calculator"
+      name="webion-hmlt-converter"
     >
       <Head>
         <link rel="shortcut icon" href="assets/favicon.ico" />
         <title>
-          Calcolatore costo App
+          Html Converter
         </title>
         <meta
-          content="Rivela il costo di sviluppo della tua app ideale con il nostro calcolatore online innovativo e gratuito. Ottieni preventivi dettagliati e su misura per iOS, Android o entrambi, con facilità e velocità!"
+          content="Trasforma facilmente i tuoi file HTML in PDF con il nostro convertitore online gratuito e veloce. Perfetto per professionisti e principianti, ottieni risultati di alta qualità in pochi clic!"
           name="description"
         />
       </Head>
@@ -68,7 +58,6 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
           <CookiePopup privacyUrl="https://webion.it/policies-licenses"/>
           <Layout
             sx={{ marginTop: 0 }}
-            AppBarComponent={<Appbar/>}
             FooterComponent={<BaseFooter/>}
           >
             <Page>

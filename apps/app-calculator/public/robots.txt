@@ -7,8 +7,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: undefined
+Host: https://www.quantocostafareunapp.com
 
 # Sitemaps
-Sitemap: undefined/sitemap.xml
-Sitemap: undefinedsitemap.xml
+Sitemap: https://www.quantocostafareunapp.com/sitemap.xml
+Sitemap: https://www.quantocostafareunapp.comsitemap.xml
