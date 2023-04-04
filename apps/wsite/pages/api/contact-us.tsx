@@ -15,5 +15,5 @@ const contactUsHandler = new ContactUsHandler({
 })
 
 export default async function handler(req: any, res: any) {
-  await contactUsHandler.sendEmail(res, req.body)
+  await contactUsHandler.getHandler(res, req.body)
 }

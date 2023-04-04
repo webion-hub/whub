@@ -24,13 +24,13 @@ const pdfHandler = new PdfHandler({
 })
 
 export default async function handler(req: any, res: any) {
-  const pdf = await pdfHandler.getPdf("<html><head><title>titolone</title></head><body><h1> ciaone </h1><p>roba</p></body></html>")
+  //const pdf = await pdfHandler.getPdf("<html><head><title>titolone</title></head><body><h1> ciaone </h1><p>roba</p></body></html>")
 
   await contactUsHandler.getHandler(res, {
     ...req.body,
     attachments: [{
       filename: 'Preventivo App.pdf',
-      content: pdf.data
+      //content: pdf.data
     }]
   })
 }

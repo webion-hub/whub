@@ -9,7 +9,6 @@ import { AppProps } from "next/app";
 import { darkTheme, globalStyle, lightTheme } from "@wui/theme";
 
 import dynamic from 'next/dynamic';
-import { Footer } from "../components/Footer";
 import Page from "@wui/layout/Page";
 import BaseFooter from "@wui/sections/BaseFooter";
 import Sections from "@wui/layout/Sections";
