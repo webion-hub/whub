@@ -84,12 +84,11 @@ export default function Homepage() {
           width: '100%' 
         }}
       >
-        <Grid xs={12} lg={6}>
+        <Grid xs={12} md={6}>
           <Paper 
             sx={{
               display: 'flex',
-              height: '100%',
-              maxHeight: { xs: 400, lg: '100%' },
+              height: { xs: 400, lg: '100%' },
               borderRadius: 1,
               overflow: 'hidden',
               width: '100%',
