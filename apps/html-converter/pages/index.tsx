@@ -9,7 +9,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { fromEvent } from "rxjs";
 
-const maxSheetWidth = 600
+const maxSheetWidth = 710
 
 export default function Homepage() {
   const theme = useTheme()
@@ -107,6 +107,7 @@ export default function Homepage() {
           >
             <iframe
               style={{
+                overflow: 'overlay',
                 display: 'block',
                 border: 'none',
                 transformOrigin: 'top left',
