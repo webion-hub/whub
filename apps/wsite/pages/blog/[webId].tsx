@@ -99,7 +99,7 @@ export const useArticlePos = create<ArticlePos>((set) => ({
 export default function ArticlePage({ fallback, webId, articleLanguage }: any) {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
-  const { clickNavigate, navigate } = useNextNavigator()
+  const { clickNavigate } = useNextNavigator()
   const { getStorageLanguage, t, setLanguage, languageChange } = useLanguage()
 
 

@@ -375,7 +375,11 @@
   "back-to-articles": "Torna agli articoli",
   "no-sections": "Nessuna sezione",
   "parva-domus": "Sviluppo landing page utilizzando NextJs.",
-  
+
+  "error-404": "Errore 404",
+  "error-404-message": "Pagina non trovata",
+  "error-404-gag": "Sei stato webionizato",
+
   "our-mission": "Mission",
   "our-mission-title": "Il nostro obiettivo",
   "our-mission-description": "La nostra missione è quella di sviluppare app innovative per aiutare le persone a migliorare la propria vita quotidiana, mentre supportiamo le aziende a crescere digitalmente e a raggiungere i propri obiettivi di business.</br></br> Crediamo che le app possano essere uno strumento potente per migliorare la vita delle persone, e siamo impegnati a sviluppare soluzioni innovative che possano fare la differenza. Le nostre app sono progettate per essere userfriendly e per rispondere alle esigenze specifiche dei nostri clienti, sia a livello personale che aziendale."

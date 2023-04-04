@@ -376,6 +376,10 @@
   "no-sections": "No sections",
   "parva-domus": "Landing page development using NextJs.",
 
+  "error-404": "Error 404",
+  "error-404-message": "Page not found",
+  "error-404-gag": "You've been webionizated",
+
   "our-mission": "Mission",
   "our-mission-title": "Our mission",
   "our-mission-description": "Our mission is to develop innovative apps to help people improve their daily lives, while supporting companies to grow digitally and achieve their business goals.<br/><br/> We believe apps can be a powerful tool to improve people's lives, and we are committed to developing innovative solutions that can make a difference. Our apps are designed to be user-friendly and to address the specific needs of our customers, both personally and business-wise."
