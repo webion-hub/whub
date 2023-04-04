@@ -78,7 +78,7 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
     const storageLanguage = getStorageLanguage()
     const isOnRightRoute = storageLanguage === locale
 
-    if(isOnRightRoute || !storageLanguage)
+    if(isOnRightRoute || !storageLanguage || storageLanguage == '')
       return
 
     setLanguage(storageLanguage)
@@ -87,12 +87,14 @@ export const LanguageWrapper = (props: LanguageWrapperProps) => {
   useEffect(() => {
     const sub = routeNavigator
       .pipe(filter(e => !e.preventRouteNavigation))
+      .pipe(skip(1))
       .subscribe((e) => router.push(e.redirectRoute, e.redirectRoute, { locale: e.lang }))
 
     return () => sub.unsubscribe()
   }, [])
 
   const setLanguage = (language: string) => {
+
     const e: LanguageChangeEvent = {
       preventRouteNavigation: false,
       lang: language,
