@@ -47,18 +47,15 @@ export default function Homepage() {
         baseURL: '/api',
       })
       .post('pdf', { html: preparedHtml })
-      .then(res => downloadBase64Pdf(res.data.pdf, 'Wpdf.pdf'))
+      .then(res => openPreview(res.data.pdf, 'Wpdf.pdf'))
       .finally(() => setLoading(false))
   }
 
-  const downloadBase64Pdf = (base64String: string, fileName: string) => {
-    const linkSource = `data:application/pdf;base64,${base64String}`;
-    const downloadLink = document.createElement("a");
-    const fileNameWithExt = `${fileName}.pdf`;
-  
-    downloadLink.href = linkSource;
-    downloadLink.download = fileNameWithExt;
-    downloadLink.click();
+  const openPreview = (base64String: string, fileName: string) => {
+    fetch(`data:application/pdf;base64,${base64String}`)
+      .then(res => res.blob())
+      .then(blob => URL.createObjectURL(blob))
+      .then(url => window.open(url))
   }
 
   const copy = () => {
@@ -108,7 +105,7 @@ export default function Homepage() {
             />
           </Paper>
         </Grid>
-        <Grid xs={12} lg={6}>
+        <Grid xs={12} md={6}>
           <Paper
             ref={containerRef}
             sx={{
