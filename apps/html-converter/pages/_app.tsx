@@ -19,7 +19,7 @@ const CookiePopup = dynamic(() => import("@wui/components/CookiePopup"), { ssr: 
 const CssBaseline = dynamic(() => import("@mui/material/CssBaseline"), { ssr: true })
 const GlobalStyles = dynamic(() => import("@mui/material/GlobalStyles"), { ssr: true })
 
-export const pageMaxWidth = 1000
+export const pageMaxWidth = 1500
 
 export default function RootLayout({ Component, pageProps }: AppProps) {
   return (

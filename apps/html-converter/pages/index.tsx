@@ -1,15 +1,16 @@
 import Editor from "@monaco-editor/react";
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import { LoadingButton } from '@mui/lab';
-import { Paper } from "@mui/material";
+import { Button, Paper, Stack } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import { useTheme } from "@mui/system";
 import Section from "@wui/layout/Section";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { fromEvent } from "rxjs";
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 
-const maxSheetWidth = 710
+const maxSheetWidth = 795
 
 export default function Homepage() {
   const theme = useTheme()
@@ -45,12 +46,12 @@ export default function Homepage() {
       .create({
         baseURL: '/api',
       })
-      .post('pdf', { html })
+      .post('pdf', { html: preparedHtml })
       .then(res => downloadBase64Pdf(res.data.pdf, 'Wpdf.pdf'))
       .finally(() => setLoading(false))
   }
 
-  function downloadBase64Pdf(base64String: string, fileName: string): void {
+  const downloadBase64Pdf = (base64String: string, fileName: string) => {
     const linkSource = `data:application/pdf;base64,${base64String}`;
     const downloadLink = document.createElement("a");
     const fileNameWithExt = `${fileName}.pdf`;
@@ -59,6 +60,20 @@ export default function Homepage() {
     downloadLink.download = fileNameWithExt;
     downloadLink.click();
   }
+
+  const copy = () => {
+    navigator.clipboard.writeText(preparedHtml);
+  }
+
+  const preparedHtml = `
+    <html>
+      ${html}
+    </html>
+    <style>
+      @page { margin: 0; }
+      body { margin: 0; }
+    </style>
+  `
 
   return (
     <Section>
@@ -72,9 +87,9 @@ export default function Homepage() {
         <Grid xs={12} lg={6}>
           <Paper 
             sx={{
-              minHeight: 400,
               display: 'flex',
               height: '100%',
+              maxHeight: { xs: 400, lg: '100%' },
               borderRadius: 1,
               overflow: 'hidden',
               width: '100%',
@@ -116,20 +131,32 @@ export default function Homepage() {
                 height: 'fit-content',
                 aspectRatio: '210/297'
               }}
-              srcDoc={html}
+              srcDoc={preparedHtml}
             />
           </Paper>
         </Grid>
       </Grid>
-      <LoadingButton
-        loading={loading}
-        variant="contained"
+      <Stack
+        direction={{ xs: 'column', md: 'row'  }}
+        spacing={2}
         sx={{ marginTop: 2 }}
-        endIcon={<DownloadRoundedIcon/>}
-        onClick={download}
       >
-        Download
-      </LoadingButton>
+        <Button
+          variant="outlined"
+          endIcon={<ContentCopyRoundedIcon/>}
+          onClick={copy}
+        >
+          Copia HTML
+        </Button>
+        <LoadingButton
+          loading={loading}
+          variant="contained"
+          endIcon={<DownloadRoundedIcon/>}
+          onClick={download}
+        >
+          Download
+        </LoadingButton>
+      </Stack>
     </Section>
   )
 }
