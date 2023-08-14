@@ -66,10 +66,6 @@ export default function Homepage() {
     <html>
       ${html}
     </html>
-    <style>
-      @page { margin: 0; }
-      body { margin: 0; }
-    </style>
   `
 
   return (

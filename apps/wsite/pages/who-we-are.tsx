@@ -147,12 +147,13 @@ export default function WhoWeArePage() {
               justifyContent="space-evenly"
               flexWrap="wrap"
             >
-              {/*<Member
-                name="Mirco Raviola"
+              <Member
+                name="Simone Leonelli"
                 memberRole={t('sales-manager')}
-                src="/assets/images/members/mirco.png"
+                src="/assets/images/members/simo.jpeg"
                 alt="mirco"
-              />*/}
+                linkedinHref='https://www.linkedin.com/in/simone-leonelli-1430871b3/'
+              />
               <Member
                 name="Davide Messori"
                 memberRole={t('back-end')}
@@ -160,14 +161,6 @@ export default function WhoWeArePage() {
                 linkedinHref="https://www.linkedin.com/in/davide-messori-282781189/"
                 alt="davido"
                 githubHref="https://github.com/davidemesso"
-              />
-              <Member
-                name="Lamine Abdi"
-                memberRole={t('back-end')}
-                src="/assets/images/members/lamine.jpeg"
-                linkedinHref="https://www.linkedin.com/in/lamineabdi/"
-                githubHref="https://github.com/iAmLam094"
-                alt="Lamine"
               />
               <Member
                 name="Matteo Milanesi"
