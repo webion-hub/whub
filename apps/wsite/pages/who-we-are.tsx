@@ -151,7 +151,7 @@ export default function WhoWeArePage() {
                 name="Simone Leonelli"
                 memberRole={t('sales-manager')}
                 src="/assets/images/members/simo.jpeg"
-                alt="mirco"
+                alt="Simone"
                 linkedinHref='https://www.linkedin.com/in/simone-leonelli-1430871b3/'
               />
               <Member
@@ -163,11 +163,24 @@ export default function WhoWeArePage() {
                 githubHref="https://github.com/davidemesso"
               />
               <Member
-                name="Matteo Milanesi"
-                memberRole={t('designer')}
-                src="/assets/images/members/milanesi.jpeg"
-                linkedinHref="https://www.linkedin.com/in/matteo-milanesi-b59734164/"
-                alt="matteo milanesi"
+                name="Francesco Bergonzini"
+                memberRole={t('back-end')}
+                src="/assets/images/members/berg.jpeg"
+                alt="berg"
+                githubHref="https://github.com/bergonzinifrancesco"
+              />
+            </Stack>
+            <Stack
+              direction="row"
+              justifyContent="space-evenly"
+              flexWrap="wrap"
+            >
+              <Member
+                name="Jacopo Zanti"
+                memberRole={t('front-end')}
+                src="/assets/images/members/jacopo.jpeg"
+                alt="Jacopo"
+                githubHref="https://github.com/jacopozanti"
               />
             </Stack>
           </Stack>
