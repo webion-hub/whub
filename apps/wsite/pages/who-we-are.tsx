@@ -15,7 +15,7 @@ import { ImageAndDescription } from '../components/blocks/ImageAndDescription';
 
 const GetAQuote = dynamic(() => import("../components/sections/GetAQuote"), { ssr: true })
 
-const membersOrder = [1, 2, 3]
+const membersOrder = [0, 1, 2]
   .map((value) => ({ value, sort: Math.random() }))
   .sort((a, b) => a.sort - b.sort)
   .map(({ value }) => value);
@@ -141,19 +141,21 @@ export default function WhoWeArePage() {
                   order: membersOrder[2],
                 }}
               />
-            </Stack>
-            <Stack
-              direction="row"
-              justifyContent="space-evenly"
-              flexWrap="wrap"
-            >
               <Member
                 name="Simone Leonelli"
                 memberRole={t('sales-manager')}
                 src="/assets/images/members/simo.jpeg"
                 alt="Simone"
                 linkedinHref='https://www.linkedin.com/in/simone-leonelli-1430871b3/'
+                sx={{ order: 999 }}
               />
+            </Stack>
+            <Stack
+              direction="row"
+              justifyContent="space-evenly"
+              flexWrap="wrap"
+            >
+
               <Member
                 name="Davide Messori"
                 memberRole={t('back-end')}
@@ -169,18 +171,19 @@ export default function WhoWeArePage() {
                 alt="berg"
                 githubHref="https://github.com/bergonzinifrancesco"
               />
-            </Stack>
-            <Stack
-              direction="row"
-              justifyContent="space-evenly"
-              flexWrap="wrap"
-            >
               <Member
                 name="Jacopo Zanti"
                 memberRole={t('front-end')}
                 src="/assets/images/members/jacopo.jpeg"
                 alt="Jacopo"
                 githubHref="https://github.com/jacopozanti"
+              />
+              <Member
+                name="Alessandro Neri"
+                memberRole={t('front-end')}
+                src="/assets/images/members/neri.jpeg"
+                alt="Neri"
+                githubHref="https://github.com/AlleNeri"
               />
             </Stack>
           </Stack>
