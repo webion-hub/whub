@@ -1,5 +1,5 @@
 
-import { NextImg } from '@wui/components';
+import { ClickableCard, MaybeShow, NextImg } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
@@ -9,6 +9,8 @@ import useLanguage from '@wui/wrappers/useLanguage';
 import dynamic from 'next/dynamic';
 import { CardGroup } from '../components/cards/CardGroup';
 import { ImageCard, ImageCardProps } from '../components/cards/ImageCard';
+import { Box, Stack } from '@mui/system';
+import { Button, Typography } from '@mui/material';
 const GetAQuote = dynamic(() => import("../components/sections/GetAQuote"), { ssr: true })
 
 interface ProjectProps extends ImageCardProps {
@@ -43,6 +45,53 @@ export default function Projects() {
 
   return (
     <Page>
+      <Stack margin={"0 auto"}>
+        <CardGroup
+          label={t('projects')}
+          title={""}
+        >
+        <ClickableCard sx={{width:"100%"}}>
+          <Stack display="flex" flexDirection="row" gap={2} >
+            <Box>
+              <NextImg
+                src="/assets/images/projects/qubi.png"
+                alt="qubi"
+                auto={{ height: '170px', width: '100%' }}
+                sx={{
+                  objectFit: 'cover',
+                  borderRadius: (theme) => theme.shape.borderRadius/2,
+                }}
+              />
+            </Box>
+            <Stack
+            direction="column"
+            justifyContent="space-between"
+            >
+              <Box>
+                <Typography variant="h5" component="h4" sx={{ marginBlock: 1 }}>
+                  Qubi
+                </Typography>
+                <MaybeShow show={!!t("qubi")}>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    component="span"
+                  >
+                    {t("qubi")}
+                  </Typography>
+                </MaybeShow>
+              </Box>
+              <Button
+                onClick={()=>window.open('#', '_blank')?.focus()}
+                variant='contained'
+              >
+                Vedi Sito Web
+              </Button>
+            </Stack>
+          </Stack>
+        </ClickableCard>
+        </CardGroup>
+      </Stack>
       <PageSettings pageTranslationName="project" />
       <Sections>
         <Section>
