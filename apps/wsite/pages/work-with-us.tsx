@@ -27,7 +27,7 @@ export default function WorkWithUs() {
             }}
           >
             <TitleSectionLabel
-              label={t('work-with-us')} 
+              label={t('work-with-us')}
               title={t('work-with-us-title')}
               sx={{
                 marginLeft: 1,
@@ -60,7 +60,7 @@ export default function WorkWithUs() {
                       <li>C#</li>
                       <li>AspNetCore</li>
                       <li>Git</li>
-                      <li>Entity Framewokr</li>
+                      <li>Entity Framework</li>
                       <li>SQL</li>
                     </ul>
                     <br/>
@@ -179,14 +179,14 @@ function JobCard(props: JobCardProps) {
           </Typography>
         </Stack>
       </ClickableCard>
-      <Dialog 
-        onClose={() => setOpen(false)} 
+      <Dialog
+        onClose={() => setOpen(false)}
         open={open}
       >
         <DialogTitle>{props.title}</DialogTitle>
         <DialogContent>
           <Stack
-            direction="column" 
+            direction="column"
             spacing={2}
           >
             <Typography
@@ -210,14 +210,14 @@ function JobCard(props: JobCardProps) {
           </Stack>
         </DialogContent>
         <DialogActions>
-          <Button 
+          <Button
             onClick={() => setOpen(false)}
           >
             Chiudi
           </Button>
-          <Button 
+          <Button
             variant='contained'
-            onClick={openEmail} 
+            onClick={openEmail}
             autoFocus
           >
             Candidati
