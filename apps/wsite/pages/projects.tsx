@@ -45,7 +45,7 @@ export default function Projects() {
 
   return (
     <Page>
-      <Stack margin={"0 auto"}>
+      <Stack marginX={11} marginTop={8}>
         <CardGroup
           label={""}
           title={""}
