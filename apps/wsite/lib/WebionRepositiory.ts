@@ -1,5 +1,5 @@
 export class WebionRepository {
-  static readonly ADDRESS = 'Via Panfilo Castaldi, 3, 41123 Modena MO';
+  static readonly ADDRESS = 'Via Placido Rizzotto, 50, 41123 Modena MO';
   static readonly MAPS_ADDRESS = 'http://maps.google.com/?q=Webion SRL';
 
   static readonly EMAIL = 'amministrazione@webion.it';
@@ -19,13 +19,13 @@ export class WebionRepository {
 
   static openEmail = (opt?: { subject?: string }) => {
     return this.sethref(
-      this.HREF_EMAIL, 
-      opt?.subject 
-        ? `?subject=${opt.subject}` 
+      this.HREF_EMAIL,
+      opt?.subject
+        ? `?subject=${opt.subject}`
         : ''
     );
   }
-    
+
   static openPhone = () => this.sethref(this.HREF_PHONE);
   static openPec = () => this.sethref(this.HREF_PEC);
   static openFacebook = () => this.open(this.FACEBOOK);

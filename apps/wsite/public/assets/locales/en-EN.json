@@ -182,7 +182,7 @@
 
   "who-are-we": "Who we are",
   "who-are-we-title": "Webion SRL",
-  "who-are-we-description": "At Webion, we take the time to get to know our clients and their specific needs before we start building a custom solution. We believe that this personalized approach is the best way to create software that truly meets the needs of our clients.<br/><br/>As a result, we have a track record of delivering high-quality, user-friendly software that our clients love. If you're looking for a team that will work with you to create a custom solution, contact us today. We're confident that you won't be disappointed.We are located in via Panfilo Castaldi 3, in Modena.",
+  "who-are-we-description": "At Webion, we take the time to get to know our clients and their specific needs before we start building a custom solution. We believe that this personalized approach is the best way to create software that truly meets the needs of our clients.<br/><br/>As a result, we have a track record of delivering high-quality, user-friendly software that our clients love. If you're looking for a team that will work with you to create a custom solution, contact us today. We're confident that you won't be disappointed. We are located in Via Placido Rizzotto 50, in Modena.",
   "the-team": "The team",
   "front-end-cofounder": "Co-Founder & Frontend Developer",
   "back-end-cofounder": "Co-Founder & Backend Developer",
@@ -190,7 +190,7 @@
   "front-end": "Frontend Developer",
   "designer": "Ui/Ux Designer",
   "sales-manager": "Sales Manager",
-  
+
   "technologies": "TECHNOLOGIES",
   "technologies-title": "The technologies used.",
   "c#": "C# is a modern, object-oriented, and type-safe programming language. C# enables developers to build many types of secure and robust applications that run in .NET.",
