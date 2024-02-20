@@ -71,7 +71,7 @@ export default function WhoWeArePage() {
         <Section>
           <Typography
             variant='h2'
-            sx={{ 
+            sx={{
               paddingBottom: 5,
               display: { xs: 'block', md: 'none' }
             }}
@@ -179,10 +179,10 @@ export default function WhoWeArePage() {
                 githubHref="https://github.com/jacopozanti"
               />
               <Member
-                name="Alessandro Neri"
+                name="Daniele Felicetta"
                 memberRole={t('front-end')}
                 src="/assets/images/members/neri.jpeg"
-                alt="Neri"
+                alt="Felicetta"
                 githubHref="https://github.com/AlleNeri"
               />
             </Stack>
@@ -259,7 +259,7 @@ function Member(props: MemberProps) {
       </Stack>
       <Stack direction="row" alignItems="center" justifyContent="center">
         {
-          props.linkedinHref && 
+          props.linkedinHref &&
             <IconButton
               href={props.linkedinHref}
               target="_blank"
