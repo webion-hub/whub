@@ -3,7 +3,7 @@ export class WebionRepository {
   static readonly MAPS_ADDRESS = 'http://maps.google.com/?q=Webion SRL';
 
   static readonly EMAIL = 'amministrazione@webion.it';
-  static readonly PHONE = '+39 389 008 6632';
+  static readonly PHONE = '+39 375 776 8253';
   static readonly PEC = 'webionsrl@legalmail.it';
 
   static readonly HREF_EMAIL = `mailto:${this.EMAIL}`;
