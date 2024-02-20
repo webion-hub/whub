@@ -47,7 +47,7 @@ export default function Projects() {
     <Page>
       <Stack margin={"0 auto"}>
         <CardGroup
-          label={t('projects')}
+          label={""}
           title={""}
         >
         <ClickableCard sx={{width:"100%"}}>
@@ -105,7 +105,8 @@ export default function Projects() {
               src="/assets/images/projects/kaire.webp"
               alt="kaire"
               onClick={() =>
-                window.open('https://kaire-automation.it', '_blank')?.focus()
+                window.open('https://kaire-automation.it', '_blank')
+                ?.focus()
               }
               buttonLabel={t('see-website')}
             />
@@ -187,6 +188,17 @@ export default function Projects() {
                 window
                   .open('https://immobiliareparvadomus.com/', '_blank')
                   ?.focus()
+              }
+              buttonLabel={t('see-website')}
+            />
+            <Project
+              title="Luluu"
+              paragraph={t('qubi')}
+              src="/assets/images/projects/luluu.png"
+              alt="luluu"
+              onClick={() =>
+                window.open('https://booking.luluu.it/', '_blank')
+                ?.focus()
               }
               buttonLabel={t('see-website')}
             />
