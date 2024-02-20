@@ -45,55 +45,57 @@ export default function Projects() {
 
   return (
     <Page>
-      <Stack marginX={11} marginTop={8}>
-        <CardGroup
-          label={""}
-          title={""}
-        >
-        <ClickableCard sx={{width:"100%"}}>
-          <Stack display="flex" flexDirection="row" gap={2} >
-            <Box>
-              <NextImg
-                src="/assets/images/projects/qubi.png"
-                alt="qubi"
-                auto={{ height: '170px', width: '100%' }}
-                sx={{
-                  objectFit: 'cover',
-                  borderRadius: (theme) => theme.shape.borderRadius/2,
-                }}
-              />
-            </Box>
-            <Stack
-            direction="column"
-            justifyContent="space-between"
-            >
-              <Box>
-                <Typography variant="h5" component="h4" sx={{ marginBlock: 1 }}>
-                  Qubi
-                </Typography>
-                <MaybeShow show={!!t("qubi")}>
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    component="span"
-                  >
-                    {t("qubi")}
-                  </Typography>
-                </MaybeShow>
-              </Box>
-              <Button
-                onClick={()=>window.open('#', '_blank')?.focus()}
-                variant='contained'
-              >
-                Vedi Sito Web
-              </Button>
-            </Stack>
-          </Stack>
-        </ClickableCard>
-        </CardGroup>
-      </Stack>
       <PageSettings pageTranslationName="project" />
       <Sections>
+        <Section>
+          <Stack width="100%">
+            <CardGroup
+              label={""}
+              title={""}
+            >
+              <ClickableCard sx={{width:"100%"}}>
+                <Stack display="flex" flexDirection="row" gap={2} >
+                  <Box>
+                    <NextImg
+                      src="/assets/images/projects/qubi.png"
+                      alt="qubi"
+                      auto={{ height: '170px', width: '100%' }}
+                      sx={{
+                        objectFit: 'cover',
+                        borderRadius: (theme) => theme.shape.borderRadius/2,
+                      }}
+                    />
+                  </Box>
+                  <Stack
+                  direction="column"
+                  justifyContent="space-between"
+                  >
+                    <Box>
+                      <Typography variant="h5" component="h4" sx={{ marginBlock: 1 }}>
+                        Qubi
+                      </Typography>
+                      <MaybeShow show={!!t("qubi")}>
+                        <Typography
+                          variant="body1"
+                          color="text.secondary"
+                          component="span"
+                        >
+                          {t("qubi")}
+                        </Typography>
+                      </MaybeShow>
+                    </Box>
+                    <Button
+                      onClick={()=>window.open('#', '_blank')?.focus()}
+                      variant='contained'
+                    >
+                      Vedi Sito Web
+                    </Button>
+                  </Stack>
+                </Stack>
+              </ClickableCard>
+            </CardGroup>
+          </Stack>
+        </Section>
         <Section>
           <CardGroup
             label={t('projects')}
