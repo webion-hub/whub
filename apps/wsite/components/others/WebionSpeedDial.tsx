@@ -1,7 +1,5 @@
 import EmailRounded from '@mui/icons-material/EmailRounded';
-import Facebook from '@mui/icons-material/Facebook';
 import GitHub from '@mui/icons-material/GitHub';
-import Instagram from '@mui/icons-material/Instagram';
 import LinkedIn from '@mui/icons-material/LinkedIn';
 import PhoneRounded from '@mui/icons-material/PhoneRounded';
 
@@ -28,16 +26,6 @@ export default function WebionSpeedDial() {
           name: 'GitHub',
           Icon: GitHub,
           onClick: WebionRepository.openGithub,
-        },
-        {
-          name: 'Instagram',
-          Icon: Instagram,
-          onClick: WebionRepository.openInstagram,
-        },
-        {
-          name: 'Facebook',
-          Icon: Facebook,
-          onClick: WebionRepository.openFacebook,
         },
         {
           name: 'Linkedin',

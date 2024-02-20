@@ -1,12 +1,9 @@
 import CallRounded from '@mui/icons-material/CallRounded';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Button, IconButton, Link, Stack, Typography } from '@mui/material';
-import { NextImg } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
-import { Footer, FooterBottomLabel, FooterContent } from '@wui/layout/Footer';
+import { Footer, FooterContent } from '@wui/layout/Footer';
 import useLanguage from '@wui/wrappers/useLanguage';
 import { WebionRepository } from '../../../lib/WebionRepositiory';
 import { FooterLink } from './FooterLink';
@@ -18,25 +15,6 @@ export default function WebionFooter() {
   const { t } = useLanguage();
 
   const socials = [
-    {
-      href: WebionRepository.FACEBOOK,
-      icon: <FacebookIcon fontSize="inherit" aria-label="facebook button" />,
-    },
-    {
-      href: WebionRepository.QUORA,
-      icon: (
-        <NextImg
-          width={25}
-          height={20}
-          alt="quora logo"
-          src="/assets/images/quoraIcon.svg"
-        />
-      ),
-    },
-    {
-      href: WebionRepository.INSTAGRAM,
-      icon: <InstagramIcon fontSize="inherit" aria-label="instagram button" />,
-    },
     {
       href: WebionRepository.LINKEDIN,
       icon: <LinkedInIcon fontSize="inherit" aria-label="linkedin button" />,
@@ -145,7 +123,7 @@ export default function WebionFooter() {
           >
             {t('footer-title4')}
           </Typography>
-          <Stack direction="row">
+          <Stack direction="row" alignSelf="center">
             {socials.map((s, i) => (
               <IconButton
                 size="large"
