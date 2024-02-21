@@ -1,5 +1,5 @@
 export class WebionRepository {
-  static readonly ADDRESS = 'Via Placido Rizzotto, 50, 41123 Modena MO';
+  static readonly ADDRESS = 'Via Placido Rizzotto, 50, 41126 Modena MO';
   static readonly MAPS_ADDRESS = 'http://maps.google.com/?q=Webion SRL';
 
   static readonly EMAIL = 'amministrazione@webion.it';
