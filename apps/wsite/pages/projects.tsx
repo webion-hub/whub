@@ -1,5 +1,5 @@
 
-import { NextImg } from '@wui/components';
+import { ClickableCard, MaybeShow, NextImg } from '@wui/components';
 import { useNextNavigator } from '@wui/core';
 import Page from '@wui/layout/Page';
 import PageSettings from '@wui/layout/PageSettings';
@@ -9,6 +9,8 @@ import useLanguage from '@wui/wrappers/useLanguage';
 import dynamic from 'next/dynamic';
 import { CardGroup } from '../components/cards/CardGroup';
 import { ImageCard, ImageCardProps } from '../components/cards/ImageCard';
+import { Box, Stack } from '@mui/system';
+import { Button, Typography } from '@mui/material';
 const GetAQuote = dynamic(() => import("../components/sections/GetAQuote"), { ssr: true })
 
 interface ProjectProps extends ImageCardProps {
@@ -46,6 +48,55 @@ export default function Projects() {
       <PageSettings pageTranslationName="project" />
       <Sections>
         <Section>
+          <Stack width="100%">
+            <CardGroup
+              label={""}
+              title={""}
+            >
+              <ClickableCard sx={{width:"100%"}}>
+                <Stack display="flex" flexDirection="row" gap={2} >
+                  <Box>
+                    <NextImg
+                      src="/assets/images/projects/qubi.png"
+                      alt="qubi"
+                      auto={{ height: '170px', width: '100%' }}
+                      sx={{
+                        objectFit: 'cover',
+                        borderRadius: (theme) => theme.shape.borderRadius/2,
+                      }}
+                    />
+                  </Box>
+                  <Stack
+                  direction="column"
+                  justifyContent="space-between"
+                  >
+                    <Box>
+                      <Typography variant="h5" component="h4" sx={{ marginBlock: 1 }}>
+                        Qubi
+                      </Typography>
+                      <MaybeShow show={!!t("qubi")}>
+                        <Typography
+                          variant="body1"
+                          color="text.secondary"
+                          component="span"
+                        >
+                          {t("qubi")}
+                        </Typography>
+                      </MaybeShow>
+                    </Box>
+                    <Button
+                      onClick={()=>window.open('#', '_blank')?.focus()}
+                      variant='contained'
+                    >
+                      Vedi Sito Web
+                    </Button>
+                  </Stack>
+                </Stack>
+              </ClickableCard>
+            </CardGroup>
+          </Stack>
+        </Section>
+        <Section>
           <CardGroup
             label={t('projects')}
             title={t('our-most-recent-projects')}
@@ -56,7 +107,8 @@ export default function Projects() {
               src="/assets/images/projects/kaire.webp"
               alt="kaire"
               onClick={() =>
-                window.open('https://kaire-automation.it', '_blank')?.focus()
+                window.open('https://kaire-automation.it', '_blank')
+                ?.focus()
               }
               buttonLabel={t('see-website')}
             />
@@ -138,6 +190,17 @@ export default function Projects() {
                 window
                   .open('https://immobiliareparvadomus.com/', '_blank')
                   ?.focus()
+              }
+              buttonLabel={t('see-website')}
+            />
+            <Project
+              title="Luluu"
+              paragraph={t('qubi')}
+              src="/assets/images/projects/luluu.png"
+              alt="luluu"
+              onClick={() =>
+                window.open('https://booking.luluu.it/', '_blank')
+                ?.focus()
               }
               buttonLabel={t('see-website')}
             />

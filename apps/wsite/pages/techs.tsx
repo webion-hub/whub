@@ -55,17 +55,6 @@ export default function Techs() {
             <IconCard
               icon={
                 <TechImg
-                  alt="docker"
-                  src="/assets/images/technologies/docker.svg"
-                />
-              }
-              iconBackgroundColor="#fff"
-              title="Docker"
-              paragraph={t('docker')}
-            />
-            <IconCard
-              icon={
-                <TechImg
                   alt="react"
                   src="/assets/images/technologies/react.svg"
                 />
@@ -84,28 +73,6 @@ export default function Techs() {
               iconBackgroundColor="#fff"
               title="NET Core"
               paragraph={t('net-core')}
-            />
-            <IconCard
-              icon={
-                <TechImg
-                  alt="angular"
-                  src="/assets/images/technologies/angular.svg"
-                />
-              }
-              iconBackgroundColor="#fff"
-              title="Angular"
-              paragraph={t('angular')}
-            />
-            <IconCard
-              icon={
-                <TechImg
-                  alt="sql"
-                  src="/assets/images/technologies/sql.svg"
-                />
-              }
-              iconBackgroundColor="#fff"
-              title="SQL"
-              paragraph={t('sql')}
             />
             <IconCard
               icon={

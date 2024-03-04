@@ -28,7 +28,7 @@ export default function Homepage() {
         <Services id="services"/>
         <OurProcess id="how-we-work"/>
         <GetAQuote id="quote"/>
-        <FaqSection 
+        <FaqSection
           id="faq"
           questions={[
             {
@@ -50,10 +50,6 @@ export default function Homepage() {
             {
               question: t('website-faq-q5'),
               answer: tHtml('website-faq-a5'),
-            },
-            {
-              question: t('website-faq-q6'),
-              answer: tHtml('website-faq-a6'),
             },
           ]}
         />

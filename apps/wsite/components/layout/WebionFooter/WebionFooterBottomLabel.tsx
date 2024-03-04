@@ -28,6 +28,9 @@ export function WebionFooterBottomLabel() {
       <Typography variant="caption">
         PIVA/CF {WebionRepository.IVA}
       </Typography>
+      <Typography variant="caption">
+        Cap.Sociale: 10.200,00 €
+      </Typography>
       <Link
         sx={{ marginLeft: 1 }}
         color="inherit"
