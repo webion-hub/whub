@@ -31,11 +31,6 @@ export default function WebionSideBar() {
       href: '/',
     },
     {
-      text: t('navbar-button3'),
-      icon: AssignmentTurnedInRoundedIcon,
-      href: '/projects',
-    },
-    {
       text: t('navbar-button5'),
       icon: ComputerRounded,
       href: '/techs',
@@ -96,11 +91,6 @@ export default function WebionSideBar() {
           icon: <DesignServicesRoundedIcon />,
         }}
       >
-        <SideBarItem
-          text={t('service1')}
-          icon={<DevicesRounded />}
-          onClick={clickNavigate('/services/websites')}
-        />
         <SideBarItem
           text={t('service2')}
           icon={<PhoneIphoneRounded />}

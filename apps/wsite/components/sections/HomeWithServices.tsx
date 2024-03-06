@@ -30,26 +30,20 @@ export default function HomeWithServices(props: ISection) {
   
   const pages: HomeSlide<Slides>[] = [
     {
-      key: 'apps',
-      title: tHtml('service2-desc'),
-      src: '/assets/images/apps.jpg',
-      onClick: () => router.push('/services/apps'),
-    },
-    {
       key: 'industry',
       title: tHtml('service3-desc'),
       src: '/assets/images/industry.jpg',
       onClick: () => router.push('/services/industry'),
     },
     {
-      key: 'websites',
-      title: tHtml('service1-desc'),
-      src: '/assets/images/websites.jpg',
-      onClick: () => router.push('/services/websites'),
+      key: 'apps',
+      title: tHtml('service2-desc'),
+      src: '/assets/images/apps.jpg',
+      onClick: () => router.push('/services/apps'),
     },
   ]
 
-  const [pageKey, setPageKey] = useState<Slides>('apps');
+  const [pageKey, setPageKey] = useState<Slides>('industry');
   const [pageLoaded, setPageLoaded] = useState<Slides[]>([pageKey]);
 
   const router = useRouter();
@@ -152,27 +146,19 @@ export default function HomeWithServices(props: ISection) {
           }}
         >
           <ButtonWithProgress
+            label={t('service3')}
+            Icon={FactoryRounded}
+            selected={pageKey === 'industry'}
+            onSelectEnd={() => handlePage('apps')}
+            onClick={() => handlePage('industry')}
+            duration={5000}
+          />
+          <ButtonWithProgress
             label={t('service2')}
             Icon={PhoneIphoneRounded}
             selected={pageKey === 'apps'}
             onSelectEnd={() => handlePage('industry')}
             onClick={() => handlePage('apps')}
-            duration={5000}
-          />
-          <ButtonWithProgress
-            label={t('service3')}
-            Icon={FactoryRounded}
-            selected={pageKey === 'industry'}
-            onSelectEnd={() => handlePage('websites')}
-            onClick={() => handlePage('industry')}
-            duration={5000}
-          />
-          <ButtonWithProgress
-            label={t('service1')}
-            Icon={DevicesRounded}
-            selected={pageKey === 'websites'}
-            onSelectEnd={() => handlePage('apps')}
-            onClick={() => handlePage('websites')}
             duration={5000}
           />
         </Stack>

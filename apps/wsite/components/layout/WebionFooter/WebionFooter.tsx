@@ -93,12 +93,6 @@ export default function WebionFooter() {
             {t('footer-title3')}
           </Typography>
           <FooterLink
-            href="/services/websites"
-            onClick={clickNavigate('/services/websites')}
-          >
-            {t('service1')}
-          </FooterLink>
-          <FooterLink
             href="/services/apps"
             onClick={clickNavigate('/services/apps')}
           >
