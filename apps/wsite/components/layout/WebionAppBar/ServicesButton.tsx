@@ -50,16 +50,6 @@ export function ServicesButton() {
         {t('navbar-button2')}
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem
-          onClick={navigate('/services/websites')}
-          sx={listItemSx}
-          selected={false}
-        >
-          <ListItemIcon>
-            <DevicesRounded color="primary" />
-          </ListItemIcon>
-          <ListItemText primary={t('service1')} secondary={t('learn-more')} />
-        </MenuItem>
         <MenuItem onClick={navigate('/services/apps')} sx={listItemSx}>
           <ListItemIcon>
             <PhoneIphoneRounded color="primary" />

@@ -41,13 +41,7 @@ export default function WebionAppbar() {
           }}
         >
           <ServicesButton />
-          <Button
-            color="inherit"
-            href="/projects"
-            onClick={clickNavigate('/projects')}
-          >
-            {t('navbar-button3')}
-          </Button>
+
           <Button
             color="inherit"
             href="/techs"
